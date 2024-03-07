@@ -185,7 +185,7 @@ export class CardService {
   getSearchCards(field: string, search: string): Promise<Card[]> {
     return new Promise((resolve, rejects) => {
       const col = collection(this.store, 'cards');
-      const q = query(col, orderBy(field), startAt(search), endAt(search + "\uf8ff"))
+      const q = query(col, where('active', "==", true), orderBy(field), startAt(search), endAt(search + "\uf8ff"))
       getDocsFromServer(q).then(docs => {
         let cards: Card[] = [];
         docs.forEach(doc => {
