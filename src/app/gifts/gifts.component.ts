@@ -82,6 +82,14 @@ export class GiftsComponent implements OnInit {
       await loading.dismiss();
     }
   }
+  
+  movetotop(title: string, list: Event[]): Event[] {
+    return [...list.filter(x => x.name === title), ...list.filter(x => x.name !== title)];
+  }
+
+  movetolast(title: string, list: Event[]): Event[] {
+    return [...list.filter(x => x.name !== title), ...list.filter(x => x.name === title)];
+  }
 
   async loadEvent() {
     let loading: HTMLIonLoadingElement;
@@ -98,6 +106,16 @@ export class GiftsComponent implements OnInit {
         }
       })
       this.events = this.sort(this.events);
+      this.events = this.movetotop("Gifts for Father's Day", this.events);
+      this.events = this.movetotop("Gifts for Mother's Day", this.events);
+      this.events = this.movetotop("Gifts for Easter", this.events);
+      this.events = this.movetotop("Gifts for Graduation", this.events);
+      
+      this.events = this.movetolast("Gifts for Halloween", this.events);
+      this.events = this.movetolast("Gifts for Thanksgiving", this.events);
+      this.events = this.movetolast("Gifts for Christmas", this.events);
+      this.events = this.movetolast("Gifts for New year", this.events);
+      this.events = this.movetolast("Gifts for Valentines day", this.events);
     }
     finally {
       await loading.dismiss();
