@@ -6,6 +6,20 @@
    src: url(assets/webfonts/Constantia/Constantia.otf) format("opentype");
 }
 
+@font-face {
+   font-family: Proxima Nova;
+   font-style: normal;
+   font-weight: normal;
+   src: url('assets/webfonts/ProximaNova/proximanova_regular.ttf') format('truetype');
+}
+
+@font-face {
+   font-family: Proxima Nova;
+   font-style: normal;
+   font-weight: bold;
+   src: url('assets/webfonts/ProximaNova/proximanova_bold.otf') format('opentype');
+}
+
 @import "ngx-material-pages_theme.scss";
 @import '@ctrl/ngx-emoji-mart/picker';
 

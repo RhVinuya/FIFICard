@@ -1,39 +1,58 @@
 <ion-content>
     <h2 style="font-size:0px;margin: 0;">Gifts</h2>
     <section class="section-name padding-y-sm bk-hw">
-        <!-- mother-background -->
         <div class="container animate main">
-            <div class="row">
-                <div class="col-md-12">
-                    <img src="/assets/images/2024/hbd/banner/gift-min.png" class="img-fluid">
-                    <img src="/assets/images/2024/hbd/banner/gift-s1-min.png" class="img-fluid">
-                </div>
+
+            <div class="header-div">
+                <ion-label class="label-header">GIFTS FOR ANY OCCASSION</ion-label>
             </div>
-            <br /><br />
-            <div class="row header pb-2 mb-4">
-                <div class="col-md-4">
-                    <h2 [class]="mode =='Category'?'text-center my-header active':'text-center my-header'"
-                        (click)="modeChange('Category')">{{'gifts.categorytext'|translate}}</h2>
-                </div>
-                <div class="col-md-4">
-                    <h2 [class]="mode =='Recipient'?'text-center my-header active':'text-center my-header'"
-                        (click)="modeChange('Recipient')">{{'gifts.recipienttext'|translate}}</h2>
-                </div>
-                <div class="col-md-4">
-                    <h2 [class]="mode =='Event'?'text-center my-header active':'text-center my-header'"
-                        (click)="modeChange('Event')">{{'gifts.eventtext'|translate}}</h2>
-                </div>
+            <div class="subheader-div">
+                <ion-label class="label-subheader">FiBei Greetings Gift Guide is designed to make your gift-giving experience a breeze! Whether you're searching for the perfect present for a loved one or looking for thoughtful gift ideas for any occasion, our guide is here to help.</ion-label>
             </div>
-            <app-gift-events *ngIf="mode=='Category'" [events]="categories">
-            </app-gift-events>
-            <app-gift-events *ngIf="mode=='Recipient'" [events]="recipients">
-            </app-gift-events>
-            <app-gift-events *ngIf="mode=='Event'" [events]="events">
-            </app-gift-events>
+            <div class="items-div">
+                <div class="row header pb-2 mb-4">
+                    <div class="col-md-4">
+                        <h2 [class]="mode =='Category'?'text-center my-header active':'text-center my-header'"
+                            (click)="modeChange('Category')">{{'gifts.categorytext'|translate}}</h2>
+                    </div>
+                    <div class="col-md-4">
+                        <h2 [class]="mode =='Recipient'?'text-center my-header active':'text-center my-header'"
+                            (click)="modeChange('Recipient')">{{'gifts.recipienttext'|translate}}</h2>
+                    </div>
+                    <div class="col-md-4">
+                        <h2 [class]="mode =='Event'?'text-center my-header active':'text-center my-header'"
+                            (click)="modeChange('Event')">{{'gifts.eventtext'|translate}}</h2>
+                    </div>
+                </div>
+                <app-gift-events *ngIf="mode=='Category'" [events]="categories">
+                </app-gift-events>
+                <app-gift-events *ngIf="mode=='Recipient'" [events]="recipients">
+                </app-gift-events>
+                <app-gift-events *ngIf="mode=='Event'" [events]="events">
+                </app-gift-events>
+            </div>
+            <div class="card-option-banner-div">
+                <img src="/assets/images/gift/card-option-banner.png">
+                <div class="message-cards" [routerLink]="['/events']"></div>
+                <div class="poetry-cards" [routerLink]="['/poetry']"></div>
+                <div class="signandsend-cards" [routerLink]="['/signandsend']"></div>
+            </div>
+            <div class="try-sign-and-send-div">
+                <img src="/assets/images/gift/try-sign-and-send.png">
+                <div class="know-more" [routerLink]="['/signandsendpage']"></div>
+            </div>
+            <div class="more-from-fibei-div">
+                <img src="/assets/images/more-from-fibei.png">
+                <div class="stickers" [routerLink]="['/stickercards']"></div>
+                <div class="postcards" [routerLink]="['/postcards']"></div>
+                <div class="gifts" [routerLink]="['/gifts']"></div>
+                <div class="games" [routerLink]="['/games']"></div>
+            </div>
+            <!--
             <div class="row">
                 <div class="col-md-12">
                     <img src="/assets/images/2024/hbd/more-min.png">
-                    <br/><br/>
+                    <br /><br />
                 </div>
                 <div class="col-md-12" style="position: relative">
                     <img src="/assets/images/2024/hbd/more-2-min.png">
@@ -70,6 +89,7 @@
                     <br /> <br />
                 </div>
             </div>
+            -->
         </div>
 
     </section>

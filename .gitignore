@@ -117,5 +117,8 @@ upload-keystore.jks
 !src/assets/images/mothersday/*
 !src/assets/images/games/*
 !src/assets/images/games/chaotichero/*
+!src/assets/webFonts/*
+!src/assets/webFonts/Constantia/*
+!src/assets/webFonts/ProximaNova/*
 
 
