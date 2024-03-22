@@ -2,111 +2,41 @@
     <h2 style="font-size:0px;margin: 0;">Poetry Cards</h2>
     <section class="section-name padding-y-sm bk-hw">
         <div class="container animate main">
-            <div class="row text-center">
-                <div class="col-md-12">
-                    <img src="/assets/images/2024/hbd/banner/poetry-min.png" class="img-fluid">
-                    <br />
+            <div class="row">
+                <div class="header-div">
+                    <ion-label class="label-header">POETRY CARDS</ion-label>
+                </div>
+                <div class="subheader-div">
+                    <ion-label class="label-subheader">FiBei Greetings Poetry Cards collection, where words dance on paper to express emotions and sentiments in the most beautiful way. </ion-label>
                 </div>
             </div>
+
             <div class="row">
                 <div class="col-md-12" style="position: relative">
-                    <img src="/assets/images/2024/hbd/banner/poetry-s1-min.png">
-                    <!-- bday -->
-                    <div style="
-                    height: 36%;
-                    width: 13%;
+                    <img src="/assets/images/2024/easter/poetry/img1.png">
+                    <div style="    height: 42%;
+                    width: 37%;
                     position: absolute;
-                    left: 3.5%;
-                    bottom: 44%;
+                    bottom: 23%;
                     cursor: pointer;
-                    rotate: 71deg;" [routerLink]="['/card/Gl8t4BbdM3kWILpjzfqo']"></div>
-
-                    <div style="
-                    height: 54%;
-                    width: 9%;
+                    left: 4%;" [routerLink]="['/poetrycards/wiqT7aRUk5ndo0zsxpsy']"></div>
+                    <div style="height: 42%;
+                    width: 36%;
                     position: absolute;
-                    left: 15.5%;
-                    bottom: 37%;
-                    cursor: pointer;" [routerLink]="['/card/Ipm0KTgyDgCD8QRABnUl']"></div>
-                    <div style="
-                    height: 54%;
-                    width: 9%;
-                    position: absolute;
-                    left: 26%;
-                    bottom: 36%;
+                    bottom: 23%;
                     cursor: pointer;
-                    rotate: 10deg;" [routerLink]="['/card/6vgrVcnXWSfTQcUxuCyu']"></div> 
-
-              
-                    <!-- bday -->
-                    <div style="
-                    height: 55%;
-                    width: 9%;
-                    position: absolute;
-                    left: 41.3%;
-                    bottom: 16.5%;"  [routerLink]="['/card/cnzKJxB2weykD2WSwy3f']"></div>
-
-                    <div style="
-                    height: 55%;
-                    width: 9%;
-                    position: absolute;
-                    left: 50%;
-                    bottom: 16.8%;"  [routerLink]="['/card/MzbAOpMV9pMtv7KdT32U']"></div>
-
-                    <div style=" 
-                
-                    height: 55%;
-                    width: 10%;
-                    position: absolute;
-                    left: 59%;
-                    bottom: 16%;" [routerLink]="['/card/S61Eo03z4ft27vIhVJaT']"></div>
-
-                   
-
-                    <!-- wedding -->
-                    <div style=" height: 53%;
-                    width: 10%;
-                    position: absolute;
-                    left: 74.2%;
-                    bottom: 3%;
-                    cursor: pointer;" [routerLink]="['/card/CJdNcIX7t8LodHXqnRpI']"></div>
-
-                    <div style=" height: 53%;
-                      width: 10%;
-                      position: absolute;
-                      left: 85%;
-                      bottom: 3%;
-                      cursor: pointer;" [routerLink]="['/card/nj9B7qbT8OwLHDNs6Wie']"></div>
+                    right: 4%;
+                    " [routerLink]="['/signandsendcards/t2lf6uwXUHih22nJDwrY']"></div>
                 </div>
             </div>
-            <div class="row text-center">
-                <div class="col-md-12">
-                    <img src="/assets/images/2024/hbd/banner/poetry-s2-min.png" class="img-fluid">
-                    <br />
-                </div>
-            </div>
-            <!-- <br /><br />
             <div class="row">
-                <div class="col-md-3 col-6">
-                    <br />
-                    <img src="/assets/images/featured/poetry/title.png">
-                </div>
-                <div class="col-md-3 col-6">
-                    <a [routerLink]="['/poetrycards/5tx9z163Jql77mBmvHls']" class="to-link"> <img
-                            src="/assets/images/category/cc-ty.png" alt="Thank you" title="Thank you"></a>
-                </div>
-                <div class="col-md-3 col-6">
-                    <a [routerLink]="['/poetrycards/dGiyJX4go7yPhCJNJN4P']" class="to-link"> <img
-                            src="/assets/images/category/cc-bday.png" alt="birthday" title="birthday"></a>
-                </div>
-                <div class="col-md-3 col-6">
-                    <a [routerLink]="['/poetrycards/aRQdu4FYb4rASkDhbQmZ']" class="to-link"> <img
-                            src="/assets/images/category/cc-wedding.png" alt="wedding" title="wedding"></a>
-                </div>
-            </div> -->
-            <div class="row bg-white pt-4">
-                <div class="col-12 ps-4 ms-4">
-                    <h1 class="cus-text-title m-0" style="text-transform: none">EVENTS</h1>
+                <div class="col-md-12">
+                    <div class="header-div">
+                        <ion-label class="label-header">More Poetry Cards</ion-label>
+                    </div>
+                    <div class="header-div">
+                        <ion-label class="label-header" style="font-size: 2rem;">Occasions and Events</ion-label>
+                    </div>
                 </div>
             </div>
             <div class="row bg-white py-3">
@@ -120,50 +50,62 @@
                 <div class="col-md-12  my-auto">
                     <div class="row">
                         <div class="col-md-3" *ngFor="let event of events">
-                            <a class="btn-category py-2" [routerLink]="['/poetrycards/' + event.id]">
+                            <a class="btn-category-gray" [routerLink]="['/poetrycards/' + event.id]">
+                                {{event.name}}
+                            </a>
+                        </div>
+                        <div class="col-md-3" *ngFor="let event of occasions">
+                            <a class="btn-category-gray" [routerLink]="['/poetrycards/' + event.id]">
                                 {{event.name}}
                             </a>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row text-center">
+            <div class="header-div">
+                <ion-label class="label-header" style="font-size: 2rem;">Specialty Cards</ion-label>
+            </div>
+            <div class="row bg-white py-3">
+                <div class="col-12 my-2"></div>
+                <!--<div class="col-12 ">
+                    <a class="btn-featured" *ngIf="featured" [routerLink]="['/poetrycards/' + featured.id]">
+                        <img src="/assets/images/poetry/featured-category.jpg" class="img-fluid">
+                    </a>
+                    <img src="/assets/images/poetry/other.jpg" class="img-fluid">
+                </div>-->
+                <div class="col-md-12  my-auto">
+                    <div class="row">
+                        <div class="col-md-3" *ngFor="let event of specialty">
+                            <a class="btn-category" [routerLink]="['/poetrycards/' + event.id]">
+                                {{event.name}}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+   <div class="row">
                 <div class="col-md-12">
-                    <img src="/assets/images/2024/hbd/banner/poetry-s3-min.png" class="img-fluid">
+                    <img src="/assets/images/2024/easter/page/free.png">
                 </div>
             </div>
-            <div class="row bg-white pt-4">
-                <div class="col-12 ps-4 ms-4">
-                    <h1 class="cus-text-title m-0" style="text-transform: none">OCCASIONS</h1>
-                </div>
-            </div>
-            <div class="row bg-white pt-4 justify-content-md-center">
-                <div class="col-md-10 col-12">
-                    <div class="row text-center">
-                        <div class="col-6 col-md-6 px-4" *ngFor="let event of occasions">
-                            <a class="btn-category" [routerLink]="['/poetrycards/' + event.id]">
-                                {{event.name}}
-                            </a>
-                        </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="more-from-fibei-div">
+                        <img src="/assets/images/more-from-fibei.png">
+                        <div class="stickers" [routerLink]="['/stickercards']"></div>
+                        <div class="postcards" [routerLink]="['/postcards']"></div>
+                        <div class="gifts" [routerLink]="['/gifts']"></div>
+                        <div class="games" [routerLink]="['/games']"></div>
                     </div>
                 </div>
             </div>
-            <div class="row bg-white py-4">
-                <div class="col-12 ps-4 ms-4">
-                    <h1 class="cus-text-title m-0" style="text-transform: none">SPECIALTY CARDS</h1>
+            <div class="row">
+                <div class="col-md-12">
+                    <img src="/assets/images/2024/easter/page/SS.png" [routerLink]="['/signandsend']">
                 </div>
             </div>
-            <div class="row bg-white py-4 justify-content-md-center">
-                <div class="col-md-10 col-12">
-                    <div class="row text-center">
-                        <div class=" col-6 col-md-4 ps-4 pe-4" *ngFor="let event of specialty">
-                            <a class="btn-category" [routerLink]="['/poetrycards/' + event.id]">
-                                {{event.name}}
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+         
+<!-- 
             <div class="row">
                 <div class="col-md-12">
                     <img src="/assets/images/2024/hbd/more-min.png">
@@ -203,7 +145,7 @@
                         class="img-fluid " style="width:100%">
                     <br /> <br />
                 </div>
-            </div>
+            </div> -->
         </div>
     </section>
     <app-footer></app-footer>
