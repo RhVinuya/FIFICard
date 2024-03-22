@@ -2,10 +2,17 @@
     <h2 style="font-size:0px;margin: 0;" *ngIf="caption">Stickers {{caption}}</h2>
     <section class="section-name padding-y-sm bk-hw">
         <div class="container animate main">
-            <div class="row text-center">
-                <div class="col-md-12">
-                    <img src="/assets/images/2024/hbd/banner/sticker-min.png" class="img-fluid">
-                    <br /> <br />
+            <div class="row">
+                <div class="header-div">
+                    <ion-label class="label-header">STICKERS</ion-label>
+                </div>
+                <div class="subheader-div">
+                    <ion-label class="label-subheader">Add a touch of joy with Fibei Greetings Stickers!</ion-label>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <img src="/assets/images/2024/easter/sticker/featured.png" [routerLink]="['/signandsend']">
+                    </div>
                 </div>
             </div>
 
@@ -24,7 +31,30 @@
 
             <app-card-list *ngIf="cards.length > 0" [cards]="cards" mode="sticker"
                 [categories]="categories"></app-card-list>
+                <br/>
+                <br/>
+            <div class="row">
+                <div class="header-div">
+                    <ion-label class="label-header">Peel, Stick, Smile: Free Stickers with Every Card!</ion-label>
+                    <ion-label class="label-header" style="font-size: 1.5rem;">Get 5 free stickers with any greetings
+                        card purchase! Choose your card now and enjoy the bonus stickers.</ion-label>
+                </div>
                 <div class="row">
+                    <div class="col-md-3">
+                        <img src="/assets/images/2024/easter/sticker/event.png" [routerLink]="['/events']">
+                    </div>
+                    <div class="col-md-3">
+                        <img src="/assets/images/2024/easter/sticker/specialty.png" [routerLink]="['/specialtycardpage']">
+                    </div>
+                    <div class="col-md-3">
+                        <img src="/assets/images/2024/easter/sticker/poetry.png" [routerLink]="['/poetry']">
+                    </div>
+                    <div class="col-md-3">
+                        <img src="/assets/images/2024/easter/sticker/ss.png" [routerLink]="['/signandsend']" >
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="row">
                     <div class="col-md-12">
                         <img src="/assets/images/2024/hbd/more-min.png">
                         <br/><br/>
@@ -63,7 +93,7 @@
                             class="img-fluid " style="width:100%">
                         <br /> <br />
                     </div>
-                </div>
+                </div> -->
         </div>
     </section>
     <app-footer></app-footer>
