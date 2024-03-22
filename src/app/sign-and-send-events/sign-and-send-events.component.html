@@ -3,24 +3,42 @@
     <section class="section-name padding-y-sm bk-hw">
         <div class="container animate main">
             <div class="col-md-12 mb-4">
-                <img src="../../assets/images/2024/hbd/banner/sns-min.png" class="img-fluid pointer" style="border-radius:6px; width:100% !important">
+
+
+                <div class="row">
+                    <div class="header-div">
+                        <img src="../../assets/images/2024/easter/ss/ss-logo.png">
+                    </div>
+                    <div class="subheader-div">
+                        <ion-label class="label-subheader">Our Personalized Greeting Cards collection, where every card
+                            is a unique expression of your love and thoughtfulness. With our customizable options, you
+                            can add personal messages, and special touches to create a card that truly reflects your
+                            sentiments and captures unforgettable moments</ion-label>
+                    </div>
+                    <div class="header-div">
+                        <img src="../../assets/images/2024/easter/ss/featured.png">
+                    </div>
+                    <div class="header-div">
+                        <ion-label class="label-header" style="font-size: 2rem;">More Sign & Send</ion-label>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-12 mb-2" style="position: relative">
-                <img src="../../assets/images/2024/hbd/banner/sns-s1-min.png" class="img-fluid pointer" style="width:100% !important">
-                <div style="height: 18%; width: 37%;position: absolute;left: 62%;bottom: 12%; cursor: pointer;" [routerLink]="['/signandsendcards/blmQ6CJUkcjM3gGmJ8js']"></div>
-            </div>
-            <img src="../../assets/images/2024/hbd/banner/sns-s2-min.png" class="img-fluid pointer" style="width:100% !important">
+           
             <div class="panel-xmas">
                 <div class="row">
                     <div class="col-md-8 mb-2">
                         <!-- <img src="assets/images/sign-send-logo.png" class="signandsend me-2 pointer" [routerLink]="['/signandsend']"> -->
-                    <button class="btn btn-primary" style="background:#6b2d98 !Important;" type="button" [routerLink]="['/signandsendpage']">To Know More About Sign and Send</button>
-                 
-                    <button class="d-lg-none btn btn-outline-info btn-outline-violet" type="button" [routerLink]="['/signandsendcards/all']" style="margin-top:10px">VIEW ALL SIGN & SEND CARDS</button>
-                       
-                </div>
+                        <button class="btn btn-primary" style="background:#6b2d98 !Important;" type="button"
+                            [routerLink]="['/signandsendpage']">To Know More About Sign and Send</button>
+
+                        <button class="d-lg-none btn btn-outline-info btn-outline-violet" type="button"
+                            [routerLink]="['/signandsendcards/all']" style="margin-top:10px">VIEW ALL SIGN & SEND
+                            CARDS</button>
+
+                    </div>
                     <div class="d-none d-lg-block col-md-4 mb-2 text-end">
-                        <button class="  btn btn-outline-info btn-outline-violet" type="button" [routerLink]="['/signandsendcards/all']">VIEW ALL SIGN & SEND CARDS</button>
+                        <button class="  btn btn-outline-info btn-outline-violet" type="button"
+                            [routerLink]="['/signandsendcards/all']">VIEW ALL SIGN & SEND CARDS</button>
                     </div>
                     <div class="col-md-12">
                         <h2 class="text-center cus-text-title mt-1 mb-3">Occasions</h2>
@@ -34,44 +52,20 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <img src="/assets/images/2024/hbd/more-min.png">
-                    <br/><br/>
-                </div>
-                <div class="col-md-12" style="position: relative">
-                    <img src="/assets/images/2024/hbd/more-2-min.png">
-                    <div style="height: 67%;width: 21%; position: absolute; left: 23%; bottom: 0%;cursor: pointer;"
-                        [routerLink]="['/poetry']"></div>
-                    <div style="height: 67%;width: 21%; position: absolute; left: 45.5%; bottom: 0%;cursor: pointer;"
-                        [routerLink]="['/postcards']"></div>
-                    <div style="height: 67%;width: 21%; position: absolute; left: 68.5%; bottom: 0%;cursor: pointer;"
-                        [routerLink]="['/signandsend']"></div>
+                    <img src="/assets/images/2024/easter/page/free.png">
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-12" style="position: relative" *ngIf="priceService.getLocation() == 'ph'">
-                    <img src="/assets/images/2024/hbd/2-sticker-postcard-2-min.png">
-                    <div [routerLink]="['/stickercards']"
-                        style="height: 100%;width: 50%; position: absolute; left: 0%; bottom: 0%;cursor: pointer;"
-                        target="_blank"></div>
-                    <div style="height: 100%;width: 50%; position: absolute; right: 0%; bottom: 0%;cursor: pointer;"
-                        [routerLink]="['/postcards']"></div>
-                </div>
-                <div class="col-md-12" style="position: relative" *ngIf="priceService.getLocation() != 'ph'">
-                    <img src="/assets/images/2024/hbd/2-sticker-postcard-2-min.png">
-                    <div [routerLink]="['/stickercards']"
-                        style="height: 100%;width: 50%; position: absolute; left: 0%; bottom: 0%;cursor: pointer;"
-                        target="_blank"></div>
-                    <div style="height: 100%;width: 50%; position: absolute; right: 0%; bottom: 0%;cursor: pointer;"
-                        [routerLink]="['/postcards']"></div>
-                </div>
                 <div class="col-md-12">
-                    <img src="/assets/images/2024/hbd/delivery-ph-min.png" *ngIf="priceService.getLocation() == 'ph'"
-                        class="img-fluid " style="width:100%">
-                    <img src="/assets/images/2024/hbd/delivery-min.png" *ngIf="priceService.getLocation() != 'ph'"
-                        class="img-fluid " style="width:100%">
-                    <br /> <br />
+                    <div class="more-from-fibei-div">
+                        <img src="/assets/images/more-from-fibei.png">
+                        <div class="stickers" [routerLink]="['/stickercards']"></div>
+                        <div class="postcards" [routerLink]="['/postcards']"></div>
+                        <div class="gifts" [routerLink]="['/gifts']"></div>
+                        <div class="games" [routerLink]="['/games']"></div>
+                    </div>
                 </div>
-            </div>
+            </div>s
         </div>
     </section>
     <app-footer></app-footer>
