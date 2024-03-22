@@ -1,115 +1,118 @@
-
+.header-div {
+  padding-inline: 30px;
+  margin-top: 30px;
+}
 
 .label-header {
-    font-family: Proxima Nova;
-    font-size: 2.5rem;
-    font-weight: bold;
-    line-height: 3.5rem;
-    color: #5e17eb;
-  }
-  
-  .subheader-div {
-    background-color: #e8f0fc;
-    padding-inline: 30px;
-    padding-block: 20px;
-    margin-bottom: 40px;
-    margin-right: 15px;
-    border-radius: 0 15px 15px 0;
-  }
-  
-  .label-subheader {
-    font-family: Proxima Nova;
-    font-size: 1.2rem;
-    line-height: 1.2rem;
-    font-weight: bold;
-    color: #5e17eb;
-  }
-  
-  .items-div {
-    padding-inline: 65px;
-  }
-  
-  .card-option-banner-div {
-    position: relative;
-    margin-block: 30px;
-  }
-  
-  .card-option-banner-div .message-cards {
-    position: absolute;
-    cursor: pointer;
-    width: 27.1%;
-    height: 26%;
-    left: 4.2%;
-    bottom: 27%;
-  }
-  
-  .card-option-banner-div .poetry-cards {
-    position: absolute;
-    cursor: pointer;
-    width: 27.1%;
-    height: 26%;
-    left: 36.6%;
-    bottom: 27%;
-  }
-  
-  .card-option-banner-div .signandsend-cards {
-    position: absolute;
-    cursor: pointer;
-    width: 27.1%;
-    height: 26%;
-    left: 68.6%;
-    bottom: 27%;
-  }
-  
-  .try-sign-and-send-div {
-    position: relative;
-  }
-  
-  .try-sign-and-send-div .know-more {
-    position: absolute;
-    cursor: pointer;
-    width: 18%;
-    height: 20%;
-    left: 48%;
-    bottom: 11%;
-  }
-  
-  .more-from-fibei-div {
-    position: relative;
-  }
-  
-  .more-from-fibei-div .stickers {
-    position: absolute;
-    cursor: pointer;
-    width: 34.8%;
-    height: 23.2%;
-    left: 10%;
-    bottom: 44%;
-  }
-  
-  .more-from-fibei-div .postcards {
-    position: absolute;
-    cursor: pointer;
-    width: 34.8%;
-    height: 24%;
-    left: 10%;
-    bottom: 13%;
-  }
-  
-  .more-from-fibei-div .gifts {
-    position: absolute;
-    cursor: pointer;
-    width: 34.8%;
-    height: 23.5%;
-    left: 54.2%;
-    bottom: 46%;
-  }
-  
-  .more-from-fibei-div .games {
-    position: absolute;
-    cursor: pointer;
-    width: 34.8%;
-    height: 24%;
-    left: 54.2%;
-    bottom: 13%;
-  }
+  font-family: Proxima Nova;
+  font-size: 2.5rem;
+  font-weight: bold;
+  line-height: 3.5rem;
+  color: #5e17eb;
+}
+
+.subheader-div {
+  background-color: #e8f0fc;
+  padding-inline: 30px;
+  padding-block: 20px;
+  margin-bottom: 40px;
+  margin-right: 15px;
+  border-radius: 0 15px 15px 0;
+}
+
+.label-subheader {
+  font-family: Proxima Nova;
+  font-size: 1.2rem;
+  line-height: 1.2rem;
+  font-weight: bold;
+  color: #5e17eb;
+}
+
+.items-div {
+  padding-inline: 65px;
+}
+
+.card-option-banner-div {
+  position: relative;
+  margin-block: 30px;
+}
+
+.card-option-banner-div .message-cards {
+  position: absolute;
+  cursor: pointer;
+  width: 27.1%;
+  height: 26%;
+  left: 4.2%;
+  bottom: 27%;
+}
+
+.card-option-banner-div .poetry-cards {
+  position: absolute;
+  cursor: pointer;
+  width: 27.1%;
+  height: 26%;
+  left: 36.6%;
+  bottom: 27%;
+}
+
+.card-option-banner-div .signandsend-cards {
+  position: absolute;
+  cursor: pointer;
+  width: 27.1%;
+  height: 26%;
+  left: 68.6%;
+  bottom: 27%;
+}
+
+.try-sign-and-send-div {
+  position: relative;
+}
+
+.try-sign-and-send-div .know-more {
+  position: absolute;
+  cursor: pointer;
+  width: 18%;
+  height: 20%;
+  left: 48%;
+  bottom: 11%;
+}
+
+.more-from-fibei-div {
+  position: relative;
+}
+
+.more-from-fibei-div .stickers {
+  position: absolute;
+  cursor: pointer;
+  width: 34.8%;
+  height: 23.2%;
+  left: 10%;
+  bottom: 44%;
+}
+
+.more-from-fibei-div .postcards {
+  position: absolute;
+  cursor: pointer;
+  width: 34.8%;
+  height: 24%;
+  left: 10%;
+  bottom: 13%;
+}
+
+.more-from-fibei-div .gifts {
+  position: absolute;
+  cursor: pointer;
+  width: 34.8%;
+  height: 23.5%;
+  left: 54.2%;
+  bottom: 46%;
+}
+
+.more-from-fibei-div .games {
+  position: absolute;
+  cursor: pointer;
+  width: 34.8%;
+  height: 24%;
+  left: 54.2%;
+  bottom: 13%;
+}
