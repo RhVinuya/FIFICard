@@ -1,0 +1,60 @@
+.sign-up-div {
+    position: relative;
+}
+
+.sign-up-div .firstname {
+    position: absolute;
+    left: 30%;
+    bottom: 57%;
+    width: 14.5%;
+    font-size: 1rem;
+    font-family: 'Proxima Nova';
+    padding-block: 6px;
+    padding-inline: 8px;
+    border: 1px solid white;
+}
+
+.sign-up-div .lastname {
+    position: absolute;
+    left: 46.7%;
+    bottom: 57%;
+    width: 14.5%;
+    font-size: 1rem;
+    font-family: 'Proxima Nova';
+    padding-block: 6px;
+    padding-inline: 8px;
+    border: 1px solid white;
+}
+
+.sign-up-div .email {
+    position: absolute;
+    left: 63.5%;
+    bottom: 57%;
+    width: 20.8%;
+    font-size: 1rem;
+    font-family: 'Proxima Nova';
+    padding-block: 6px;
+    padding-inline: 8px;
+    border: 1px solid white;
+}
+
+.sign-up-div .button {
+    position: absolute;
+    left: 45.5%;
+    bottom: 7%;
+    width: 16.8%;
+    font-size: 0.9rem;
+    font-family: 'Alegreya';
+    background-color: #cb6ce6;
+    border: 3px solid white;
+    padding-block: 0.6rem;
+    border-radius: 9px;
+}
+
+.is-invalid {
+    border: 1px solid #dc3545 !important;
+}
+
+.sign-up-div .button:hover{
+    opacity: 0.8;
+}

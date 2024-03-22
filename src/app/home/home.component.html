@@ -91,19 +91,9 @@
                     </div>
                 </div>
             </div>
-            
-            <div class="row">
-                <div class="col-md-12">
-                    <img src="/assets/images/2024/easter/home/personalized.png" [routerLink]="['/signandsend']"/>
-                </div>
-                <!-- <div class="col-md-12">
-                    <img src="/assets/images/2024/easter/home/delivery-ph-min.png" *ngIf="priceService.getLocation() == 'ph'"
-                        class="img-fluid " style="width:100%">
-                    <img src="/assets/images/2024/hbd/delivery-min.png" *ngIf="priceService.getLocation() != 'ph'"
-                        class="img-fluid " style="width:100%">
-                    <br /> <br />
-                </div> -->
-            </div>
+
+            <img src="/assets/images/2024/easter/home/personalized.png" class="personalized" [routerLink]="['/signandsend']"/>
+            <app-sign-up></app-sign-up>
 
         </div>
     </section>

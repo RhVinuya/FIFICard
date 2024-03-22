@@ -34,6 +34,13 @@
    src: url('assets/webfonts/Neue_Einstellung/Hanken Design Co - Neue Einstellung Bold.otf') format('opentype');
 }
 
+@font-face {
+   font-family: Aristotelica Pro;
+   font-style: normal;
+   font-weight: normal;
+   src: url('assets/webfonts/aristotelica/AristotelicaSmallCaps-Regular.ttf') format('truetype');
+}
+
 @import "ngx-material-pages_theme.scss";
 @import '@ctrl/ngx-emoji-mart/picker';
 
