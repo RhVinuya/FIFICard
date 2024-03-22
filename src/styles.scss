@@ -20,6 +20,20 @@
    src: url('assets/webfonts/ProximaNova/proximanova_bold.otf') format('opentype');
 }
 
+@font-face {
+   font-family: Neue Einstellung;
+   font-style: normal;
+   font-weight: normal;
+   src: url('assets/webfonts/Neue_Einstellung/Hanken Design Co - Neue Einstellung Regular.otf') format('opentype');
+}
+
+@font-face {
+   font-family: Neue Einstellung;
+   font-style: normal;
+   font-weight: bold;
+   src: url('assets/webfonts/Neue_Einstellung/Hanken Design Co - Neue Einstellung Bold.otf') format('opentype');
+}
+
 @import "ngx-material-pages_theme.scss";
 @import '@ctrl/ngx-emoji-mart/picker';
 
