@@ -26,15 +26,12 @@
                         <div class="col-md-6">
                             <div class="f-links" [routerLink]="['/stickercards']">STICKERS</div>
                         </div>
-                        <div class="col-md-6" *ngIf="priceService.getLocation() != 'ph'">
+                        <div class="col-md-6" *ngIf="priceService.getLocation() === 'ph'">
                             <div class="f-links" [routerLink]="['/gifts']">GIFTS</div>
                         </div>
                         <div class="col-md-6">
                             <div class="f-links" [routerLink]="['/postcards']">POST CARDS</div>
                         </div>
-                        <!-- <div class="col-md-6">
-                            <div class="f-links" [routerLink]="['/specialtycardpage']">SPECIALTY CARDS</div>
-                        </div> -->
                         <div class="col-md-6">
                             <div class="f-links" [routerLink]="['/games']">GAMES</div>
                         </div>

@@ -16,15 +16,18 @@ import { Event } from '../models/event';
 export class StickersCardsComponent implements OnInit {
   
   loadingController: LoadingController;
+  priceService: PriceService;
   eventService: EventService;
   cardService: CardService;
 
   constructor(
     _loadingController: LoadingController,
+    _priceService: PriceService,
     _eventService: EventService,
     _cardService: CardService,
   ) {
     this.loadingController = _loadingController;
+    this.priceService = _priceService;
     this.eventService = _eventService;
     this.cardService = _cardService;
   }
@@ -48,7 +51,7 @@ export class StickersCardsComponent implements OnInit {
     });
     await loading.present();
     try {
-      this.original = await this.cardService.getCardsByType("postcard");
+      this.original = await this.cardService.getCardsByType("sticker");
       this.cards = this.original;
       this.allEvents = await  this.eventService.getEventSticker();
       this.occassions = this.allEvents.filter(x => x.tag === 'Occasions');
