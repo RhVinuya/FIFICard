@@ -1,6 +1,7 @@
 export class Event {
     public id?: string;
     public name?: string;
+    public title?: string;
     public active?: boolean;
     public isGift?: boolean;
     public isCreations?: boolean;
