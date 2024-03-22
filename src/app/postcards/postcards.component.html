@@ -53,14 +53,32 @@
                 <ion-label class="label-header">More Card Products</ion-label>
             </div>
             <div class="morecards-div">
-                <ion-label class="label-morecards">Get 5 free stickers with any greetings card purchase! Choose your card now and enjoy the bonus stickers.</ion-label>
+                <ion-label class="label-morecards">Get 5 free stickers with any greetings card purchase! Choose your
+                    card now and enjoy the bonus stickers.</ion-label>
             </div>
-            <div class="more-card-products-div">
-                <img src="/assets/images/postcard/more-card-products.png">
-                <div class="events" [routerLink]="['/events']"></div>
-                <div class="speciality" [routerLink]="['/specialtycardpage']"></div>
-                <div class="poetry" [routerLink]="['/poetry']"></div>
-                <div class="signandsend" [routerLink]="['/signandsend']"></div>
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="f-title">More from FiBeiGreetings</h2>
+                    <br />
+                </div>
+
+
+                <div class="col-md-10 offset-md-1">
+                    <div class="row justify-content-center">
+                        <div class="col-md-6">
+                            <div class="f-links" [routerLink]="['/stickercards']">STICKERS</div>
+                        </div>
+                        <div class="col-md-6" *ngIf="priceService.getLocation() != 'ph'">
+                            <div class="f-links" [routerLink]="['/gifts']">GIFTS</div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="f-links" [routerLink]="['/specialtycardpage']">SPECIALTY CARDS</div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="f-links" [routerLink]="['/games']">GAMES</div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="try-sign-and-send-div">
                 <img src="/assets/images/postcard/try-sign-and-send.png">

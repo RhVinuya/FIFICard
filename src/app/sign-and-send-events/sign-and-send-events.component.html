@@ -57,12 +57,24 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <div class="more-from-fibei-div">
-                        <img src="/assets/images/more-from-fibei.png">
-                        <div class="stickers" [routerLink]="['/stickercards']"></div>
-                        <div class="postcards" [routerLink]="['/postcards']"></div>
-                        <div class="gifts" [routerLink]="['/gifts']"></div>
-                        <div class="games" [routerLink]="['/games']"></div>
+                    <h2 class="f-title">More from FiBeiGreetings</h2>
+                    <br />
+                </div>
+
+                <div class="col-md-10 offset-md-1">
+                    <div class="row justify-content-center">
+                        <div class="col-md-6">
+                            <div class="f-links" [routerLink]="['/stickercards']">STICKERS</div>
+                        </div>
+                        <!-- <div class="col-md-6" *ngIf="priceService.getLocation() != 'ph'">
+                            <div class="f-links" [routerLink]="['/gifts']"  >GIFTS</div>
+                        </div> -->
+                        <div class="col-md-6">
+                            <div class="f-links" [routerLink]="['/postcards']">POSTCARDS</div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="f-links" [routerLink]="['/games']">GAMES</div>
+                        </div>
                     </div>
                 </div>
             </div>

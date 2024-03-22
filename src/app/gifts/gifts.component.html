@@ -6,7 +6,9 @@
                 <ion-label class="label-header">GIFTS FOR ANY OCCASSION</ion-label>
             </div>
             <div class="subheader-div">
-                <ion-label class="label-subheader">FiBei Greetings Gift Guide is designed to make your gift-giving experience a breeze! Whether you're searching for the perfect present for a loved one or looking for thoughtful gift ideas for any occasion, our guide is here to help.</ion-label>
+                <ion-label class="label-subheader">FiBei Greetings Gift Guide is designed to make your gift-giving
+                    experience a breeze! Whether you're searching for the perfect present for a loved one or looking for
+                    thoughtful gift ideas for any occasion, our guide is here to help.</ion-label>
             </div>
             <div class="items-div">
                 <div class="row header pb-2 mb-4">
@@ -40,12 +42,31 @@
                 <img src="/assets/images/gift/try-sign-and-send.png">
                 <div class="know-more" [routerLink]="['/signandsendpage']"></div>
             </div>
-            <div class="more-from-fibei-div">
-                <img src="/assets/images/more-from-fibei.png">
-                <div class="stickers" [routerLink]="['/stickercards']"></div>
-                <div class="postcards" [routerLink]="['/postcards']"></div>
-                <div class="gifts" [routerLink]="['/gifts']"></div>
-                <div class="games" [routerLink]="['/games']"></div>
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="f-title">More from FiBeiGreetings</h2>
+                    <br />
+                </div>
+
+                <div class="col-md-10 offset-md-1">
+                    <div class="row justify-content-center">
+                        <div class="col-md-6">
+                            <div class="f-links" [routerLink]="['/stickercards']">STICKERS</div>
+                        </div>
+                        <!-- <div class="col-md-6" *ngIf="priceService.getLocation() != 'ph'">
+                            <div class="f-links" [routerLink]="['/gifts']"  >GIFTS</div>
+                        </div> -->
+                        <div class="col-md-6">
+                            <div class="f-links" [routerLink]="['/specialtycardpage']">SPECIALTY CARDS</div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="f-links" [routerLink]="['/postcards']">POSTCARDS</div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="f-links" [routerLink]="['/games']">GAMES</div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <!--
             <div class="row">

@@ -57,11 +57,10 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <app-home-featured caption="Wedding" homeCardEvent="Wedding" [limit]="100"></app-home-featured>
+                    <app-home-featured caption="Graduation" homeCardEvent="Graduation" [limit]="100"></app-home-featured>
                 </div>
                 <div class="col-md-12">
-                    <app-home-featured caption="Anniversary" homeCardEvent="Anniversary"
-                        [limit]="100"></app-home-featured>
+                    <app-home-featured caption="Get Well" homeCardEvent="Get Well" [limit]="100"></app-home-featured>
                 </div>
                 <div class="col-md-12">
                     <app-home-featured caption="Sympathy" homeCardEvent="Sympathy" [limit]="100"></app-home-featured>
@@ -72,11 +71,7 @@
                 <div class="col-md-12">
                     <app-home-featured caption="Pet Cards" homeCardEvent="Pet" [limit]="100"></app-home-featured>
                 </div>
-                <div class="col-md-12 sns-no-label">
-                    <app-home-featured caption="Sign and Send"
-                        [ids]="['FUmF8oMnhmpO9WgkziZN','GaHUF8E482lLIIebNPrY','JEiZgBQumVFDDyfxlJ24','JLpujLChwAf7CAay9HAx','UP19y5cwfVJByXTlmWQG','IPp9QMwawzBFgtgTxDQ1','gktcGJN6v6ROGUJSrMAU','xFG9kBmBv8sUgwvTWHVM','0PndLlvpXe3V46zHT5RY','2dH8qe9kgc7aN7pHSp4a','4Wz5Qqoa7yYpU0DfIlXA','5KIsabJ3spJSkOmbZLVD','Bfpij5w6qKeXusgh5CwV','QCqK7J0gEmm6sf2gznDj','1e3HY8oyjU0CwsZWqpoK','Gj9DQKqN3krzeVVhJRHb','OqiMLF73ek3TBE2PNPq6','cJXDwCuwCisW1vg24CsP','Ae11kuzI272NDJ159FwT','Tt7wE47yUOCBczValj3b','mqu9kvb4AdF8WwL9TAvA','qbQIVVGWv6LD0V1kPfkR','YM0LKWPou3NXAIAARtGR','6JHecB0o2wkJmYbKXCj8']"></app-home-featured>
-
-                </div>
+                
                 <!-- <div class="col-md-12" *ngIf="priceService.getLocation() == 'ph'">
                     <img src="/assets/images/2024/hbd/home/h6-min.png" [routerLink]="['/stickercards']" class="cursor">
                 </div> -->
@@ -93,6 +88,11 @@
             </div>
 
             <img src="/assets/images/2024/easter/home/personalized.png" class="personalized" [routerLink]="['/signandsend']"/>
+            <div class="col-md-12 sns-no-label">
+                <app-home-featured caption="Sign and Send"
+                    [ids]="['FUmF8oMnhmpO9WgkziZN','GaHUF8E482lLIIebNPrY','JEiZgBQumVFDDyfxlJ24','JLpujLChwAf7CAay9HAx','UP19y5cwfVJByXTlmWQG','IPp9QMwawzBFgtgTxDQ1','gktcGJN6v6ROGUJSrMAU','xFG9kBmBv8sUgwvTWHVM','0PndLlvpXe3V46zHT5RY','2dH8qe9kgc7aN7pHSp4a','4Wz5Qqoa7yYpU0DfIlXA','5KIsabJ3spJSkOmbZLVD','Bfpij5w6qKeXusgh5CwV','QCqK7J0gEmm6sf2gznDj','1e3HY8oyjU0CwsZWqpoK','Gj9DQKqN3krzeVVhJRHb','OqiMLF73ek3TBE2PNPq6','cJXDwCuwCisW1vg24CsP','Ae11kuzI272NDJ159FwT','Tt7wE47yUOCBczValj3b','mqu9kvb4AdF8WwL9TAvA','qbQIVVGWv6LD0V1kPfkR','YM0LKWPou3NXAIAARtGR','6JHecB0o2wkJmYbKXCj8']"></app-home-featured>
+
+            </div>
             <app-sign-up></app-sign-up>
 
         </div>
