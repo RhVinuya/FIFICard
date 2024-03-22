@@ -3,16 +3,37 @@
     <section class="section-name padding-y-sm bk-hw">
         <div class="container animate main">
             <div class="row">
-                <div class="col-md-12">
-                    <img src="/assets/images/2024/hbd/banner/special-min.png">
-                    <br /><br />
-                    <img src="/assets/images/2024/hbd/banner/special-s1-min.png">
-                    <br /><br />
+                <div class="header-div">
+                    <ion-label class="label-header">SPECIALTY CARDS</ion-label>
                 </div>
-
+                <div class="subheader-div">
+                    <ion-label class="label-subheader">Introducing FiBei Greetings Specilaty Cards, where every card is crafted with care and attention to detail. Explore our curated selection to find the perfect card that reflects your style and sentiments, and make every moment unforgettable.</ion-label>
+                </div>
             </div>
             <app-event-list [events]="events"></app-event-list>
             <div class="row">
+                <div class="col-md-12">
+                    <img src="/assets/images/2024/easter/page/SS.png" [routerLink]="['/signandsend']">
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="more-from-fibei-div">
+                        <img src="/assets/images/more-from-fibei.png">
+                        <div class="stickers" [routerLink]="['/stickercards']"></div>
+                        <div class="postcards" [routerLink]="['/postcards']"></div>
+                        <div class="gifts" [routerLink]="['/gifts']"></div>
+                        <div class="games" [routerLink]="['/games']"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <img src="/assets/images/2024/easter/page/free.png">
+                </div>
+            </div>
+            <!-- <div class="row">
                 <div class="col-md-12">
                     <img src="/assets/images/2024/hbd/more-min.png">
                     <br/><br/>
@@ -51,7 +72,7 @@
                         class="img-fluid " style="width:100%">
                     <br /> <br />
                 </div>
-            </div>
+            </div> -->
 
         </div>
     </section>
