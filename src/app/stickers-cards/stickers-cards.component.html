@@ -1,5 +1,4 @@
 <ion-content>
-    <h2 style="font-size:0px;margin: 0;" *ngIf="caption">Stickers {{caption}}</h2>
     <section class="section-name padding-y-sm bk-hw">
         <div class="container animate main">
             <div class="header-div">
@@ -8,24 +7,44 @@
             <div class="subheader-div">
                 <ion-label class="label-subheader">Add a touch of joy with Fibei Greetings Stickers!</ion-label>
             </div>
-            <img src="/assets/images/2024/easter/sticker/featured.png" [routerLink]="['/signandsend']">
-            <div class="row text-center">
-                <!--
-                <div class="col-md-2 my-auto text-start">
-                    <button class="btn rounded-0" style="background-color: #8a2be2; color: #ffffff;" [routerLink]="['/stickers']">Back to All Categories</button>
+            <div class="featured-div">
+                <img src="/assets/images/sticker/featured.png">
+                <div class="featured" (click)="setEvent('DpFM886W0ges0ygnhUvj')"></div>
+            </div>
+
+            <div class="category-div">
+                <ion-grid>
+                    <ion-row>
+                        <ion-col size="8">
+                            <ion-label class="main-label">More Categories</ion-label>
+                        </ion-col>
+                        <ion-col size="4" class="ion-text-end">
+                            <button class="showallbutton" (click)="setEvent('all')">Show All Stickers</button>
+                        </ion-col>
+                        <ion-col size="12">
+                            <ion-label class="sub-label">Choose your sticker.</ion-label>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+                <div class="category-items">
+                    <button *ngFor="let event of occassions" (click)="setEvent(event.id!)">
+                        {{event.title && event.title !== '' ? event.title : event.name}}
+                    </button>
                 </div>
-                -->
-                <div class="col-md-12" *ngIf="caption != ''">
-                    <header class="section-heading">
-                        <h3 class="section-title">{{caption}}</h3>
-                    </header>
+                <div class="other-items">
+                    <button *ngFor="let event of others" (click)="setEvent(event.id!)">
+                        {{event.title && event.title !== '' ? event.title : event.name}}
+                    </button>
                 </div>
             </div>
 
-            <app-card-list *ngIf="cards.length > 0" [cards]="cards" mode="sticker"
-                [categories]="categories"></app-card-list>
-                <br/>
-                <br/>
+            <div *ngIf="original.length > 0" id="items">
+                <div class="ion-margin-bottom">
+                    <ion-label class="category-label">{{title}}</ion-label>
+                </div>
+                <app-card-list [cards]="cards" mode="postcard"></app-card-list>
+            </div>
+
             <div class="row">
                 <div class="header-div">
                     <ion-label class="label-header">Peel, Stick, Smile: Free Stickers with Every Card!</ion-label>
@@ -34,18 +53,24 @@
                 </div>
                 <div class="row">
                     <div class="col-md-3">
-                        <img src="/assets/images/2024/easter/sticker/event.png" [routerLink]="['/events']">
+                        <img src="/assets/images/2024/easter/sticker/event.png" [routerLink]="['/events']" class="cursor">
                     </div>
                     <div class="col-md-3">
-                        <img src="/assets/images/2024/easter/sticker/specialty.png" [routerLink]="['/specialtycardpage']">
+                        <img src="/assets/images/2024/easter/sticker/specialty.png" [routerLink]="['/specialtycardpage']" class="cursor">
                     </div>
                     <div class="col-md-3">
-                        <img src="/assets/images/2024/easter/sticker/poetry.png" [routerLink]="['/poetry']">
+                        <img src="/assets/images/2024/easter/sticker/poetry.png" [routerLink]="['/poetry']" class="cursor">
                     </div>
                     <div class="col-md-3">
-                        <img src="/assets/images/2024/easter/sticker/ss.png" [routerLink]="['/signandsend']" >
+                        <img src="/assets/images/2024/easter/sticker/ss.png" [routerLink]="['/signandsend']" class="cursor">
                     </div>
                 </div>
+            </div>
+            <div class="footer-div">
+                <img src="/assets/images/sticker/footer.png">
+                <div class="postcards" [routerLink]="['/postcards']"></div>
+                <div class="gifts" [routerLink]="['/gifts']"></div>
+                <div class="games" [routerLink]="['/games']"></div>
             </div>
             <!-- <div class="row">
                     <div class="col-md-12">

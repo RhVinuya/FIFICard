@@ -12,7 +12,7 @@
 }
 
 .subheader-div {
-  background-color: #e8f0fc;
+  background-color: #fddfe5;
   padding-inline: 30px;
   padding-block: 20px;
   margin-bottom: 40px;
@@ -115,4 +115,153 @@
   height: 24%;
   left: 54.2%;
   bottom: 13%;
+}
+
+.featured-div{
+  position: relative;
+}
+
+.featured-div .featured{
+  position: absolute;
+  cursor: pointer;
+  width: 32.6%;
+  height: 32%;
+  left: 4%;
+  bottom: 28%;
+}
+
+.category-div {
+  background-color: #fef8f9;
+  padding: 30px;
+  margin-block: 30px;
+}
+
+.category-div .showallbutton{
+  font-family: Proxima Nova;
+  font-size: 1.2rem;
+  font-weight: bold;
+  line-height: 1.2rem;
+  color: white;
+  background-color: #004aad;
+  padding-block: 0.5rem;
+  padding-inline: 0.8rem;
+  border-radius: 10px;
+}
+
+.category-div .showallbutton:hover{
+  opacity: 0.8;
+}
+
+.category-div .main-label{
+  font-family: Proxima Nova;
+  font-size: 2.5rem;
+  font-weight: bold;
+  line-height: 2.5rem;
+  color: #5e17eb;
+}
+
+.category-div .sub-label{
+  font-family: Proxima Nova;
+  font-size: 1.5rem;
+  font-weight: bold;
+  line-height: 1.5rem;
+  color: #5e17eb;
+}
+
+.category-items{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  row-gap: 15px;
+  padding-inline: 30px;
+  padding-top: 20px;
+}
+
+.category-items button{
+  width: 18%;
+  margin-inline: 1%;
+  padding-block: 0.8rem;
+  background-color: #fddfe5;
+  font-family: Proxima Nova;
+  font-size: 1.2rem;
+  font-weight: bold;
+  line-height: 1.2rem;
+  color: #004aad;
+  border-radius: 30px;
+  border: 1px solid #004aad;
+}
+
+.category-items button:hover{
+  opacity: 0.8;
+}
+
+.other-items{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  row-gap: 15px;
+  padding-inline: 30px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.other-items button{
+  width: 18%;
+  margin-inline: 1%;
+  padding-block: 0.8rem;
+  background-color: #9abff8;
+  font-family: Proxima Nova;
+  font-size: 1.2rem;
+  font-weight: bold;
+  line-height: 1.2rem;
+  color: #004aad;
+  border-radius: 30px;
+  border: 1px solid #004aad;
+}
+
+.other-items button:hover{
+  opacity: 0.8;
+}
+
+.category-label{
+  font-family: Proxima Nova;
+  font-size: 2.5rem;
+  font-weight: bold;
+  line-height: 2.5rem;
+  color: #5e17eb;
+}
+
+.cursor{
+  cursor: pointer;
+}
+
+.footer-div {
+  position: relative;
+}
+
+.footer-div .postcards{
+  position: absolute;
+  cursor: pointer;
+  height: 20.3%;
+  width: 29.3%;
+  left: 2.4%;
+  bottom: 40%;
+}
+
+.footer-div .gifts{
+  position: absolute;
+  cursor: pointer;
+  height: 20.3%;
+  width: 29.3%;
+  left: 35.4%;
+  bottom: 40%;
+}
+
+.footer-div .games{
+  position: absolute;
+  cursor: pointer;
+  height: 20.3%;
+  width: 29.3%;
+  left: 68.2%;
+  bottom: 40%;
 }

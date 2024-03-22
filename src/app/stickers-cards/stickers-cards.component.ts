@@ -6,6 +6,7 @@ import { Title } from '@angular/platform-browser';
 import { PriceService } from './../services/price.service';
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { LoadingController } from '@ionic/angular';
+import { Event } from '../models/event';
 
 @Component({
   selector: 'app-stickers-cards',
@@ -13,95 +14,81 @@ import { LoadingController } from '@ionic/angular';
   styleUrls: ['./stickers-cards.component.scss']
 })
 export class StickersCardsComponent implements OnInit {
-  title: Title;
-  activateRoute: ActivatedRoute;
-  def: ChangeDetectorRef;
-  priceService: PriceService;
+  
+  loadingController: LoadingController;
   eventService: EventService;
   cardService: CardService;
-  loadingController: LoadingController;
 
   constructor(
-    _title: Title,
-    _activateRoute: ActivatedRoute,
-    _def: ChangeDetectorRef,
-    _priceService: PriceService,
+    _loadingController: LoadingController,
     _eventService: EventService,
     _cardService: CardService,
-    _loadingController: LoadingController
   ) {
-    this.title = _title;
-    this.activateRoute = _activateRoute;
-    this.def = _def;
-    this.priceService = _priceService;
+    this.loadingController = _loadingController;
     this.eventService = _eventService;
     this.cardService = _cardService;
-    this.loadingController = _loadingController
   }
 
-  caption: string = '';
-  cards: Card[] = [];
-  categories: string[] = [];
+  original: Card[] = []
+  cards: Card[] = []
+  allEvents: Event[] = [];
+  occassions: Event[] = [];
+  others: Event[] = [];
+
+  title: string = "ALL";
 
   ngOnInit(): void {
-    this.activateRoute.params.subscribe(params => {
-      if (params['id']) {
-        this.eventService.getById(params['id']).then(event => {
-          this.caption = event.name!;
-          this.def.detectChanges();
-          this.loadCards(event.name!);
-        })
+    this.initalize();
+  }
+
+  async initalize() {
+    let loading: HTMLIonLoadingElement;
+    loading = await this.loadingController.create({
+      message: 'Loading...'
+    });
+    await loading.present();
+    try {
+      this.original = await this.cardService.getCardsByType("postcard");
+      this.cards = this.original;
+      this.allEvents = await  this.eventService.getEventSticker();
+      this.occassions = this.allEvents.filter(x => x.tag === 'Occasions');
+      this.others = this.allEvents.filter(x => x.tag === 'Others');
+    }
+    finally {
+      await loading.dismiss();
+    }
+  }
+
+  async setEvent(id: string) {
+    let loading: HTMLIonLoadingElement;
+    loading = await this.loadingController.create({
+      message: 'Loading...'
+    });
+    await loading.present();
+    try{
+      if (id === 'all'){
+        this.cards = this.original;
+        this.title = "ALL";
       }
       else {
-        this.loadAllCards();
-        this.loadCategories();
+        this.cards = [];
+        let event: Event | undefined = this.allEvents.find(x => x.id === id);
+        if (event){
+          this.title = event.title && event.title !== '' ? event.title.toUpperCase() : event.name!.toUpperCase();
+          this.original.forEach(card => {
+            if (card.events!.findIndex(x => x === event!.name) >= 0) this.cards.push(card);
+          })
+        }
       }
-    })
-  }
-
-  async loadCards(event: string) {
-    let loading: HTMLIonLoadingElement;
-    loading = await this.loadingController.create({
-      message: 'Loading Cards...'
-    });
-    await loading.present();
-
-    try {
-      this.cards = await this.cardService.getCardsByTypeAndEvent('sticker', event);
     }
-    finally {
+    finally{
       await loading.dismiss();
-    }
-  }
+      const element = document.getElementById('items');
+      console.log(element)
+      if (element != null) {
+        element.scrollIntoView({ behavior: 'smooth' });
+     }
 
-  async loadAllCards() {
-    let loading: HTMLIonLoadingElement;
-    loading = await this.loadingController.create({
-      message: 'Loading Cards...'
-    });
-    await loading.present();
-
-    try {
-      this.cards = await this.cardService.getCardsByType('sticker');
-    }
-    finally {
-      await loading.dismiss();
-    }
-  }
-
-  async loadCategories() {
-    let loading: HTMLIonLoadingElement;
-    loading = await this.loadingController.create({
-      message: 'Loading Categories...'
-    });
-    await loading.present();
-
-    try {
-      let events = await this.eventService.getEventSticker();
-      this.categories = events.map(x => x.name!);
-    }
-    finally {
-      await loading.dismiss();
     }
   }
 }
