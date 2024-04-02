@@ -3,23 +3,27 @@ import { Title } from '@angular/platform-browser';
 import { Component, OnInit } from '@angular/core';
 import { EventService } from '../services/event.service';
 import { Event } from '../models/event';
-import { LoadingController } from '@ionic/angular';
+import { LoadingController, ViewWillEnter } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-gifts',
   templateUrl: './gifts.component.html',
   styleUrls: ['./gifts.component.scss']
 })
-export class GiftsComponent implements OnInit {
+export class GiftsComponent implements OnInit, ViewWillEnter {
+  router: Router;
   service: EventService;
   priceService: PriceService;
   loadingController: LoadingController;
 
   constructor(
+    _router: Router,
     _service: EventService,
     _priceService: PriceService,
     _loadingController: LoadingController
   ) {
+    this.router = _router;
     this.service = _service;
     this.priceService = _priceService;
     this.loadingController = _loadingController;
@@ -35,6 +39,12 @@ export class GiftsComponent implements OnInit {
     this.loadCategory();
     this.loadRecipient();
     this.loadEvent();
+  }
+
+  ionViewWillEnter(): void {
+    if (this.priceService.getLocation() !== 'ph'){
+      this.router.navigate(['/home']);
+    }
   }
 
   modeChange(mode: 'Category' | 'Recipient' | 'Event') {
