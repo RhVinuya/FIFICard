@@ -1,17 +1,19 @@
 <ion-content>
-    <h2 style="font-size:0px;margin: 0;"  *ngIf="caption">{{caption}}</h2>
+    <h2 style="font-size:0px;margin: 0;" *ngIf="caption">{{caption}}</h2>
     <section class="section-name padding-y-sm">
         <div class="container animate main">
             <div class="row">
                 <div class="col-md-12" *ngIf="banner != ''">
-                    <img src="{{banner}}" class="img-fluid pointer" style="border-radius:6px; width:100% !important" [routerLink]="['/card/' + priority]">
+                    <img src="{{banner}}" class="img-fluid pointer" style="border-radius:6px; width:100% !important"
+                        [routerLink]="['/card/' + priority]">
                     <br /> <br />
                 </div>
             </div>
-            
+
             <div class="row">
                 <div class="col-md-2 my-auto text-start">
-                    <button class="btn rounded-0" style="background-color: #8a2be2; color: #ffffff;" (click)="onBack()">Back to All Categories</button>
+                    <button class="btn rounded-0" style="background-color: #8a2be2; color: #ffffff;"
+                        (click)="onBack()">Back to All Categories</button>
                 </div>
                 <div class="col-md-8 text-center">
                     <header class="section-heading">
@@ -19,13 +21,25 @@
                     </header>
                 </div>
             </div>
-            <app-card-list *ngIf="(search === undefined) && (cards.length > 0)" [priority]="priority" [cards]="cards" [recipient]="recipient!" [mode]="type"></app-card-list>
+            <app-card-list *ngIf="(search === undefined) && (cards.length > 0)" [priority]="priority" [cards]="cards"
+                [recipient]="recipient!" [mode]="type"></app-card-list>
             <app-search-list *ngIf="(search !== undefined) && (cards.length > 0)" [cards]="cards"></app-search-list>
         </div>
     </section>
     <br><br>
-    <section class="section-name padding-y-sm mother-background-footer">
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <img src="assets/images/2024/banner/ss.png" [routerLink]="['/signandsend']">
+                    <img src="assets/images/2024/banner/back.png" [routerLink]="['/events']">
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--<section class="section-name padding-y-sm mother-background-footer">
         <div class="container animate main">
+           
             <div class="purple-box">
                 <div class="row">
                     <div class="col-md-12">
@@ -44,9 +58,9 @@
                                 src="assets/images/banner/option/specialty.png"></a>
                     </div>
                 </div>
-            </div>
+            </div> 
         </div>
-    </section>
+    </section>-->
 
     <app-footer></app-footer>
 </ion-content>
