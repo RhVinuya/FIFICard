@@ -86,9 +86,9 @@
   cursor: pointer;
 }
 
-.my-recipient{
+.my-recipient {
   padding-top: 10px;
- 
+
 }
 
 .my-recipient span {
@@ -111,18 +111,21 @@
   cursor: pointer;
 }
 
-.valign-center{
+.valign-center {
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-.align-right{
+.align-right {
   text-align: right;
 }
 
-.purple-box
-{
-    padding:20px;
-    background:#daa6d6;
+.purple-box {
+  padding: 20px;
+  background: #daa6d6;
+}
+
+.cursor {
+  cursor: pointer;
 }

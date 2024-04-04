@@ -31,8 +31,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <img src="assets/images/2024/banner/ss.png" [routerLink]="['/signandsend']">
-                    <img src="assets/images/2024/banner/back.png" [routerLink]="['/events']">
+                    <img src="assets/images/2024/banner/ss.png" [routerLink]="['/signandsend']" class="cursor">
+                    <img src="assets/images/2024/banner/back.png" *ngIf="eventDetails && eventDetails.tag !== 'Specialty Card'" [routerLink]="['/events']" class="cursor">
+                    <img src="assets/images/2024/banner/back2.png" *ngIf="eventDetails && eventDetails.tag === 'Specialty Card'" [routerLink]="['/specialtycardpage']" class="cursor">
                 </div>
             </div>
         </div>

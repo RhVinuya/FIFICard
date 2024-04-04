@@ -48,7 +48,7 @@ export class CardsComponent implements OnInit {
   loadingController: LoadingController;
 
   cards: Card[] = [];
-  //loading: boolean = true;
+  eventDetails: Event | undefined = undefined;
 
   type: 'card' | 'gift' | 'sticker' | 'postcard' | 'ecard' | 'clipart' = 'card';
   priority: string = '';
@@ -97,6 +97,8 @@ export class CardsComponent implements OnInit {
     try {
       if (this.id) {
         let event: Event = await this.eventService.getById(this.id);
+        this.eventDetails = event;
+        console.log(this.eventDetails)
         this.event = event.name!;
         this.title.setTitle(this.event);
         this.caption = this.event;
