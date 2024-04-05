@@ -28,6 +28,30 @@ export class EventsComponent implements OnInit {
   events: Event[] = [];
   loading: HTMLIonLoadingElement;
 
+  eventSort = [
+    "Birthday",
+    "Anniversary",
+    "Wedding",
+    "Retirement",
+    "Graduation",
+    "Mother's Day",
+    "Father’s Day",
+    "Grandparent's Day",
+    "Baby",
+    "Baptism",
+    "Confirmation",
+    "First Communion",
+    "Military Appreciation",
+    "Parents Appreciation",
+    "Teacher Appreciation",
+    "Thanksgiving",
+    "Halloween",
+    "Christmas",
+    "New Year",
+    "Valentine's Day",
+    "Easter"
+  ]
+
   ngOnInit(): void {
     this.loadevents();
   }
@@ -37,14 +61,25 @@ export class EventsComponent implements OnInit {
       message: 'Loading Events...'
     });
     await this.loading.present();
-    let events: Event[] = await this.service.getEventCard();
     try {
-      this.events = this.sort(events.filter(x => x.tag == 'Events'));
-      this.occassions = this.sort(events.filter(x => x.tag == 'Occasions'));
+      let events: Event[] = await this.service.getEventCard();
+      this.events = this.eventSorting(events.filter(x => (x.tag == 'Occasions') || (x.tag == 'Events')));
     }
     finally {
       await this.loading.dismiss();
     }
+  }
+
+  eventSorting(items: Event[]): Event[] {
+    let temp: Event[] = items;
+    let sorted: Event[] = [];
+    console.log(items)
+    this.eventSort.forEach(value => {
+      sorted.push(temp.find(x => x.name === value)!);
+      temp.filter(x => x.name !== value);
+    })
+
+    return sorted
   }
 
   sort(events: Event[]): Event[] {
@@ -88,6 +123,4 @@ export class EventsComponent implements OnInit {
 
     return newEvents;
   }
-
-
 }
