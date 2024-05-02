@@ -1,5 +1,5 @@
 export class Address {
-    public id?: string;
+    public id: string;
     public userId: string;
     public name: string;
     public firstname: string;

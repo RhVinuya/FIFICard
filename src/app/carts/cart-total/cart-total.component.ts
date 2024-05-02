@@ -309,7 +309,6 @@ export class CartTotalComponent implements OnInit {
   }
 
   async payStripe() {
-    console.log(environment.stripe.secretKey)
     this.stripeProcess = true;
 
     this.storageService.saveItems(this.selected);

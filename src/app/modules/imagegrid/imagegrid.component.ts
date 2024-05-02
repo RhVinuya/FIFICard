@@ -105,7 +105,6 @@ export class ImagegridComponent implements OnInit {
 
   openItem(url: string) {
     let index: number = this.lightboxImages.findIndex(x => x.image == url);
-    console.log
     this.lightbox.open(this.lightboxImages[index].id);
   }
 

@@ -38,7 +38,7 @@ export class CardComponent implements OnInit {
   }
 
   loadCard(_id: string) {
-    this.service.getCard(_id).subscribe(val => {
+    this.service.getACard(_id).then(val => {
       this.card = val;
       this.loadImage(_id);
       if (val.type == 'postcard') {

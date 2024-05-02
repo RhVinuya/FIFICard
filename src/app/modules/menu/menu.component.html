@@ -5,7 +5,7 @@
 <div class="collapse navbar-collapse" id="navbarNav">
 -->
 <div class="row">
-    <div class="col-8" *ngIf="redirectEvent==null">
+    <div class="col-9" *ngIf="redirectEvent==null">
         <div class=" navbar" id="navbarNav" style="padding:0;">
             <ul class="navbar-nav">
                 <li class="nav-item">
@@ -54,13 +54,13 @@
             </ul>
         </div>
     </div>
-    <div class="col-4" *ngIf="redirectEvent=='mothers day'">
+    <div class="col-3" *ngIf="redirectEvent=='mothers day'">
         <img routerLink="/cards/events/Mother's Day" src="/assets/images/mothers/button1-min.png" class="cursor">
     </div>
-    <div class="col-4" *ngIf="redirectEvent=='mothers day'">
+    <div class="col-3" *ngIf="redirectEvent=='mothers day'">
         <img routerLink="/mother/gifts" src="/assets/images/mothers/button2-min.png" class="cursor">
     </div>
-    <div class="col-4" *ngIf="isLogIn == false">
+    <div class="col-3" *ngIf="isLogIn == false">
         <div class="full-width">
             <div class="row">
                 <div class="col-12 pt-2" style="display: flex; flex-direction: column; align-items: flex-end; justify-content: flex-end;">
@@ -93,7 +93,7 @@
             </div>
         </div>
     </div>
-    <div class="col-4" *ngIf="isLogIn == true">
+    <div class="col-3" *ngIf="isLogIn == true">
         <div class="full-width">
             <div class="row">
                 <div class="col-10"></div>

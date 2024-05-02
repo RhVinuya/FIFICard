@@ -58,7 +58,6 @@ export class ProfileOrderThumbComponent implements OnInit {
   async getCard(id: string) {
     let card: Card = await this.cardService.getACard(id);
     this.card = card;
-    console.log(card);
     if (card.type !== 'ecard') this.loadimage(this.card.id!);
     else this.loadecard(this.card.id!);
   }

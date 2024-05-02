@@ -86,7 +86,6 @@ export class PostcardsComponent implements OnInit {
     finally{
       await loading.dismiss();
       const element = document.getElementById('items');
-      console.log(element)
       if (element != null) {
         element.scrollIntoView({ behavior: 'smooth' });
      }

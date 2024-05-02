@@ -112,7 +112,6 @@ export class PoetryComponent implements OnInit {
       this.events = this.sort(events.filter(x => x.tag == 'Events'));//.filter(x => x.name! != this.featured.name!));
       this.occasions = this.sort(events.filter(x => x.tag == 'Occasions'));
       this.specialty = this.sort(events.filter(x => x.tag == 'Specialty Card'));
-      console.log(events, this.specialty)
     })
   }
 }

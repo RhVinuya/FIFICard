@@ -44,7 +44,18 @@
 @import "ngx-material-pages_theme.scss";
 @import '@ctrl/ngx-emoji-mart/picker';
 
-@import url(https://db.onlinewebfonts.com/c/9dcdfe1b9b9e5bbdf8020454d1724578?family=Now+Bold); 
+@font-face{
+   font-family: "Now Bold";
+   src: url("https://db.onlinewebfonts.com/t/9dcdfe1b9b9e5bbdf8020454d1724578.eot");
+   src: url("https://db.onlinewebfonts.com/t/9dcdfe1b9b9e5bbdf8020454d1724578.eot?#iefix")format("embedded-opentype"),
+       url("https://db.onlinewebfonts.com/t/9dcdfe1b9b9e5bbdf8020454d1724578.woff")format("woff"),
+       url("https://db.onlinewebfonts.com/t/9dcdfe1b9b9e5bbdf8020454d1724578.woff2")format("woff2"),
+       url("https://db.onlinewebfonts.com/t/9dcdfe1b9b9e5bbdf8020454d1724578.ttf")format("truetype"),
+       url("https://db.onlinewebfonts.com/t/9dcdfe1b9b9e5bbdf8020454d1724578.svg#Now Bold")format("svg");
+   font-weight:normal;
+   font-style:normal;
+   font-display:swap;
+}
 
 :root {
    --ion-font-family: Constantia;

@@ -55,7 +55,7 @@ export class FavoriteComponent implements OnInit {
   }
 
   loadCardFavorite(){
-    this.service.getCard(this.cardId!).subscribe(card => {
+    this.service.getACard(this.cardId!).then(card => {
       if (card.favorites){
         this.cardFavorite = card.favorites;
       }

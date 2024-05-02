@@ -71,15 +71,11 @@ export class CartConfirmComponent implements OnInit {
       this.loading.present();
       let id: string = params['id'];
 
-      console.log(id);
-
       const userDetails = JSON.parse(localStorage.getItem('user')!);
       let uid = userDetails!.uid;
 
       let selected: any[] = this.storageService.getItems();
       let status = await this.paymentService.getInitial();
-
-      console.log(selected );
 
       const stripe = require('stripe')(environment.stripe.secretKey);
       const session = await stripe.checkout.sessions.retrieve(id);
@@ -93,8 +89,6 @@ export class CartConfirmComponent implements OnInit {
       stripeDetails.amount = Number(paymentIntent.amount) / 100,
       stripeDetails.last4 = paymentMethod.card ? paymentMethod.card.last4 : '';
 
-      console.log(stripeDetails);
-
       let items: string[] = selected.map(x => x.id!);
       
       let payment: Payment = new Payment();
@@ -105,12 +99,8 @@ export class CartConfirmComponent implements OnInit {
       payment.total = stripeDetails.amount;
       payment.status = status;
 
-      console.log(payment);
-
       let paymentId = await this.paymentService.createPayment(payment);
       await this.userService.addPayment(uid, paymentId);
-
-      console.log(paymentId);
 
       for await (const item of selected){
         try {

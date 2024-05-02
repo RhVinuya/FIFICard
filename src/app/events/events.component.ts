@@ -73,7 +73,6 @@ export class EventsComponent implements OnInit {
   eventSorting(items: Event[]): Event[] {
     let temp: Event[] = items;
     let sorted: Event[] = [];
-    console.log(items)
     this.eventSort.forEach(value => {
       sorted.push(temp.find(x => x.name === value)!);
       temp.filter(x => x.name !== value);

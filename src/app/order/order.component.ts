@@ -97,7 +97,7 @@ export class OrderComponent implements OnInit {
 
   instruction: boolean = false;
 
-  
+
 
   allEvents: Event[] = [];
   allFees: Fee[] = [];
@@ -120,10 +120,10 @@ export class OrderComponent implements OnInit {
 
   isGlittered: boolean = false;
 
-  phAddress: PHAddress[] = phaddressdata as unknown as PHAddress[]; 
+  phAddress: PHAddress[] = phaddressdata as unknown as PHAddress[];
   cities: string[] = [];
 
-  usAddress: USAddress[] = usaddressdata as unknown as USAddress[]; 
+  usAddress: USAddress[] = usaddressdata as unknown as USAddress[];
   usAddresses: string[];
 
   loading: HTMLIonLoadingElement;
@@ -237,8 +237,8 @@ export class OrderComponent implements OnInit {
     this.loadUser();
   }
 
-  updateValidation(){
-    if (this.form.controls['sendto'].value == 'Recipient'){
+  updateValidation() {
+    if (this.form.controls['sendto'].value == 'Recipient') {
       this.form.controls['receiver_name'].setValidators(Validators.compose([Validators.required, Validators.maxLength(50)]));
       this.form.controls['receiver_phone'].setValidators(Validators.compose([Validators.required, Validators.maxLength(20)]));
       this.form.controls['receiver_email'].setValidators(Validators.compose([Validators.required, Validators.email]));
@@ -246,7 +246,7 @@ export class OrderComponent implements OnInit {
       this.form.controls['receiver_phone'].updateValueAndValidity();
       this.form.controls['receiver_email'].updateValueAndValidity();
     }
-    else{
+    else {
       this.form.controls['receiver_name'].clearValidators();
       this.form.controls['receiver_phone'].clearValidators();
       this.form.controls['receiver_email'].clearValidators();
@@ -255,7 +255,7 @@ export class OrderComponent implements OnInit {
       this.form.controls['receiver_email'].updateValueAndValidity();
     }
 
-    if (this.submitted){
+    if (this.submitted) {
       this.form.invalid;
     }
   }
@@ -265,63 +265,60 @@ export class OrderComponent implements OnInit {
   }
 
   loadCard() {
-    this.cardService.getCard(this.id!).subscribe(data => {
-      this.card = data;
-      this.cardPrice = this.getPrice();
-      this.title.setTitle(this.card!.name!);
-
-      this.loadImage(this.card.id!);
-
-      this.description = this.card.description!;
-      this.getTranslation(this.card.id!);
-      this.subscribeLanguage();
-      this.subscribeTranslation(this.card.id!);
-
-      this.getType(this.card.types![0]);
-      this.def.detectChanges();
-
-      if (this.orderid) {
-        this.loadOrder();
-      }
-    });
+    if (this.id) {
+      this.cardService.getACard(this.id).then(card => {
+        this.card = card;
+        if (this.card) {
+          this.cardPrice = this.getPrice();
+          this.title.setTitle(this.card.name ? this.card.name : "");
+          this.loadImage(this.card.id ? this.card.id : '');
+          this.description = this.card.description ? this.card.description : '';
+          if (this.card.types && this.card.types.length > 0) this.getType(this.card.types[0]);
+          this.def.detectChanges();
+          if (this.orderid) this.loadOrder();
+        }
+      })
+    }
   }
 
   loadOrder() {
-    this.orderService.getOrder(this.orderid!).then(order => {
-      this.form.controls['sender_name'].patchValue(order.sender_name!);
-      this.form.controls['sender_email'].patchValue(order.sender_email!);
-      this.form.controls['sender_phone'].patchValue(order.sender_phone!);
-      this.form.controls['receiver_name'].patchValue(order.receiver_name!);
-      this.form.controls['receiver_email'].patchValue(order.receiver_email!);
-      this.form.controls['receiver_phone'].patchValue(order.receiver_phone!);
-      if (this.location == 'ph') {
-        this.form.controls['address1'].patchValue(order.address1!);
-        this.form.controls['address2'].patchValue(order.address2!);
-        this.form.controls['province'].patchValue(order.province!);
-        this.form.controls['city'].patchValue(order.city!);
-        this.form.controls['country'].patchValue(order.country!);
-        this.form.controls['postcode'].patchValue(order.postcode!);
-      }
-      else {
-        this.form.controls['address'].patchValue(order.address!);
-      }
-      this.form.controls['anonymously'].patchValue(order.anonymously!);
-      this.form.controls['sendto'].patchValue(order.sendto!);
-      this.form.controls['message'].patchValue(order.message!);
-      this.def.detectChanges();
-      
-      this.isWithSignAndSend = order.withSignAndSend!;
-      if (order.withSignAndSend!){
-        this.orderService.getSignAndSend(this.orderid!).then(signandsends => {
-          this.SignAndSend = signandsends;
-          this.def.detectChanges();
-        })
-        this.orderService.getSignAndSendPhoto(this.orderid!).then(signAndSendPhotoDetails => {
-          this.SignAndSendPhoto = signAndSendPhotoDetails;
-          this.def.detectChanges();
-        })
-      }
-    });
+    if (this.orderid) {
+      this.orderService.getOrder(this.orderid).then(order => {
+        this.form.controls['sender_name'].patchValue(order.sender_name);
+        this.form.controls['sender_email'].patchValue(order.sender_email);
+        this.form.controls['sender_phone'].patchValue(order.sender_phone);
+        this.form.controls['receiver_name'].patchValue(order.receiver_name);
+        this.form.controls['receiver_email'].patchValue(order.receiver_email);
+        this.form.controls['receiver_phone'].patchValue(order.receiver_phone);
+        if (this.location == 'ph') {
+          this.form.controls['address1'].patchValue(order.address1);
+          this.form.controls['address2'].patchValue(order.address2);
+          this.form.controls['province'].patchValue(order.province);
+          this.form.controls['city'].patchValue(order.city);
+          this.form.controls['country'].patchValue(order.country);
+          this.form.controls['postcode'].patchValue(order.postcode);
+        }
+        else {
+          this.form.controls['address'].patchValue(order.address);
+        }
+        this.form.controls['anonymously'].patchValue(order.anonymously);
+        this.form.controls['sendto'].patchValue(order.sendto);
+        this.form.controls['message'].patchValue(order.message!);
+        this.def.detectChanges();
+
+        this.isWithSignAndSend = order.withSignAndSend ? order.withSignAndSend : false;
+        if (order.withSignAndSend!) {
+          this.orderService.getSignAndSend(this.orderid!).then(signandsends => {
+            this.SignAndSend = signandsends;
+            this.def.detectChanges();
+          })
+          this.orderService.getSignAndSendPhoto(this.orderid!).then(signAndSendPhotoDetails => {
+            this.SignAndSendPhoto = signAndSendPhotoDetails;
+            this.def.detectChanges();
+          })
+        }
+      });
+    }
   }
 
   loadImage(id: string) {
@@ -346,11 +343,10 @@ export class OrderComponent implements OnInit {
     this.loading = await this.loadingController.create({
       message: 'Getting Profile Information'
     });
-
-    this.loading.present();
+    await this.loading.present();
     try {
       if (this.user.firstname && this.user.lastname) {
-        this.form.controls['sender_name'].patchValue(this.user.firstname + ' ' + this.user.lastname);
+        this.form.controls['sender_name'].patchValue((this.user.firstname ? this.user.firstname : "") + ' ' + (this.user.lastname ? this.user.lastname : ""));
       }
       if (this.user.email) {
         this.form.controls['sender_email'].patchValue(this.user.email);
@@ -361,15 +357,16 @@ export class OrderComponent implements OnInit {
       if ((this.priceService.location == 'ph') && this.user.address) {
         let address: Address = await this.addressService.getAddress(this.user.address);
         if (address) {
-          this.form.controls['address1'].patchValue(address.address);
-          this.form.controls['address2'].patchValue(address.address2);
-          this.form.controls['province'].patchValue(address.province);
-          this.form.controls['city'].patchValue(address.city);
-          this.form.controls['country'].patchValue(address.country);
-          this.form.controls['postcode'].patchValue(address.postcode);
-          this.province = address.province;
+          this.form.controls['address1'].patchValue(address.address ? address.address : "");
+          this.form.controls['address2'].patchValue(address.address2 ? address.address2 : "");
+          this.form.controls['province'].patchValue(address.province ? address.province : "");
+          this.form.controls['city'].patchValue(address.city ? address.city : "");
+          this.form.controls['country'].patchValue(address.country ? address.country : "");
+          this.form.controls['postcode'].patchValue(address.postcode ? address.postcode : "");
+          this.province = address.province ? address.province : "";
           this.updateCity(address.province);
-          let amount: number = await this.getFeeAmount(address.province!, this.card!.events!);
+          let amount: number = 0;
+          if (address.province && this.card && this.card.events) amount = await this.getFeeAmount(address.province, this.card.events);
           this.shippingfee = amount;
           this.computeTotal();
         }
@@ -377,7 +374,7 @@ export class OrderComponent implements OnInit {
       this.isUserProfileLoaded = true;
     }
     finally {
-      this.loading.dismiss();
+      await this.loading.dismiss();
     }
   }
 
@@ -405,12 +402,12 @@ export class OrderComponent implements OnInit {
   }
 
   updateCity(province: string) {
-    if (this.location == 'ph'){
+    if (this.location == 'ph') {
       let config = this.phAddress.find(x => x.name == province);
       if (config != undefined)
         this.cities = config.city;
     }
-    else if (this.location == 'us'){
+    else if (this.location == 'us') {
       this.cities = this.usAddress.filter(x => x.state_name == province).map(x => x.city);
     }
   }
@@ -750,7 +747,7 @@ export class OrderComponent implements OnInit {
     this.loc.back();
   }
 
-  onChangeSendTo(e: any){
+  onChangeSendTo(e: any) {
     this.updateValidation();
   }
 }

@@ -98,7 +98,6 @@ export class CardsComponent implements OnInit {
       if (this.id) {
         let event: Event = await this.eventService.getById(this.id);
         this.eventDetails = event;
-        console.log(this.eventDetails)
         this.event = event.name!;
         this.title.setTitle(this.event);
         this.caption = this.event;

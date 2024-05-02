@@ -56,7 +56,6 @@ export class ProfileOrdersComponent implements OnInit {
       let ids: string[] = user.payments.reverse();
 
       if (user.payments.length > 0) this.start = ids[0]
-      console.log(this.start)
 
       for await (const id of ids) {
         let payment: Payment = await this.paymentService.getPayment(id);
