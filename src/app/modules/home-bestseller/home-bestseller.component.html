@@ -7,7 +7,7 @@
             <div class="col-md-3 col-6 mt-4 mb-4 my-auto" *ngFor="let card of randomBestsellerCards; index as i">
                 <div routerLink="{{'/card/' + card!.id}}" class=" selection text-center">
                     <div class="img-div">
-                        <img src="{{card?.imageUrl}}" alt="{{card?.event}}" title="{{card?.event}}">
+                        <img src="{{card?.imageUrl}}" alt="{{card?.event}}" title="{{card?.event}}" onContextMenu="return false;">
                     </div>
                     <h5 class="text-center">{{card?.event?.replaceAll(",",", ")?.replaceAll('Gifts for ','')}}</h5>
                 </div>

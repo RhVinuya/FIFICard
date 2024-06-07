@@ -1,17 +1,14 @@
-<app-imagegrid-view [img]="selectedimage.url" [glittered]="isGlittered"(select)="openItem($event)" *ngIf="selectedimage.url"></app-imagegrid-view>
+<app-imagegrid-view [img]="selectedimage.url" [glittered]="isGlittered" (select)="openItem($event)"
+    *ngIf="selectedimage.url"></app-imagegrid-view>
 
-<div class="card">
-    <div class="card-body pb-0 mb-0">
-        <div class="row">
-            <div class="col-2 mt-2 mb-2 ps-1 pe-1 imagediv d-flex align-items-center justify-content-center" [ngClass]="image.url == selectedimage.url?'active':''" *ngFor="let image of itemImages">
-                <app-image-loader [size]="3" [img]="image.image" (select)="changeImage($event)"></app-image-loader>
-            </div>
-        </div>
-        <div class="row" *ngIf="isGalleryAvailable">
-            <div class="col-12 text-center">
-                <span class="text-gallery" (click)="open()" #gallery>Open Gallery</span>
-                <app-lightbox [images]="lightboxImages" [title]="main.name!" #lightbox></app-lightbox>
-            </div>
-        </div>
+<div class="images-div">
+    <div [ngClass]="selectedimage === image ? 'image-div selected' : 'image-div'" *ngFor="let image of itemImages"
+        (click)="changeImage(image.image)">
+        <img [src]="image.image" onContextMenu="return false;">
     </div>
+</div>
+
+<div class="ion-text-center mt-2 mb-5">
+    <span class="text-gallery" (click)="open()" #gallery>Open Gallery</span>
+    <app-lightbox [images]="lightboxImages" [title]="main.name!" #lightbox></app-lightbox>
 </div>

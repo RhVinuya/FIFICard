@@ -1,6 +1,5 @@
 import { Component, Input, OnInit, AfterViewInit, AfterContentInit, Output, EventEmitter } from '@angular/core';
 import { ImageService } from 'src/app/services/image.service';
-import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-image-loader',

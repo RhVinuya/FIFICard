@@ -1,6 +1,8 @@
 <div *ngIf="!isVideo">
-    <img [ngClass]="url == defaulurl? 'img' : 'img img-thumbnail'" [src]="url" (click)="selectimage()" *ngIf="!zoom || (url == defaulurl)">
-    <lib-ngx-image-zoom [thumbImage]="url!" [fullImage]="url!" [zoomMode]="mode" [magnification]=0 [enableScrollZoom]="true" *ngIf="zoom && (url != defaulurl)"></lib-ngx-image-zoom>
+    <img [ngClass]="url == defaulurl? 'img' : 'img img-thumbnail'" [src]="url" (click)="selectimage()" *ngIf="!zoom || (url == defaulurl)"
+        onContextMenu="return false;">
+    <lib-ngx-image-zoom [thumbImage]="url!" [fullImage]="url!" [zoomMode]="mode" [magnification]=0 [enableScrollZoom]="true"
+        *ngIf="zoom && (url != defaulurl)"></lib-ngx-image-zoom>
 </div>
 <div *ngIf="isVideo">
     <video [ngClass]="url == defaulurl? 'img' : 'img img-thumbnail'" [src]="url" (click)="selectimage()"></video>

@@ -58,7 +58,8 @@ export class SuggestionListComponent implements OnInit {
       });
     }
     else {
-      this.service.getSuggestions(event.trim(), 13).then(data => {
+      this.service.getSuggestions(event.trim(), this.card.type, 13).then(data => {
+        console.log(this.card, data)
         this.loadBatch(data);
         this.getImages();
       });

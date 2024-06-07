@@ -1,6 +1,6 @@
 <a [ngClass]="enable?'cursor myevent':'none myevent'" routerLink="{{url}}" target="_blank">
     <div class="div-img">
-        <img src="{{image}}" class="w-100 h-100">
+        <img src="{{image}}" class="w-100 h-100" onContextMenu="return false;">
     </div>
     <div class="title">{{event.name}}</div>
 </a>

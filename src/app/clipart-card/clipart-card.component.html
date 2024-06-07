@@ -1,6 +1,6 @@
 <div class="card position-relative rounded-0" [routerLink]="['/card', clipart.id]">
-    <img src="../assets/images/new.png" class="new-badge" *ngIf="clipart.new">
-    <div class="img-wrap" title="{{clipart!.name}}">
+    <img src="../assets/images/new.png" class="new-badge" *ngIf="clipart.new" onContextMenu="return false;">
+    <div class="img-wrap" title="{{clipart!.name}}" onContextMenu="return false;">
         <img [src]="image">
     </div>
     <figcaption class="info-wrap">
@@ -9,7 +9,7 @@
                 <p class="title cursor">{{clipart!.name}}</p>
             </div>
             <div class="col-4 ps-0">
-                <img src="../assets/images/featured.png" class="featured" *ngIf="clipart.featured">
+                <img src="../assets/images/featured.png" class="featured" *ngIf="clipart.featured" onContextMenu="return false;">
             </div>
         </div>
         <div class="row">

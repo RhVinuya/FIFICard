@@ -4,12 +4,10 @@
             <div class="row">
                 <div class="col-12 text-center">
                     <div class="main">
-                        <img src="{{image}}">
-                        <div class="text-area d-flex align-items-center justify-content-center"
-                            *ngFor="let item of items" [style.top.px]="item.top" [style.left.px]="item.left"
-                            [style.width.px]="item.width" [style.height.px]="item.height">
-                            <div [style.font-family]="item.style" [style.font-size.px]="item.size"
-                            [style.text-align] = "item.alignment">
+                        <img src="{{image}}" onContextMenu="return false;">
+                        <div class="text-area d-flex align-items-center justify-content-center" *ngFor="let item of items" [style.top.px]="item.top"
+                            [style.left.px]="item.left" [style.width.px]="item.width" [style.height.px]="item.height">
+                            <div [style.font-family]="item.style" [style.font-size.px]="item.size" [style.text-align]="item.alignment">
                                 <p [innerText]="item.text"></p>
                             </div>
                             <button class="icon icon-sm rounded-circle border" (click)="textareaClick(item.id)"><i class="fa fa-edit"></i></button>
@@ -21,23 +19,20 @@
     </section>
     <ng-template #offcanvas let-offcanvas>
         <div class="offcanvas-header">
-            <button type="button" class="btn-close" aria-label="Close"
-                (click)="offcanvas.dismiss('Cross click')"></button>
+            <button type="button" class="btn-close" aria-label="Close" (click)="offcanvas.dismiss('Cross click')"></button>
         </div>
         <div class="offcanvas-body">
             <div class="row">
                 <div class="col-12">
                     <label class="form-label">Your Message</label>
                     <br />
-                    <textarea class="form-control" rows="5" (keyup)="textareaKeyup($event)"
-                        [value]="selected.text"></textarea>
+                    <textarea class="form-control" rows="5" (keyup)="textareaKeyup($event)" [value]="selected.text"></textarea>
                 </div>
                 <div class="col-12">
                     <br />
                     <label class="form-label">Font</label>
                     <br />
-                    <select class="form-control" [value]="selected.style" (change)="fontChange($event)"
-                        [(ngModel)]="selected.style">
+                    <select class="form-control" [value]="selected.style" (change)="fontChange($event)" [(ngModel)]="selected.style">
                         <option *ngFor="let font of fonts" value="{{font}}">{{font}}</option>
                     </select>
                 </div>
@@ -45,20 +40,22 @@
                     <br />
                     <label class="form-label">Font Size</label>
                     <br />
-                    <input type="range" class="form-range" min="20" max="50" step="1" [value]="selected.size"
-                        (change)="sizeChange($event)">
+                    <input type="range" class="form-range" min="20" max="50" step="1" [value]="selected.size" (change)="sizeChange($event)">
                 </div>
                 <div class="col-12">
                     <label class="form-label">Alignment</label>
                     <br />
                     <div class="btn-group" role="group" ngbRadioGroup name="radioBasic" [(ngModel)]="selected.alignment">
-                        <button [ngClass]="selected.alignment == 'left' ? 'btn btn-primary btn-lg' : 'btn btn-light btn-lg'" (click)="alignmentClick('left')">
+                        <button [ngClass]="selected.alignment == 'left' ? 'btn btn-primary btn-lg' : 'btn btn-light btn-lg'"
+                            (click)="alignmentClick('left')">
                             <i class="fa fa-align-left"></i>
                         </button>
-                        <button [ngClass]="selected.alignment == 'center' ? 'btn btn-primary btn-lg' : 'btn btn-light btn-lg'"  (click)="alignmentClick('center')">
+                        <button [ngClass]="selected.alignment == 'center' ? 'btn btn-primary btn-lg' : 'btn btn-light btn-lg'"
+                            (click)="alignmentClick('center')">
                             <i class="fa fa-align-center"></i>
                         </button>
-                        <button [ngClass]="selected.alignment == 'right' ? 'btn btn-primary btn-lg' : 'btn btn-light btn-lg'"  (click)="alignmentClick('right')">
+                        <button [ngClass]="selected.alignment == 'right' ? 'btn btn-primary btn-lg' : 'btn btn-light btn-lg'"
+                            (click)="alignmentClick('right')">
                             <i class="fa fa-align-right"></i>
                         </button>
                     </div>

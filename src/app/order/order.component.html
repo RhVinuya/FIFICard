@@ -30,20 +30,23 @@
                         <h3 class="section-title" *ngIf="card && (cardPrice == 0)"><b>Free</b></h3>
                     </div>
                     <div class="col-6 mb-2 d-flex align-items-center justify-content-end">
-                        <button class="btn btn-light text-primary" (click)="loadUserProfile()" [disabled]="isUserProfileLoaded" *ngIf="isWithUserProfile">Use Default Profile Information</button>
+                        <button class="btn btn-light text-primary" (click)="loadUserProfile()" [disabled]="isUserProfileLoaded"
+                            *ngIf="isWithUserProfile">Use Default Profile Information</button>
                     </div>
                     <div class="col-6 mb-2  d-flex align-items-end">
                         <span class="text-muted">{{'order.sender'|translate}}</span>
                     </div>
                     <div class="col-6 mb-2 d-flex align-items-center justify-content-end">
-                        <button class="btn btn-light inst-but" (click)="showInstruction()">{{(card!.signAndSend?'order.howtosignandsend':'order.howtobuy')|translate}}</button>
+                        <button class="btn btn-light inst-but"
+                            (click)="showInstruction()">{{(card!.signAndSend?'order.howtosignandsend':'order.howtobuy')|translate}}</button>
                     </div>
 
                     <form [formGroup]="form" (ngSubmit)="addToCart(confimation)">
                         <div class="col-12 mb-2">
                             <label class="form-label">* {{'order.sendername'|translate}}</label>
                             <span class="instruction" *ngIf="instruction">{{'order.insertbuyer'|translate}}</span>
-                            <input type="text" class="form-control" formControlName="sender_name" placeholder="{{'order.name'|translate}}" [ngClass]="{ 'is-invalid': submitted && controls()['sender_name'].errors}">
+                            <input type="text" class="form-control" formControlName="sender_name" placeholder="{{'order.name'|translate}}"
+                                [ngClass]="{ 'is-invalid': submitted && controls()['sender_name'].errors}">
                             <div *ngIf="submitted && controls()['sender_name'].errors" class="invalid-feedback">
                                 <div *ngIf="controls()['sender_name'].errors!['required']">{{'order.senderrequired'|translate}}</div>
                                 <div *ngIf="controls()['sender_name'].errors!['maxlength']">{{'order.sendercharlimit'|translate}}</div>
@@ -52,7 +55,8 @@
                         <div class="col-12 mb-2">
                             <label class="form-label">* {{'order.senderphone'|translate}}</label>
                             <span class="instruction" *ngIf="instruction">{{'order.insertsenderphone'|translate}}</span>
-                            <input type="text" class="form-control" formControlName="sender_phone" placeholder="{{'order.phonenumber'|translate}}" [ngClass]="{ 'is-invalid': submitted && controls()['sender_phone'].errors}">
+                            <input type="text" class="form-control" formControlName="sender_phone" placeholder="{{'order.phonenumber'|translate}}"
+                                [ngClass]="{ 'is-invalid': submitted && controls()['sender_phone'].errors}">
                             <div *ngIf="submitted && controls()['sender_phone'].errors" class="invalid-feedback">
                                 <div *ngIf="controls()['sender_phone'].errors!['required']">{{'order.senderphonerequired'|translate}}</div>
                                 <div *ngIf="controls()['sender_phone'].errors!['maxlength']">{{'order.senderphonelimit'|translate}}</div>
@@ -61,7 +65,8 @@
                         <div class="col-12 mb-2">
                             <label class="form-label">* {{'order.senderemail'|translate}}</label>
                             <span class="instruction" *ngIf="instruction">{{'order.insertsenderemail'|translate}}</span>
-                            <input type="email" class="form-control" formControlName="sender_email" placeholder="{{'order.email'|translate}}" [ngClass]="{ 'is-invalid': submitted && controls()['sender_email'].errors}">
+                            <input type="email" class="form-control" formControlName="sender_email" placeholder="{{'order.email'|translate}}"
+                                [ngClass]="{ 'is-invalid': submitted && controls()['sender_email'].errors}">
                             <div *ngIf="submitted && controls()['sender_email'].errors" class="invalid-feedback">
                                 <div *ngIf="controls()['sender_email'].errors!['required']">{{'order.senderemailrequired'|translate}}</div>
                                 <div *ngIf="controls()['sender_email'].errors!['email']">{{'order.emailinvalid'|translate}}</div>
@@ -73,7 +78,8 @@
                         <div class="col-12 mb-2">
                             <label class="form-label">* {{'order.recipientname'|translate}}</label>
                             <span class="instruction" *ngIf="instruction">{{'order.recipientinsert'|translate}}</span>
-                            <input type="text" class="form-control" formControlName="receiver_name" placeholder="{{'order.name'|translate}}" [ngClass]="{ 'is-invalid': submitted && controls()['receiver_name'].errors}">
+                            <input type="text" class="form-control" formControlName="receiver_name" placeholder="{{'order.name'|translate}}"
+                                [ngClass]="{ 'is-invalid': submitted && controls()['receiver_name'].errors}">
                             <div *ngIf="submitted && controls()['receiver_name'].errors" class="invalid-feedback">
                                 <div *ngIf="controls()['receiver_name'].errors!['required']">{{'order.recipientrequired'|translate}}</div>
                                 <div *ngIf="controls()['receiver_name'].errors!['maxlength']">{{'order.recipientcharlimit'|translate}}</div>
@@ -82,7 +88,8 @@
                         <div class="col-12 mb-2">
                             <label class="form-label">* {{'order.recipientphone'|translate}}</label>
                             <span class="instruction" *ngIf="instruction">{{'order.insertrecipientphone'|translate}}</span>
-                            <input type="text" class="form-control" formControlName="receiver_phone" placeholder="{{'order.phonenumber'|translate}}" [ngClass]="{ 'is-invalid': submitted && controls()['receiver_phone'].errors}">
+                            <input type="text" class="form-control" formControlName="receiver_phone" placeholder="{{'order.phonenumber'|translate}}"
+                                [ngClass]="{ 'is-invalid': submitted && controls()['receiver_phone'].errors}">
                             <div *ngIf="submitted && controls()['receiver_phone'].errors" class="invalid-feedback">
                                 <div *ngIf="controls()['receiver_phone'].errors!['required']">{{'order.recipientphonerequired'|translate}}</div>
                                 <div *ngIf="controls()['receiver_phone'].errors!['maxlength']">{{'order.recipientphonelimit'|translate}}</div>
@@ -91,7 +98,8 @@
                         <div class="col-12 mb-2">
                             <label class="form-label">* {{'order.recipientemail'|translate}}</label>
                             <span class="instruction" *ngIf="instruction">{{'order.insertrecipientemail'|translate}}</span>
-                            <input type="email" class="form-control" formControlName="receiver_email" placeholder="{{'order.email'|translate}}" [ngClass]="{ 'is-invalid': submitted && controls()['receiver_email'].errors}">
+                            <input type="email" class="form-control" formControlName="receiver_email" placeholder="{{'order.email'|translate}}"
+                                [ngClass]="{ 'is-invalid': submitted && controls()['receiver_email'].errors}">
                             <div *ngIf="submitted && controls()['receiver_email'].errors" class="invalid-feedback">
                                 <div *ngIf="controls()['receiver_email'].errors!['required']">{{'order.recipientemailrequired'|translate}}</div>
                                 <div *ngIf="controls()['receiver_email'].errors!['email']">{{'order.emailinvalid'|translate}}</div>
@@ -105,7 +113,9 @@
                         <div class="col-12 mb-2" *ngIf="['ph', 'us'].includes(location)">
                             <label class="form-label" *ngIf="location == 'ph'">* {{'order.address1'|translate}}</label>
                             <label class="form-label" *ngIf="location == 'us'">* Street</label>
-                            <input type="text" class="form-control" formControlName="address1" placeholder="{{location=='ph'?('order.address'|translate):'Street'}}" [ngClass]="{ 'is-invalid': submitted && controls()['address1'].errors}">
+                            <input type="text" class="form-control" formControlName="address1"
+                                placeholder="{{location=='ph'?('order.address'|translate):'Street'}}"
+                                [ngClass]="{ 'is-invalid': submitted && controls()['address1'].errors}">
                             <div *ngIf="submitted && controls()['address1'].errors && (location == 'ph')" class="invalid-feedback">
                                 <div *ngIf="controls()['address1'].errors!['required']">{{'order.addressrequired'|translate}}</div>
                                 <div *ngIf="controls()['address1'].errors!['maxlength']">{{'order.addresscharlimit'|translate}}</div>
@@ -117,7 +127,8 @@
                         </div>
                         <div class="col-12 mb-2" *ngIf="['ph'].includes(location)">
                             <label class="form-label">* {{'order.address2'|translate}}</label>
-                            <input type="text" class="form-control" formControlName="address2" placeholder="{{'order.address'|translate}}" [ngClass]="{ 'is-invalid': submitted && controls()['address2'].errors}">
+                            <input type="text" class="form-control" formControlName="address2" placeholder="{{'order.address'|translate}}"
+                                [ngClass]="{ 'is-invalid': submitted && controls()['address2'].errors}">
                             <div *ngIf="submitted && controls()['address2'].errors" class="invalid-feedback">
                                 <div *ngIf="controls()['address2'].errors!['required']">{{'order.addressrequired'|translate}}</div>
                                 <div *ngIf="controls()['address2'].errors!['maxlength']">{{'order.addresscharlimit'|translate}}</div>
@@ -127,7 +138,9 @@
                             <div class="col-6 mb-2">
                                 <label class="form-label" *ngIf="location == 'ph'">* {{'order.province'|translate}}</label>
                                 <label class="form-label" *ngIf="location == 'us'">* State</label>
-                                <input type="text" class="form-control" formControlName="province" placeholder="{{location=='ph'?('order.province'|translate):'State'}}" list="provinceIds" [ngClass]="{ 'is-invalid': submitted && controls()['province'].errors}" (change)="proviceChange($event)">
+                                <input type="text" class="form-control" formControlName="province"
+                                    placeholder="{{location=='ph'?('order.province'|translate):'State'}}" list="provinceIds"
+                                    [ngClass]="{ 'is-invalid': submitted && controls()['province'].errors}" (change)="proviceChange($event)">
                                 <div *ngIf="submitted && controls()['province'].errors && (location == 'ph')" class="invalid-feedback">
                                     <div *ngIf="controls()['province'].errors!['required']">{{'order.provincerequired'|translate}}</div>
                                     <div *ngIf="controls()['province'].errors!['maxlength']">{{'order.provincecharlimit'|translate}}</div>
@@ -146,7 +159,9 @@
                             <div class="col-6 mb-2">
                                 <label class="form-label" *ngIf="location == 'ph'">* {{'order.city'|translate}}</label>
                                 <label class="form-label" *ngIf="location == 'us'">* City</label>
-                                <input type="text" class="form-control" formControlName="city" placeholder="{{location=='ph'?('order.city'|translate):'City'}}" list="cityIds" [ngClass]="{ 'is-invalid': submitted && controls()['city'].errors}">
+                                <input type="text" class="form-control" formControlName="city"
+                                    placeholder="{{location=='ph'?('order.city'|translate):'City'}}" list="cityIds"
+                                    [ngClass]="{ 'is-invalid': submitted && controls()['city'].errors}">
                                 <div *ngIf="submitted && controls()['city'].errors && (location == 'ph')" class="invalid-feedback">
                                     <div *ngIf="controls()['city'].errors!['required']">{{'order.cityrequired'|translate}}</div>
                                     <div *ngIf="controls()['city'].errors!['maxlength']">{{'order.citylimit'|translate}}</div>
@@ -163,7 +178,8 @@
                         <div class="row" *ngIf="['ph', 'us'].includes(location)">
                             <div class="col-6 mb-2">
                                 <label class="form-label">* {{'order.country'|translate}}</label>
-                                <input type="text" class="form-control" formControlName="country" placeholder="{{'order.country'|translate}}" [ngClass]="{ 'is-invalid': submitted && controls()['country'].errors}">
+                                <input type="text" class="form-control" formControlName="country" placeholder="{{'order.country'|translate}}"
+                                    [ngClass]="{ 'is-invalid': submitted && controls()['country'].errors}">
                                 <div *ngIf="submitted && controls()['country'].errors" class="invalid-feedback">
                                     <div *ngIf="controls()['country'].errors!['required']">{{'order.countryrequired'|translate}}</div>
                                     <div *ngIf="controls()['country'].errors!['maxlength']">{{'order.countrylimsit'|translate}}</div>
@@ -172,7 +188,9 @@
                             <div class="col-6 mb-2">
                                 <label class="form-label" *ngIf="location == 'ph'">* {{'order.postcode'|translate}}</label>
                                 <label class="form-label" *ngIf="location == 'us'">* Zip code</label>
-                                <input type="text" class="form-control" formControlName="postcode" placeholder="{{location=='ph'?('order.postcode'|translate):'Zip code'}}" [ngClass]="{ 'is-invalid': submitted && controls()['postcode'].errors}">
+                                <input type="text" class="form-control" formControlName="postcode"
+                                    placeholder="{{location=='ph'?('order.postcode'|translate):'Zip code'}}"
+                                    [ngClass]="{ 'is-invalid': submitted && controls()['postcode'].errors}">
                                 <div *ngIf="submitted && controls()['postcode'].errors && (location == 'ph')" class="invalid-feedback">
                                     <div *ngIf="controls()['postcode'].errors!['required']">{{'order.postcoderequired'|translate}}</div>
                                     <div *ngIf="controls()['postcode'].errors!['maxlength']">{{'order.postcodelimit'|translate}}</div>
@@ -186,7 +204,8 @@
                         <!--PH and US Address-->
                         <div class="col-12 mb-2" *ngIf="['sg'].includes(location)">
                             <label class="form-label">* Complete Address</label>
-                            <textarea class="form-control" placeholder="Complete Address" rows="5" formControlName="address" [ngClass]="{ 'is-invalid': submitted && controls()['address'].errors}"></textarea>
+                            <textarea class="form-control" placeholder="Complete Address" rows="5" formControlName="address"
+                                [ngClass]="{ 'is-invalid': submitted && controls()['address'].errors}"></textarea>
                             <div *ngIf="submitted && controls()['address'].errors" class="invalid-feedback">
                                 <div *ngIf="controls()['address'].errors!['required']">{{'order.addressrequired'|translate}}</div>
                                 <div *ngIf="controls()['address'].errors!['maxlength']">Address must not exceed 250 characters</div>
@@ -207,7 +226,8 @@
                         </div>
                         <div class="col-12 mb-2" *ngIf="card?.signAndSend">
                             <span class="instruction" *ngIf="instruction">{{'order.insertsignandsend'|translate}}</span>
-                            <app-sign-and-send (signAndSendEvent)="receiveSignAndSend($event)" (signAndSendPhotoEvent)="receiveSignAndSendPhoto($event)"></app-sign-and-send>
+                            <app-sign-and-send (signAndSendEvent)="receiveSignAndSend($event)"
+                                (signAndSendPhotoEvent)="receiveSignAndSendPhoto($event)"></app-sign-and-send>
                         </div>
                         <div class="col-12 mb-2" *ngIf="!card?.signAndSend">
                             <label class="form-label">{{'order.personal'|translate}}</label>
@@ -230,7 +250,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-2"><img src="{{primaryImageURL}}"></div>
+                        <div class="col-2"><img src="{{primaryImageURL}}" onContextMenu="return false;"></div>
                         <div class="col-7">
                             <label>{{card!.name}}</label><br />
                             <label>{{'order.shippingfee'|translate}}</label>

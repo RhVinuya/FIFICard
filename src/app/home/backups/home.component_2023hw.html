@@ -5,7 +5,7 @@
 
             <div class="row">
                 <div class="col-md-12" style="position: relative;">
-                    <img src="/assets/images/bday2/banner-1-min.png" style="width:100%">
+                    src="/assets/images/bday2/banner-1-min.png" style="width:100%">
                     <div style="height: 11%; width: 20%; position: absolute; left: 26%; bottom: 2.5%; cursor: pointer;"
                         [routerLink]="['/cards/event/dGiyJX4go7yPhCJNJN4P']"></div>
                     <div style="height: 11%; width: 23%; position: absolute; left: 47%; bottom: 2.5%; cursor: pointer;"
@@ -20,7 +20,7 @@
             </div>
             <div class="row" *ngIf="priceService.getLocation() == 'ph'">
                 <div class="col-md-12" style="position: relative;">
-                    <img src="/assets/images/bday2/banner-2-min.gif" style="width:100%">
+                    <img src="/assets/images/bday2/banner-2-min.gif" style="width:100%" onContextMenu="return false;">
                     <div style="height: 23.5%; width: 33%; position: absolute;left: 14.5%;bottom: 2.5%; cursor: pointer;"
                         [routerLink]="['/gifts']"></div>
                 </div>
@@ -28,7 +28,7 @@
             <div class="row" *ngIf="priceService.getLocation() == 'ph'">
                 <div class="col-md-12" style="position: relative;">
                     <img src="/assets/images/bday2/banner-3-min.png" style="width:100%" title="categories"
-                        alt="categories">
+                        alt="categories" onContextMenu="return false;">
                     <div style="height: 54%; width: 15.5%; position: absolute;left: 5.7%;bottom: 26%; cursor: pointer;"
                         [routerLink]="['/poetry']"></div>
                     <div style="height: 54%; width: 15.5%; position: absolute;left: 23.7%;bottom: 26%; cursor: pointer;"
@@ -44,7 +44,7 @@
             <div class="row" *ngIf="priceService.getLocation() != 'ph'">
                 <div class="col-md-12" style="position: relative;">
                     <img src="/assets/images/bday2/us/banner-3-min.png" style="width:100%" title="categories"
-                        alt="categories">
+                        alt="categories" onContextMenu="return false;">
                     <div style="height: 54%; width: 15.5%; position: absolute;left: 13.3%;bottom: 26%; cursor: pointer;"
                         [routerLink]="['/poetry']"></div>
                     <div style="height: 54%; width: 15.5%; position: absolute;left: 31.2%;bottom: 26%; cursor: pointer;"
@@ -57,8 +57,7 @@
             </div>
             <div class="row">
                 <div class="col-md-12" style="position: relative;">
-                    <img src="/assets/images/bday2/banner-4-min.png" style="width:100%">
-
+                    <img src="/assets/images/bday2/banner-4-min.png" style="width:100%" onContextMenu="return false;">
                     <div style="height: 9.5%; width: 26%;position: absolute;left: 3.5%;bottom: 6.5%; cursor: pointer;"
                         [routerLink]="['/cards/event/amCqsD3n7zq5N6OyvD8m']"></div>
                     <div style="height: 52.5%;width: 14%;position: absolute; left: 32%; bottom: 27.5%;cursor: pointer; transform: rotate(-4deg);"
@@ -75,13 +74,8 @@
             </div>
             <div>
                 <div class="row">
-
-                    <!-- <div class="col-md-12">
-                        <br />
-                        <h2 class="text-center cus-text-title">{{'home.featuredcategories'|translate}}</h2>
-                    </div> -->
                     <div class="col-md-12">
-                        <img src="/assets/images/bday2/cat-min.png">
+                        <img src="/assets/images/bday2/cat-min.png" onContextMenu="return false;">
                     </div>
                     <div class="col-md-12">
                         <app-home-featured caption="Wedding" homeCardEvent="Wedding" [limit]="100"></app-home-featured>
@@ -106,9 +100,9 @@
                         <app-home-featured caption="Pet Cards" homeCardEvent="Pet" [limit]="100"></app-home-featured>
                     </div>
                     <div class="col-md-12">
-                        <img src="/assets/images/bday2/4-min.png">
+                        <img src="/assets/images/bday2/4-min.png" onContextMenu="return false;">
                     </div>
-                   
+
                     <div class="col-md-12 sns-no-label">
                         <!-- <div [routerLink]="['/signandsendpage']" class="to-link"> <img src="/assets/images/hw/sign-and-send-02.png" style="width:100%"></div>
                         <br /> <br />-->
@@ -117,41 +111,18 @@
 
                     </div>
                     <div class="col-md-12" style="position: relative;">
-                        <img src="/assets/images/bday2/5-min.png">
-                        <div style="height: 59.5%; width: 18.5%;position: absolute;bottom: 21.5%;left: 9.2%;cursor: pointer" [routerLink]="['/cards/event/cb2VAMGVwHJ4PHbOavIt']"></div>
-                         <div style="height: 59.5%; width: 18.5%;position: absolute;bottom: 21.5%;left: 30.2%;cursor: pointer" [routerLink]="['/cards/event/daRI7IEuBx3kyESw7H9M']"></div>
-                         <div style="height: 59.5%; width: 18.5%;position: absolute;bottom: 21.5%;left: 50.2%;cursor: pointer" [routerLink]="['/cards/event/iygJoAg2bgoIDodDYfH3']"></div>
-                         <div style="height: 59.5%; width: 18.5%;position: absolute;bottom: 21.5%;left: 71.5%;cursor: pointer" [routerLink]="['/gifts']"></div>
+                        <img src="/assets/images/bday2/5-min.png" onContextMenu="return false;">
+                        <div style="height: 59.5%; width: 18.5%;position: absolute;bottom: 21.5%;left: 9.2%;cursor: pointer"
+                            [routerLink]="['/cards/event/cb2VAMGVwHJ4PHbOavIt']"></div>
+                        <div style="height: 59.5%; width: 18.5%;position: absolute;bottom: 21.5%;left: 30.2%;cursor: pointer"
+                            [routerLink]="['/cards/event/daRI7IEuBx3kyESw7H9M']"></div>
+                        <div style="height: 59.5%; width: 18.5%;position: absolute;bottom: 21.5%;left: 50.2%;cursor: pointer"
+                            [routerLink]="['/cards/event/iygJoAg2bgoIDodDYfH3']"></div>
+                        <div style="height: 59.5%; width: 18.5%;position: absolute;bottom: 21.5%;left: 71.5%;cursor: pointer"
+                            [routerLink]="['/gifts']"></div>
                     </div>
                 </div>
             </div>
-            <!-- <div class="row">
-                <div class="col-md-12" style="position: relative;">
-                    <img src="/assets/images/mothersday/signandsend.jpg" style="width:100%">
-                    <div style="height: 10%; width: 32%; position: absolute; left: 9%; bottom: 0%; cursor: pointer;"
-                        [routerLink]="['/signandsend']"></div>
-                    <div style="height: 10%; width: 20%; position: absolute; left: 53%; bottom: 0%; cursor: pointer;"
-                        [routerLink]="['/signandsendpage']"></div>
-                </div>
-            </div> -->
-            
-            <div>
-                <div class="row">
-                    <div class="col-md-12">
-                         <!-- <img src="/assets/images/bday2/6-min.png"
-                            *ngIf="priceService.getLocation() == 'ph'" class="img-fluid " style="width:100%">
-                        <img src="/assets/images/bday2/us/banner-4-min.png"
-                            *ngIf="priceService.getLocation() != 'ph'" class="img-fluid " style="width:100%">
-                        <br /> <br />
-                       <img src="/assets/images/valentines/v2/2-min.png" class="img-fluid cursor" style="width:100%"
-                            [routerLink]="['/stickers']">
-                        <br /> <br /> -->
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
     </section>
     <app-footer></app-footer>
 </ion-content>

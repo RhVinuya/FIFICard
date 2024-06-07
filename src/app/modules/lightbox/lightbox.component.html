@@ -15,7 +15,7 @@
             <div class="control-left d-flex align-items-center justify-content-center">
                 <span class="carousel-control-prev-icon" (click)="prev()"></span>
             </div>
-            <img class="img" [src]="current.image" *ngIf="current.image.includes('.mp4') == false">
+            <img class="img" [src]="current.image" *ngIf="current.image.includes('.mp4') == false" onContextMenu="return false;">
             <video class="img" controls="" *ngIf="current.image.includes('.mp4') == true">
                 <source [src]="current.image" type="video/mp4">
             </video>
@@ -27,8 +27,10 @@
     <div class="modal-footer text-center d-flex flex-row align-items-center justify-content-center">
         <div class="img-slide text-center d-flex flex-row align-items-center justify-content-center">
             <div class="mx-2 item-slide" *ngFor="let item of items">
-                <img [src]="item.image" class="h-100" (click)="change(item.id)" [ngClass]="current.image==item.image?'active':''" *ngIf="item.image.includes('.mp4') == false">
-                <video [src]="item.image" class="h-100" (click)="change(item.id)" [ngClass]="current.image==item.image?'active':''" *ngIf="item.image.includes('.mp4') == true"></video>
+                <img [src]="item.image" class="h-100" (click)="change(item.id)" [ngClass]="current.image==item.image?'active':''"
+                    *ngIf="item.image.includes('.mp4') == false" onContextMenu="return false;">
+                <video [src]="item.image" class="h-100" (click)="change(item.id)" [ngClass]="current.image==item.image?'active':''"
+                    *ngIf="item.image.includes('.mp4') == true"></video>
             </div>
         </div>
     </div>

@@ -4,168 +4,69 @@
     <h2 style="font-size:0px;margin: 0;">Sign & Sign Page</h2>
     <section class="section-name padding-y-sm bk-hw">
         <div class="container mothersday-component">
-            <!-- <div class="row">
-                <div class="col-md-4">
-                    <img src="/assets/images/signandsend/banner.png" class="img-fluid">
-                </div>
-                <div class="col-md-8 text-center">
-                    <img src="/assets/images/signandsend/sign-send-logo 2.png" class="img-fluid">
-                    <p [ngStyle]="isMobile?{'font-size': '15px'} : {'font-size': '36px'}">{{"sign.tagline"|translate}}</p>
-                </div>
-                <div class="col-md-12 text-center">
-                    <p [ngStyle]="isMobile?{'font-size': '15px'} : {'font-size': '48px'}" style="font-weight: bold;color:#6500bb">{{"sign.inarush"|translate}}</p>
-                </div>
-            </div> -->
             <div class="row">
                 <div class="col-md-12">
-                    <img src="/assets/images/2024/hbd/banner/sns-p-min.png" class="img-fluid">
+                    <img src="/assets/images/2024/hbd/banner/sns-p-min.png" class="img-fluid" onContextMenu="return false;">
                     <br /><br />
-                    <img src="/assets/images/signandsend/page/v2/icons.png" class="img-fluid">
+                    <img src="/assets/images/signandsend/page/v2/icons.png" class="img-fluid" onContextMenu="return false;">
                 </div>
             </div>
             <br />
-            <!-- <div class="row">
-                <div class="col-md-12">
-                    <div style="background: #e33737; padding: 2%; color: white; border-bottom: 10px solid green;">
-                        <div class="row">
-                            <div class="col-md-4 col-4 text-center">
-                                <img src="/assets/images/signandsend/thumb-01.png" [ngStyle]="isMobile?{'height': '50px'} : {'height': '100px'}">
-                                <br />
-                                <h3 [ngStyle]="isMobile?{'font-size': '15px'} : {'font-size': '22px'}">{{"sign.signandcustomize"|translate}}</h3>
-                            </div>
-                            <div class="col-md-4 col-4 text-center">
-                                <img src="/assets/images/signandsend/thumb-03.png" [ngStyle]="isMobile?{'height': '50px'} : {'height': '100px'}">
-                                <br />
-                                <h3 [ngStyle]="isMobile?{'font-size': '15px'} : {'font-size': '22px'}">{{"sign.pickacard"|translate}}</h3>
-                            </div>
-                            <div class="col-md-4 col-4 text-center">
-                                <img src="/assets/images/signandsend/thumb-02.png" [ngStyle]="isMobile?{'height': '50px'} : {'height': '100px'}">
-                                <br />
-                                <h3 [ngStyle]="isMobile?{'font-size': '15px'} : {'font-size': '22px'}">{{"sign.sendwithlove"|translate}}</h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
             <br />
             <div class="row">
                 <div class="col-md-12">
-                    <img src="/assets/images/signandsend/page/v2/Sign Send Process.gif" style="width:100%">
+                    <img src="/assets/images/signandsend/page/v2/Sign Send Process.gif" style="width:100%" onContextMenu="return false;">
                     <br /> <br />
                     <div class="text-center">
-                        <img src="/assets/images/2023/hw/banner/snsp-02-min.png">
+                        <img src="/assets/images/2023/hw/banner/snsp-02-min.png" onContextMenu="return false;">
                     </div>
                     <br /> <br />
-                    <img src="/assets/images/signandsend/page/v2/2.png" style="width:100%">
-                    <img src="/assets/images/signandsend/page/v2/3.png" style="width:100%">
-                    <!-- <h2>Send a card made with love to your loved ones.Check out our selections.</h2> -->
+                    <img src="/assets/images/signandsend/page/v2/2.png" style="width:100%" onContextMenu="return false;">
+                    <img src="/assets/images/signandsend/page/v2/3.png" style="width:100%" onContextMenu="return false;">
 
                 </div>
             </div>
             <br />
             <div class="row">
                 <div class="col-12 pt-3 pb-3">
-                    <!-- <app-home-featured [isSignAndSend]=true></app-home-featured> -->
-                    <!--<ngb-carousel style="background:#6602bb2e;padding:5% 0;">
-                        <ng-template ngbSlide *ngFor="let batch of batches">
-                            <div class="row">
-                                <div class="col-1 middle"></div>
-                                <div class="col-10">
-                                    <div class="row">
-                                        <div class="col-md-2 col-3 lesspadding cursor" *ngFor="let card of batch.cards" routerLink="{{'/card/' + card!.id}}">
-                                            <img class="img-thumbnail" src="{{card?.imageUrl}}" title="{{card?.name}}">
-                                            <p [ngStyle]="isMobile?{'font-size': '12px'} : {'font-size': '15px'}" class="text-center" style="font-weight:bold;margin-top:5px;">{{card?.name}}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-1 middle"></div>
-                            </div>
-                        </ng-template>
-                    </ngb-carousel>-->
                 </div>
             </div>
-            <div routerLink="/signandsend" class="to-link"><img src="/assets/images/signandsend/page/SandS-banner2.png"
-                    class="img-fluid"></div>
-            <!--<br />
-            <img src="/assets/images/signandsend/page/free-shipping.png" *ngIf="priceService.getLocation() == 'ph'" class="img-fluid">
-            <img src="/assets/images/signandsend/page/free-shipping-us.png" *ngIf="priceService.getLocation() != 'ph'" class="img-fluid">
-             <br />
+            <div routerLink="/signandsend" class="to-link"><img src="/assets/images/signandsend/page/SandS-banner2.png" class="img-fluid"
+                    onContextMenu="return false;"></div>
             <div class="row">
                 <div class="col-md-12">
-                    <img src="/assets/images/signandsend/sign-and-send-01.png" class="img-fluid">
-                    <br /> <br /> <br />
-                    <img src="/assets/images/signandsend/sign-and-send-03.png" class="img-fluid" style="width:100%">
-                    <a href="/signandsend"> <img src="/assets/images/signandsend/sign-and-send-02.png" class="img-fluid"></a>
-
-                </div>
-            </div> -->
-            <!-- <div class="row">
-                <div class="col-md-12 mb-4">
-                    <img src="assets/images/banner/select/title.png">
-                </div>
-                <div class="col-3">
-                    <a [routerLink]="['/poetry']"><img src="assets/images/banner/select/p-1.png"></a>
-                </div>
-                <div class="col-3">
-                    <a [routerLink]="['/e-cards']"><img src="assets/images/banner/select/p-2.png"></a>
-                </div>
-                <div class="col-3">
-                    <a [routerLink]="['/postcards']"><img src="assets/images/banner/select/p-3.png"></a>
-                </div>
-                <div class="col-3">
-                    <div class="d-none d-sm-block">
-                        <br /><br />
-                    </div>
-                    <img src="assets/images/banner/select/p-4.png">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <br /> <br />
-                    <a [routerLink]="['/gifts']" *ngIf="priceService.getLocation() == 'ph'"> <img src="assets/images/banner/shop-gifts.png"></a>
-                    <a [routerLink]="['/events']" *ngIf="priceService.getLocation() != 'ph'"> <img src="assets/images/banner/shop-cards.png"></a>
-                    <br /> <br />
-                    <img src="assets/images/banner/fs-free.png" *ngIf="priceService.getLocation() == 'ph'">
-                    <img src="assets/images/banner/fs-free-us.png" *ngIf="priceService.getLocation() != 'ph'">
-                </div>
-            </div> -->
-            <div class="row">
-                <div class="col-md-12">
-                    <img src="/assets/images/2024/hbd/more-min.png">
+                    <img src="/assets/images/2024/hbd/more-min.png" onContextMenu="return false;">
                     <br /><br />
                 </div>
                 <div class="col-md-12" style="position: relative">
-                    <img src="/assets/images/2024/hbd/more-2-min.png">
-                    <div style="height: 67%;width: 21%; position: absolute; left: 23%; bottom: 0%;cursor: pointer;"
-                        [routerLink]="['/poetry']"></div>
-                    <div style="height: 67%;width: 21%; position: absolute; left: 45.5%; bottom: 0%;cursor: pointer;"
-                        [routerLink]="['/postcards']"></div>
-                    <div style="height: 67%;width: 21%; position: absolute; left: 68.5%; bottom: 0%;cursor: pointer;"
-                        [routerLink]="['/signandsend']"></div>
+                    <img src="/assets/images/2024/hbd/more-2-min.png" onContextMenu="return false;">
+                    <div style="height: 67%;width: 21%; position: absolute; left: 23%; bottom: 0%;cursor: pointer;" [routerLink]="['/poetry']"></div>
+                    <div style="height: 67%;width: 21%; position: absolute; left: 45.5%; bottom: 0%;cursor: pointer;" [routerLink]="['/postcards']">
+                    </div>
+                    <div style="height: 67%;width: 21%; position: absolute; left: 68.5%; bottom: 0%;cursor: pointer;" [routerLink]="['/signandsend']">
+                    </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12" style="position: relative" *ngIf="priceService.getLocation() == 'ph'">
-                    <img src="/assets/images/2024/hbd/2-ecard-sticker-2-min.png">
+                    <img src="/assets/images/2024/hbd/2-ecard-sticker-2-min.png" onContextMenu="return false;">
                     <a href="https://fibeidigicards.com/home"
-                        style="height: 100%;width: 50%; position: absolute; left: 0%; bottom: 0%;cursor: pointer;"
-                        target="_blank"></a>
-                    <div style="height: 100%;width: 50%; position: absolute; right: 0%; bottom: 0%;cursor: pointer;"
-                        [routerLink]="['/stickercards']"></div>
+                        style="height: 100%;width: 50%; position: absolute; left: 0%; bottom: 0%;cursor: pointer;" target="_blank"></a>
+                    <div style="height: 100%;width: 50%; position: absolute; right: 0%; bottom: 0%;cursor: pointer;" [routerLink]="['/stickercards']">
+                    </div>
                 </div>
                 <div class="col-md-12" style="position: relative" *ngIf="priceService.getLocation() != 'ph'">
-                    <img src="/assets/images/2024/hbd/2-ecard-sticker-2-min.png">
+                    <img src="/assets/images/2024/hbd/2-ecard-sticker-2-min.png" onContextMenu="return false;">
                     <a href="https://fibeidigicards.com/home"
-                        style="height: 100%;width: 50%; position: absolute; left: 0%; bottom: 0%;cursor: pointer;"
-                        target="_blank"></a>
-                    <div style="height: 100%;width: 50%; position: absolute; right: 0%; bottom: 0%;cursor: pointer;"
-                        [routerLink]="['/stickercards']"></div>
+                        style="height: 100%;width: 50%; position: absolute; left: 0%; bottom: 0%;cursor: pointer;" target="_blank"></a>
+                    <div style="height: 100%;width: 50%; position: absolute; right: 0%; bottom: 0%;cursor: pointer;" [routerLink]="['/stickercards']">
+                    </div>
                 </div>
                 <div class="col-md-12">
-                    <img src="/assets/images/2024/hbd/delivery-ph-min.png" *ngIf="priceService.getLocation() == 'ph'"
-                        class="img-fluid " style="width:100%">
-                    <img src="/assets/images/2024/hbd/delivery-min.png" *ngIf="priceService.getLocation() != 'ph'"
-                        class="img-fluid " style="width:100%">
+                    <img src="/assets/images/2024/hbd/delivery-ph-min.png" *ngIf="priceService.getLocation() == 'ph'" class="img-fluid "
+                        style="width:100%" onContextMenu="return false;">
+                    <img src="/assets/images/2024/hbd/delivery-min.png" *ngIf="priceService.getLocation() != 'ph'" class="img-fluid "
+                        style="width:100%" onContextMenu="return false;">
                     <br /> <br />
                 </div>
             </div>

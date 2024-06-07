@@ -1,64 +1,44 @@
-.mainitem {
-    //max-height: 500px;
+
+
+.images-div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    row-gap: 10px;
+    flex-wrap: wrap;
 }
 
-.item {
-    cursor: pointer;
-}
-
-.item:hover {
-    border-bottom: #000 1px solid
-}
-
-.mainimagediv {
-    width: 100%;
-    min-height: 500px;
-}
-
-.imagediv {
-    height: 100px;
-    opacity: .5;
-}
-
-.imagediv:hover {
-    opacity: 1;
-}
-
-.active {
-    opacity: 1;
-}
-
-::ng-deep .ngxImageZoomContainer {
-    height: 100% !important;
-    width: 100% !important;
-    cursor: zoom-in;
-}
-
-::ng-deep .ngxImageZoomFullContainer {
-    height: 100% !important;
-    width: 100% !important;
-    cursor: zoom-in;
-}
-
-.inline-gallery-container {
-    width: 100%;
-
-    // set 60% height
-    height: 0;
-    padding-bottom: 65%;
-}
-
-.text-gallery {
-    color: #6b2d98;
-    cursor: pointer;
-    padding: 4px 10px;
-    border: 2px solid #6b2d98;
-    display: inline-block;
-    margin: 8px;
+.image-div{
+    width: 80px;
+    height: 80px;
+    border: 1px solid lightgrey;
     border-radius: 6px;
+    opacity: 0.7;
+    cursor: pointer;
 }
 
-.text-gallery:hover {
-    color: white;
-    background-color: #6b2d98;
+.image-div.selected {
+    border: 1px solid #cd19b9;
+}
+
+.image-div:hover{
+    opacity: 1;
+}
+
+.image-div img{
+    width: 100%;
+    aspect-ratio: 1/1;
+    object-fit: contain;
+    border-radius: 5px;
+}
+
+.image-div:hover img{
+    object-fit: cover;
+}
+
+.text-gallery{
+    cursor: pointer;
+    color: #6b2d98;
 }

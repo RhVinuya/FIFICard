@@ -4,9 +4,9 @@
             <div class="row">
                 <div class="col-md-12">
 
-                    <div class="col-md-6 offset-md-3"> <img src="/assets/images/graduation/banner01.png"></div>
+                    <div class="col-md-6 offset-md-3"> <img src="/assets/images/graduation/banner01.png" onContextMenu="return false;"></div>
                     <br /><br />
-                    <img src="/assets/images/graduation/greeting/banner/y-1.png">
+                    <img src="/assets/images/graduation/greeting/banner/y-1.png" onContextMenu="return false;">
                     <!-- <img src="/assets/images/fathers/greeting/banner/j-12-min.png" class="w100"> -->
                     <div class="graduation-greetings-selection">
                         <div class="row ">
@@ -43,7 +43,7 @@
                     </div>
                     <div>
                         <div #ALL></div>
-                        <img src="/assets/images/graduation/greeting/banner/y-3.png" class="w100">
+                        <img src="/assets/images/graduation/greeting/banner/y-3.png" class="w100" onContextMenu="return false;">
                         <br /><br />
                         <ol>
                             <li>In today's world of education, there is a very promising new addition. Congratulations on your graduation, and best wishes for your teaching career!
@@ -58,7 +58,7 @@
                         <div class="row">
                             <div class="col-md-3" *ngFor="let selectedCard of line1">
                                 <a *ngIf="selectedCard.card" class="f-mails" target="_blank" title="{{selectedCard.card.name}}" [routerLink]="['/card/' + selectedCard.id]">
-                                    <img *ngIf="selectedCard.url" src="{{selectedCard.url}}">
+                                    <img *ngIf="selectedCard.url" src="{{selectedCard.url}}" onContextMenu="return false;">
                                     <br /> <br />
                                     <p>{{selectedCard.card.name}}</p>
                                     <b>P{{selectedCard.card.price | number:'1.2-2'}}</b>
@@ -67,7 +67,7 @@
                         </div>
                         <br /><br />
                         <div #MOTHER></div>
-                        <img src="/assets/images/graduation/greeting/banner/y-4.png" class="w100">
+                        <img src="/assets/images/graduation/greeting/banner/y-4.png" class="w100" onContextMenu="return false;">
                         <br /><br />
                         <ol>
                             <li>Wishing to send warm thoughts and heartfelt congratulations to a graduate of whom we are proud.</li>
@@ -81,7 +81,7 @@
                         <div class="row">
                             <div class="col-md-3" *ngFor="let selectedCard of line2">
                                 <a *ngIf="selectedCard.card" class="f-mails" target="_blank" title="{{selectedCard.card.name}}" [routerLink]="['/card/' + selectedCard.id]">
-                                    <img *ngIf="selectedCard.url" src="{{selectedCard.url}}">
+                                    <img *ngIf="selectedCard.url" src="{{selectedCard.url}}" onContextMenu="return false;">
                                     <br /> <br />
                                     <p>{{selectedCard.card.name}}</p>
                                     <b>P{{selectedCard.card.price | number:'1.2-2'}}</b>
@@ -91,7 +91,7 @@
                         <br /><br />
 
                         <div #FATHER></div>
-                        <img src="/assets/images/graduation/greeting/banner/y-5.png" class="w100">
+                        <img src="/assets/images/graduation/greeting/banner/y-5.png" class="w100" onContextMenu="return false;">
                         <br /><br />
                         <ol>
                             <li>You're slowly achieving your dreams, and you'll soon see the rewards of your labor.</li>
@@ -107,7 +107,7 @@
                         <div class="row">
                             <div class="col-md-3" *ngFor="let selectedCard of line3">
                                 <a *ngIf="selectedCard.card" class="f-mails" target="_blank" title="{{selectedCard.card.name}}" [routerLink]="['/card/' + selectedCard.id]">
-                                    <img *ngIf="selectedCard.url" src="{{selectedCard.url}}">
+                                    <img *ngIf="selectedCard.url" src="{{selectedCard.url}}" onContextMenu="return false;">
                                     <br /> <br />
                                     <p>{{selectedCard.card.name}}</p>
                                     <b>P{{selectedCard.card.price | number:'1.2-2'}}</b>
@@ -117,7 +117,7 @@
                         <br /><br />
 
                         <div #QUOTES></div>
-                        <img src="/assets/images/graduation/greeting/banner/y-4.png" class="w100">
+                        <img src="/assets/images/graduation/greeting/banner/y-4.png" class="w100" onContextMenu="return false;">
                         <br /><br />
                         <ol>
                             <li>You've taken your place on the world stage, ready to shine with that diploma. I'm looking forward to seeing you shine even brighter! </li>
@@ -131,7 +131,7 @@
                         <div class="row">
                             <div class="col-md-3" *ngFor="let selectedCard of line4">
                                 <a *ngIf="selectedCard.card" class="f-mails" target="_blank" title="{{selectedCard.card.name}}" [routerLink]="['/card/' + selectedCard.id]">
-                                    <img *ngIf="selectedCard.url" src="{{selectedCard.url}}">
+                                    <img *ngIf="selectedCard.url" src="{{selectedCard.url}}" onContextMenu="return false;">
                                     <br /> <br />
                                     <p>{{selectedCard.card.name}}</p>
                                     <b>P{{selectedCard.card.price | number:'1.2-2'}}</b>

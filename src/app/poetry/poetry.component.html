@@ -12,7 +12,7 @@
 
             <div class="row">
                 <div class="col-md-12" style="position: relative">
-                    <img src="/assets/images/2024/father/poetry/img1.png">
+                    <img src="/assets/images/2024/father/poetry/img1.png" onContextMenu="return false;">
                     <div style="    height: 29%;
                     width: 23%;
                     position: absolute;
@@ -41,12 +41,6 @@
             </div>
             <div class="row bg-white py-3">
                 <div class="col-12 my-2"></div>
-                <!--<div class="col-12 ">
-                    <a class="btn-featured" *ngIf="featured" [routerLink]="['/poetrycards/' + featured.id]">
-                        <img src="/assets/images/poetry/featured-category.jpg" class="img-fluid">
-                    </a>
-                    <img src="/assets/images/poetry/other.jpg" class="img-fluid">
-                </div>-->
                 <div class="col-md-12  my-auto">
                     <div class="row">
                         <div class="col-md-3" *ngFor="let event of events">
@@ -67,12 +61,6 @@
             </div>
             <div class="row bg-white py-3">
                 <div class="col-12 my-2"></div>
-                <!--<div class="col-12 ">
-                    <a class="btn-featured" *ngIf="featured" [routerLink]="['/poetrycards/' + featured.id]">
-                        <img src="/assets/images/poetry/featured-category.jpg" class="img-fluid">
-                    </a>
-                    <img src="/assets/images/poetry/other.jpg" class="img-fluid">
-                </div>-->
                 <div class="col-md-12  my-auto">
                     <div class="row">
                         <div class="col-md-3" *ngFor="let event of specialty">
@@ -85,7 +73,7 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <img src="/assets/images/2024/easter/page/free.png">
+                    <img src="/assets/images/2024/easter/page/free.png" onContextMenu="return false;">
                 </div>
             </div>
             <div class="row">
@@ -113,51 +101,9 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <img src="/assets/images/2024/easter/page/SS.png" [routerLink]="['/signandsend']">
+                    <img src="/assets/images/2024/easter/page/SS.png" [routerLink]="['/signandsend']" onContextMenu="return false;">
                 </div>
             </div>
-
-            <!-- 
-            <div class="row">
-                <div class="col-md-12">
-                    <img src="/assets/images/2024/hbd/more-min.png">
-                    <br /><br />
-                </div>
-                <div class="col-md-12" style="position: relative">
-                    <img src="/assets/images/2024/hbd/more-2-min.png">
-                    <div style="height: 67%;width: 21%; position: absolute; left: 23%; bottom: 0%;cursor: pointer;"
-                        [routerLink]="['/poetry']"></div>
-                    <div style="height: 67%;width: 21%; position: absolute; left: 45.5%; bottom: 0%;cursor: pointer;"
-                        [routerLink]="['/postcards']"></div>
-                    <div style="height: 67%;width: 21%; position: absolute; left: 68.5%; bottom: 0%;cursor: pointer;"
-                        [routerLink]="['/signandsend']"></div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12" style="position: relative" *ngIf="priceService.getLocation() == 'ph'">
-                    <img src="/assets/images/2024/hbd/2-ecard-sticker-min.png">
-                    <a href="https://fibeidigicards.com/home"
-                        style="height: 100%;width: 50%; position: absolute; left: 0%; bottom: 0%;cursor: pointer;"
-                        target="_blank"></a>
-                    <div style="height: 100%;width: 50%; position: absolute; right: 0%; bottom: 0%;cursor: pointer;"
-                        [routerLink]="['/stickercards']"></div>
-                </div>
-                <div class="col-md-12" style="position: relative" *ngIf="priceService.getLocation() != 'ph'">
-                    <img src="/assets/images/2024/hbd/2-ecard-sticker-min.png">
-                    <a href="https://fibeidigicards.com/home"
-                        style="height: 100%;width: 50%; position: absolute; left: 0%; bottom: 0%;cursor: pointer;"
-                        target="_blank"></a>
-                    <div style="height: 100%;width: 50%; position: absolute; right: 0%; bottom: 0%;cursor: pointer;"
-                        [routerLink]="['/stickercards']"></div>
-                </div>
-                <div class="col-md-12">
-                    <img src="/assets/images/2024/hbd/delivery-ph-min.png" *ngIf="priceService.getLocation() == 'ph'"
-                        class="img-fluid " style="width:100%">
-                    <img src="/assets/images/2024/hbd/delivery-min.png" *ngIf="priceService.getLocation() != 'ph'"
-                        class="img-fluid " style="width:100%">
-                    <br /> <br />
-                </div>
-            </div> -->
         </div>
     </section>
     <app-footer></app-footer>

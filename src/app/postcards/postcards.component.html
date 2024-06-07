@@ -12,7 +12,7 @@
             </div>
 
             <div class="featured-category-div" (click)="setEvent('ObZsLMGhZYLixmxye0ny')">
-                <img src="/assets/images/2024/father/postcard/featured-category.png">
+                <img src="/assets/images/2024/father/postcard/featured-category.png" onContextMenu="return false;">
                 <div class="featured"></div>
             </div>
 
@@ -81,119 +81,9 @@
                 </div>
             </div>
             <div class="try-sign-and-send-div">
-                <img src="/assets/images/postcard/try-sign-and-send.png">
+                <img src="/assets/images/postcard/try-sign-and-send.png" onContextMenu="return false;">
                 <div class="knowmore" [routerLink]="['/signandsendpage']"></div>
             </div>
-
-            <!--
-                <div class="row">
-                <div class="col-md-12">
-                    <img src="/assets/images/2024/hbd/banner/postcard-min.png">
-                    <br /> <br />
-                    <div style="position:relative">
-                        <img src="/assets/images/2024/hbd/banner/postcard-s1-min.png">
-                        <div style="height: 100%;width: 16%; position: absolute; left: 42%; bottom: 0%;cursor: pointer;"
-                            [routerLink]="['/cards/event/Q8zB65TkjEr79bKPuC9T']">
-                        </div>
-                        <div style="height: 100%;width: 16%; position: absolute; left: 61%; bottom: 0%;cursor: pointer;"
-                            [routerLink]="['/cards/event/WdxuRQ3LKRc2KDDDmB6H']"></div>
-                        <div style="height: 100%;width: 16%; position: absolute; right: 3%; bottom: 0%;cursor: pointer;"
-                            [routerLink]="['/cards/event/Uv9CIjxrd9ryqzUD4cbj']"></div>
-                    </div>
-                    <br /> <br />
-                    <img src="/assets/images/2024/hbd/banner/postcard-s2-min.png">
-                    <img src="/assets/images/2024/hbd/banner/postcard-s3-min.png">
-                    <br /> <br />
-                </div>
-            </div>
-            <div class="row mb-4">
-                <div class="col-md-3 mb-3 ">
-                    <app-postcard-thumb eventname="Easter"></app-postcard-thumb>
-                </div>
-                <div class="col-md-3 mb-3 ">
-                    <app-postcard-thumb eventname="Graduation"></app-postcard-thumb>
-                </div>
-                <div class="col-md-3 mb-3 ">
-                    <app-postcard-thumb eventname="Floral and Fauna"></app-postcard-thumb>
-                </div>
-                <div class="col-md-3 mb-3">
-                    <app-postcard-thumb eventname="Philippines"></app-postcard-thumb>
-                </div>
-            </div>
-            <div class="row mb-4 mt-4">
-                <div class="col-md-3 mb-3 mt-3">
-                    <app-postcard-thumb eventname="Corporate and Business"></app-postcard-thumb>
-                </div>
-                <div class="col-md-3 mb-3 mt-3">
-                    <app-postcard-thumb eventname="Family and Friends"></app-postcard-thumb>
-                </div>
-                <div class="col-md-3 mb-3 mt-3">
-                    <app-postcard-thumb eventname="Minimal Designs"></app-postcard-thumb>
-                </div>
-                <div class="col-md-3 mb-3 mt-3">
-                    <app-postcard-thumb eventname="Photographic"></app-postcard-thumb>
-                </div>
-            </div>
-            <div class="row mb-4 mt-4">
-                <div class="col-md-3 mb-3 mt-3">
-                    <app-postcard-thumb eventname="Travel and Scenery"></app-postcard-thumb>
-                </div>
-                <div class="col-md-3 mb-3 mt-3">
-                    <app-postcard-thumb eventname="Valentine's"></app-postcard-thumb>
-                </div>
-                <div class="col-md-3 mb-3 mt-3">
-                    <app-postcard-thumb eventname="Singapore"></app-postcard-thumb>
-                </div>
-                <div class="col-md-3 mb-3 mt-3">
-                    <app-postcard-thumb eventname="USA"></app-postcard-thumb>
-                </div>
-            </div>
-            <div class="row mb-4 mt-4">
-                <div class="col-md-12 mt-4">
-                    <img src="/assets/images/postcard/my-banner-2-min.png">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <img src="/assets/images/2024/hbd/more-min.png">
-                    <br /><br />
-                </div>
-                <div class="col-md-12" style="position: relative">
-                    <img src="/assets/images/2024/hbd/more-2-min.png">
-                    <div style="height: 67%;width: 21%; position: absolute; left: 23%; bottom: 0%;cursor: pointer;"
-                        [routerLink]="['/poetry']"></div>
-                    <div style="height: 67%;width: 21%; position: absolute; left: 45.5%; bottom: 0%;cursor: pointer;"
-                        [routerLink]="['/postcards']"></div>
-                    <div style="height: 67%;width: 21%; position: absolute; left: 68.5%; bottom: 0%;cursor: pointer;"
-                        [routerLink]="['/signandsend']"></div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12" style="position: relative" *ngIf="priceService.getLocation() == 'ph'">
-                    <img src="/assets/images/2024/hbd/2-ecard-sticker-2-min.png">
-                    <a href="https://fibeidigicards.com/home"
-                        style="height: 100%;width: 50%; position: absolute; left: 0%; bottom: 0%;cursor: pointer;"
-                        target="_blank"></a>
-                    <div style="height: 100%;width: 50%; position: absolute; right: 0%; bottom: 0%;cursor: pointer;"
-                        [routerLink]="['/stickercards']"></div>
-                </div>
-                <div class="col-md-12" style="position: relative" *ngIf="priceService.getLocation() != 'ph'">
-                    <img src="/assets/images/2024/hbd/2-ecard-sticker-2-min.png">
-                    <a href="https://fibeidigicards.com/home"
-                        style="height: 100%;width: 50%; position: absolute; left: 0%; bottom: 0%;cursor: pointer;"
-                        target="_blank"></a>
-                    <div style="height: 100%;width: 50%; position: absolute; right: 0%; bottom: 0%;cursor: pointer;"
-                        [routerLink]="['/stickercards']"></div>
-                </div>
-                <div class="col-md-12">
-                    <img src="/assets/images/2024/hbd/delivery-ph-min.png" *ngIf="priceService.getLocation() == 'ph'"
-                        class="img-fluid " style="width:100%">
-                    <img src="/assets/images/2024/hbd/delivery-min.png" *ngIf="priceService.getLocation() != 'ph'"
-                        class="img-fluid " style="width:100%">
-                    <br /> <br />
-                </div>
-            </div>
-            -->
         </div>
     </section>
     <app-footer></app-footer>

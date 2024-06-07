@@ -5,17 +5,17 @@
             <div class="w-100 d-flex flex-row">
                 <div style="width: 30%; padding-right: 5px;">
                     
-                    <img src="/assets/images/fathersday/image.png" style="width:100%"  *ngIf="priceService.getLocation() == 'ph'">
-                    <img src="/assets/images/fathersday/image-us.png" style="width:100%"  *ngIf="priceService.getLocation() != 'ph'">
-                    <a [routerLink]="['/cards/event/cb2VAMGVwHJ4PHbOavIt']" class="to-link" *ngIf="priceService.getLocation() == 'ph'">
-                        <img src="/assets/images/fathersday/ph-gift.png" style="width:100%; padding-top: 11px;">
+                    <img src="/assets/images/fathersday/image.png" style="width:100%"  *ngIf="priceService.getLocation() == 'ph'" onContextMenu="return false;">
+                    <img src="/assets/images/fathersday/image-us.png" style="width:100%"  *ngIf="priceService.getLocation() != 'ph'" onContextMenu="return false;">
+                    <a [routerLink]="['/cards/event/cb2VAMGVwHJ4PHbOavIt']" class="to-link" *ngIf="priceService.getLocation() == 'ph'" onContextMenu="return false;">
+                        <img src="/assets/images/fathersday/ph-gift.png" style="width:100%; padding-top: 11px;" onContextMenu="return false;">
                     </a>
                     <a [routerLink]="['/poetrycards/rI1NlE173U4xC44FQP2r']" class="to-link" *ngIf="priceService.getLocation() != 'ph'">
-                        <img src="/assets/images/fathersday/us-gift.png" style="width:100%; padding-top: 11px;">
+                        <img src="/assets/images/fathersday/us-gift.png" style="width:100%; padding-top: 11px;" onContextMenu="return false;">
                     </a>
                 </div>
                 <div style="width: 70%; padding-left: 5px; position: relative;">
-                    <img src="/assets/images/fathersday/banner.png" style="width:100%">
+                    <img src="/assets/images/fathersday/banner.png" style="width:100%" onContextMenu="return false;">
                     <div style="height: 10%; width: 49%; position: absolute; left: 6%; bottom: 2%; cursor: pointer;" [routerLink]="['/cards/event/rI1NlE173U4xC44FQP2r']"></div>
                     <div style="height: 53%; width: 19%; position: absolute; left: 3%; bottom: 32%; cursor: pointer; transform: rotate(-4deg);" [routerLink]="['/card/YkLBj7BmakpzEyIxNaLn']"></div>
                     <div style="height: 42%; width: 15%; position: absolute; left: 23%; bottom: 29%; cursor: pointer; transform: rotate(-4deg);" [routerLink]="['/card/HMRSVeQqA7NawslVni9K']"></div>
@@ -34,7 +34,7 @@
             </div> -->
             <div class="row">
                 <div class="col-md-12" style="position: relative;">
-                    <img src="/assets/images/clipart/c-banners.png" style="width:100%">
+                    <img src="/assets/images/clipart/c-banners.png" style="width:100%" onContextMenu="return false;">
                     <div style="height: 50%; width: 13.5%; position: absolute; left: 2.2%; bottom: 5%; cursor: pointer;" [routerLink]="['/poetry']"></div>
                     <div style="height: 50%; width: 13.5%; position: absolute; left: 18.2%; bottom: 5%; cursor: pointer;" [routerLink]="['/signandsend']"></div>
                     <div style="height: 50%; width: 13.5%; position: absolute; left: 35.2%; bottom: 5%; cursor: pointer;" [routerLink]="['/e-cards']"></div>
@@ -45,7 +45,7 @@
             </div>
             <div class="row">
                 <div class="col-md-12" style="position: relative;">
-                    <img src="/assets/images/mothersday/birthday.jpg" style="width:100%">
+                    <img src="/assets/images/mothersday/birthday.jpg" style="width:100%" onContextMenu="return false;">
                     <div style="height: 11%; width: 20%; position: absolute; left: 27%; bottom: 2.5%; cursor: pointer;" [routerLink]="['/cards/event/dGiyJX4go7yPhCJNJN4P']"></div>
                     <div style="height: 11%; width: 20%; position: absolute; left: 49%; bottom: 2.5%; cursor: pointer;" [routerLink]="['/e-cards/events/AptWe6SUrtzFj18nr21c']"></div>
                     <div style="height: 52%; width: 14%; position: absolute; left: 26.6%; bottom: 20%; cursor: pointer; transform: rotate(-4deg);" [routerLink]="['/card/Klt7mSmRjQpsIqH4u5KS']"></div>
@@ -55,8 +55,8 @@
             </div>
             <div class="row">
                 <div class="col-md-12" style="position: relative;">
-                    <img src="/assets/images/valentines/v2/header-2-min.png">
-                    <img src="/assets/images/mothersday/graduate-banner.jpg">
+                    <img src="/assets/images/valentines/v2/header-2-min.png" onContextMenu="return false;">
+                    <img src="/assets/images/mothersday/graduate-banner.jpg" onContextMenu="return false;">
                     <div style="height: 9.5%; width: 33%; position: absolute; left: 38.4%; bottom: 28.5%; cursor: pointer;" [routerLink]="['/cards/event/7TrEt1o2415ST4CU7sy7']"></div>
                     <!--
                         /card/Ipm0KTgyDgCD8QRABnUl
@@ -151,14 +151,14 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12" style="position: relative;">
-                        <img src="/assets/images/mothersday/signandsend.jpg" style="width:100%">
+                        <img src="/assets/images/mothersday/signandsend.jpg" style="width:100%" onContextMenu="return false;">
                         <div style="height: 10%; width: 32%; position: absolute; left: 9%; bottom: 0%; cursor: pointer;" [routerLink]="['/signandsend']"></div>
                         <div style="height: 10%; width: 20%; position: absolute; left: 53%; bottom: 0%; cursor: pointer;" [routerLink]="['/signandsendpage']"></div>
                     </div>
                 </div>
 
                 <div>
-                    <img src="/assets/images/valentines/v2/t-1-min.png" class="img-fluid cursor w100">
+                    <img src="/assets/images/valentines/v2/t-1-min.png" class="img-fluid cursor w100" onContextMenu="return false;">
                     <br /><br />
                 </div>
                 <div class="col-md-12">
@@ -166,7 +166,7 @@
                     <app-home-bestseller></app-home-bestseller>
                 </div>
                 <div>
-                    <img src="/assets/images/valentines/v2/t-2-min.png" class="img-fluid cursor w100">
+                    <img src="/assets/images/valentines/v2/t-2-min.png" class="img-fluid cursor w100" onContextMenu="return false;">
                     <br /><br />
                 </div>
                 <!-- <div>
@@ -206,10 +206,10 @@
                 <div>
                     <div class="row">
                         <div class="col-md-12">
-                            <img src="/assets/images/valentines/v2/bottom-banner-min.png" *ngIf="priceService.getLocation() == 'ph'" class="img-fluid " style="width:100%">
-                            <img src="/assets/images/valentines/v2/bottom-banner-min-us.png" *ngIf="priceService.getLocation() != 'ph'" class="img-fluid " style="width:100%">
+                            <img src="/assets/images/valentines/v2/bottom-banner-min.png" *ngIf="priceService.getLocation() == 'ph'" class="img-fluid " style="width:100%" onContextMenu="return false;">
+                            <img src="/assets/images/valentines/v2/bottom-banner-min-us.png" *ngIf="priceService.getLocation() != 'ph'" class="img-fluid " style="width:100%" onContextMenu="return false;">
                             <br /> <br />
-                            <img src="/assets/images/valentines/v2/2-min.png" class="img-fluid cursor" style="width:100%" [routerLink]="['/stickers']">
+                            <img src="/assets/images/valentines/v2/2-min.png" class="img-fluid cursor" style="width:100%" [routerLink]="['/stickers']" onContextMenu="return false;">
                             <br /> <br />
                         </div>
                     </div>

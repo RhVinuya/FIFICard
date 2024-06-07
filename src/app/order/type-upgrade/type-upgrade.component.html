@@ -3,8 +3,11 @@
         {{'order.changeto'|translate}}:
     </div>
     <div class="col-4" *ngFor="let choice of choices">
-        <img src="../../../assets/images/cardtype/t-STANDARD.png" title="Standard" *ngIf="choice.type == 'STANDARD'" [ngClass]="selected.toUpperCase() == 'STANDARD'?'selected':''" (click)="change(choice)">
-        <img src="../../../assets/images/cardtype/t-GLITTERED.png" title="Glittered" *ngIf="choice.type == 'GLITTERED'" [ngClass]="selected.toUpperCase() == 'GLITTERED'?'selected':''" (click)="change(choice)">
-        <img src="../../../assets/images/cardtype/t-EMBOSSED.png" title="Embosssed" *ngIf="choice.type == 'EMBOSSED'" [ngClass]="selected.toUpperCase() == 'EMBOSSED'?'selected':''" (click)="change(choice)">
+        <img src="../../../assets/images/cardtype/t-STANDARD.png" title="Standard" *ngIf="choice.type == 'STANDARD'"
+            [ngClass]="selected.toUpperCase() == 'STANDARD'?'selected':''" (click)="change(choice)" onContextMenu="return false;">
+        <img src="../../../assets/images/cardtype/t-GLITTERED.png" title="Glittered" *ngIf="choice.type == 'GLITTERED'"
+            [ngClass]="selected.toUpperCase() == 'GLITTERED'?'selected':''" (click)="change(choice)" onContextMenu="return false;">
+        <img src="../../../assets/images/cardtype/t-EMBOSSED.png" title="Embosssed" *ngIf="choice.type == 'EMBOSSED'"
+            [ngClass]="selected.toUpperCase() == 'EMBOSSED'?'selected':''" (click)="change(choice)" onContextMenu="return false;">
     </div>
 </div>

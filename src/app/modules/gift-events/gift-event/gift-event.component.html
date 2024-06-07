@@ -1,6 +1,6 @@
 <div routerLink="{{url}}" [ngClass]="enable?'cursor my-event':'none my-event'">
     <div class="div-img w-100 text-center">
-        <img src="{{image}}" class="img w-100 h-100">
+        <img src="{{image}}" class="img w-100 h-100" onContextMenu="return false;">
     </div>
     <div class="title">{{event.name!.replace('Gifts for ', '')}}</div>
 </div>

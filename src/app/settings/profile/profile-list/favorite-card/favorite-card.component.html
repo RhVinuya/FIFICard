@@ -1,6 +1,6 @@
 <div class="row border-bottom py-2" *ngIf="card">
     <div class="col-md-1 col-sm-12 img-div text-center">
-        <img [src]="url" class="mx-100 my-auto border p-1" *ngIf="url != ''">
+        <img [src]="url" class="mx-100 my-auto border p-1" *ngIf="url != ''" onContextMenu="return false;">
     </div>
     <div class="col-md-11 col-sm-12 ps-3">
         <a [routerLink]="['/card/' + card.id]" class="bold">{{card.name}}</a><br />

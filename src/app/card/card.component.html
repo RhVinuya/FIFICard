@@ -1,7 +1,7 @@
 <a [routerLink]="['/card/' + card!.id]" class="img-wrap" title="{{card!.name}}">
   <div class="card position-relative rounded-0" *ngIf="card">
-    <img src="../assets/images/new.png" class="new-badge" *ngIf="card!.new">
-    <img src="{{this.imageURL!}}" [ngClass]="card.type=='gift'?'giftimage':''">
+    <img src="../assets/images/new.png" class="new-badge" *ngIf="card!.new" onContextMenu="return false;">
+    <img src="{{this.imageURL!}}" [ngClass]="card.type=='gift'?'giftimage':''" onContextMenu="return false;">
     <figcaption class="info-wrap">
       <p routerLink="{{'/card/' + card!.id}}" class="title cursor mb-2"><b>{{card!.name}}</b></p>
       <div class="row">
@@ -18,15 +18,15 @@
           </div>
         </div>
         <div class="col-6 text-end">
-          <img src="../assets/images/badge-sticker-free.png" class="sticker ms-2 cursor" *ngIf="card!.type == 'sticker' && card!.price == 18" [routerLink]="getStickerLink()" />
+          <img src="../assets/images/badge-sticker-free.png" class="sticker ms-2 cursor" *ngIf="card!.type == 'sticker' && card!.price == 18" [routerLink]="getStickerLink()" onContextMenu="return false;" />
 
-          <img src="../assets/images/badge-featured.png" class="featured ms-2" *ngIf="card!.featured" />
+          <img src="../assets/images/badge-featured.png" class="featured ms-2" *ngIf="card!.featured" onContextMenu="return false;" />
         </div>
         <div class="col-6 text-right">
           <app-rating-decimal cardId="{{card!.id}}"></app-rating-decimal>
         </div>
         <div class="col-6 text-end my-auto" *ngIf="card.messagetype=='poetry'">
-          <img src="../assets/images/badge-poetry.png" class="poerty" />
+          <img src="../assets/images/badge-poetry.png" class="poerty" onContextMenu="return false;" />
         </div>
       </div>
 
@@ -35,7 +35,7 @@
       </button>
     </figcaption>
     <span class="position-absolute bestseller" *ngIf="card.bestseller">
-      <img src="../assets/images/badge-bestseller.png" />
+      <img src="../assets/images/badge-bestseller.png" onContextMenu="return false;" />
     </span>
   </div>
 </a>

@@ -1,6 +1,6 @@
 <div class="card position-relative ecard-design">
     <a [routerLink]="['/card/' + card.id]" class="img-wrap" title="{{card.name}}">
-        <img src="{{image}}" *ngIf="image != ''" class="ecard-img">
+        <img src="{{image}}" *ngIf="image != ''" class="ecard-img" onContextMenu="return false;">
     </a>
     <figcaption> 
         <!-- class="info-wrap" -->
@@ -12,7 +12,7 @@
                 <div class="price" *ngIf="priceService.getECardPrice(card) == 0">Free</div>
             </div>
             <div class="col-5 text-end">
-                <img src="../assets/images/badge-featured.png" class="featured ms-2" *ngIf="card.featured" />
+                <img src="../assets/images/badge-featured.png" class="featured ms-2" *ngIf="card.featured" onContextMenu="return false;" />
             </div>
         </div>
         <div class="row" *ngIf="showRatings">
@@ -22,6 +22,6 @@
         </div>
     </figcaption>
     <span class="position-absolute bestseller" *ngIf="card.bestseller">
-        <img src="../assets/images/badge-bestseller.png" />
+        <img src="../assets/images/badge-bestseller.png" onContextMenu="return false;" />
     </span>
 </div>

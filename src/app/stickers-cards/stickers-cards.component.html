@@ -8,8 +8,8 @@
                 <ion-label class="label-subheader">Add a touch of joy with Fibei Greetings Stickers!</ion-label>
             </div>
             <div class="featured-div" (click)="setEvent('9l01SlrRdTk6qj4ITWeO')">
-                <img src="/assets/images/2024/father/sticker/featured.png">
-                <div class="featured" ></div>
+                <img src="/assets/images/2024/father/sticker/featured.png" onContextMenu="return false;">
+                <div class="featured"></div>
             </div>
 
             <div class="category-div">
@@ -52,23 +52,23 @@
             </div>
             <div class="row">
                 <div class="col-md-3">
-                    <img src="/assets/images/2024/easter/sticker/event.png" [routerLink]="['/events']" class="cursor">
+                    <img src="/assets/images/2024/easter/sticker/event.png" [routerLink]="['/events']" class="cursor" onContextMenu="return false;">
                 </div>
                 <div class="col-md-3">
-                    <img src="/assets/images/2024/easter/sticker/specialty.png" [routerLink]="['/specialtycardpage']"
-                        class="cursor">
+                    <img src="/assets/images/2024/easter/sticker/specialty.png" [routerLink]="['/specialtycardpage']" class="cursor"
+                        onContextMenu="return false;">
                 </div>
                 <div class="col-md-3">
-                    <img src="/assets/images/2024/easter/sticker/poetry.png" [routerLink]="['/poetry']" class="cursor">
+                    <img src="/assets/images/2024/easter/sticker/poetry.png" [routerLink]="['/poetry']" class="cursor" onContextMenu="return false;">
                 </div>
                 <div class="col-md-3">
-                    <img src="/assets/images/2024/easter/sticker/ss.png" [routerLink]="['/signandsend']" class="cursor">
+                    <img src="/assets/images/2024/easter/sticker/ss.png" [routerLink]="['/signandsend']" class="cursor" onContextMenu="return false;">
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12">
                     <h2 class="f-title">More from FiBeiGreetings</h2>
-                    <br/>
+                    <br />
                 </div>
                 <div class="col-md-10 offset-md-1">
                     <div class="row justify-content-center">
@@ -76,8 +76,8 @@
                             <div class="f-links" [routerLink]="['/stickercards']">STICKERS</div>
                         </div>
                         <div class="col-md-6" *ngIf="priceService.getLocation() === 'ph'">
-                            <div class="f-links" [routerLink]="['/gifts']"  >GIFTS</div>
-                        </div> 
+                            <div class="f-links" [routerLink]="['/gifts']">GIFTS</div>
+                        </div>
                         <div class="col-md-6">
                             <div class="f-links" [routerLink]="['/postcards']">POSTCARDS</div>
                         </div>
@@ -87,46 +87,6 @@
                     </div>
                 </div>
             </div>
-            <!-- <div class="row">
-                    <div class="col-md-12">
-                        <img src="/assets/images/2024/hbd/more-min.png">
-                        <br/><br/>
-                    </div>
-                    <div class="col-md-12" style="position: relative">
-                        <img src="/assets/images/2024/hbd/more-2-min.png">
-                        <div style="height: 67%;width: 21%; position: absolute; left: 23%; bottom: 0%;cursor: pointer;"
-                            [routerLink]="['/poetry']"></div>
-                        <div style="height: 67%;width: 21%; position: absolute; left: 45.5%; bottom: 0%;cursor: pointer;"
-                            [routerLink]="['/postcards']"></div>
-                        <div style="height: 67%;width: 21%; position: absolute; left: 68.5%; bottom: 0%;cursor: pointer;"
-                            [routerLink]="['/signandsend']"></div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12" style="position: relative" *ngIf="priceService.getLocation() == 'ph'">
-                        <img src="/assets/images/2024/hbd/2-sticker-postcard-2-min.png">
-                        <div [routerLink]="['/stickercards']"
-                            style="height: 100%;width: 50%; position: absolute; left: 0%; bottom: 0%;cursor: pointer;"
-                            target="_blank"></div>
-                        <div style="height: 100%;width: 50%; position: absolute; right: 0%; bottom: 0%;cursor: pointer;"
-                            [routerLink]="['/postcards']"></div>
-                    </div>
-                    <div class="col-md-12" style="position: relative" *ngIf="priceService.getLocation() != 'ph'">
-                        <img src="/assets/images/2024/hbd/2-sticker-postcard-2-min.png">
-                        <div [routerLink]="['/stickercards']"
-                            style="height: 100%;width: 50%; position: absolute; left: 0%; bottom: 0%;cursor: pointer;"
-                            target="_blank"></div>
-                        <div style="height: 100%;width: 50%; position: absolute; right: 0%; bottom: 0%;cursor: pointer;"
-                            [routerLink]="['/postcards']"></div>
-                    </div>
-                    <div class="col-md-12">
-                        <img src="/assets/images/2024/hbd/delivery-ph-min.png" *ngIf="priceService.getLocation() == 'ph'"
-                            class="img-fluid " style="width:100%">
-                        <img src="/assets/images/2024/hbd/delivery-min.png" *ngIf="priceService.getLocation() != 'ph'"
-                            class="img-fluid " style="width:100%">
-                        <br /> <br />
-                    </div>
-                </div> -->
         </div>
     </section>
     <app-footer></app-footer>

@@ -1,2 +1,2 @@
-<img [src]="url" class="available" *ngIf="(url != '') && (enable)" [routerLink]="['/e-cards/events/' + event.id]">
-<img [src]="url" class="notavailable" *ngIf="(url != '') && (!enable)">   
+<img [src]="url" class="available" *ngIf="(url != '') && (enable)" [routerLink]="['/e-cards/events/' + event.id]" onContextMenu="return false;">
+<img [src]="url" class="notavailable" *ngIf="(url != '') && (!enable)" onContextMenu="return false;">   

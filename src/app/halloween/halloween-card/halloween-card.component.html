@@ -1,5 +1,5 @@
 <div class="pt-4 bg-light border text-center shadow hover-effect" [routerLink]="['/card/' + id]">
-    <img class="cardimg mb-2" [src]="image" *ngIf="image != ''">
+    <img class="cardimg mb-2" [src]="image" *ngIf="image != ''" onContextMenu="return false;">
     <p class="mb-0">{{title}}</p>
     <p class="pb-2">₱ {{price | number:'1.2-2'}}</p>
 </div>

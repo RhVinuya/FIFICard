@@ -1,9 +1,12 @@
 <div class="sign-up-div">
     <form [formGroup]="form" (ngSubmit)="add()">
-        <img src="/assets/images/homepage/sign-up.png">
-        <input type="text" class="firstname" placeholder="FIRST NAME" formControlName="firstname" [ngClass]="{ 'is-invalid': submitted && form.controls['firstname'].errors}">
-        <input type="text" class="lastname" placeholder="LAST NAME" formControlName="lastname" [ngClass]="{ 'is-invalid': submitted && form.controls['lastname'].errors}">
-        <input type="email" class="email" placeholder="EMAIL ADDRESS" formControlName="email" [ngClass]="{ 'is-invalid': submitted && form.controls['email'].errors}">
+        <img src="/assets/images/homepage/sign-up.png" onContextMenu="return false;">
+        <input type="text" class="firstname" placeholder="FIRST NAME" formControlName="firstname"
+            [ngClass]="{ 'is-invalid': submitted && form.controls['firstname'].errors}">
+        <input type="text" class="lastname" placeholder="LAST NAME" formControlName="lastname"
+            [ngClass]="{ 'is-invalid': submitted && form.controls['lastname'].errors}">
+        <input type="email" class="email" placeholder="EMAIL ADDRESS" formControlName="email"
+            [ngClass]="{ 'is-invalid': submitted && form.controls['email'].errors}">
         <button type="submit" class="button">SIGN UP</button>
     </form>
 </div>

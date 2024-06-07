@@ -16,7 +16,7 @@
                   <div class="row justify-content-md-center">
                     <div class="col-md-2 col-6 cursor my-auto" *ngFor="let card of batch.cards"
                       routerLink="{{'/card/' + card!.id}}">
-                      <img class="img-thumbnail" src="{{card?.imageUrl}}" title="{{card?.name}}">
+                      <img class="img-thumbnail" src="{{card?.imageUrl}}" title="{{card?.name}}" onContextMenu="return false;">
                       <p class="ellipsis">{{card?.name}}</p>
                       <p *ngIf="withPrice">{{priceService.getSign()}} {{getPrice(card)| number:'1.2-2'}}</p>
                     </div>

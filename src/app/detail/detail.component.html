@@ -45,7 +45,7 @@
                                             <app-bundle [view]="true" [card]="card"
                                                 *ngIf="['card','gift','sticker','postcard'].includes(card.type)"></app-bundle>
                                             <img src="assets/images/sign-send-logo.png" style=" height: 40px;"
-                                                *ngIf="card!.signAndSend">
+                                                *ngIf="card!.signAndSend" onContextMenu="return false;">
                                             <div *ngIf="getPrice() > 0">
                                                 <h4 class="section-title v-title"
                                                     *ngIf="['card','gift','sticker','postcard','clipart'].includes(card.type)">
@@ -75,17 +75,17 @@
                                             <img src="../assets/images/badge-sticker-free-2.png"
                                                 class="sticker ms-2 cursor"
                                                 *ngIf="['sticker'].includes(card.type) && card.price == 18"
-                                                [routerLink]="getStickerLink()" />
+                                                [routerLink]="getStickerLink()" onContextMenu="return false;" />
                                             <img src="../assets/images/badge-featured.png" class="featured ms-2"
-                                                *ngIf="card.featured" />
+                                                *ngIf="card.featured" onContextMenu="return false;" />
                                             <img src="../assets/images/badge-poetry.png" class="poerty ms-2"
-                                                *ngIf="card.messagetype=='poetry'" />
+                                                *ngIf="card.messagetype=='poetry'" onContextMenu="return false;" />
                                             <img src="/assets/images/icon_free_shipping.png"
                                                 class="img-fluid icon-free-shipping"
-                                                *ngIf="['card','gift','sticker','postcard'].includes(card.type) && (priceService.getLocation() == 'ph')">
+                                                *ngIf="['card','gift','sticker','postcard'].includes(card.type) && (priceService.getLocation() == 'ph')" onContextMenu="return false;">
                                             <img src="/assets/images/icon_free_shipping-v2.png"
                                                 class="img-fluid icon-free-shipping"
-                                                *ngIf="['card','gift','sticker','postcard'].includes(card.type) && (priceService.getLocation() != 'ph')">
+                                                *ngIf="['card','gift','sticker','postcard'].includes(card.type) && (priceService.getLocation() != 'ph')" onContextMenu="return false;">
                                             <br />
                                             <div *ngIf="['card','gift','sticker','postcard'].includes(card.type)">
                                                 <span><b>Standard Delivery:</b> {{priceService.getLocation() ==
@@ -110,7 +110,7 @@
                                     <div class="row mt-5">
                                         <div class="col-12 text-center">
                                             <img src="/assets/images/logo_fibeigreetings.png" class="img-fluid cursor"
-                                                style="max-height:100px;">
+                                                style="max-height:100px;" onContextMenu="return false;">
                                         </div>
                                     </div>
                                 </section>

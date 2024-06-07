@@ -1,17 +1,18 @@
 <ion-content>
-    <h2 style="font-size:0px;margin: 0;"  *ngIf="caption">Poetry Cards {{caption}}</h2>
+    <h2 style="font-size:0px;margin: 0;" *ngIf="caption">Poetry Cards {{caption}}</h2>
     <section class="section-name padding-y-sm bk-hw">
         <div class="container animate main">
             <div class="row text-center">
                 <div class="col-md-12">
-                    <img src="/assets/images/poetry/Banner.png" class="img-fluid">
+                    <img src="/assets/images/poetry/Banner.png" class="img-fluid" onContextMenu="return false;">
                     <br />
                 </div>
             </div>
-            
+
             <div class="row text-center">
                 <div class="col-md-2 my-auto text-start" *ngIf="caption != ''">
-                    <button class="btn rounded-0" style="background-color: #8a2be2; color: #ffffff;" [routerLink]="['/poetry']">Back to All Categories</button>
+                    <button class="btn rounded-0" style="background-color: #8a2be2; color: #ffffff;" [routerLink]="['/poetry']">Back to All
+                        Categories</button>
                 </div>
                 <div class="col-md-8" *ngIf="caption != ''">
                     <header class="section-heading">
@@ -19,36 +20,33 @@
                     </header>
                 </div>
             </div>
-            
+
             <app-card-list *ngIf="cards.length > 0" [cards]="cards" mode="card" [nomessagetype]="true"></app-card-list>
 
             <div class="row">
                 <div class="col-md-12 mb-4">
-                    <img src="assets/images/banner/select/title.png">
+                    <img src="assets/images/banner/select/title.png" onContextMenu="return false;">
                 </div>
                 <div class="col-3">
-                    <a [routerLink]="['/poetry']"><img src="assets/images/banner/select/p-1.png"></a>
+                    <a [routerLink]="['/poetry']"><img src="assets/images/banner/select/p-1.png" onContextMenu="return false;"></a>
                 </div>
                 <div class="col-3">
-                    <a [routerLink]="['/e-cards']"><img src="assets/images/banner/select/p-2.png"></a>
+                    <a [routerLink]="['/e-cards']"><img src="assets/images/banner/select/p-2.png" onContextMenu="return false;"></a>
                 </div>
                 <div class="col-3">
-                    <a [routerLink]="['/postcards']"><img src="assets/images/banner/select/p-3.png"></a>
+                    <a [routerLink]="['/postcards']"><img src="assets/images/banner/select/p-3.png" onContextMenu="return false;"></a>
                 </div>
                 <div class="col-3">
                     <div class="d-none d-sm-block">
                         <br /><br />
                     </div>
-                    <img src="assets/images/banner/select/p-4.png">
+                    <img src="assets/images/banner/select/p-4.png" onContextMenu="return false;">
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12">
                     <br /> <br />
-                    <a [routerLink]="['/gifts']"> <img src="assets/images/banner/shop-gifts.png"></a>
-                    <!-- <br /> <br />
-                    <img src="assets/images/banner/fs-free.png" *ngIf="priceService.getLocation() == 'ph'">
-                    <img src="assets/images/banner/fs-free-us.png" *ngIf="priceService.getLocation() != 'ph'"> -->
+                    <a [routerLink]="['/gifts']"> <img src="assets/images/banner/shop-gifts.png" onContextMenu="return false;"></a>
                 </div>
             </div>
         </div>

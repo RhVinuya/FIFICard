@@ -1,7 +1,7 @@
 <div class="parent">
     <div class="main" (click)="markItem()" placement="top" [ngbTooltip]="tipContent" container="body" [openDelay]="500">
         <div class="image">
-            <img *ngIf="imageURL != ''" src="{{imageURL}}">
+            <img *ngIf="imageURL != ''" src="{{imageURL}}" onContextMenu="return false;">
         </div>
         <div class="name">
             <p>{{card.name}}</p>

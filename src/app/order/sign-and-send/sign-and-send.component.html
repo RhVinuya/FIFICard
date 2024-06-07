@@ -11,16 +11,20 @@
             <div class="div-image">
                 <div class="editing">
                     <div class="main" *ngIf="focusURL">
-                        <img class="sign-send-img" src="{{focusURL.url}}">
-                        <div class="text-area d-flex align-items-center justify-content-center" *ngFor="let item of focusItems" [style.top.px]="item.top" [style.left.px]="item.left" [style.width.px]="item.width" [style.height.px]="item.height">
-                            <div [ngClass]="item == selected?'text-area-div-active':'text-area-div'" [style.font-family]="item.style" [style.font-size.px]="item.size" [style.text-align]="item.alignment" [style.color]="item.color">
+                        <img class="sign-send-img" src="{{focusURL.url}}" onContextMenu="return false;">
+                        <div class="text-area d-flex align-items-center justify-content-center" *ngFor="let item of focusItems"
+                            [style.top.px]="item.top" [style.left.px]="item.left" [style.width.px]="item.width" [style.height.px]="item.height">
+                            <div [ngClass]="item == selected?'text-area-div-active':'text-area-div'" [style.font-family]="item.style"
+                                [style.font-size.px]="item.size" [style.text-align]="item.alignment" [style.color]="item.color">
                                 <p [innerText]="item.text" class="text-p"></p>
                             </div>
                             <button class="icon icon-sm rounded-circle border" (click)="textareaClick(item.code)"><i class="fa fa-edit"></i></button>
                         </div>
 
-                        <div class="photo-area" *ngFor="let item of focusPhotos" [style.top.px]="item.top" [style.left.px]="item.left" [style.width.px]="item.width" [style.height.px]="item.height">
-                            <app-photo-upload [image]="item.url" [scale]="item.scale" [left]="item.imageleft" [top]="item.imagetop" (onChange)="onChangeImage(item.code, $event)" (onDetails)="onDetailsImage(item.code, $event)"></app-photo-upload>
+                        <div class="photo-area" *ngFor="let item of focusPhotos" [style.top.px]="item.top" [style.left.px]="item.left"
+                            [style.width.px]="item.width" [style.height.px]="item.height">
+                            <app-photo-upload [image]="item.url" [scale]="item.scale" [left]="item.imageleft" [top]="item.imagetop"
+                                (onChange)="onChangeImage(item.code, $event)" (onDetails)="onDetailsImage(item.code, $event)"></app-photo-upload>
                         </div>
                     </div>
                 </div>
@@ -34,10 +38,12 @@
                         <label class="form-label">{{'sign.yourmessage'|translate}}</label>
                     </div>
                     <div class="col-12">
-                        <textarea class="form-control" rows="5" (keyup)="textareaKeyup($event)" (focus)="textareaFocus($event)" (click)="areaClick($event)" [value]="selected.text" [maxLength]="selected.limit" [(ngModel)]="message"></textarea>
+                        <textarea class="form-control" rows="5" (keyup)="textareaKeyup($event)" (focus)="textareaFocus($event)"
+                            (click)="areaClick($event)" [value]="selected.text" [maxLength]="selected.limit" [(ngModel)]="message"></textarea>
                     </div>
                     <div class="col-12 mt-2">
-                        <emoji-mart title="Pick your emoji…" emoji="point_up" [perLine]="8" set="facebook" (emojiClick)="addEmoji($event)"></emoji-mart>
+                        <emoji-mart title="Pick your emoji…" emoji="point_up" [perLine]="8" set="facebook"
+                            (emojiClick)="addEmoji($event)"></emoji-mart>
                     </div>
                     <div class="col-12 mt-4">
                         <label class="form-label">Font Style</label>
@@ -66,26 +72,30 @@
                         </div>
                     </div>
                     <div class="col-12">
-                        <input type="range" class="form-range" min="20" max="50" step="1" [value]="selected?selected.size:0" (change)="sizeChange($event)">
+                        <input type="range" class="form-range" min="20" max="50" step="1" [value]="selected?selected.size:0"
+                            (change)="sizeChange($event)">
                     </div>
                     <div class="col-12 mt-4">
                         <label class="form-label">{{'sign.alignment'|translate}}</label>
                     </div>
                     <div class="col-12">
                         <div class="btn-group" role="group" ngbRadioGroup name="radioBasic" [(ngModel)]="selected.alignment">
-                            <button [ngClass]="selected.alignment == 'left' ? 'btn btn-primary btn-lg' : 'btn btn-light btn-lg'" (click)="alignmentClick('left')">
+                            <button [ngClass]="selected.alignment == 'left' ? 'btn btn-primary btn-lg' : 'btn btn-light btn-lg'"
+                                (click)="alignmentClick('left')">
                                 <i class="fa fa-align-left"></i>
                             </button>
-                            <button [ngClass]="selected.alignment == 'center' ? 'btn btn-primary btn-lg' : 'btn btn-light btn-lg'" (click)="alignmentClick('center')">
+                            <button [ngClass]="selected.alignment == 'center' ? 'btn btn-primary btn-lg' : 'btn btn-light btn-lg'"
+                                (click)="alignmentClick('center')">
                                 <i class="fa fa-align-center"></i>
                             </button>
-                            <button [ngClass]="selected.alignment == 'right' ? 'btn btn-primary btn-lg' : 'btn btn-light btn-lg'" (click)="alignmentClick('right')">
+                            <button [ngClass]="selected.alignment == 'right' ? 'btn btn-primary btn-lg' : 'btn btn-light btn-lg'"
+                                (click)="alignmentClick('right')">
                                 <i class="fa fa-align-right"></i>
                             </button>
                         </div>
                     </div>
                     <div class="col-12 text-end">
-                        <button class="btn btn-outline-primary action" (click)="closeEditor()">Done</button> 
+                        <button class="btn btn-outline-primary action" (click)="closeEditor()">Done</button>
                     </div>
                 </div>
             </div>
@@ -95,7 +105,7 @@
         <div class="row foot">
             <div class="col-8 div-images">
                 <div class="div-img" *ngFor="let url of urls">
-                    <img src="{{url.url}}" (click)="imageClick(url)" [ngClass]="focusURL == url?'active':''">
+                    <img src="{{url.url}}" (click)="imageClick(url)" [ngClass]="focusURL == url?'active':''" onContextMenu="return false;">
                 </div>
             </div>
             <div class="col-4 text-end h-100 my-auto">

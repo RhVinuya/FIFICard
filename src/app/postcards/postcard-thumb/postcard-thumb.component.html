@@ -1,2 +1,2 @@
-<img [src]="img" class="available" *ngIf="(img != '') && (enable)" [routerLink]="geturl()">
-<img [src]="img" class="notavailable" *ngIf="img != '' && (!enable)">
+<img [src]="img" class="available" *ngIf="(img != '') && (enable)" [routerLink]="geturl()" onContextMenu="return false;">
+<img [src]="img" class="notavailable" *ngIf="img != '' && (!enable)" onContextMenu="return false;">

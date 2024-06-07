@@ -1,6 +1,10 @@
+div{
+    width: 100%;
+    aspect-ratio: 1/1;
+}
+
 .img {
-    max-height: 100%;
-    max-width: 100%;
+    object-fit: contain;
     cursor: pointer;
 }
 

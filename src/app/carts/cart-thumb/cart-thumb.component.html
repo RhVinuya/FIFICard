@@ -1,7 +1,7 @@
 <div class="item" *ngIf="order && card">
     <input type="checkbox" [checked]="mark" (change)="updateInclude()">
     <div class="img">
-        <img [src]="url" *ngIf="url !== ''"/>
+        <img [src]="url" *ngIf="url !== ''" onContextMenu="return false;"/>
     </div>
     <div class="details">
         <p class="mb-1"><strong>{{card.name}}</strong></p>

@@ -10,7 +10,8 @@
     </div>
 </div>
 <div class="photo-area-image w-100 h-100" *ngIf="status == 'WITHIMAGE'">
-    <img [src]="url" *ngIf="url != ''" class="img" [style.transform]="getScale()" [style.top.%]="imageTop" [style.left.%]="imageLeft">
+    <img [src]="url" *ngIf="url != ''" class="img" [style.transform]="getScale()" [style.top.%]="imageTop" [style.left.%]="imageLeft"
+        onContextMenu="return false;">
     <div class="resize">
         <div>
             <i class="fa fa-plus" (click)="changeSize(true)"></i>

@@ -7,7 +7,7 @@
 
                 <div class="row">
                     <div class="header-div">
-                        <img src="../../assets/images/2024/easter/ss/ss-logo.png">
+                        <img src="../../assets/images/2024/easter/ss/ss-logo.png" onContextMenu="return false;">
                     </div>
                     <div class="subheader-div">
                         <ion-label class="label-subheader">Our Personalized Greeting Cards collection, where every card
@@ -16,29 +16,29 @@
                             sentiments and captures unforgettable moments</ion-label>
                     </div>
                     <div class="header-div">
-                        <img src="../../assets/images/2024/father/ss/featured.png"  [routerLink]="['/signandsendcards/dsTx2AuuJb3I7iqQ4ytn']" >
-                          </div>
+                        <img src="../../assets/images/2024/father/ss/featured.png" [routerLink]="['/signandsendcards/dsTx2AuuJb3I7iqQ4ytn']"
+                            onContextMenu="return false;">
+                    </div>
                     <div class="header-div">
                         <ion-label class="label-header" style="font-size: 2rem;">More Sign & Send</ion-label>
                     </div>
                 </div>
             </div>
-           
+
             <div class="panel-xmas">
                 <div class="row">
                     <div class="col-md-8 mb-2">
-                        <!-- <img src="assets/images/sign-send-logo.png" class="signandsend me-2 pointer" [routerLink]="['/signandsend']"> -->
-                        <button class="btn btn-primary" style="background:#6b2d98 !Important;" type="button"
-                            [routerLink]="['/signandsendpage']">To Know More About Sign and Send</button>
+                        <button class="btn btn-primary" style="background:#6b2d98 !Important;" type="button" [routerLink]="['/signandsendpage']">To
+                            Know More About Sign and Send</button>
 
-                        <button class="d-lg-none btn btn-outline-info btn-outline-violet" type="button"
-                            [routerLink]="['/signandsendcards/all']" style="margin-top:10px">VIEW ALL SIGN & SEND
+                        <button class="d-lg-none btn btn-outline-info btn-outline-violet" type="button" [routerLink]="['/signandsendcards/all']"
+                            style="margin-top:10px">VIEW ALL SIGN & SEND
                             CARDS</button>
 
                     </div>
                     <div class="d-none d-lg-block col-md-4 mb-2 text-end">
-                        <button class="  btn btn-outline-info btn-outline-violet" type="button"
-                            [routerLink]="['/signandsendcards/all']">VIEW ALL SIGN & SEND CARDS</button>
+                        <button class="  btn btn-outline-info btn-outline-violet" type="button" [routerLink]="['/signandsendcards/all']">VIEW ALL SIGN
+                            & SEND CARDS</button>
                     </div>
                     <div class="col-md-12">
                         <h2 class="text-center cus-text-title mt-1 mb-3">Occasions</h2>
@@ -52,7 +52,7 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <img src="/assets/images/2024/easter/page/free.png">
+                    <img src="/assets/images/2024/easter/page/free.png" onContextMenu="return false;">
                 </div>
             </div>
             <div class="row">
@@ -60,15 +60,14 @@
                     <h2 class="f-title">More from FiBeiGreetings</h2>
                     <br />
                 </div>
-
                 <div class="col-md-10 offset-md-1">
                     <div class="row justify-content-center">
                         <div class="col-md-6">
                             <div class="f-links" [routerLink]="['/stickercards']">STICKERS</div>
                         </div>
                         <div class="col-md-6" *ngIf="priceService.getLocation() === 'ph'">
-                            <div class="f-links" [routerLink]="['/gifts']"  >GIFTS</div>
-                        </div> 
+                            <div class="f-links" [routerLink]="['/gifts']">GIFTS</div>
+                        </div>
                         <div class="col-md-6">
                             <div class="f-links" [routerLink]="['/postcards']">POSTCARDS</div>
                         </div>
