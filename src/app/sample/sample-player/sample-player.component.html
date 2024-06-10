@@ -3,7 +3,7 @@
         <div class="container for-links-hover">
             <div class="row">
                 <div class="col-12">
-                    <video class="w-100" [controls]="controls" preload="auto" #video>
+                    <video class="w-100" [controls]="controls" preload="auto" #video oncontextmenu="return false;" controlsList="nodownload">
                         <source src="{{url}}" type='video/mp4' *ngIf="url != ''">
                     </video>
                 </div>

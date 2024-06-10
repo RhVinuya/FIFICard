@@ -1,11 +1,24 @@
+.img-div {
+    position: relative;
+}
+
+.floater {
+    position: absolute;
+    opacity: 0.3;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin-left: auto;
+    margin-right: auto; 
+    margin-top: auto;
+    margin-bottom: auto;
+    filter: grayscale(1);
+}
+
 .img {
     max-height: 100%;
     max-width: 100%;
-}
-
-.img-div {
-    height: 100%;
-    width: 100%;
 }
 
 .img-slide {

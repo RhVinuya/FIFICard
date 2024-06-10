@@ -32,6 +32,8 @@ export class LightboxComponent implements OnInit {
   items: LightboxImage[] = [];
   current: LightboxImage = new LightboxImage(0, '', '');
   cardtitle: string;
+  imagedivstyle: string = "height: 100%; width: 100%;";
+  floaterwidth: number = 45;
 
   ngOnInit(): void {
     this.globalListenFunc = this.renderer.listen('document', 'keydown', e => {
@@ -54,6 +56,7 @@ export class LightboxComponent implements OnInit {
   }
 
   change(_id: number) {
+    this.imagedivstyle = "height: 100%; width: 100%";
     this.current = this.items[_id];
   }
 
@@ -62,6 +65,7 @@ export class LightboxComponent implements OnInit {
     if (id == -1) {
       id = this.items.length - 1;
     }
+    this.imagedivstyle = "height: 100%; width: 100%";
     this.current = this.items[this.items.findIndex(x => x.id == id)];
   }
 
@@ -70,10 +74,24 @@ export class LightboxComponent implements OnInit {
     if (id > this.items.length-1) {
       id = 0;
     }
+    this.imagedivstyle = "height: 100%; width: 100%";
     this.current = this.items[this.items.findIndex(x => x.id == id)];
   }
 
   close() {
     this.modalRef.close();
+  }
+
+  configureParent() {
+    let preview: HTMLElement | null = document.getElementById('img');
+    if(preview !== null) {
+      this.imagedivstyle = "height: " + preview.clientHeight + "px; width: "+ preview.clientWidth + "px;";
+      if (preview.clientHeight > preview.clientWidth) {
+        this.floaterwidth = 70;
+      }
+      else {
+        this.floaterwidth = 45;
+      }
+    }
   }
 }

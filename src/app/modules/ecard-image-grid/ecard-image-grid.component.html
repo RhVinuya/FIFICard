@@ -1,3 +1,3 @@
-<video *ngIf="url != ''" class="w-100" controls="" #player>
+<video *ngIf="url != ''" class="w-100" controls="" #player oncontextmenu="return false;" controlsList="nodownload">
     <source [src]="url" type="video/mp4">
 </video>

@@ -14,7 +14,7 @@
                     <p>{{order.receiver_name}}</p>
                 </div>
                 <div class="col-md-8 col-sm-12">
-                    <video class="w-100" [controls]="controls" preload="auto" #video>
+                    <video class="w-100" [controls]="controls" preload="auto" #video oncontextmenu="return false;" controlsList="nodownload">
                         <source src="{{url}}" type='video/mp4' *ngIf="url != ''">
                     </video>
                 </div>

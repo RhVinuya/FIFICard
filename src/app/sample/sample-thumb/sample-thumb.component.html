@@ -1,6 +1,6 @@
 <a [routerLink]="['/player/' + file.id]">
     <div class="card">
-        <video class="library" muted="true" preload="auto" #video>
+        <video class="library" muted="true" preload="auto" #video oncontextmenu="return false;" controlsList="nodownload">
             <source src="{{url}}" type='video/mp4' *ngIf="url != ''">
         </video>
         <figcaption class="info-wrap">

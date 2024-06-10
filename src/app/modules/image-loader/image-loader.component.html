@@ -5,5 +5,5 @@
         *ngIf="zoom && (url != defaulurl)"></lib-ngx-image-zoom>
 </div>
 <div *ngIf="isVideo">
-    <video [ngClass]="url == defaulurl? 'img' : 'img img-thumbnail'" [src]="url" (click)="selectimage()"></video>
+    <video [ngClass]="url == defaulurl? 'img' : 'img img-thumbnail'" [src]="url" (click)="selectimage()" oncontextmenu="return false;" controlsList="nodownload"></video>
 </div>

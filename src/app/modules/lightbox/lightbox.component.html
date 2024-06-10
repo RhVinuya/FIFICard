@@ -15,10 +15,16 @@
             <div class="control-left d-flex align-items-center justify-content-center">
                 <span class="carousel-control-prev-icon" (click)="prev()"></span>
             </div>
-            <img class="img" [src]="current.image" *ngIf="current.image.includes('.mp4') == false" onContextMenu="return false;">
-            <video class="img" controls="" *ngIf="current.image.includes('.mp4') == true">
+            
+            <div class="img-div" [style]="imagedivstyle" *ngIf="current.image.includes('.mp4') == false">
+                <img id="img" class="img" [src]="current.image"  onContextMenu="return false;" (load)="configureParent()">
+                <img src="/assets/images/logo_fibeigreetings-com.png" class="floater" [style.width.%]="floaterwidth" [style.visibility]="current.title === 'Front' || current.title === 'Back' ? 'visible' : 'hidden'" onContextMenu="return false;">
+            </div>
+
+            <video class="img" controls="" *ngIf="current.image.includes('.mp4') == true" oncontextmenu="return false;" controlsList="nodownload">
                 <source [src]="current.image" type="video/mp4">
             </video>
+
             <div class="control-right d-flex align-items-center justify-content-center">
                 <span class="carousel-control-next-icon" (click)="next()"></span>
             </div>
@@ -30,7 +36,7 @@
                 <img [src]="item.image" class="h-100" (click)="change(item.id)" [ngClass]="current.image==item.image?'active':''"
                     *ngIf="item.image.includes('.mp4') == false" onContextMenu="return false;">
                 <video [src]="item.image" class="h-100" (click)="change(item.id)" [ngClass]="current.image==item.image?'active':''"
-                    *ngIf="item.image.includes('.mp4') == true"></video>
+                    *ngIf="item.image.includes('.mp4') == true" oncontextmenu="return false;" controlsList="nodownload"></video>
             </div>
         </div>
     </div>
