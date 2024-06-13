@@ -47,6 +47,19 @@ export class PageComponent implements OnInit {
           html = html.replaceAll('[TIKTOK]', accounts['tiktok'][this.priceService.getLocation()]);
           html = html.replaceAll('[INSTAGRAM]', accounts['instagram'][this.priceService.getLocation()]);
 
+          if (this.priceService.getLocation() === 'us') {
+            html = html.replaceAll('[SITE_TITLE]', "FiBeiGreetings USA");
+            html = html.replaceAll('[EMAILADDRESS]', "marketing.fibeigreetingsusa@gmail.com");
+          }
+          else if (this.priceService.getLocation() === 'sg') {
+            html = html.replaceAll('[SITE_TITLE]', "FiBeiGreetings SG");
+            html = html.replaceAll('[EMAILADDRESS]', "fibeigreetingssingapore@gmail.com");
+          }
+          else {
+            html = html.replaceAll('[SITE_TITLE]', "FiBeiGreetings PH");
+            html = html.replaceAll('[EMAILADDRESS]', "fibeigreetingsph@gmail.com");
+          }
+
           this.htmlString = html;
         }).catch(reason => {
         })
