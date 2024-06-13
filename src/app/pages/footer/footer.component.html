@@ -43,7 +43,13 @@
             <!-- <a href="#" target="_blank">
               <i class="fa fab fa-2x fa-tiktok"></i>
             </a> -->
-            <a href="mailto:fibeigreetings1@gmail.com" target="_blank">
+            <a href="mailto:fibeigreetingsph@gmail.com" target="_blank"  *ngIf="priceService.getLocation() == 'ph'">
+              <i class="fa fa-2x fa-envelope"></i>
+            </a>
+            <a href="mailto:marketing.fibeigreetingsusa@gmail.com" target="_blank"  *ngIf="priceService.getLocation() == 'us'">
+              <i class="fa fa-2x fa-envelope"></i>
+            </a>
+            <a href="mailto:fibeigreetingssingapore@gmail.com" target="_blank"  *ngIf="priceService.getLocation() == 'sg'">
               <i class="fa fa-2x fa-envelope"></i>
             </a>
           </div>
