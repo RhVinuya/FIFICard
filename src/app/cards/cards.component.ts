@@ -103,8 +103,10 @@ export class CardsComponent implements OnInit {
         this.caption = this.event;
         this.def.detectChanges();
 
-        if (environment.priority.find(x => x.event == this.id!))
-          this.priority = environment.priority.find(x => x.event == this.id!)!.card;
+        let priority = environment.priority.find(x => x.event.toUpperCase() == this.event!.toUpperCase())
+        if (priority) {
+          this.priority = priority.card;
+        }
 
         if (event.banner != undefined) {
           this.imageService.getImageURL(event.banner).then(img => {
