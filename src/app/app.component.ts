@@ -4,10 +4,11 @@ import { LoginComponent } from './login/login.component';
 import { AuthProcessService } from 'ngx-auth-firebaseui';
 import { map, take } from 'rxjs';
 import firebase from "firebase/compat/app";
-import { UserComponent } from 'ngx-auth-firebaseui';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { ViewportScroller } from '@angular/common';
+import { Platform } from '@ionic/angular';
+import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -28,13 +29,21 @@ export class AppComponent {
     public dialog: MatDialog,
     public auth: AngularFireAuth,
     public authProcess: AuthProcessService,
-    public route: Router
-    //public component: UserComponent
+    public router: Router,
+    public viewportScroller: ViewportScroller,
+    public platform: Platform
   ) {
     this.setlanguage();
   }
 
   ngOnInit(): void {
+    this.platform.ready().then(() => {
+      this.router.events.subscribe((event) => {
+        if (event instanceof NavigationEnd) {
+          this.viewportScroller.scrollToPosition([0, 0]);
+        }
+      });
+    });
 
     const userDetails = JSON.parse(localStorage.getItem('user')!);
     this.userDetails = userDetails;

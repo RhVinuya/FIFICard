@@ -25,7 +25,7 @@ export class Card {
   public imageUrl: string;
   public ratings: number;
   public signAndSend: boolean;
-  public type: 'card' | 'gift' | 'sticker' | 'postcard' | 'ecard' | 'clipart';
+  public type: 'card' | 'gift' | 'sticker' | 'postcard' | 'ecard' | 'clipart' | 'epostcard';
   public messagetype: 'regular' | 'poetry';
   public orders: string[] = [];
   public imagecount: number;

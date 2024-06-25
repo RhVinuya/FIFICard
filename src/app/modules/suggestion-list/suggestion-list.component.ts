@@ -1,10 +1,11 @@
-import { SignAndSend } from './../../models/sign-and-send';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 import { Card } from 'src/app/models/card';
+import { Event } from 'src/app/models/event';
 import { CardService } from 'src/app/services/card.service';
+import { EventService } from 'src/app/services/event.service';
 import { ImageService } from 'src/app/services/image.service';
-import { environment } from 'src/environments/environment';
 
 class Batch {
   public cards: Card[];
@@ -20,19 +21,23 @@ class Batch {
   styleUrls: ['./suggestion-list.component.scss']
 })
 export class SuggestionListComponent implements OnInit {
-  @Input() card: Card;
+  @Input() set card(_card: Card) {
+    this.loadCards(_card)
+  }
+  @Output() onClick: EventEmitter<string> = new EventEmitter<string>();
 
   service: CardService;
+  eventService: EventService;
   imageService: ImageService;
-  batches: Batch[] = [];
-  isMobile: boolean;
 
   constructor(
-    private _service: CardService,
-    private _imageService: ImageService,
-    private config: NgbCarouselConfig
+    _service: CardService,
+    _eventService: EventService,
+    _imageService: ImageService,
+    config: NgbCarouselConfig
   ) {
     this.service = _service;
+    this.eventService = _eventService;
     this.imageService = _imageService;
     config.interval = 7000;
     config.wrap = true;
@@ -40,39 +45,37 @@ export class SuggestionListComponent implements OnInit {
     config.showNavigationArrows = true;
   }
 
+  mainCard: Card;
+  batches: Batch[] = [];
+  isMobile: boolean;
+
   ngOnInit() {
     this.isMobile = window.innerWidth <= 500;
-    if (this.card.type === 'clipart') {
-      this.getClipart();
-    }
-    else {
-      this.getEventCard(this.card.events![0]);
-    }
   }
 
-  getEventCard(event: string) {
-    if (this.card.signAndSend!) {
-      this.service.getSignAndSendSuggestions(event.trim(), 13).then(data => {
-        this.loadBatch(data);
-        this.getImages();
-      });
-    }
-    else {
-      this.service.getSuggestions(event.trim(), this.card.type, 13).then(data => {
-        console.log(this.card, data)
-        this.loadBatch(data);
-        this.getImages();
-      });
-    }
-  }
-
-  getClipart(){
-    this.service.getCardsByType("clipart").then(data => {
-      let cards: Card[] = data.filter(x => x.id !== this.card.id!).sort(() => Math.random() - 0.5).slice(0, 15);
-      this.loadBatch(cards);
-      this.getImages();
+  async loadCards(card: Card) {
+    let events: Event[] = await this.eventService.getEvents();
+    let items = [...events.filter(x => x.isCard === true), ...events.filter(x => x.isGift === true), ...events.filter(x => x.isPostcard === true), ...events.filter(x => x.isSticker === true)];
+    let selected: Event[] = [];
+    items.forEach(item => {
+      if (item.name.toLowerCase().includes(card.event.trim().toLowerCase())) {
+        selected.push(item)
+      }
     })
+
+    let cards: Card[] = []
+    for (let select of selected) {
+      let _cards: Card[] = await this.service.getSuggestions(select.name, 50);
+      cards = [...cards, ..._cards]
+      cards = cards.filter(x => x.id !== card.id);
+    }
+    this.loadBatch(card, this.shuffle(cards));
+    this.getImages();
   }
+
+  shuffle(list: Card[]): Card[] {
+    return list.sort(() => Math.random() - 0.5);
+  };
 
   getImages() {
     this.batches.forEach(batch => {
@@ -100,9 +103,9 @@ export class SuggestionListComponent implements OnInit {
     }
   }
 
-  loadBatch(list: Card[]) {
+  loadBatch(card: Card, list: Card[]) {
     let newList: Card[] = list;
-    let index: number = newList.findIndex(x => x.id == this.card.id);
+    let index: number = newList.findIndex(x => x.id == card.id);
     if (index >= 0) {
       list.splice(index, 1);
     }
@@ -134,5 +137,9 @@ export class SuggestionListComponent implements OnInit {
       })
       this.batches.push(batch);
     }
+  }
+
+  open(id: string) {
+    this.onClick.emit(id)
   }
 }

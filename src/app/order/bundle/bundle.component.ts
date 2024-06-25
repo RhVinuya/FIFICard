@@ -34,7 +34,7 @@ export class BundleComponent implements OnInit {
   singleprice: number = 0;
   selected: string = '';
   messagetype: 'regular' | 'poetry' = 'regular';
-  type: 'card' | 'gift' | 'sticker' | 'postcard' | 'ecard' | 'clipart';
+  type: 'card' | 'gift' | 'sticker' | 'postcard' | 'ecard' | 'clipart' | 'epostcard';
 
   ngOnInit(): void {
   }

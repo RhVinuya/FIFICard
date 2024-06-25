@@ -1,7 +1,7 @@
 import { Location } from '@angular/common';
 import { PriceService } from './../services/price.service';
 import { EmailService } from './../services/email.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Card } from '../models/card';
@@ -14,7 +14,7 @@ import { FilterService } from '../services/filter.service';
 import { Order } from '../models/order';
 import { OrderService } from '../services/order.service';
 import { UserService } from '../services/user.service';
-import { LoadingController } from '@ionic/angular';
+import { IonContent, LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-detail',
@@ -241,5 +241,9 @@ export class DetailComponent implements OnInit {
 
   isGlittered() {
     return (this.card!.types!.findIndex(x => x == 'GLITTERED') >= 0);
+  }
+
+  suggestion(id: string) {
+    this.router.navigate(['/card', id]);
   }
 }

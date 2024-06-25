@@ -9,14 +9,13 @@
           <div class="col-11">
             <div class="row justify-content-md-center">
               <div class="col-md-2 col-6 cursor" *ngFor="let card of batch.cards">
-                <a href="{{'/card/' + card.id}}" routerLinkActive="router-link-active" *ngIf="card.imageUrl"
-                  class="d-flex align-items-center justify-content-center">
-                  <img [src]="card.imageUrl" onContextMenu="return false;">
+                <a href="{{'/card/' + card.id}}" routerLinkActive="router-link-active">
+                  <div class="div-img">
+                    <img [src]="card.imageUrl" onContextMenu="return false;">
+                  </div>
+                  <h6 class="mb-1">{{card.name.toUpperCase()}}</h6>
+                  <img src="assets/images/sign-send-logo.png" *ngIf="card.signAndSend" class="signandsend" onContextMenu="return false;">
                 </a>
-                <a href="{{'/card/' + card.id}}">
-                  <h6 class="mb-1">{{card.name}}</h6>
-                </a>
-                <img src="assets/images/sign-send-logo.png" *ngIf="card.signAndSend" class="signandsend" onContextMenu="return false;">
               </div>
             </div>
           </div>

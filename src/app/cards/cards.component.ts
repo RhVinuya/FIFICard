@@ -102,8 +102,8 @@ export class CardsComponent implements OnInit {
         this.title.setTitle(this.event);
         this.caption = this.event;
         this.def.detectChanges();
-
-        let priority = environment.priority.find(x => x.event.toUpperCase() == this.event!.toUpperCase())
+      
+        let priority = environment.priority.find(x => x.event.toUpperCase() === event.name!.toUpperCase())
         if (priority) {
           this.priority = priority.card;
         }

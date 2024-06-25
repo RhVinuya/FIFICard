@@ -118,17 +118,20 @@
                         </div>
                     </div>
                 </div>
-                <app-rating id2="{{id}}" class="d-sm-block d-md-none"></app-rating>
                 <div class="row" *ngIf="card">
                     <div class="col-12 px-0 mb-4">
-                        <app-suggestion-list [card]="card"></app-suggestion-list>
+                        <app-suggestion-list [card]="card" (onClick)="suggestion($event)"></app-suggestion-list>
                     </div>
                 </div>
+                <!--
+                <app-rating id2="{{id}}" class="d-sm-block d-md-none"></app-rating>
+                
                 <div class="row">
                     <div class="col-12 mt-2">
                         <app-rating-summary cardId="{{id}}"></app-rating-summary>
                     </div>
                 </div>
+                -->
             </div>
         </div>
     </section>

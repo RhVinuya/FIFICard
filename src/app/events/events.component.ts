@@ -35,7 +35,7 @@ export class EventsComponent implements OnInit {
     "Retirement",
     "Graduation",
     "Mother's Day",
-    "Father’s Day",
+    "Father's Day",
     "Grandparent's Day",
     "Baby",
     "Baptism",
