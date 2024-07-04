@@ -143,6 +143,7 @@ import { ReadmoreComponent } from './modules/readmore/readmore.component';
 import { CartConfirmComponent } from './carts/cart-confirm/cart-confirm.component';
 import { GamesComponent } from './games/games.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import { HomeMobileComponent } from './home-mobile/home-mobile.component';
 
 @NgModule({
   declarations: [
@@ -259,7 +260,8 @@ import { SignUpComponent } from './sign-up/sign-up.component';
     ReadmoreComponent,
     CartConfirmComponent,
     GamesComponent,
-    SignUpComponent
+    SignUpComponent,
+    HomeMobileComponent
   ],
   imports: [
     BrowserModule,

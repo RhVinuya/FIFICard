@@ -30,7 +30,7 @@ import { OrderComponent } from './order/order.component';
 import { DetailComponent } from './detail/detail.component';
 import { CardsComponent } from './cards/cards.component';
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { Router, RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { TabsComponent } from './pages/tabs/tabs.component';
 import { ProfileComponent } from './settings/profile/profile.component';
@@ -50,9 +50,11 @@ import { ValentinesGreetingsComponent } from './valentines/valentines-greetings/
 import { ClipartComponent } from './clipart/clipart.component';
 import { CartConfirmComponent } from './carts/cart-confirm/cart-confirm.component';
 import { GamesComponent } from './games/games.component';
+import { HomeMobileComponent } from './home-mobile/home-mobile.component';
+import { Platform } from '@ionic/angular';
 
 
-const routes: Routes = [
+const webRoutes: Routes = [
   {
     path: '', component: HomeComponent, title: "FibeiGreetings"
   },
@@ -235,12 +237,33 @@ const routes: Routes = [
   },
 ];
 
+const mobileRoutes: Routes = [
+  {
+    path: '', component: HomeMobileComponent, title: "FibeiGreetings"
+  },
+  {
+    path: 'home', component: HomeMobileComponent, title: "FibeiGreetings Homepage"
+  }
+];
+
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { scrollPositionRestoration: "top" })],
+  imports: [RouterModule.forRoot(webRoutes, { scrollPositionRestoration: "top" })],
   exports: [RouterModule]
 })
 
-export class AppRoutingModule { }
+export class AppRoutingModule {
+  
+  constructor(
+    platform: Platform,
+    router: Router
+  ) {
+
+    let isMobile: boolean = platform.is('capacitor') || platform.is('mobileweb');
+
+    console.log("isMobile", isMobile);
+    if (isMobile) router.resetConfig(mobileRoutes);
+  }
+}
 
 
 
