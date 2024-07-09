@@ -22,7 +22,6 @@ export class EventPreviewComponent implements OnInit {
   image: string = "";
 
   ngOnInit() {
-    console.log('test');
     this.loadimage();
   }
 
