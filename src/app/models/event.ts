@@ -19,6 +19,8 @@ export class Event {
     public date: number;
     public thumbnail: string;
     public thumbnails: string[];
+    public icon: string;
+    public icons: string[];
     public banner: string;
     public banners: string[];
 }

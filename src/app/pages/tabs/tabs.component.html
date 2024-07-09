@@ -1,40 +1,66 @@
 
-<ion-tabs>
-    <ion-tab-bar slot="bottom">
-        <ion-tab-button tab="home">
-        <ion-icon name="home"></ion-icon>
-        <ion-label>Home</ion-label>
-        </ion-tab-button>
+<div>
+    <ion-tabs>
+        <ion-tab-bar *ngIf="isMobile" slot="bottom">
+            <ion-tab-button tab="home" [routerLink]="['/home']" [routerDirection]="'forward'">
+                <img src="../assets/images/2024/new/mobile/nav/home.png" height="30px">
+                <span>HOME</span>
+            </ion-tab-button>
+            <ion-tab-button tab="events" [routerLink]="['/events']" [routerDirection]="'forward'">
+                <img src="../assets/images/2024/new/mobile/nav/ecard.png" height="30px">
+                <span>Events</span>
+            </ion-tab-button>
+            <ion-tab-button tab="gifts" [routerLink]="['/gifts']" [routerDirection]="'forward'">
+                <ion-icon name="gift-outline"></ion-icon>
+                <span>Gifts</span>
+            </ion-tab-button>
+            <ion-tab-button tab="stickers" [routerLink]="['/stickers']" [routerDirection]="'forward'">
+                <ion-icon name="albums-outline"></ion-icon>
+                <span>Stickers</span>
+            </ion-tab-button>
+            <ion-tab-button tab="profile" [routerLink]="['/profile']" [routerDirection]="'forward'">
+                <ion-icon name="person-outline"></ion-icon>
+                <span>ACCOUNT</span>
+            </ion-tab-button>
+        </ion-tab-bar>
+    </ion-tabs>
 
-        <ion-tab-button tab="events">
-        <ion-icon name="calendar-number-outline"></ion-icon>
-        <ion-label>Events</ion-label>
-        </ion-tab-button>
+    <ion-tabs *ngIf="!isMobile">
+        <ion-tab-bar slot="bottom">
+            <ion-tab-button tab="home">
+            <ion-icon name="home"></ion-icon>
+            <ion-label>Home</ion-label>
+            </ion-tab-button>
 
-        <ion-tab-button tab="gifts">
-        <ion-icon name="gift-outline"></ion-icon>
-        <ion-label>Gifts</ion-label>
-        </ion-tab-button>
+            <ion-tab-button tab="events">
+            <ion-icon name="calendar-number-outline"></ion-icon>
+            <ion-label>Events</ion-label>
+            </ion-tab-button>
 
-        <ion-tab-button tab="login" *ngIf="!loggedInUser">
-        <ion-icon name="log-in"></ion-icon>
-        <ion-label>Log In</ion-label>
-        </ion-tab-button>
+            <ion-tab-button tab="gifts">
+            <ion-icon name="gift-outline"></ion-icon>
+            <ion-label>Gifts</ion-label>
+            </ion-tab-button>
 
-        <ion-tab-button tab="profile/info" *ngIf="loggedInUser">
-        <ion-icon name="person-circle-outline"></ion-icon>
-        <ion-label>Profile</ion-label>
-        </ion-tab-button>
+            <ion-tab-button tab="login" *ngIf="!loggedInUser">
+            <ion-icon name="log-in"></ion-icon>
+            <ion-label>Log In</ion-label>
+            </ion-tab-button>
 
-        <ion-tab-button tab="creations">
-        <ion-icon name="bulb-outline"></ion-icon>
-        <ion-label>Creations</ion-label>
-        </ion-tab-button>
-    
-        <ion-tab-button tab="stickers">
-        <ion-icon name="albums-outline"></ion-icon>
-        <ion-label>Stickers</ion-label>
-        </ion-tab-button>
+            <ion-tab-button tab="profile/info" *ngIf="loggedInUser">
+            <ion-icon name="person-circle-outline"></ion-icon>
+            <ion-label>Profile</ion-label>
+            </ion-tab-button>
 
-    </ion-tab-bar>
-</ion-tabs>
+            <ion-tab-button tab="creations">
+            <ion-icon name="bulb-outline"></ion-icon>
+            <ion-label>Creations</ion-label>
+            </ion-tab-button>
+        
+            <ion-tab-button tab="stickers">
+            <ion-icon name="albums-outline"></ion-icon>
+            <ion-label>Stickers</ion-label>
+            </ion-tab-button>
+        </ion-tab-bar>
+    </ion-tabs>
+</div>

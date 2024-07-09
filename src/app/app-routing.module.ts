@@ -52,6 +52,7 @@ import { CartConfirmComponent } from './carts/cart-confirm/cart-confirm.componen
 import { GamesComponent } from './games/games.component';
 import { HomeMobileComponent } from './home-mobile/home-mobile.component';
 import { Platform } from '@ionic/angular';
+import { EventsMobileComponent } from './events-mobile/events-mobile.component';
 
 
 const webRoutes: Routes = [
@@ -243,7 +244,10 @@ const mobileRoutes: Routes = [
   },
   {
     path: 'home', component: HomeMobileComponent, title: "FibeiGreetings Homepage"
-  }
+  },
+  {
+    path: 'events', component: EventsMobileComponent, title: "FibeiGreetings Events"
+  },
 ];
 
 @NgModule({
@@ -257,7 +261,7 @@ export class AppRoutingModule {
     platform: Platform,
     router: Router
   ) {
-
+    
     let isMobile: boolean = platform.is('capacitor') || platform.is('mobileweb');
 
     console.log("isMobile", isMobile);

@@ -30,3 +30,23 @@
       visibility: inherit!important;
     }
   }
+
+  
+  ion-tab-button {
+    background: #019ce5;
+    color: white;
+    font-weight: bold !important;
+    font-family: lato;
+    letter-spacing: 0.5px;
+}
+
+ion-tab-button span {
+    font-size: 9px;
+    text-overflow: ellipsis;         
+    overflow: hidden; 
+    white-space: nowrap;
+}
+
+ion-tab-button.tab-selected {
+    background: #004369 !Important
+}

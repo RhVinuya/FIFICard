@@ -1,0 +1,42 @@
+.ttblue {
+    font-family: 'ttblue';
+}
+
+@font-face {
+    font-family: 'ttblue';
+    src: url('/../../assets/font/ttblue/TTBluescreensTrialBold.woff2') format('woff2'),
+        url('/../../assets/font/ttblue/TTBluescreensTrialBold.woff') format('woff'),
+        url('/../../assets/font/ttblue/TTBluescreensTrialBold.ttf') format('truetype'),
+        url('/../../assets/font/ttblue/TTBluescreensTrialBold.eot') format('woff2'),
+        url('/../../assets/font/ttblue/TTBluescreensTrialBold.svg') format('woff');
+    font-weight: 700;
+}
+
+.app-home {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-family: 'ttblue';
+    font-size: 2em;
+}
+
+.category-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding-inline: 2%;
+    padding-block: 1%;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.category-item img {
+    width: 5rem;
+    aspect-ratio: 1/1;
+}
+
+.category-item label {
+    flex-grow: 2;
+    padding-left: 8%;
+}
+

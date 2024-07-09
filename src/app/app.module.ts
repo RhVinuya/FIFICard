@@ -144,6 +144,8 @@ import { CartConfirmComponent } from './carts/cart-confirm/cart-confirm.componen
 import { GamesComponent } from './games/games.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { HomeMobileComponent } from './home-mobile/home-mobile.component';
+import { EventsMobileComponent } from './events-mobile/events-mobile.component';
+import { EventPreviewComponent } from './components/mobile/event-preview/event-preview.component';
 
 @NgModule({
   declarations: [
@@ -261,7 +263,9 @@ import { HomeMobileComponent } from './home-mobile/home-mobile.component';
     CartConfirmComponent,
     GamesComponent,
     SignUpComponent,
-    HomeMobileComponent
+    HomeMobileComponent,
+    EventsMobileComponent,
+    EventPreviewComponent
   ],
   imports: [
     BrowserModule,

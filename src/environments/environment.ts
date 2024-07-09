@@ -134,5 +134,51 @@ export const environment = {
     { event: "Thanksgiving", card: "nOe47BVLbfKLhaeaj5Jm" },
     { event: "Valentine's Day", card: "flqgr5QWIQFFUhFOWfod" },
     { event: "Wedding", card: "KdWkQDLjxzFWjO6PfIJ8" },
-  ]
+  ],
+  events_categories_colour: [
+    {
+      color: "#d269e6",
+      background: "#EFF6A3",
+    },
+    {
+      color: "#18a0fb",
+      background: "#EBBFDE",
+    },
+    {
+      color: "#8c52ff",
+      background: "#9CDC93",
+    },
+    {
+      color: "#aa5b64",
+      background: "#99DFEC",
+    },
+    {
+      color: "#d44146",
+      background: "#B0F33B",
+    },
+    {
+      color: "#004AAD",
+      background: "#FFBC00",
+    },
+    {
+      color: "#18A0FB",
+      background: "#EBBFDE",
+    },
+    {
+      color: "#8C52FF",
+      background: "#9CDC93",
+    },
+    {
+      color: "#AA5B64",
+      background: "#99DFEC",
+    },
+    {
+      color: "#D44146",
+      background: "#B0F33B",
+    },
+    {
+      color: "#E25462",
+      background: "#E5D1BD",
+    },
+  ],
 };

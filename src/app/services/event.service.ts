@@ -45,8 +45,8 @@ export class EventService {
   getEvents(): Promise<Event[]> {
     return new Promise((resolve, rejects) => {
       const col = collection(this.store, 'events');
-      const q = query(col, orderBy('name', 'asc'))
-      getDocsFromServer(q).then(docs => {
+      let qry = query(col, where('active', "==", true));
+      getDocsFromServer(qry).then(docs => {
         let events: Event[] = [];
         docs.forEach(doc => {
           let event: Event = doc.data() as Event;
