@@ -146,6 +146,7 @@ import { SignUpComponent } from "./sign-up/sign-up.component";
 import { HomeMobileComponent } from "./home-mobile/home-mobile.component";
 import { EventsMobileComponent } from "./events-mobile/events-mobile.component";
 import { EventPreviewComponent } from "./components/mobile/event-preview/event-preview.component";
+import { CreationsMobileComponent } from './creations-mobile/creations-mobile.component';
 
 @NgModule({
   declarations: [
@@ -266,6 +267,7 @@ import { EventPreviewComponent } from "./components/mobile/event-preview/event-p
     HomeMobileComponent,
     EventsMobileComponent,
     EventPreviewComponent,
+    CreationsMobileComponent,
   ],
   imports: [
     BrowserModule,
