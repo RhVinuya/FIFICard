@@ -29,10 +29,11 @@
           <img src="../assets/images/badge-poetry.png" class="poerty" onContextMenu="return false;" />
         </div>
       </div>
-
+<!-- 
       <button class="btn btn-light pill" *ngIf="card.signAndSend">
         {{'cards.signandsend'|translate}}
-      </button>
+      </button> -->
+      <img src="../assets/images/sign-send-logo.png" *ngIf="card.signAndSend" class="signandsend" onContextMenu="return false;" style="height: 40px;">
     </figcaption>
     <span class="position-absolute bestseller" *ngIf="card.bestseller">
       <img src="../assets/images/badge-bestseller.png" onContextMenu="return false;" />
