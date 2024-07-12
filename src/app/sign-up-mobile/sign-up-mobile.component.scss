@@ -1,0 +1,72 @@
+.sign-up-div {
+  position: relative;
+}
+
+.sign-up-div .firstname {
+  width: 100%;
+  font-size: 1rem;
+  font-family: "Proxima Nova";
+  padding-block: 6px;
+  padding-inline: 8px;
+  border: 1px solid #cb6ce6;
+  margin-bottom: 10px;
+}
+
+.sign-up-div > form > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sign-up-div > form > div > img {
+  height: 50px;
+  margin-right: 5px;
+}
+
+.sign-up-div > form > div > h2 {
+  font-size: 16px;
+}
+
+.sign-up-div > form > p {
+  font-size: 12px;
+  text-align: center;
+  color: #0d0c10;
+}
+
+.sign-up-div .lastname {
+  width: 100%;
+  font-size: 1rem;
+  font-family: "Proxima Nova";
+  padding-block: 6px;
+  padding-inline: 8px;
+  border: 1px solid #cb6ce6;
+  margin-bottom: 10px;
+}
+
+.sign-up-div .email {
+  width: 100%;
+  font-size: 1rem;
+  font-family: "Proxima Nova";
+  padding-block: 6px;
+  padding-inline: 8px;
+  border: 1px solid #cb6ce6;
+  margin-bottom: 10px;
+}
+
+.sign-up-div .button {
+  width: 100%;
+  font-size: 0.9rem;
+  font-family: "Alegreya";
+  background-color: #cb6ce6;
+  border: 3px solid white;
+  padding-block: 0.6rem;
+  border-radius: 9px;
+}
+
+.is-invalid {
+  border: 1px solid #dc3545 !important;
+}
+
+.sign-up-div .button:hover {
+  opacity: 0.8;
+}

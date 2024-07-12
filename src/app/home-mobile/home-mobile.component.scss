@@ -1,0 +1,446 @@
+.cursor {
+  cursor: pointer;
+}
+
+.my-selections div .selection {
+  border: 4px solid #ccc;
+  padding: 10px;
+  display: inline-block;
+  border-radius: 6px;
+}
+
+.my-selections div .selection div {
+  text-align: center;
+  color: blueviolet;
+  font-weight: bold;
+  margin-top: 6px;
+  font-size: 18px;
+}
+
+.my-selections div a:hover {
+  border: 4px solid blueviolet;
+}
+
+.btn-more-card {
+  background: #7030a0;
+  color: white;
+  padding: 10px 30px;
+  display: inline-block;
+  font-size: 22px;
+  border-radius: 6px;
+  font-weight: bold;
+}
+
+// .cursor
+// {
+//     cursor: pointer;
+//     opacity: 0.7;
+//     transition: 0.3s;
+// }
+// .cursor:hover
+// {
+//     opacity:1;
+// }
+.cus-text-title {
+  // color: #4b0082;
+  text-transform: uppercase;
+  font-weight: bolder;
+  background: #fb7f79;
+  color: white;
+  padding: 20px;
+  margin: 0;
+}
+
+.w100 {
+  width: 100% !important;
+}
+
+.hw-container {
+  padding-top: 3%;
+  padding-bottom: 3%;
+  color: white;
+}
+
+.hw-banner {
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.bk-hw {
+  // background-image: url('../../assets/images/newyear/fireworks.gif');
+  background-image: url("../../assets/images/hearts.gif");
+}
+
+.btn-hw {
+  color: black;
+  background: #fae555;
+  padding: 10px 20px;
+  display: inline-block;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: bold;
+  margin: 0 2%;
+  margin-bottom: 5px;
+  opacity: 0.9;
+}
+
+.btn-hw:hover,
+.btn-hw:active {
+  opacity: 1;
+}
+
+.hw-con-cards {
+  background: #b40a1d;
+}
+
+.btn-more-cards {
+  padding: 10px;
+  display: block;
+  font-weight: bold;
+  text-decoration: none;
+  opacity: 0.9;
+  color: white;
+}
+
+.btn-more-cards:hover,
+.btn-more-cards:active {
+  opacity: 1;
+}
+
+.btn-more-cards.s-event {
+  background: #ed6370;
+}
+
+.btn-more-cards.s-specialty {
+  background: #ed6370;
+}
+
+.to-link {
+  opacity: 0.9;
+  cursor: pointer;
+}
+
+.to-link:hover,
+.to-link:active {
+  opacity: 1;
+}
+
+.w100 {
+  width: 100% !important;
+}
+
+.left .carousel-item.active {
+  animation-name: slideLeftIn;
+}
+
+.right .carousel-item.active {
+  animation-name: slideRightIn;
+}
+
+.val-bk {
+  background-image: url("../../assets/images/valentines/background-min.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 2%;
+}
+
+@media (min-width: 992px) {
+  .col-md-1-5 {
+    width: 20%;
+  }
+
+  .col-md-2-5 {
+    width: 40%;
+  }
+
+  .col-md-3-5 {
+    width: 60%;
+  }
+
+  .col-md-4-5 {
+    width: 80%;
+  }
+
+  .col-md-5-5 {
+    width: 100%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .col-lg-1-5 {
+    width: 20%;
+  }
+
+  .col-lg-2-5 {
+    width: 40%;
+  }
+
+  .col-lg-3-5 {
+    width: 60%;
+  }
+
+  .col-lg-4-5 {
+    width: 80%;
+  }
+
+  .col-lg-5-5 {
+    width: 100%;
+  }
+}
+
+/* Demo only, no need for this */
+
+.show-grid [class^="col-"] span,
+.container-fluid .show-grid [class^="col-"] {
+  display: block;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: #eee;
+  background-color: rgba(86, 61, 124, 0.15);
+  text-align: center;
+  border: 1px solid #ddd;
+  border: 1px solid rgba(86, 61, 124, 0.2);
+}
+
+[class^="col-"] {
+  margin-bottom: 30px;
+}
+
+.link-to-val {
+  color: #fb7381;
+  background: white;
+  display: block;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.label-header {
+  font-family: Proxima Nova;
+  font-size: 1.8rem;
+  font-weight: bold;
+  line-height: 1rem;
+  color: #5e17eb;
+}
+
+.cat-easter h3 {
+  text-align: center;
+  font-weight: bold;
+  color: #5e17eb;
+  font-size: 30px;
+}
+
+.col-md-12,
+.col-md-4 {
+  margin-bottom: 10px;
+}
+
+.cat-easter > div {
+  width: 100%;
+  height: 100px;
+  overflow: hidden;
+  background: #fbd6db;
+  padding: 10px 0;
+  display: flex;
+  align-items: center;
+  border-bottom: 5px solid #5e17eb;
+}
+
+.cat-easter > div > img {
+  height: 100%;
+}
+
+.cat-easter > div > h3 {
+  font-size: 25px;
+}
+
+.easter {
+  margin: 25px auto;
+  padding: auto 10px;
+  text-align: center;
+}
+
+.easter > h3,
+.easter > p {
+  font-family: Proxima Nova;
+  color: #5e17eb;
+}
+
+.easter > h3 {
+  font-weight: bold;
+  font-size: 28px;
+  margin-top: 0;
+}
+
+.easter > p {
+  font-size: 18px;
+}
+
+.personalized {
+  cursor: pointer;
+}
+
+.birthday,
+.anniversary,
+.thank-you,
+.wedding {
+  text-align: center;
+  background: #bdeee2;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.anniversary {
+  background: #a8caf5;
+}
+
+.thank-you {
+  background: #ffde59;
+}
+
+.wedding {
+  background: #f7e3e1;
+}
+
+.birthday h3 {
+  font-size: 28px;
+  color: #5e17eb;
+  font-weight: bold;
+  font-family: Proxima Nova;
+  line-height: 1rem;
+}
+
+.birthday p {
+  font-family: Proxima Nova;
+  color: #5e17eb;
+}
+
+.birthday > div,
+.anniversary > div,
+.thank-you > div,
+.wedding > div {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  width: 100%;
+}
+
+.birthday > div > img,
+.anniversary > div > img,
+.thank-you > div > img,
+.wedding > div > img {
+  height: 200px;
+  margin-bottom: 10px;
+}
+
+.birthday a {
+  font-family: Proxima Nova;
+  color: #5e17eb;
+}
+
+.anniversary > h3,
+.thank-you > h3,
+.wedding > h3,
+.anniversary > p,
+.thank-you > p,
+.wedding > p,
+.anniversary > a,
+.thank-you > a,
+.wedding > a {
+  font-family: Proxima Nova;
+  color: #5e17eb;
+}
+
+.anniversary > h3,
+.thank-you > h3,
+.wedding > h3 {
+  font-size: 28px;
+  font-weight: bold;
+  line-height: 1rem;
+}
+
+.birthday > p,
+.anniversary > p,
+.thank-you > p,
+.wedding > p {
+  font-size: 20px;
+  margin-bottom: 0;
+}
+
+.birthday > a,
+.anniversary > a,
+.thank-you > a,
+.wedding > a {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.anniversary img {
+  height: 220px;
+}
+
+.personalized-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 15px;
+}
+
+.personalized-card > img {
+  width: 280px;
+}
+
+.more-products {
+  background: #e7dbff;
+  position: relative;
+  border-bottom: 5px solid #5e17eb;
+  border-top: 5px solid #5e17eb;
+}
+
+.more-products img {
+  width: 100px;
+  height: 100px;
+}
+
+.more-products > div {
+  display: flex;
+  justify-content: center;
+  padding: 10px auto;
+}
+
+.more-products > div > div {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.more-products > div > div h2,
+.more-products > div > div p {
+  color: #5e17eb;
+  font-family: Proxima Nova;
+}
+
+.more-products > div > div h2 {
+  font-weight: bold;
+  line-height: 1rem;
+}
+
+.more-products > div > div > div {
+  display: flex;
+  align-items: center;
+}
+
+.more-products > div > div > div p {
+  font-size: 30px;
+  font-weight: bold;
+  margin-left: 10px;
+  color: #fcfbfd;
+  text-shadow: -2px 2px 1px rgba(128, 128, 128, 1);
+}

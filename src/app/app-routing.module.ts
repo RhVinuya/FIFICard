@@ -53,6 +53,9 @@ import { GamesComponent } from "./games/games.component";
 import { HomeMobileComponent } from "./home-mobile/home-mobile.component";
 import { Platform } from "@ionic/angular";
 import { EventsMobileComponent } from "./events-mobile/events-mobile.component";
+import { CreationsMobileComponent } from "./creations-mobile/creations-mobile.component";
+import { StickersMobileComponent } from "./stickers-mobile/stickers-mobile.component";
+import { StickersCardsMobileComponent } from "./stickers-cards-mobile/stickers-cards-mobile.component";
 
 const webRoutes: Routes = [
   {
@@ -372,6 +375,21 @@ const mobileRoutes: Routes = [
     path: "events",
     component: EventsMobileComponent,
     title: "FibeiGreetings Events",
+  },
+  {
+    path: "creations",
+    component: CreationsMobileComponent,
+    title: "FibeiGreetings Creations",
+  },
+  {
+    path: "stickers",
+    component: StickersMobileComponent,
+    title: "FibeiGreetings Stickers",
+  },
+  {
+    path: "stickercards",
+    component: StickersCardsMobileComponent,
+    title: "FibeiGreetings Stickers Cards",
   },
 ];
 
