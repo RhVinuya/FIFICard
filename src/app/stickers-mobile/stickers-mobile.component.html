@@ -1,1 +1,134 @@
-<p>stickers-mobile works!</p>
+<ion-content>
+  <h2 style="font-size: 0px; margin: 0">Stickers</h2>
+  <section class="section-name padding-y-sm bk-hw">
+    <div class="container animate main">
+      <div class="row text-center">
+        <div class="col-md-12">
+          <img
+            src="/assets/images/2023/hw/banner/s-01-min.png"
+            class="img-fluid"
+            onContextMenu="return false;"
+          />
+          <br />
+          <br />
+        </div>
+      </div>
+      <div class="panel" style="background: white">
+        <div class="row">
+          <div class="col-md-12 my-auto">
+            <div class="row">
+              <div class="col-md-4">
+                <a class="btn-category" [routerLink]="['/stickercards/']">
+                  All
+                </a>
+              </div>
+              <div class="col-md-4">
+                <a class="btn-category" [routerLink]="['/stickercards/']">
+                  <!-- {{ event.name }} -->
+                  event.name
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 mb-4">
+          <img
+            src="/assets/images/2023/hw/more-with-fb.png"
+            onContextMenu="return false;"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12" style="position: relative">
+          <img
+            src="/assets/images/2023/hw/check.png"
+            onContextMenu="return false;"
+          />
+          <div
+            style="
+              height: 67%;
+              width: 21%;
+              position: absolute;
+              left: 5%;
+              bottom: 0%;
+              cursor: pointer;
+            "
+            [routerLink]="['/poetry']"
+          ></div>
+          <div
+            style="
+              height: 67%;
+              width: 21%;
+              position: absolute;
+              left: 27.5%;
+              bottom: 0%;
+              cursor: pointer;
+            "
+            [routerLink]="['/postcards']"
+          ></div>
+          <div
+            style="
+              height: 67%;
+              width: 21%;
+              position: absolute;
+              left: 49.5%;
+              bottom: 0%;
+              cursor: pointer;
+            "
+            [routerLink]="['/signandsend']"
+          ></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12" style="position: relative">
+          <img
+            src="/assets/images/2023/hw/two.png"
+            onContextMenu="return false;"
+          />
+          <a
+            href="https://fibeidigicards.com/home"
+            style="
+              height: 100%;
+              position: absolute;
+              left: 0%;
+              bottom: 0%;
+              cursor: pointer;
+            "
+            target="_blank"
+          ></a>
+          <div
+            style="
+              height: 100%;
+              width: 50%;
+              position: absolute;
+              right: 0%;
+              bottom: 0%;
+              cursor: pointer;
+            "
+            [routerLink]="['/gifts']"
+          ></div>
+        </div>
+        <div class="col-md-12">
+          <img
+            src="/assets/images/2023/hw/09-min.png"
+            class="img-fluid"
+            style="width: 100%"
+            onContextMenu="return false;"
+          />
+          <br />
+          <br />
+          <img
+            src="/assets/images/2023/hw/09-usa-min.png"
+            class="img-fluid"
+            style="width: 100%"
+            onContextMenu="return false;"
+          />
+          <br />
+        </div>
+      </div>
+    </div>
+  </section>
+  <app-footer></app-footer>
+</ion-content>
