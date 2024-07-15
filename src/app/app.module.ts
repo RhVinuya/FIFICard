@@ -150,6 +150,7 @@ import { CreationsMobileComponent } from "./creations-mobile/creations-mobile.co
 import { SignUpMobileComponent } from "./sign-up-mobile/sign-up-mobile.component";
 import { StickersMobileComponent } from './stickers-mobile/stickers-mobile.component';
 import { StickersCardsMobileComponent } from './stickers-cards-mobile/stickers-cards-mobile.component';
+import { SignAndSendMobileComponent } from './sign-and-send-mobile/sign-and-send-mobile.component';
 
 @NgModule({
   declarations: [
@@ -274,6 +275,7 @@ import { StickersCardsMobileComponent } from './stickers-cards-mobile/stickers-c
     SignUpMobileComponent,
     StickersMobileComponent,
     StickersCardsMobileComponent,
+    SignAndSendMobileComponent,
   ],
   imports: [
     BrowserModule,

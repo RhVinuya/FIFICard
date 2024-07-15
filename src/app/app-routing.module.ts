@@ -56,6 +56,7 @@ import { EventsMobileComponent } from "./events-mobile/events-mobile.component";
 import { CreationsMobileComponent } from "./creations-mobile/creations-mobile.component";
 import { StickersMobileComponent } from "./stickers-mobile/stickers-mobile.component";
 import { StickersCardsMobileComponent } from "./stickers-cards-mobile/stickers-cards-mobile.component";
+import { SignAndSendMobileComponent } from "./sign-and-send-mobile/sign-and-send-mobile.component";
 
 const webRoutes: Routes = [
   {
@@ -390,6 +391,11 @@ const mobileRoutes: Routes = [
     path: "stickercards",
     component: StickersCardsMobileComponent,
     title: "FibeiGreetings Stickers Cards",
+  },
+  {
+    path: "signandsend",
+    component: SignAndSendMobileComponent,
+    title: "FibeiGreetings Sign & Send",
   },
 ];
 
