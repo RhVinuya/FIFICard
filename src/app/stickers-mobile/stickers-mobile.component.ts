@@ -1,15 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 
 @Component({
-  selector: 'app-stickers-mobile',
-  templateUrl: './stickers-mobile.component.html',
-  styleUrls: ['./stickers-mobile.component.scss']
+  selector: "app-stickers-mobile",
+  templateUrl: "./stickers-mobile.component.html",
+  styleUrls: ["./stickers-mobile.component.scss"],
 })
 export class StickersMobileComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }
