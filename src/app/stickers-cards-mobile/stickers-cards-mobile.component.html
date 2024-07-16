@@ -9,7 +9,7 @@
           >Add a touch of joy with Fibei Greetings Stickers!</ion-label
         >
       </div>
-      <div class="featured-div" (click)="setEvent('yhq0JBXSwBx0BgLLUDuH')">
+      <div class="featured-div">
         <img
           src="/assets/images/2024/grad/sticker/featured.png"
           onContextMenu="return false;"
@@ -24,9 +24,7 @@
               <ion-label class="main-label">More Categories</ion-label>
             </ion-col>
             <ion-col size="4" class="ion-text-end">
-              <button class="showallbutton" (click)="setEvent('all')">
-                Show All Stickers
-              </button>
+              <button class="showallbutton">Show All Stickers</button>
             </ion-col>
             <ion-col size="12">
               <ion-label class="sub-label">Choose your sticker.</ion-label>
@@ -34,25 +32,26 @@
           </ion-row>
         </ion-grid>
         <div class="category-items">
-          <button
-            *ngFor="let event of occassions"
-            (click)="setEvent(event.id!)"
-          >
+          <button>
             {{ event.title && event.title !== "" ? event.title : event.name }}
           </button>
         </div>
         <div class="other-items">
-          <button *ngFor="let event of others" (click)="setEvent(event.id!)">
+          <button>
             {{ event.title && event.title !== "" ? event.title : event.name }}
+            event.title
           </button>
         </div>
       </div>
 
-      <div *ngIf="original.length > 0" id="items">
+      <div id="items">
         <div class="ion-margin-bottom">
-          <ion-label class="category-label">{{ title }}</ion-label>
+          <ion-label class="category-label">{{
+            "
+            title"
+          }}</ion-label>
         </div>
-        <app-card-list [cards]="cards" mode="postcard"></app-card-list>
+        <app-card-list mode="postcard"></app-card-list>
       </div>
 
       <div class="instruction-div">
@@ -64,7 +63,7 @@
           card now and enjoy the bonus stickers.</ion-label
         >
       </div>
-      <div class="row">
+      <div class="row stickers-cards">
         <div class="col-md-3">
           <img
             src="/assets/images/2024/easter/sticker/event.png"
@@ -110,7 +109,7 @@
                 STICKERS
               </div>
             </div>
-            <div class="col-md-6" *ngIf="priceService.getLocation() === 'ph'">
+            <div class="col-md-6">
               <div class="f-links" [routerLink]="['/gifts']">GIFTS</div>
             </div>
             <div class="col-md-6">

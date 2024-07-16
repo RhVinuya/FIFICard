@@ -1,0 +1,183 @@
+.bk-hw {
+  // background-image: url('../../assets/images/newyear/fireworks.gif');
+  background-image: url("../../assets/images/hearts.gif");
+}
+
+.panel-xmas {
+  padding: 20px;
+  background: rgb(107 45 152 / 14%);
+  border: #dc17be 4px solid;
+  border-radius: 5px;
+}
+
+.panel-xmas > div > div {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.cus-text-title {
+  color: #4b0082;
+  text-transform: uppercase;
+  font-weight: bolder;
+}
+
+.signandsend {
+  height: 50px;
+}
+.btn-outline-violet,
+.btn-outline-violet:hover,
+.btn-outline-violet:active {
+  background: #4b0082;
+  color: white;
+}
+
+.header-div {
+  display: flex;
+  justify-content: center;
+  padding: auto 10px;
+  margin-bottom: 10px;
+}
+
+.header-div > img {
+  //   width: 300px;
+}
+
+.label-header {
+  font-family: Proxima Nova;
+  font-size: 2.5rem;
+  font-weight: bold;
+  line-height: 3.5rem;
+  color: #5e17eb;
+}
+
+.subheader-div {
+  background-color: #e8f0fc;
+  padding-inline: 30px;
+  padding-block: 20px;
+  margin-bottom: 40px;
+  border-radius: 0 15px 15px 0;
+  text-align: center;
+}
+
+.label-subheader {
+  font-family: Proxima Nova;
+  font-size: 1rem;
+  line-height: 1rem;
+  font-weight: bold;
+  color: #5e17eb;
+}
+
+.items-div {
+  padding-inline: 65px;
+}
+
+.card-option-banner-div {
+  position: relative;
+  margin-block: 30px;
+}
+
+.card-option-banner-div .message-cards {
+  position: absolute;
+  cursor: pointer;
+  width: 27.1%;
+  height: 26%;
+  left: 4.2%;
+  bottom: 27%;
+}
+
+.card-option-banner-div .poetry-cards {
+  position: absolute;
+  cursor: pointer;
+  width: 27.1%;
+  height: 26%;
+  left: 36.6%;
+  bottom: 27%;
+}
+
+.card-option-banner-div .signandsend-cards {
+  position: absolute;
+  cursor: pointer;
+  width: 27.1%;
+  height: 26%;
+  left: 68.6%;
+  bottom: 27%;
+}
+
+.try-sign-and-send-div {
+  position: relative;
+}
+
+.try-sign-and-send-div .know-more {
+  position: absolute;
+  cursor: pointer;
+  width: 18%;
+  height: 20%;
+  left: 48%;
+  bottom: 11%;
+}
+
+.more-from-fibei-div {
+  position: relative;
+}
+
+.more-from-fibei-div .stickers {
+  position: absolute;
+  cursor: pointer;
+  width: 34.8%;
+  height: 23.2%;
+  left: 10%;
+  bottom: 44%;
+}
+
+.more-from-fibei-div .postcards {
+  position: absolute;
+  cursor: pointer;
+  width: 34.8%;
+  height: 24%;
+  left: 10%;
+  bottom: 13%;
+}
+
+.more-from-fibei-div .gifts {
+  position: absolute;
+  cursor: pointer;
+  width: 34.8%;
+  height: 23.5%;
+  left: 54.2%;
+  bottom: 46%;
+}
+
+.more-from-fibei-div .games {
+  position: absolute;
+  cursor: pointer;
+  width: 34.8%;
+  height: 24%;
+  left: 54.2%;
+  bottom: 13%;
+}
+
+.f-title {
+  font-family: "Proxima Nova";
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+  color: #5e17eb;
+}
+.f-links {
+  background: #fddfe5;
+  font-family: "Proxima Nova";
+  font-size: 20px;
+  font-weight: bold;
+  color: #5e17eb;
+  border: 2px solid #5e17eb;
+  padding: 10px;
+  text-align: center;
+  border-radius: 12px;
+  cursor: pointer;
+  opacity: 0.8;
+  margin-bottom: 12px;
+}
+.f-links:hover {
+  opacity: 1;
+}

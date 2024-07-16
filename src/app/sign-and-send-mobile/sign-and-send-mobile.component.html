@@ -1,0 +1,111 @@
+<ion-content>
+  <h2 style="font-size: 0px; margin: 0">Sign and Send</h2>
+  <section class="section-name padding-y-sm bk-hw">
+    <div class="container animate main">
+      <div class="col-md-12 mb-4">
+        <div class="row">
+          <div class="header-div">
+            <img
+              src="../../assets/images/2024/easter/ss/ss-logo.png"
+              onContextMenu="return false;"
+            />
+          </div>
+          <div class="subheader-div">
+            <ion-label class="label-subheader"
+              >Our Personalized Greeting Cards collection, where every card is a
+              unique expression of your love and thoughtfulness. With our
+              customizable options, you can add personal messages, and special
+              touches to create a card that truly reflects your sentiments and
+              captures unforgettable moments</ion-label
+            >
+          </div>
+          <div class="header-div">
+            <img
+              src="../../assets/images/2024/grad/ss/featured.png"
+              [routerLink]="['/signandsendcards/bQfuTiNhWeVyUKIhXdbc']"
+              onContextMenu="return false;"
+            />
+          </div>
+          <div class="header-div">
+            <ion-label class="label-header" style="font-size: 2rem"
+              >More Sign & Send</ion-label
+            >
+          </div>
+        </div>
+      </div>
+
+      <div class="panel-xmas">
+        <div class="row">
+          <div class="col-md-8 mb-2">
+            <button
+              class="btn btn-primary"
+              style="background: #6b2d98 !important"
+              type="button"
+              [routerLink]="['/signandsendpage']"
+            >
+              To Know More About Sign and Send
+            </button>
+
+            <button
+              class="d-lg-none btn btn-outline-info btn-outline-violet"
+              type="button"
+              [routerLink]="['/signandsendcards/all']"
+              style="margin-top: 10px"
+            >
+              VIEW ALL SIGN & SEND CARDS
+            </button>
+          </div>
+          <div class="d-none d-lg-block col-md-4 mb-2 text-end">
+            <button
+              class="btn btn-outline-info btn-outline-violet"
+              type="button"
+              [routerLink]="['/signandsendcards/all']"
+            >
+              VIEW ALL SIGN & SEND CARDS
+            </button>
+          </div>
+          <div class="col-md-12">
+            <h2 class="text-center cus-text-title mt-1 mb-3">Occasions</h2>
+            <app-event-list type="signandsend"></app-event-list>
+          </div>
+          <div class="col-md-12 mb-2">
+            <h2 class="text-center cus-text-title mt-1 mb-3">Events</h2>
+            <app-event-list type="signandsend"></app-event-list>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <img
+            src="/assets/images/2024/easter/page/free.png"
+            onContextMenu="return false;"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <h2 class="f-title">More from FiBeiGreetings</h2>
+          <br />
+        </div>
+        <div class="col-md-10 offset-md-1">
+          <div class="row justify-content-center">
+            <div class="col-md-6">
+              <div class="f-links" [routerLink]="['/stickercards']">
+                STICKERS
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="f-links" [routerLink]="['/gifts']">GIFTS</div>
+            </div>
+            <div class="col-md-6">
+              <div class="f-links" [routerLink]="['/postcards']">POSTCARDS</div>
+            </div>
+            <div class="col-md-6">
+              <div class="f-links" [routerLink]="['/games']">GAMES</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</ion-content>

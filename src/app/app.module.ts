@@ -146,7 +146,11 @@ import { SignUpComponent } from "./sign-up/sign-up.component";
 import { HomeMobileComponent } from "./home-mobile/home-mobile.component";
 import { EventsMobileComponent } from "./events-mobile/events-mobile.component";
 import { EventPreviewComponent } from "./components/mobile/event-preview/event-preview.component";
-import { CreationsMobileComponent } from './creations-mobile/creations-mobile.component';
+import { CreationsMobileComponent } from "./creations-mobile/creations-mobile.component";
+import { SignUpMobileComponent } from "./sign-up-mobile/sign-up-mobile.component";
+import { StickersMobileComponent } from './stickers-mobile/stickers-mobile.component';
+import { StickersCardsMobileComponent } from './stickers-cards-mobile/stickers-cards-mobile.component';
+import { SignAndSendMobileComponent } from './sign-and-send-mobile/sign-and-send-mobile.component';
 
 @NgModule({
   declarations: [
@@ -268,6 +272,10 @@ import { CreationsMobileComponent } from './creations-mobile/creations-mobile.co
     EventsMobileComponent,
     EventPreviewComponent,
     CreationsMobileComponent,
+    SignUpMobileComponent,
+    StickersMobileComponent,
+    StickersCardsMobileComponent,
+    SignAndSendMobileComponent,
   ],
   imports: [
     BrowserModule,

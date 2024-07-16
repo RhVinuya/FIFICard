@@ -1,1 +1,271 @@
-<p>home-mobile works 2!</p>
+<ion-content>
+  <h2 style="font-size: 0px; margin: 0">Home Page</h2>
+  <section class="section-name padding-y-sm bk-hw">
+    <div class="container animate main">
+      <div class="row">
+        <div class="col-md-12">
+          <!-- <img src="/assets/images/2024/father/home/banner1.png" alt="Father's Day" title="Father's Day" [routerLink]="['/cards/event/rI1NlE173U4xC44FQP2r']" onContextMenu="return false;">-->
+          <img
+            src="/assets/images/2024/grad/home/banner1.png"
+            alt="Graduation"
+            title="Graduation"
+          />
+        </div>
+        <div class="col-md-12">
+          <h2 class="label-header">SHOP GRADUATION CARDS</h2>
+        </div>
+      </div>
+      <div class="row cat-easter">
+        <div class="col-md-4">
+          <img
+            src="/assets/images/2024/grad/home/ps1.png"
+            alt="Message Cards"
+            title="Message Cards"
+            [routerLink]="['/events']"
+          />
+          <h3 [routerLink]="['/signandsend']">Message Cards</h3>
+        </div>
+        <div class="col-md-4">
+          <img
+            src="/assets/images/2024/grad/home/ps2.png"
+            alt="Cards with Poetry"
+            title="Cards with Poetry"
+            [routerLink]="['/poetry']"
+          />
+          <h3>Cards with Poetry</h3>
+        </div>
+        <div class="col-md-4">
+          <img
+            src="/assets/images/2024/grad/home/ps3.png"
+            alt="Sign and Send"
+            title="Sign and Send"
+            [routerLink]="['/signandsend']"
+          />
+          <h3 [routerLink]="['/signandsend']">Sign and Send</h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 easter">
+          <h3>
+            Mark Every Occasion with Our Extensive Selection of Greeting Cards
+          </h3>
+          <p>
+            Find the perfect FiBeiGreetings card for every moment and make every
+            occasion memorable with our diverse range of greeting cards. From
+            birthdays to holidays and everything in between, our collection
+            ensures you'll always have the right card to express your heartfelt
+            sentiments.
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8 birthday">
+          <h3>BIRTHDAY</h3>
+          <p>Celebrating you today and always</p>
+
+          <div>
+            <img
+              src="/assets/images/2024/easter/home/birthday-card-1.png"
+              alt="birthday"
+            />
+            <img
+              src="/assets/images/2024/easter/home/birthday-card-2.png"
+              alt="birthday"
+            />
+          </div>
+
+          <a>Shop more cards>></a>
+        </div>
+        <div class="col-md-4 anniversary">
+          <h3>ANNIVERSARY</h3>
+          <p>Here's to the love that grows stronger with each passing year.</p>
+
+          <img
+            src="/assets/images/2024/easter/home/anniversary-card.png"
+            alt="Anniversary"
+            title="Anniversary"
+            onContextMenu="return false;"
+          />
+
+          <a>Shop more cards>></a>
+        </div>
+        <div class="col-md-4 thank-you">
+          <h3>THANK YOU</h3>
+          <p>Sending a big thank you filled with gratitude and appreciation.</p>
+
+          <div>
+            <img
+              src="/assets/images/2024/easter/home/thank-you-card-1.png"
+              alt="thank you"
+              title="thank you"
+              onContextMenu="return false;"
+            />
+
+            <img
+              src="/assets/images/2024/easter/home/thank-you-card-2.png"
+              alt="thank you"
+              title="thank you"
+              onContextMenu="return false;"
+            />
+          </div>
+
+          <a>Shop more cards>></a>
+        </div>
+
+        <div class="col-md-4 wedding">
+          <h3>WEDDING</h3>
+          <p>Here's to love, laughter, and happily ever after.</p>
+
+          <div>
+            <img
+              src="/assets/images/2024/easter/home/wedding-card-1.png"
+              alt="Wedding"
+              title="Wedding"
+              onContextMenu="return false;"
+            />
+
+            <img
+              src="/assets/images/2024/easter/home/wedding-card-2.png"
+              alt="Wedding"
+              title="Wedding"
+              onContextMenu="return false;"
+            />
+          </div>
+
+          <a>Shop more cards>></a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h2 class="label-header">MORE CARD CATEGORIES</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <app-home-featured
+            caption="Graduation"
+            homeCardEvent="Graduation"
+            [limit]="100"
+          ></app-home-featured>
+        </div>
+        <div class="col-md-12">
+          <app-home-featured
+            caption="Get Well"
+            homeCardEvent="Get Well"
+            [limit]="100"
+          ></app-home-featured>
+        </div>
+        <div class="col-md-12">
+          <app-home-featured
+            caption="Sympathy"
+            homeCardEvent="Sympathy"
+            [limit]="100"
+          ></app-home-featured>
+        </div>
+        <div class="col-md-12">
+          <app-home-featured
+            caption="Thank You"
+            homeCardEvent="Thank You"
+            [limit]="100"
+          ></app-home-featured>
+        </div>
+        <div class="col-md-12">
+          <app-home-featured
+            caption="Pet Cards"
+            homeCardEvent="Pet"
+            [limit]="100"
+          ></app-home-featured>
+        </div>
+
+        <!-- <div class="col-md-12" *ngIf="priceService.getLocation() == 'ph'">
+                    <img src="/assets/images/2024/hbd/home/h6-min.png" [routerLink]="['/stickercards']" class="cursor">
+                </div> -->
+      </div>
+      <div class="row more-products">
+        <div class="col-md-12">
+          <div style="position: relative">
+            <h2>MORE PRODUCTS</h2>
+            <p>Discover FiBei Greetings Products</p>
+
+            <div>
+              <img
+                src="/assets/images/2024/easter/home/stickers.png"
+                onContextMenu="return false;"
+              />
+              <p>Stickers</p>
+            </div>
+
+            <div>
+              <img
+                src="/assets/images/2024/easter/home/postcards.png"
+                onContextMenu="return false;"
+              />
+              <p>Postcards</p>
+            </div>
+
+            <div>
+              <img
+                src="/assets/images/2024/easter/home/gifts.png"
+                onContextMenu="return false;"
+              />
+              <p>Gifts</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="personalized-card">
+        <img
+          src="/assets/images/2024/easter/home/pick-a-card.png"
+          class="personalized"
+          onContextMenu="return false;"
+        />
+
+        <img
+          src="/assets/images/2024/easter/home/personalize-it.png"
+          class="personalized"
+          onContextMenu="return false;"
+        />
+        <img
+          src="/assets/images/2024/easter/home/click-and-send.png"
+          class="personalized"
+          onContextMenu="return false;"
+        />
+      </div>
+
+      <div class="col-md-12 sns-no-label">
+        <app-home-featured
+          caption="Sign and Send"
+          [ids]="[
+            'FUmF8oMnhmpO9WgkziZN',
+            'GaHUF8E482lLIIebNPrY',
+            'JEiZgBQumVFDDyfxlJ24',
+            'JLpujLChwAf7CAay9HAx',
+            'UP19y5cwfVJByXTlmWQG',
+            'IPp9QMwawzBFgtgTxDQ1',
+            'gktcGJN6v6ROGUJSrMAU',
+            'xFG9kBmBv8sUgwvTWHVM',
+            '0PndLlvpXe3V46zHT5RY',
+            '2dH8qe9kgc7aN7pHSp4a',
+            '4Wz5Qqoa7yYpU0DfIlXA',
+            '5KIsabJ3spJSkOmbZLVD',
+            'Bfpij5w6qKeXusgh5CwV',
+            'QCqK7J0gEmm6sf2gznDj',
+            '1e3HY8oyjU0CwsZWqpoK',
+            'Gj9DQKqN3krzeVVhJRHb',
+            'OqiMLF73ek3TBE2PNPq6',
+            'cJXDwCuwCisW1vg24CsP',
+            'Ae11kuzI272NDJ159FwT',
+            'Tt7wE47yUOCBczValj3b',
+            'mqu9kvb4AdF8WwL9TAvA',
+            'qbQIVVGWv6LD0V1kPfkR',
+            'YM0LKWPou3NXAIAARtGR',
+            '6JHecB0o2wkJmYbKXCj8'
+          ]"
+        ></app-home-featured>
+      </div>
+      <app-sign-up-mobile></app-sign-up-mobile>
+    </div>
+  </section>
+  <app-footer></app-footer>
+</ion-content>
