@@ -151,6 +151,7 @@ import { SignUpMobileComponent } from "./sign-up-mobile/sign-up-mobile.component
 import { StickersMobileComponent } from './stickers-mobile/stickers-mobile.component';
 import { StickersCardsMobileComponent } from './stickers-cards-mobile/stickers-cards-mobile.component';
 import { SignAndSendMobileComponent } from './sign-and-send-mobile/sign-and-send-mobile.component';
+import { SignAndSendPageMobileComponent } from './sign-and-send-page-mobile/sign-and-send-page-mobile.component';
 
 @NgModule({
   declarations: [
@@ -276,6 +277,7 @@ import { SignAndSendMobileComponent } from './sign-and-send-mobile/sign-and-send
     StickersMobileComponent,
     StickersCardsMobileComponent,
     SignAndSendMobileComponent,
+    SignAndSendPageMobileComponent,
   ],
   imports: [
     BrowserModule,

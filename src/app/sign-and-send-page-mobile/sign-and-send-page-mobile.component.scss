@@ -1,0 +1,42 @@
+::ng-deep .carousel-control-prev,
+::ng-deep .carousel-control-next {
+  width: 5% !important;
+}
+
+::ng-deep .carousel-control-prev-icon,
+::ng-deep .carousel-control-next-icon {
+  filter: invert(100%) !important;
+}
+
+.lesspadding {
+  padding-left: 3px !important;
+  padding-right: 3px !important;
+}
+
+.middle {
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+}
+
+.name {
+  font-size: 12px;
+}
+
+.bk-hw {
+  // background-image: url('../../assets/images/newyear/fireworks.gif');
+  background-image: url("../../assets/images/hearts.gif");
+}
+
+.img-fluid{
+  margin: 10px auto;
+}
+
+.e-card-sticker > p {
+  font-family: Proxima Nova;
+  font-weight: bold;
+  color: #624395;
+  text-align: center;
+  font-size: 24px;
+  line-height: 24px;
+  margin-top: 15px;
+}
