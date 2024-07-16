@@ -27,26 +27,3 @@
     line-height: 8px;
     color: #6b2d98;
 }
-
-.hamburger-menu {
-  font-size: 24px;
-  cursor: pointer;
-  background: none;
-  border: none;
-}
-
-.mobile-menu {
-  display: none;
-  position: absolute;
-  top: 60px; /* Adjust based on your header height */
-  left: 0;
-  width: 100%;
-  background: white;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  padding: 10px;
-}
-
-.mobile-menu.show {
-  display: block;
-}
-

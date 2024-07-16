@@ -2,46 +2,104 @@
   <section class="header-main border-bottom">
     <div class="container">
       <div class="row align-items-center">
+        <button class="hamburger-menu" (click)="toggleMenu()">☰</button>
+
         <div class="col-lg-2 col-4 my-logo">
-          <img src="/assets/images/logo_fibeigreetings-com.png" title="FibeiGreetings.com" *ngIf="priceService.getLocation() == 'ph'"
-            class="img-fluid" style=" cursor:pointer" routerLink="/" onContextMenu="return false;">
-          <img src="/assets/images/logo_fibeigreetings-us.png" title="FibeiGreetings.us" *ngIf="priceService.getLocation() == 'us'" class="img-fluid"
-            style=" cursor:pointer" routerLink="/" onContextMenu="return false;">
-          <img src="/assets/images/logo_fibeigreetings-sg.png" title="FibeiGreetings.sg" *ngIf="priceService.getLocation() == 'sg'" class="img-fluid"
-            style=" cursor:pointer" routerLink="/" onContextMenu="return false;">
-          <div class="my-loc" *ngIf="priceService.getLocation() == 'ph'">Philippines</div>
-          <div class="my-loc" *ngIf="priceService.getLocation() == 'us'">USA</div>
-          <div class="my-loc" *ngIf="priceService.getLocation() == 'sg'">Singapore</div>
-          <h1 style="font-size:0px;margin: 0;">FibeiGreetings.com</h1>
+          <img
+            src="/assets/images/logo_fibeigreetings-com.png"
+            title="FibeiGreetings.com"
+            *ngIf="priceService.getLocation() == 'ph'"
+            class="img-fluid"
+            style="cursor: pointer"
+            routerLink="/"
+            onContextMenu="return false;"
+          />
+          <img
+            src="/assets/images/logo_fibeigreetings-us.png"
+            title="FibeiGreetings.us"
+            *ngIf="priceService.getLocation() == 'us'"
+            class="img-fluid"
+            style="cursor: pointer"
+            routerLink="/"
+            onContextMenu="return false;"
+          />
+          <img
+            src="/assets/images/logo_fibeigreetings-sg.png"
+            title="FibeiGreetings.sg"
+            *ngIf="priceService.getLocation() == 'sg'"
+            class="img-fluid"
+            style="cursor: pointer"
+            routerLink="/"
+            onContextMenu="return false;"
+          />
+          <div class="my-loc" *ngIf="priceService.getLocation() == 'ph'">
+            Philippines
+          </div>
+          <div class="my-loc" *ngIf="priceService.getLocation() == 'us'">
+            USA
+          </div>
+          <div class="my-loc" *ngIf="priceService.getLocation() == 'sg'">
+            Singapore
+          </div>
+
+          <h1 style="font-size: 0px; margin: 0">FibeiGreetings.com</h1>
         </div>
         <div class="col-lg-9 col-8 my-search">
           <app-search></app-search>
           <div class="row">
             <div class="col-8">
-              <small style="color:indigo" class="tag-line">
-                <b>{{priceService.getLocation() == 'ph'?'Free Shipping in Metro Manila for All Cards Purchases. Applied at Checkout':'Free Shipping on
-                  All Card Purchases'}}</b>
+              <small style="color: indigo" class="tag-line">
+                <b>{{
+                  priceService.getLocation() == "ph"
+                    ? "Free Shipping in Metro Manila for All Cards Purchases. Applied at Checkout"
+                    : "Free Shipping on
+                  All Card Purchases"
+                }}</b>
               </small>
             </div>
           </div>
-        </div> <!-- col.// -->
+        </div>
+        <!-- col.// -->
         <div class="col-lg-1 col-2 my-cart">
           <div class="widgets-wrap float-md-end">
-            <div class="widget-header  me-3">
+            <div class="widget-header me-3">
               <app-cart></app-cart>
             </div>
-          </div> <!-- widgets-wrap.// -->
-        </div> <!-- col.// -->
-      </div> <!-- row.// -->
-    </div> <!-- container.// -->
-  </section> <!-- header-main .// -->
+          </div>
+          <!-- widgets-wrap.// -->
+        </div>
+        <!-- col.// -->
+      </div>
+      <!-- row.// -->
+    </div>
+    <!-- container.// -->
 
-  <nav class="navbar navbar-main navbar-expand-lg navbar-light border-bottom my-nav cus-nav">
+    <!-- Hidden Menu -->
+    <div id="mobileMenu" class="mobile-menu" [ngClass]="{ show: menuVisible }">
+      <p>Home Dash</p>
+      <p>Profile</p>
+      <p>Events</p>
+      <p>Gifts</p>
+      <p>Stickers</p>
+      <p>Specialty Cards</p>
+      <p>Postcards</p>
+      <p>Games</p>
+      <p>Customer Service</p>
+      <p>Know More</p>
+      <p>Order Information</p>
+      <p>Terms of Use</p>
+      <p>Login/Logout</p>
+    </div>
+  </section>
+  <!-- header-main .// -->
+
+  <nav
+    class="navbar navbar-main navbar-expand-lg navbar-light border-bottom my-nav cus-nav"
+  >
     <div class="container">
       <div class="full-width-98">
         <app-menu></app-menu>
       </div>
     </div>
   </nav>
-
 </header>

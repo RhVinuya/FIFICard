@@ -22,9 +22,10 @@ class Language {
 export class HeaderComponent implements OnInit {
   logo: string;
   languages: Language[] = [];
-  lang: string
+  lang: string;
+  menuVisible = false;
 
-  priceService: PriceService
+  priceService: PriceService;
 
   constructor(
     private translate: TranslateService,
@@ -45,7 +46,6 @@ export class HeaderComponent implements OnInit {
         this.logo = element.logo;
       }
     });
-
   }
 
   changeLang(event: any) {
@@ -54,4 +54,7 @@ export class HeaderComponent implements OnInit {
     this.filter.setLang(event.target.value);
   }
 
+  toggleMenu() {
+    this.menuVisible = !this.menuVisible;
+  }
 }
