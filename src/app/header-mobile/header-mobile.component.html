@@ -1,1 +1,116 @@
-<p>header-mobile works!</p>
+<header class="section-header">
+  <section class="header-main border-bottom">
+    <button class="hamburger-menu" (click)="toggleMenu()">☰</button>
+
+    <!-- Hidden Menu -->
+    <div id="mobileMenu" class="mobile-menu" [ngClass]="{ show: menuVisible }">
+      <p>Home Dash</p>
+      <p>Profile</p>
+      <p>Events</p>
+      <p>Gifts</p>
+      <p>Stickers</p>
+      <p>Specialty Cards</p>
+      <p>Postcards</p>
+      <p>Games</p>
+
+      <p class="submenu-toggle" (click)="toggleCustomerServiceSubMenu()">
+        Customer Service
+        <span [class.rotate]="customerServiceSubMenuVisible">▶</span>
+      </p>
+
+      <div *ngIf="customerServiceSubMenuVisible" class="submenu">
+        <p>Contact Us</p>
+        <p>Chat Us</p>
+        <p>Review Product</p>
+      </div>
+
+      <p class="submenu-toggle" (click)="toggleKnowMoreSubMenu()">
+        Know More <span [class.rotate]="knowMoreSubMenuVisible">▶</span>
+      </p>
+      <div *ngIf="knowMoreSubMenuVisible" class="submenu">
+        <p>About FibeiGreetings</p>
+        <p>Press Page</p>
+        <p>Sign and Send</p>
+      </div>
+      <p>Order Information</p>
+
+      <p class="submenu-toggle" (click)="toggleTermsOfUseSubMenu()">
+        Terms of Use <span [class.rotate]="termsOfUseSubMenuVisible">▶</span>
+      </p>
+
+      <div *ngIf="termsOfUseSubMenuVisible" class="submenu">
+        <p>Terms and Conditions</p>
+        <p>Privacy Policy</p>
+      </div>
+
+      <p>Login</p>
+    </div>
+
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-2 col-4 my-logo">
+          <img
+            src="/assets/images/logo_fibeigreetings-com.png"
+            title="FibeiGreetings.com"
+            *ngIf="priceService.getLocation() == 'ph'"
+            class="img-fluid"
+            style="cursor: pointer"
+            routerLink="/"
+            onContextMenu="return false;"
+          />
+          <img
+            src="/assets/images/logo_fibeigreetings-us.png"
+            title="FibeiGreetings.us"
+            *ngIf="priceService.getLocation() == 'us'"
+            class="img-fluid"
+            style="cursor: pointer"
+            routerLink="/"
+            onContextMenu="return false;"
+          />
+          <img
+            src="/assets/images/logo_fibeigreetings-sg.png"
+            title="FibeiGreetings.sg"
+            *ngIf="priceService.getLocation() == 'sg'"
+            class="img-fluid"
+            style="cursor: pointer"
+            routerLink="/"
+            onContextMenu="return false;"
+          />
+          <div class="my-loc" *ngIf="priceService.getLocation() == 'ph'">
+            Philippines
+          </div>
+          <div class="my-loc" *ngIf="priceService.getLocation() == 'us'">
+            USA
+          </div>
+          <div class="my-loc" *ngIf="priceService.getLocation() == 'sg'">
+            Singapore
+          </div>
+
+          <h1 style="font-size: 0px; margin: 0">FibeiGreetings.com</h1>
+        </div>
+        <div class="col-lg-9 col-8 my-search">
+          <app-search></app-search>
+          <div class="row">
+            <div class="col-8">
+              <small style="color: indigo" class="tag-line">
+                <b>{{
+                  priceService.getLocation() == "ph"
+                    ? "Free Shipping in Metro Manila for All Cards Purchases. Applied at Checkout"
+                    : "Free Shipping on
+                  All Card Purchases"
+                }}</b>
+              </small>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-1 col-2 my-cart">
+          <div class="widgets-wrap float-md-end">
+            <div class="widget-header me-3">
+              <app-cart></app-cart>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</header>

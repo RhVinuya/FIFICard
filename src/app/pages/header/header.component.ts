@@ -23,7 +23,6 @@ export class HeaderComponent implements OnInit {
   logo: string;
   languages: Language[] = [];
   lang: string;
-  menuVisible = false;
 
   priceService: PriceService;
 
@@ -52,9 +51,5 @@ export class HeaderComponent implements OnInit {
     this.translate.use(event.target.value);
     localStorage.setItem("language", event.target.value);
     this.filter.setLang(event.target.value);
-  }
-
-  toggleMenu() {
-    this.menuVisible = !this.menuVisible;
   }
 }

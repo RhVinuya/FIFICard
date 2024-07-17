@@ -1,36 +1,46 @@
-.main{
-    min-height: 700px;
+.main {
+  min-height: 700px;
 }
 
+.content {
+  margin-top: 50px;
+}
 
-  
-  .content{
-        margin-top: 50px;
+@media (min-width: 768px) {
+  ion-header {
+    display: block;
+  }
+  app-footer {
+    display: block;
   }
 
-  @media(min-width: 768px) {
-    ion-header {
-        display: block;
-    }
-    app-footer {
-        display: block;
-    }
-
-    // .hydrated{
-    //   visibility: hidden!important;
-    // }
-  
+  .desktop-header {
+    display: block;
   }
-   
-  @media(max-width: 768px) {
-    ion-header {
-       display: none;
-    }
-    app-footer {
-        display: none;
-    }
-
-    // .hydrated{
-    //   visibility: inherit!important;
-    // }
+  .mobile-header {
+    display: none;
   }
+
+  // .hydrated{
+  //   visibility: hidden!important;
+  // }
+}
+
+@media (max-width: 768px) {
+  ion-header {
+    display: none;
+  }
+  app-footer {
+    display: none;
+  }
+  .desktop-header {
+    display: none;
+  }
+  .mobile-header {
+    display: block;
+  }
+
+  // .hydrated{
+  //   visibility: inherit!important;
+  // }
+}
