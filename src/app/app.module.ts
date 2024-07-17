@@ -148,12 +148,15 @@ import { EventsMobileComponent } from "./events-mobile/events-mobile.component";
 import { EventPreviewComponent } from "./components/mobile/event-preview/event-preview.component";
 import { CreationsMobileComponent } from "./creations-mobile/creations-mobile.component";
 import { SignUpMobileComponent } from "./sign-up-mobile/sign-up-mobile.component";
-import { StickersMobileComponent } from './stickers-mobile/stickers-mobile.component';
-import { StickersCardsMobileComponent } from './stickers-cards-mobile/stickers-cards-mobile.component';
-import { SignAndSendMobileComponent } from './sign-and-send-mobile/sign-and-send-mobile.component';
-import { SignAndSendPageMobileComponent } from './sign-and-send-page-mobile/sign-and-send-page-mobile.component';
-import { HeaderMobileComponent } from './header-mobile/header-mobile.component';
-import { SpecialtyCardsPageMobileComponent } from './specialty-cards-page-mobile/specialty-cards-page-mobile.component';
+import { StickersMobileComponent } from "./stickers-mobile/stickers-mobile.component";
+import { StickersCardsMobileComponent } from "./stickers-cards-mobile/stickers-cards-mobile.component";
+import { SignAndSendMobileComponent } from "./sign-and-send-mobile/sign-and-send-mobile.component";
+import { SignAndSendPageMobileComponent } from "./sign-and-send-page-mobile/sign-and-send-page-mobile.component";
+import { HeaderMobileComponent } from "./header-mobile/header-mobile.component";
+import { SpecialtyCardsPageMobileComponent } from "./specialty-cards-page-mobile/specialty-cards-page-mobile.component";
+import { GiftsMobileComponent } from "./gifts-mobile/gifts-mobile.component";
+import { GiftsEventsMobileComponent } from "./modules/gifts-events-mobile/gifts-events-mobile.component";
+import { GiftEventMobileComponent } from "./modules/gifts-events-mobile/gift-event-mobile/gift-event-mobile.component";
 
 @NgModule({
   declarations: [
@@ -282,6 +285,9 @@ import { SpecialtyCardsPageMobileComponent } from './specialty-cards-page-mobile
     SignAndSendPageMobileComponent,
     HeaderMobileComponent,
     SpecialtyCardsPageMobileComponent,
+    GiftsMobileComponent,
+    GiftsEventsMobileComponent,
+    GiftEventMobileComponent,
   ],
   imports: [
     BrowserModule,
