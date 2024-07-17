@@ -1,0 +1,65 @@
+<ion-content>
+  <h2 style="font-size: 0px; margin: 0">Specialty Cards</h2>
+  <section class="section-name padding-y-sm bk-hw">
+    <div class="container animate main">
+      <div class="header-div">
+        <ion-label class="label-header">SPECIALTY CARDS</ion-label>
+      </div>
+      <div class="subheader-div">
+        <ion-label class="label-subheader"
+          >Introducing FiBei Greetings Specilaty Cards, where every card is
+          crafted with care and attention to detail. Explore our curated
+          selection to find the perfect card that reflects your style and
+          sentiments, and make every moment unforgettable.</ion-label
+        >
+      </div>
+      <app-event-list [events]="events"></app-event-list>
+      <div class="row">
+        <div class="col-md-12">
+          <img
+            src="/assets/images/2024/easter/page/SS.png"
+            [routerLink]="['/signandsend']"
+            onContextMenu="return false;"
+          />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <h2 class="f-title">More from FiBeiGreetings</h2>
+          <br />
+        </div>
+
+        <div class="col-md-10 offset-md-1">
+          <div class="row justify-content-center">
+            <div class="col-md-6">
+              <div class="f-links" [routerLink]="['/stickercards']">
+                STICKERS
+              </div>
+            </div>
+            <div class="col-md-6" *ngIf="priceService.getLocation() === 'ph'">
+              <div class="f-links" [routerLink]="['/gifts']">GIFTS</div>
+            </div>
+            <div class="col-md-6">
+              <div class="f-links" [routerLink]="['/postcards']">
+                POST CARDS
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="f-links" [routerLink]="['/games']">GAMES</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <img
+            src="/assets/images/2024/easter/page/free.png"
+            onContextMenu="return false;"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+  <app-footer></app-footer>
+</ion-content>

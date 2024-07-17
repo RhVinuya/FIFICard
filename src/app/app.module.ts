@@ -153,6 +153,7 @@ import { StickersCardsMobileComponent } from './stickers-cards-mobile/stickers-c
 import { SignAndSendMobileComponent } from './sign-and-send-mobile/sign-and-send-mobile.component';
 import { SignAndSendPageMobileComponent } from './sign-and-send-page-mobile/sign-and-send-page-mobile.component';
 import { HeaderMobileComponent } from './header-mobile/header-mobile.component';
+import { SpecialtyCardsPageMobileComponent } from './specialty-cards-page-mobile/specialty-cards-page-mobile.component';
 
 @NgModule({
   declarations: [
@@ -280,6 +281,7 @@ import { HeaderMobileComponent } from './header-mobile/header-mobile.component';
     SignAndSendMobileComponent,
     SignAndSendPageMobileComponent,
     HeaderMobileComponent,
+    SpecialtyCardsPageMobileComponent,
   ],
   imports: [
     BrowserModule,

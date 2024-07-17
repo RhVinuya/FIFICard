@@ -20,25 +20,26 @@
 
 .label-header {
   font-family: Proxima Nova;
-  font-size: 2.5rem;
+  font-size: 2rem;
+  text-align: center;
   font-weight: bold;
-  line-height: 3.5rem;
+  line-height: 3rem;
   color: #5e17eb;
 }
 
 .subheader-div {
   background-color: #e8f0fc;
-  padding-inline: 30px;
-  padding-block: 20px;
-  margin-bottom: 40px;
-  margin-right: 15px;
-  border-radius: 0 15px 15px 0;
+  padding-inline: 20px;
+  padding-block: 10px;
+  margin-bottom: 30px;
+  border-radius: 15px;
+  text-align: center;
 }
 
 .label-subheader {
   font-family: Proxima Nova;
-  font-size: 1.2rem;
-  line-height: 1.2rem;
+  font-size: 1rem;
+  line-height: 1rem;
   font-weight: bold;
   color: #5e17eb;
 }
@@ -142,7 +143,7 @@
 .f-links {
   background: #fddfe5;
   font-family: "Proxima Nova";
-  font-size: 30px;
+  font-size: 20px;
   font-weight: bold;
   color: #5e17eb;
   border: 2px solid #5e17eb;
