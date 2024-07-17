@@ -163,30 +163,29 @@
 
 .category-div .sub-label {
   font-family: Proxima Nova;
-  font-size: 1.5rem;
+  font-size: 1rem;
   font-weight: bold;
-  line-height: 1.5rem;
+  line-height: 1rem;
   color: #5e17eb;
 }
 
 .category-items {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  row-gap: 15px;
-  padding-inline: 30px;
-  padding-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  row-gap: 10px;
+  padding-inline: 15px;
+  padding-top: 10px;
 }
 
 .category-items button {
-  width: 18%;
+  height: 50px;
   margin-inline: 1%;
   padding-block: 0.8rem;
   background-color: #fddfe5;
   font-family: Proxima Nova;
-  font-size: 1.2rem;
+  font-size: 0.8rem;
   font-weight: bold;
-  line-height: 1.2rem;
+  line-height: 0.8rem;
   color: #004aad;
   border-radius: 30px;
   border: 1px solid #004aad;
@@ -197,24 +196,23 @@
 }
 
 .other-items {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  row-gap: 15px;
-  padding-inline: 30px;
-  padding-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  row-gap: 10px;
+
+  padding-inline: 15px;
+  padding-top: 10px;
   padding-bottom: 20px;
 }
 
 .other-items button {
-  width: 18%;
   margin-inline: 1%;
   padding-block: 0.8rem;
   background-color: #9abff8;
   font-family: Proxima Nova;
-  font-size: 1.2rem;
+  font-size: 0.8rem;
   font-weight: bold;
-  line-height: 1.2rem;
+  line-height: 0.8rem;
   color: #004aad;
   border-radius: 30px;
   border: 1px solid #004aad;

@@ -32,26 +32,26 @@
           </ion-row>
         </ion-grid>
         <div class="category-items">
-          <button>
+          <button
+            *ngFor="let event of occassions"
+            (click)="setEvent(event.id!)"
+          >
             {{ event.title && event.title !== "" ? event.title : event.name }}
           </button>
         </div>
+
         <div class="other-items">
-          <button>
+          <button *ngFor="let event of others" (click)="setEvent(event.id!)">
             {{ event.title && event.title !== "" ? event.title : event.name }}
-            event.title
           </button>
         </div>
       </div>
 
-      <div id="items">
+      <div *ngIf="original.length > 0" id="items">
         <div class="ion-margin-bottom">
-          <ion-label class="category-label">{{
-            "
-            title"
-          }}</ion-label>
+          <ion-label class="category-label">{{ title }}</ion-label>
         </div>
-        <app-card-list mode="postcard"></app-card-list>
+        <app-card-list [cards]="cards" mode="postcard"></app-card-list>
       </div>
 
       <div class="instruction-div">
