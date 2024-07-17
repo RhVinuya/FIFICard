@@ -88,6 +88,12 @@
     "recipienttext": "SHOP BY RECIPIENT",
     "eventtext": "SHOP BY EVENT"
   },
+  "gifts-mobile": {
+    "categorytext": "CATEGORY",
+    "recipienttext": "RECIPIENT",
+    "eventtext": "EVENT"
+  },
+
   "header": {
     "tagline": "Free Shipping on All Purchases. Applied at Checkout."
   },

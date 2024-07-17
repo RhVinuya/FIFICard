@@ -1,0 +1,130 @@
+<ion-content>
+    <h2 style="font-size:0px;margin: 0;">Gifts</h2>
+    <section class="section-name padding-y-sm bk-hw">
+        <div class="container animate main">
+            <div class="header-div">
+                <ion-label class="label-header">GIFTS FOR ANY OCCASSION</ion-label>
+            </div>
+            <div class="subheader-div">
+                <ion-label class="label-subheader">FiBei Greetings Gift Guide is designed to make your gift-giving
+                    experience a breeze! Whether you're searching for the perfect present for a loved one or looking for
+                    thoughtful gift ideas for any occasion, our guide is here to help.</ion-label>
+            </div>
+            <div class="row swipper-cat">
+                <ion-label class="label-header-category">{{'gifts-mobile.categorytext'|translate}}</ion-label>
+                <app-gifts-events-mobile [events]="categories"></app-gifts-events-mobile>
+            </div>
+            <div class="row swipper-cat">
+                <ion-label class="label-header-category">{{'gifts-mobile.recipienttext'|translate}}</ion-label>
+                <app-gifts-events-mobile [events]="recipients"></app-gifts-events-mobile>
+            </div>
+            <div class="row swipper-cat">
+                <ion-label class="label-header-category">{{'gifts-mobile.eventtext'|translate}}</ion-label>
+                <app-gifts-events-mobile [events]="events"></app-gifts-events-mobile>
+            </div>
+
+            <ion-card class="card-option-banner-div">
+                <!-- <img src="/assets/images/gift/card-option-banner.png" onContextMenu="return false;"> -->
+                <ion-card-header>
+                    <ion-card-title>Choose card now!</ion-card-title>
+                </ion-card-header>
+                
+                <ion-card-content>
+                    Include a card with your gift to express your sentiments and send a heartfelt message to show how much you care. 
+                </ion-card-content>
+                <ion-button [routerLink]="['/events']" fill="clear">Message</ion-button>
+                <ion-button  [routerLink]="['/poetry']" fill="clear">Poetry</ion-button>
+                <ion-button [routerLink]="['/signandsend']" fill="clear">Sign & Send</ion-button>
+            </ion-card>
+
+            <ion-card class="card-option-banner-div">
+                <!-- <img src="/assets/images/gift/card-option-banner.png" onContextMenu="return false;"> -->
+                <ion-card-header>
+                    <ion-card-title>Choose card now!</ion-card-title>
+                </ion-card-header>
+                
+                <ion-card-content>
+                    FiBei Greeting's Sign and Send card service, making it easier than even to send heartfelt greetings! 
+                    Our user-friendly platform allows you to customize your message, include your signature, 
+                    and send your selected card directly to your recipient with a personal touch. 
+                </ion-card-content>
+                <ion-button [routerLink]="['/signandsend']" fill="clear">Know more</ion-button>
+            </ion-card>
+
+
+
+
+            <!-- <div class="row">
+                <div class="col-md-12">
+                    <h2 class="f-title">More from FiBeiGreetings</h2>
+                    <br />
+                </div>
+
+                <div class="col-md-10 offset-md-1">
+                    <div class="row justify-content-center">
+                        <div class="col-md-6">
+                            <div class="f-links" [routerLink]="['/stickercards']">STICKERS</div>
+                        </div>
+                        -- <div class="col-md-6" *ngIf="priceService.getLocation() != 'ph'">
+                            <div class="f-links" [routerLink]="['/gifts']"  >GIFTS</div>
+                        </div> --
+                        <div class="col-md-6">
+                            <div class="f-links" [routerLink]="['/specialtycardpage']">SPECIALTY CARDS</div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="f-links" [routerLink]="['/postcards']">POSTCARDS</div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="f-links" [routerLink]="['/games']">GAMES</div>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+
+            <!--
+            <div class="row">
+                <div class="col-md-12">
+                    <img src="/assets/images/2024/hbd/more-min.png">
+                    <br /><br />
+                </div>
+                <div class="col-md-12" style="position: relative">
+                    <img src="/assets/images/2024/hbd/more-2-min.png">
+                    <div style="height: 67%;width: 21%; position: absolute; left: 23%; bottom: 0%;cursor: pointer;"
+                        [routerLink]="['/poetry']"></div>
+                    <div style="height: 67%;width: 21%; position: absolute; left: 45.5%; bottom: 0%;cursor: pointer;"
+                        [routerLink]="['/postcards']"></div>
+                    <div style="height: 67%;width: 21%; position: absolute; left: 68.5%; bottom: 0%;cursor: pointer;"
+                        [routerLink]="['/signandsend']"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12" style="position: relative" *ngIf="priceService.getLocation() == 'ph'">
+                    <img src="/assets/images/2024/hbd/2-ecard-sticker-2-min.png">
+                    <a href="https://fibeidigicards.com/home"
+                        style="height: 100%;width: 50%; position: absolute; left: 0%; bottom: 0%;cursor: pointer;"
+                        target="_blank"></a>
+                    <div style="height: 100%;width: 50%; position: absolute; right: 0%; bottom: 0%;cursor: pointer;"
+                        [routerLink]="['/stickercards']"></div>
+                </div>
+                <div class="col-md-12" style="position: relative" *ngIf="priceService.getLocation() != 'ph'">
+                    <img src="/assets/images/2024/hbd/2-ecard-sticker-2-min.png">
+                    <a href="https://fibeidigicards.com/home"
+                        style="height: 100%;width: 50%; position: absolute; left: 0%; bottom: 0%;cursor: pointer;"
+                        target="_blank"></a>
+                    <div style="height: 100%;width: 50%; position: absolute; right: 0%; bottom: 0%;cursor: pointer;"
+                        [routerLink]="['/stickercards']"></div>
+                </div>
+                <div class="col-md-12">
+                    <img src="/assets/images/2024/hbd/delivery-ph-min.png" *ngIf="priceService.getLocation() == 'ph'"
+                        class="img-fluid " style="width:100%">
+                    <img src="/assets/images/2024/hbd/delivery-min.png" *ngIf="priceService.getLocation() != 'ph'"
+                        class="img-fluid " style="width:100%">
+                    <br /> <br />
+                </div>
+            </div>
+            -->
+        </div>
+
+    </section>
+    <app-footer></app-footer>
+</ion-content>

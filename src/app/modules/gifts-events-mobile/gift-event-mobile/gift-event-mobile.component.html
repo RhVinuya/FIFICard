@@ -1,0 +1,8 @@
+<div routerLink="{{url}}" [ngClass]="enable?'cursor my-event':'none my-event'">
+    <div class="div-img w-100 text-center">
+        <img src="{{image}}" class="img w-100 h-100" onContextMenu="return false;">
+    </div>
+    <div class="title">
+        <ion-label >{{event.name!.replace('Gifts for ', '')}}</ion-label>
+    </div>
+</div>
