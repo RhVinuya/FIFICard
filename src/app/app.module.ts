@@ -151,6 +151,9 @@ import { SignUpMobileComponent } from "./sign-up-mobile/sign-up-mobile.component
 import { StickersMobileComponent } from './stickers-mobile/stickers-mobile.component';
 import { StickersCardsMobileComponent } from './stickers-cards-mobile/stickers-cards-mobile.component';
 import { SignAndSendMobileComponent } from './sign-and-send-mobile/sign-and-send-mobile.component';
+import { GiftsMobileComponent } from './gifts-mobile/gifts-mobile.component';
+import { GiftsEventsMobileComponent } from './modules/gifts-events-mobile/gifts-events-mobile.component';
+import { GiftEventMobileComponent } from './modules/gifts-events-mobile/gift-event-mobile/gift-event-mobile.component';
 
 @NgModule({
   declarations: [
@@ -276,6 +279,9 @@ import { SignAndSendMobileComponent } from './sign-and-send-mobile/sign-and-send
     StickersMobileComponent,
     StickersCardsMobileComponent,
     SignAndSendMobileComponent,
+    GiftsMobileComponent,
+    GiftsEventsMobileComponent,
+    GiftEventMobileComponent,
   ],
   imports: [
     BrowserModule,
