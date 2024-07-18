@@ -66,11 +66,17 @@
           </div>
           <div class="col-md-12">
             <h2 class="text-center cus-text-title mt-1 mb-3">Occasions</h2>
-            <app-event-list type="signandsend"></app-event-list>
+            <app-event-list
+              type="signandsend"
+              [events]="occassions"
+            ></app-event-list>
           </div>
           <div class="col-md-12 mb-2">
             <h2 class="text-center cus-text-title mt-1 mb-3">Events</h2>
-            <app-event-list type="signandsend"></app-event-list>
+            <app-event-list
+              type="signandsend"
+              [events]="events"
+            ></app-event-list>
           </div>
         </div>
       </div>

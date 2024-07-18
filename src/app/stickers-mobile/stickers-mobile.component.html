@@ -22,10 +22,12 @@
                   All
                 </a>
               </div>
-              <div class="col-md-4">
-                <a class="btn-category" [routerLink]="['/stickercards/']">
-                  <!-- {{ event.name }} -->
-                  event.name
+              <div class="col-md-4" *ngFor="let event of events">
+                <a
+                  class="btn-category"
+                  [routerLink]="['/stickercards/' + event.id]"
+                >
+                  {{ event.name }}
                 </a>
               </div>
             </div>
