@@ -1,0 +1,245 @@
+.for-links-hover a {
+  opacity: 0.8;
+}
+
+.for-links-hover a:hover {
+  opacity: 1;
+}
+
+.header-div {
+  padding-inline: 20px;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.label-header {
+  font-family: Proxima Nova;
+  font-size: 2rem;
+  font-weight: bold;
+  line-height: 3rem;
+  color: #5e17eb;
+}
+
+.subheader-div {
+  background-color: #e8f0fc;
+  padding-inline: 30px;
+  padding-block: 20px;
+  margin-bottom: 30px;
+  border-radius: 15px;
+}
+
+.label-subheader {
+  font-family: Proxima Nova;
+  font-size: 1rem;
+  line-height: 1rem;
+  font-weight: bold;
+  color: #5e17eb;
+  text-align: center;
+}
+
+.featured-category-div {
+  position: relative;
+}
+
+.featured-category-div .featured {
+  position: absolute;
+  cursor: pointer;
+  width: 32.6%;
+  height: 32%;
+  left: 4%;
+  bottom: 28%;
+}
+
+.morecards-div {
+  padding-inline: 15px;
+  margin-bottom: 20px;
+  border-radius: 0 15px 15px 0;
+  text-align: center;
+}
+
+.label-morecards {
+  font-family: Proxima Nova;
+  font-size: 1.2rem;
+  line-height: 1.2rem;
+  font-weight: bold;
+  color: #5e17eb;
+  text-align: center;
+}
+
+.more-card-products-div {
+  position: relative;
+}
+
+.more-card-products-div .events {
+  position: absolute;
+  cursor: pointer;
+  width: 34.8%;
+  height: 24%;
+  left: 10%;
+  bottom: 53%;
+}
+
+.more-card-products-div .speciality {
+  position: absolute;
+  cursor: pointer;
+  width: 34.8%;
+  height: 24%;
+  left: 10%;
+  bottom: 20%;
+}
+
+.more-card-products-div .poetry {
+  position: absolute;
+  cursor: pointer;
+  width: 34.8%;
+  height: 24%;
+  left: 54%;
+  bottom: 53%;
+}
+
+.more-card-products-div .signandsend {
+  position: absolute;
+  cursor: pointer;
+  width: 34.8%;
+  height: 24%;
+  left: 54%;
+  bottom: 20%;
+}
+
+.try-sign-and-send-div {
+  position: relative;
+}
+
+.try-sign-and-send-div .knowmore {
+  position: absolute;
+  cursor: pointer;
+  width: 19%;
+  height: 18%;
+  left: 48%;
+  bottom: 12%;
+}
+
+.category-div {
+  background-color: #e8f0fc;
+  padding: 10px;
+  margin-block: 10px;
+}
+
+.category-div .showallbutton {
+  font-family: Proxima Nova;
+  font-size: 0.8rem;
+  font-weight: bold;
+  line-height: 0.8rem;
+  color: white;
+  background-color: #004aad;
+  padding-block: 0.5rem;
+  padding-inline: 0.8rem;
+  border-radius: 10px;
+}
+
+.category-div .showallbutton:hover {
+  opacity: 0.8;
+}
+
+.category-div .main-label {
+  font-family: Proxima Nova;
+  font-size: 1.5rem;
+  font-weight: bold;
+  line-height: 1.5rem;
+  color: #5e17eb;
+}
+
+.category-div .sub-label {
+  font-family: Proxima Nova;
+  font-size: 1.5rem;
+  font-weight: bold;
+  line-height: 1.5rem;
+  color: #5e17eb;
+}
+
+.category-items {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  row-gap: 10px;
+  padding-inline: 15px;
+  padding-top: 10px;
+}
+
+.category-items button {
+  width: 30%;
+  margin-inline: 1%;
+  padding-block: 0.8rem;
+  background-color: #9abff8;
+  font-family: Proxima Nova;
+  font-size: 0.8rem;
+  font-weight: bold;
+  line-height: 0.8rem;
+  color: #004aad;
+  border-radius: 30px;
+  border: 1px solid #004aad;
+}
+
+.category-items button:hover {
+  opacity: 0.8;
+}
+
+.other-items {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  row-gap: 15px;
+  padding-inline: 15px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.other-items button {
+  width: 30%;
+  margin-inline: 1%;
+  padding-block: 0.8rem;
+  background-color: #fddfe5;
+  font-family: Proxima Nova;
+  font-size: 0.8rem;
+  font-weight: bold;
+  line-height: 0.8rem;
+  color: #004aad;
+  border-radius: 30px;
+  border: 1px solid #004aad;
+}
+
+.other-items button:hover {
+  opacity: 0.8;
+}
+
+.category-label {
+  font-family: Proxima Nova;
+  font-size: 2.5rem;
+  font-weight: bold;
+  line-height: 2.5rem;
+  color: #5e17eb;
+}
+.f-title {
+  font-family: "Proxima Nova";
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  color: #5e17eb;
+}
+.f-links {
+  background: #fddfe5;
+  font-family: "Proxima Nova";
+  font-size: 2cm;
+  font-weight: bold;
+  color: #5e17eb;
+  border: 2px solid #5e17eb;
+  padding: 10px;
+  text-align: center;
+  border-radius: 12px;
+  cursor: pointer;
+  opacity: 0.8;
+  margin-bottom: 12px;
+}
+.f-links:hover {
+  opacity: 1;
+}
