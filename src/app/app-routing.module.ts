@@ -60,6 +60,7 @@ import { SignAndSendMobileComponent } from "./sign-and-send-mobile/sign-and-send
 import { SignAndSendPageMobileComponent } from "./sign-and-send-page-mobile/sign-and-send-page-mobile.component";
 import { SpecialtyCardsPageMobileComponent } from "./specialty-cards-page-mobile/specialty-cards-page-mobile.component";
 import { GiftsMobileComponent } from "./gifts-mobile/gifts-mobile.component";
+import { GamesMobileComponent } from "./games-mobile/games-mobile.component";
 
 const webRoutes: Routes = [
   {
@@ -414,6 +415,11 @@ const mobileRoutes: Routes = [
     path: "gifts",
     component: GiftsMobileComponent,
     title: "FibeiGreetings Gifts",
+  },
+  {
+    path: "games",
+    component: GamesMobileComponent,
+    title: "FibeiGreetings Games",
   },
 ];
 

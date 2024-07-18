@@ -157,6 +157,7 @@ import { SpecialtyCardsPageMobileComponent } from "./specialty-cards-page-mobile
 import { GiftsMobileComponent } from "./gifts-mobile/gifts-mobile.component";
 import { GiftsEventsMobileComponent } from "./modules/gifts-events-mobile/gifts-events-mobile.component";
 import { GiftEventMobileComponent } from "./modules/gifts-events-mobile/gift-event-mobile/gift-event-mobile.component";
+import { GamesMobileComponent } from "./games-mobile/games-mobile.component";
 
 @NgModule({
   declarations: [
@@ -288,6 +289,7 @@ import { GiftEventMobileComponent } from "./modules/gifts-events-mobile/gift-eve
     GiftsMobileComponent,
     GiftsEventsMobileComponent,
     GiftEventMobileComponent,
+    GamesMobileComponent,
   ],
   imports: [
     BrowserModule,

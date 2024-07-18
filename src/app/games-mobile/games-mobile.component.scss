@@ -1,0 +1,89 @@
+.background {
+  background-image: url("/assets/images/games/chaotichero/background.jpg");
+  background-size: 100%;
+  background-repeat: repeat-y;
+}
+
+.page-main {
+  padding-top: 15px;
+}
+
+.img-detail {
+  width: 90%;
+  //   aspect-ratio: 493/851;
+  border: 10px solid white;
+  border-radius: 5px;
+}
+
+.gameplay-cards > ion-row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  margin-bottom: 15px;
+  width: 90%;
+}
+
+.label {
+  font-family: "Now Bold";
+  color: white;
+  font-size: 25pt;
+  text-shadow: 0 0 3px #ff0000, 0 0 5px #0000ff;
+  margin: 15px auto;
+}
+
+.battle {
+  font-family: "Now Bold";
+  font-size: 30pt;
+  font-weight: bold;
+  text-shadow: 0 0 3px white, 0 0 5px white;
+}
+
+.formation {
+  font-family: "Now Bold";
+  color: white;
+  font-size: 30pt;
+  font-weight: bold;
+  text-shadow: 0 0 3px #ff0000, 0 0 5px #0000ff;
+}
+
+.gamestore {
+  font-family: "Now Bold";
+  font-size: 30pt;
+  font-weight: bold;
+  text-shadow: 0 0 3px white, 0 0 5px white;
+}
+
+.link {
+  border-radius: 15px;
+  box-shadow: 0 0 3px white, 0 0 5px white;
+  margin: 20px;
+  background-color: black;
+  margin-bottom: 70px;
+}
+
+.link img {
+  margin-inline: 15px;
+  margin-block: 10px;
+  max-height: 50pt;
+}
+
+.soon {
+  cursor: not-allowed;
+}
+
+.soon img {
+  opacity: 0.3;
+}
+
+.soon-label {
+  font-family: "Now Bold";
+  color: white;
+  font-size: 17pt;
+  font-weight: bold;
+  -ms-transform: rotate(17deg); /* IE 9 */
+  -webkit-transform: rotate(17deg); /* Chrome, Safari, Opera */
+  -moz-transform: rotate(17deg); /*Mozilla */
+  transform: rotate(-17deg);
+}

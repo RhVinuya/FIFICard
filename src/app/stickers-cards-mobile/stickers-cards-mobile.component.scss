@@ -180,7 +180,6 @@
 .category-items button {
   height: 50px;
   margin-inline: 1%;
-  padding-block: 0.8rem;
   background-color: #fddfe5;
   font-family: Proxima Nova;
   font-size: 0.8rem;
@@ -199,7 +198,6 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   row-gap: 10px;
-
   padding-inline: 15px;
   padding-top: 10px;
   padding-bottom: 20px;
