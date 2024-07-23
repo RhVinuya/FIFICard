@@ -2,6 +2,7 @@ import { ImageService } from 'src/app/services/image.service';
 import { CardService } from './../../../services/card.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { Event } from '../../../models/event';
+import { Platform } from '@ionic/angular';
 
 @Component({
   selector: 'app-event',
@@ -12,6 +13,7 @@ export class EventComponent implements OnInit {
   @Input() event: Event;
   @Input() type: 'card' | 'signandsend' = 'card';
   @Input() checkrequire: boolean = false;
+  @Input() isMobile: boolean = false;
 
   service: CardService;
   imageService: ImageService;

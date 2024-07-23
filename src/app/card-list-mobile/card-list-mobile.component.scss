@@ -1,0 +1,163 @@
+.actionbtn {
+    border-radius: 50%;
+  }
+  
+  .custom-select {
+    position: relative;
+    font-family: Arial;
+    width: 200px;
+    text-align-last: center;
+    border-radius: 0rem;
+    margin-left: 20px;
+    margin-right: 20px;
+    // margin-top: 20px;
+    //margin-bottom: 20px;
+    color: #000;
+  }
+  
+  .custom-select select {
+    display: none;
+    /*hide original SELECT element: */
+  }
+  
+  .select-selected {
+    background-color: DodgerBlue;
+  }
+  
+  /* Style the arrow inside the select element: */
+  .select-selected:after {
+    position: absolute;
+    content: "";
+    top: 14px;
+    right: 10px;
+    width: 0;
+    height: 0;
+    border: 6px solid transparent;
+    border-color: #fff transparent transparent transparent;
+  }
+  
+  /* Point the arrow upwards when the select box is open (active): */
+  .select-selected.select-arrow-active:after {
+    border-color: transparent transparent #fff transparent;
+    top: 7px;
+  }
+  
+  /* style the items (options), including the selected item: */
+  .select-items div,
+  .select-selected {
+    color: #ffffff;
+    padding: 8px 16px;
+    border: 1px solid transparent;
+    border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+    cursor: pointer;
+  }
+  
+  /* Style items (options): */
+  .select-items {
+    position: absolute;
+    background-color: DodgerBlue;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 99;
+  }
+  
+  /* Hide the items when the select box is closed: */
+  .select-hide {
+    display: none;
+  }
+  
+  .select-items div:hover,
+  .same-as-selected {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+  
+  .hover-target:hover {
+    border-color: blueviolet;
+  }
+  
+  .mother-background-footer {
+    background-image: url('../../assets/images/layout2/Creations_2.png');
+    background-size: contain;
+  }
+  
+  .recipient {
+    background-color: white !important;
+  }
+  
+  .recipient:hover {
+    border-color: blueviolet !important;
+  }
+  
+  .recipient-selected {
+    background-color: blueviolet !important;
+    color: white;
+  }
+  
+  .cursor {
+    cursor: pointer;
+  }
+  
+  .my-recipient {
+    padding-top: 10px;
+  }
+  
+  .my-recipient span {
+    border: 1px solid #ccc;
+      padding: 6px 16px;
+      margin-right: 6px;
+      cursor: pointer;
+      display: inline-block;
+      margin-bottom: 6px;
+      font-size: 12px;
+      background: white;
+      border-radius: 8px 8px;
+  }
+  
+  .card .img-wrap {
+    background-color: #fbf4ff;
+  }
+  
+  .pointer {
+    cursor: pointer;
+  }
+  
+  .valign-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .allign-right {
+    text-align: right;
+  }
+  
+  .loadmore {
+    border: 1px solid #8a2be2;
+    background-color: #FFFFFF;
+    color: #8a2be2;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 100px;
+  }
+  
+  .loadmore:hover {
+    background-color: #8a2be2;
+    color: #FFFFFF;
+  }
+
+  .scrolling-wrapper {
+
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+  
+    .item {
+      display: inline-block;
+      width: 120px;
+    }
+  }

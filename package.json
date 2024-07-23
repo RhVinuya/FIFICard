@@ -6,7 +6,9 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "build:android": "ionic capacitor build android",
+    "serve:android1": "ionic capacitor run android -l --target R9WW30AZKMZ --external --"
   },
   "private": true,
   "dependencies": {

@@ -62,6 +62,8 @@ import { SpecialtyCardsPageMobileComponent } from "./specialty-cards-page-mobile
 import { GiftsMobileComponent } from "./gifts-mobile/gifts-mobile.component";
 import { GamesMobileComponent } from "./games-mobile/games-mobile.component";
 import { PostcardsMobileComponent } from "./postcards-mobile/postcards-mobile.component";
+import { CardsMobileComponent } from "./cards-mobile/cards-mobile.component";
+
 
 const webRoutes: Routes = [
   {
@@ -381,6 +383,11 @@ const mobileRoutes: Routes = [
     path: "events",
     component: EventsMobileComponent,
     title: "FibeiGreetings Events",
+  },
+  {
+    path: "cards/event/:id",
+    component: CardsMobileComponent,
+    title: "FibeiGreetings Cards",
   },
   {
     path: "creations",

@@ -1,0 +1,31 @@
+<div [routerLink]="['/card/' + card!.id]" [ngClass]="enable?'cursor my-event':'none my-event'">
+    <div class="div-img w-100 text-center">
+        <img src="../assets/images/new.png" class="new-badge" *ngIf="card!.new"  onContextMenu="return false;">
+        <img src="{{this.imageURL!}}" class="img w-100 h-100" onContextMenu="return false;">
+        <img src="../assets/images/badge-featured.png" class="featured ms-2" *ngIf="card!.featured" onContextMenu="return false;" />
+        <img src="../assets/images/badge-poetry.png"   *ngIf="card.messagetype=='poetry'"  class="poerty" onContextMenu="return false;" />
+    </div>
+    <div class="title">
+        <ion-label >{{card.name!.replace('Gifts for ', '')}}</ion-label>
+    </div>
+    <div class="details">
+        <div class="" *ngIf="card.type != 'postcard'">
+          <div class="price" *ngIf="getPrice() > 0">{{priceService.getSign()}} {{getPrice() | number:'1.2-2'}}</div>
+          <div class="price" *ngIf="getPrice() == 0">Free</div>
+        </div>
+        <div class="" *ngIf="card.type == 'postcard'">
+          <div class="row">
+            <div class="col-12" *ngFor="let bundle of bundles">
+              <p *ngIf="priceService.getPostcardBundlePrice(bundle) > 0">{{bundle.count + ' pcs for ' + priceService.getSign() + ' ' + priceService.getPostcardBundlePrice(bundle).toFixed(2)}}</p>
+              <p *ngIf="priceService.getPostcardBundlePrice(bundle) == 0">{{bundle.count + ' pcs for Free'}}</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 text-end">
+          <img src="../assets/images/badge-sticker-free.png" class="sticker ms-2 cursor" *ngIf="card!.type == 'sticker' && card!.price == 18" [routerLink]="getStickerLink()" onContextMenu="return false;" />
+        </div>
+        <div class="col-6 text-right">
+          <app-rating-decimal cardId="{{card!.id}}" size="sm"></app-rating-decimal>
+        </div>
+    </div>
+</div>

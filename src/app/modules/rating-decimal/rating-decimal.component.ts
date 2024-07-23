@@ -9,6 +9,8 @@ import { CardService } from 'src/app/services/card.service';
 })
 export class RatingDecimalComponent implements OnInit {
   @Input() cardId?: string;
+  @Input() size?: string = "";
+
   ratings: Rating[] = [];
   norecords: boolean;
   service: CardService;

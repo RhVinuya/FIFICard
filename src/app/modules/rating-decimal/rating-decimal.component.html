@@ -1,5 +1,5 @@
 <ng-template #t let-fill="fill">
-  <span class="star" [class.full]="fill === 100">
+  <span [class.full]="fill === 100"  [ngClass]="size != ''? 'star-' + size:'star'">
     <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
   </span>
 </ng-template>
@@ -8,6 +8,6 @@
   <!-- style="display: flex;" -->
   <div style="text-align: left;">
     <ngb-rating [(rate)]="currentRate" [starTemplate]="t" [readonly]="true" [max]=5></ngb-rating>
-    <div>({{currentRate.toFixed(2)}}/{{rateCount}}) Reviews</div>
+    <div [ngClass]="size != ''? 'rating-' + size:''">({{currentRate.toFixed(2)}}/{{rateCount}}) Reviews</div>
   </div>
 </div>

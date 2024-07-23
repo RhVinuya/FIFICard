@@ -159,6 +159,9 @@ import { GiftsEventsMobileComponent } from "./modules/gifts-events-mobile/gifts-
 import { GiftEventMobileComponent } from "./modules/gifts-events-mobile/gift-event-mobile/gift-event-mobile.component";
 import { GamesMobileComponent } from "./games-mobile/games-mobile.component";
 import { PostcardsMobileComponent } from './postcards-mobile/postcards-mobile.component';
+import { CardsMobileComponent } from './cards-mobile/cards-mobile.component';
+import { CardListMobileComponent } from './card-list-mobile/card-list-mobile.component';
+import { CardMobileComponent } from './card-mobile/card-mobile.component';
 
 @NgModule({
   declarations: [
@@ -292,6 +295,9 @@ import { PostcardsMobileComponent } from './postcards-mobile/postcards-mobile.co
     GiftEventMobileComponent,
     GamesMobileComponent,
     PostcardsMobileComponent,
+    CardsMobileComponent,
+    CardListMobileComponent,
+    CardMobileComponent
   ],
   imports: [
     BrowserModule,

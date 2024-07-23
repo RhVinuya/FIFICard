@@ -1,0 +1,85 @@
+<div class="row justify-content-end mb-4" *ngIf="((allCards.length > 0) && (mode != 'clipart') && (mode != 'postcard') && (mode != 'sticker'))" id="data-top">
+    
+    <div class="col-xs-12 col-sm-6 col-md-2 col-lg-2 my-auto">
+        <p>{{'cards.filter'|translate}}</p>
+    </div>
+
+    <div class="" *ngIf="filterCategories.length > 0">
+        <select class="form-select" aria-label="Category" (change)="changeCategory($event)">
+            <option value="" [selected]="select == ''">Categories</option>
+            <option *ngFor="let category of filterCategories" [value]="category">{{category}}</option>
+        </select>
+    </div>
+    <div class="">
+        <ion-select interface="popover" placeholder="Select" [(ngModel)]="select" (ngModelChange)="changeSelect($event)">
+            <ion-select-option value="" >Select</ion-select-option>
+            <ion-select-option value="featured" >Featured</ion-select-option>
+            <ion-select-option value="bestseller">Best Seller</ion-select-option>
+        </ion-select>
+    </div>
+    <div class="" *ngIf="mode == 'card' && !nomessagetype">
+
+        <ion-select placeholder="Message Type" [(ngModel)]="message" (ngModelChange)="changeMessage($event)">
+            <ion-select-option value="" >Message Type</ion-select-option>
+            <ion-select-option value="regular" >Regular Message</ion-select-option>
+            <ion-select-option value="poetry" >Poetry Message</ion-select-option>
+        </ion-select>
+
+    </div>
+    <div class="" *ngIf="mode == 'card'">
+        <ion-select class="form-select" aria-label="Type" placeholder="Card Type" (ngModelChange)="changeType($event)">
+            <ion-select-option value="" >Card Type</ion-select-option>
+            <ion-select-option *ngFor="let item of types" [value]="item.name" >{{item.name}}</ion-select-option>
+        </ion-select>
+    </div>
+    <div class="">
+        <ion-select interface="popover" aria-label="Budget" placeholder="{{'cards.budget'|translate}}" [(ngModel)]="message" (ngModelChange)="changeBudget($event)">
+            <ion-select-option value="0 - 99" >0 - 99.00</ion-select-option>
+            <ion-select-option value="100 - 199" >100.00 - 199.00</ion-select-option>
+            <ion-select-option value="200 and Up" >200.00 and Up</ion-select-option>
+        </ion-select>
+    </div>
+    <div class="">
+        <ion-select interface="popover" aria-label="Sort By" [(ngModel)]="sort" placeholder="{{'cards.sort'|translate}}" (ngModelChange)="changeSort($event)">
+            <ion-select-option value="Latest" >{{'cards.latest'|translate}}</ion-select-option>
+            <ion-select-option value="Price from Low to High" >{{'cards.lowtohigh'|translate}}</ion-select-option>
+            <ion-select-option value="Price from High to Low" >{{'cards.hightolow'|translate}}</ion-select-option>
+            <ion-select-option value="Highest Ratings" >Highest Ratings</ion-select-option>
+        </ion-select>
+    </div>
+</div>
+
+
+<div class="row mb-4" *ngIf="(mode !== 'clipart') && (mode !== 'postcard') && (mode != 'sticker')">
+    <div class="col-md-12 my-recipient pb-2">
+
+        <div class="scrolling-wrapper">
+            <ion-button  
+                *ngFor="let recipient of recipients" 
+                (click)="onRecipientClick(recipient)"  
+                color="primary"
+                [fill]="selectedRecipient==recipient?'solid':'outline'"
+            >
+                {{recipient}}
+            </ion-button>
+        </div>
+        
+    </div>
+</div>
+<div class="row pb-5">
+    <div class="col-6" *ngFor="let card of displayCards">
+        <app-card-mobile [card]="card" *ngIf="['card','gift','sticker','postcard'].includes(card.type)"></app-card-mobile>
+        <app-ecard [card]="card" *ngIf="card.type == 'ecard'"></app-ecard>
+        <app-clipart-card [clipart]="card" *ngIf="card.type == 'clipart'"></app-clipart-card>
+    </div>
+</div>
+<div class="row justify-content-md-center">
+    <div class="col-md-4 col-sm-12 text-center mb-2">
+        {{'cards.showing'|translate}} 1 - {{displayCards.length}} {{'cards.to'|translate}} {{sortCards.length}} {{'cards.items'|translate}}
+    </div>
+</div>
+<div class="row justify-content-md-center" *ngIf="sortCards.length > displayCards.length">
+    <div class="col-md-4 col-sm-12 d-grid">
+        <button class="loadmore" (click)="onLoadMoreClick()">LOAD MORE</button>
+    </div>
+</div>
