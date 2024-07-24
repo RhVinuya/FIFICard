@@ -64,6 +64,7 @@ export class AddMoreComponent implements OnInit {
 
   getGifts(ix: number) {
     if (ix < this.recipients.length) {
+      
       if (this.recipients[ix].toLowerCase() != 'all') {
         this.service.getGiftsByRecipient(this.recipients[ix]).then(cards => {
           cards.forEach(card => {
@@ -75,7 +76,8 @@ export class AddMoreComponent implements OnInit {
         });
       }
       else {
-        this.getAllGifts();
+        this.loadBatch();
+        //this.getAllGifts();
       }
     }
     else {
