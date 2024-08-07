@@ -11,9 +11,10 @@ export class Payment {
     public transactionId: string;
     public payerId: string;
     public payerEmail: string;
-    public status: string;
+    public status: string;  
     public created: Timestamp;
     public stripe: StripeDetails | null;
+    public specialcode: string;
 }
 
 export class StripeDetails {

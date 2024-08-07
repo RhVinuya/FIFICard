@@ -16,7 +16,7 @@ export class PaymentService {
   constructor(
     _storage: Storage,
     _store: Firestore
-  ) { 
+  ) {
     this.storage = _storage;
     this.store = _store;
   }
@@ -24,37 +24,37 @@ export class PaymentService {
   private getRandomString(): string {
     var randomChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     var result = '';
-    for ( var i = 0; i < 20; i++ ) {
-        result += randomChars.charAt(Math.floor(Math.random() * randomChars.length));
+    for (var i = 0; i < 20; i++) {
+      result += randomChars.charAt(Math.floor(Math.random() * randomChars.length));
     }
     return result;
   }
 
-  uploadFile(file: File): Promise<UploadResult>{
+  uploadFile(file: File): Promise<UploadResult> {
     let id = this.getRandomString();
     const reference = ref(this.storage, 'payment/' + id);
     return uploadBytes(reference, file);
   }
 
-  async getInitial(): Promise<string>{
+  async getInitial(): Promise<string> {
     return new Promise((resolve, rejects) => {
       const col = collection(this.store, 'status');
       const q = query(col, orderBy("order", "asc"))
       getDocsFromServer(q).then(docs => {
-        if (docs.empty === false){
+        if (docs.empty === false) {
           docs.forEach(doc => {
             let status: Status = doc.data() as Status;
             resolve(status.name)
           })
         }
-        else{
+        else {
           resolve("New");
         }
       })
     });
   }
 
-  async createPayment(payment: Payment): Promise<string>{
+  async createPayment(payment: Payment): Promise<string> {
     return new Promise((resolve) => {
       let details = null;
       if (payment.stripe) {
@@ -63,7 +63,7 @@ export class PaymentService {
           type: payment.stripe.type,
           brand: payment.stripe.brand,
           amount: payment.stripe.amount,
-          last4: payment.stripe.last4 ,
+          last4: payment.stripe.last4,
         }
       }
 
@@ -73,13 +73,14 @@ export class PaymentService {
         gateway: payment.gateway,
         orders: payment.orders,
         total: Number(payment.total),
-        proof: payment.proof?payment.proof:"",
-        transactionId: payment.transactionId?payment.transactionId:"",
-        payerId: payment.payerId?payment.payerId:"",
-        payerEmail: payment.payerEmail?payment.payerEmail:"",
+        proof: payment.proof ? payment.proof : "",
+        transactionId: payment.transactionId ? payment.transactionId : "",
+        payerId: payment.payerId ? payment.payerId : "",
+        payerEmail: payment.payerEmail ? payment.payerEmail : "",
         status: payment.status,
         created: serverTimestamp(),
-        stripe: details
+        stripe: details,
+        specialcode: payment.specialcode ? payment.specialcode : ""
       }).then(docRef => {
         resolve(docRef.id);
       });
@@ -95,5 +96,5 @@ export class PaymentService {
       })
     });
   }
-  
+
 }

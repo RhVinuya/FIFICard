@@ -14,6 +14,10 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ImageService } from 'src/app/services/image.service';
 import { StorageService } from 'src/app/services/storage.service';
 import { User } from 'src/app/models/user';
+import { SpecialCode } from 'src/app/models/special-code';
+import { SpecialCodeService } from 'src/app/services/special-code.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AlertController } from '@ionic/angular';
 
 
 @Component({
@@ -38,7 +42,9 @@ export class CartTotalComponent implements OnInit {
   emailService: EmailService;
   imageService: ImageService;
   storageService: StorageService;
+  specialCodeService: SpecialCodeService;
   modalService: NgbModal;
+  alertController: AlertController;
 
   constructor(
     _priceService: PriceService,
@@ -49,7 +55,9 @@ export class CartTotalComponent implements OnInit {
     _emailService: EmailService,
     _imageService: ImageService,
     _storageService: StorageService,
-    _modalService: NgbModal
+    _specialCodeService: SpecialCodeService,
+    _modalService: NgbModal,
+    _alertController: AlertController
   ) {
     this.priceService = _priceService;
     this.cardService = _cardService;
@@ -59,7 +67,9 @@ export class CartTotalComponent implements OnInit {
     this.emailService = _emailService;
     this.imageService = _imageService;
     this.storageService = _storageService;
+    this.specialCodeService = _specialCodeService;
     this.modalService = _modalService;
+    this.alertController = _alertController;
   }
 
   allOrders: any[] = [];
@@ -80,8 +90,18 @@ export class CartTotalComponent implements OnInit {
   payPalConfig?: IPayPalConfig;
   stripeProcess: boolean = false;
 
+  specialCodes: SpecialCode[] = [];
+  codeSubmitted: true;
+  codeError: string = '';
+
+
+  form = new FormGroup({
+    code: new FormControl('', [Validators.required, Validators.maxLength(5)]),
+  });
+
   ngOnInit(): void {
     this.paymentService.getInitial().then(status => this.initalStatus = status);
+    this.specialCodeService.get().then(codes => this.specialCodes = codes);
   }
 
   checkIfSelected(id: string): boolean {
@@ -160,7 +180,7 @@ export class CartTotalComponent implements OnInit {
     })
   }
 
-  saveTransaction(gateway: 'NOGATEWAY' | 'GCash' | 'PayPal') {
+  saveTransaction(gateway: 'NOGATEWAY' | 'GCash' | 'PayPal' | 'Special Code', specialcode: string = '') {
     let items: string[] = this.selected.map(x => x.id!);
 
     let payment: Payment = new Payment();
@@ -168,13 +188,16 @@ export class CartTotalComponent implements OnInit {
     payment.orders = items;
     payment.gateway = gateway;
 
-    if (gateway == "GCash") {
+    if (gateway === "GCash") {
       payment.proof = this.gcashUploadedFile;
     }
-    else if (gateway == "PayPal") {
+    else if (gateway === "PayPal") {
       payment.transactionId = this.payPalTransactionId;
       payment.payerId = this.payPalPayerId;
       payment.payerEmail = this.payPalPayerEmail;
+    }
+    else if (gateway === "Special Code") {
+      payment.specialcode = specialcode;
     }
     payment.total = this.total;
     payment.status = this.initalStatus;
@@ -372,6 +395,46 @@ export class CartTotalComponent implements OnInit {
   deleteAll() {
     let ids: string[] = this.selected.map(x => x.id);
     this.delete(ids);
+  }
+
+  async onVerify() {
+    this.codeSubmitted = true;
+    if (this.form.invalid) {
+      return;
+    }
+    this.codeError = "";
+    let idx = this.specialCodes.findIndex(x => x.code === this.form.value.code!.toUpperCase())
+    if (idx >= 0) {
+      let code = this.specialCodes[idx];
+      if (code.active) {
+        const alert = await this.alertController.create({
+          header: 'Special Code',
+          message: "Special Code " + code.code + " is valid. Do you want to complete the transaction?",
+          buttons: [
+            {
+              text: "YES",
+              role: "Yes",
+              handler: async () => {
+                this.form.controls.code.setValue("");
+                this.saveTransaction('Special Code', code.code);
+              }
+            },
+            {
+              text: "NO",
+              role: "no"
+            }
+          ],
+        });
+
+        await alert.present();
+      }
+      else {
+        this.codeError = "Special Code Inactive"
+      }
+    }
+    else {
+      this.codeError = "Invalid Special Code"
+    }
   }
 
 }
