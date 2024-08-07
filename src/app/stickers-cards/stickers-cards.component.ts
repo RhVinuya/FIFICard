@@ -55,7 +55,7 @@ export class StickersCardsComponent implements OnInit {
       this.cards = this.original.sort( (a, b) => { 
         return  a.price - b.price
       });
-
+      
       this.allEvents = await  this.eventService.getEventSticker();
       this.occassions = this.allEvents.filter(x => x.tag === 'Occasions');
       this.others = this.allEvents.filter(x => x.tag === 'Others');

@@ -150,35 +150,41 @@ export class CardListComponent implements OnInit {
   }
 
   applyDisplayFilterAndSort() {
-    this.sortCards = this.filterCards;
+    if (this.mode === 'sticker') {
+      this.sortCards = this.filterCards;
+    }
+    else {
+      this.sortCards = this.filterCards;
 
-    if (this.category != '') {
-      this.sortCards = this.filterForCategories(this.category, this.sortCards);
-    }
-    if (this.budget != '') {
-      this.sortCards = this.filterForBudget(this.budget, this.sortCards);
-    }
-    if (this.type != '') {
-      this.sortCards = this.filterForType(this.type, this.sortCards);
-    }
-    if (this.message != '') {
-      this.sortCards = this.filterForMessageType(this.message, this.sortCards);
-    }
-    if (this.select != '') {
-      this.sortCards = this.filterForSelect(this.select, this.sortCards);
-    }
-    this.sortCards = this.sortRecord(this.sort, this.sortCards);
-
-    if (this.priority != '') {
-      let index: number = this.sortCards.findIndex(x => x.id! == this.priority);
-      if (index >= 0) {
-        let card = this.sortCards[index];
-        this.sortCards.splice(index, 1);
-        this.sortCards.unshift(card);
+      if (this.category != '') {
+        this.sortCards = this.filterForCategories(this.category, this.sortCards);
       }
+      if (this.budget != '') {
+        this.sortCards = this.filterForBudget(this.budget, this.sortCards);
+      }
+      if (this.type != '') {
+        this.sortCards = this.filterForType(this.type, this.sortCards);
+      }
+      if (this.message != '') {
+        this.sortCards = this.filterForMessageType(this.message, this.sortCards);
+      }
+      if (this.select != '') {
+        this.sortCards = this.filterForSelect(this.select, this.sortCards);
+      }
+      this.sortCards = this.sortRecord(this.sort, this.sortCards);
+  
+      if (this.priority != '') {
+        let index: number = this.sortCards.findIndex(x => x.id! == this.priority);
+        if (index >= 0) {
+          let card = this.sortCards[index];
+          this.sortCards.splice(index, 1);
+          this.sortCards.unshift(card);
+        }
+      }
+  
+      this.displayCards = [];
     }
-
-    this.displayCards = [];
+    
     this.loadItems();
   }
 
@@ -530,14 +536,6 @@ export class CardListComponent implements OnInit {
     let start = this.displayCards.length + 1;
     let end = this.displayCards.length + this.batchLimit + 1;
     this.displayCards = [...this.displayCards, ...this.sortCards.slice(start - 1, end - 1)];
-        
-    if(this.mode == 'sticker' || this.mode == "postcard") {
-      this.displayCards = this.displayCards.sort( (a, b) => { 
-        return  a.price - b.price
-      });
-      
-    }
-
   }
 
   onLoadMoreClick() {
