@@ -52,7 +52,13 @@ export class StickersCardsComponent implements OnInit {
     await loading.present();
     try {
       this.original = await this.cardService.getCardsByType("sticker");
-      this.cards = this.original;
+      this.cards = this.original.sort( (a, b) => { 
+        return  a.price - b.price
+      });
+
+      this.cards.forEach( x => {
+        console.log(x.price);
+      })
       this.allEvents = await  this.eventService.getEventSticker();
       this.occassions = this.allEvents.filter(x => x.tag === 'Occasions');
       this.others = this.allEvents.filter(x => x.tag === 'Others');
@@ -85,6 +91,14 @@ export class StickersCardsComponent implements OnInit {
       }
     }
     finally{
+      
+      this.cards = this.cards.sort( (a, b) => { 
+        return  a.price - b.price
+      });
+
+      this.cards.forEach( x => {
+        console.log(x.price);
+      })
       await loading.dismiss();
       const element = document.getElementById('items');
       if (element != null) {
@@ -93,4 +107,5 @@ export class StickersCardsComponent implements OnInit {
 
     }
   }
+
 }

@@ -457,6 +457,7 @@ export class CardListComponent implements OnInit {
         page.selected = false;
       }
     });
+
     if (this.index == 1) {
       this.disablePrev = false;
       this.disableNext = true;
@@ -529,6 +530,18 @@ export class CardListComponent implements OnInit {
     let start = this.displayCards.length + 1;
     let end = this.displayCards.length + this.batchLimit + 1;
     this.displayCards = [...this.displayCards, ...this.sortCards.slice(start - 1, end - 1)];
+        
+    if(this.mode == 'sticker' || this.mode == "postcard") {
+      this.displayCards = this.displayCards.sort( (a, b) => { 
+        return  a.price - b.price
+      });
+
+      this.displayCards.forEach( x => {
+        console.log(x.price);
+      })
+      
+    }
+
   }
 
   onLoadMoreClick() {
