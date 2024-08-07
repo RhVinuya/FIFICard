@@ -535,10 +535,6 @@ export class CardListComponent implements OnInit {
       this.displayCards = this.displayCards.sort( (a, b) => { 
         return  a.price - b.price
       });
-
-      this.displayCards.forEach( x => {
-        console.log(x.price);
-      })
       
     }
 

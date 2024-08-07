@@ -56,9 +56,6 @@ export class StickersCardsComponent implements OnInit {
         return  a.price - b.price
       });
 
-      this.cards.forEach( x => {
-        console.log(x.price);
-      })
       this.allEvents = await  this.eventService.getEventSticker();
       this.occassions = this.allEvents.filter(x => x.tag === 'Occasions');
       this.others = this.allEvents.filter(x => x.tag === 'Others');
@@ -96,9 +93,6 @@ export class StickersCardsComponent implements OnInit {
         return  a.price - b.price
       });
 
-      this.cards.forEach( x => {
-        console.log(x.price);
-      })
       await loading.dismiss();
       const element = document.getElementById('items');
       if (element != null) {
