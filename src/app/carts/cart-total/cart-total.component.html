@@ -49,9 +49,6 @@
             </div>
             <div class="row pt-2" *ngIf="isPayment == true">
                 <div class="col-12">
-                    <!--
-                    <ngx-paypal [config]="payPalConfig"></ngx-paypal>
-                    -->
                     <button class="btn btn-success btn-block w-100" [disabled]="total == 0 || stripeProcess" (click)="payStripe()">
                         <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" *ngIf="stripeProcess"></span>
                         <span class="ps-2" *ngIf="stripeProcess">Loading...</span>
@@ -62,68 +59,6 @@
         </div>
     </div>
 </div>
-<!--
-<div class="row total">
-    <div class="col-md-1"></div>
-    <div class="col-12 col-md-9 text-end">Total:</div>
-    <div class="col-12 col-md-2 text-end"><strong class="total">{{priceService.locationSign(location)}} {{total | number:'1.2-2'}}</strong></div>
-</div>
-<div class="row total" *ngIf="isPayment == false">
-    <div class="col-md-9"></div>
-    <div class="col-md-3 col-12 text-end d-grid px-0">
-        <button class="btn btn-primary" [disabled]="selected.length == 0" (click)="toPay()">To Pay {{priceService.locationSign(location)}} {{this.total.toFixed(2)}}</button>
-    </div>
-</div>
-<div class="row total " *ngIf="location == 'ph' && isPayment == true">
-    <div class="col-md-9"></div>
-    <div class="col-md-3 col-12 text-end d-grid px-0">
-        <button class="btn btn-primary" [disabled]="total == 0" (click)="payNow(gcash_payment)">{{'cart.payviagcash'|translate}}</button>
-    </div>
-</div>
-<div class="row total" *ngIf="isPayment == true">
-    <div class="col-md-9"></div>
-    <div class="col-12 col-md-3 text-end px-0">
-        <ngx-paypal [config]="payPalConfig"></ngx-paypal>
-    </div>
-</div>
-<div class="row">
-    <div class="col-12 py-5"></div>
-</div>
-
-<ng-template #gcash_payment let-modal>
-    <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">{{'cart.scanandpay'|translate}}</h4>
-        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
-    </div>
-    <div class="modal-body">
-        <div class="mb-3">
-            <div class="row">
-                <div class="col-12 mb-2 text-center">
-                    <img src="/assets/images/gcash.png" class="mainitem">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12 mb-2">
-                    <label class="form-label">{{'cart.totalamount'|translate}}: {{priceService.getSign()}} <strong>{{total | number:'1.2-2'}}</strong></label>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12 mb-2">
-                    <input type="hidden" value="">
-                    <label for="formFile" class="form-label">{{'cart.proofofpayment'|translate}}</label>
-                    <input type="file" id="formFile" class="upload" (change)="uploadFile($event)">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12 mb-2">
-                    <button class="btn btn-primary full-size" [disabled]="gcashUploadedFile == ''" (click)="saveTransaction('GCash')">{{'button.submit'|translate}}</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</ng-template>
-
--->
 
 <ng-template #gcash_payment let-modal>
     <div class="modal-header">

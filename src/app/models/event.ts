@@ -10,6 +10,7 @@ export class Event {
     public isSticker: boolean;
     public isPostcard: boolean;
     public isECard: boolean;
+    public isClipart: boolean;
     public image: string;
     public url: string;
     public tag: string;

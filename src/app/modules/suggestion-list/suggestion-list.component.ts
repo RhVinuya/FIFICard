@@ -53,22 +53,52 @@ export class SuggestionListComponent implements OnInit {
     this.isMobile = window.innerWidth <= 500;
   }
 
-  async loadCards(card: Card) {
-    let events: Event[] = await this.eventService.getEvents();
-    let items = [...events.filter(x => x.isCard === true), ...events.filter(x => x.isGift === true), ...events.filter(x => x.isPostcard === true), ...events.filter(x => x.isSticker === true)];
-    let selected: Event[] = [];
-    items.forEach(item => {
-      if (item.name.toLowerCase().includes(card.event.trim().toLowerCase())) {
-        selected.push(item)
-      }
-    })
+  getType(event: Event): 'card' | 'gift' | 'sticker' | 'postcard' | 'ecard' | 'clipart' {
+    if (event.isCard) return 'card'
+    else if (event.isGift) return 'gift'
+    else if (event.isSticker) return 'sticker'
+    else if (event.isPostcard) return 'postcard'
+    else return 'card'
+  }
 
-    let cards: Card[] = []
-    for (let select of selected) {
-      let _cards: Card[] = await this.service.getSuggestions(select.name, 50);
-      cards = [...cards, ..._cards]
-      cards = cards.filter(x => x.id !== card.id);
+  async loadCards(card: Card) {
+    const getCards = (event: Event): Promise<Card[]> => {
+      return new Promise(async resolve => {
+        let primaryEvent: string = card.events[0];
+        if (event.name.toLowerCase().includes(primaryEvent.trim().toLowerCase()) || primaryEvent.trim().toLowerCase().includes(event.name.toLowerCase())){
+          let cards: Card[] = await this.service.getSuggestions(event.name, this.getType(event), 11);
+          cards = cards.filter(x => x.id !== card.id)
+          resolve(cards.slice(0, 10));
+        }
+        else resolve([]);
+      })
     }
+
+    let events: Event[] = await this.eventService.getEvents();
+
+    let cards: Card[] = [];
+    for await (let event of events.filter(x => x.isCard === true)) {
+      let _cards: Card[] = await getCards(event)
+        cards = [...cards, ..._cards]
+    }
+
+    for await (let event of events.filter(x => x.isGift === true)) {
+      let _cards: Card[] = await getCards(event)
+        cards = [...cards, ..._cards]
+    }
+
+    for await (let event of events.filter(x => x.isPostcard === true)) {
+      let _cards: Card[] = await getCards(event)
+        cards = [...cards, ..._cards]
+    }
+
+    for await (let event of events.filter(x => x.isSticker === true)) {
+      let _cards: Card[] = await getCards(event)
+        cards = [...cards, ..._cards]
+    }
+
+    console.log(cards)
+
     this.loadBatch(card, this.shuffle(cards));
     this.getImages();
   }

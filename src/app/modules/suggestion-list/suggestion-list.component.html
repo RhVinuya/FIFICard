@@ -13,7 +13,8 @@
                   <div class="div-img">
                     <img [src]="card.imageUrl" onContextMenu="return false;">
                   </div>
-                  <h6 class="mb-1">{{card.name.toUpperCase()}}</h6>
+                  <h6>{{card.name.toUpperCase()}}</h6>
+                  <h6 class="mb-1">{{card.type.toUpperCase()}}</h6>
                   <img src="assets/images/sign-send-logo.png" *ngIf="card.signAndSend" class="signandsend" onContextMenu="return false;">
                 </a>
               </div>

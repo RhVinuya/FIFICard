@@ -21,51 +21,6 @@
         <p *ngIf="['card','gift','sticker','postcard'].includes(card.type)">{{getShippingFee()}}</p>
     </div>
     <div class="action">
-        <mat-icon class="delete" ="delete()" title="Remove">delete</mat-icon>
-    </div>
-    <!--
-    <div class="col-md-1 col-2 allign-center valign-center">
-        <input type="checkbox" [checked]="mark" (change)="updateInclude()">
-    </div>
-    <div class="col-md-1 col-10 valign-center text-center">
-        <app-image-loader [img]="url"></app-image-loader>
-    </div>
-    <div class="col-md-6 col-12 valign-center">
-        <div class="row">
-            <div class="col-12" *ngIf="card">
-                <span><strong>{{card.name}}</strong></span>
-            </div>
-            <div class="col-12" *ngIf="card">
-                {{'cart.description'|translate}}: <strong>{{card.description}}</strong>
-            </div>
-            <div class="col-12" *ngIf="!order.parentOrder">
-                {{'cart.receiver'|translate}}: <strong>{{order.receiver_name}}</strong>
-            </div>
-            <div class="col-12" *ngIf="!order.receiver_email">
-                Receiver Email: <strong>{{order.receiver_email}}</strong>
-            </div>
-            <div class="col-12" *ngIf="!order.parentOrder && card.type == 'card'">
-                {{'cart.signandsend'|translate}}: <strong>{{order.withSignAndSend?'Yes':'No'}}</strong>
-            </div>
-            <div class="col-12" *ngIf="!order.parentOrder && card.type == 'card'">
-                {{'cart.type'|translate}}: <strong>{{order.type}}</strong>
-            </div>
-            <div class="col-12" *ngIf="order.created">
-                {{'cart.date'|translate}}: {{order.created!.seconds * 1000 | date:'medium'}}
-            </div>
-        </div>
-    </div>
-    <div class="col-md-1 col-6 contols">
         <mat-icon class="delete" (click)="delete()" title="Remove">delete</mat-icon>
     </div>
-    <div class="col-md-2 col-6 valign-center allign-right">
-        <span><strong>{{getPrice()}}</strong></span><br />
-        <span *ngIf="card.type != 'ecard'">{{'cart.shippingfee'|translate}}</span>
-    </div>
-    <div class="col-md-1 col-6 allign-right pr-0 valign-center">
-        <span *ngIf="!order.bundle"><strong>{{getSign()}} {{(order.card_price! * (order.count?order.count:1))| number:'1.2-2'}}</strong></span><br />
-        <span *ngIf="order.bundle"><strong>{{getSign()}} {{(order.card_price!)| number:'1.2-2'}}</strong></span><br />
-        <span *ngIf="card.type != 'ecard'"><strong>{{getShippingFee()}}</strong></span>
-    </div>
--->
 </div>

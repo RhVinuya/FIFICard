@@ -38,13 +38,13 @@ export class CartsComponent implements OnInit {
   }
 
   loadUserCard() {
-    this.userService.getUser(this.uid).then(user => {
+    this.userService.getUser(this.uid).then(async user => {
       this.phOrder = [];
       this.usOrder = [];
       this.sgOrder = [];
 
       if (user.carts) {
-        user.carts.forEach(async cart => {
+        for await (let cart of user.carts) {
           let order = await this.orderService.getOrder(cart);
           if (order) {
             if (order.location == 'us') {
@@ -57,11 +57,11 @@ export class CartsComponent implements OnInit {
               this.phOrder.push(order);
             }
           }
-        });
+        }
       }
 
       if (user.ecarts) {
-        user.ecarts.forEach(async cart => {
+        for await (let cart of user.ecarts) {
           let order = await this.orderService.getECardOrder(cart);
           if (order) {
             if (order.location == 'us') {
@@ -74,7 +74,7 @@ export class CartsComponent implements OnInit {
               this.phOrder.push(order);
             }
           }
-        });
+        }
       }
     })
   }

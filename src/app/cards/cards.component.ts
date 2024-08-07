@@ -46,6 +46,7 @@ export class CardsComponent implements OnInit {
   activateRoute: ActivatedRoute;
   def: ChangeDetectorRef;
   loadingController: LoadingController;
+  location: Location
 
   cards: Card[] = [];
   eventDetails: Event | undefined = undefined;
@@ -54,16 +55,16 @@ export class CardsComponent implements OnInit {
   priority: string = '';
 
   constructor(
-    private _title: Title,
-    private _service: CardService,
-    private _eventService: EventService,
-    private _imageService: ImageService,
-    private _filterService: FilterService,
-    private _serviceRecipient: RecipientService,
-    private _activateRoute: ActivatedRoute,
-    private _def: ChangeDetectorRef,
-    private _loadingController: LoadingController,
-    private location: Location
+    _title: Title,
+    _service: CardService,
+    _eventService: EventService,
+    _imageService: ImageService,
+    _filterService: FilterService,
+    _serviceRecipient: RecipientService,
+    _activateRoute: ActivatedRoute,
+    _def: ChangeDetectorRef,
+    _loadingController: LoadingController,
+    _location: Location
   ) {
     this.title = _title;
     this.service = _service;
@@ -74,6 +75,7 @@ export class CardsComponent implements OnInit {
     this.loadingController = _loadingController;
     this.activateRoute = _activateRoute;
     this.def = _def;
+    this.location = _location;
   }
 
   ngOnInit(): void {
@@ -102,7 +104,7 @@ export class CardsComponent implements OnInit {
         this.title.setTitle(this.event);
         this.caption = this.event;
         this.def.detectChanges();
-      
+
         let priority = environment.priority.find(x => x.event.toUpperCase() === event.name!.toUpperCase())
         if (priority) {
           this.priority = priority.card;
@@ -246,17 +248,17 @@ export class CardsComponent implements OnInit {
 
     return new Promise(async resolve => {
       let data = await this.service.getCardsByEvent(search)
-      if (data.length > 0){
+      if (data.length > 0) {
         resolve(data);
       }
-      
+
       data = await this.service.getSearchCards('search_name', value);
-      if (data.length > 0){
+      if (data.length > 0) {
         resolve(data);
       }
 
       data = await this.service.getSearchCards('search_description', value);
-      if (data.length > 0){
+      if (data.length > 0) {
         resolve(data);
       }
     })

@@ -54,10 +54,10 @@ export class CardService {
     });
   }
 
-  getSuggestions(_event: string, limit: number): Promise<Card[]> {
+  getSuggestions(_event: string, _type: 'card' | 'gift' | 'sticker' | 'postcard' | 'ecard' | 'clipart' | 'epostcard', limit: number): Promise<Card[]> {
     return new Promise((resolve) => {
       const col = collection(this.store, 'cards');
-      const q = query(col, where('active', "==", true), where('event', "==", _event), orderBy("featured"), limitToLast(limit))
+      const q = query(col, where('active', "==", true), where('events', "array-contains", _event), where('type', "==", _type), orderBy("featured"), limitToLast(limit))
       getDocsFromServer(q).then(docs => {
         let cards: Card[] = [];
         docs.forEach(doc => {
@@ -102,7 +102,7 @@ export class CardService {
     });
   }
 
-  getCardsByTypeAndEvent(_type: 'card' | 'gift' | 'sticker' | 'postcard' | 'ecard' | 'clipart', _event: string): Promise<Card[]> {
+  getCardsByTypeAndEvent(_type: 'card' | 'gift' | 'sticker' | 'postcard' | 'ecard' | 'clipart' | 'epostcard', _event: string): Promise<Card[]> {
     return new Promise((resolve) => {
       const col = collection(this.store, 'cards');
       const q = query(col, where('events', "array-contains", _event), where('active', "==", true), where('type', "==", _type))
