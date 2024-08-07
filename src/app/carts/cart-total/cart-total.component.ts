@@ -93,6 +93,7 @@ export class CartTotalComponent implements OnInit {
   specialCodes: SpecialCode[] = [];
   codeSubmitted: true;
   codeError: string = '';
+  processing: boolean = false;
 
 
   form = new FormGroup({
@@ -180,39 +181,37 @@ export class CartTotalComponent implements OnInit {
     })
   }
 
-  saveTransaction(gateway: 'NOGATEWAY' | 'GCash' | 'PayPal' | 'Special Code', specialcode: string = '') {
-    let items: string[] = this.selected.map(x => x.id!);
+  async saveTransaction(gateway: 'NOGATEWAY' | 'GCash' | 'PayPal' | 'Special Code', specialcode: string = '') {
+    this.processing = true;
+    try {
+      let items: string[] = this.selected.map(x => x.id!);
 
-    let payment: Payment = new Payment();
-    payment.user_id = this.uid;
-    payment.orders = items;
-    payment.gateway = gateway;
+      let payment: Payment = new Payment();
+      payment.user_id = this.uid;
+      payment.orders = items;
+      payment.gateway = gateway;
 
-    if (gateway === "GCash") {
-      payment.proof = this.gcashUploadedFile;
-    }
-    else if (gateway === "PayPal") {
-      payment.transactionId = this.payPalTransactionId;
-      payment.payerId = this.payPalPayerId;
-      payment.payerEmail = this.payPalPayerEmail;
-    }
-    else if (gateway === "Special Code") {
-      payment.specialcode = specialcode;
-    }
-    payment.total = this.total;
-    payment.status = this.initalStatus;
+      if (gateway === "GCash") {
+        payment.proof = this.gcashUploadedFile;
+      }
+      else if (gateway === "PayPal") {
+        payment.transactionId = this.payPalTransactionId;
+        payment.payerId = this.payPalPayerId;
+        payment.payerEmail = this.payPalPayerEmail;
+      }
+      else if (gateway === "Special Code") {
+        payment.specialcode = specialcode;
+      }
+      payment.total = this.total;
+      payment.status = this.initalStatus;
 
-    this.paymentService.createPayment(payment).then(async paymentId => {
+      let paymentId = await this.paymentService.createPayment(payment);
       await this.userService.addPayment(this.uid, paymentId);
-      this.selected.forEach(async order => {
+      for await (let order of this.selected) {
         let card = await this.cardService.getACard(order.card_id!);
 
-        if (card.type != 'ecard') {
-          await this.orderService.updatePaidOrder(order.id!, paymentId);
-        }
-        else {
-          await this.orderService.updatePaidECardOrder(order.id!, paymentId);
-        }
+        if (card.type != 'ecard') await this.orderService.updatePaidOrder(order.id!, paymentId);
+        else await this.orderService.updatePaidECardOrder(order.id!, paymentId);
 
         await this.userService.addOrder(this.uid, order.id!);
 
@@ -224,16 +223,10 @@ export class CartTotalComponent implements OnInit {
         else orders = [order.id!];
         await this.cardService.updateCardOrder(order.card_id!, orders);
 
-        if (card.type == 'ecard') {
-          await this.userService.removeItemOnECart(this.uid, order.id!);
-        }
-        else {
-          await this.userService.removeItemOnCart(this.uid, order.id!);
-        }
+        if (card.type == 'ecard') await this.userService.removeItemOnECart(this.uid, order.id!);
+        else await this.userService.removeItemOnCart(this.uid, order.id!);
 
-        if (card.type == 'ecard') {
-          await this.sendECardEmail(order as OrderECard);
-        }
+        if (card.type == 'ecard') await this.sendECardEmail(order as OrderECard);
 
         let index = this.selected.findIndex(x => x.id == order.id!)
         this.selected.splice(index, 1);
@@ -244,8 +237,11 @@ export class CartTotalComponent implements OnInit {
         this.calculateTotal();
 
         this.gcashRef.close('');
-      });
-    });
+      }
+    }
+    finally {
+      this.processing = true;
+    }
   }
 
   setPayPal() {

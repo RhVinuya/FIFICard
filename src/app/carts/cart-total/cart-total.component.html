@@ -48,16 +48,20 @@
                         <div class="input-group mb-1">
                             <input type="text" class="form-control" placeholder="Enter Special Code" formControlName="code"
                                 [ngClass]="{ 'is-invalid': codeSubmitted && form.controls.code.errors}" [disabled]="specialCodes.length === 0">
-                            <button class="btn btn-outline-primary" type="submit">Verify</button>
+                            <button class="btn btn-outline-primary" type="submit" [disabled]="processing">
+                                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" *ngIf="processing"></span>
+                                Verify
+                            </button>
                         </div>
                         <span *ngIf="codeError !== ''" class="text-danger" style="font-size: 0.8rem;"><i class="bi bi-info-circle-fill me-1"></i>{{codeError}}</span>
                     </form>
                 </div>
 
-                <button class="btn btn-warning btn-block w-100 mb-2" [disabled]="total == 0" (click)="payNow(gcash_payment)" *ngIf="location == 'ph'">
+                <button class="btn btn-warning btn-block w-100 mb-2" [disabled]="total == 0 || processing" (click)="payNow(gcash_payment)" *ngIf="location == 'ph'">
                     {{'cart.payviagcash'|translate}}
                 </button>
-                <button class="btn btn-success btn-block w-100 mb-2" [disabled]="total == 0 || stripeProcess" (click)="payStripe()">
+
+                <button class="btn btn-success btn-block w-100 mb-2" [disabled]="total == 0 || stripeProcess || processing" (click)="payStripe()">
                     <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" *ngIf="stripeProcess"></span>
                     <span class="ps-2" *ngIf="stripeProcess">Loading...</span>
                     <span *ngIf="!stripeProcess">Pay via Stripe</span>
