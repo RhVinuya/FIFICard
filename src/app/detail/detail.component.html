@@ -16,7 +16,7 @@
                     <div class="col-lg-6 col-sm-12 mb-4">
                         <app-imagegrid [card]="card"
                             *ngIf="['card','gift','sticker','postcard', 'clipart'].includes(card.type)"
-                            [glittered]="isGlittered()"></app-imagegrid>
+                            [glittered]="card.type === 'card'"></app-imagegrid>
                         <app-ecard-image-grid id="{{id}}" *ngIf="['ecard'].includes(card.type)"></app-ecard-image-grid>
                         <app-rating id2="{{id}}" class="d-sm-none d-md-block"></app-rating>
                     </div>
