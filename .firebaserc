@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "fifi-greetings"
+    "development": "fibeigreetings-development",
+    "production": "fifi-greetings"
   }
 }
