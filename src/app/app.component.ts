@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { LoginComponent } from './login/login.component';
 import { AuthProcessService } from 'ngx-auth-firebaseui';
 import { map, take } from 'rxjs';
 import firebase from "firebase/compat/app";
@@ -9,6 +8,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { ViewportScroller } from '@angular/common';
 import { Platform } from '@ionic/angular';
 import { NavigationEnd, Router } from '@angular/router';
+import { LoginComponent } from './pages/login/login.component';
 
 @Component({
   selector: 'app-root',
