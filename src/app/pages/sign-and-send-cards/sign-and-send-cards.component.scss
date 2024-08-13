@@ -81,11 +81,6 @@
   cursor: pointer;
 }
 
-.bk-hw {
-  // background-image: url('../../assets/images/newyear/fireworks.gif');
-  background-image: url('../../assets/images/hearts.gif');
-  }
-
 .panel-xmas {
   padding: 20px;
   background: rgb(107 45 152 / 14%);
@@ -118,30 +113,30 @@
   margin-right: 15px;
   border-radius: 0 15px 15px 0;
 }
-.f-title
-{
+
+.f-title {
   font-family: 'Proxima Nova';
-    font-size: 30px;
-    font-weight: bold;
-    text-align: center; 
-    color: #5e17eb;
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+  color: #5e17eb;
 }
-.f-links
-{
+
+.f-links {
   background: #fddfe5;
-    font-family: 'Proxima Nova';
-    font-size: 30px;
-    font-weight: bold;
-    color: #5e17eb;
-    border: 2px solid #5e17eb;
-    padding: 10px;
-    text-align: center;
-    border-radius: 12px;
-    cursor: pointer;
-    opacity: 0.8;
-    margin-bottom: 12px;
+  font-family: 'Proxima Nova';
+  font-size: 30px;
+  font-weight: bold;
+  color: #5e17eb;
+  border: 2px solid #5e17eb;
+  padding: 10px;
+  text-align: center;
+  border-radius: 12px;
+  cursor: pointer;
+  opacity: 0.8;
+  margin-bottom: 12px;
 }
-.f-links:hover
-{
+
+.f-links:hover {
   opacity: 1;
 }

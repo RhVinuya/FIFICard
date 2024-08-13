@@ -51,29 +51,23 @@
     margin: 0;
 }
 
-.w100
-{
-    width:100% !important
-}
-.hw-container
-{
-   padding-top: 3%;
-    padding-bottom:3%;  
-    color:white
+.w100 {
+    width: 100% !important
 }
 
-.hw-banner
-{
+.hw-container {
+    padding-top: 3%;
+    padding-bottom: 3%;
+    color: white
+}
+
+.hw-banner {
     background-image: url('../../assets/images/hw/bg.png');
     background-repeat: no-repeat;
     background-size: cover;
 }
-.bk-hw {
-    // background-image: url('../../assets/images/newyear/fireworks.gif');
-    background-image: url('../../assets/images/hearts.gif');
-    }
-.btn-hw
-{
+
+.btn-hw {
     color: black;
     background: #fae555;
     padding: 10px 20px;
@@ -83,49 +77,48 @@
     font-weight: bold;
     margin: 0 2%;
     margin-bottom: 5px;
-    opacity:0.9;
+    opacity: 0.9;
 }
+
 .btn-hw:hover,
-.btn-hw:active
-{
-    opacity:1;
+.btn-hw:active {
+    opacity: 1;
 }
-.hw-con-cards
-{
+
+.hw-con-cards {
     background: #b40a1d;
 }
-.btn-more-cards
-{
-    padding:10px;
+
+.btn-more-cards {
+    padding: 10px;
     display: block;
-    font-weight:bold;
+    font-weight: bold;
     text-decoration: none;
-    opacity:0.9;
-    color:white
-    
+    opacity: 0.9;
+    color: white
 }
+
 .btn-more-cards:hover,
-.btn-more-cards:active
-{
-    opacity:1;
+.btn-more-cards:active {
+    opacity: 1;
 }
-.btn-more-cards.s-event
-{
-    background:#ed6370;
+
+.btn-more-cards.s-event {
+    background: #ed6370;
 }
-.btn-more-cards.s-specialty
-{
-    background:#ed6370
+
+.btn-more-cards.s-specialty {
+    background: #ed6370
 }
-.to-link
-{
-    opacity:0.9;
+
+.to-link {
+    opacity: 0.9;
     cursor: pointer;
 }
+
 .to-link:hover,
-.to-link:active
-{
-    opacity:1;
+.to-link:active {
+    opacity: 1;
 }
 
 .w100 {
@@ -139,53 +132,74 @@
 .right .carousel-item.active {
     animation-name: slideRightIn;
 }
-.val-bk
-{
-    background-image: url('../../assets/images/valentines/background-min.png');
-    background-repeat: no-repeat;
-    background-size: cover;
-    padding: 2%;
-}
+
 @media (min-width: 992px) {
-    .col-md-1-5 { width: 20%; }
-    .col-md-2-5 { width: 40%; }
-    .col-md-3-5 { width: 60%; }
-    .col-md-4-5 { width: 80%; }
-    .col-md-5-5 { width: 100%; }
-  }
-  
-  @media (min-width: 1200px) {
-    .col-lg-1-5 { width: 20%; }
-    .col-lg-2-5 { width: 40%; }
-    .col-lg-3-5 { width: 60%; }
-    .col-lg-4-5 { width: 80%; }
-    .col-lg-5-5 { width: 100%; }
-  }
-  
-  /* Demo only, no need for this */
-  
-  .show-grid [class^=col-] span,
-  .container-fluid .show-grid [class^=col-] {
+    .col-md-1-5 {
+        width: 20%;
+    }
+
+    .col-md-2-5 {
+        width: 40%;
+    }
+
+    .col-md-3-5 {
+        width: 60%;
+    }
+
+    .col-md-4-5 {
+        width: 80%;
+    }
+
+    .col-md-5-5 {
+        width: 100%;
+    }
+}
+
+@media (min-width: 1200px) {
+    .col-lg-1-5 {
+        width: 20%;
+    }
+
+    .col-lg-2-5 {
+        width: 40%;
+    }
+
+    .col-lg-3-5 {
+        width: 60%;
+    }
+
+    .col-lg-4-5 {
+        width: 80%;
+    }
+
+    .col-lg-5-5 {
+        width: 100%;
+    }
+}
+
+/* Demo only, no need for this */
+
+.show-grid [class^=col-] span,
+.container-fluid .show-grid [class^=col-] {
     display: block;
     padding-top: 10px;
     padding-bottom: 10px;
     background-color: #eee;
-    background-color: rgba(86,61,124,.15);
+    background-color: rgba(86, 61, 124, .15);
     text-align: center;
     border: 1px solid #ddd;
-    border: 1px solid rgba(86,61,124,.2);
-  }
-  
-  [class^=col-] {
-    margin-bottom: 30px;
-  }
+    border: 1px solid rgba(86, 61, 124, .2);
+}
 
-  .link-to-val
-  {
+[class^=col-] {
+    margin-bottom: 30px;
+}
+
+.link-to-val {
     color: #fb7381;
     background: white;
     display: block;
     text-decoration: none;
     font-weight: bold;
     font-size: 20px;
-  }
+}

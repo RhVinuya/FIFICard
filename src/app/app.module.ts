@@ -139,6 +139,9 @@ import { CreationsComponent } from './pages/creations/creations.component';
 import { SignAndSendComponent } from './pages/order/sign-and-send/sign-and-send.component';
 import { SampleComponent } from './pages/sample/sample.component';
 import { SampleThumbComponent } from './pages/sample/sample-thumb/sample-thumb.component';
+import { RegisterComponent } from './pages/register/register.component';
+import { NewHomeComponent } from './new-pages/new-home/new-home.component';
+import { LayoutComponent } from './pages/layout/layout.component';
 
 @NgModule({
   declarations: [
@@ -255,7 +258,10 @@ import { SampleThumbComponent } from './pages/sample/sample-thumb/sample-thumb.c
     ReadmoreComponent,
     CartConfirmComponent,
     GamesComponent,
-    SignUpComponent
+    SignUpComponent,
+    RegisterComponent,
+    NewHomeComponent,
+    LayoutComponent
   ],
   imports: [
     BrowserModule,

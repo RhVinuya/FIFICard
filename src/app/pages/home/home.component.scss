@@ -66,11 +66,6 @@
     background-size: cover;
 }
 
-.bk-hw {
-    // background-image: url('../../assets/images/newyear/fireworks.gif');
-    background-image: url('../../assets/images/hearts.gif');
-}
-
 .btn-hw {
     color: black;
     background: #fae555;
@@ -135,13 +130,6 @@
 
 .right .carousel-item.active {
     animation-name: slideRightIn;
-}
-
-.val-bk {
-    background-image: url('../../assets/images/valentines/background-min.png');
-    background-repeat: no-repeat;
-    background-size: cover;
-    padding: 2%;
 }
 
 @media (min-width: 992px) {

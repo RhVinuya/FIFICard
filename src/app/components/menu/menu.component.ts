@@ -12,6 +12,9 @@ import firebase from "firebase/compat/app";
 import { User } from 'src/app/models/user';
 import { environment } from 'src/environments/environment';
 import { LoginComponent } from 'src/app/pages/login/login.component';
+import { ModalController } from '@ionic/angular';
+import { RegisterComponent } from 'src/app/pages/register/register.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-menu',
@@ -20,6 +23,9 @@ import { LoginComponent } from 'src/app/pages/login/login.component';
 })
 
 export class MenuComponent implements OnInit {
+  modalService: NgbModal;
+
+
   service: EventService;
   userService: UserService;
   priceService: PriceService;
@@ -34,6 +40,8 @@ export class MenuComponent implements OnInit {
   isMothersDay: boolean;
 
   constructor(
+    _modalService: NgbModal,
+
     private _service: EventService,
     private _activateRoute: ActivatedRoute,
     private _userService: UserService,
@@ -42,6 +50,8 @@ export class MenuComponent implements OnInit {
     public auth: AngularFireAuth,
     public authProcess: AuthProcessService
   ) {
+    this.modalService = _modalService;
+
     this.service = _service;
     this.userService = _userService;
     this.priceService = _priceService;
@@ -61,7 +71,14 @@ export class MenuComponent implements OnInit {
     this.userDetails = userDetails;
     this.getProfile();
     this.isLogIn = userDetails == null || userDetails.length < 0 ? true : false;
+
+    this.openRegistration()
   }
+
+  async openRegistration() {
+    this.modalService.open(RegisterComponent, { animation: true, keyboard: false, backdrop: 'static' })
+  }
+
 
   getProfile() {
     if (this.userDetails) {
@@ -89,8 +106,6 @@ export class MenuComponent implements OnInit {
   openLoginDialog(id: any): void {
     const dialogRef = this.dialog.open(LoginComponent, {
       panelClass: 'full-width-dialog'
-      //width: '250px'
-      // data: { name: this.name, animal: this.city }
     });
 
     dialogRef.afterClosed().subscribe(result => {

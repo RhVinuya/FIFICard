@@ -1,3 +1,28 @@
+.menu{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.action-button{
+    font-size: 0.8rem;
+    padding-inline: 10px;
+    padding-block: 7px;
+    background: #6b2d98;
+    color: white;
+    border: 0.5px solid #dc17be;
+    border-radius: 5px;
+    letter-spacing: 0.05rem;
+    font-weight: 500;
+    margin-left: 5px;
+}
+
+.action-button:hover{
+    background: #dc17be;
+    border: 0.5px solid #6b2d98;
+}
+
 .active {
     color: pink;
 }
@@ -5,8 +30,6 @@
 .navbar>.container,
 .navbar>.container-fluid {
     display: block !important;
-
-
 }
 
 /* to not collapse */
