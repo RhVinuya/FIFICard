@@ -72,7 +72,6 @@ export class MenuComponent implements OnInit {
     this.getProfile();
     this.isLogIn = userDetails == null || userDetails.length < 0 ? true : false;
 
-    this.openRegistration()
   }
 
   async openRegistration() {

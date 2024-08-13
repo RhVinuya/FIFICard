@@ -51,10 +51,12 @@ import { PlayComponent } from './pages/play/play.component';
 import { EmailMessageComponent } from './pages/email-message/email-message.component';
 import { GamesComponent } from './pages/games/games.component';
 import { NewHomeComponent } from './new-pages/new-home/new-home.component';
+import { LayoutComponent } from './pages/layout/layout.component';
 
 const routes: Routes = [
   {
     path: '',
+    component: LayoutComponent,
     children: [
       {
         path: '', component: HomeComponent, title: "FibeiGreetings"
