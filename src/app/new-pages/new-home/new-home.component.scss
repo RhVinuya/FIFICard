@@ -1,0 +1,55 @@
+.ion-page {
+    justify-content: normal !important;
+}
+
+#v3 {
+    font-family: Proxima Nova;
+}
+
+#v3 .img-title {
+    height: 60px;
+}
+
+#v3 .icon-menu>i {
+    padding: 0 8px;
+}
+
+#v3 .icon-menu>i:last-child {
+    padding-right: 0 !important
+}
+
+
+.label-header {
+    font-family: Proxima Nova;
+    font-size: 2.5rem;
+    font-weight: bold;
+    line-height: 3.5rem;
+    color: #5e17eb;
+}
+
+.label-header.lh-h2 {
+    font-size: 2.5rem;
+}
+
+.label-header.lh-h3 {
+    font-size: 2.0rem;
+}
+
+.fibei-badge {
+    font-family: "Proxima Nova";
+    border: 2px #5e17eb solid;
+    color: #5e17eb;
+    font-size: 1rem;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-weight: bold;
+    margin-right: 8px;
+}
+.fibei-badge:hover {
+    font-family: "Proxima Nova";
+    border: 2px #5e17eb solid;
+    color: #fff;
+    background:#5e17eb ;
+    cursor: pointer;
+
+}
