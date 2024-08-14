@@ -25,6 +25,7 @@
     font-weight: bold;
     line-height: 3.5rem;
     color: #5e17eb;
+    margin:0;
 }
 
 .label-header.lh-h2 {
@@ -44,6 +45,8 @@
     border-radius: 20px;
     font-weight: bold;
     margin-right: 8px;
+    display: inline-block;
+    margin-bottom: 20px;
 }
 .fibei-badge:hover {
     font-family: "Proxima Nova";
@@ -52,4 +55,106 @@
     background:#5e17eb ;
     cursor: pointer;
 
+}
+.mxw-1920px
+{
+    max-width:1920px;
+    margin:auto;
+}
+.c-heart
+{
+    position: absolute;
+    right: 1%;
+    padding: 10px;
+    background: #d3d3d3;
+    top: 1%;
+    border-radius: 50%;
+    font-size: 16px;
+    line-height: 16px;
+    color: #5e17eb;
+}
+.c-heart:hover,
+.c-heart:active
+{
+    position: absolute;
+    right: 1%;
+    padding: 10px;
+    background: #5e17eb;
+    top: 1%;
+    border-radius: 50%;
+    font-size: 16px;
+    line-height: 16px;
+    color: white;
+}
+#v3 .card-title
+{
+    color:#5e17eb;
+    font-weight: bold;
+}
+.txt-purple
+{
+    color:#5e17eb;
+}
+
+
+.fibei-btn {
+    font-family: "Proxima Nova";
+    border: 2px #5e17eb solid;
+    color: #5e17eb;
+    font-size: 1rem;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-weight: bold;
+    margin-right: 8px;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+.fibei-btn:hover {
+    font-family: "Proxima Nova";
+    border: 2px #5e17eb solid;
+    color: #fff;
+    background:#5e17eb ;
+    cursor: pointer;
+
+}
+
+.fibei-btn-o {
+    font-family: "Proxima Nova";
+    border: 2px #5e17eb solid;
+    color: #fff;
+    background:#5e17eb ;
+    cursor: pointer;
+   
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-weight: bold;
+    margin-right: 8px;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+.fibei-btn-o:hover {
+    font-family: "Proxima Nova";
+    border: 2px #5e17eb solid;
+    color: #5e17eb;
+    font-size: 1rem;
+
+}
+.v3-rating
+{
+    color:#5e17eb;
+}
+
+.image-panel > div
+{
+    margin-bottom: 20px;
+}
+.image-panel  img
+{
+    opacity: 0.8;
+    cursor: pointer;
+}
+.image-panel  img:hover,
+.image-panel  img:active,
+{
+    opacity: 1;
 }
