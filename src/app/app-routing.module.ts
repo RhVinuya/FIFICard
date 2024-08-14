@@ -52,10 +52,15 @@ import { EmailMessageComponent } from './pages/email-message/email-message.compo
 import { GamesComponent } from './pages/games/games.component';
 import { NewHomeComponent } from './new-pages/new-home/new-home.component';
 import { LayoutComponent } from './pages/layout/layout.component';
+import { NewLayoutComponent } from './new-pages/new-layout/new-layout.component';
 
 const routes: Routes = [
   {
     path: '',
+    redirectTo: "/new"
+  },
+  {
+    path: 'old',
     component: LayoutComponent,
     children: [
       {
@@ -241,8 +246,15 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'new-home', component: NewHomeComponent, title: "FibeiGreetings Home"
-  },
+    path: 'new', 
+    component: NewLayoutComponent,
+    children: [
+      {
+        path: '',
+        component: NewHomeComponent
+      }
+    ]
+  }
 ];
 
 @NgModule({

@@ -142,6 +142,8 @@ import { SampleThumbComponent } from './pages/sample/sample-thumb/sample-thumb.c
 import { RegisterComponent } from './pages/register/register.component';
 import { NewHomeComponent } from './new-pages/new-home/new-home.component';
 import { LayoutComponent } from './pages/layout/layout.component';
+import { NewHeaderComponent } from './new-components/new-header/new-header.component';
+import { NewLayoutComponent } from './new-pages/new-layout/new-layout.component';
 
 @NgModule({
   declarations: [
@@ -261,7 +263,9 @@ import { LayoutComponent } from './pages/layout/layout.component';
     SignUpComponent,
     RegisterComponent,
     NewHomeComponent,
-    LayoutComponent
+    LayoutComponent,
+    NewHeaderComponent,
+    NewLayoutComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,117 @@
+<ion-content [scrollEvents]="true" (ionScroll)="logScrolling($event)">
+    <ion-header *ngIf="showHeader === true" class="bg-white" style="position:fixed;">
+        <div id="v3">
+            <div class="mxw-1920px">
+                <div class="row my-2">
+                    <div class="col-3 ps-0">
+                        <img src="/assets/images/logo_fibeigreetings-com.png" title="FibeiGreetings.com" routerlink="/" oncontextmenu="return false;" class="img-title img-fluid" style="cursor: pointer;" tabindex="0">
+                    </div>
+                    <div class="col-6 ps-0 my-auto">
+                        <ul class="nav justify-content-center">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="#">Home </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Birthday</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Wedding</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Anniversary</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Browse all cards </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Stickers</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Postcards</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Gifts </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-3">
+                        <ul class="nav justify-content-end">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="#">
+                                    <i class="fa fa-2x fa-shopping-cart text-secondary" aria-hidden="true"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    <i class="fa fa-2x fa-heart text-secondary" aria-hidden="true"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    <i class="fa fa-2x fa-user-circle text-secondary" aria-hidden="true"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ion-header>
+    <div id="v3" class="header-border">
+        <div class="mxw-1920px">
+            <div class="row mt-2">
+                <div class="col-6">
+                    <img src="/assets/images/logo_fibeigreetings-com.png" title="FibeiGreetings.com" routerlink="/" oncontextmenu="return false;" class="img-title img-fluid" style="cursor: pointer;" tabindex="0">
+                </div>
+                <div class="col-6 pe-0">
+                    <ul class="nav justify-content-end">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">
+                                <i class="fa fa-2x fa-shopping-cart text-secondary" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class="fa fa-2x fa-heart text-secondary" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class="fa fa-2x fa-user-circle text-secondary" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-12 my-auto">
+                    <ul class="nav justify-content-center">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Home </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Birthday</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Wedding</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Anniversary</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Browse all cards </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Stickers</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Postcards</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Gifts </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <router-outlet></router-outlet>
+</ion-content>
