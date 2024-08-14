@@ -12,11 +12,11 @@ export interface IBreadcrumb {
   styleUrls: ['./new-title.component.scss']
 })
 export class NewTitleComponent implements OnInit {
+
   @Input() set title(_value: string) {
     this._title = _value
   }
   @Input() set breadcrumbs(_value: IBreadcrumb[]) {
-    console.log(_value)
     this._breadcrumbs = _value;
   }
 

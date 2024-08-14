@@ -57,6 +57,9 @@ import { NewCardsComponent } from './new-pages/new-cards/new-cards.component';
 import { NewStickersComponent } from './new-pages/new-stickers/new-stickers.component';
 import { NewPostcardsComponent } from './new-pages/new-postcards/new-postcards.component';
 import { NewGiftsComponent } from './new-pages/new-gifts/new-gifts.component';
+import { NewProfileComponent } from './new-pages/new-profile/new-profile.component';
+import { NewWishlistComponent } from './new-pages/new-wishlist/new-wishlist.component';
+import { NewCartComponent } from './new-pages/new-cart/new-cart.component';
 
 const routes: Routes = [
   {
@@ -279,7 +282,24 @@ const routes: Routes = [
       {
         path: 'gifts',
         component: NewGiftsComponent
-      }
+      },
+      {
+        path: "profile",
+        children: [
+          {
+            path: '',
+            component: NewProfileComponent
+          },
+          {
+            path: 'wishlist',
+            component: NewWishlistComponent
+          }
+        ]
+      },
+      {
+        path: 'cart',
+        component: NewCartComponent
+      },
     ]
   }
 ];

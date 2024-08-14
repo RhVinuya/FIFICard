@@ -4,7 +4,8 @@
             <div class="mxw-1920px">
                 <div class="row my-2">
                     <div class="col-3 ps-0">
-                        <img src="/assets/images/logo_fibeigreetings-com.png" title="FibeiGreetings.com" routerlink="/" oncontextmenu="return false;" class="img-title img-fluid" style="cursor: pointer;" tabindex="0">
+                        <img src="/assets/images/logo_fibeigreetings-com.png" title="FibeiGreetings.com" routerlink="/" oncontextmenu="return false;"
+                            class="img-title img-fluid" style="cursor: pointer;" tabindex="0" [routerLink]="['/new']">
                     </div>
                     <div class="col-6 ps-0 my-auto">
                         <ul class="nav justify-content-center">
@@ -37,17 +38,17 @@
                     <div class="col-3">
                         <ul class="nav justify-content-end">
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#">
+                                <a class="nav-link active" aria-current="page" [routerLink]="['/new/cart']">
                                     <i class="fa fa-2x fa-shopping-cart text-secondary" aria-hidden="true"></i>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">
+                                <a class="nav-link" [routerLink]="['/new/profile/wishlist']">
                                     <i class="fa fa-2x fa-heart text-secondary" aria-hidden="true"></i>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">
+                                <a class="nav-link" [routerLink]="['/new/profile']">
                                     <i class="fa fa-2x fa-user-circle text-secondary" aria-hidden="true"></i>
                                 </a>
                             </li>
@@ -61,22 +62,23 @@
         <div class="mxw-1920px">
             <div class="row mt-2">
                 <div class="col-6">
-                    <img src="/assets/images/logo_fibeigreetings-com.png" title="FibeiGreetings.com" routerlink="/" oncontextmenu="return false;" class="img-title img-fluid" style="cursor: pointer;" tabindex="0">
+                    <img src="/assets/images/logo_fibeigreetings-com.png" title="FibeiGreetings.com" routerlink="/" oncontextmenu="return false;"
+                        class="img-title img-fluid" style="cursor: pointer;" tabindex="0" [routerLink]="['/new']">
                 </div>
                 <div class="col-6 pe-0">
                     <ul class="nav justify-content-end">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">
+                            <a class="nav-link active" aria-current="page" [routerLink]="['/new/cart']">
                                 <i class="fa fa-2x fa-shopping-cart text-secondary" aria-hidden="true"></i>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" [routerLink]="['/new/profile/wishlist']">
                                 <i class="fa fa-2x fa-heart text-secondary" aria-hidden="true"></i>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" [routerLink]="['/new/profile']">
                                 <i class="fa fa-2x fa-user-circle text-secondary" aria-hidden="true"></i>
                             </a>
                         </li>
@@ -113,5 +115,7 @@
             </div>
         </div>
     </div>
-    <router-outlet></router-outlet>
+    <div class="mb-5">
+        <router-outlet></router-outlet>
+    </div>
 </ion-content>

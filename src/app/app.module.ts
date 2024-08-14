@@ -148,6 +148,10 @@ import { NewStickersComponent } from './new-pages/new-stickers/new-stickers.comp
 import { NewPostcardsComponent } from './new-pages/new-postcards/new-postcards.component';
 import { NewGiftsComponent } from './new-pages/new-gifts/new-gifts.component';
 import { NewTitleComponent } from './new-components/new-title/new-title.component';
+import { NewCardThumbComponent } from './new-components/new-card-thumb/new-card-thumb.component';
+import { NewCartComponent } from './new-pages/new-cart/new-cart.component';
+import { NewWishlistComponent } from './new-pages/new-wishlist/new-wishlist.component';
+import { NewProfileComponent } from './new-pages/new-profile/new-profile.component';
 
 @NgModule({
   declarations: [
@@ -273,7 +277,11 @@ import { NewTitleComponent } from './new-components/new-title/new-title.componen
     NewStickersComponent,
     NewPostcardsComponent,
     NewGiftsComponent,
-    NewTitleComponent
+    NewTitleComponent,
+    NewCardThumbComponent,
+    NewCartComponent,
+    NewWishlistComponent,
+    NewProfileComponent
   ],
   imports: [
     BrowserModule,
