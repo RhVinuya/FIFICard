@@ -142,8 +142,12 @@ import { SampleThumbComponent } from './pages/sample/sample-thumb/sample-thumb.c
 import { RegisterComponent } from './pages/register/register.component';
 import { NewHomeComponent } from './new-pages/new-home/new-home.component';
 import { LayoutComponent } from './pages/layout/layout.component';
-import { NewHeaderComponent } from './new-components/new-header/new-header.component';
 import { NewLayoutComponent } from './new-pages/new-layout/new-layout.component';
+import { NewCardsComponent } from './new-pages/new-cards/new-cards.component';
+import { NewStickersComponent } from './new-pages/new-stickers/new-stickers.component';
+import { NewPostcardsComponent } from './new-pages/new-postcards/new-postcards.component';
+import { NewGiftsComponent } from './new-pages/new-gifts/new-gifts.component';
+import { NewTitleComponent } from './new-components/new-title/new-title.component';
 
 @NgModule({
   declarations: [
@@ -264,8 +268,12 @@ import { NewLayoutComponent } from './new-pages/new-layout/new-layout.component'
     RegisterComponent,
     NewHomeComponent,
     LayoutComponent,
-    NewHeaderComponent,
-    NewLayoutComponent
+    NewLayoutComponent,
+    NewCardsComponent,
+    NewStickersComponent,
+    NewPostcardsComponent,
+    NewGiftsComponent,
+    NewTitleComponent
   ],
   imports: [
     BrowserModule,

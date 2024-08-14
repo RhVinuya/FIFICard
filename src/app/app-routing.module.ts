@@ -53,11 +53,17 @@ import { GamesComponent } from './pages/games/games.component';
 import { NewHomeComponent } from './new-pages/new-home/new-home.component';
 import { LayoutComponent } from './pages/layout/layout.component';
 import { NewLayoutComponent } from './new-pages/new-layout/new-layout.component';
+import { NewCardsComponent } from './new-pages/new-cards/new-cards.component';
+import { NewStickersComponent } from './new-pages/new-stickers/new-stickers.component';
+import { NewPostcardsComponent } from './new-pages/new-postcards/new-postcards.component';
+import { NewGiftsComponent } from './new-pages/new-gifts/new-gifts.component';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: "/new"
+    redirectTo: "/new",
+    pathMatch: 'full'
+    
   },
   {
     path: 'old',
@@ -252,6 +258,27 @@ const routes: Routes = [
       {
         path: '',
         component: NewHomeComponent
+      },
+      {
+        path: 'cards',
+        children: [
+          {
+            path: ':id',
+            component: NewCardsComponent
+          }
+        ]
+      },
+      {
+        path: 'stickers',
+        component: NewStickersComponent
+      },
+      {
+        path: 'postcards',
+        component: NewPostcardsComponent
+      },
+      {
+        path: 'gifts',
+        component: NewGiftsComponent
       }
     ]
   }

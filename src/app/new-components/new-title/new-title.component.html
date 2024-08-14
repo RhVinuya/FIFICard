@@ -1,0 +1,13 @@
+<div class="row">
+    <div class="col-md-12">
+        <h2 class="label-header">{{_title}}</h2>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb ms-2">
+                <li *ngFor="let item of _breadcrumbs" class="breadcrumb-item" [ngClass]="item.active ? 'breadcrumb-item active' : 'breadcrumb-item'">
+                    <a [routerLink]="[item.url]" *ngIf="item.url !== ''">{{item.title}}</a>
+                    <span *ngIf="item.url === ''">{{item.title}}</span>
+                </li>
+            </ol>
+        </nav>
+    </div>
+</div>
