@@ -1,5 +1,5 @@
-#v3 {
-    font-family: Proxima Nova;
+.footer-links {
+    font-family: Proxima Nova !important;
 }
 
 #v3 .img-title {
@@ -14,6 +14,58 @@
     padding-right: 0 !important
 }
 
-.header-border{
-    border-bottom: 3px solid #cd19b9;
+.header-border {
+    border-bottom: 3px solid #5e17eb;
+}
+
+.im-social a {
+    height: 50px;
+    background: #7f05951f;
+    margin: 0px 4px;
+    border-radius: 50%;
+    width: 50px;
+    display: inline-block;
+    padding: 10px;
+    color: #5e17eb;
+}
+
+.im-social a:hover {
+    color: #000
+}
+
+
+
+.label-header {
+    font-family: Proxima Nova;
+    font-size: 2.5rem;
+    font-weight: bold;
+    line-height: 3.5rem;
+    color: #5e17eb;
+    margin: 0;
+}
+
+.label-header.lh-h2 {
+    font-size: 2.5rem;
+}
+
+.label-header.lh-h3 {
+    font-size: 2.0rem;
+}
+
+.label-header.footer-h3 {
+    font-size: 1.5rem;
+}
+
+.footer-links a {
+    font-family: Proxima Nova;
+    cursor: pointer;
+
+}
+
+
+.footer-links a:hover,
+.footer-links a:active
+ {
+    color: #5e17eb;
+
 }
