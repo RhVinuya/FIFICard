@@ -1,0 +1,172 @@
+.card {
+    font-family: Proxima Nova;
+}
+
+.card .img-div{
+    overflow: hidden;
+}
+
+.card.img-div img {
+    transition: transform 0.4s ease
+}
+
+.card:hover {
+    border: 1px solid #d952ca;
+}
+
+.card:hover img {
+    transform: scale(1.03);
+}
+
+.c-heart {
+    position: absolute;
+    right: 1%;
+    padding: 10px;
+    background: #d3d3d3;
+    top: 1%;
+    border-radius: 50%;
+    font-size: 16px;
+    line-height: 16px;
+    color: #5e17eb;
+}
+
+.c-heart:hover,
+.c-heart:active {
+    position: absolute;
+    right: 1%;
+    padding: 10px;
+    background: #5e17eb;
+    top: 1%;
+    border-radius: 50%;
+    font-size: 16px;
+    line-height: 16px;
+    color: white;
+}
+
+.card-title {
+    color: #5e17eb;
+    font-weight: bold;
+}
+
+.txt-purple {
+    color: #5e17eb;
+}
+
+.fibei-btn {
+    font-family: "Proxima Nova";
+    border: 2px #5e17eb solid;
+    color: #5e17eb;
+    font-size: 1rem;
+    padding: 10px;
+    border-radius: 20px;
+    font-weight: bold;
+    margin-right: 8px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.fibei-btn:hover {
+    font-family: "Proxima Nova";
+    border: 2px #5e17eb solid;
+    color: #fff;
+    background: #5e17eb;
+
+}
+
+.fibei-btn-o {
+    font-family: "Proxima Nova";
+    border: 2px #5e17eb solid;
+    color: #fff;
+    background: #5e17eb;
+    cursor: pointer;
+
+    padding: 10px;
+    border-radius: 20px;
+    font-weight: bold;
+    margin-right: 8px;
+    display: inline-block;
+}
+
+.fibei-btn-o:hover {
+    font-family: "Proxima Nova";
+    border: 2px #5e17eb solid;
+    color: #5e17eb;
+    font-size: 1rem;
+
+}
+
+.v3-rating {
+    color: #5e17eb;
+}
+
+
+
+.label-header {
+    font-family: Proxima Nova;
+    font-size: 2.5rem;
+    font-weight: bold;
+    line-height: 3.5rem;
+    color: #5e17eb;
+    margin: 0;
+}
+
+.label-header.lh-h3 {
+    font-size: 2.0rem;
+}
+
+.fibei-badge {
+    font-family: "Proxima Nova";
+    border: 2px #5e17eb solid;
+    color: #5e17eb;
+    font-size: 1rem;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-weight: bold;
+    margin-right: 8px;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+.fibei-badge:hover {
+    font-family: "Proxima Nova";
+    border: 2px #5e17eb solid;
+    color: #fff;
+    background: #5e17eb;
+    cursor: pointer;
+
+}
+
+.fibei-badge-v2 {
+    font-family: "Proxima Nova";
+    border: 2px #c702c0  solid;
+    color: #c702c0 ;
+    font-size: 1rem;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-weight: bold;
+    margin-right: 8px;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+.fibei-badge-v2:hover {
+    font-family: "Proxima Nova";
+    border: 2px #c702c0  solid;
+    color: #fff;
+    background: #c702c0 ;
+    cursor: pointer;
+
+}
+
+
+.badge-featured
+{
+    background: #b90000;
+    border: #791313 2px solid;
+    color:white;
+}
+
+.badge-featured .badge
+{
+    background: #791313;
+}

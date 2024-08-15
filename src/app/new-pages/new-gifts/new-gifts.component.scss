@@ -1,0 +1,49 @@
+
+*
+{
+    font-family: 'Proxima Nova';
+}
+.nav-link
+{
+    color: #5e17eb;
+}
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+    color: #ffffff;
+    background-color: #5e17eb;
+    border-color: #5e17eb;
+}
+
+.nav-tabs {
+    border-bottom: 1px solid #5e17eb;
+}
+
+.nav-tabs .nav-link:focus, .nav-tabs .nav-link:hover {
+    isolation: isolate;
+    border-color: #5e17eb  #5e17eb #fff;
+}
+
+.label-header.lh-h3 {
+    font-size: 2.0rem;
+}
+
+.fibei-badge {
+    font-family: "Proxima Nova";
+    border: 2px #5e17eb solid;
+    color: #5e17eb;
+    font-size: 1rem;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-weight: bold;
+    margin-right: 8px;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+.fibei-badge:hover {
+    font-family: "Proxima Nova";
+    border: 2px #5e17eb solid;
+    color: #fff;
+    background: #5e17eb;
+    cursor: pointer;
+
+}
