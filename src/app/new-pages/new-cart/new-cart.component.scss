@@ -35,3 +35,23 @@
     margin-bottom: 20px;
     width: 100%;
 } 
+.fibei-btn {
+    font-family: "Proxima Nova";
+    border: 2px #5e17eb solid;
+    color: #5e17eb;
+    font-size: 1rem;
+    padding: 10px;
+    border-radius: 20px;
+    font-weight: bold;
+    margin-right: 8px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.fibei-btn:hover {
+    font-family: "Proxima Nova";
+    border: 2px #5e17eb solid;
+    color: #fff;
+    background: #5e17eb;
+
+}
