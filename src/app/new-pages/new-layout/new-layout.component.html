@@ -1,12 +1,11 @@
 <ion-content [scrollEvents]="true" (ionScroll)="logScrolling($event)">
     <ion-header *ngIf="showHeader === true" class="bg-white" style="position:fixed;">
-        <div id="v3">
+        <div class="v3">
             <div class="mxw-1920px">
                 <div class="row my-2">
                     <div class="col-3 ps-0">
-                        <img src="/assets/images/logo_fibeigreetings-com.png" title="FibeiGreetings.com" routerlink="/"
-                            oncontextmenu="return false;" class="img-title img-fluid" style="cursor: pointer;"
-                            tabindex="0" [routerLink]="['/new']">
+                        <img src="/assets/images/logo_fibeigreetings-com.png" title="FibeiGreetings.com" routerlink="/" oncontextmenu="return false;"
+                            class="img-title img-fluid" style="cursor: pointer;" tabindex="0" [routerLink]="['/new']">
                     </div>
                     <div class="col-6 ps-0 my-auto">
                         <ul class="nav justify-content-center">
@@ -38,17 +37,17 @@
                     </div>
                     <div class="col-3">
                         <ul class="nav justify-content-end">
-                            <li class="nav-item">
+                            <li class="nav-item action">
                                 <a class="nav-link active" aria-current="page" [routerLink]="['/new/cart']">
                                     <i class="fa fa-2x fa-shopping-cart text-secondary" aria-hidden="true"></i>
                                 </a>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item action">
                                 <a class="nav-link" [routerLink]="['/new/profile/wishlist']">
                                     <i class="fa fa-2x fa-heart text-secondary" aria-hidden="true"></i>
                                 </a>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item action">
                                 <a class="nav-link" [routerLink]="['/new/profile']">
                                     <i class="fa fa-2x fa-user-circle text-secondary" aria-hidden="true"></i>
                                 </a>
@@ -59,27 +58,26 @@
             </div>
         </div>
     </ion-header>
-    <div id="v3" class="header-border">
+    <div class="v3" class="header-border">
         <div class="mxw-1920px">
             <div class="row mt-2">
                 <div class="col-6">
-                    <img src="/assets/images/logo_fibeigreetings-com.png" title="FibeiGreetings.com" routerlink="/"
-                        oncontextmenu="return false;" class="img-title img-fluid" style="cursor: pointer;" tabindex="0"
-                        [routerLink]="['/new']">
+                    <img src="/assets/images/logo_fibeigreetings-com.png" title="FibeiGreetings.com" routerlink="/" oncontextmenu="return false;"
+                        class="img-title img-fluid" style="cursor: pointer;" tabindex="0" [routerLink]="['/new']">
                 </div>
                 <div class="col-6 pe-0">
                     <ul class="nav justify-content-end">
-                        <li class="nav-item">
+                        <li class="nav-item action">
                             <a class="nav-link active" aria-current="page" [routerLink]="['/new/cart']">
                                 <i class="fa fa-2x fa-shopping-cart text-secondary" aria-hidden="true"></i>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item action">
                             <a class="nav-link" [routerLink]="['/new/profile/wishlist']">
                                 <i class="fa fa-2x fa-heart text-secondary" aria-hidden="true"></i>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item action">
                             <a class="nav-link" [routerLink]="['/new/profile']">
                                 <i class="fa fa-2x fa-user-circle text-secondary" aria-hidden="true"></i>
                             </a>
@@ -117,84 +115,69 @@
             </div>
         </div>
     </div>
-    <div class="mb-5">
+    <div class="content mb-5">
         <router-outlet></router-outlet>
     </div>
     <div>
         <ion-footer>
-            <ion-row class="footer-links">
-                <ion-col>
-                    <h3 class="label-header footer-h3"> CUSTOMER SERVICE</h3>
-                    <h5><a>Contact Us</a></h5>
-                    <h5><a>Chat Now</a></h5>
-                    <h5><a>Review Product</a></h5>
-                </ion-col>
-                <ion-col>
-                    <h3  class="label-header footer-h3">KNOW MORE</h3>
-                    <h5><a>About FibeiGreetings</a></h5>
-                    <h5><a>Press Page</a></h5>
-                    <h5><a>Sign And Send</a></h5>
-                </ion-col>
-                <ion-col>
-                    <h3  class="label-header footer-h3">ORDER INFORMATION</h3>
-                    <h5><a>Shipping and Delivery</a></h5>
-                </ion-col>
-
-                <ion-col>
-                    <h3 class="label-header footer-h3">TERMS OF USE</h3>
-                    <h5><a>Terms and Conditions</a></h5>
-                    <h5><a> Privacy Policy</a></h5>
-                </ion-col>
-            </ion-row>
-            <ion-row>
-                <div class="col-md-4 offset-md-4">
-                    <div class="text-center">
-                    
-                      <h3>Connect with us</h3>
-                      <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
-                        <button class="btn btn-outline-secondary" type="button" id="button-addon2">Sign Up</button>
-                      </div>
-                      <br/>
-                      <div class="im-social">
-                        <a target="_blank">
-                          <i class="fab fa-2x fa-instagram"></i>
-                        </a>
-                        <a target="_blank">
-                          <i class="fab fa-2x fa-facebook"></i>
-                        </a>
-                        <a  target="_blank">
-                          <i class="fab fa-2x fa-pinterest"></i>
-                        </a>
-                        <a  target="_blank">
-                          <i class="fab fa-2x fa-twitter"></i>
-                        </a>
-                        <a  target="_blank">
-                          <i class="fab fa-2x fa-youtube"></i>
-                        </a>
-                        <!-- <a href="#" target="_blank">
-                          <i class="fa fab fa-2x fa-tiktok"></i>
-                        </a> 
-                        <a href="mailto:fibeigreetingsph@gmail.com" target="_blank"  *ngIf="priceService.getLocation() == 'ph'">
-                          <i class="fa fa-2x fa-envelope"></i>
-                        </a>
-                        <a href="mailto:marketing.fibeigreetingsusa@gmail.com" target="_blank"  *ngIf="priceService.getLocation() == 'us'">
-                          <i class="fa fa-2x fa-envelope"></i>
-                        </a>
-                        <a href="mailto:fibeigreetingssingapore@gmail.com" target="_blank"  *ngIf="priceService.getLocation() == 'sg'">
-                          <i class="fa fa-2x fa-envelope"></i>
-                        </a>-->
-                      </div>
-                      <br />
-                      <a href="/"><img src="/assets/images/logo_fibeigreetings.png" class="img-fluid" style="max-height:50px;"></a>
-                      <br />
-                      <div>© 2024 FiBeiGreetings.com</div>
-                      <br />
-                      <br />
+            <div class="mxw-1920px">
+                <ion-row class="footer-links">
+                    <ion-col>
+                        <h3 class="label-header footer-h3"> CUSTOMER SERVICE</h3>
+                        <h5><a>Contact Us</a></h5>
+                        <h5><a>Chat Now</a></h5>
+                        <h5><a>Review Product</a></h5>
+                    </ion-col>
+                    <ion-col>
+                        <h3 class="label-header footer-h3">KNOW MORE</h3>
+                        <h5><a>About FibeiGreetings</a></h5>
+                        <h5><a>Press Page</a></h5>
+                        <h5><a>Sign And Send</a></h5>
+                    </ion-col>
+                    <ion-col>
+                        <h3 class="label-header footer-h3">ORDER INFORMATION</h3>
+                        <h5><a>Shipping and Delivery</a></h5>
+                    </ion-col>
+    
+                    <ion-col>
+                        <h3 class="label-header footer-h3">TERMS OF USE</h3>
+                        <h5><a>Terms and Conditions</a></h5>
+                        <h5><a> Privacy Policy</a></h5>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <div class="col-md-4 offset-md-4">
+                        <div class="text-center">
+                            <h3>Connect with us</h3>
+                            <div class="input-group mb-4">
+                                <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username"
+                                    aria-describedby="button-addon2">
+                                <button class="btn btn-outline-secondary" type="button" id="button-addon2">Sign Up</button>
+                            </div>
+                            <div class="im-social mb-3">
+                                <a target="_blank">
+                                    <i class="fab fa-2x fa-instagram"></i>
+                                </a>
+                                <a target="_blank">
+                                    <i class="fab fa-2x fa-facebook"></i>
+                                </a>
+                                <a target="_blank">
+                                    <i class="fab fa-2x fa-pinterest"></i>
+                                </a>
+                                <a target="_blank">
+                                    <i class="fab fa-2x fa-twitter"></i>
+                                </a>
+                                <a target="_blank">
+                                    <i class="fab fa-2x fa-youtube"></i>
+                                </a>
+                            </div>
+                            <a href="/" class="mb-4"><img src="/assets/images/logo_fibeigreetings.png" class="img-fluid" style="max-height:50px;"></a>
+                            <div class="mb-5">© 2024 FiBeiGreetings.com</div>
+                        </div>
+    
                     </div>
-            
-                  </div>
-            </ion-row>
+                </ion-row>
+            </div>
         </ion-footer>
     </div>
 </ion-content>

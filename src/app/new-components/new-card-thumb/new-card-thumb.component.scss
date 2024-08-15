@@ -7,11 +7,16 @@
 }
 
 .card.img-div img {
-    transition: transform 0.4s ease
+    transition: transform 0.4s ease;
+    -webkit-transition: transform 2s ease-in-out;
 }
 
 .card:hover {
     border: 1px solid #d952ca;
+}
+
+.card:hover .img-div{
+    border-radius: 0.375rem;
 }
 
 .card:hover img {
