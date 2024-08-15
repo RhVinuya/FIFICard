@@ -1,0 +1,61 @@
+.nav-item {
+    font-family: Proxima Nova;
+}
+
+.img-title {
+    height: 60px;
+}
+
+.v3{
+    position: relative;
+}
+
+.v3 .icon-menu>i {
+    padding: 0 8px;
+}
+
+.v3 .icon-menu>i:last-child {
+    padding-right: 0 !important
+}
+
+.header-top {
+    border-top: 2px solid #a81ecb;
+}
+
+.header-border {
+    border-bottom: 2px solid #a81ecb;
+}
+
+.label-header {
+    font-family: Proxima Nova;
+    font-size: 2.5rem;
+    font-weight: bold;
+    line-height: 3.5rem;
+    color: #5e17eb;
+    margin: 0;
+}
+
+.label-header.lh-h2 {
+    font-size: 2.5rem;
+}
+
+.label-header.lh-h3 {
+    font-size: 2.0rem;
+}
+
+.label-header.footer-h3 {
+    font-size: 1.5rem;
+}
+
+.menu{
+    height: 350px;
+    width: 100%;
+    position: absolute;  
+    z-index: 50;
+    background: white;
+    font-family: Proxima Nova;
+}
+
+.nav-link{
+  cursor: pointer;
+}

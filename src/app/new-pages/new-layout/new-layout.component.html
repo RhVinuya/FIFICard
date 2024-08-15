@@ -1,124 +1,12 @@
 <ion-content [scrollEvents]="true" (ionScroll)="logScrolling($event)">
-    <ion-header *ngIf="showHeader === true" class="bg-white" style="position:fixed;">
-        <div class="v3">
-            <div class="mxw-1920px">
-                <div class="row my-2">
-                    <div class="col-3 ps-0">
-                        <img src="/assets/images/logo_fibeigreetings-com.png" title="FibeiGreetings.com" routerlink="/" oncontextmenu="return false;"
-                            class="img-title img-fluid" style="cursor: pointer;" tabindex="0" [routerLink]="['/new']">
-                    </div>
-                    <div class="col-6 ps-0 my-auto">
-                        <ul class="nav justify-content-center">
-                            <li class="nav-item">
-                                <a class="nav-link" [routerLink]="['/new']">Home</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" [routerLink]="['/new/cards/birthday']">Birthday</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" [routerLink]="['/new/cards/wedding']">Wedding</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" [routerLink]="['/new/cards/anniversary']">Anniversary</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" [routerLink]="['/new/cards/all']">Browse all cards </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" [routerLink]="['/new/stickers']">Stickers</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" [routerLink]="['/new/postcards']">Postcards</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" [routerLink]="['/new/gifts']">Gifts </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="col-3">
-                        <ul class="nav justify-content-end">
-                            <li class="nav-item action">
-                                <a class="nav-link active" aria-current="page" [routerLink]="['/new/cart']">
-                                    <i class="fa fa-2x fa-shopping-cart text-secondary" aria-hidden="true"></i>
-                                </a>
-                            </li>
-                            <li class="nav-item action">
-                                <a class="nav-link" [routerLink]="['/new/profile/wishlist']">
-                                    <i class="fa fa-2x fa-heart text-secondary" aria-hidden="true"></i>
-                                </a>
-                            </li>
-                            <li class="nav-item action">
-                                <a class="nav-link" [routerLink]="['/new/profile']">
-                                    <i class="fa fa-2x fa-user-circle text-secondary" aria-hidden="true"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </ion-header>
-    <div class="v3" class="header-border">
-        <div class="mxw-1920px">
-            <div class="row mt-2">
-                <div class="col-6">
-                    <img src="/assets/images/logo_fibeigreetings-com.png" title="FibeiGreetings.com" routerlink="/" oncontextmenu="return false;"
-                        class="img-title img-fluid" style="cursor: pointer;" tabindex="0" [routerLink]="['/new']">
-                </div>
-                <div class="col-6 pe-0">
-                    <ul class="nav justify-content-end">
-                        <li class="nav-item action">
-                            <a class="nav-link active" aria-current="page" [routerLink]="['/new/cart']">
-                                <i class="fa fa-2x fa-shopping-cart text-secondary" aria-hidden="true"></i>
-                            </a>
-                        </li>
-                        <li class="nav-item action">
-                            <a class="nav-link" [routerLink]="['/new/profile/wishlist']">
-                                <i class="fa fa-2x fa-heart text-secondary" aria-hidden="true"></i>
-                            </a>
-                        </li>
-                        <li class="nav-item action">
-                            <a class="nav-link" [routerLink]="['/new/profile']">
-                                <i class="fa fa-2x fa-user-circle text-secondary" aria-hidden="true"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-12 my-auto">
-                    <ul class="nav justify-content-center">
-                        <li class="nav-item">
-                            <a class="nav-link" [routerLink]="['/new']">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" [routerLink]="['/new/cards/birthday']">Birthday</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" [routerLink]="['/new/cards/wedding']">Wedding</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" [routerLink]="['/new/cards/anniversary']">Anniversary</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" [routerLink]="['/new/cards/all']">Browse all cards </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" [routerLink]="['/new/stickers']">Stickers</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" [routerLink]="['/new/postcards']">Postcards</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" [routerLink]="['/new/gifts']">Gifts </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="content mb-5">
+    <app-new-layout-header [type]="0" [showHeader]="showHeader" (onShowMenu)="onShowMenu($event)"></app-new-layout-header>
+    <app-new-layout-header [type]="1" [showHeader]="showHeader" (onShowMenu)="onShowMenu($event)"></app-new-layout-header>
+    
+    <div class="content pb-5" [ngClass]="showMenu ? 'opacity' : ''">
         <router-outlet></router-outlet>
     </div>
-    <div>
+    
+    <div [ngClass]="showMenu ? 'opacity' : ''">
         <ion-footer>
             <div class="mxw-1920px">
                 <ion-row class="footer-links">
@@ -138,7 +26,7 @@
                         <h3 class="label-header footer-h3">ORDER INFORMATION</h3>
                         <h5><a>Shipping and Delivery</a></h5>
                     </ion-col>
-    
+
                     <ion-col>
                         <h3 class="label-header footer-h3">TERMS OF USE</h3>
                         <h5><a>Terms and Conditions</a></h5>
@@ -174,7 +62,7 @@
                             <a href="/" class="mb-4"><img src="/assets/images/logo_fibeigreetings.png" class="img-fluid" style="max-height:50px;"></a>
                             <div class="mb-5">© 2024 FiBeiGreetings.com</div>
                         </div>
-    
+
                     </div>
                 </ion-row>
             </div>

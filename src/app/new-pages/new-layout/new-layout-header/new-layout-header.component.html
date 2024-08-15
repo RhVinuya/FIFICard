@@ -1,0 +1,132 @@
+<ion-header *ngIf="_showHeader === true" class="bg-white" style="position:fixed;">
+    <div class="v3" *ngIf="type===0">
+        <div class="mxw-1920px">
+            <div class="row my-2">
+                <div class="col-3 ps-0" size="auto">
+                    <img src="/assets/images/logo_fibeigreetings-com.png" title="FibeiGreetings.com" routerlink="/" oncontextmenu="return false;"
+                        class="img-title img-fluid" style="cursor: pointer;" tabindex="0" [routerLink]="['/new']">
+                </div>
+                <div class="col-6 ps-0 my-auto" size="auto">
+                    <ul class="nav justify-content-center">
+                        <li class="nav-item">
+                            <a class="nav-link" [routerLink]="['/new']">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" [routerLink]="['/new/cards/birthday']">Birthday</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" [routerLink]="['/new/cards/wedding']">Wedding</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" [routerLink]="['/new/cards/anniversary']">Anniversary</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" [routerLink]="['/new/cards/all']">Browse all cards </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" (mouseenter)="onHover('stickers')"  (mouseleave)="onHoverOut()">Stickers</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" (mouseenter)="onHover('postcards')" (mouseleave)="onHoverOut()">Postcards</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" (mouseenter)="onHover('gifts')" (mouseleave)="onHoverOut()">Gifts </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-3" size="auto">
+                    <ul class="nav justify-content-end">
+                        <li class="nav-item action">
+                            <a class="nav-link active" aria-current="page" [routerLink]="['/new/cart']">
+                                <i class="fa fa-2x fa-shopping-cart text-secondary" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item action">
+                            <a class="nav-link" [routerLink]="['/new/profile/wishlist']">
+                                <i class="fa fa-2x fa-heart text-secondary" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item action">
+                            <a class="nav-link" [routerLink]="['/new/profile']">
+                                <i class="fa fa-2x fa-user-circle text-secondary" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="menu border-top" *ngIf="showMenu" (mouseenter)="onHover(undefined)" (mouseleave)="onHoverOut()">
+            <div class="mxw-1920px row">
+                <app-new-layout-stickers *ngIf="menuType === 'stickers'"></app-new-layout-stickers>
+                <app-new-layout-postcards *ngIf="menuType === 'postcards'"></app-new-layout-postcards>
+                <app-new-layout-gifts *ngIf="menuType === 'gifts'"></app-new-layout-gifts>
+            </div>
+        </div>
+    </div>
+</ion-header>
+<div class="v3" *ngIf="type===1">
+    <div class="header-border">
+        <div class="mxw-1920px">
+            <div class="row mt-2">
+                <div class="col-6" size="auto">
+                    <img src="/assets/images/logo_fibeigreetings-com.png" title="FibeiGreetings.com" routerlink="/" oncontextmenu="return false;"
+                        class="img-title img-fluid" style="cursor: pointer;" tabindex="0" [routerLink]="['/new']">
+                </div>
+                <div class="col-6 pe-0" size="auto">
+                    <ul class="nav justify-content-end">
+                        <li class="nav-item action">
+                            <a class="nav-link active" aria-current="page" [routerLink]="['/new/cart']">
+                                <i class="fa fa-2x fa-shopping-cart text-secondary" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item action">
+                            <a class="nav-link" [routerLink]="['/new/profile/wishlist']">
+                                <i class="fa fa-2x fa-heart text-secondary" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item action">
+                            <a class="nav-link" [routerLink]="['/new/profile']">
+                                <i class="fa fa-2x fa-user-circle text-secondary" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-12 my-auto" size="auto">
+                    <ul class="nav justify-content-center">
+                        <li class="nav-item">
+                            <a class="nav-link" [routerLink]="['/new']">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" [routerLink]="['/new/cards/birthday']">Birthday</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" [routerLink]="['/new/cards/wedding']">Wedding</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" [routerLink]="['/new/cards/anniversary']">Anniversary</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" [routerLink]="['/new/cards/all']">Browse all cards </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" (mouseenter)="onHover('stickers')"  (mouseleave)="onHoverOut()">Stickers</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" (mouseenter)="onHover('postcards')" (mouseleave)="onHoverOut()">Postcards</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" (mouseenter)="onHover('gifts')" (mouseleave)="onHoverOut()">Gifts </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="menu" *ngIf="showMenu" (mouseenter)="onHover(undefined)" (mouseleave)="onHoverOut()">
+        <div class="mxw-1920px row">
+            <app-new-layout-stickers *ngIf="menuType === 'stickers'"></app-new-layout-stickers>
+            <app-new-layout-postcards *ngIf="menuType === 'postcards'"></app-new-layout-postcards>
+            <app-new-layout-gifts *ngIf="menuType === 'gifts'"></app-new-layout-gifts>
+        </div>
+    </div>
+</div>

@@ -156,6 +156,10 @@ import { NewRegistrationComponent } from './new-pages/new-registration/new-regis
 import { NewWishlistItemComponent } from './new-pages/new-wishlist/new-wishlist-item/new-wishlist-item.component';
 import { NewSuggestionsComponent } from './new-components/new-suggestions/new-suggestions.component';
 import { NewSuggestionsItemComponent } from './new-components/new-suggestions/new-suggestions-item/new-suggestions-item.component';
+import { NewLayoutHeaderComponent } from './new-pages/new-layout/new-layout-header/new-layout-header.component';
+import { NewLayoutStickersComponent } from './new-pages/new-layout/new-layout-stickers/new-layout-stickers.component';
+import { NewLayoutPostcardsComponent } from './new-pages/new-layout/new-layout-postcards/new-layout-postcards.component';
+import { NewLayoutGiftsComponent } from './new-pages/new-layout/new-layout-gifts/new-layout-gifts.component';
 
 @NgModule({
   declarations: [
@@ -289,7 +293,11 @@ import { NewSuggestionsItemComponent } from './new-components/new-suggestions/ne
     NewRegistrationComponent,
     NewWishlistItemComponent,
     NewSuggestionsComponent,
-    NewSuggestionsItemComponent
+    NewSuggestionsItemComponent,
+    NewLayoutHeaderComponent,
+    NewLayoutStickersComponent,
+    NewLayoutPostcardsComponent,
+    NewLayoutGiftsComponent
   ],
   imports: [
     BrowserModule,
