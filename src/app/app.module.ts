@@ -153,6 +153,9 @@ import { NewCartComponent } from './new-pages/new-cart/new-cart.component';
 import { NewWishlistComponent } from './new-pages/new-wishlist/new-wishlist.component';
 import { NewProfileComponent } from './new-pages/new-profile/new-profile.component';
 import { NewRegistrationComponent } from './new-pages/new-registration/new-registration.component';
+import { NewWishlistItemComponent } from './new-pages/new-wishlist/new-wishlist-item/new-wishlist-item.component';
+import { NewSuggestionsComponent } from './new-components/new-suggestions/new-suggestions.component';
+import { NewSuggestionsItemComponent } from './new-components/new-suggestions/new-suggestions-item/new-suggestions-item.component';
 
 @NgModule({
   declarations: [
@@ -283,7 +286,10 @@ import { NewRegistrationComponent } from './new-pages/new-registration/new-regis
     NewCartComponent,
     NewWishlistComponent,
     NewProfileComponent,
-    NewRegistrationComponent
+    NewRegistrationComponent,
+    NewWishlistItemComponent,
+    NewSuggestionsComponent,
+    NewSuggestionsItemComponent
   ],
   imports: [
     BrowserModule,

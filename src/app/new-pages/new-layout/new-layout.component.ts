@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonContent } from '@ionic/angular';
+import { NgbPopover } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-new-layout',
@@ -8,16 +9,19 @@ import { IonContent } from '@ionic/angular';
 })
 export class NewLayoutComponent implements OnInit {
   @ViewChild(IonContent) content: IonContent;
+  @ViewChild('menu') menu: NgbPopover;
 
   constructor() { }
 
   showHeader: boolean = false;
+  showMenu: boolean = false;
+  forClose: boolean = false;
+  hideDivTimeout: any;
 
   ngOnInit(): void {
   }
 
   ionViewDidEnter() {
-    console.log('test')
     this.content.scrollToTop(0);
   }
 
@@ -25,5 +29,15 @@ export class NewLayoutComponent implements OnInit {
     this.showHeader = value.detail.scrollTop >= 25;
   }
 
+  onHover(){
+    this.forClose = false
+    this.showMenu = true;
+  }
 
+  onHoverOut(){
+    this.forClose = true
+    this.hideDivTimeout = setTimeout(() => {
+      if (this.forClose) this.showMenu = false;
+    }, 200);
+  }
 }
