@@ -152,6 +152,7 @@ import { NewCardThumbComponent } from './new-components/new-card-thumb/new-card-
 import { NewCartComponent } from './new-pages/new-cart/new-cart.component';
 import { NewWishlistComponent } from './new-pages/new-wishlist/new-wishlist.component';
 import { NewProfileComponent } from './new-pages/new-profile/new-profile.component';
+import { NewRegistrationComponent } from './new-pages/new-registration/new-registration.component';
 
 @NgModule({
   declarations: [
@@ -281,7 +282,8 @@ import { NewProfileComponent } from './new-pages/new-profile/new-profile.compone
     NewCardThumbComponent,
     NewCartComponent,
     NewWishlistComponent,
-    NewProfileComponent
+    NewProfileComponent,
+    NewRegistrationComponent
   ],
   imports: [
     BrowserModule,

@@ -60,6 +60,7 @@ import { NewGiftsComponent } from './new-pages/new-gifts/new-gifts.component';
 import { NewProfileComponent } from './new-pages/new-profile/new-profile.component';
 import { NewWishlistComponent } from './new-pages/new-wishlist/new-wishlist.component';
 import { NewCartComponent } from './new-pages/new-cart/new-cart.component';
+import { NewRegistrationComponent } from './new-pages/new-registration/new-registration.component';
 
 const routes: Routes = [
   {
@@ -299,6 +300,10 @@ const routes: Routes = [
       {
         path: 'cart',
         component: NewCartComponent
+      },
+      {
+        path: 'registration',
+        component: NewRegistrationComponent
       },
     ]
   }
