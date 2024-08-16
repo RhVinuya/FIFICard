@@ -16,7 +16,7 @@ export class NewWishlistComponent implements OnInit {
       active: false
     },
     {
-      title: "Wishlist",
+      title: "Wishlist (0)",
       url: "",
       active: true
     }
