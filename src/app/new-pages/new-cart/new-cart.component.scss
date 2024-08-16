@@ -1,14 +1,61 @@
-
-*
-{
-    font-family: "Proxima Nova";  
+* {
+    font-family: "Proxima Nova";
 }
-.fa, .far, .fas {
+
+.fa,
+.far,
+.fas {
     font-family: "Font Awesome 5 Free" !important;
 }
-.is-cart-selected
-{
-   background: #f4ddff
+
+.is-cart-selected {
+    background: #f4ddff
+}
+
+table {
+    width: 100%;
+}
+
+table tr td {
+    background-color: transparent;
+    padding-inline: 3px;
+    vertical-align: top;
+}
+
+table .mark {
+    width: 3%;
+}
+
+table .image {
+    width: 7%;
+}
+
+table .details {
+    width: auto;
+}
+
+table .amount {
+    width: 10%;
+}
+
+table .shipping {
+    width: 10%;
+}
+
+table .total {
+    width: 7%;
+}
+
+table .delete {
+    width: 3%;
+}
+
+table .totalfield {
+    width: 10%;
+}
+
+h3{
+    margin-bottom: 0px;
 }
 
 .fibei-checkout {
@@ -24,8 +71,8 @@
     margin-bottom: 20px;
     width: 100%;
 }
-.cart-paypal
-{
+
+.cart-paypal {
     font-size: 1rem;
     padding: 10px 20px;
     border-radius: 20px;
@@ -34,7 +81,8 @@
     display: block;
     margin-bottom: 20px;
     width: 100%;
-} 
+}
+
 .fibei-btn {
     font-family: "Proxima Nova";
     border: 2px #5e17eb solid;

@@ -1,0 +1,78 @@
+* {
+    font-family: Proxima Nova;
+}
+
+.main{
+    padding-top: 25px;
+    min-height: 500px;
+    margin-inline: 20px;
+}
+
+h1{
+    margin-block: 0px;
+}
+
+.fa,
+.far,
+.fas {
+    font-family: "Font Awesome 5 Free" !important;
+}
+
+.c-heart {
+    font-size: 16px;
+    line-height: 16px;
+    color: #5e17eb;
+}
+
+.space-around{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.v3-rating {
+    color: #5e17eb;
+}
+
+.fibei-btn {
+    font-family: "Proxima Nova";
+    border: 1px #5e17eb solid;
+    color: #5e17eb;
+    font-size: 1rem;
+    padding: 10px;
+    border-radius: 20px;
+    font-weight: bold;
+    margin-right: 8px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.fibei-btn:hover {
+    font-family: "Proxima Nova";
+    border: 1px #5e17eb solid;
+    color: #fff;
+    background: #5e17eb;
+
+}
+
+.fibei-btn-o {
+    font-family: "Proxima Nova";
+    border: 1px #5e17eb solid;
+    color: #fff;
+    background: #5e17eb;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 20px;
+    font-weight: bold;
+    margin-right: 8px;
+    display: inline-block;
+}
+
+.fibei-btn-o:hover {
+    font-family: "Proxima Nova";
+    border: 1px #5e17eb solid;
+    background: white;
+    color: #5e17eb;
+    font-size: 1rem;
+}

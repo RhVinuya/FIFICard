@@ -61,6 +61,7 @@ import { NewProfileComponent } from './new-pages/new-profile/new-profile.compone
 import { NewWishlistComponent } from './new-pages/new-wishlist/new-wishlist.component';
 import { NewCartComponent } from './new-pages/new-cart/new-cart.component';
 import { NewRegistrationComponent } from './new-pages/new-registration/new-registration.component';
+import { NewDetailsComponent } from './new-pages/new-details/new-details.component';
 
 const routes: Routes = [
   {
@@ -296,6 +297,10 @@ const routes: Routes = [
             component: NewWishlistComponent
           }
         ]
+      },
+      {
+        path: 'details/:id',
+        component: NewDetailsComponent
       },
       {
         path: 'cart',

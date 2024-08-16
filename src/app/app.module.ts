@@ -160,6 +160,8 @@ import { NewLayoutHeaderComponent } from './new-pages/new-layout/new-layout-head
 import { NewLayoutStickersComponent } from './new-pages/new-layout/new-layout-stickers/new-layout-stickers.component';
 import { NewLayoutPostcardsComponent } from './new-pages/new-layout/new-layout-postcards/new-layout-postcards.component';
 import { NewLayoutGiftsComponent } from './new-pages/new-layout/new-layout-gifts/new-layout-gifts.component';
+import { NewDetailsComponent } from './new-pages/new-details/new-details.component';
+import { NewDetailsImagesComponent } from './new-pages/new-details/new-details-images/new-details-images.component';
 
 @NgModule({
   declarations: [
@@ -297,7 +299,9 @@ import { NewLayoutGiftsComponent } from './new-pages/new-layout/new-layout-gifts
     NewLayoutHeaderComponent,
     NewLayoutStickersComponent,
     NewLayoutPostcardsComponent,
-    NewLayoutGiftsComponent
+    NewLayoutGiftsComponent,
+    NewDetailsComponent,
+    NewDetailsImagesComponent
   ],
   imports: [
     BrowserModule,
