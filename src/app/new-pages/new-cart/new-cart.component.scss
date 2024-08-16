@@ -103,3 +103,27 @@ h3{
     background: #5e17eb;
 
 }
+
+.fibei-btn-o {
+    font-family: "Proxima Nova";
+    color: #fff;
+    background: #5e17eb;
+    cursor: pointer;
+    padding-inline: 10px;
+    padding-block: 5px;
+    border-radius: 20px;
+    margin-right: 8px;
+    display: inline-block;
+    border: none;
+}
+
+.fibei-btn-o:hover {
+    font-family: "Proxima Nova";
+    background: #fff;
+    color: #5e17eb;
+    font-size: 1rem;
+}
+
+.fa-star{
+    font-size: 13px;
+}
