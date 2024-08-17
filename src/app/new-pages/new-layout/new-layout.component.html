@@ -2,6 +2,10 @@
     <app-new-layout-header [type]="0" [showHeader]="showHeader" (onShowMenu)="onShowMenu($event)"></app-new-layout-header>
     <app-new-layout-header [type]="1" [showHeader]="showHeader" (onShowMenu)="onShowMenu($event)"></app-new-layout-header>
     
+    <div class="msg text-center">
+        <label class="link">Sign in</label>&nbsp;<label>or</label>&nbsp;<label class="link" [routerLink]="['/new/registration']">Join us now!</label>
+    </div>
+    
     <div class="content pb-5" [ngClass]="showMenu ? 'opacity' : ''">
         <router-outlet></router-outlet>
     </div>
@@ -38,7 +42,7 @@
                         <div class="text-center">
                             <h3>Connect with us</h3>
                             <div class="input-group mb-4">
-                                <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username"
+                                <input type="text" class="form-control" placeholder="Enter your email" aria-label="Enter your email"
                                     aria-describedby="button-addon2">
                                 <button class="btn btn-outline-secondary" type="button" id="button-addon2">Sign Up</button>
                             </div>

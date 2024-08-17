@@ -1,0 +1,71 @@
+* {
+    font-family: Proxima Nova;
+}
+
+.fa,
+.far,
+.fas {
+    font-family: "Font Awesome 5 Free" !important;
+}
+
+.label-header {
+    font-family: 'Proxima Nova';
+    font-size: 2.5rem;
+    font-weight: bold;
+    line-height: 3.5rem;
+    color: #5e17eb;
+    margin: 0;
+}
+
+.create-btn {
+    font-family: 'Proxima Nova';
+    color: #fff;
+    background: #5e17eb;
+    font-size: 1rem;
+    padding-block: 10px;
+    padding-inline: 20px;
+    border-radius: 20px;
+    border: 0.5px solid #5e17eb;
+    font-weight: bold;
+    cursor: pointer;
+    text-transform: uppercase
+}
+
+.create-btn:hover {
+    color: #5e17eb;
+    background: #fff;
+}
+
+.create-btn:disabled {
+    background: lightgrey;
+    border: 0.5px solid lightgrey;
+    cursor: not-allowed;
+}
+
+.create-btn:disabled:hover {
+    color: #fff;
+}
+
+.password {
+    position: relative;
+}
+
+.password .eye {
+    position: absolute;
+    width: 20px;
+    aspect-ratio: 1/1;
+    background: white;
+    right: 10px;
+    top: 35%;
+}
+
+.password .eye i {
+    color: #000;
+    opacity: 0.6;
+    font-size: 18px;
+}
+
+.password .eye i:hover {
+    opacity: 1;
+    cursor: pointer;
+}
