@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { collection, doc, Firestore, getDocsFromServer, query, setDoc, where } from '@angular/fire/firestore';
-import { Auth, createUserWithEmailAndPassword } from '@angular/fire/auth';
+import { collection, doc, Firestore, getDocFromServer, getDocsFromServer, query, setDoc, where } from '@angular/fire/firestore';
+import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from '@angular/fire/auth';
 import { INewUser } from '../new-models/new-user';
 
 @Injectable({
@@ -26,6 +26,14 @@ export class NewAccountService {
       createUserWithEmailAndPassword(this.auth, email, password).then(user => {
         resolve(user.user.uid);
       })
+    });
+  }
+
+  authenticate(email: string, password: string): Promise<string> {
+    return new Promise((resolve, rejects) => {
+      signInWithEmailAndPassword(this.auth, email, password).then(user => {
+        resolve(user.user.uid);
+      }).catch(err => rejects(err));
     });
   }
 
@@ -55,6 +63,19 @@ export class NewAccountService {
         });
         resolve(users);
       });
+    });
+  }
+
+  get(id: string): Promise<INewUser> {
+    return new Promise((resolve) => {
+      let data = doc(this.store, 'users/' + id);
+      getDocFromServer(data).then(doc => {
+        if (doc.exists()){
+          let user: INewUser = doc.data() as INewUser;
+          user.id = doc.id;
+          resolve(user);
+        }
+      })
     });
   }
 }

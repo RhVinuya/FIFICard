@@ -7,3 +7,4 @@ export interface INewUser {
     birthday: string;
     notification: boolean;
 }
+

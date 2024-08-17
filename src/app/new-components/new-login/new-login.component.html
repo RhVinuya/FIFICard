@@ -1,0 +1,52 @@
+<div class="modal-body main">
+    <button type="button" class="btn-close" aria-label="Close" (click)="close()"></button>
+    <div class="text-center title">
+        <img src="/assets/images/logo_fibeigreetings-com.png">
+        <h3>Sign in</h3>
+    </div>
+    <div class="text-center px-5 mb-5">
+        <form [formGroup]="form" (submit)="submit()">
+            <div class="form-floating mb-3">
+                <input type="email" class="form-control" id="email" placeholder="name@example.com" formControlName="email" [disabled]="processing"
+                    [ngClass]="{ 'is-invalid': submitted && form.controls.email.errors}">
+                <label for="email">Email address</label>
+            </div>
+            <div class="form-floating password mb-3">
+                <input [type]="showPassword ? 'text' : 'password'" class="form-control" id="password" placeholder="Password" formControlName="password"
+                    [disabled]="processing" [ngClass]="{ 'is-invalid': submitted && form.controls.password.errors}">
+                <label for="password">Password</label>
+                <div class="eye">
+                    <i class="fa fab fa-eye" *ngIf="showPassword === false" (click)="onChangeShowPassword()"></i>
+                    <i class="fa fab fa-eye-slash" *ngIf="showPassword === true" (click)="onChangeShowPassword()"></i>
+                </div>
+            </div>
+            <div class="mb-3 text-start" *ngIf="form.controls.email.errors !== null && form.controls.email.errors!['notfound']">
+                <label class="text-danger">
+                    <i class="fa fa-exclamation-circle"></i>
+                    Account not found.
+                </label>
+                <a href="/new/registration" class="ms-1">Join us</a>
+            </div>
+            <div class="mb-3 text-start" *ngIf="form.controls.password.errors !== null && form.controls.password.errors!['failed']">
+                <label class="text-danger">
+                    <i class="fa fa-exclamation-circle"></i>
+                    Authentication Failed.
+                </label>
+            </div>
+            <div class="mb-3 text-start">
+                <label>
+                    <input class="form-check-input me-2" type="checkbox" formControlName="notification" [disabled]="processing"
+                        formControlName="remember">
+                    Remember password
+                </label>
+            </div>
+            <button type="submit" class="login-btn" [disabled]="processing">
+                <span class="spinner-border spinner-border-sm me-1" aria-hidden="true" *ngIf="processing"></span>
+                {{processing ? 'Signing in ...' : 'Sign in'}}
+            </button>
+        </form>
+    </div>
+    <div class="link text-center py-3">
+        <label>Don't have an account? <a href="/new/registration">Join us</a></label>
+    </div>
+</div>

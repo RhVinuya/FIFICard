@@ -70,7 +70,7 @@
                         <i class="fa fa-exclamation-circle"></i>
                         Account is created for this email address.
                     </label>
-                    <a class="ms-1" href="/">Sign in?</a>
+                    <a class="ms-1" (click)="onClickSignIn()">Sign in?</a>
                 </div>
                 <div class="mt-4 mb-2">
                     <label>
@@ -96,7 +96,7 @@
                 </div>
             </form>
             <div class="mb-4">
-                <label>Already have an Account?<a href="" class="ms-2">Sign in</a></label>
+                <label>Already have an Account?<a class="ms-2" (click)="onClickSignIn()">Sign in</a></label>
             </div>
         </div>
     </div>

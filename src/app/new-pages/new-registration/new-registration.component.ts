@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NewInfoMessageComponent } from 'src/app/new-components/new-info-message/new-info-message.component';
+import { NewLoginComponent } from 'src/app/new-components/new-login/new-login.component';
 import { INewUser } from 'src/app/new-models/new-user';
 import { NewAccountService } from 'src/app/new-services/new-account.service';
 
@@ -123,6 +124,10 @@ export class NewRegistrationComponent implements OnInit {
       reference.close();
       this.router.navigate(['/new/profile']);
     })
+  }
+
+  onClickSignIn(){
+    this.modalService.open(NewLoginComponent, { animation: true });
   }
 
 }

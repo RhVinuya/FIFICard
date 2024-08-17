@@ -166,6 +166,7 @@ import { NewContactUsComponent } from './new-pages/new-links/new-contact-us/new-
 import { NewTermsAndConditionComponent } from './new-pages/new-links/new-terms-and-condition/new-terms-and-condition.component';
 import { getAuth, provideAuth } from '@angular/fire/auth';
 import { NewInfoMessageComponent } from './new-components/new-info-message/new-info-message.component';
+import { NewLoginComponent } from './new-components/new-login/new-login.component';
 
 @NgModule({
   declarations: [
@@ -308,7 +309,8 @@ import { NewInfoMessageComponent } from './new-components/new-info-message/new-i
     NewDetailsImagesComponent,
     NewContactUsComponent,
     NewTermsAndConditionComponent,
-    NewInfoMessageComponent
+    NewInfoMessageComponent,
+    NewLoginComponent
   ],
   imports: [
     BrowserModule,
