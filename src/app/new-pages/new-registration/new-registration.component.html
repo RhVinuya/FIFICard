@@ -9,7 +9,7 @@
                     <div class="col-12">
                         <div class="form-floating">
                             <input type="email" class="form-control" id="email" placeholder="name@example.com" formControlName="email"
-                                [ngClass]="{ 'is-invalid': submitted && form.controls.email.errors}">
+                                [disabled]="processing" [ngClass]="{ 'is-invalid': submitted && form.controls.email.errors}">
                             <label for="email">Email address</label>
                         </div>
                     </div>
@@ -18,14 +18,14 @@
                     <div class="col-6 pe-1">
                         <div class="form-floating">
                             <input type="text" class="form-control" id="firstname" placeholder="Firstname" formControlName="firstname"
-                                [ngClass]="{ 'is-invalid': submitted && form.controls.firstname.errors}">
+                                [disabled]="processing" [ngClass]="{ 'is-invalid': submitted && form.controls.firstname.errors}">
                             <label for="firstname">Firstname</label>
                         </div>
                     </div>
                     <div class="col-6 ps-1">
                         <div class="form-floating">
                             <input type="text" class="form-control" id="lastname" placeholder="Lastname" formControlName="lastname"
-                                [ngClass]="{ 'is-invalid': submitted && form.controls.lastname.errors}">
+                                [disabled]="processing" [ngClass]="{ 'is-invalid': submitted && form.controls.lastname.errors}">
                             <label for="lastname">Lastname</label>
                         </div>
                     </div>
@@ -34,7 +34,7 @@
                     <div class="col-12">
                         <div class="form-floating">
                             <input type="date" class="form-control" id="bday" placeholder="Birthday" formControlName="birthday"
-                                [ngClass]="{ 'is-invalid': submitted && form.controls.birthday.errors}">
+                                [disabled]="processing" [ngClass]="{ 'is-invalid': submitted && form.controls.birthday.errors}">
                             <label for="bday">Birthday</label>
                         </div>
                     </div>
@@ -42,43 +42,55 @@
                 <div class="row mb-3">
                     <div class="col-6 pe-1">
                         <div class="form-floating password">
-                            <input type="password" class="form-control" id="password" placeholder="Password" formControlName="password"
+                            <input [type]="showPassword ? 'text' : 'password'" class="form-control" id="password" placeholder="Password"
+                                formControlName="password" [disabled]="processing"
                                 [ngClass]="{ 'is-invalid': submitted && form.controls.password.errors}">
                             <label for="password">Password</label>
                             <div class="eye">
-                                <i class="fa fab fa-eye"></i>
-                                <!--
-                                <i class="fa fab fa-eye-slash"></i>
-                                -->
+                                <i class="fa fab fa-eye" *ngIf="showPassword === false" (click)="onChangeShowPassword()"></i>
+                                <i class="fa fab fa-eye-slash" *ngIf="showPassword === true" (click)="onChangeShowPassword()"></i>
                             </div>
                         </div>
                     </div>
                     <div class="col-6 ps-1">
                         <div class="form-floating password">
-                            <input type="password" class="form-control" id="confirm" placeholder="Confirm password" formControlName="confirm"
+                            <input [type]="showConfirm ? 'text' : 'password'" class="form-control" id="confirm" placeholder="Confirm password"
+                                formControlName="confirm" [disabled]="processing"
                                 [ngClass]="{ 'is-invalid': submitted && form.controls.confirm.errors}">
                             <label for="confirm">Confirm password</label>
                             <div class="eye">
-                                <i class="fa fab fa-eye"></i>
-                                <!--
-                                <i class="fa fab fa-eye-slash"></i>
-                                -->
+                                <i class="fa fab fa-eye" *ngIf="showConfirm === false" (click)="onChangeShowConfirm()"></i>
+                                <i class="fa fab fa-eye-slash" *ngIf="showConfirm === true" (click)="onChangeShowConfirm()"></i>
                             </div>
                         </div>
                     </div>
                 </div>
+                <div *ngIf="form.controls.email.errors !== null && form.controls.email.errors!['used']">
+                    <label class="text-danger">
+                        <i class="fa fa-exclamation-circle"></i>
+                        Account is created for this email address.
+                    </label>
+                    <a class="ms-1" href="/">Sign in?</a>
+                </div>
                 <div class="mt-4 mb-2">
-                    <label><input class="form-check-input me-2" type="checkbox" formControlName="newsletter">Sign up for email updates, notifications,
-                        special offers and
-                        promotion emails</label>
+                    <label>
+                        <input class="form-check-input me-2" type="checkbox" formControlName="notification" [disabled]="processing">
+                        Sign up for email updates, notifications,
+                        special offers and promotion emails
+                    </label>
                 </div>
                 <div class="mb-4">
-                    <label><input class="form-check-input me-2" type="checkbox" formControlName="terms">I agree with the</label><a href=""
-                        class="ms-2">Terms and
-                        Agreement</a>
+                    <label><input class="form-check-input me-2" type="checkbox" formControlName="terms" [disabled]="processing"
+                            [ngClass]="{ 'is-invalid': submitted && form.controls.terms.errors}">
+                        I agree with the
+                        <a [routerLink]="['/new/link/terms-and-condition']" target="_blank" class="ms-1">
+                            Terms and Agreement
+                        </a>
+                    </label>
                 </div>
                 <div class="mb-4 text-center">
                     <button type="submit" class="create-btn" [disabled]="processing">
+                        <span class="spinner-border spinner-border-sm me-1" aria-hidden="true" *ngIf="processing"></span>
                         {{processing ? 'Creating Account ...' : 'Create my Account'}}
                     </button>
                 </div>

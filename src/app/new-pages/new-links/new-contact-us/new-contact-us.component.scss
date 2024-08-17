@@ -1,0 +1,21 @@
+* {
+    font-family: Proxima Nova;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.my-btn-primary {
+    color: #fff;
+    background-color: #7030a0;
+    border-color: #7030a0;
+    font-size: 26px;
+}
+
+.my-btn-primary img{
+    height: 60px;
+}

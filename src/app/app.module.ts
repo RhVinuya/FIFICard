@@ -162,6 +162,10 @@ import { NewLayoutPostcardsComponent } from './new-pages/new-layout/new-layout-p
 import { NewLayoutGiftsComponent } from './new-pages/new-layout/new-layout-gifts/new-layout-gifts.component';
 import { NewDetailsComponent } from './new-pages/new-details/new-details.component';
 import { NewDetailsImagesComponent } from './new-pages/new-details/new-details-images/new-details-images.component';
+import { NewContactUsComponent } from './new-pages/new-links/new-contact-us/new-contact-us.component';
+import { NewTermsAndConditionComponent } from './new-pages/new-links/new-terms-and-condition/new-terms-and-condition.component';
+import { getAuth, provideAuth } from '@angular/fire/auth';
+import { NewInfoMessageComponent } from './new-components/new-info-message/new-info-message.component';
 
 @NgModule({
   declarations: [
@@ -301,7 +305,10 @@ import { NewDetailsImagesComponent } from './new-pages/new-details/new-details-i
     NewLayoutPostcardsComponent,
     NewLayoutGiftsComponent,
     NewDetailsComponent,
-    NewDetailsImagesComponent
+    NewDetailsImagesComponent,
+    NewContactUsComponent,
+    NewTermsAndConditionComponent,
+    NewInfoMessageComponent
   ],
   imports: [
     BrowserModule,
@@ -309,6 +316,7 @@ import { NewDetailsImagesComponent } from './new-pages/new-details/new-details-i
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
     provideStorage(() => getStorage()),
+    provideAuth(() => getAuth()),
     BrowserAnimationsModule,
     MatCardModule,
     MatIconModule,

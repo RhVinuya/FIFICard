@@ -62,6 +62,8 @@ import { NewWishlistComponent } from './new-pages/new-wishlist/new-wishlist.comp
 import { NewCartComponent } from './new-pages/new-cart/new-cart.component';
 import { NewRegistrationComponent } from './new-pages/new-registration/new-registration.component';
 import { NewDetailsComponent } from './new-pages/new-details/new-details.component';
+import { NewContactUsComponent } from './new-pages/new-links/new-contact-us/new-contact-us.component';
+import { NewTermsAndConditionComponent } from './new-pages/new-links/new-terms-and-condition/new-terms-and-condition.component';
 
 const routes: Routes = [
   {
@@ -310,6 +312,19 @@ const routes: Routes = [
         path: 'registration',
         component: NewRegistrationComponent
       },
+      {
+        path: 'link',
+        children: [
+          {
+            path: 'contact-us',
+            component: NewContactUsComponent
+          },
+          {
+            path: 'terms-and-condition',
+            component: NewTermsAndConditionComponent
+          }
+        ]
+      }
     ]
   }
 ];
