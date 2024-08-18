@@ -1,0 +1,3 @@
+<div [ngClass]="size === 'sm' ? 'rating-sm' : 'rating-lg'" *ngIf="_rate > 0">
+    <ngb-rating [max]="5" [rate]="_rate" [readonly]="true"></ngb-rating>
+</div>

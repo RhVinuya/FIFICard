@@ -8,15 +8,9 @@
         <p class="card-text mb-2" (click)="onClick()">
             {{_card.description}}
         </p>
-        <div class="row mb-2">
-            <div class="col-md-6"><b class="txt-purple">{{_card.priceDisplay()}}</b></div>
-            <div class="col-md-6 ion-text-right v3-rating">
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
-            </div>
+        <div class="space-around mb-2">
+            <label><b class="txt-purple">{{_card.priceDisplay()}}</b></label>
+            <app-new-rate size="sm" [rate]="rate"></app-new-rate>
         </div>
         <app-new-personalize-button class="me-1"></app-new-personalize-button>
         <app-new-add-cart-button></app-new-add-cart-button>

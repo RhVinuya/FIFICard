@@ -173,6 +173,7 @@ import { NewPersonalizeComponent } from './new-pages/new-personalize/new-persona
 import { NewPersonalizeButtonComponent } from './new-components/new-personalize-button/new-personalize-button.component';
 import { NewAddCartButtonComponent } from './new-components/new-add-cart-button/new-add-cart-button.component';
 import { NewCardEventsComponent } from './new-components/new-card-events/new-card-events.component';
+import { NewRateComponent } from './new-components/new-rate/new-rate.component';
 
 @NgModule({
   declarations: [
@@ -322,7 +323,8 @@ import { NewCardEventsComponent } from './new-components/new-card-events/new-car
     NewPersonalizeComponent,
     NewPersonalizeButtonComponent,
     NewAddCartButtonComponent,
-    NewCardEventsComponent
+    NewCardEventsComponent,
+    NewRateComponent
   ],
   imports: [
     BrowserModule,

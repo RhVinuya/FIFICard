@@ -112,3 +112,10 @@
 .v3-rating {
     color: #5e17eb;
 }
+
+.space-around{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}

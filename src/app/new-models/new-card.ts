@@ -72,3 +72,15 @@ export interface INewCardImage {
     url: string;
     active: boolean;
 }
+
+
+export interface INewRating {
+    id: string;
+    title: string
+    review: string;
+    rate: number;
+    username: string;
+    approve: boolean;
+    created: Timestamp;
+    modified: Timestamp;
+}

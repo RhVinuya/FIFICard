@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { INewCard, NewCard } from 'src/app/new-models/new-card';
+import { INewCard, INewRating, NewCard } from 'src/app/new-models/new-card';
 import { NewCardService } from 'src/app/new-services/new-card.service';
 import { NewFileService } from 'src/app/new-services/new-file.service';
 
@@ -28,6 +28,7 @@ export class NewCardThumbComponent implements OnInit {
 
   _card: NewCard;
   image: string = '';
+  rate: number = 0;
 
   async ngOnInit(): Promise<void> {
     this._card = new NewCard(this.card);
@@ -36,9 +37,18 @@ export class NewCardThumbComponent implements OnInit {
     if (cardImages.length > 0) {
       this.image = await this.fileService.getImageURL(cardImages[0].url);
     }
+    this.loadRatings(await this.cardService.getRatings(this._card.id))
   }
 
   onClick(){
     this.router.navigate(['/new/details/' + this._card.id])
+  }
+
+  loadRatings(ratings: INewRating[]) {
+    let value: number = 0;
+    ratings.forEach(rating => {
+      value = value + rating.rate;
+    })
+    this.rate = value / ratings.length;
   }
 }

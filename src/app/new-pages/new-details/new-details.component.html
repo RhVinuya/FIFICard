@@ -12,21 +12,13 @@
             </div>
             <div class="space-around mb-3">
                 <h3 class="my-0">{{this.card.priceDisplay()}}</h3>
-                <div class="v3-rating">
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                </div>
+                <app-new-rate [rate]="rate"></app-new-rate>
             </div>
             <div class="mt-2 mb-4">
                 <app-new-personalize-button class="me-2"></app-new-personalize-button>
                 <app-new-add-cart-button></app-new-add-cart-button>
             </div>
-            <div class="details">
-                {{card.details}}
-            </div>
+            <div class="details">{{card.details}}</div>
         </div>
     </div>
 </div>

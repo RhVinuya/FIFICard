@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { collection, doc, Firestore, getDocFromServer, getDocs, getDocsFromServer, query, where } from '@angular/fire/firestore';
-import { INewCard, INewCardImage } from '../new-models/new-card';
+import { INewCard, INewCardImage, INewRating } from '../new-models/new-card';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -63,6 +63,24 @@ export class NewCardService {
         })
         
         resolve(images);
+      })
+    });
+  }
+
+  getRatings(id: string): Promise<INewRating[]> {
+    return new Promise((resolve) => {
+      const col = collection(this.store, 'cards/' + id + '/ratings');
+      const q = query(col, where('approve', "==", true))
+      getDocsFromServer(q).then(docs => {
+        let ratings: INewRating[] = [];
+
+        docs.forEach(doc => {
+          let rating: INewRating = doc.data() as INewRating;
+          rating.id = doc.id;
+          ratings.push(rating);
+        });
+        
+        resolve(ratings);
       })
     });
   }
