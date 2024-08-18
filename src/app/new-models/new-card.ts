@@ -63,3 +63,9 @@ export class NewCard {
         else return '';
     }
 }
+
+export interface INewCardImage {
+    title: string;
+    url: string;
+    active: boolean;
+}

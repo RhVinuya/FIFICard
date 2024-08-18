@@ -24,7 +24,7 @@
             <app-new-card-thumb [card]="card"></app-new-card-thumb>
         </ion-col>
     </div>
-    <div class="text-center" *ngIf="cards.length > displayCount">
+    <div class="text-center py-3" *ngIf="cards.length > displayCount">
         <button type="button" class="btn loadmore" (click)="loadmore()">LOAD MORE</button>
     </div>
 </div>

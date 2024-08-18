@@ -1,8 +1,11 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { NewCard } from 'src/app/new-models/new-card';
+import { IonContent } from '@ionic/angular';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { INewCardImage, NewCard } from 'src/app/new-models/new-card';
 import { NewCardService } from 'src/app/new-services/new-card.service';
 import { NewFileService } from 'src/app/new-services/new-file.service';
+import { NewPersonalizeComponent } from '../new-personalize/new-personalize.component';
 
 @Component({
   selector: 'app-new-details',
@@ -10,28 +13,29 @@ import { NewFileService } from 'src/app/new-services/new-file.service';
   styleUrls: ['./new-details.component.scss']
 })
 export class NewDetailsComponent implements OnInit {
-
   activateRoute: ActivatedRoute;
   cardService: NewCardService;
   fileService: NewFileService;
+  modalService: NgbModal;
   ref: ChangeDetectorRef;
 
   constructor(
     _activateRoute: ActivatedRoute,
     _cardService: NewCardService,
     _fileService: NewFileService,
+    _modalService: NgbModal,
     _ref: ChangeDetectorRef
   ) {
     this.activateRoute = _activateRoute;
     this.cardService = _cardService;
     this.fileService = _fileService;
+    this.modalService = _modalService;
     this.ref = _ref
   }
 
   loading: boolean = false;
   card: NewCard;
-  primary: string = '';
-  images: string[] = []
+  images: string[] = [];
 
   ngOnInit(): void {
     this.activateRoute.params.subscribe(params => {
@@ -40,29 +44,24 @@ export class NewDetailsComponent implements OnInit {
         this.card = new NewCard(value);
         this.loading = false;
         this.ref.detectChanges();
-        this.loadImages()
+        this.loadImages(await this.cardService.getImages(params['id']))
       })
     });
   }
 
-  async loadImages() {
-    this.images = [];
-    if (this.card.primary && this.card.primary !== '') {
-      let url = await this.fileService.getImageURL(this.card.primary);
-      this.images.push(url);
+  async loadImages(items: INewCardImage[]) {
+    if (items.length > 0) {
+      this.images = [];
+      for await (let item of items) {
+        let url = await this.fileService.getImageURL(item.url);
+        this.images = [...this.images, url]
+      }
       this.ref.detectChanges();
     }
-    if (this.card.images.length > 0) {
-      for await (let image of this.card.images) {
-        if (image !== (this.card.primary && this.card.primary !== '')) {
-          let url = await this.fileService.getImageURL(image);
-          this.images.push(url);
-          this.ref.detectChanges();
-        }
-      }
-    }
-    this.primary = this.images[0];
-    this.ref.detectChanges();
+  }
+
+  onPersonalize() {
+    this.modalService.open(NewPersonalizeComponent, { animation: true, fullscreen: true });
   }
 
 }

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { collection, doc, Firestore, getDocFromServer, getDocsFromServer, query, where } from '@angular/fire/firestore';
-import { INewCard } from '../new-models/new-card';
+import { collection, doc, Firestore, getDocFromServer, getDocs, getDocsFromServer, query, where } from '@angular/fire/firestore';
+import { INewCard, INewCardImage } from '../new-models/new-card';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,7 @@ export class NewCardService {
     return new Promise((resolve) => {
       const col = collection(this.store, 'cards');
       const q = query(col, where('active', "==", true), where('type', "==", 'card'))
-      getDocsFromServer(q).then(docs => {
+      getDocs(q).then(docs => {
         let cards: INewCard[] = [];
         docs.forEach(doc => {
           let card: INewCard = doc.data() as INewCard;
@@ -39,6 +40,29 @@ export class NewCardService {
           card.id = doc.id;
           resolve(card);
         }
+      })
+    });
+  }
+
+  getImages(id: string): Promise<INewCardImage[]> {
+    return new Promise((resolve) => {
+      const col = collection(this.store, 'cards/' + id + '/cardimages');
+      const q = query(col, where('active', "==", true))
+      getDocsFromServer(q).then(docs => {
+        let images: INewCardImage[] = [];
+        let temp: INewCardImage[] = [];
+        
+        docs.forEach(doc => {
+          let image: INewCardImage = doc.data() as INewCardImage;
+          temp.push(image);
+        });
+
+        environment.imagetitles.forEach(title => {
+          let image = temp.find(x => x.title === title);
+          if (image) images.push(image)
+        })
+        
+        resolve(images);
       })
     });
   }

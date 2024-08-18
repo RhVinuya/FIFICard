@@ -1,13 +1,13 @@
 <app-new-loading [loading]="loading"></app-new-loading>
 
-<div class="mxw-1920px mt-2" *ngIf="loading === false && card">
+<div class="mxw-1920px mt-2" *ngIf="loading === false && card" #top>
     <div class="row main">
         <div class="col-6 px-1">
-            <app-new-details-images [primary]="primary" [images]="images"></app-new-details-images>
+            <app-new-details-images [images]="images"></app-new-details-images>
         </div>
         <div class="col-6 px-1">
             <div class="space-around mb-4">
-                <h1>{{this.card.name}}!</h1>
+                <h1>{{this.card.name}}</h1>
                 <a class="c-heart" href="#"><i class="fa fa-2x fa-heart" aria-hidden="true"></i></a>
             </div>
             <div class="space-around mb-3">
@@ -21,7 +21,7 @@
                 </div>
             </div>
             <div class="mt-2 mb-4">
-                <button type="button" class="btn fibei-btn-o">
+                <button type="button" class="btn fibei-btn-o" (click)="onPersonalize()">
                     <i class="fa fa-star" aria-hidden="true"></i>
                     Personalize
                 </button>

@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { INewCard, NewCard } from 'src/app/new-models/new-card';
+import { NewCardService } from 'src/app/new-services/new-card.service';
 import { NewFileService } from 'src/app/new-services/new-file.service';
 
 @Component({
@@ -10,11 +11,14 @@ import { NewFileService } from 'src/app/new-services/new-file.service';
 export class NewCardThumbComponent implements OnInit {
   @Input() card: INewCard;
 
+  cardService: NewCardService;
   fileService: NewFileService;
 
   constructor(
+    _cardService: NewCardService,
     _fileService: NewFileService
   ) { 
+    this.cardService = _cardService;
     this.fileService = _fileService;
   }
 
@@ -23,9 +27,10 @@ export class NewCardThumbComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     this._card = new NewCard(this.card);
-    if (this._card.getPrimary() !== '') {
-      this.image = await this.fileService.getImageURL(this._card.getPrimary());
+
+    let cardImages = await this.cardService.getImages(this._card.id);
+    if (cardImages.length > 0) {
+      this.image = await this.fileService.getImageURL(cardImages[0].url);
     }
   }
-
 }

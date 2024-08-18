@@ -9,12 +9,9 @@ import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 export class NewDetailsImagesComponent implements OnInit {
   @ViewChild('modal') modal: TemplateRef<NewDetailsImagesComponent>;
 
-  @Input() set primary(value: string) {
-    this.selected = value;
-  }
-
   @Input() set images(value: string[]) {
     this._images = value;
+    if (this._images.length > 0) this.selected = this._images[0]
     this.ref.detectChanges();
   }
 

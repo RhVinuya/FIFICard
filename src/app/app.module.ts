@@ -169,6 +169,7 @@ import { NewInfoMessageComponent } from './new-components/new-info-message/new-i
 import { NewLoginComponent } from './new-components/new-login/new-login.component';
 import { NewLayoutFooterComponent } from './new-pages/new-layout/new-layout-footer/new-layout-footer.component';
 import { NewLoadingComponent } from './new-components/new-loading/new-loading.component';
+import { NewPersonalizeComponent } from './new-pages/new-personalize/new-personalize.component';
 
 @NgModule({
   declarations: [
@@ -314,7 +315,8 @@ import { NewLoadingComponent } from './new-components/new-loading/new-loading.co
     NewInfoMessageComponent,
     NewLoginComponent,
     NewLayoutFooterComponent,
-    NewLoadingComponent
+    NewLoadingComponent,
+    NewPersonalizeComponent
   ],
   imports: [
     BrowserModule,
