@@ -17,6 +17,31 @@ export const environment = {
     measurementId: "G-BN0LKLNJY2"
   },
   storage: 'FIBEIGREETINGS-DEV-',
+  events: [
+    "Birthday",
+    "Anniversary",
+    "Wedding",
+    "Retirement",
+    "Graduation",
+    "Mother’s day",
+    "Fathers day",
+    "Grandparent’s day",
+    "Baby",
+    "Baptism",
+    "Confirmation",
+    "First communion",
+    "Parents day",
+    "Teachers",
+    "Thanks giving",
+    "Halloween",
+    "Christmas",
+    "New year",
+    "Valentines",
+    "Easter"
+  ],
+
+
+
   imageSize: {
     small: "_74x100",
     medium: "_278x220",

@@ -1,9 +1,3 @@
-*{
-    font-family: Proxima Nova;
-}
-
-
-
 .label-header {
     font-family: Proxima Nova;
     font-size: 2.5rem;
@@ -13,39 +7,28 @@
     margin: 0;
 }
 
-.label-header.lh-h2 {
-    font-size: 2.5rem;
-}
-
 .label-header.lh-h3 {
     font-size: 2.0rem;
 }
 
-.event-badge {
+.fibei-badge {
     font-family: "Proxima Nova";
-    border: 1px #5f18eb solid;
-    color: #5f18eb;
+    border: 1px #cb6ce6 solid;
+    color: #cb6ce6;
     font-size: 1rem;
-    padding: 4px 15px;
+    padding: 5px 20px;
     border-radius: 20px;
+    font-weight: bold;
     margin-right: 8px;
     display: inline-block;
     margin-bottom: 8px;
 }
 
-.loadmore{
-    border: 0.35px #cb6ce6 solid;
+.fibei-badge:hover {
+    font-family: "Proxima Nova";
+    border: 1px #cb6ce6 solid;
     color: #fff;
     background: #cb6ce6;
     cursor: pointer;
-    padding-inline: 30px;
-    padding-block: 6px;
-    border-radius: 20px;
-    font-weight: bold;
-    display: inline-block;
-}
 
-.loadmore:hover{
-    color: #cb6ce6;
-    background: #fff;
 }

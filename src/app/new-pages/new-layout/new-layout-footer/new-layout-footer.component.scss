@@ -42,3 +42,18 @@ a:hover {
 a:active {
     text-decoration: none;
 }
+
+.im-social a {
+    height: 50px;
+    background: #7f05951f;
+    margin: 0px 4px;
+    border-radius: 50%;
+    width: 50px;
+    display: inline-block;
+    padding: 10px;
+    color: #5e17eb;
+}
+
+.im-social a:hover {
+    color: #000
+}

@@ -1,6 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { IonContent } from '@ionic/angular';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { INewCardImage, NewCard } from 'src/app/new-models/new-card';
 import { NewCardService } from 'src/app/new-services/new-card.service';
@@ -16,20 +15,17 @@ export class NewDetailsComponent implements OnInit {
   activateRoute: ActivatedRoute;
   cardService: NewCardService;
   fileService: NewFileService;
-  modalService: NgbModal;
   ref: ChangeDetectorRef;
 
   constructor(
     _activateRoute: ActivatedRoute,
     _cardService: NewCardService,
     _fileService: NewFileService,
-    _modalService: NgbModal,
     _ref: ChangeDetectorRef
   ) {
     this.activateRoute = _activateRoute;
     this.cardService = _cardService;
     this.fileService = _fileService;
-    this.modalService = _modalService;
     this.ref = _ref
   }
 
@@ -58,10 +54,6 @@ export class NewDetailsComponent implements OnInit {
       }
       this.ref.detectChanges();
     }
-  }
-
-  onPersonalize() {
-    this.modalService.open(NewPersonalizeComponent, { animation: true, fullscreen: true });
   }
 
 }

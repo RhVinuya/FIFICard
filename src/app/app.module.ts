@@ -170,6 +170,9 @@ import { NewLoginComponent } from './new-components/new-login/new-login.componen
 import { NewLayoutFooterComponent } from './new-pages/new-layout/new-layout-footer/new-layout-footer.component';
 import { NewLoadingComponent } from './new-components/new-loading/new-loading.component';
 import { NewPersonalizeComponent } from './new-pages/new-personalize/new-personalize.component';
+import { NewPersonalizeButtonComponent } from './new-components/new-personalize-button/new-personalize-button.component';
+import { NewAddCartButtonComponent } from './new-components/new-add-cart-button/new-add-cart-button.component';
+import { NewCardEventsComponent } from './new-components/new-card-events/new-card-events.component';
 
 @NgModule({
   declarations: [
@@ -316,7 +319,10 @@ import { NewPersonalizeComponent } from './new-pages/new-personalize/new-persona
     NewLoginComponent,
     NewLayoutFooterComponent,
     NewLoadingComponent,
-    NewPersonalizeComponent
+    NewPersonalizeComponent,
+    NewPersonalizeButtonComponent,
+    NewAddCartButtonComponent,
+    NewCardEventsComponent
   ],
   imports: [
     BrowserModule,

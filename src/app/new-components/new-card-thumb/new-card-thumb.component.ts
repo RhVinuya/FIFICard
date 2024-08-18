@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { INewCard, NewCard } from 'src/app/new-models/new-card';
 import { NewCardService } from 'src/app/new-services/new-card.service';
 import { NewFileService } from 'src/app/new-services/new-file.service';
@@ -13,13 +14,16 @@ export class NewCardThumbComponent implements OnInit {
 
   cardService: NewCardService;
   fileService: NewFileService;
+  router: Router;
 
   constructor(
     _cardService: NewCardService,
-    _fileService: NewFileService
+    _fileService: NewFileService,
+    _router: Router
   ) { 
     this.cardService = _cardService;
     this.fileService = _fileService;
+    this.router = _router;
   }
 
   _card: NewCard;
@@ -32,5 +36,9 @@ export class NewCardThumbComponent implements OnInit {
     if (cardImages.length > 0) {
       this.image = await this.fileService.getImageURL(cardImages[0].url);
     }
+  }
+
+  onClick(){
+    this.router.navigate(['/new/details/' + this._card.id])
   }
 }

@@ -21,11 +21,8 @@
                 </div>
             </div>
             <div class="mt-2 mb-4">
-                <button type="button" class="btn fibei-btn-o" (click)="onPersonalize()">
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    Personalize
-                </button>
-                <button type="button" class="btn fibei-btn">Add to Cart</button>
+                <app-new-personalize-button class="me-2"></app-new-personalize-button>
+                <app-new-add-cart-button></app-new-add-cart-button>
             </div>
             <div class="details">
                 {{card.details}}

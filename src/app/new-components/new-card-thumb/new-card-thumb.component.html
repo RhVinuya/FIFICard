@@ -1,11 +1,11 @@
-<div class="card" [routerLink]="['/new/details/' + _card.id]">
-    <div class="img-div">
+<div class="card">
+    <div class="img-div" (click)="onClick()">
         <img [src]="image" class="card-img" alt="..." *ngIf="image !== ''">
     </div>
     <a class="c-heart" href="#"> <i class="fa fa-2x fa-heart" aria-hidden="true"></i></a>
     <div class="card-body px-2 py-3">
-        <h4 class="card-title my-0">{{_card.name}}</h4>
-        <p class="card-text mb-2">
+        <h4 class="card-title my-0" (click)="onClick()">{{_card.name}}</h4>
+        <p class="card-text mb-2" (click)="onClick()">
             {{_card.description}}
         </p>
         <div class="row mb-2">
@@ -18,10 +18,7 @@
                 <i class="fa fa-star" aria-hidden="true"></i>
             </div>
         </div>
-        <button type="button" class="btn fibei-btn-o">
-            <i class="fa fa-star" aria-hidden="true"></i>
-            Personalize
-        </button>
-        <button type="button" class="btn fibei-btn">Add to Cart</button>
+        <app-new-personalize-button class="me-1"></app-new-personalize-button>
+        <app-new-add-cart-button></app-new-add-cart-button>
     </div>
 </div>
