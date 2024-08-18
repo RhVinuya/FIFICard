@@ -1,16 +1,15 @@
-<div class="card" [routerLink]="['/new/details/adasdada']">
+<div class="card" [routerLink]="['/new/details/' + _card.id]">
     <div class="img-div">
-        <img src="https://firebasestorage.googleapis.com/v0/b/fifi-greetings.appspot.com/o/card%2F4nAQZomPLor9ezS5qqb3%2FPkK3guvJL0YQzacNmiZW?alt=media&token=95aa9b88-3de8-42d0-a2fa-8e2ed2e82847"
-        class="card-img" alt="...">
+        <img [src]="image" class="card-img" alt="..." *ngIf="image !== ''">
     </div>
     <a class="c-heart" href="#"> <i class="fa fa-2x fa-heart" aria-hidden="true"></i></a>
     <div class="card-body px-2 py-3">
-        <h4 class="card-title my-0">Remarkable!</h4>
+        <h4 class="card-title my-0">{{_card.name}}</h4>
         <p class="card-text mb-2">
-            Graduation Card features a yellowish background with a medal and a graduate icon and some confetti
+            {{_card.description}}
         </p>
         <div class="row mb-2">
-            <div class="col-md-6"><b class="txt-purple">P200.00</b></div>
+            <div class="col-md-6"><b class="txt-purple">{{_card.priceDisplay()}}</b></div>
             <div class="col-md-6 ion-text-right v3-rating">
                 <i class="fa fa-star" aria-hidden="true"></i>
                 <i class="fa fa-star" aria-hidden="true"></i>

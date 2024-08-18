@@ -6,12 +6,16 @@
     border: 1px solid #d952ca;
 }
 
-.card:hover .img-div img{
-    transform: scale(1.05);
-}
 
 .card .img-div {
     overflow: hidden;
+    border-radius: 0;
+}
+
+.img-div{
+    border-radius: 0;
+    border-top-left-radius: 0.375rem;
+    border-top-right-radius: 0.375rem;
 }
 
 .card .img-div img {
@@ -41,9 +45,15 @@
 .card-title {
     color: #5e17eb;
     font-weight: bold;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
 }
 
 .card p {
+    height: 3rem;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;

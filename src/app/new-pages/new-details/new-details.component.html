@@ -1,15 +1,17 @@
-<div class="mxw-1920px mt-2">
+<app-new-loading [loading]="loading"></app-new-loading>
+
+<div class="mxw-1920px mt-2" *ngIf="loading === false && card">
     <div class="row main">
-        <div class="col-5">
-            <app-new-details-images></app-new-details-images>
+        <div class="col-6 px-1">
+            <app-new-details-images [primary]="primary" [images]="images"></app-new-details-images>
         </div>
-        <div class="col-7">
-            <div class="space-around mb-3">
-                <h1>Remarkable!</h1>
+        <div class="col-6 px-1">
+            <div class="space-around mb-4">
+                <h1>{{this.card.name}}!</h1>
                 <a class="c-heart" href="#"><i class="fa fa-2x fa-heart" aria-hidden="true"></i></a>
             </div>
-            <div class="space-around">
-                <h6>P200.00</h6>
+            <div class="space-around mb-3">
+                <h3 class="my-0">{{this.card.priceDisplay()}}</h3>
                 <div class="v3-rating">
                     <i class="fa fa-star" aria-hidden="true"></i>
                     <i class="fa fa-star" aria-hidden="true"></i>
@@ -25,28 +27,18 @@
                 </button>
                 <button type="button" class="btn fibei-btn">Add to Cart</button>
             </div>
-            <p>
-                Front Message: Heart That Yearns<br />
-                Inside Message: With hands that toil and heart that yearns, Each task you take, each lesson learned. In every effort, dedication
-                gleams, A beacon bright, in life's grand schemes.<br />
-                Card Package:<br />
-                Includes 1 card, 1 envelope, and a FiBei Greeting Seal.<br />
-                Envelope color may vary.<br />
-                Dimension: 7.2" H x 5" W<br />
-                Layout: Portrait / 2 Fold<br />
-                Card Type: Standard Card<br />
-                Made from well-managed forest paper.<br />
-                As a GIFT from us!<br />
-                You will get a FREE 5 Stickers from FiBei Greetings!!! 🙂
-            </p>
+            <div class="details">
+                {{card.details}}
+            </div>
         </div>
     </div>
-    <div class="row mt-5">
-        <div class="col-12">
-            <h3>You may also like</h3>
-        </div>
-        <div class="col-12">
-            <app-new-suggestions></app-new-suggestions>
-        </div>
+</div>
+
+<div class="mxw-1920px row mt-5" *ngIf="card">
+    <div class="col-12">
+        <h3>You may also like</h3>
+    </div>
+    <div class="col-12">
+        <app-new-suggestions></app-new-suggestions>
     </div>
 </div>

@@ -168,6 +168,7 @@ import { getAuth, provideAuth } from '@angular/fire/auth';
 import { NewInfoMessageComponent } from './new-components/new-info-message/new-info-message.component';
 import { NewLoginComponent } from './new-components/new-login/new-login.component';
 import { NewLayoutFooterComponent } from './new-pages/new-layout/new-layout-footer/new-layout-footer.component';
+import { NewLoadingComponent } from './new-components/new-loading/new-loading.component';
 
 @NgModule({
   declarations: [
@@ -312,7 +313,8 @@ import { NewLayoutFooterComponent } from './new-pages/new-layout/new-layout-foot
     NewTermsAndConditionComponent,
     NewInfoMessageComponent,
     NewLoginComponent,
-    NewLayoutFooterComponent
+    NewLayoutFooterComponent,
+    NewLoadingComponent
   ],
   imports: [
     BrowserModule,

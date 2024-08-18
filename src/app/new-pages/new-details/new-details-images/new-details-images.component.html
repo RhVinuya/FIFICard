@@ -2,7 +2,7 @@
     <img [src]="selected" *ngIf="selected !== ''" (click)="openGallery(selected)">
 </div>
 <div class="items">
-    <div *ngFor="let image of images">
+    <div *ngFor="let image of _images">
         <img [src]="image" (click)="onClickItem(image)">
     </div>
 </div>
@@ -15,7 +15,7 @@
             <i class="fa fa-2x fa-chevron-right nav" (click)="onNext()"></i>
         </div>
         <div class="options">
-            <div *ngFor="let image of images">
+            <div *ngFor="let image of _images">
                 <img [src]="image" (click)="onClickDisplay(image)">
             </div>
         </div>
