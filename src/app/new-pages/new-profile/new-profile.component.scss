@@ -1,0 +1,52 @@
+* {
+    font-family: Proxima Nova;
+}
+
+.label-header {
+    font-family: 'Proxima Nova';
+    font-size: 2.5rem;
+    font-weight: bold;
+    line-height: 3.5rem;
+    color: #5e17eb;
+    margin: 0;
+}
+
+.sign {
+    font-size: 1.3rem;
+}
+
+a {
+    cursor: pointer;
+    text-decoration: none;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+a:visited {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+a:active {
+    text-decoration: none;
+}
+
+.nav-pills button {
+    background: transparent;
+    border-bottom: 1px solid #ccc;
+    border-radius: 0;
+    text-align: left;
+    color: black;
+    font-weight: bold;
+    width: 250px;
+    padding: 20px;
+}
+
+.nav-pills button.active {
+    color: white;
+}

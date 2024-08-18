@@ -8,25 +8,25 @@
     font-family: "Font Awesome 5 Free" !important;
 }
 
-.main{
+.main {
     position: relative;
 }
 
-.main .btn-close{
+.main .btn-close {
     position: absolute;
     right: 1rem;
     top: 1rem
 }
 
-.title{
+.title {
     margin-block: 40px;
 }
 
-.title img{
+.title img {
     height: 50px;
 }
 
-.title h3{
+.title h3 {
     margin: 10px;
 }
 
@@ -83,6 +83,22 @@
     color: #fff;
 }
 
-.link{
+.link {
     border-top: 1px solid lightgrey;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+a:visited {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+a:active {
+    text-decoration: none;
 }

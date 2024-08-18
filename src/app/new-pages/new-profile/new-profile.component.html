@@ -1,3 +1,14 @@
-<div class="mxw-1920px mt-2">
-    <app-new-title title="Account Profile" [breadcrumbs]="breadcrumbs"></app-new-title>
+<div class="mxw-1320px my-4 text-center">
+    <h2 class="label-header">Account Profile</h2>
+</div>
+
+<div class="mxw-1320px text-center sign" *ngIf="user === undefined">
+    <label>No user sign in!</label>
+    <a class="mx-1" (click)="onClickSignIn()">Sign in</a>
+    <label class="mx-1">or</label>
+    <a [routerLink]="['/new/registration']">Join us now!</a>
+</div>
+
+<div class="mxw-1320px" *ngIf="user !== undefined">
+    
 </div>
