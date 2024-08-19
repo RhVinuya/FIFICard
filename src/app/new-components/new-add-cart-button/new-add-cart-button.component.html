@@ -1,6 +1,18 @@
-
-<button type="button" class="btn addtocart" (mouseenter)="mouserEnter()" (mouseleave)="mouseLeave()">
+<button type="button" class="btn addtocart" (mouseenter)="mouserEnter()" (mouseleave)="mouseLeave()" (click)="openCanvas()">
     <i class="fa fa-cart-plus" aria-hidden="true" *ngIf="isHover === false"></i>
     <i class="fa fa-cart-arrow-down" aria-hidden="true" *ngIf="isHover === true"></i>
     Add to Cart
 </button>
+
+<ng-template #content>
+    <div class="offcanvas-header">
+        <h4 class="offcanvas-title">Offcanvas title</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="closeCanvas()"></button>
+    </div>
+    <div class="offcanvas-body">
+        <p>One fine body&hellip;</p>
+        <div class="text-end">
+            <button type="button" class="btn btn-outline-secondary" (click)="closeCanvas()">Close</button>
+        </div>
+    </div>
+</ng-template>
