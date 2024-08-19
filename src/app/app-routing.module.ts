@@ -64,6 +64,13 @@ import { NewRegistrationComponent } from './new-pages/new-registration/new-regis
 import { NewDetailsComponent } from './new-pages/new-details/new-details.component';
 import { NewContactUsComponent } from './new-pages/new-links/new-contact-us/new-contact-us.component';
 import { NewTermsAndConditionComponent } from './new-pages/new-links/new-terms-and-condition/new-terms-and-condition.component';
+import { NewChatNowComponent } from './new-pages/new-links/new-chat-now/new-chat-now.component';
+import { NewReviewProductComponent } from './new-pages/new-links/new-review-product/new-review-product.component';
+import { NewAboutComponent } from './new-pages/new-links/new-about/new-about.component';
+import { NewPressPageComponent } from './new-pages/new-links/new-press-page/new-press-page.component';
+import { NewSignAndSendComponent } from './new-pages/new-links/new-sign-and-send/new-sign-and-send.component';
+import { NewShippingAndDeliveryComponent } from './new-pages/new-links/new-shipping-and-delivery/new-shipping-and-delivery.component';
+import { NewPrivacyPolicyComponent } from './new-pages/new-links/new-privacy-policy/new-privacy-policy.component';
 
 const routes: Routes = [
   {
@@ -320,8 +327,36 @@ const routes: Routes = [
             component: NewContactUsComponent
           },
           {
+            path: 'chat-now',
+            component: NewChatNowComponent
+          },
+          {
+            path: 'review-product',
+            component: NewReviewProductComponent
+          },
+          {
+            path: 'about',
+            component: NewAboutComponent
+          },
+          {
+            path: 'press-page',
+            component: NewPressPageComponent
+          },
+          {
+            path: 'sign-and-send',
+            component: NewSignAndSendComponent
+          },
+          {
+            path: 'shipping-and-delivery',
+            component: NewShippingAndDeliveryComponent
+          },
+          {
             path: 'terms-and-condition',
             component: NewTermsAndConditionComponent
+          },
+          {
+            path: 'privacy-policy',
+            component: NewPrivacyPolicyComponent
           }
         ]
       }

@@ -1,6 +1,6 @@
 How to build?
 For Development: ionic build
-For Staging: ionic build+
+For Staging: ionic build
 For Production: ionic build --configuration production
 
 How to Deploy?

@@ -174,6 +174,14 @@ import { NewPersonalizeButtonComponent } from './new-components/new-personalize-
 import { NewAddCartButtonComponent } from './new-components/new-add-cart-button/new-add-cart-button.component';
 import { NewCardEventsComponent } from './new-components/new-card-events/new-card-events.component';
 import { NewRateComponent } from './new-components/new-rate/new-rate.component';
+import { NewWishIndicatorComponent } from './new-components/new-wish-indicator/new-wish-indicator.component';
+import { NewChatNowComponent } from './new-pages/new-links/new-chat-now/new-chat-now.component';
+import { NewReviewProductComponent } from './new-pages/new-links/new-review-product/new-review-product.component';
+import { NewAboutComponent } from './new-pages/new-links/new-about/new-about.component';
+import { NewShippingAndDeliveryComponent } from './new-pages/new-links/new-shipping-and-delivery/new-shipping-and-delivery.component';
+import { NewPrivacyPolicyComponent } from './new-pages/new-links/new-privacy-policy/new-privacy-policy.component';
+import { NewPressPageComponent } from './new-pages/new-links/new-press-page/new-press-page.component';
+import { NewSignAndSendComponent } from './new-pages/new-links/new-sign-and-send/new-sign-and-send.component';
 
 @NgModule({
   declarations: [
@@ -324,7 +332,15 @@ import { NewRateComponent } from './new-components/new-rate/new-rate.component';
     NewPersonalizeButtonComponent,
     NewAddCartButtonComponent,
     NewCardEventsComponent,
-    NewRateComponent
+    NewRateComponent,
+    NewWishIndicatorComponent,
+    NewChatNowComponent,
+    NewReviewProductComponent,
+    NewAboutComponent,
+    NewShippingAndDeliveryComponent,
+    NewPrivacyPolicyComponent,
+    NewPressPageComponent,
+    NewSignAndSendComponent
   ],
   imports: [
     BrowserModule,
