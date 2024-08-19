@@ -8,7 +8,265 @@
     <label class="mx-1">or</label>
     <a [routerLink]="['/new/registration']">Join us now!</a>
 </div>
+<!-- *ngIf="user !== undefined" -->
+<div class="mxw-1320px" >
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-8 offset-md-2">
+                            <nav>
+                                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                  <button class="nav-link active" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="true">Account Profile</button>
+                                  <button class="nav-link" id="nav-communicationpreferences-tab" data-bs-toggle="tab" data-bs-target="#nav-communicationpreferences" type="button" role="tab" aria-controls="nav-communicationpreferences" aria-selected="false">Communication Preferences</button>
+                                  <button class="nav-link" id="nav-shippingaddresses-tab" data-bs-toggle="tab" data-bs-target="#nav-shippingaddresses" type="button" role="tab" aria-controls="nav-shippingaddresses" aria-selected="false">Shipping Addresses</button>
+                                  <button class="nav-link" id="nav-myorders-tab" data-bs-toggle="tab" data-bs-target="#nav-myorders" type="button" role="tab" aria-controls="nav-myorderss" aria-selected="false">My Orders</button>
+                                </div>
+                              </nav>
+                              <div class="tab-content" id="nav-tabContent">
+                                <div class="tab-pane fade show active" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                                    <h2 class="label-header">Account Profile</h2>
+                                    <div class="card card-lock">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-6"><h4 class="txt-purple">Basic Information</h4></div>
+                                                <div class="col-md-6 ion-text-right">
+                                                    <i class="fa fa-2x fa-edit text-secondary" aria-hidden="true"></i>
+                                                </div>
+                                                    
+                                            </div>
+                                            <br/>
+                                            <!-- [formGroup]="form" (submit)="submit()" -->
+                                            <form >
+                                                <div class="row ">
+                                                    <div class="col-md-6">
+                                                        <div class="form-floating mb-3">
+                                                            <input type="firstname" class="form-control" id="firstname" placeholder="firstname" formControlName="firstname" readonly >
+                                                            <label for="firstname">First Name*</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-floating mb-3">
+                                                            <input type="lastname" class="form-control" id="lastname" placeholder="lastname" formControlName="lastname" readonly>
+                                                            <label for="lastname">Last Name*</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-floating mb-3">
+                                                            <input type="contactnumber" class="form-control" id="contactnumber" placeholder="contactnumber" formControlName="contactnumber" >
+                                                            <label for="contactnumber">Contact Number*</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-floating mb-3">
+                                                            <input type="emailaddress" class="form-control" id="lasemailaddresstname" placeholder="emailaddress" formControlName="emailaddress" >
+                                                            <label for="emailaddress">Email Address*</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="form-floating mb-3">
+                                                            <select class="custom-select" class="form-control">
+                                                                <option selected>Select Gender</option>
+                                                                <option value="1">Female</option>
+                                                                <option value="2">Male</option>
+                                                              </select>
+                                                            <label for="gender">Gender*</label>
+                                                        </div>
+                                                     
+                                                      
+                                                    </div>
 
-<div class="mxw-1320px" *ngIf="user !== undefined">
-    
+                                                    <!-- <div class="col-12">
+                                                        <div class="form-floating">
+                                                            <input type="date" class="form-control" id="bday" placeholder="Birthday" formControlName="birthday"
+                                                                [disabled]="processing" [ngClass]="{ 'is-invalid': submitted && form.controls.birthday.errors}">
+                                                            <label for="bday">Birthday</label>
+                                                        </div>
+                                                    </div> -->
+                                                </div>
+                                                
+                                            </form>
+                                        </div>
+                                    </div>  
+                                    <br/>
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-6"><h4 class="txt-purple">Change Password</h4></div>
+                                                <div class="col-md-6 ion-text-right">
+                                                    <i class="fa fa-2x fa-edit text-secondary" aria-hidden="true"></i>
+                                                </div>
+                                            </div>
+                                            <br/>
+                                            <!-- [formGroup]="form" (submit)="submit()" -->
+                                           <p>Reset your FiBeiGreetings Password</p>
+                                        </div>
+                                    </div> 
+                                    <br/>
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h4 class="txt-purple">Log Out account?</h4>
+                                            <br/>
+                                            <a class="fibei-btn"> Logout</a>
+                                        </div>
+                                    </div> 
+                                </div>
+                                <div class="tab-pane fade" id="nav-communicationpreferences" role="tabpanel" aria-labelledby="nav-communicationpreferences-tab">
+                                    <h2 class="label-header">Communication Preferences</h2>
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <h4 class="txt-purple"> Email Preferences</h4>
+                                                    <br/>
+                                                    <p>The email address in your FibeiGreetings profile is <u>d@d.com</u>. you can change your email address at any time.</p>
+                                                   <p>Click if you want to receive notification, special offers and promotion emails.</p>
+                                                   <p>See our <a href="/page/PrivacyPolicy">PRIVACY POLICY</a></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="nav-shippingaddresses" role="tabpanel" aria-labelledby="nav-shippingaddresses-tab">
+                                    <h2 class="label-header">Shipping Addresses</h2>
+                                    <div class="card card-lock">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-12"><h4 class="txt-purple">Add a shipping addresses</h4></div>
+                                                    <p>To make checkout even faster, you can save shipping addresses.</p>
+                                            </div>
+                                            <br/>
+                                            <!-- [formGroup]="form" (submit)="submit()" -->
+                                            <form >
+                                                <div class="row ">
+                                                    <div class="col-md-12">
+                                                        <div class="form-floating mb-3">
+                                                            <input type="firstname" class="form-control" id="firstname" placeholder="Address Nickname" formControlName="firstname" readonly >
+                                                            <label for="firstname">Address Nickname*</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-floating mb-3">
+                                                            <input type="firstname" class="form-control" id="firstname" placeholder="firstname" formControlName="firstname" readonly >
+                                                            <label for="firstname">First Name*</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-floating mb-3">
+                                                            <input type="lastname" class="form-control" id="lastname" placeholder="lastname" formControlName="lastname" readonly>
+                                                            <label for="lastname">Last Name*</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-floating mb-3">
+                                                            <input type="firstname" class="form-control" id="firstname" placeholder="Address Line 1" formControlName="firstname" readonly >
+                                                            <label for="firstname">Address Line 1*</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-floating mb-3">
+                                                            <input type="lastname" class="form-control" id="lastname" placeholder="Address Line 2" formControlName="lastname" readonly>
+                                                            <label for="lastname">Address Line 2*</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-floating mb-3">
+                                                            <input type="firstname" class="form-control" id="firstname" placeholder="Province/Region" formControlName="Province/Region" readonly >
+                                                            <label for="firstname">Province/Region*</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-floating mb-3">
+                                                            <input type="lastname" class="form-control" id="lastname" placeholder="City/Municipality" formControlName="City/Municipality" readonly>
+                                                            <label for="lastname">City/Municipality*</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-floating mb-3">
+                                                            <input type="firstname" class="form-control" id="Country" placeholder="Country" formControlName="Country" readonly >
+                                                            <label for="firstname">Country*</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-floating mb-3">
+                                                            <input type="Postcode" class="form-control" id="lastname" placeholder="Postcode" formControlName="Postcode" readonly>
+                                                            <label for="lastname">Postcode *</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <br/>
+                                                        <a class="fibei-btn"> SAVE ADDRESS</a>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div> 
+                                </div>
+                                <div class="tab-pane fade" id="nav-myorders" role="tabpanel" aria-labelledby="nav-myorders-tab">
+                                    <h2 class="label-header">My Orders</h2>
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-12 ion-text-center">
+                                                    <p>No orders yet
+                                                        <br/>
+                                                        Browser items
+                                                        <br/><br/>
+                                                        <a href="/" class="fibei-btn">See Cards</a>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br/>
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-12 ">
+                                                    <table>
+                                                        <tr>
+                                                            
+                                                            <td class="image">
+                                                                <span>Image</span>
+                                                            </td>
+                                                            <td class="details">
+                                                                <span>Description</span>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                    <table>
+                                                        <tr>
+                                                            <td class="image">
+                                                              <img src="https://firebasestorage.googleapis.com/v0/b/fifi-greetings.appspot.com/o/card%2FBfpij5w6qKeXusgh5CwV%2Fbl8XSgGPndgTiD9cASbd?alt=media&token=4ca0c528-93b2-4ef3-9274-f4dab04cc964" class="img-fluid">
+                                                            </td>
+                                                            <td class="details">
+                                                                <b>Happy Birthday Kiddo</b>
+                                                                <p>Description: "A birthday card features a colorful happy birthday letter design with a boy having fun with his birthday cake and a light yellow background.</p>
+                                                                <p>total Price: ₱ 99.00</p>
+                                                                <hr/>
+                                                                <span></span>
+                                                                <span class="badge text-bg-secondary">Onprocess</span>
+                                                                <span class="badge text-bg-secondary">For Delivery</span>
+                                                                <span class="badge text-bg-secondary">Complete</span>
+                                                                <br/>
+                                                                <span>expected delivery: 01/01/2024</span>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                              </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+ 
 </div>
