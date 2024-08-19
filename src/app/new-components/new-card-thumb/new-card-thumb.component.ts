@@ -28,6 +28,8 @@ export class NewCardThumbComponent implements OnInit {
 
   _card: NewCard;
   image: string = '';
+  primary: string = '';
+  secondary: string = '';
   rate: number = 0;
 
   async ngOnInit(): Promise<void> {
@@ -35,8 +37,12 @@ export class NewCardThumbComponent implements OnInit {
 
     let cardImages = await this.cardService.getImages(this._card.id);
     if (cardImages.length > 0) {
-      this.image = await this.fileService.getImageURL(cardImages[0].url);
+      this.primary = await this.fileService.getImageURL(cardImages[0].url);
     }
+    if (cardImages.length > 1) {
+      this.secondary = await this.fileService.getImageURL(cardImages[1].url);
+    }
+    this.image = this.primary
     this.loadRatings(await this.cardService.getRatings(this._card.id))
   }
 
@@ -50,5 +56,13 @@ export class NewCardThumbComponent implements OnInit {
       value = value + rating.rate;
     })
     this.rate = value / ratings.length;
+  }
+
+  onHover(){
+    if (this.secondary !== '')this.image = this.secondary;
+  }
+
+  onHoverOut(){
+    if (this.primary !== '')this.image = this.primary;
   }
 }

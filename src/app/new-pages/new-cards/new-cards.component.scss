@@ -1,8 +1,6 @@
-*{
+* {
     font-family: Proxima Nova;
 }
-
-
 
 .label-header {
     font-family: Proxima Nova;
@@ -33,7 +31,7 @@
     margin-bottom: 8px;
 }
 
-.loadmore{
+.loadmore {
     border: 0.35px #cb6ce6 solid;
     color: #fff;
     background: #cb6ce6;
@@ -45,7 +43,45 @@
     display: inline-block;
 }
 
-.loadmore:hover{
+.loadmore:hover {
     color: #cb6ce6;
     background: #fff;
+}
+
+.max-5 {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.max-5 div {
+    width: 20%;
+    padding-inline: 5px;
+    margin-bottom: 10px;
+}
+
+.accordion-header{
+    margin-top: 10px;
+}
+
+.accordion-button{
+    padding: 10px;
+}
+
+.accordion-body{
+    padding-inline: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.load{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }

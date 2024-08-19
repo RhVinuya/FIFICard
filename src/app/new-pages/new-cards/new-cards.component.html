@@ -7,19 +7,75 @@
             <app-new-card-events (onClick)="onClickEvent($event)"></app-new-card-events>
         </div>
     </div>
-    <div class="mxw-1920px mt-4" *ngIf="events.length > 0">
-        <ion-chip [outline]="true" color="tertiary" *ngFor="let event of events">
-            <ion-icon name="close-circle" (click)="onRemoveEvent(event)"></ion-icon>
-            <ion-label>{{event}}</ion-label>
-        </ion-chip>
-    </div>
-    <app-new-loading [loading]="loading"></app-new-loading>
-    <div class="mxw-1920px row mt-4" *ngIf="loading === false">
-        <ion-col size="2" class="px-1" *ngFor="let card of display.slice(0, displayCount)">
-            <app-new-card-thumb [card]="card"></app-new-card-thumb>
-        </ion-col>
-    </div>
-    <div class="text-center py-3" *ngIf="display.length > displayCount && loading === false">
-        <button type="button" class="btn loadmore" (click)="loadmore()">LOAD MORE</button>
+    <div class="mxw-1920px row mt-4">
+        <div class="col-2">
+            <div class="accordion accordion-flush">
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#recipient" aria-expanded="false" aria-controls="flush-collapseOne">
+                            RECIPIENT
+                        </button>
+                    </h2>
+                    <div id="recipient" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                        <div class="accordion-body">
+                            <label class="mb-1">
+                                <input class="form-check-input me-2" type="checkbox" formControlName="notification">
+                                HIM
+                            </label>
+                            <label class="mb-1">
+                                <input class="form-check-input me-2" type="checkbox" formControlName="notification">
+                                HER
+                            </label>
+                            <label class="mb-1">
+                                <input class="form-check-input me-2" type="checkbox" formControlName="notification">
+                                KIDS
+                            </label>
+                            <label class="mb-1">
+                                <input class="form-check-input me-2" type="checkbox" formControlName="notification">
+                                TEENAGER
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#cardtype" aria-expanded="false" aria-controls="flush-collapseOne">
+                            CARD TYPE
+                        </button>
+                    </h2>
+                    <div id="cardtype" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                        <div class="accordion-body">
+                            <label class="mb-1">
+                                <input class="form-check-input me-2" type="checkbox" formControlName="notification">
+                                POETRY
+                            </label>
+                            <label class="mb-1">
+                                <input class="form-check-input me-2" type="checkbox" formControlName="notification">
+                                FEATURED CARD
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-10">
+            <div class="mb-4" *ngIf="events.length > 0">
+                <ion-chip [outline]="true" color="tertiary" *ngFor="let event of events">
+                    <ion-icon name="close-circle" (click)="onRemoveEvent(event)"></ion-icon>
+                    <ion-label>{{event}}</ion-label>
+                </ion-chip>
+            </div>
+            <app-new-loading [loading]="loading"></app-new-loading>
+            <div class="max-5" *ngIf="loading === false">
+                <div *ngFor="let card of display.slice(0, displayCount)">
+                    <app-new-card-thumb [card]="card"></app-new-card-thumb>
+                </div>
+            </div>
+            <div class="load py-3" *ngIf="display.length > displayCount && loading === false">
+                <label class="mb-3">{{displayCount.toLocaleString()}} of {{display.length.toLocaleString()}}</label>
+                <button type="button" class="btn loadmore" (click)="loadmore()">SHOW MORE</button>
+            </div>
+        </div>
     </div>
 </div>

@@ -1,14 +1,16 @@
 <div class="card">
     <div class="img-div" (click)="onClick()">
-        <img [src]="image" class="card-img" alt="..." *ngIf="image !== ''">
+        <img [src]="primary" alt="Default Image" class="card-img default-image" *ngIf="primary !== ''">
+        <img [src]="secondary" alt="Hover Image" class="card-img hover-image" *ngIf="secondary !== ''">
     </div>
+    
     <a class="c-heart" href="#"> <i class="fa fa-2x fa-heart" aria-hidden="true"></i></a>
     <div class="card-body px-2 py-3">
         <h4 class="card-title my-0" (click)="onClick()">{{_card.name}}</h4>
         <p class="card-text mb-2" (click)="onClick()">
             {{_card.description}}
         </p>
-        <div class="space-around mb-2">
+        <div class="space-around h-30 mb-2">
             <label><b class="txt-purple">{{_card.priceDisplay()}}</b></label>
             <app-new-rate size="sm" [rate]="rate"></app-new-rate>
         </div>
