@@ -1,2 +1,55 @@
 <div class="mxw-1320px mt-5">
+    <h1 class="txt-purple">Sign & Sign Page</h1>
+    <div class="card">
+        <div class="card-body">
+            <img src="/assets/images/new/static/sns/banner.png" class="img-fluid" onContextMenu="return false;">
+            <img src="/assets/images/new/static/sns/icons.png" class="img-fluid" onContextMenu="return false;">
+            <img src="/assets/images/new/static/sns/Sign Send Process.gif" style="width:100%"
+                onContextMenu="return false;">
+            <img src="/assets/images/new/static/sns/snsp-02-min.png" onContextMenu="return false;">
+            <img src="/assets/images/new/static/sns/2.png" style="width:100%" onContextMenu="return false;">
+            <img src="/assets/images/new/static/sns/3.png" style="width:100%" onContextMenu="return false;">
+            <div routerLink="/signandsend" class="to-link"><img src="/assets/images/new/static/sns/SandS-banner2.png"
+                    class="img-fluid" onContextMenu="return false;"></div>
+            <img src="/assets/images/new/static/sns/more-min.png" onContextMenu="return false;">
+            <div class="col-md-12" style="position: relative">
+                <img src="/assets/images/new/static/sns/more-2-min.png" onContextMenu="return false;">
+                <div style="height: 67%;width: 21%; position: absolute; left: 23%; bottom: 0%;cursor: pointer;"
+                    [routerLink]="['/poetry']"></div>
+                <div style="height: 67%;width: 21%; position: absolute; left: 45.5%; bottom: 0%;cursor: pointer;"
+                    [routerLink]="['/postcards']">
+                </div>
+                <div style="height: 67%;width: 21%; position: absolute; left: 68.5%; bottom: 0%;cursor: pointer;"
+                    [routerLink]="['/signandsend']">
+                </div>
+            </div>
+            <div class="row">
+                <!-- *ngIf="priceService.getLocation() == 'ph'" -->
+                <div class="col-md-12" style="position: relative">
+                    <img src="/assets/images/new/static/sns/2-ecard-sticker-2-min.png" onContextMenu="return false;">
+                    <a href="https://fibeidigicards.com/home"
+                        style="height: 100%;width: 50%; position: absolute; left: 0%; bottom: 0%;cursor: pointer;"
+                        target="_blank"></a>
+                    <div style="height: 100%;width: 50%; position: absolute; right: 0%; bottom: 0%;cursor: pointer;"
+                        [routerLink]="['/stickercards']">
+                    </div>
+                </div>
+                <!-- <div class="col-md-12" style="position: relative" *ngIf="priceService.getLocation() != 'ph'">
+                    <img src="/assets/images/new/static/sns/2-ecard-sticker-2-min.png" onContextMenu="return false;">
+                    <a href="https://fibeidigicards.com/home"
+                        style="height: 100%;width: 50%; position: absolute; left: 0%; bottom: 0%;cursor: pointer;" target="_blank"></a>
+                    <div style="height: 100%;width: 50%; position: absolute; right: 0%; bottom: 0%;cursor: pointer;" [routerLink]="['/stickercards']">
+                    </div>
+                </div> -->
+                <div class="col-md-12">
+                    <!-- *ngIf="priceService.getLocation() == 'ph'"  -->
+                    <img src="/assets/images/new/static/sns/delivery-ph-min.png" class="img-fluid " style="width:100%"
+                        onContextMenu="return false;">
+                    <!-- <img src="/assets/images/new/static/sns/delivery-min.png" *ngIf="priceService.getLocation() != 'ph'" class="img-fluid "
+                        style="width:100%" onContextMenu="return false;"> -->
+                    <br /> <br />
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

@@ -1,0 +1,21 @@
+* {
+    font-family: Proxima Nova;
+}
+.fa,
+.far,
+.fas {
+    font-family: "Font Awesome 5 Free" !important;
+}
+.txt-purple {
+    font-family: "Proxima Nova";
+    font-weight: bold;
+    color: #5e17eb;
+    margin: 0;
+}
+.my-btn-primary,
+.my-btn-primary:hover {
+   color: #fff;
+   background-color: #7030a0;
+   border-color: #7030a0;
+   font-size: 26px;
+}

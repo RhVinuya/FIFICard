@@ -1,0 +1,35 @@
+* {
+    font-family: Proxima Nova;
+}
+.fa,
+.far,
+.fas {
+    font-family: "Font Awesome 5 Free" !important;
+}
+.txt-purple {
+    font-family: "Proxima Nova";
+    font-weight: bold;
+    color: #5e17eb;
+    margin: 0;
+}
+.mothersday-component>* {
+    /*font-family: 'Montserrat';*/
+    font-size: 22px;
+}
+
+h2 {
+    text-align: center;
+    font-weight: bolder;
+    color: #6b2d98;
+    font-size: 30px;
+}
+
+.to-link {
+    opacity: 0.9;
+    cursor: pointer;
+}
+
+.to-link:hover,
+.to-link:active {
+    opacity: 1;
+}
