@@ -1,6 +1,7 @@
 {
   "projects": {
     "development": "fibeigreetings-development",
+    "staging": "fibeigreetings-stage",
     "production": "fifi-greetings"
   }
 }
