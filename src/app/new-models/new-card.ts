@@ -9,6 +9,8 @@ export interface INewCard {
     price: number;
     sgprice: number;
     usprice: number;
+    active: boolean;
+    featured: boolean;
     images: string[];
     messagetype: 'regular' | 'poetry';
     created: Timestamp;
@@ -24,6 +26,8 @@ export class NewCard {
     price: number;
     sgprice: number;
     usprice: number;
+    active: boolean;
+    featured: boolean;
     images: string[];
     messagetype: 'regular' | 'poetry';
     created: Timestamp;
@@ -38,6 +42,8 @@ export class NewCard {
         this.price = value.price;
         this.sgprice = value.sgprice;
         this.usprice = value.usprice;
+        this.active = value.active;
+        this.featured = value.featured;
         this.images = value.images;
         this.messagetype = value.messagetype;
         this.created = value.created;

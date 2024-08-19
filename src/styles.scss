@@ -147,3 +147,35 @@ body {
    max-width: 1320px;
    margin: auto;
 }
+
+.i-poetry {
+   border: 2px solid purple;
+   background: white !important;
+   color: purple !important;
+   font-size: 16px;
+   border-left: 10px solid;
+}
+
+.i-poetry:hover {
+   border: 2px solid #550255;
+   background: purple !important;
+   color: #fff !important;
+   font-size: 16px;
+   border-left: 10px solid #550255;
+}
+
+.i-featured {
+   border: 2px solid #bd283e;
+   background: white !important;
+   color: #bd283e !important;
+   font-size: 16px;
+   border-left: 10px solid;
+}
+
+.i-featured:hover {
+   border: 2px solid #871c2d;
+   background: #bd283e !important;
+   color: #fff !important;
+   font-size: 16px;
+   border-left: 10px solid #871c2d;
+}

@@ -2,6 +2,12 @@
     font-family: Proxima Nova;
 }
 
+.fa,
+.far,
+.fas {
+    font-family: "Font Awesome 5 Free" !important;
+}
+
 .card:hover {
     border: 1px solid #d952ca;
 }
@@ -42,6 +48,27 @@
 
 .card .img-div:hover .default-image {
     opacity: 0;
+}
+
+.c-featured {
+    left: 1%;
+    top: 1%;
+    width: 40px;
+    height: 40px;
+    background: white;
+    padding-inline: 3px 3px;
+    padding-top: 5px;
+    margin-top: 3px;
+    border-radius: 50%;
+    opacity: 0.8;
+}
+
+.c-featured i{
+    font-size: 22px;
+    color: red;
+    opacity: 1;
+    padding-top: 4px;
+    padding-left: 8.5px;
 }
 
 .c-heart {

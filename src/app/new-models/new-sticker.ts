@@ -9,6 +9,8 @@ export interface INewSticker {
     price: number;
     sgprice: number;
     usprice: number;
+    active: boolean;
+    featured: boolean;
     images: string[];
     created: Timestamp;
     modified: Timestamp;
@@ -23,6 +25,8 @@ export class NewSticker {
     price: number;
     sgprice: number;
     usprice: number;
+    active: boolean;
+    featured: boolean;
     images: string[];
     created: Timestamp;
     modified: Timestamp;
@@ -36,6 +40,8 @@ export class NewSticker {
         this.price = value.price;
         this.sgprice = value.sgprice;
         this.usprice = value.usprice;
+        this.active = value.active;
+        this.featured = value.featured;
         this.images = value.images;
         this.created = value.created;
         this.modified = value.modified;

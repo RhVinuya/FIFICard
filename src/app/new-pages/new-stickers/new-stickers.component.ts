@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { INewSticker } from 'src/app/new-models/new-sticker';
 import { NewStickerService } from 'src/app/new-services/new-sticker.service';
@@ -13,13 +13,16 @@ export class NewStickersComponent implements OnInit {
 
   activateRoute: ActivatedRoute;
   stickerService: NewStickerService;
+  ref: ChangeDetectorRef;
 
   constructor(
     _activateRoute: ActivatedRoute,
-    _cardService: NewStickerService
+    _cardService: NewStickerService,
+    _ref: ChangeDetectorRef
   ) {
     this.activateRoute = _activateRoute;
-    this.stickerService = _cardService
+    this.stickerService = _cardService;
+    this.ref = _ref;
   }
 
   stickerevents = environment.stickerevents;
@@ -43,6 +46,15 @@ export class NewStickersComponent implements OnInit {
   ];
 
   ngOnInit(): void {
+    this.activateRoute.params.subscribe(params => {
+      let id = params['id'];
+      this.events = [];
+      if (id !== 'all') {
+        if (this.events.findIndex(x => x === id) < 0) this.events.push(id);
+      }
+      this.ref.detectChanges();
+      this.loadDisplay();
+    });
     this.loadStickers();
   }
 
@@ -84,6 +96,7 @@ export class NewStickersComponent implements OnInit {
         })
       }
     }
+    this.ref.detectChanges();
     this.updateCount(this.display.length);
   }
 
@@ -111,5 +124,6 @@ export class NewStickersComponent implements OnInit {
         active: true
       }
     ];
+    this.ref.detectChanges();
   }
 }

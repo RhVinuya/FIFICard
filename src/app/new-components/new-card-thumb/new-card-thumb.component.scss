@@ -1,8 +1,14 @@
-.card {
+* {
     font-family: Proxima Nova;
 }
 
-.card:hover{
+.fa,
+.far,
+.fas {
+    font-family: "Font Awesome 5 Free" !important;
+}
+
+.card:hover {
     border: 1px solid #d952ca;
 }
 
@@ -17,30 +23,52 @@
     border-bottom-right-radius: 0rem;
 }
 
-.card .img-div img{
+.card .img-div img {
     object-fit: contain;
 }
 
-.default-image, .hover-image {
+.default-image,
+.hover-image {
     position: absolute;
     width: 100%;
     height: 100%;
     top: 0;
     left: 0;
     transition: opacity 0.5s ease-in-out;
-  }
-  
-  .hover-image {
+}
+
+.hover-image {
     opacity: 0;
-  }
-  
-  .card .img-div:hover .hover-image {
+}
+
+.card .img-div:hover .hover-image {
     opacity: 1;
-  }
-  
-  .card .img-div:hover .default-image {
+}
+
+.card .img-div:hover .default-image {
     opacity: 0;
-  }
+}
+
+.c-featured {
+    left: 1%;
+    top: 1%;
+    width: 40px;
+    height: 40px;
+    background: white;
+    padding-inline: 3px 3px;
+    padding-top: 5px;
+    margin-top: 3px;
+    border-radius: 50%;
+    opacity: 0.8;
+}
+
+.c-featured i{
+    font-size: 22px;
+    color: red;
+    opacity: 1;
+    padding-top: 4px;
+    padding-left: 8.5px;
+}
 
 .c-heart {
     position: absolute;
@@ -121,13 +149,13 @@
     color: #5e17eb;
 }
 
-.space-around{
+.space-around {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
 }
 
-.h-30{
+.h-30 {
     height: 30px;
 }

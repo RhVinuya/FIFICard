@@ -39,6 +39,9 @@ export class NewDetailsComponent implements OnInit {
   images: string[] = [];
   rate: number = 0;
 
+  isFeatured: boolean = false;
+  isPoetry: boolean = false;
+
   ngOnInit(): void {
     this.activateRoute.params.subscribe(params => {
       this.loading = true;
@@ -48,6 +51,8 @@ export class NewDetailsComponent implements OnInit {
       if (this.type === 'card') {
         this.cardService.get(this.id).then(async value => {
           this.model = new NewCard(value);
+          this.isFeatured = this.model.featured;
+          this.isPoetry = this.model instanceof NewCard && this.model.messagetype === 'poetry';
           this.loading = false;
           this.ref.detectChanges();
           this.loadImages(await this.cardService.getImages(this.id));
@@ -57,6 +62,7 @@ export class NewDetailsComponent implements OnInit {
       else {
         this.stickerService.get(this.id).then(async value => {
           this.model = new NewSticker(value);
+          this.isFeatured = this.model.featured;
           this.loading = false;
           this.ref.detectChanges();
           this.loadImages(await this.stickerService.getImages(this.id));

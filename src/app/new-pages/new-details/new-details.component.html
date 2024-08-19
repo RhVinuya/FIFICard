@@ -12,11 +12,17 @@
             </div>
             <div class="space-around mb-3">
                 <h3 class="my-0">{{this.model.priceDisplay()}}</h3>
-                <app-new-rate [rate]="rate"></app-new-rate>
+                <div>
+                    <span class="badge text-bg-secondary i-poetry ms-1" *ngIf="isPoetry"><i class="fa fa-leaf" aria-hidden="true"></i> Poetry</span>
+                    <span class="badge text-bg-secondary i-featured ms-1" *ngIf="isFeatured"><i class="fa fa-fire" aria-hidden="true"></i> Featured</span>
+                </div>
             </div>
-            <div class="mt-2 mb-4">
-                <app-new-personalize-button class="me-2" *ngIf="type === 'card'"></app-new-personalize-button>
-                <app-new-add-cart-button></app-new-add-cart-button>
+            <div class="space-around mt-2 mb-4">
+                <div>
+                    <app-new-personalize-button class="me-2" *ngIf="type === 'card'"></app-new-personalize-button>
+                    <app-new-add-cart-button></app-new-add-cart-button>
+                </div>
+                <app-new-rate [rate]="rate"></app-new-rate>
             </div>
             <div class="details">{{model.details}}</div>
         </div>

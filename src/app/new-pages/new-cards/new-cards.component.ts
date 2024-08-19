@@ -1,5 +1,5 @@
 
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { INewCard } from 'src/app/new-models/new-card';
 import { NewCardService } from 'src/app/new-services/new-card.service';
@@ -14,13 +14,16 @@ export class NewCardsComponent implements OnInit {
 
   activateRoute: ActivatedRoute;
   cardService: NewCardService;
+  ref: ChangeDetectorRef;
 
   constructor(
     _activateRoute: ActivatedRoute,
-    _cardService: NewCardService
+    _cardService: NewCardService,
+    _ref: ChangeDetectorRef
   ) {
     this.activateRoute = _activateRoute;
-    this.cardService = _cardService
+    this.cardService = _cardService;
+    this.ref = _ref;
   }
 
   cardevents = environment.cardevents;
@@ -50,6 +53,7 @@ export class NewCardsComponent implements OnInit {
       if (id !== 'all') {
         if (this.events.findIndex(x => x === id) < 0) this.events.push(id);
       }
+      this.ref.detectChanges();
       this.loadDisplay();
     });
     this.loadCards();
@@ -93,7 +97,8 @@ export class NewCardsComponent implements OnInit {
           if (found) this.display = [...this.display, card];
         })
       }
-      this.updateCount(this.display.length)
+      this.ref.detectChanges();
+      this.updateCount(this.display.length);
     }
   }
 
@@ -120,5 +125,6 @@ export class NewCardsComponent implements OnInit {
         active: true
       }
     ];
+    this.ref.detectChanges();
   }
 }
