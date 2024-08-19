@@ -27,7 +27,6 @@ export class NewCardThumbComponent implements OnInit {
   }
 
   _card: NewCard;
-  image: string = '';
   primary: string = '';
   secondary: string = '';
   rate: number = 0;
@@ -42,12 +41,11 @@ export class NewCardThumbComponent implements OnInit {
     if (cardImages.length > 1) {
       this.secondary = await this.fileService.getImageURL(cardImages[1].url);
     }
-    this.image = this.primary
     this.loadRatings(await this.cardService.getRatings(this._card.id))
   }
 
   onClick(){
-    this.router.navigate(['/new/details/' + this._card.id])
+    this.router.navigate(['/new/details/card/' + this._card.id])
   }
 
   loadRatings(ratings: INewRating[]) {
@@ -56,13 +54,5 @@ export class NewCardThumbComponent implements OnInit {
       value = value + rating.rate;
     })
     this.rate = value / ratings.length;
-  }
-
-  onHover(){
-    if (this.secondary !== '')this.image = this.secondary;
-  }
-
-  onHoverOut(){
-    if (this.primary !== '')this.image = this.primary;
   }
 }

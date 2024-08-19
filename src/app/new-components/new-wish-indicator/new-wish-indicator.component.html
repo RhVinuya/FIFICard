@@ -1,3 +1,4 @@
-<a class="c-heart" href="#">
-    <i class="fa fa-2x fa-heart" aria-hidden="true"></i>
-</a>
+<div class="c-heart">
+    <ion-icon name="heart-outline" size="large" *ngIf="isMark === false" (click)="onClick()"></ion-icon>
+    <ion-icon name="heart" size="large" *ngIf="isMark === true" (click)="onClick()"></ion-icon>
+</div>

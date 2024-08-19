@@ -1,6 +1,6 @@
 import { Timestamp } from "@angular/fire/firestore";
 
-export interface INewCard {
+export interface INewSticker {
     id: string;
     name: string;
     description: string;
@@ -10,12 +10,11 @@ export interface INewCard {
     sgprice: number;
     usprice: number;
     images: string[];
-    messagetype: 'regular' | 'poetry';
     created: Timestamp;
     modified: Timestamp;
 }
 
-export class NewCard {
+export class NewSticker {
     id: string;
     name: string;
     description: string;
@@ -25,11 +24,10 @@ export class NewCard {
     sgprice: number;
     usprice: number;
     images: string[];
-    messagetype: 'regular' | 'poetry';
     created: Timestamp;
     modified: Timestamp;
 
-    constructor(value: INewCard){
+    constructor(value: INewSticker){
         this.id = value.id;
         this.name = value.name;
         this.description = value.description;
@@ -39,7 +37,6 @@ export class NewCard {
         this.sgprice = value.sgprice;
         this.usprice = value.usprice;
         this.images = value.images;
-        this.messagetype = value.messagetype;
         this.created = value.created;
         this.modified = value.modified;
     }
@@ -57,20 +54,8 @@ export class NewCard {
     }
 }
 
-export interface INewCardImage {
+export interface INewStickerImage {
     title: string;
     url: string;
     active: boolean;
-}
-
-
-export interface INewRating {
-    id: string;
-    title: string
-    review: string;
-    rate: number;
-    username: string;
-    approve: boolean;
-    created: Timestamp;
-    modified: Timestamp;
 }

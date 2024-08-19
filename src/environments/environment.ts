@@ -17,7 +17,7 @@ export const environment = {
     measurementId: "G-BN0LKLNJY2"
   },
   storage: 'FIBEIGREETINGS-DEV-',
-  events: [
+  cardevents: [
     "Birthday",
     "Anniversary",
     "Wedding",
@@ -38,6 +38,20 @@ export const environment = {
     "New year",
     "Valentines",
     "Easter"
+  ],
+  stickerevents: [
+    "Individual",
+    "Occasions",
+    "Events",
+    "Wildlife and Nature",
+    "Places",
+    "Arts",
+    "Animals",
+    "Letters and Quotes",
+    "Sports",
+    "Food and Drinks",
+    "Family",
+    "Toys"
   ],
 
 

@@ -9,7 +9,13 @@ export class NewWishIndicatorComponent implements OnInit {
 
   constructor() { }
 
+  isMark: boolean = false
+
   ngOnInit(): void {
+  }
+
+  onClick(){
+    this.isMark = !this.isMark;
   }
 
 }

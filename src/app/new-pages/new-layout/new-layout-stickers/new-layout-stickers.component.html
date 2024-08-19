@@ -1,41 +1,18 @@
 <div class="row mt-4">
     <div class="col-12 mb-3">
-        <a [routerLink]="['/new/stickers']">
+        <a [routerLink]="['/new/stickers/all']">
             View All Stickers
         </a>
     </div>
 </div>
 <div class="row">
     <div class="col-3">
-        <h5><a [routerLink]="['/new/stickers']">Birthday</a></h5>
-        <h5><a [routerLink]="['/new/stickers']">Anniversary</a></h5>
-        <h5><a [routerLink]="['/new/stickers']">Wedding</a></h5>
-        <h5><a [routerLink]="['/new/stickers']">Retirement</a></h5>
-        <h5><a [routerLink]="['/new/stickers']">Graduation</a></h5>
-        <h5><a [routerLink]="['/new/stickers']">Mothers day</a></h5>
-        <h5><a [routerLink]="['/new/stickers']">Fathers day</a></h5>
+        <h5 *ngFor="let event of events.slice(0, 4)"><a [routerLink]="['/new/stickers/' + event]">{{event}}</a></h5>
     </div>
     <div class="col-3">
-        <h5><a [routerLink]="['/new/stickers']">Grandparents day</a></h5>
-        <h5><a [routerLink]="['/new/stickers']">Baby</a></h5>
-        <h5><a [routerLink]="['/new/stickers']">Baptism</a></h5>
-        <h5><a [routerLink]="['/new/stickers']">Confirmation</a></h5>
-        <h5><a [routerLink]="['/new/stickers']">Parents day</a></h5>
-        <h5><a [routerLink]="['/new/stickers']">Thanks giving</a></h5>
-        <h5><a [routerLink]="['/new/stickers']">Halloween</a></h5>
+        <h5 *ngFor="let event of events.slice(4, 8)"><a [routerLink]="['/new/stickers/' + event]">{{event}}</a></h5>
     </div>
     <div class="col-3">
-        <h5><a [routerLink]="['/new/stickers']">Christmas</a></h5>
-        <h5><a [routerLink]="['/new/stickers']">New year</a></h5>
-        <h5><a [routerLink]="['/new/stickers']">Valentines</a></h5>
-        <h5><a [routerLink]="['/new/stickers']">Confirmation</a></h5>
-        <h5><a [routerLink]="['/new/stickers']">Easter</a></h5>
-        <h5><a [routerLink]="['/new/stickers']">Sympathey</a></h5>
-        <h5><a [routerLink]="['/new/stickers']">Pet</a></h5>
-    </div>
-    <div class="col-3">
-        <h5><a [routerLink]="['/new/stickers']">Frienship</a></h5>
-        <h5><a [routerLink]="['/new/stickers']">Congratulations</a></h5>
-        <h5><a [routerLink]="['/new/stickers']">Get well</a></h5>
+        <h5 *ngFor="let event of events.slice(8, 12)"><a [routerLink]="['/new/stickers/' + event]">{{event}}</a></h5>
     </div>
 </div>

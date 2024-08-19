@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-new-layout-stickers',
@@ -8,6 +9,8 @@ import { Component, OnInit } from '@angular/core';
 export class NewLayoutStickersComponent implements OnInit {
 
   constructor() { }
+
+  events: string[] = environment.stickerevents;
 
   ngOnInit(): void {
   }

@@ -1,29 +1,29 @@
 <app-new-loading [loading]="loading"></app-new-loading>
 
-<div class="mxw-1920px mt-2" *ngIf="loading === false && card" #top>
+<div class="mxw-1920px mt-2" *ngIf="loading === false && model" #top>
     <div class="row main">
         <div class="col-6 px-1">
             <app-new-details-images [images]="images"></app-new-details-images>
         </div>
         <div class="col-6 px-1">
             <div class="space-around mb-4">
-                <h1>{{this.card.name}}</h1>
+                <h1>{{this.model.name}}</h1>
                 <app-new-wish-indicator></app-new-wish-indicator>
             </div>
             <div class="space-around mb-3">
-                <h3 class="my-0">{{this.card.priceDisplay()}}</h3>
+                <h3 class="my-0">{{this.model.priceDisplay()}}</h3>
                 <app-new-rate [rate]="rate"></app-new-rate>
             </div>
             <div class="mt-2 mb-4">
-                <app-new-personalize-button class="me-2"></app-new-personalize-button>
+                <app-new-personalize-button class="me-2" *ngIf="type === 'card'"></app-new-personalize-button>
                 <app-new-add-cart-button></app-new-add-cart-button>
             </div>
-            <div class="details">{{card.details}}</div>
+            <div class="details">{{model.details}}</div>
         </div>
     </div>
 </div>
 
-<div class="mxw-1920px row mt-5" *ngIf="card">
+<div class="mxw-1920px row mt-5" *ngIf="model">
     <div class="col-12">
         <h3>You may also like</h3>
     </div>

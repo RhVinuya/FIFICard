@@ -172,7 +172,6 @@ import { NewLoadingComponent } from './new-components/new-loading/new-loading.co
 import { NewPersonalizeComponent } from './new-pages/new-personalize/new-personalize.component';
 import { NewPersonalizeButtonComponent } from './new-components/new-personalize-button/new-personalize-button.component';
 import { NewAddCartButtonComponent } from './new-components/new-add-cart-button/new-add-cart-button.component';
-import { NewCardEventsComponent } from './new-components/new-card-events/new-card-events.component';
 import { NewRateComponent } from './new-components/new-rate/new-rate.component';
 import { NewWishIndicatorComponent } from './new-components/new-wish-indicator/new-wish-indicator.component';
 import { NewChatNowComponent } from './new-pages/new-links/new-chat-now/new-chat-now.component';
@@ -182,6 +181,8 @@ import { NewShippingAndDeliveryComponent } from './new-pages/new-links/new-shipp
 import { NewPrivacyPolicyComponent } from './new-pages/new-links/new-privacy-policy/new-privacy-policy.component';
 import { NewPressPageComponent } from './new-pages/new-links/new-press-page/new-press-page.component';
 import { NewSignAndSendComponent } from './new-pages/new-links/new-sign-and-send/new-sign-and-send.component';
+import { NewEventsOptionsComponent } from './new-components/new-events-options/new-events-options.component';
+import { NewStickerThumbComponent } from './new-components/new-sticker-thumb/new-sticker-thumb.component';
 
 @NgModule({
   declarations: [
@@ -331,7 +332,6 @@ import { NewSignAndSendComponent } from './new-pages/new-links/new-sign-and-send
     NewPersonalizeComponent,
     NewPersonalizeButtonComponent,
     NewAddCartButtonComponent,
-    NewCardEventsComponent,
     NewRateComponent,
     NewWishIndicatorComponent,
     NewChatNowComponent,
@@ -340,7 +340,9 @@ import { NewSignAndSendComponent } from './new-pages/new-links/new-sign-and-send
     NewShippingAndDeliveryComponent,
     NewPrivacyPolicyComponent,
     NewPressPageComponent,
-    NewSignAndSendComponent
+    NewSignAndSendComponent,
+    NewEventsOptionsComponent,
+    NewStickerThumbComponent
   ],
   imports: [
     BrowserModule,

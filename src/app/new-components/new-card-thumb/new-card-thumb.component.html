@@ -4,7 +4,9 @@
         <img [src]="secondary" alt="Hover Image" class="card-img hover-image" *ngIf="secondary !== ''">
     </div>
     
-    <a class="c-heart" href="#"> <i class="fa fa-2x fa-heart" aria-hidden="true"></i></a>
+    <div class="c-heart">
+        <app-new-wish-indicator></app-new-wish-indicator>
+    </div>
     <div class="card-body px-2 py-3">
         <h4 class="card-title my-0" (click)="onClick()">{{_card.name}}</h4>
         <p class="card-text mb-2" (click)="onClick()">

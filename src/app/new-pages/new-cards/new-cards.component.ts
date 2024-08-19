@@ -23,10 +23,11 @@ export class NewCardsComponent implements OnInit {
     this.cardService = _cardService
   }
 
+  cardevents = environment.cardevents;
   loading: boolean = false;
   cards: INewCard[] = [];
   display: INewCard[] = [];
-  displayCount: number = 20;
+  displayCount: number = 25;
   events: string[] = []
 
   breadcrumbs = [
@@ -63,8 +64,8 @@ export class NewCardsComponent implements OnInit {
   }
 
   loadmore() {
-    this.displayCount = this.displayCount + 20;
-    if (this.cards.length < this.displayCount) this.displayCount = this.cards.length - 1
+    this.displayCount = this.displayCount + 25;
+    if (this.display.length < this.displayCount) this.displayCount = this.display.length;
   }
 
   loadDisplay() {
@@ -73,7 +74,7 @@ export class NewCardsComponent implements OnInit {
       if (this.events.length === 0) {
         this.cards.forEach(card => {
           let found: boolean = false;
-          environment.events.forEach(event => {
+          environment.cardevents.forEach(event => {
             if (card.events.findIndex(x => x.toLowerCase() === event.toLowerCase()) >= 0) {
               found = true
             }

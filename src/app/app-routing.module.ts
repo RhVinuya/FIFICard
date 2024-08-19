@@ -284,7 +284,12 @@ const routes: Routes = [
       },
       {
         path: 'stickers',
-        component: NewStickersComponent
+        children: [
+          {
+            path: ':id',
+            component: NewStickersComponent
+          }
+        ]
       },
       {
         path: 'postcards',
@@ -308,7 +313,7 @@ const routes: Routes = [
         ]
       },
       {
-        path: 'details/:id',
+        path: 'details/:type/:id',
         component: NewDetailsComponent
       },
       {
