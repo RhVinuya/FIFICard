@@ -2,6 +2,7 @@ import { Timestamp } from "@angular/fire/firestore";
 
 export interface INewCard {
     id: string;
+    code: string;
     name: string;
     description: string;
     details: string;
@@ -19,6 +20,7 @@ export interface INewCard {
 
 export class NewCard {
     id: string;
+    code: string;
     name: string;
     description: string;
     details: string;
@@ -35,6 +37,7 @@ export class NewCard {
 
     constructor(value: INewCard){
         this.id = value.id;
+        this.code = value.code;
         this.name = value.name;
         this.description = value.description;
         this.details = value.details;

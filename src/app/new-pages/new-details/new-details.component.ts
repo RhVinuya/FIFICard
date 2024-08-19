@@ -61,6 +61,7 @@ export class NewDetailsComponent implements OnInit {
       }
       else {
         this.stickerService.get(this.id).then(async value => {
+          console.log(value)
           this.model = new NewSticker(value);
           this.isFeatured = this.model.featured;
           this.loading = false;
