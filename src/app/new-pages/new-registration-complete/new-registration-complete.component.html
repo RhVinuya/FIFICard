@@ -1,0 +1,62 @@
+<div class="mxw-1920px mt-4">
+    <div class="text-center mb-4">
+        <img src="/assets/images/google.png" class="google">
+        <h1 class="label-header">Complete your account!</h1>
+    </div>
+    <div class="text-center mb-4" *ngIf="user && user.providerId === 'google.com'">
+        <img [src]="user.photoURL" class="profile" *ngIf="user.photoURL !== undefined && user.photoURL !== ''">
+    </div>
+    <div class="row">
+        <div class="col-lg-4 offset-lg-4 col-md-6 offset-md-3 col-sm-6 offset-sm-3">
+            <form [formGroup]="form" (submit)="submit()">
+                <div class="row mb-3">
+                    <div class="col-6 pe-1">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" id="firstname" placeholder="Firstname" formControlName="firstname"
+                                [disabled]="processing" [ngClass]="{ 'is-invalid': submitted && form.controls.firstname.errors}">
+                            <label for="firstname">Firstname</label>
+                        </div>
+                    </div>
+                    <div class="col-6 ps-1">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" id="lastname" placeholder="Lastname" formControlName="lastname"
+                                [disabled]="processing" [ngClass]="{ 'is-invalid': submitted && form.controls.lastname.errors}">
+                            <label for="lastname">Lastname</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-12">
+                        <div class="form-floating">
+                            <input type="date" class="form-control" id="bday" placeholder="Birthday" formControlName="birthday"
+                                [disabled]="processing" [ngClass]="{ 'is-invalid': submitted && form.controls.birthday.errors}">
+                            <label for="bday">Birthday</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-4 mb-2">
+                    <label>
+                        <input class="form-check-input me-2" type="checkbox" formControlName="notification" [disabled]="processing">
+                        Sign up for email updates, notifications,
+                        special offers and promotion emails
+                    </label>
+                </div>
+                <div class="mb-4">
+                    <label><input class="form-check-input me-2" type="checkbox" formControlName="terms" [disabled]="processing"
+                            [ngClass]="{ 'is-invalid': submitted && form.controls.terms.errors}">
+                        I agree with the
+                        <a [routerLink]="['/new/link/terms-and-condition']" target="_blank" class="ms-1">
+                            Terms and Agreement
+                        </a>
+                    </label>
+                </div>
+                <div class="mb-4 text-center">
+                    <button type="submit" class="create-btn" [disabled]="processing">
+                        <span class="spinner-border spinner-border-sm me-1" aria-hidden="true" *ngIf="processing"></span>
+                        {{processing ? 'Saving Account ...' : 'Complete my Account'}}
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

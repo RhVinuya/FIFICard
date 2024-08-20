@@ -183,6 +183,7 @@ import { NewPressPageComponent } from './new-pages/new-links/new-press-page/new-
 import { NewSignAndSendComponent } from './new-pages/new-links/new-sign-and-send/new-sign-and-send.component';
 import { NewEventsOptionsComponent } from './new-components/new-events-options/new-events-options.component';
 import { NewStickerThumbComponent } from './new-components/new-sticker-thumb/new-sticker-thumb.component';
+import { NewRegistrationCompleteComponent } from './new-pages/new-registration-complete/new-registration-complete.component';
 
 @NgModule({
   declarations: [
@@ -342,7 +343,8 @@ import { NewStickerThumbComponent } from './new-components/new-sticker-thumb/new
     NewPressPageComponent,
     NewSignAndSendComponent,
     NewEventsOptionsComponent,
-    NewStickerThumbComponent
+    NewStickerThumbComponent,
+    NewRegistrationCompleteComponent
   ],
   imports: [
     BrowserModule,

@@ -71,6 +71,7 @@ import { NewPressPageComponent } from './new-pages/new-links/new-press-page/new-
 import { NewSignAndSendComponent } from './new-pages/new-links/new-sign-and-send/new-sign-and-send.component';
 import { NewShippingAndDeliveryComponent } from './new-pages/new-links/new-shipping-and-delivery/new-shipping-and-delivery.component';
 import { NewPrivacyPolicyComponent } from './new-pages/new-links/new-privacy-policy/new-privacy-policy.component';
+import { NewRegistrationCompleteComponent } from './new-pages/new-registration-complete/new-registration-complete.component';
 
 const routes: Routes = [
   {
@@ -322,7 +323,16 @@ const routes: Routes = [
       },
       {
         path: 'registration',
-        component: NewRegistrationComponent
+        children: [
+          {
+            path: '',
+            component: NewRegistrationComponent
+          },
+          {
+            path: 'complete/:id',
+            component: NewRegistrationCompleteComponent
+          }
+        ]
       },
       {
         path: 'link',

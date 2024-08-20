@@ -72,6 +72,12 @@
                     </label>
                     <a class="ms-1" (click)="onClickSignIn()">Sign in?</a>
                 </div>
+                <div class="text-center mt-4 mb-2">
+                    <label>OR</label>
+                </div>
+                <div class="external">
+                    <img src="/assets/images/google.png" (click)="onGoogleClick()">
+                </div>
                 <div class="mt-4 mb-2">
                     <label>
                         <input class="form-check-input me-2" type="checkbox" formControlName="notification" [disabled]="processing">

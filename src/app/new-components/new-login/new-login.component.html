@@ -4,7 +4,7 @@
         <img src="/assets/images/logo_fibeigreetings-com.png">
         <h3>Sign in</h3>
     </div>
-    <div class="text-center px-5 mb-5">
+    <div class="text-center px-5 mb-3">
         <form [formGroup]="form" (submit)="submit()">
             <div class="form-floating mb-3">
                 <input type="email" class="form-control" id="email" placeholder="name@example.com" formControlName="email" [disabled]="processing"
@@ -45,6 +45,12 @@
                 {{processing ? 'Signing in ...' : 'Sign in'}}
             </button>
         </form>
+    </div>
+    <div class="text-center mb-3">
+        <label>OR</label>
+    </div>
+    <div class="external mb-5l">
+        <img src="/assets/images/google.png" (click)="onGoogleClick()">
     </div>
     <div class="link text-center py-3">
         <label>Don't have an account? <a href="/new/registration">Join us</a></label>

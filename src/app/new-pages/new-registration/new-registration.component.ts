@@ -6,6 +6,7 @@ import { NewInfoMessageComponent } from 'src/app/new-components/new-info-message
 import { NewLoginComponent } from 'src/app/new-components/new-login/new-login.component';
 import { INewUser } from 'src/app/new-models/new-user';
 import { NewAccountService } from 'src/app/new-services/new-account.service';
+import { NewStorageService } from 'src/app/new-services/new-storage.service';
 
 @Component({
   selector: 'app-new-registration',
@@ -15,17 +16,20 @@ import { NewAccountService } from 'src/app/new-services/new-account.service';
 export class NewRegistrationComponent implements OnInit {
 
   accountService: NewAccountService;
+  storageService: NewStorageService;
   modalService: NgbModal;
   router: Router;
   ref: ChangeDetectorRef;
 
   constructor(
     _accountService: NewAccountService,
+    _storageService: NewStorageService,
     _modalService: NgbModal,
     _router: Router,
     _ref: ChangeDetectorRef
   ) {
     this.accountService = _accountService;
+    this.storageService = _storageService;
     this.modalService = _modalService;
     this.router = _router;
     this.ref = _ref;
@@ -109,7 +113,9 @@ export class NewRegistrationComponent implements OnInit {
       lastname: this.form.controls.lastname.value!,
       customer: true,
       birthday: this.form.controls.birthday.value!.toString(),
-      notification: this.form.controls.notification.value!
+      notification: this.form.controls.notification.value!,
+      providerId: '',
+      photoURL: ''
     }
     user.id = await this.accountService.register(this.form.controls.email.value!, this.form.controls.password.value!);
     await this.accountService.setUser(user);
@@ -117,6 +123,7 @@ export class NewRegistrationComponent implements OnInit {
     this.form.markAsPristine();
     this.submitted = false;
     this.processing = false;
+    this.storageService.createUser(user);
     this.ref.detectChanges();
 
     const reference = this.modalService.open(NewInfoMessageComponent, { animation: true });
@@ -126,8 +133,43 @@ export class NewRegistrationComponent implements OnInit {
     })
   }
 
-  onClickSignIn(){
+  onClickSignIn() {
     this.modalService.open(NewLoginComponent, { animation: true });
+  }
+
+  onGoogleClick() {
+    this.processing = true;
+    this.accountService.googleAuthenticate().then(async value => {
+      let user = await this.accountService.get(value.id);
+      if (user === undefined) {
+        let user: INewUser = {
+          id: value.id,
+          email: value.email,
+          firstname: '',
+          lastname: '',
+          customer: true,
+          birthday: '',
+          notification: true,
+          providerId: value.providerId,
+          photoURL: value.photoURL
+        }
+        await this.accountService.setUser(user);
+        this.form.reset();
+        this.form.markAsPristine();
+        this.submitted = false;
+        this.processing = false;
+        this.storageService.createUser(user);
+        this.ref.detectChanges();
+        this.router.navigate(['/new/registration/complete/' + value.id]);
+      }
+      else {
+        this.storageService.createUser(user);
+        this.router.navigate(['/']);
+        this.processing = false;
+      }
+    }).catch(err => {
+      this.processing = false;
+    })
   }
 
 }

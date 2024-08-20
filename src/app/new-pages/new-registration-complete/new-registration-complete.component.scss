@@ -17,6 +17,10 @@
     margin: 0;
 }
 
+.google{
+    height: 100px;
+}
+
 .create-btn {
     font-family: 'Proxima Nova';
     color: #fff;
@@ -46,30 +50,6 @@
     color: #fff;
 }
 
-.password {
-    position: relative;
-}
-
-.password .eye {
-    position: absolute;
-    width: 20px;
-    aspect-ratio: 1/1;
-    background: white;
-    right: 10px;
-    top: 35%;
-}
-
-.password .eye i {
-    color: #000;
-    opacity: 0.6;
-    font-size: 18px;
-}
-
-.password .eye i:hover {
-    opacity: 1;
-    cursor: pointer;
-}
-
 a{
     text-decoration: none;
 }
@@ -90,14 +70,8 @@ a:active {
     text-decoration: none;
 }
 
-.external{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-around;
-}
-
-.external img{
-    height: 60px;
-    cursor: pointer;
+.profile{
+    width: 100px;
+    aspect-ratio: 1/1;
+    object-fit: cover;
 }

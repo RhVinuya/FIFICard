@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { INewUser } from '../new-models/new-user';
+import { INewGoogleUser, INewUser } from '../new-models/new-user';
 
 @Injectable({
   providedIn: 'root'
