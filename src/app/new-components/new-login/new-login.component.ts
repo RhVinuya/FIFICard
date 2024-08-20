@@ -2,10 +2,11 @@ import { ChangeDetectorRef, Component, EventEmitter, OnInit, Output } from '@ang
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { INewUser } from 'src/app/new-models/new-user';
 import { NewAccountService } from 'src/app/new-services/new-account.service';
 import { NewStorageService } from 'src/app/new-services/new-storage.service';
+import { NewInfoMessageComponent } from '../new-info-message/new-info-message.component';
 
 @Component({
   selector: 'app-new-login',
@@ -18,6 +19,7 @@ export class NewLoginComponent implements OnInit {
   activeModal: NgbActiveModal;
   accountService: NewAccountService;
   storageService: NewStorageService;
+  modalService: NgbModal;
   router: Router;
   toastController: ToastController;
   ref: ChangeDetectorRef;
@@ -26,6 +28,7 @@ export class NewLoginComponent implements OnInit {
     _activeModal: NgbActiveModal,
     _accountService: NewAccountService,
     _storageService: NewStorageService,
+    _modalService: NgbModal,
     _router: Router,
     _toastController: ToastController,
     _ref: ChangeDetectorRef
@@ -33,6 +36,7 @@ export class NewLoginComponent implements OnInit {
     this.activeModal = _activeModal;
     this.accountService = _accountService;
     this.storageService = _storageService;
+    this.modalService = _modalService ;
     this.router = _router;
     this.toastController = _toastController;
     this.ref = _ref
@@ -137,7 +141,14 @@ export class NewLoginComponent implements OnInit {
         this.onLogin.emit(user);
         this.activeModal.close();
         this.ref.detectChanges();
-        this.router.navigate(['/new/registration/complete/' + value.id]);
+        const reference = this.modalService.open(NewInfoMessageComponent, { animation: true });
+        reference.componentInstance.title = "SUCCESSFULL";
+        reference.componentInstance.message = "Account created successfully.";
+        reference.componentInstance.button = "CONTINUE";
+        reference.componentInstance.onContinue.subscribe((value: any) => {
+          reference.close();
+          this.router.navigate(['/new/registration/complete/' + value.id]);
+        })
       }
       else {
         this.storageService.createUser(user);

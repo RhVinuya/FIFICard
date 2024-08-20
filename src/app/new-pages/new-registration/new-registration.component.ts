@@ -127,6 +127,9 @@ export class NewRegistrationComponent implements OnInit {
     this.ref.detectChanges();
 
     const reference = this.modalService.open(NewInfoMessageComponent, { animation: true });
+    reference.componentInstance.title = "SUCCESSFULL";
+    reference.componentInstance.message = "Account created successfully.";
+    reference.componentInstance.button = "CONTINUE";
     reference.componentInstance.onContinue.subscribe((value: any) => {
       reference.close();
       this.router.navigate(['/new/profile']);
@@ -160,7 +163,14 @@ export class NewRegistrationComponent implements OnInit {
         this.processing = false;
         this.storageService.createUser(user);
         this.ref.detectChanges();
-        this.router.navigate(['/new/registration/complete/' + value.id]);
+        const reference = this.modalService.open(NewInfoMessageComponent, { animation: true });
+        reference.componentInstance.title = "SUCCESSFULL";
+        reference.componentInstance.message = "Account created successfully.";
+        reference.componentInstance.button = "CONTINUE";
+        reference.componentInstance.onContinue.subscribe((value: any) => {
+          reference.close();
+          this.router.navigate(['/new/registration/complete/' + value.id]);
+        })
       }
       else {
         this.storageService.createUser(user);
