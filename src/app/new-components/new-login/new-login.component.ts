@@ -52,7 +52,7 @@ export class NewLoginComponent implements OnInit {
   processing: boolean = false;
   showPassword: boolean = false;
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     let remember = this.storageService.getRemember();
     if (remember.email !== null) this.form.controls.email.setValue(remember.email);
     if (remember.password !== null) this.form.controls.password.setValue(remember.password);

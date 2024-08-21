@@ -6,7 +6,8 @@ export interface INewCard {
     name: string;
     description: string;
     details: string;
-    events: string[];
+    event: string;
+    recipient: string;
     price: number;
     sgprice: number;
     usprice: number;
@@ -24,7 +25,8 @@ export class NewCard {
     name: string;
     description: string;
     details: string;
-    events: string[];
+    event: string;
+    recipient: string;
     price: number;
     sgprice: number;
     usprice: number;
@@ -41,7 +43,8 @@ export class NewCard {
         this.name = value.name;
         this.description = value.description;
         this.details = value.details;
-        this.events = value.events;
+        this.event = value.event;
+        this.recipient = value.recipient
         this.price = value.price;
         this.sgprice = value.sgprice;
         this.usprice = value.usprice;

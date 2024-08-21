@@ -19,20 +19,20 @@
                     <div id="recipient" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
                         <div class="accordion-body">
                             <label class="mb-1">
-                                <input class="form-check-input me-2" type="checkbox" formControlName="notification">
-                                HIM
+                                <input class="form-check-input me-2" type="checkbox" value="FOR ALL" (change)="onClickRecipient($event)">
+                                FOR ALL
                             </label>
                             <label class="mb-1">
-                                <input class="form-check-input me-2" type="checkbox" formControlName="notification">
-                                HER
+                                <input class="form-check-input me-2" type="checkbox" value="FOR HIM" (change)="onClickRecipient($event)">
+                                FOR HIM
                             </label>
                             <label class="mb-1">
-                                <input class="form-check-input me-2" type="checkbox" formControlName="notification">
-                                KIDS
+                                <input class="form-check-input me-2" type="checkbox" value="FOR HER" (change)="onClickRecipient($event)">
+                                FOR HER
                             </label>
                             <label class="mb-1">
-                                <input class="form-check-input me-2" type="checkbox" formControlName="notification">
-                                TEENAGER
+                                <input class="form-check-input me-2" type="checkbox" value="FOR KIDS AND TEENS" (change)="onClickRecipient($event)">
+                                FOR KIDS AND TEENS
                             </label>
                         </div>
                     </div>
@@ -52,7 +52,15 @@
                             </label>
                             <label class="mb-1">
                                 <input class="form-check-input me-2" type="checkbox" formControlName="notification">
-                                FEATURED CARD
+                                MESSAGE
+                            </label>
+                            <label class="mb-1">
+                                <input class="form-check-input me-2" type="checkbox" formControlName="notification">
+                                PERSONALIZED
+                            </label>
+                            <label class="mb-1">
+                                <input class="form-check-input me-2" type="checkbox" formControlName="notification">
+                                TALKING CARD
                             </label>
                         </div>
                     </div>

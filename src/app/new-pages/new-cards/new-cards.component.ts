@@ -31,7 +31,8 @@ export class NewCardsComponent implements OnInit {
   cards: INewCard[] = [];
   display: INewCard[] = [];
   displayCount: number = 20;
-  events: string[] = []
+  events: string[] = [];
+  recipeints: string[] = [];
 
   breadcrumbs = [
     {
@@ -63,7 +64,7 @@ export class NewCardsComponent implements OnInit {
     this.loading = true;
     this.cards = await this.cardService.getAll();
     this.loadDisplay();
-    
+
     this.loading = false;
   }
 
@@ -75,13 +76,13 @@ export class NewCardsComponent implements OnInit {
   loadDisplay() {
     if (this.cards.length > 0) {
       this.display = [];
+
+      //filter events
       if (this.events.length === 0) {
         this.cards.forEach(card => {
           let found: boolean = false;
           environment.cardevents.forEach(event => {
-            if (card.events.findIndex(x => x.toLowerCase() === event.toLowerCase()) >= 0) {
-              found = true
-            }
+            if (card.event.toLowerCase() === event.toLowerCase()) found = true
           })
           if (found) this.display = [...this.display, card];
         });
@@ -90,13 +91,26 @@ export class NewCardsComponent implements OnInit {
         this.cards.forEach(card => {
           let found: boolean = false;
           this.events.forEach(event => {
-            if (card.events.findIndex(x => x.toLowerCase() === event.toLowerCase()) >= 0) {
-              found = true
-            }
+            if (card.event.toLowerCase() === event.toLowerCase()) found = true
           })
           if (found) this.display = [...this.display, card];
         })
       }
+
+      //filter recipients
+      if (this.recipeints.length > 0 && this.display.length > 0) { 
+        const temp = this.display.map(object => ({ ...object }))
+        this.display = [];
+        temp.forEach(card => {
+          let found: boolean = false;
+          this.recipeints.forEach(recipient => {
+            if (recipient === 'FOR ALL') found = true
+            else if (card.recipient.toLowerCase() === recipient.toLowerCase()) found = true
+          })
+          if (found) this.display = [...this.display, card];
+        })
+      }
+
       this.ref.detectChanges();
       this.updateCount(this.display.length);
     }
@@ -112,7 +126,18 @@ export class NewCardsComponent implements OnInit {
     this.loadDisplay();
   }
 
-  updateCount(count: number){
+  onClickRecipient(e: any) {
+    let idx = this.recipeints.findIndex(x => x === e.target.value);
+    if (e.target.checked === true) {
+      if (idx <= 0) this.recipeints.push(e.target.value)
+    }
+    else {
+      if (idx >= 0) this.recipeints = this.recipeints.filter(x => x !== e.target.value)
+    }
+    this.loadDisplay();
+  }
+
+  updateCount(count: number) {
     this.breadcrumbs = [
       {
         title: "Home",

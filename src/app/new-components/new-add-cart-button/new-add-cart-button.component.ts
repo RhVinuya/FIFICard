@@ -4,6 +4,7 @@ import { NewInYourCartComponent } from '../new-in-your-cart/new-in-your-cart.com
 import { INewCard } from 'src/app/new-models/new-card';
 import { INewSticker } from 'src/app/new-models/new-sticker';
 import { NewCartService } from 'src/app/new-services/new-cart.service';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-new-add-cart-button',
@@ -18,13 +19,16 @@ export class NewAddCartButtonComponent implements OnInit {
 
   offCanvas: NgbOffcanvas;
   cartService: NewCartService;
+  toastController: ToastController;
 
   constructor(
     _offCanvas: NgbOffcanvas,
-    _cartService: NewCartService
+    _cartService: NewCartService,
+    _toastController: ToastController
   ) {
     this.offCanvas = _offCanvas;
     this.cartService = _cartService;
+    this.toastController = _toastController
   }
 
   isHover: boolean = false;
@@ -52,6 +56,21 @@ export class NewAddCartButtonComponent implements OnInit {
         type: this.type
       }
     );
+    let message: string = '';
+
+    if (this.type === 'card') {
+      message = 'Card is added on the Cart'
+    }
+    else if (this.type === 'sticker') {
+      message = 'Sticker is added on the Cart'
+    }
+
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 1500,
+      position: 'top',
+    });
+    await toast.present();
     this.offCanvas.open(NewInYourCartComponent, { position: 'end' });
   }
 }
