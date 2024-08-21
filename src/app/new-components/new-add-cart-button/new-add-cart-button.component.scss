@@ -33,70 +33,9 @@
     font-size: 1rem;
 }
 
-.card-in-cart:hover,
-.card-in-cart:active {
-    background-color: #f8e5ff;
+.addtocart:disabled {
+    background: lightgrey;
+    border: 0.5px solid lightgrey;
+    cursor: not-allowed;
 }
 
-.t-card td {
-    vertical-align: top;
-}
-
-.t-image {
-    width: 20%;
-    cursor: pointer;
-}
-
-.t-image img {
-    border: 1px solid #ccc;
-}
-
-.t-description {
-    width: auto;
-    padding: 0 10px;
-}
-
-.t-action {
-    width: 5%
-}
-
-.t-action i {
-    cursor: pointer;
-}
-
-.fibei-badge {
-    font-family: "Proxima Nova";
-    border: 1px #cb6ce6 solid;
-    color: #cb6ce6;
-    font-size: 1rem;
-    padding: 5px 20px;
-    border-radius: 20px;
-    font-weight: bold;
-    display: inline-block;
-}
-
-.fibei-badge:hover {
-    font-family: "Proxima Nova";
-    border: 1px #cb6ce6 solid;
-    color: #fff;
-    background: #cb6ce6;
-    cursor: pointer;
-}
-
-.fibei-go-to-cart {
-    font-family: "Proxima Nova";
-    border: 2px #5e17eb solid;
-    color: #fff;
-    font-size: 1rem;
-    padding: 10px 20px;
-    border-radius: 20px;
-    font-weight: bold;
-    background-color: #5e17eb;
-    display: block;
-    margin-bottom: 20px;
-    width: 100%;
-}
-.divider
-{
-    border-top: 2px solid #5e17eb;
-}

@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { INewCardImage, INewRating, NewCard } from 'src/app/new-models/new-card';
-import { INewStickerImage, NewSticker } from 'src/app/new-models/new-sticker';
+import { INewCard, INewCardImage, INewRating, NewCard } from 'src/app/new-models/new-card';
+import { INewSticker, INewStickerImage, NewSticker } from 'src/app/new-models/new-sticker';
 import { NewCardService } from 'src/app/new-services/new-card.service';
 import { NewFileService } from 'src/app/new-services/new-file.service';
 import { NewStickerService } from 'src/app/new-services/new-sticker.service';
@@ -36,6 +36,7 @@ export class NewDetailsComponent implements OnInit {
   id: string;
   type: 'card' | 'sticker';
   model: NewCard | NewSticker;
+  iModel: INewCard | INewSticker;
   images: string[] = [];
   rate: number = 0;
 
@@ -50,6 +51,7 @@ export class NewDetailsComponent implements OnInit {
 
       if (this.type === 'card') {
         this.cardService.get(this.id).then(async value => {
+          this.iModel = value;
           this.model = new NewCard(value);
           this.isFeatured = this.model.featured;
           this.isPoetry = this.model instanceof NewCard && this.model.messagetype === 'poetry';
@@ -61,7 +63,7 @@ export class NewDetailsComponent implements OnInit {
       }
       else {
         this.stickerService.get(this.id).then(async value => {
-          console.log(value)
+          this.iModel = value;
           this.model = new NewSticker(value);
           this.isFeatured = this.model.featured;
           this.loading = false;

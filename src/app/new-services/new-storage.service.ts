@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { INewGoogleUser, INewUser } from '../new-models/new-user';
+import { INewCart } from '../new-models/new-cart';
 
 @Injectable({
   providedIn: 'root'
@@ -26,11 +27,11 @@ export class NewStorageService {
     localStorage.removeItem(environment.storage + 'REMEMBER_PASSWORD');
   }
 
-  createUser(user: INewUser){
+  createUser(user: INewUser) {
     localStorage.setItem(environment.storage + 'ACCOUNT', JSON.stringify(user));
   }
 
-  getUser(): INewUser | undefined{
+  getUser(): INewUser | undefined {
     let user: string | null = localStorage.getItem(environment.storage + 'ACCOUNT')
     if (user !== null) {
       return JSON.parse(user);
@@ -40,5 +41,29 @@ export class NewStorageService {
 
   clearUser() {
     localStorage.removeItem(environment.storage + 'ACCOUNT');
+  }
+
+  saveCartList(ids: string[]) {
+    localStorage.setItem(environment.storage + 'CART-LIST', JSON.stringify(ids));
+  }
+
+  getCartList(): string[] {
+    let ids: string | null = localStorage.getItem(environment.storage + 'CART-LIST')
+    if (ids !== null) return JSON.parse(ids);
+    else return [];
+  }
+
+  saveCart(cart: INewCart) {
+    localStorage.setItem(environment.storage + 'CART-' + cart.id, JSON.stringify(cart));
+  }
+
+  getCart(id: string): INewCart | undefined {
+    let value: string | null = localStorage.getItem(environment.storage + 'CART-' + id)
+    if (value !== null) return JSON.parse(value);
+    else return undefined;
+  }
+
+  removeCart(id: string) {
+    localStorage.removeItem(environment.storage + 'CART-' + id);
   }
 }

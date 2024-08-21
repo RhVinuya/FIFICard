@@ -13,7 +13,7 @@
         <h4 class="card-title my-0" (click)="onClick()">{{_sticker.name}}</h4>
         <div class="column">
             <label class="mb-2"><b class="txt-purple mb-2">{{_sticker.priceDisplay()}}</b></label>
-            <app-new-add-cart-button></app-new-add-cart-button>
+            <app-new-add-cart-button type="sticker" [item]="sticker"></app-new-add-cart-button>
         </div>
     </div>
 </div>

@@ -184,6 +184,8 @@ import { NewSignAndSendComponent } from './new-pages/new-links/new-sign-and-send
 import { NewEventsOptionsComponent } from './new-components/new-events-options/new-events-options.component';
 import { NewStickerThumbComponent } from './new-components/new-sticker-thumb/new-sticker-thumb.component';
 import { NewRegistrationCompleteComponent } from './new-pages/new-registration-complete/new-registration-complete.component';
+import { NewInYourCartComponent } from './new-components/new-in-your-cart/new-in-your-cart.component';
+import { NewCartViewComponent } from './new-components/new-in-your-cart/new-cart-view/new-cart-view.component';
 
 @NgModule({
   declarations: [
@@ -344,7 +346,9 @@ import { NewRegistrationCompleteComponent } from './new-pages/new-registration-c
     NewSignAndSendComponent,
     NewEventsOptionsComponent,
     NewStickerThumbComponent,
-    NewRegistrationCompleteComponent
+    NewRegistrationCompleteComponent,
+    NewInYourCartComponent,
+    NewCartViewComponent
   ],
   imports: [
     BrowserModule,

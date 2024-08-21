@@ -138,13 +138,23 @@ body {
    padding-inline: 20px;
 }
 
-.mxw-1080px {
-   max-width: 1080px;
+.mxw-1536px {
+   max-width: 1536px;
+   margin: auto;
+}
+
+.mxw-1440px {
+   max-width: 1440px;
    margin: auto;
 }
 
 .mxw-1320px {
    max-width: 1320px;
+   margin: auto;
+}
+
+.mxw-1080px {
+   max-width: 1080px;
    margin: auto;
 }
 

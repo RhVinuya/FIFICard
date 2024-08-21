@@ -1,11 +1,11 @@
 <app-new-loading [loading]="loading"></app-new-loading>
 
-<div class="mxw-1920px mt-2" *ngIf="loading === false && model" #top>
+<div class="mxw-1536px mt-2" *ngIf="loading === false && model" #top>
     <div class="row main">
-        <div class="col-6 px-1">
+        <div class="col-6 ps-1 pe-3">
             <app-new-details-images [images]="images"></app-new-details-images>
         </div>
-        <div class="col-6 px-1">
+        <div class="col-6 ps-2 pe-1">
             <div class="space-around-top mb-4">
                 <div>
                     <h1>{{this.model.name}}</h1>
@@ -15,7 +15,7 @@
             </div>
             <div class="mb-3">
                 <app-new-personalize-button class="me-2" *ngIf="type === 'card'"></app-new-personalize-button>
-                <app-new-add-cart-button></app-new-add-cart-button>
+                <app-new-add-cart-button [type]="type" [item]="iModel"></app-new-add-cart-button>
             </div>
             <div class="mb-2">
                 <h3 class="my-0">{{this.model.priceDisplay()}}</h3>
