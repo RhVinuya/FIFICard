@@ -29,7 +29,7 @@ export class NewStickersComponent implements OnInit {
   loading: boolean = false;
   stickers: INewSticker[] = [];
   display: INewSticker[] = [];
-  displayCount: number = 24;
+  displayCount: number = 20;
   events: string[] = []
 
   breadcrumbs = [
@@ -66,7 +66,7 @@ export class NewStickersComponent implements OnInit {
   }
 
   loadmore() {
-    this.displayCount = this.displayCount + 24;
+    this.displayCount = this.displayCount + 20;
     if (this.display.length < this.displayCount) this.displayCount = this.display.length
   }
 

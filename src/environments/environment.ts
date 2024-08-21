@@ -23,10 +23,10 @@ export const environment = {
     "Wedding",
     "Retirement",
     "Graduation",
+    "Baby",
     "Mother’s day",
     "Fathers day",
     "Grandparent’s day",
-    "Baby",
     "Baptism",
     "Confirmation",
     "First communion",
@@ -37,7 +37,13 @@ export const environment = {
     "Christmas",
     "New year",
     "Valentines",
-    "Easter"
+    "Easter",
+    "Thank you",
+    "Sympathey",
+    "Pet",
+    "Frienship",
+    "Congratulations",
+    "Get well"
   ],
   stickerevents: [
     "Individual",

@@ -30,7 +30,7 @@ export class NewCardsComponent implements OnInit {
   loading: boolean = false;
   cards: INewCard[] = [];
   display: INewCard[] = [];
-  displayCount: number = 25;
+  displayCount: number = 20;
   events: string[] = []
 
   breadcrumbs = [
@@ -68,7 +68,7 @@ export class NewCardsComponent implements OnInit {
   }
 
   loadmore() {
-    this.displayCount = this.displayCount + 25;
+    this.displayCount = this.displayCount + 20;
     if (this.display.length < this.displayCount) this.displayCount = this.display.length;
   }
 

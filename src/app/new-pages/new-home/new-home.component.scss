@@ -52,3 +52,12 @@
 .image-panel img:active {
     opacity: 1;
 }
+
+.relative{
+    position: relative;
+}
+
+.relative .action{
+    position: absolute;
+    cursor: pointer;
+}
