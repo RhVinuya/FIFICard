@@ -1,10 +1,12 @@
 import { ChangeDetectorRef, Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { INewUser } from 'src/app/new-models/new-user';
 import { NewAccountService } from 'src/app/new-services/new-account.service';
 import { NewStorageService } from 'src/app/new-services/new-storage.service';
+import { NewInfoMessageComponent } from '../new-info-message/new-info-message.component';
 
 @Component({
   selector: 'app-new-login',
@@ -17,19 +19,25 @@ export class NewLoginComponent implements OnInit {
   activeModal: NgbActiveModal;
   accountService: NewAccountService;
   storageService: NewStorageService;
+  modalService: NgbModal;
+  router: Router;
   toastController: ToastController;
   ref: ChangeDetectorRef;
 
   constructor(
     _activeModal: NgbActiveModal,
     _accountService: NewAccountService,
-    _storageService: NewStorageService, 
+    _storageService: NewStorageService,
+    _modalService: NgbModal,
+    _router: Router,
     _toastController: ToastController,
     _ref: ChangeDetectorRef
   ) {
     this.activeModal = _activeModal;
     this.accountService = _accountService;
     this.storageService = _storageService;
+    this.modalService = _modalService ;
+    this.router = _router;
     this.toastController = _toastController;
     this.ref = _ref
   }
@@ -44,7 +52,7 @@ export class NewLoginComponent implements OnInit {
   processing: boolean = false;
   showPassword: boolean = false;
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     let remember = this.storageService.getRemember();
     if (remember.email !== null) this.form.controls.email.setValue(remember.email);
     if (remember.password !== null) this.form.controls.password.setValue(remember.password);
@@ -89,21 +97,73 @@ export class NewLoginComponent implements OnInit {
       this.processing = false;
       this.ref.detectChanges();
 
-      this.storageService.createUser(user);
-      
-      const toast = await this.toastController.create({
-        message: 'Welcome ' + (user.firstname ? user.firstname : user.email),
-        duration: 1500,
-        position: 'top',
-      });
-      await toast.present();
-      
-      this.onLogin.emit(user);
-      this.activeModal.close();
+      if (user) {
+        this.storageService.createUser(user);
+        const toast = await this.toastController.create({
+          message: 'Welcome ' + (user.firstname ? user.firstname : user.email),
+          duration: 1500,
+          position: 'top',
+        });
+        await toast.present();
+
+        this.onLogin.emit(user);
+        this.activeModal.close();
+      }
     }).catch(err => {
       this.form.controls.password.setErrors({ 'failed': true });
       this.processing = false;
       this.ref.detectChanges();
+    })
+  }
+
+  onGoogleClick() {
+    this.processing = true;
+    this.accountService.googleAuthenticate().then(async value => {
+      let user = await this.accountService.get(value.id);
+      if (user === undefined) {
+        let user: INewUser = {
+          id: value.id,
+          email: value.email,
+          firstname: '',
+          lastname: '',
+          customer: true,
+          birthday: '',
+          notification: true,
+          providerId: value.providerId,
+          photoURL: value.photoURL
+        }
+        await this.accountService.setUser(user);
+        this.form.reset();
+        this.form.markAsPristine();
+        this.submitted = false;
+        this.processing = false;
+        this.storageService.createUser(user);
+        this.onLogin.emit(user);
+        this.activeModal.close();
+        this.ref.detectChanges();
+        const reference = this.modalService.open(NewInfoMessageComponent, { animation: true });
+        reference.componentInstance.title = "SUCCESSFULL";
+        reference.componentInstance.message = "Account created successfully.";
+        reference.componentInstance.button = "CONTINUE";
+        reference.componentInstance.onContinue.subscribe((value: any) => {
+          reference.close();
+          this.router.navigate(['/new/registration/complete/' + value.id]);
+        })
+      }
+      else {
+        this.storageService.createUser(user);
+        const toast = await this.toastController.create({
+          message: 'Welcome ' + (user.firstname ? user.firstname : user.email),
+          duration: 1500,
+          position: 'top',
+        });
+        await toast.present();
+        this.onLogin.emit(user);
+        this.activeModal.close();
+        this.processing = false;
+      }
+    }).catch(err => {
+      this.processing = false;
     })
   }
 }

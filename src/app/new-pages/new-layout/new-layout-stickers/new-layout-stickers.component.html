@@ -6,13 +6,13 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-3">
+    <div class="col-4">
         <h5 *ngFor="let event of events.slice(0, 4)"><a [routerLink]="['/new/stickers/' + event]">{{event}}</a></h5>
     </div>
-    <div class="col-3">
+    <div class="col-4">
         <h5 *ngFor="let event of events.slice(4, 8)"><a [routerLink]="['/new/stickers/' + event]">{{event}}</a></h5>
     </div>
-    <div class="col-3">
+    <div class="col-4">
         <h5 *ngFor="let event of events.slice(8, 12)"><a [routerLink]="['/new/stickers/' + event]">{{event}}</a></h5>
     </div>
 </div>

@@ -185,6 +185,10 @@ import { NewEventsOptionsComponent } from './new-components/new-events-options/n
 import { NewStickerThumbComponent } from './new-components/new-sticker-thumb/new-sticker-thumb.component';
 import { NewChangePasswordComponent } from './new-components/new-change-password/new-change-password.component';
 import { NewChangeEmailComponent } from './new-components/new-change-email/new-change-email.component';
+import { NewRegistrationCompleteComponent } from './new-pages/new-registration-complete/new-registration-complete.component';
+import { NewInYourCartComponent } from './new-components/new-in-your-cart/new-in-your-cart.component';
+import { NewCartViewComponent } from './new-components/new-in-your-cart/new-cart-view/new-cart-view.component';
+import { NewPostcardThumbComponent } from './new-components/new-postcard-thumb/new-postcard-thumb.component';
 
 @NgModule({
   declarations: [
@@ -346,7 +350,11 @@ import { NewChangeEmailComponent } from './new-components/new-change-email/new-c
     NewEventsOptionsComponent,
     NewStickerThumbComponent,
     NewChangePasswordComponent,
-    NewChangeEmailComponent
+    NewChangeEmailComponent,
+    NewRegistrationCompleteComponent,
+    NewInYourCartComponent,
+    NewCartViewComponent,
+    NewPostcardThumbComponent
   ],
   imports: [
     BrowserModule,

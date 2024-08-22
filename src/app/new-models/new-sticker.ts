@@ -12,7 +12,6 @@ export interface INewSticker {
     usprice: number;
     active: boolean;
     featured: boolean;
-    images: string[];
     created: Timestamp;
     modified: Timestamp;
 }
@@ -29,7 +28,6 @@ export class NewSticker {
     usprice: number;
     active: boolean;
     featured: boolean;
-    images: string[];
     created: Timestamp;
     modified: Timestamp;
 
@@ -45,7 +43,6 @@ export class NewSticker {
         this.usprice = value.usprice;
         this.active = value.active;
         this.featured = value.featured;
-        this.images = value.images;
         this.created = value.created;
         this.modified = value.modified;
     }

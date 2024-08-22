@@ -138,13 +138,23 @@ body {
    padding-inline: 20px;
 }
 
-.mxw-1080px {
-   max-width: 1080px;
+.mxw-1536px {
+   max-width: 1536px;
+   margin: auto;
+}
+
+.mxw-1440px {
+   max-width: 1440px;
    margin: auto;
 }
 
 .mxw-1320px {
    max-width: 1320px;
+   margin: auto;
+}
+
+.mxw-1080px {
+   max-width: 1080px;
    margin: auto;
 }
 
@@ -178,4 +188,12 @@ body {
    color: #fff !important;
    font-size: 16px;
    border-left: 10px solid #871c2d;
+}
+
+.text-purple{
+   color: #ab37c9;
+}
+
+.text-gray{
+   color: #666;
 }

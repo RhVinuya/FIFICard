@@ -48,7 +48,8 @@
                         </li>
                         <li class="nav-item action">
                             <a class="nav-link" [routerLink]="['/new/profile']">
-                                <i class="fa fa-2x fa-user-circle text-secondary" aria-hidden="true"></i>
+                                <i class="fa fa-2x fa-user-circle text-secondary" aria-hidden="true" *ngIf="_user === undefined || (_user !== undefined && (_user.photoURL === '' || _user.photoURL === null))"></i>
+                                <img class="profile" [src]="_user.photoURL" *ngIf="_user !== undefined && _user.photoURL !== '' && _user.photoURL !== null">
                             </a>
                         </li>
                     </ul>
@@ -56,7 +57,7 @@
             </div>
         </div>
         <div class="menu border-top" *ngIf="showMenu" (mouseenter)="onHover(undefined)" (mouseleave)="onHoverOut()">
-            <div class="mxw-1920px row">
+            <div class="mxw-1320px row">
                 <app-new-layout-stickers *ngIf="menuType === 'stickers'"></app-new-layout-stickers>
                 <app-new-layout-postcards *ngIf="menuType === 'postcards'"></app-new-layout-postcards>
                 <app-new-layout-gifts *ngIf="menuType === 'gifts'"></app-new-layout-gifts>
@@ -86,7 +87,8 @@
                         </li>
                         <li class="nav-item action">
                             <a class="nav-link" [routerLink]="['/new/profile']">
-                                <i class="fa fa-2x fa-user-circle text-secondary" aria-hidden="true"></i>
+                                <i class="fa fa-2x fa-user-circle text-secondary" aria-hidden="true" *ngIf="_user === undefined || (_user !== undefined && (_user.photoURL === '' || _user.photoURL === null))"></i>
+                                <img class="profile" [src]="_user.photoURL" *ngIf="_user !== undefined && _user.photoURL !== '' && _user.photoURL !== null">
                             </a>
                         </li>
                     </ul>
@@ -123,7 +125,7 @@
         </div>
     </div>
     <div class="menu" *ngIf="showMenu" (mouseenter)="onHover(undefined)" (mouseleave)="onHoverOut()">
-        <div class="mxw-1920px row">
+        <div class="mxw-1320px row">
             <app-new-layout-stickers *ngIf="menuType === 'stickers'"></app-new-layout-stickers>
             <app-new-layout-postcards *ngIf="menuType === 'postcards'"></app-new-layout-postcards>
             <app-new-layout-gifts *ngIf="menuType === 'gifts'"></app-new-layout-gifts>

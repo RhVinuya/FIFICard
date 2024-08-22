@@ -102,3 +102,15 @@ a:hover {
 a:active {
     text-decoration: none;
 }
+
+.external{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.external img{
+    height: 60px;
+    cursor: pointer;
+}

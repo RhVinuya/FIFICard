@@ -28,3 +28,10 @@
     background: #ab37c9;
     font-size: 1rem;
 }
+
+.addtocart:disabled {
+    background: lightgrey;
+    border: 0.5px solid lightgrey;
+    cursor: not-allowed;
+}
+

@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { INewUser } from 'src/app/new-models/new-user';
 
 @Component({
   selector: 'app-new-layout-header',
@@ -8,6 +9,11 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export class NewLayoutHeaderComponent implements OnInit {
   @Input() type: 0 | 1;
   @Input() isUserLoggedIn: boolean = false;
+  @Input() set user(_value: INewUser | undefined) {
+    console.log(_value)
+    this._user = _value
+  }
+  
   @Input() set showHeader(_value: boolean) {
     this._showHeader = _value;
     if (_value == true) {
@@ -19,6 +25,7 @@ export class NewLayoutHeaderComponent implements OnInit {
 
   constructor() { }
 
+  _user: INewUser | undefined = undefined;
   _showHeader: boolean = false;
   showMenu: boolean = false;
   forClose: boolean = false;
