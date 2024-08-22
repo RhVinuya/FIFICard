@@ -186,6 +186,7 @@ import { NewStickerThumbComponent } from './new-components/new-sticker-thumb/new
 import { NewRegistrationCompleteComponent } from './new-pages/new-registration-complete/new-registration-complete.component';
 import { NewInYourCartComponent } from './new-components/new-in-your-cart/new-in-your-cart.component';
 import { NewCartViewComponent } from './new-components/new-in-your-cart/new-cart-view/new-cart-view.component';
+import { NewPostcardThumbComponent } from './new-components/new-postcard-thumb/new-postcard-thumb.component';
 
 @NgModule({
   declarations: [
@@ -348,7 +349,8 @@ import { NewCartViewComponent } from './new-components/new-in-your-cart/new-cart
     NewStickerThumbComponent,
     NewRegistrationCompleteComponent,
     NewInYourCartComponent,
-    NewCartViewComponent
+    NewCartViewComponent,
+    NewPostcardThumbComponent
   ],
   imports: [
     BrowserModule,

@@ -5,25 +5,31 @@
         <div class="col-6 ps-1 pe-3">
             <app-new-details-images [images]="images"></app-new-details-images>
         </div>
-        <div class="col-6 ps-2 pe-1">
+        <div class="col-6 ps-2 pe-1 pt-5">
             <div class="space-around-top mb-4">
                 <div>
-                    <h1>{{this.model.name}}</h1>
-                    <label>CODE: {{this.model.code}}</label>
+                    <h1 class="text-purple"><b>{{this.model.name}}</b></h1>
+                    <label class="text-gray">CODE: {{this.model.code}}</label>
                 </div>
                 <app-new-wish-indicator></app-new-wish-indicator>
             </div>
             <div class="mb-3">
                 <app-new-personalize-button class="me-2" *ngIf="type === 'card'"></app-new-personalize-button>
-                <app-new-add-cart-button [type]="type" [item]="iModel"></app-new-add-cart-button>
+                <app-new-add-cart-button [type]="type" [item]="iModel" *ngIf="type !== 'postcard'"></app-new-add-cart-button>
             </div>
-            <div class="mb-2">
-                <h3 class="my-0">{{this.model.priceDisplay()}}</h3>
+            <div class="mb-2" *ngIf="type !== 'postcard'">
+                <h3 class="text-purple my-0"><b>{{getPrice()}}</b></h3>
+            </div>
+            <div class="mb-3" *ngIf="type === 'postcard'">
+                <button type="button" class="btn bundle me-1 mb-2" *ngFor="let bundle of bundles" (click)="onClickBundle(bundle)">
+                    Bundle of <b>{{bundle.count.toLocaleString()}} pcs</b> for <b>{{'₱ ' + bundle.price.toLocaleString('en-US', { minimumFractionDigits: 2 })}}</b>
+                </button>
+                   
             </div>
             <div class="mb-2">
                 <app-new-rate [rate]="rate"></app-new-rate>
             </div>
-            <div class="details mb-3">{{model.details}}</div>
+            <div class="details text-gray mb-3">{{model.details}}</div>
             <div class="icons pt-3">
                 <span class="badge text-bg-secondary i-poetry me-2" *ngIf="isPoetry"><i class="fa fa-leaf" aria-hidden="true"></i> Poetry</span>
                 <span class="badge text-bg-secondary i-featured me-2" *ngIf="isFeatured"><i class="fa fa-fire" aria-hidden="true"></i> Featured</span>

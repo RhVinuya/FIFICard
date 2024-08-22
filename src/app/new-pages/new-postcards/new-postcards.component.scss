@@ -1,4 +1,4 @@
-.card {
+* {
     font-family: Proxima Nova;
 }
 
@@ -46,10 +46,6 @@
 .card-title {
     color: #5e17eb;
     font-weight: bold;
-}
-
-.txt-purple {
-    color: #5e17eb;
 }
 
 .fibei-btn {
@@ -169,4 +165,42 @@
 .badge-featured .badge
 {
     background: #791313;
+}
+
+.load{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.loadmore {
+    border: 0.35px #cb6ce6 solid;
+    color: #fff;
+    background: #cb6ce6;
+    cursor: pointer;
+    padding-inline: 30px;
+    padding-block: 6px;
+    border-radius: 20px;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.loadmore:hover {
+    color: #cb6ce6;
+}
+
+.max-5 {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.max-5 div {
+    width: 20%;
+    padding-inline: 8px;
+    margin-bottom: 16px;
 }

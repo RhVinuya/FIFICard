@@ -63,6 +63,9 @@ export class NewInYourCartComponent implements OnInit {
     else if (type === 'sticker') {
       message = 'Sticker is removed on the Cart'
     }
+    else if (type === 'postcard') {
+      message = 'Postcard bundle is removed on the Cart'
+    }
 
     const toast = await this.toastController.create({
       message: message,
@@ -77,6 +80,10 @@ export class NewInYourCartComponent implements OnInit {
   computeTotal() {
     let subtotal: number = 0
     this.carts.map(x => subtotal = subtotal + x.price);
+    this.carts.forEach(x => {
+      if (x.type !== 'postcard') subtotal = subtotal + x.price
+      else if (x.bundle) subtotal = subtotal + x.bundle.price
+    })
     this.total = subtotal.toLocaleString('en-US', { minimumFractionDigits: 2 })
   }
 

@@ -5,14 +5,16 @@
         </div>
         <div class="t-details ps-2">
             <div class="space-between mb-1">
-                <label><b class="txt-purple">{{name}}</b></label>
+                <label><b class="text-purple">{{name}}</b></label>
                 <i aria-hidden="true" class="fa fa-trash trash" (click)="onDelete()"></i>
             </div>
-            <p class="mb-2">{{description}}</p>
-            <label class="txt-purple">{{price}}</label>
+            <p class="text-gray mb-2">{{description}}</p>
+            <label class="text-purple" *ngIf="cart.type !== 'postcard'">{{price}}</label>
+            <label class="text-purple" *ngIf="cart.type === 'postcard'">{{bundle}}</label>
             <div>
                 <span class="badge text-bg-secondary" *ngIf="cart.type === 'card'">CARD</span>
                 <span class="badge text-bg-secondary" *ngIf="cart.type === 'sticker'">STICKER</span>
+                <span class="badge text-bg-secondary" *ngIf="cart.type === 'postcard'">POSTCARD</span>
             </div>
         </div>
     </div>

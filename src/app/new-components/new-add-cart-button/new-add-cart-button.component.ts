@@ -5,6 +5,7 @@ import { INewCard } from 'src/app/new-models/new-card';
 import { INewSticker } from 'src/app/new-models/new-sticker';
 import { NewCartService } from 'src/app/new-services/new-cart.service';
 import { ToastController } from '@ionic/angular';
+import { INewPostcard } from 'src/app/new-models/new-postcard';
 
 @Component({
   selector: 'app-new-add-cart-button',
@@ -14,8 +15,8 @@ import { ToastController } from '@ionic/angular';
 export class NewAddCartButtonComponent implements OnInit {
   @ViewChild('content') content: TemplateRef<NewAddCartButtonComponent>;
 
-  @Input() type: "card" | "sticker";
-  @Input() item: INewCard | INewSticker;
+  @Input() type: "card" | "sticker" | "postcard";
+  @Input() item: INewCard | INewSticker | INewPostcard;
 
   offCanvas: NgbOffcanvas;
   cartService: NewCartService;
@@ -34,7 +35,21 @@ export class NewAddCartButtonComponent implements OnInit {
   isHover: boolean = false;
   isProcessing: boolean = false;
 
+  price: number = 0;
+  sgprice: number = 0;
+  usprice: number = 0;
+
   ngOnInit(): void {
+    if (this.type === 'card') {
+      this.price = (this.item as INewCard).price;
+      this.sgprice = (this.item as INewCard).sgprice;
+      this.usprice = (this.item as INewCard).usprice;
+    }
+    else if (this.type === 'sticker'){
+      this.price = (this.item as INewSticker).price;
+      this.sgprice = (this.item as INewSticker).sgprice;
+      this.usprice = (this.item as INewSticker).usprice;
+    }
   }
 
   mouserEnter() {
@@ -46,14 +61,17 @@ export class NewAddCartButtonComponent implements OnInit {
   }
 
   async onClick() {
+
+
     await this.cartService.add(
       {
         id: '',
         itemid: this.item.id,
-        price: this.item.price,
-        sgprice: this.item.sgprice,
-        usprice: this.item.usprice,
-        type: this.type
+        price: this.price,
+        sgprice: this.sgprice,
+        usprice: this.usprice,
+        type: this.type,
+        bundle: undefined
       }
     );
     let message: string = '';

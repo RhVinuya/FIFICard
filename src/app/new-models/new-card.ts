@@ -13,7 +13,6 @@ export interface INewCard {
     usprice: number;
     active: boolean;
     featured: boolean;
-    images: string[];
     messagetype: 'regular' | 'poetry';
     created: Timestamp;
     modified: Timestamp;
@@ -32,7 +31,6 @@ export class NewCard {
     usprice: number;
     active: boolean;
     featured: boolean;
-    images: string[];
     messagetype: 'regular' | 'poetry';
     created: Timestamp;
     modified: Timestamp;
@@ -50,7 +48,6 @@ export class NewCard {
         this.usprice = value.usprice;
         this.active = value.active;
         this.featured = value.featured;
-        this.images = value.images;
         this.messagetype = value.messagetype;
         this.created = value.created;
         this.modified = value.modified;

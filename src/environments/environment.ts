@@ -59,6 +59,19 @@ export const environment = {
     "Family",
     "Toys"
   ],
+  postcardevents: [
+    "Corporate",
+    "Minimal Designs",
+    "Occasions",
+    "Events",
+    "Nature",
+    "Travel, Scenery and Places",
+    "Arts",
+    "Animals",
+    "Emotions and Feelings",
+    "Family and Friends",
+    "Letter and Quotes",
+  ],
 
 
 

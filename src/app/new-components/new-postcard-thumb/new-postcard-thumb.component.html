@@ -5,16 +5,13 @@
     </div>
     <div class="c-heart">
         <app-new-wish-indicator></app-new-wish-indicator>
-        <div class="c-featured" *ngIf="_sticker.featured === true" title="Featured Sticker">
+        <div class="c-featured" *ngIf="_postcard.featured === true" title="Featured Sticker">
             <i class="fa fa-fire" aria-hidden="true"></i>
         </div>
     </div>
     <div class="card-body px-2 py-3">
-        <h4 class="card-title text-purple my-0" (click)="onClick()">{{_sticker.name}}</h4>
-        <p class="text-gray my-1" (click)="onClick()">{{_sticker.description}}</p>
-        <div class="column">
-            <label class="text-purple mb-2"><b class="mb-2">{{_sticker.priceDisplay()}}</b></label>
-            <app-new-add-cart-button type="sticker" [item]="sticker"></app-new-add-cart-button>
-        </div>
+        <h4 class="card-title my-0" (click)="onClick()">{{_postcard.name}}</h4>
+        <p class="text-gray my-1" (click)="onClick()">{{_postcard.description}}</p>
+        <label class="text-purple"><b class="mb-2">{{'₱' + min.toLocaleString('en-US', { minimumFractionDigits: 2 })}} - {{'₱' + max.toLocaleString('en-US', { minimumFractionDigits: 2 })}}</b></label>
     </div>
 </div>

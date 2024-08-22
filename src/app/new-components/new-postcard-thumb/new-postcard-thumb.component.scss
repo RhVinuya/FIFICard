@@ -16,7 +16,7 @@
 .card .img-div {
     position: relative;
     width: 100%;
-    aspect-ratio: 1200/1200;
+    aspect-ratio: 1920/1080;
     overflow: hidden;
     border-top-left-radius: 0.375rem;
     border-top-right-radius: 0.375rem;
@@ -80,6 +80,7 @@
 }
 
 .card-title {
+    color: #5e17eb;
     font-weight: bold;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -105,3 +106,4 @@
     -webkit-box-orient: vertical;
     height: 2rem;
 }
+

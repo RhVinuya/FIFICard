@@ -1,5 +1,5 @@
 <div class="offcanvas-header">
-    <h4 class="offcanvas-title txt-purple ion-text-bold mt-0">
+    <h4 class="offcanvas-title text-purple ion-text-bold mt-0">
         <b><i aria-hidden="true" class="fa fa-shopping-cart me-1"></i>In your cart</b>
     </h4>
     <button type="button" class="btn-close" aria-label="Close" (click)="close()"></button>
@@ -10,7 +10,7 @@
             <app-new-cart-view *ngFor="let cart of carts" [cart]="cart" (delete)="onDelete($event)"></app-new-cart-view>
         </div>
         <div class="totals">
-            <label class="my-2 txt-purple"><b>SUBTOTAL: {{total}}</b></label>
+            <label class="my-2 text-purple"><b>SUBTOTAL: {{total}}</b></label>
             <button type="button" class="btn gotocart mb-2" (click)="openCart()">
                 VIEW CART
             </button>

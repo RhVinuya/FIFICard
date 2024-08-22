@@ -92,9 +92,21 @@ h1{
 
 .icons{
     width: 500px;
-    border-top: 1px solid lightgrey;
+    border-top: 1px solid darkgray;
 }
 
 .icons img{
     height: 60px;
+}
+
+.bundle{
+    width: auto;
+    color: #ab37c9;
+    border: 0.5px solid #ab37c9;
+    border-radius: 20px;
+}
+
+.bundle:hover{
+    background: #ab37c9;
+    color: white;
 }
