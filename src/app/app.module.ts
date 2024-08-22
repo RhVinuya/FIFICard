@@ -183,6 +183,8 @@ import { NewPressPageComponent } from './new-pages/new-links/new-press-page/new-
 import { NewSignAndSendComponent } from './new-pages/new-links/new-sign-and-send/new-sign-and-send.component';
 import { NewEventsOptionsComponent } from './new-components/new-events-options/new-events-options.component';
 import { NewStickerThumbComponent } from './new-components/new-sticker-thumb/new-sticker-thumb.component';
+import { NewChangePasswordComponent } from './new-components/new-change-password/new-change-password.component';
+import { NewChangeEmailComponent } from './new-components/new-change-email/new-change-email.component';
 import { NewRegistrationCompleteComponent } from './new-pages/new-registration-complete/new-registration-complete.component';
 import { NewInYourCartComponent } from './new-components/new-in-your-cart/new-in-your-cart.component';
 import { NewCartViewComponent } from './new-components/new-in-your-cart/new-cart-view/new-cart-view.component';
@@ -347,6 +349,8 @@ import { NewPostcardThumbComponent } from './new-components/new-postcard-thumb/n
     NewSignAndSendComponent,
     NewEventsOptionsComponent,
     NewStickerThumbComponent,
+    NewChangePasswordComponent,
+    NewChangeEmailComponent,
     NewRegistrationCompleteComponent,
     NewInYourCartComponent,
     NewCartViewComponent,

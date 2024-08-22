@@ -8,10 +8,12 @@ import { INewUser } from 'src/app/new-models/new-user';
 })
 export class NewLayoutHeaderComponent implements OnInit {
   @Input() type: 0 | 1;
+  @Input() isUserLoggedIn: boolean = false;
   @Input() set user(_value: INewUser | undefined) {
     console.log(_value)
     this._user = _value
   }
+  
   @Input() set showHeader(_value: boolean) {
     this._showHeader = _value;
     if (_value == true) {

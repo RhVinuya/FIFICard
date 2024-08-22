@@ -34,7 +34,7 @@
                         </li>
                     </ul>
                 </div>
-                <div class="col-3" size="auto">
+                <div class="col-3" size="auto" *ngIf="isUserLoggedIn">
                     <ul class="nav justify-content-end">
                         <li class="nav-item action">
                             <a class="nav-link active" aria-current="page" [routerLink]="['/new/cart']">
@@ -73,7 +73,7 @@
                     <img src="/assets/images/logo_fibeigreetings-com.png" title="FibeiGreetings.com" routerlink="/" oncontextmenu="return false;"
                         class="img-title img-fluid" style="cursor: pointer;" tabindex="0" [routerLink]="['/new']">
                 </div>
-                <div class="col-6 pe-0" size="auto">
+                <div class="col-6 pe-0" size="auto" *ngIf="isUserLoggedIn">
                     <ul class="nav justify-content-end">
                         <li class="nav-item action">
                             <a class="nav-link active" aria-current="page" [routerLink]="['/new/cart']">
