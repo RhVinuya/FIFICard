@@ -1,6 +1,6 @@
 <ion-content [scrollEvents]="true" (ionScroll)="logScrolling($event)">
     <app-new-layout-header [type]="0" [showHeader]="showHeader" (onShowMenu)="onShowMenu($event)"></app-new-layout-header>
-    <app-new-layout-header [type]="1" [showHeader]="showHeader" (onShowMenu)="onShowMenu($event)"></app-new-layout-header>
+    <app-new-layout-header [type]="1" [showHeader]="showHeader" [isUserLoggedIn]="user !== undefined" (onShowMenu)="onShowMenu($event)"></app-new-layout-header>
     
     <div class="msg text-center" *ngIf="user === undefined">
         <label class="link" (click)="onClickSignIn()">Sign in</label>&nbsp;<label>or</label>&nbsp;<label class="link" [routerLink]="['/new/registration']">Join us now!</label>
