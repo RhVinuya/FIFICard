@@ -1,0 +1,43 @@
+* {
+    font-family: Proxima Nova;
+}
+
+.fa,
+.far,
+.fas {
+    font-family: "Font Awesome 5 Free" !important;
+}
+
+.logo{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding-block: 1rem;
+}
+
+.logo i{
+    font-size: 4rem;
+}
+
+.button.ok{
+    color: #fff;
+    background: #198754;
+    font-size: 1rem;
+    padding-block: 10px;
+    padding-inline: 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    text-transform: uppercase
+}
+
+.button.no{
+    color: #000;
+    background: #f8f9fa;
+    font-size: 1rem;
+    padding-block: 10px;
+    padding-inline: 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    text-transform: uppercase
+}

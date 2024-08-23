@@ -76,7 +76,7 @@ export class NewPostcardsComponent implements OnInit {
       if (this.events.length === 0) {
         this.postcards.forEach(postcard => {
           let found: boolean = false;
-          environment.cardevents.forEach(event => {
+          environment.postcardevents.forEach(event => {
             if (postcard.events.findIndex(x => x.toLowerCase() === event.toLowerCase()) >= 0) {
               found = true
             }

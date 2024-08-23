@@ -1,14 +1,17 @@
 <div class="modal-body">
     <div class="logo">
-        <i class="fa fa-check text-success"></i>
+        <i class="fa fa-question text-danger"></i>
     </div>
     <div class="text-center">
         <h1 class="mb-0 text-dark">{{title}}</h1>
         <h6 class="text-dark">{{message}}</h6>
     </div>
     <div class="text-center mt-5 mb-3">
-        <button class="button" (click)="onClickContinue()">
-            CONTINUE
+        <button class="button no mx-1" (click)="action(false)">
+            {{no}}
+        </button>
+        <button class="button ok mx-1" (click)="action(true)">
+            {{yes}}
         </button>
     </div>
 </div>

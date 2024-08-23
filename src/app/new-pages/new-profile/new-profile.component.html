@@ -41,7 +41,7 @@
             <hr>
             <div class="space-between">
                 <h5 class="text-title my-0">LOGOUT ACCOUNT?</h5>
-                <button type="button" class="btn btn-sm btn-primary">Logout</button>
+                <button type="button" class="btn btn-sm btn-primary" (click)="onLogout()">Logout</button>
             </div>
         </div>
 
@@ -57,7 +57,7 @@
         </div>
         
         <div class="tab-pane fade mb-2" id="shippingaddresses-div" role="tabpanel">
-            <app-new-profile-addresses [id]="user.id"></app-new-profile-addresses>
+            <app-new-profile-addresses [id]="user.id" [default]="user.address" (onChangeDefault)="onChangeDefault($event)"></app-new-profile-addresses>
         </div>
         
         <div class="tab-pane fade mb-2" id="orders-div" role="tabpanel">

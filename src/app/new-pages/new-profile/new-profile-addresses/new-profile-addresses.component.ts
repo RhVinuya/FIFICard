@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NewCreateAddressComponent } from 'src/app/new-components/new-create-address/new-create-address.component';
 import { INewAddress, INewAddressConfig, NewAddress } from 'src/app/new-models/new-address';
@@ -13,6 +13,8 @@ import { NewAddressService } from 'src/app/new-services/new-address.service';
 export class NewProfileAddressesComponent implements OnInit {
   @Input() id: string;
   @Input() default: string;
+
+  @Output() onChangeDefault: EventEmitter<string> = new EventEmitter();
 
   addressService: NewAddressService;
   accountService: NewAccountService;
@@ -59,7 +61,7 @@ export class NewProfileAddressesComponent implements OnInit {
       if (value !== '') {
         this.defaultId = value;
         await this.accountService.updateDefaultAddress(this.id, this.defaultId);
-        console.log(this.addresses, this.defaultId)
+        this.onChangeDefault.emit(this.defaultId)
         this.ref.detectChanges();
       }
     })
@@ -86,6 +88,7 @@ export class NewProfileAddressesComponent implements OnInit {
       if (value !== this.defaultId) {
         this.defaultId = value;
         await this.accountService.updateDefaultAddress(this.id, this.defaultId);
+        this.onChangeDefault.emit(this.defaultId)
         this.ref.detectChanges();
       }
     });

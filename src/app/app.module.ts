@@ -192,6 +192,7 @@ import { NewPostcardThumbComponent } from './new-components/new-postcard-thumb/n
 import { NewProfileDetailsComponent } from './new-pages/new-profile/new-profile-details/new-profile-details.component';
 import { NewProfileAddressesComponent } from './new-pages/new-profile/new-profile-addresses/new-profile-addresses.component';
 import { NewCreateAddressComponent } from './new-components/new-create-address/new-create-address.component';
+import { NewConfirmMessageComponent } from './new-components/new-confirm-message/new-confirm-message.component';
 
 @NgModule({
   declarations: [
@@ -360,7 +361,8 @@ import { NewCreateAddressComponent } from './new-components/new-create-address/n
     NewPostcardThumbComponent,
     NewProfileDetailsComponent,
     NewProfileAddressesComponent,
-    NewCreateAddressComponent
+    NewCreateAddressComponent,
+    NewConfirmMessageComponent
   ],
   imports: [
     BrowserModule,

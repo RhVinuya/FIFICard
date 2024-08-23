@@ -8,6 +8,7 @@ import { NewStorageService } from 'src/app/new-services/new-storage.service';
 import { NewChangePasswordComponent } from 'src/app/new-components/new-change-password/new-change-password.component';
 import { ChangePasswordConfirmMessageComponent } from 'src/app/new-components/new-change-password/change-password-confirm-message/change-password-confirm-message.component';
 import { NewChangeEmailComponent } from 'src/app/new-components/new-change-email/new-change-email.component';
+import { NewConfirmMessageComponent } from 'src/app/new-components/new-confirm-message/new-confirm-message.component';
 
 @Component({
   selector: 'app-new-profile',
@@ -60,5 +61,25 @@ export class NewProfileComponent implements OnInit, OnDestroy {
 
   onChangeEmailClicked() {
     this.modalService.open(NewChangeEmailComponent, { animation: true });
+  }
+
+  onChangeDefault(addressId: string) {
+    if (this.user) {
+      this.user.address = addressId;
+      this.storageService.createUser(this.user);
+    }
+  }
+
+  onLogout(){
+    const reference = this.modalService.open(NewConfirmMessageComponent, { animation: true });
+    reference.componentInstance.title = 'Logout';
+    reference.componentInstance.message = "Confirm User Logout?";
+    reference.componentInstance.yes = 'LOGOUT';
+    reference.componentInstance.no = 'CANCEL';
+    let resultSubs = reference.componentInstance.result.subscribe((value: any) => {
+      if (value) this.storageService.clearUser();
+      reference.close();
+      resultSubs.unsubscribe();
+    })
   }
 }
