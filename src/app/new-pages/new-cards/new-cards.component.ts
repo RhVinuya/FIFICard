@@ -1,6 +1,7 @@
 
+import { ViewportScroller } from '@angular/common';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { INewCard } from 'src/app/new-models/new-card';
 import { NewCardService } from 'src/app/new-services/new-card.service';
 import { environment } from 'src/environments/environment';

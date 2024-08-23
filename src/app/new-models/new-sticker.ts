@@ -12,6 +12,7 @@ export interface INewSticker {
     usprice: number;
     active: boolean;
     featured: boolean;
+    type: 'card' | 'sticker' | 'postcard' | 'gift';
     created: Timestamp;
     modified: Timestamp;
 }

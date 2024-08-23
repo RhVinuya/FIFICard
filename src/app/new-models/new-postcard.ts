@@ -9,6 +9,7 @@ export interface INewPostcard {
     events: string[];
     active: boolean;
     featured: boolean;
+    type: 'card' | 'sticker' | 'postcard' | 'gift';
     created: Timestamp;
     modified: Timestamp;
 }

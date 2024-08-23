@@ -4,7 +4,7 @@
         <img [src]="secondary" alt="Hover Image" class="card-img hover-image" *ngIf="secondary !== ''">
     </div>
     <div class="c-heart">
-        <app-new-wish-indicator></app-new-wish-indicator>
+        <app-new-wish-indicator [id]="_sticker.id"></app-new-wish-indicator>
         <div class="c-featured" *ngIf="_sticker.featured === true" title="Featured Sticker">
             <i class="fa fa-fire" aria-hidden="true"></i>
         </div>

@@ -8,10 +8,10 @@
         <div class="col-6 ps-2 pe-1 pt-5">
             <div class="space-around-top mb-4">
                 <div>
-                    <h1 class="text-purple"><b>{{this.model.name}}</b></h1>
-                    <label class="text-gray">CODE: {{this.model.code}}</label>
+                    <h1 class="text-purple"><b>{{model.name}}</b></h1>
+                    <label class="text-gray">CODE: {{model.code}}</label>
                 </div>
-                <app-new-wish-indicator></app-new-wish-indicator>
+                <app-new-wish-indicator [id]="model.id"></app-new-wish-indicator>
             </div>
             <div class="mb-3">
                 <app-new-personalize-button class="me-2" *ngIf="type === 'card'"></app-new-personalize-button>

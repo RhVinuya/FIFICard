@@ -2,10 +2,21 @@
     <app-new-title title="Wishlist" [breadcrumbs]="breadcrumbs"></app-new-title>
 </div>
 <div class="mxw-1920px row">
-    <div class="col-md-2 mb-3">
-        <app-new-wishlist-item></app-new-wishlist-item>
+    <app-new-loading [loading]="loading"></app-new-loading>
+
+    <div class="max-5 mb-2" *ngIf="getList('card').length > 0 && loading === false">
+        <div *ngFor="let card of getList('card')">
+            <app-new-card-thumb [card]="getICard(card.model)"></app-new-card-thumb>
+        </div>
     </div>
-    <div class="col-md-2 mb-3">
-        <app-new-wishlist-item></app-new-wishlist-item>
+    <div class="max-5 mb-2" *ngIf="getList('sticker').length > 0 && loading === false">
+        <div *ngFor="let card of getList('sticker')">
+            <app-new-sticker-thumb [sticker]="getISticker(card.model)"></app-new-sticker-thumb>
+        </div>
+    </div>
+    <div class="max-5 mb-2" *ngIf="getList('postcard').length > 0 && loading === false">
+        <div *ngFor="let card of getList('postcard')">
+            <app-new-postcard-thumb [postcard]="getIPostcard(card.model)"></app-new-postcard-thumb>
+        </div>
     </div>
 </div>

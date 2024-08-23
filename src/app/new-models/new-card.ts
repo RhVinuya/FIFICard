@@ -14,6 +14,7 @@ export interface INewCard {
     active: boolean;
     featured: boolean;
     messagetype: 'regular' | 'poetry';
+    type: 'card' | 'sticker' | 'postcard' | 'gift';
     created: Timestamp;
     modified: Timestamp;
 }

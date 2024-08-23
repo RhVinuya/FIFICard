@@ -27,6 +27,8 @@ export class NewStorageService {
     localStorage.removeItem(environment.storage + 'REMEMBER_PASSWORD');
   }
 
+  //-----------------
+
   createUser(user: INewUser) {
     localStorage.setItem(environment.storage + 'ACCOUNT', JSON.stringify(user));
   }
@@ -42,6 +44,8 @@ export class NewStorageService {
   clearUser() {
     localStorage.removeItem(environment.storage + 'ACCOUNT');
   }
+
+  //------------------
 
   saveCartList(ids: string[]) {
     localStorage.setItem(environment.storage + 'CART-LIST', JSON.stringify(ids));
@@ -65,5 +69,21 @@ export class NewStorageService {
 
   removeCart(id: string) {
     localStorage.removeItem(environment.storage + 'CART-' + id);
+  }
+
+  //------------------
+
+  saveWishlist(ids: string[]) {
+    localStorage.setItem(environment.storage + 'WISHLIST', JSON.stringify(ids));
+  }
+
+  getWishist(): string[] {
+    let ids: string | null = localStorage.getItem(environment.storage + 'WISHLIST')
+    if (ids !== null) return JSON.parse(ids);
+    else return [];
+  }
+
+  clearWishlist(){
+    localStorage.removeItem(environment.storage + 'WISHLIST');
   }
 }
