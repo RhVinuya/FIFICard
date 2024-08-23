@@ -38,17 +38,17 @@
                     <ul class="nav justify-content-end">
                         <li class="nav-item action">
                             <a class="nav-link active" aria-current="page" [routerLink]="['/new/cart']">
-                                <i class="fa fa-2x fa-shopping-cart text-secondary" aria-hidden="true"></i>
+                                <i class="fa fa-2x fa-shopping-cart text-purple" aria-hidden="true"></i>
                             </a>
                         </li>
                         <li class="nav-item action">
                             <a class="nav-link" [routerLink]="['/new/profile/wishlist']">
-                                <i class="fa fa-2x fa-heart text-secondary" aria-hidden="true"></i>
+                                <i class="fa fa-2x fa-heart text-purple" aria-hidden="true"></i>
                             </a>
                         </li>
                         <li class="nav-item action">
                             <a class="nav-link" [routerLink]="['/new/profile']">
-                                <i class="fa fa-2x fa-user-circle text-secondary" aria-hidden="true" *ngIf="_user === undefined || (_user !== undefined && (_user.photoURL === '' || _user.photoURL === null))"></i>
+                                <i class="fa fa-2x fa-user-circle text-purple" aria-hidden="true" *ngIf="_user === undefined || (_user !== undefined && (_user.photoURL === '' || _user.photoURL === null))"></i>
                                 <img class="profile" [src]="_user.photoURL" *ngIf="_user !== undefined && _user.photoURL !== '' && _user.photoURL !== null">
                             </a>
                         </li>
@@ -77,17 +77,17 @@
                     <ul class="nav justify-content-end">
                         <li class="nav-item action">
                             <a class="nav-link active" aria-current="page" [routerLink]="['/new/cart']">
-                                <i class="fa fa-2x fa-shopping-cart text-secondary" aria-hidden="true"></i>
+                                <i class="fa fa-2x fa-shopping-cart text-purple" aria-hidden="true"></i>
                             </a>
                         </li>
                         <li class="nav-item action">
                             <a class="nav-link" [routerLink]="['/new/profile/wishlist']">
-                                <i class="fa fa-2x fa-heart text-secondary" aria-hidden="true"></i>
+                                <i class="fa fa-2x fa-heart text-purple" aria-hidden="true"></i>
                             </a>
                         </li>
                         <li class="nav-item action">
                             <a class="nav-link" [routerLink]="['/new/profile']">
-                                <i class="fa fa-2x fa-user-circle text-secondary" aria-hidden="true" *ngIf="_user === undefined || (_user !== undefined && (_user.photoURL === '' || _user.photoURL === null))"></i>
+                                <i class="fa fa-2x fa-user-circle text-purple" aria-hidden="true" *ngIf="_user === undefined || (_user !== undefined && (_user.photoURL === '' || _user.photoURL === null))"></i>
                                 <img class="profile" [src]="_user.photoURL" *ngIf="_user !== undefined && _user.photoURL !== '' && _user.photoURL !== null">
                             </a>
                         </li>
