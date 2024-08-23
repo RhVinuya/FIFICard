@@ -1,0 +1,95 @@
+<div class="modal-body main">
+    <button type="button" class="btn-close" aria-label="Close" (click)="close()"></button>
+    <div class="text-center title">
+        <img src="/assets/images/logo_fibeigreetings-com.png">
+        <h3>{{title}}</h3>
+    </div>
+    <form [formGroup]="form" (submit)="submit()">
+        <div class="px-5 mb-5">
+            <div class="row mb-3">
+                <div class="col-12">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" formControlName="default">
+                        <label class="form-check-label" for="flexCheckChecked">Default Shipping Address</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-4 pe-1">
+                    <div class="form-floating">
+                        <input type="email" class="form-control" id="email" placeholder="email" formControlName="email"
+                            [ngClass]="{ 'is-invalid': submitted && form.controls.email.errors}">
+                        <label for="email">Email Address</label>
+                    </div>
+                </div>
+                <div class="col-md-4 px-1">
+                    <div class="form-floating">
+                        <input type="text" class="form-control" id="firstname" placeholder="firstname" formControlName="firstname"
+                            [ngClass]="{ 'is-invalid': submitted && form.controls.firstname.errors}">
+                        <label for="firstname">First Name</label>
+                    </div>
+                </div>
+                <div class="col-md-4 ps-1">
+                    <div class="form-floating">
+                        <input type="text" class="form-control" id="lastname" placeholder="lastname" formControlName="lastname"
+                            [ngClass]="{ 'is-invalid': submitted && form.controls.lastname.errors}">
+                        <label for="lastname">Last Name</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-12">
+                    <div class="form-floating">
+                        <input type="text" class="form-control" id="address" placeholder="address" formControlName="address"
+                            [ngClass]="{ 'is-invalid': submitted && form.controls.address.errors}">
+                        <label for="address">Address</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-6 pe-1">
+                    <div class="form-floating">
+                        <select class="form-control" id="province" placeholder="province" formControlName="province"
+                            [ngClass]="{ 'is-invalid': submitted && form.controls.province.errors}">
+                            <option value="">Enter Province</option>
+                            <option *ngFor="let x of provinces" [value]="x">{{x}}</option>
+                        </select>
+                        <label for="province">Province/Region</label>
+                    </div>
+                </div>
+                <div class="col-md-6 ps-1">
+                    <div class="form-floating">
+                        <select class="form-control" id="city" placeholder="city" formControlName="city"
+                            [ngClass]="{ 'is-invalid': submitted && form.controls.city.errors}">
+                            <option value="">Enter City</option>
+                            <option *ngFor="let x of city" [value]="x">{{x}}</option>
+                        </select>
+                        <label for="city">City/Municipality</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-6 pe-1">
+                    <div class="form-floating">
+                        <input type="text" class="form-control" id="country" placeholder="country" formControlName="country"
+                            [ngClass]="{ 'is-invalid': submitted && form.controls.country.errors}" readonly>
+                        <label for="country">Country</label>
+                    </div>
+                </div>
+                <div class="col-md-6 ps-1">
+                    <div class="form-floating">
+                        <input type="text" class="form-control" id="postcode" placeholder="postcode" formControlName="postcode"
+                            [ngClass]="{ 'is-invalid': submitted && form.controls.postcode.errors}">
+                        <label for="postcode">Postcode</label>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <button type="submit" class="create-btn" [disabled]="processing">
+                    <span class="spinner-border spinner-border-sm me-1" aria-hidden="true" *ngIf="processing"></span>
+                    {{processing ? 'Saving Address ...' : 'Save Address'}}
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

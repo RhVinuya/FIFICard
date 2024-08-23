@@ -10,7 +10,6 @@ export class NewLayoutHeaderComponent implements OnInit {
   @Input() type: 0 | 1;
   @Input() isUserLoggedIn: boolean = false;
   @Input() set user(_value: INewUser | undefined) {
-    console.log(_value)
     this._user = _value
   }
   

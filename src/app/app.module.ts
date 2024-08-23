@@ -189,6 +189,9 @@ import { NewRegistrationCompleteComponent } from './new-pages/new-registration-c
 import { NewInYourCartComponent } from './new-components/new-in-your-cart/new-in-your-cart.component';
 import { NewCartViewComponent } from './new-components/new-in-your-cart/new-cart-view/new-cart-view.component';
 import { NewPostcardThumbComponent } from './new-components/new-postcard-thumb/new-postcard-thumb.component';
+import { NewProfileDetailsComponent } from './new-pages/new-profile/new-profile-details/new-profile-details.component';
+import { NewProfileAddressesComponent } from './new-pages/new-profile/new-profile-addresses/new-profile-addresses.component';
+import { NewCreateAddressComponent } from './new-components/new-create-address/new-create-address.component';
 
 @NgModule({
   declarations: [
@@ -354,7 +357,10 @@ import { NewPostcardThumbComponent } from './new-components/new-postcard-thumb/n
     NewRegistrationCompleteComponent,
     NewInYourCartComponent,
     NewCartViewComponent,
-    NewPostcardThumbComponent
+    NewPostcardThumbComponent,
+    NewProfileDetailsComponent,
+    NewProfileAddressesComponent,
+    NewCreateAddressComponent
   ],
   imports: [
     BrowserModule,

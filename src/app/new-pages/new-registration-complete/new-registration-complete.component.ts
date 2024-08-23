@@ -52,7 +52,6 @@ export class NewRegistrationCompleteComponent implements OnInit {
   ngOnInit(): void {
     this.activateRoute.params.subscribe(async params => {
       this.user = await this.accountService.get(params['id']);
-      console.log(this.user)
     });
   }
 

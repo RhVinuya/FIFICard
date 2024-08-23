@@ -8,6 +8,7 @@ export interface INewUser {
     notification: boolean;
     providerId: string;
     photoURL: string
+    address: string;
 }
 
 export interface INewGoogleUser{
@@ -16,4 +17,8 @@ export interface INewGoogleUser{
     providerId: string;
     photoURL: string
 }
+
+
+
+
 

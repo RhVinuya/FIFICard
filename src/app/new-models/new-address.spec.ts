@@ -1,7 +1,7 @@
-import { INewAddress } from './new-address';
+import { NewAddress } from './new-address';
 
-describe('INewAddress', () => {
+describe('NewAddress', () => {
   it('should create an instance', () => {
-    expect(new INewAddress()).toBeTruthy();
+    expect(new NewAddress()).toBeTruthy();
   });
 });

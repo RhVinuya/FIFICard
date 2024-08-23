@@ -1,0 +1,60 @@
+* {
+    font-family: Proxima Nova;
+}
+
+.fa,
+.far,
+.fas {
+    font-family: "Font Awesome 5 Free" !important;
+}
+
+.space-between {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.text-title{
+    color: #631feb;
+}
+
+.edit {
+    border: 1px #cb6ce6 solid;
+    background: white;
+    color: #cb6ce6;
+    cursor: pointer;
+    padding-block: 3px;
+    padding-inline: 10px;
+    border-radius: 15px;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.edit:hover {
+    font-family: "Proxima Nova";
+    border: 1px #cb6ce6 solid;
+    color: #fff;
+    background: #cb6ce6;
+    font-size: 1rem;
+}
+
+.edit {
+    border: 1px #cb6ce6 solid;
+    background: white;
+    color: #cb6ce6;
+    cursor: pointer;
+    padding-block: 3px;
+    padding-inline: 10px;
+    border-radius: 15px;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.edit:hover {
+    font-family: "Proxima Nova";
+    border: 1px #cb6ce6 solid;
+    color: #fff;
+    background: #cb6ce6;
+    font-size: 1rem;
+}

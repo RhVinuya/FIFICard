@@ -130,7 +130,8 @@ export class NewLoginComponent implements OnInit {
           birthday: '',
           notification: true,
           providerId: value.providerId,
-          photoURL: value.photoURL
+          photoURL: value.photoURL,
+          address: ''
         }
         await this.accountService.setUser(user);
         this.form.reset();

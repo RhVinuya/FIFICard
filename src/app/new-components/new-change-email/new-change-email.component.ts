@@ -29,7 +29,7 @@ export class NewChangeEmailComponent implements OnInit {
   constructor(
     _activeModal: NgbActiveModal,
     _accountService: NewAccountService,
-    _storageService: NewStorageService, 
+    _storageService: NewStorageService,
     _toastController: ToastController,
     _ref: ChangeDetectorRef
   ) {
@@ -56,17 +56,17 @@ export class NewChangeEmailComponent implements OnInit {
       email: this.user!.email,
       password: ""
     })
-  
+
   }
   get email() {
     return this.form.get('email');
   }
-  
+
   get password() {
     return this.form.get('password');
   }
 
-  onChangeShowPassword( ) {
+  onChangeShowPassword() {
     this.showPassword = !this.showPassword;
   }
 
@@ -81,7 +81,7 @@ export class NewChangeEmailComponent implements OnInit {
     this.ref.detectChanges();
 
     this.form.controls.password.setErrors(null);
-    let result: UpdateResponse  = await this.accountService.changeEmail(this.user!.email, this.form.value.email! , this.form.value.password!);
+    let result: UpdateResponse = await this.accountService.changeEmail(this.user!.email, this.form.value.email!, this.form.value.password!);
     if (result.status == "success") {
       this.processing = false;
       this.submitted = false;
@@ -89,16 +89,16 @@ export class NewChangeEmailComponent implements OnInit {
       this.close();
     } else {
 
-      switch(result.type) {
-        case 'updateemail': 
-            this.form.controls['email'].setErrors({ 'error': true });
-            this.emailError = result.message;
-            this.step = 1;
+      switch (result.type) {
+        case 'updateemail':
+          this.form.controls['email'].setErrors({ 'error': true });
+          this.emailError = result.message;
+          this.step = 1;
           break;
         case 'signin':
-            this.form.controls['password'].setErrors({ 'error': true });
-            this.passwordError = result.message;
-            this.step = 2;
+          this.form.controls['password'].setErrors({ 'error': true });
+          this.passwordError = result.message;
+          this.step = 2;
           break;
       }
 
@@ -116,8 +116,8 @@ export class NewChangeEmailComponent implements OnInit {
   confirmPassword() {
     this.passwordError = "";
     this.processing = true;
-    this.submit().then( () => {
-
+    this.submit().then(() => {
+      
     })
   }
 }

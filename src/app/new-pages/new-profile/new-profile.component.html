@@ -1,5 +1,5 @@
 <div class="mxw-1320px my-4 text-center">
-    <h2 class="label-header">Account Profile</h2>
+    <h2 class="label-header text-purple">Account Profile</h2>
 </div>
 
 <div class="mxw-1320px text-center sign" *ngIf="user === undefined">
@@ -8,312 +8,99 @@
     <label class="mx-1">or</label>
     <a [routerLink]="['/new/registration']">Join us now!</a>
 </div>
-<!-- *ngIf="user !== undefined" -->
-<div class="mxw-1320px" >
-    <div class="row">
-        <div class="col-md-12">
+
+<div class="mxw-1080px" *ngIf="user !== undefined">
+    <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <button class="nav-link active" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-div" type="button" role="tab">
+                Account Profile
+            </button>
+            <button class="nav-link" id="communicationpreferences-tab" data-bs-toggle="tab" data-bs-target="#communicationpreferences-div"
+                type="button" role="tab">
+                Communication Preferences
+            </button>
+            <button class="nav-link" id="shippingaddresses-tab" data-bs-toggle="tab" data-bs-target="#shippingaddresses-div" type="button" role="tab">
+                Shipping Addresses
+            </button>
+            <button class="nav-link" id="orders-tab" data-bs-toggle="tab" data-bs-target="#orders-div" type="button" role="tab">
+                My Orders
+            </button>
+        </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active mb-2" id="profile-div" role="tabpanel">
+            <app-new-profile-details [user]="user"></app-new-profile-details>
+            <hr>
+            <div class="space-between">
+                <div>
+                    <h5 class="text-title my-0">CHANGE PASSWORD</h5>
+                    <label class="text-gray">Reset your FiBeiGreetings Password</label>
+                </div>
+                <button type="button" class="btn btn-sm btn-primary" (click)="onChangePasswordClicked()">Password Change</button>
+            </div>
+            <hr>
+            <div class="space-between">
+                <h5 class="text-title my-0">LOGOUT ACCOUNT?</h5>
+                <button type="button" class="btn btn-sm btn-primary">Logout</button>
+            </div>
+        </div>
+
+        <div class="tab-pane fade mb-2" id="communicationpreferences-div" role="tabpanel">
+            <h5 class="text-title my-0">EMAIL PREFERENCES</h5>
+            <p class="mt-3">
+                <span class="text-gray">The email address in your FibeiGreetings profile is</span>
+                <a class="mx-1" (click)="onChangeEmailClicked()">{{user!.email}}</a>
+                <span class="text-gray">. you can change your email address at any time.</span>
+            </p>
+            <p class="text-gray mt-2">Click if you want to receive notification, special offers and promotion emails.</p>
+            <p>See our <a href="/new/link/privacy-policy" target="_blank">PRIVACY POLICY</a></p>
+        </div>
+        
+        <div class="tab-pane fade mb-2" id="shippingaddresses-div" role="tabpanel">
+            <app-new-profile-addresses [id]="user.id"></app-new-profile-addresses>
+        </div>
+        
+        <div class="tab-pane fade mb-2" id="orders-div" role="tabpanel">
             <div class="card">
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-md-8 offset-md-2">
-                            <nav>
-                                <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                                  <button class="nav-link active" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="true">Account Profile</button>
-                                  <button class="nav-link" id="nav-communicationpreferences-tab" data-bs-toggle="tab" data-bs-target="#nav-communicationpreferences" type="button" role="tab" aria-controls="nav-communicationpreferences" aria-selected="false">Communication Preferences</button>
-                                  <button class="nav-link" id="nav-shippingaddresses-tab" data-bs-toggle="tab" data-bs-target="#nav-shippingaddresses" type="button" role="tab" aria-controls="nav-shippingaddresses" aria-selected="false">Shipping Addresses</button>
-                                  <button class="nav-link" id="nav-myorders-tab" data-bs-toggle="tab" data-bs-target="#nav-myorders" type="button" role="tab" aria-controls="nav-myorderss" aria-selected="false">My Orders</button>
-                                </div>
-                              </nav>
-                              <div class="tab-content" id="nav-tabContent">
-                                <div class="tab-pane fade show active" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                                    <h2 class="label-header">Account Profile</h2>
-                                    <div class="card card-lock">
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <div class="col-md-6"><h4 class="text-purple">Basic Information</h4></div>
-                                                <div class="col-md-6 ion-text-right">
-                                                    <i class="fa fa-2x fa-edit text-secondary" aria-hidden="true"></i>
-                                                </div>
-                                                    
-                                            </div>
-                                            <br/>
-                                            <!--  (submit)="submit()" -->
-                                            <form [formGroup]="profileInfoForm"> 
-                                                <div class="row ">
-                                                    <div class="col-md-6">
-                                                        <div class="form-floating mb-3">
-                                                            <input type="firstname" class="form-control" id="firstname" placeholder="firstname" formControlName="firstname" readonly >
-                                                            <label for="firstname">First Name*</label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="form-floating mb-3">
-                                                            <input type="lastname" class="form-control" id="lastname" placeholder="lastname" formControlName="lastname" readonly>
-                                                            <label for="lastname">Last Name*</label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="form-floating mb-3">
-                                                            <input type="emailaddress" class="form-control" id="lasemailaddresstname" placeholder="emailaddress" formControlName="email" readonly>
-                                                            <label for="emailaddress">Email Address*</label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-12">
-                                                        <div class="form-floating mb-3">
-                                                            <!-- [disabled]="processing" [ngClass]="{ 'is-invalid': submitted && form.controls.birthday.errors}" -->
-                                                            <input type="date" class="form-control" id="bday" placeholder="Birthday" formControlName="birthday" readonly
-                                                            >
-                                                            <label for="bday">Birthday</label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>  
-                                    <br/>
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <div class="col-md-6"><h4 class="txt-purple">Change Password</h4></div>
-                                                <div class="col-md-6 ion-text-right" (click)="onChangePasswordClicked()">
-                                                    <i class="fa fa-2x fa-edit text-secondary" aria-hidden="true"></i>
-                                                </div>
-                                            </div>
-                                            <br/>
-                                            <!-- [formGroup]="form" (submit)="submit()" -->
-                                           <p>Reset your FiBeiGreetings Password</p>
-                                        </div>
-                                    </div> 
-                                    <br/>
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <h4 class="text-purple">Log Out account?</h4>
-                                            <br/>
-                                            <a class="fibei-btn"> Logout</a>
-                                        </div>
-                                    </div> 
-                                </div>
-                                <div class="tab-pane fade" id="nav-communicationpreferences" role="tabpanel" aria-labelledby="nav-communicationpreferences-tab">
-                                    <h2 class="label-header">Communication Preferences</h2>
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <h4 class="text-purple"> Email Preferences</h4>
-                                                    <br/>
-                                                    <p>The email address in your FibeiGreetings profile is <u>{{user!.email}}</u>. you can change your email address at any time. 
-                                                        <a class="fibei-btn" (click)="onChangeEmailClicked()"> Change now?</a>
-                                                    </p>
-                                                   <p>Click if you want to receive notification, special offers and promotion emails.</p>
-                                                   <p>See our <a href="/page/PrivacyPolicy">PRIVACY POLICY</a></p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="tab-pane fade" id="nav-shippingaddresses" role="tabpanel" aria-labelledby="nav-shippingaddresses-tab">
-                                    
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <h2 class="label-header">Shipping Addresses</h2>
-                                        </div>
-                                        <div class="col-md-6 ion-text-right">
-                                            <br/>
-                                            <a class="fibei-btn" (click)="toggleAddressForm()"> ADD ADDRESS</a>
-                                        </div>
-                                            
-                                    </div>
-                                    
-                                    <br/>
-                                    <div class="card card-lock" *ngIf="showAddressForm">
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <div class="col-md-12" *ngIf="addressActionType == 'add'"><h4 class="txt-purple">Add a shipping addresses</h4></div>
-                                                <div class="col-md-12" *ngIf="addressActionType == 'edit'"><h4 class="txt-purple">Edit shipping addresses</h4></div>
-                                                <p>To make checkout even faster, you can save shipping addresses.</p>
-                                            </div>
-                                            <br/>
-                                            <!--  -->
-                                            <form [formGroup]="addressForm" (submit)="addressFormSubmit()">
-                                                <div class="row ">
-                                                    <div class="col-md-6">
-                                                        <div class="form-floating mb-3">
-                                                            <input type="firstname" class="form-control" id="firstname" placeholder="firstname" formControlName="firstname" >
-                                                            <label for="firstname">First Name*</label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="form-floating mb-3">
-                                                            <input type="lastname" class="form-control" id="lastname" placeholder="lastname" formControlName="lastname">
-                                                            <label for="lastname">Last Name*</label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-12">
-                                                        <div class="form-floating mb-3">
-                                                            <input type="email" class="form-control" id="email" placeholder="test@mail.com" formControlName="email" >
-                                                            <label for="email">Email Address*</label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-12">
-                                                        <div class="form-floating mb-3">
-                                                            <input type="address" class="form-control" id="address" placeholder="Address" formControlName="address" >
-                                                            <label for="address">Address*</label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="form-floating mb-3">
-                                                            <input type="province" class="form-control" id="province" placeholder="Province/Region" formControlName="province" >
-                                                            <label for="province">Province/Region*</label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="form-floating mb-3">
-                                                            <input type="city" class="form-control" id="cityMunicipality" placeholder="City/Municipality" formControlName="city">
-                                                            <label for="city">City/Municipality*</label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="form-floating mb-3">
-                                                            <input type="country" class="form-control" id="country" placeholder="Country" formControlName="country" >
-                                                            <label for="country">Country*</label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="form-floating mb-3">
-                                                            <input type="postcode" class="form-control" id="lastname" placeholder="Postcode" formControlName="postcode">
-                                                            <label for="postcode">Postcode *</label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-12">
-                                                        <br/>
-                                                        <button type="submit" class="fibei-btn" > SAVE ADDRESS</button>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div> 
+                        <div class="col-md-12 ">
+                            <table>
+                                <tr>
 
-                                    
-                                    <br/>
-                                    <div class="row">
-                                        <div class="col-md-12 ">
-                                            <table>
-                                                <thead>
-                                                    <tr>
-                                                        <td>
-                                                            Name
-                                                        </td>
-                                                        <td>
-                                                            Address
-                                                        </td>
-                                                        <td>
-                                                            Action
-                                                        </td>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr *ngFor="let address of addressList">
-                                                        <td>{{getAddressDetails('name', address)}}</td>
-                                                        <td>{{address.email}}</td>
-                                                        <td>{{getAddressDetails('address', address)}}</td>
-                                                        <td> 
-                                                            <i (click)="toggleAddressForm(address)" class="fa fa-2x fa-edit text-secondary" aria-hidden="true"></i>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="tab-pane fade" id="nav-myorders" role="tabpanel" aria-labelledby="nav-myorders-tab">
-                                    <h2 class="label-header">My Orders</h2>
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <div class="col-2"><img src="{{primaryImageURL}}" onContextMenu="return false;"></div>
-                                                <div class="col-7">
-                                                    <label>{{card!.name}}</label><br />
-                                                    <label>{{'order.shippingfee'|translate}}</label>
-                                                </div>
-                                                <div class="col-3 allign-right">
-                                                    <label *ngIf="card">{{cardPrice| number:'1.2-2'}}</label><br />
-                                                    <label>{{shippingfee! > 0?(shippingfee| number:'1.2-2'):'Free'}}</label>
-                                                </div>
-                                            </div>
-                                            <div class="border"></div>
-                                            <div *ngFor="let item of addMore">
-                                                <div class="row" *ngIf="item.count > 0">
-                                                    <div class="col-2"></div>
-                                                    <div class="col-8">
-                                                        <label>{{item.card.name}}</label><br />
-                                                        <label>{{'order.shippingfee'|translate}}</label>
-                                                    </div>
-                                                    <div class="col-2 allign-right">
-                                                        <label>{{priceService.getSign()}} {{item.card.price! * item.count!| number:'1.2-2'}}</label><br />
-                                                        <label>{{item.shipping_fee! > 0?(item.shipping_fee| number:'1.2-2'):'Free'}}</label>
-                                                    </div>
-                                                </div>
-                                                <div class="border" *ngIf="item.count > 0"></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-6"><strong>{{'order.total'|translate}}:</strong></div>
-                                                <div class="col-6">
-                                                    <div class="col-12 allign-right"><strong>{{priceService.getSign()}} {{total | number:'1.2-2'}}</strong></div>
-                                                </div>
-                                            </div>
-
-                                            <a href="/" class="fibei-btn">See Cards</a>
-                                        </div>
-                                    </div>
-                                    <br/>
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <div class="col-md-12 ">
-                                                    <table>
-                                                        <tr>
-                                                            
-                                                            <td class="image">
-                                                                <span>Image</span>
-                                                            </td>
-                                                            <td class="details">
-                                                                <span>Description</span>
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-                                                    <table>
-                                                        <tr>
-                                                            <td class="image">
-                                                              <img src="https://firebasestorage.googleapis.com/v0/b/fifi-greetings.appspot.com/o/card%2FBfpij5w6qKeXusgh5CwV%2Fbl8XSgGPndgTiD9cASbd?alt=media&token=4ca0c528-93b2-4ef3-9274-f4dab04cc964" class="img-fluid">
-                                                            </td>
-                                                            <td class="details">
-                                                                <b>Happy Birthday Kiddo</b>
-                                                                <p>Description: "A birthday card features a colorful happy birthday letter design with a boy having fun with his birthday cake and a light yellow background.</p>
-                                                                <p>total Price: ₱ 99.00</p>
-                                                                <hr/>
-                                                                <span></span>
-                                                                <span class="badge text-bg-secondary">Onprocess</span>
-                                                                <span class="badge text-bg-secondary">For Delivery</span>
-                                                                <span class="badge text-bg-secondary">Complete</span>
-                                                                <br/>
-                                                                <span>expected delivery: 01/01/2024</span>
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                              </div>
+                                    <td class="image">
+                                        <span>Image</span>
+                                    </td>
+                                    <td class="details">
+                                        <span>Description</span>
+                                    </td>
+                                </tr>
+                            </table>
+                            <table>
+                                <tr>
+                                    <td class="image">
+                                        <img src="https://firebasestorage.googleapis.com/v0/b/fifi-greetings.appspot.com/o/card%2FBfpij5w6qKeXusgh5CwV%2Fbl8XSgGPndgTiD9cASbd?alt=media&token=4ca0c528-93b2-4ef3-9274-f4dab04cc964"
+                                            class="img-fluid">
+                                    </td>
+                                    <td class="details">
+                                        <b>Happy Birthday Kiddo</b>
+                                        <p>Description: "A birthday card features a colorful happy birthday letter design with
+                                            a boy having fun with his birthday cake and a light yellow background.</p>
+                                        <p>total Price: ₱ 99.00</p>
+                                        <hr />
+                                        <span></span>
+                                        <span class="badge text-bg-secondary">Onprocess</span>
+                                        <span class="badge text-bg-secondary">For Delivery</span>
+                                        <span class="badge text-bg-secondary">Complete</span>
+                                        <br />
+                                        <span>expected delivery: 01/01/2024</span>
+                                    </td>
+                                </tr>
+                            </table>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
- 
 </div>

@@ -1,0 +1,34 @@
+.space-between {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.text-title{
+    color: #631feb;
+}
+
+table .name{
+    width: 15%;
+}
+
+table .email{
+    width: 20%;
+}
+
+table .address{
+    width: auto;
+}
+
+table .default{
+    width: 5%;
+}
+
+table .action{
+    width: 8%;
+}
+
+.icon{
+    font-size: 1.5rem;
+}

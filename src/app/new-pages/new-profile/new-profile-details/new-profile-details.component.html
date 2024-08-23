@@ -1,0 +1,44 @@
+<div class="space-between mb-2">
+    <h5 class="text-title my-0">BASIC INFORMATION</h5>
+    <button type="button" class="btn btn-sm btn-primary px-3" (click)="onClickEdit()" [disabled]="isEdit === true">EDIT</button>
+</div>
+<form [formGroup]="form" (submit)="submit()">
+    <div class="row mb-3">
+        <div class="col-6 pe-1">
+            <div class="form-floating">
+                <input type="text" class="form-control" id="firstname" placeholder="First name" formControlName="firstname" [readonly]="isEdit === false"
+                    [ngClass]="{ 'is-invalid': submitted && form.controls.firstname.errors}">
+                <label for="firstname">First Name</label>
+            </div>
+        </div>
+        <div class="col-6 ps-1">
+            <div class="form-floating">
+                <input type="text" class="form-control" id="lastname" placeholder="Last name" formControlName="lastname" [readonly]="isEdit === false" 
+                    [ngClass]="{ 'is-invalid': submitted && form.controls.lastname.errors}">
+                <label for="lastname">Last Name</label>
+            </div>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-6 pe-1">
+            <div class="form-floating">
+                <input type="email" class="form-control" id="email" placeholder="Email Address" formControlName="email" readonly>
+                <label for="email">Email Address</label>
+            </div>
+        </div>
+        <div class="col-6 ps-1">
+            <div class="form-floating">
+                <input type="date" class="form-control" id="birthday" placeholder="Birthday" formControlName="birthday" [readonly]="isEdit === false"
+                    [ngClass]="{ 'is-invalid': submitted && form.controls.birthday.errors}">
+                <label for="birthday">Birthday </label>
+            </div>
+        </div>
+    </div>
+    <div class="text-end mb-3">
+        <button type="submit" class="btn btn-sm btn-success px-3" [disabled]="isEdit === false || processing">
+            <span class="spinner-border spinner-border-sm me-1" aria-hidden="true" *ngIf="processing"></span>
+            {{processing ? 'Saving ...' : 'Save'}}
+        </button>
+        <button type="button" class="btn btn-sm btn-danger px-3 ms-2" [disabled]="isEdit === false" (click)="onClickCancel()">Cancel</button>
+    </div>
+</form>

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { collection, doc, Firestore, getDocFromServer, getDocsFromServer, query, setDoc, where } from '@angular/fire/firestore';
+import { collection, doc, Firestore, getDocFromServer, getDocsFromServer, query, setDoc, updateDoc, where } from '@angular/fire/firestore';
 import { Auth, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from '@angular/fire/auth';
 import { INewGoogleUser, INewUser } from '../new-models/new-user';
 
@@ -9,7 +9,6 @@ export class UpdateResponse {
   type: string;
   message: string;
 }
-
 
 @Injectable({
   providedIn: 'root'
@@ -74,9 +73,26 @@ export class NewAccountService {
         notification: user.notification,
         customer: true,
         providerId: user.providerId,
-        photoURL: user.photoURL
+        photoURL: user.photoURL,
+        address: user.address
       }).then(user => resolve());
     });
+  }
+
+  updateUserInfo(user: INewUser): Promise<void> {
+    const data = doc(this.store, this.colname + '/' + user.id);
+    return updateDoc(data, {
+      firstname: user.firstname,
+      lastname: user.lastname,
+      birthday: user.birthday,
+    })
+  }
+
+  updateDefaultAddress(id: string, addressId: string): Promise<void>{
+    const data = doc(this.store, this.colname + '/' + id);
+    return updateDoc(data, {
+      address: addressId
+    })
   }
 
   getByEmail(email: string): Promise<INewUser[]> {
@@ -127,39 +143,37 @@ export class NewAccountService {
   }
 
   changeEmail(currentemail: string, newemail: string, password: string): Promise<UpdateResponse> {
-    return new Promise((resolve,reject) => {
-
+    return new Promise((resolve) => {
       this.firebaseAuth.signInWithEmailAndPassword(currentemail, password).then(userCredential => {
         if (userCredential) {
           userCredential.user?.updateEmail(newemail).then(() => {
             resolve({
-              status: 'success', 
-              type: 'updateemail', 
+              status: 'success',
+              type: 'updateemail',
               message: "The email address is already in use by another account."
             });
           }).catch(err => {
             resolve({
-              status: 'error', 
-              type: 'updateemail', 
+              status: 'error',
+              type: 'updateemail',
               message: "The email address is already in use by another account."
             });
           })
         }
         else {
           resolve({
-            status: 'error', 
-            type: 'signin', 
+            status: 'error',
+            type: 'signin',
             message: "Incorrect User/Password! "
           });
         }
       }).catch(err => {
         resolve({
-          status: 'error', 
-          type: 'signin', 
+          status: 'error',
+          type: 'signin',
           message: "Incorrect User/Password! "
         });
       })
     })
   }
-
 }
