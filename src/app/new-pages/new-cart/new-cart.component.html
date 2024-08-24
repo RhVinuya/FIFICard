@@ -9,7 +9,6 @@
                 <table>
                     <tr>
                         <td class="mark">
-                            <input class="form-check-input" type="checkbox" checked>
                         </td>
                         <td class="image">
                             <span>Image</span>
@@ -20,117 +19,30 @@
                         <td class="amount">
                             <span>Price</span>
                         </td>
-                        <td class="shipping">
-                            <span>Shipping Fee</span>
-                        </td>
-                        <td class="total">
-                            <span>Total</span>
-                        </td>
-                        <td class="delete text-end">
-                            <i class="fa fa-trash text-secondary"></i>
-                        </td>
                     </tr>
                 </table>
             </div>
         </div>
-        <div class="card mb-2 is-cart-selected">
-            <div class="card-body">
-                <table>
-                    <tr>
-                        <td class="mark">
-                            <input class="form-check-input" type="checkbox" checked>
-                        </td>
-                        <td class="image">
-                            <img
-                                src="https://firebasestorage.googleapis.com/v0/b/fifi-greetings.appspot.com/o/card%2F4nAQZomPLor9ezS5qqb3%2FPkK3guvJL0YQzacNmiZW?alt=media&token=95aa9b88-3de8-42d0-a2fa-8e2ed2e82847">
-                        </td>
-                        <td class="details">
-                            <span class="badge text-bg-secondary">GIFT</span>
-                            <span class="badge text-bg-secondary">STICKER</span>
-                            <span class="badge text-bg-secondary">POSTCARD</span>
-                            <span class="badge text-bg-secondary">CARD</span>
-                            <span class="badge text-bg-secondary i-poetry"><i class="fa fa-leaf" aria-hidden="true"></i> Poetry</span>
-                            <span class="badge text-bg-secondary i-featured"><i class="fa fa-fire" aria-hidden="true"></i> Featured</span>
-                            <h3>Remarkable!</h3>
-                            <p> Graduation Card features a yellowish background with a medal and a graduate icon and some confetti </p>
-                            <app-new-personalize-button></app-new-personalize-button>
-                        </td>
-                        <td class="amount">
-                            <span>$99.00</span>
-                        </td>
-                        <td class="shipping">
-                            <span>$5.00</span>
-                        </td>
-                        <td class="totalfield">
-                            <span>$104.00</span>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-        <div class="card mb-2">
-            <div class="card-body">
-                <table>
-                    <tr>
-                        <td class="mark">
-                            <input class="form-check-input" type="checkbox" checked>
-                        </td>
-                        <td class="image">
-                            <img
-                                src="https://firebasestorage.googleapis.com/v0/b/fifi-greetings.appspot.com/o/card%2F4nAQZomPLor9ezS5qqb3%2FPkK3guvJL0YQzacNmiZW?alt=media&token=95aa9b88-3de8-42d0-a2fa-8e2ed2e82847">
-                        </td>
-                        <td class="details">
-                            <span class="badge text-bg-secondary">GIFT</span>
-                            <span class="badge text-bg-secondary">STICKER</span>
-                            <span class="badge text-bg-secondary">POSTCARD</span>
-                            <span class="badge text-bg-secondary">CARD</span>
-                            <h3>Remarkable!</h3>
-                            <p> Graduation Card features a yellowish background with a medal and a graduate icon and some
-                                confetti </p>
-                        </td>
-                        <td class="amount">
-                            <span>$99.00</span>
-                        </td>
-                        <td class="shipping">
-                            <span>$5.00</span>
-                        </td>
-                        <td class="totalfield">
-                            <span>$104.00</span>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-        </div>
+        <app-new-cart-item *ngFor="let iCart of carts" [cart]="iCart" (onChangeMark)="onChangeItemMark(iCart.id, $event)" (onRemoveItem)="onRemove($event)"></app-new-cart-item>
     </div>
     <div class="col-md-3">
-        <h3>Order Summary</h3>
-        <br />
-        <div class="row">
-            <div class="col-md-6">Sub Total</div>
-            <div class="col-md-6 ion-text-right">$99.00</div>
+        <h3 class="mt-0 mb-4">Order Summary</h3>
+
+        <div class="space-between">
+            <span>Subtotal</span>
+            <h6 class="my-0 text-purple">{{totalDisplay}}</h6>
         </div>
-        <div class="row">
-            <div class="col-md-6">Delivery Fee</div>
-            <div class="col-md-6 ion-text-right">$99.00</div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">Sales Tax</div>
-            <div class="col-md-6 ion-text-right">$99.00</div>
+        <div class="space-between">
+            <span>Shipping Fee</span>
+            <h6 class="my-0">?</h6>
         </div>
         <hr />
-        <div class="row">
-            <div class="col-md-6">Estimate Total</div>
-            <div class="col-md-6 ion-text-right">$99.00</div>
-        </div>
-        <br />
-        <div class="input-group mb-4">
-            <input type="text" class="form-control" placeholder="Promo code" aria-label="Promo code" aria-describedby="button-addon2">
-            <button class="btn btn-outline-secondary" type="button" id="button-addon2">Submit</button>
+        <div class="space-between mb-4">
+            <span>Estimated Total</span>
+            <h6 class="my-0 text-purple">{{totalDisplay}}</h6>
         </div>
         <div class="text-center">
-            <button class="fibei-checkout">Proceed to checkout</button>
-            <div class="ion-text-center">OR</div>
-            <button class="cart-paypal"><img src="https://logolook.net/wp-content/uploads/2021/06/Paypal-Logo-2007.png" height="20px"></button>
+            <button class="checkout" [disabled]="count === 0 || saving === true">Proceed to checkout</button>
         </div>
 
     </div>

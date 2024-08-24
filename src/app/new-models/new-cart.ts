@@ -5,7 +5,8 @@ export interface INewCart {
     sgprice: number;
     usprice: number;
     type: "card" | "sticker" | "postcard";
-    bundle: INewCartBundle | undefined
+    bundle: INewCartBundle | undefined;
+    mark: boolean;
 }
 
 export interface INewCartBundle {

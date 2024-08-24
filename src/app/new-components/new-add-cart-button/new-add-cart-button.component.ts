@@ -71,7 +71,8 @@ export class NewAddCartButtonComponent implements OnInit {
         sgprice: this.sgprice,
         usprice: this.usprice,
         type: this.type,
-        bundle: undefined
+        bundle: undefined,
+        mark: true
       }
     );
     let message: string = '';

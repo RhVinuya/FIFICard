@@ -144,7 +144,8 @@ export class NewDetailsComponent implements OnInit {
         price: bundle.price,
         sgprice: bundle.sgprice,
         usprice: bundle.usprice,
-      } as INewCartBundle
+      } as INewCartBundle,
+      mark: true
     })
     const toast = await this.toastController.create({
       message: 'Postcard bundle is added on the Cart',

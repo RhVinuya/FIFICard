@@ -35,32 +35,27 @@ table .details {
 }
 
 table .amount {
-    width: 10%;
-}
-
-table .shipping {
-    width: 10%;
-}
-
-table .total {
-    width: 7%;
-}
-
-table .delete {
-    width: 3%;
-}
-
-table .totalfield {
-    width: 10%;
+    width: 13%;
 }
 
 h3 {
     margin-bottom: 0px;
 }
 
-.fibei-checkout {
-    font-family: "Proxima Nova";
-    border: 2px #5e17eb solid;
+hr{
+    border-color: #550255;
+    border-width: 2px;
+}
+
+.space-between{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.checkout {
+    border: 1px #5e17eb solid;
     color: #fff;
     font-size: 1rem;
     padding: 10px 20px;
@@ -72,90 +67,13 @@ h3 {
     width: 100%;
 }
 
-.cart-paypal {
-    font-size: 1rem;
-    padding: 10px 20px;
-    border-radius: 20px;
-    font-weight: bold;
-    background-color: #e6f44e;
-    display: block;
-    margin-bottom: 20px;
-    width: 100%;
-}
-
-.fibei-btn {
-    font-family: "Proxima Nova";
-    border: 2px #5e17eb solid;
+.checkout:hover{
     color: #5e17eb;
-    font-size: 1rem;
-    padding: 10px;
-    border-radius: 20px;
-    font-weight: bold;
-    margin-right: 8px;
-    display: inline-block;
-    cursor: pointer;
+    background-color: #fff;
 }
 
-.fibei-btn:hover {
-    font-family: "Proxima Nova";
-    border: 2px #5e17eb solid;
-    color: #fff;
-    background: #5e17eb;
-
-}
-
-.fibei-btn-o {
-    font-family: "Proxima Nova";
-    color: #fff;
-    background: #5e17eb;
-    cursor: pointer;
-    padding-inline: 10px;
-    padding-block: 5px;
-    border-radius: 20px;
-    margin-right: 8px;
-    display: inline-block;
-    border: none;
-}
-
-.fibei-btn-o:hover {
-    font-family: "Proxima Nova";
-    background: #fff;
-    color: #5e17eb;
-    font-size: 1rem;
-}
-
-.fa-star {
-    font-size: 13px;
-}
-
-.i-poetry {
-    border: 2px solid purple;
-    background: white !important;
-    color: purple !important;
-    font-size: 16px;
-    border-left: 10px solid;
-}
-
-.i-poetry:hover {
-    border: 2px solid #550255;
-    background: purple !important;
-    color: #fff !important;
-    font-size: 16px;
-    border-left: 10px solid #550255;
-}
-
-.i-featured {
-    border: 2px solid #bd283e;
-    background: white !important;
-    color: #bd283e !important;
-    font-size: 16px;
-    border-left: 10px solid;
-}
-
-.i-featured:hover {
-    border: 2px solid #871c2d;
-    background: #bd283e !important;
-    color: #fff !important;
-    font-size: 16px;
-    border-left: 10px solid #871c2d;
+.checkout:disabled {
+    background: lightgrey;
+    border: 0.5px solid lightgrey;
+    cursor: not-allowed;
 }

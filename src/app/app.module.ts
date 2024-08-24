@@ -192,6 +192,7 @@ import { NewProfileDetailsComponent } from './new-pages/new-profile/new-profile-
 import { NewProfileAddressesComponent } from './new-pages/new-profile/new-profile-addresses/new-profile-addresses.component';
 import { NewCreateAddressComponent } from './new-components/new-create-address/new-create-address.component';
 import { NewConfirmMessageComponent } from './new-components/new-confirm-message/new-confirm-message.component';
+import { NewCartItemComponent } from './new-pages/new-cart/new-cart-item/new-cart-item.component';
 
 @NgModule({
   declarations: [
@@ -360,7 +361,8 @@ import { NewConfirmMessageComponent } from './new-components/new-confirm-message
     NewProfileDetailsComponent,
     NewProfileAddressesComponent,
     NewCreateAddressComponent,
-    NewConfirmMessageComponent
+    NewConfirmMessageComponent,
+    NewCartItemComponent
   ],
   imports: [
     BrowserModule,
