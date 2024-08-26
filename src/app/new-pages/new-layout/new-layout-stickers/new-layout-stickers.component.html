@@ -6,13 +6,16 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-4">
+    <div class="col-2">
+        <img src="/assets/images/new/s-stickers.png" class="img-fluid" [routerLink]="['/new/stickers/all']">
+    </div>
+    <div class="col-3 offset-1">
         <h5 *ngFor="let event of events.slice(0, 4)"><a [routerLink]="['/new/stickers/' + event]">{{event}}</a></h5>
     </div>
-    <div class="col-4">
+    <div class="col-3">
         <h5 *ngFor="let event of events.slice(4, 8)"><a [routerLink]="['/new/stickers/' + event]">{{event}}</a></h5>
     </div>
-    <div class="col-4">
+    <div class="col-3">
         <h5 *ngFor="let event of events.slice(8, 12)"><a [routerLink]="['/new/stickers/' + event]">{{event}}</a></h5>
     </div>
 </div>

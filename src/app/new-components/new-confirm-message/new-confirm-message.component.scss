@@ -20,24 +20,60 @@
     font-size: 4rem;
 }
 
-.button.ok{
-    color: #fff;
-    background: #198754;
-    font-size: 1rem;
-    padding-block: 10px;
-    padding-inline: 20px;
-    border-radius: 20px;
+// .button.ok{
+//     color: #fff;
+//     background: #198754;
+//     font-size: 1rem;
+//     padding-block: 10px;
+//     padding-inline: 20px;
+//     border-radius: 20px;
+//     cursor: pointer;
+//     text-transform: uppercase
+// }
+
+// .button.no{
+//     color: #000;
+//     background: #f8f9fa;
+//     font-size: 1rem;
+//     padding-block: 10px;
+//     padding-inline: 20px;
+//     border-radius: 20px;
+//     cursor: pointer;
+//     text-transform: uppercase
+// }
+
+.btn-prof {
+    border: 1px #631feb solid;
+    background: white;
+    color: #631feb;
     cursor: pointer;
-    text-transform: uppercase
+    padding-block: 3px;
+    padding-inline: 10px;
+    border-radius: 15px;
+    font-weight: bold;
+    display: inline-block;
+    font-size: 1rem;
+    padding: 10px;
 }
 
-.button.no{
-    color: #000;
-    background: #f8f9fa;
-    font-size: 1rem;
-    padding-block: 10px;
-    padding-inline: 20px;
-    border-radius: 20px;
+.btn-prof:hover {
+    font-family: "Proxima Nova";
+    border: 1px #631feb solid;
+    color: #fff;
+    background: #631feb;
+    
+}
+
+.btn-prof-no {
+    border: 1px #631feb solid;
+    color: #fff;
+    background: #631feb;
     cursor: pointer;
-    text-transform: uppercase
+    padding-block: 3px;
+    padding-inline: 10px;
+    border-radius: 15px;
+    font-weight: bold;
+    display: inline-block;
+    font-size: 1rem;
+    padding: 10px;
 }
