@@ -11,6 +11,11 @@ import { NewPaymentService } from 'src/app/new-services/new-payment.service';
 import { NewConfirmMessageComponent } from 'src/app/new-components/new-confirm-message/new-confirm-message.component';
 import { INewUser } from 'src/app/new-models/new-user';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
+import { NewStickerService } from 'src/app/new-services/new-sticker.service';
+import { NewPostcardService } from 'src/app/new-services/new-postcard.service';
+import { NewCardService } from 'src/app/new-services/new-card.service';
+import { NewFileService } from 'src/app/new-services/new-file.service';
 
 @Component({
   selector: 'app-new-checkout',
@@ -22,6 +27,10 @@ export class NewCheckoutComponent implements OnInit, OnDestroy {
   storageService: NewStorageService;
   addressService: NewAddressService;
   paymentService: NewPaymentService;
+  cardService: NewCardService;
+  stickerService: NewStickerService;
+  postcardService: NewPostcardService;
+  fileService: NewFileService;
   modalService: NgbModal;
   offCanvas: NgbOffcanvas;
   router: Router;
@@ -31,6 +40,10 @@ export class NewCheckoutComponent implements OnInit, OnDestroy {
     _storageService: NewStorageService,
     _addressService: NewAddressService,
     _paymentService: NewPaymentService,
+    _cardService: NewCardService,
+    _stickerService: NewStickerService,
+    _postcardService: NewPostcardService,
+    _fileService: NewFileService,
     _modalService: NgbModal,
     _offCanvas: NgbOffcanvas,
     _router: Router,
@@ -39,6 +52,10 @@ export class NewCheckoutComponent implements OnInit, OnDestroy {
     this.storageService = _storageService;
     this.addressService = _addressService;
     this.paymentService = _paymentService;
+    this.cardService = _cardService;
+    this.stickerService = _stickerService;
+    this.postcardService = _postcardService;
+    this.fileService = _fileService;
     this.modalService = _modalService;
     this.offCanvas = _offCanvas;
     this.router = _router;
@@ -79,6 +96,7 @@ export class NewCheckoutComponent implements OnInit, OnDestroy {
   accepted: boolean = false;
   verifySubmitted: boolean = false;
   isProcessingSpecialCode: boolean = false;
+  isProcessingStripe: boolean = false;
 
   form = new FormGroup({
     code: new FormControl<string>('', [Validators.required, Validators.maxLength(5)]),
@@ -257,7 +275,6 @@ export class NewCheckoutComponent implements OnInit, OnDestroy {
       reference.componentInstance.no = 'NO';
       let resultSubs = reference.componentInstance.result.subscribe(async (value: boolean) => {
         if (value) {
-
           let payment: NewPayment = new NewPayment();
           payment.userId = this.iUser ? this.iUser.id : '';
           payment.sender = this.sender as INewSender;
@@ -271,21 +288,168 @@ export class NewCheckoutComponent implements OnInit, OnDestroy {
           payment.details = {
             code: code ? code.code : ''
           };
-          
-          await this.storageService.savePayment(payment as INewPayment);
-          
+
+          this.storageService.savePayment(payment as INewPayment);
+
           this.form.reset();
           this.form.markAsPristine();
           this.verifySubmitted = false;
           this.isProcessingSpecialCode = false;
           this.ref.detectChanges();
 
-          this.router.navigate(['/new/payment'])
+          this.router.navigate(['/new/payment/specialcode'])
         }
         this.isProcessingSpecialCode = false;
         reference.close();
         resultSubs.unsubscribe();
       })
+    }
+  }
+
+  async onStripe() {
+    this.isProcessingStripe = true;
+    this.ref.detectChanges();
+
+    let payment: NewPayment = new NewPayment();
+    payment.userId = this.iUser ? this.iUser.id : '';
+    payment.sender = this.sender as INewSender;
+    payment.receiver = this.receiver as INewAddress;
+    payment.subtotal = this.subtotal;
+    payment.shippingFee = this.shippingfee;
+    payment.total = this.total;
+    payment.items = this.items;
+    payment.location = 'ph';
+    payment.gateway = 'card';
+    this.storageService.savePayment(payment as INewPayment);
+
+    const stripe = require('stripe')(environment.stripe.secretKey);
+    let lineitems: any[] = [];
+    for await (const item of this.items) {
+      if (item.type === 'card') {
+        let card = await this.cardService.get(item.itemid);
+        if (card){
+          let image: string = '';
+          let images = await this.cardService.getImages(item.itemid);
+          if (images.length > 0){
+            image = await this.fileService.getImageURL(images[0].url)
+          }
+
+          lineitems.push({
+            price_data: {
+              product_data: {
+                name: card.name,
+                description: card.description,
+                images: [image]
+              },
+              currency: 'PHP',
+              unit_amount: Number(item.price).toFixed(2).replace(".", "")
+            },
+            quantity: 1
+          })
+
+          if (item.shipping > 0) {
+            lineitems.push({
+              price_data: {
+                product_data: {
+                  name: "Shipping Fee",
+                  description: "Shipping Fee for " + card.name,
+                },
+                currency: 'PHP',
+                unit_amount: item.shipping.toFixed(2).replace(".", "")
+              },
+              quantity: "1"
+            })
+          }
+
+        }
+      }
+      else if (item.type === 'sticker') {
+        let card = await this.stickerService.get(item.itemid);
+        if (card){
+          let image: string = '';
+          let images = await this.stickerService.getImages(item.itemid);
+          if (images.length > 0){
+            image = await this.fileService.getImageURL(images[0].url)
+          }
+
+          lineitems.push({
+            price_data: {
+              product_data: {
+                name: card.name,
+                description: card.description,
+                images: [image]
+              },
+              currency: 'PHP',
+              unit_amount: Number(item.price).toFixed(2).replace(".", "")
+            },
+            quantity: 1
+          })
+
+          if (item.shipping > 0) {
+            lineitems.push({
+              price_data: {
+                product_data: {
+                  name: "Shipping Fee",
+                  description: "Shipping Fee for " + card.name,
+                },
+                currency: 'PHP',
+                unit_amount: item.shipping.toFixed(2).replace(".", "")
+              },
+              quantity: "1"
+            })
+          }
+
+        }
+      }
+      else if (item.type === 'postcard') {
+        let card = await this.postcardService.get(item.itemid);
+        if (card){
+          let image: string = '';
+          let images = await this.postcardService.getImages(item.itemid);
+          if (images.length > 0){
+            image = await this.fileService.getImageURL(images[0].url)
+          }
+
+          lineitems.push({
+            price_data: {
+              product_data: {
+                name: card.name,
+                description: "Bundle of " + item.bundle!.count.toLocaleString() + ' pcs',
+                images: [image]
+              },
+              currency: 'PHP',
+              unit_amount: Number(item.price).toFixed(2).replace(".", "")
+            },
+            quantity: 1
+          })
+
+          if (item.shipping > 0) {
+            lineitems.push({
+              price_data: {
+                product_data: {
+                  name: "Shipping Fee",
+                  description: "Shipping Fee for " + card.name,
+                },
+                currency: 'PHP',
+                unit_amount: item.shipping.toFixed(2).replace(".", "")
+              },
+              quantity: "1"
+            })
+          }
+
+        }
+      }
+
+      const paymentcheckout = await stripe.checkout.sessions.create({
+        line_items: lineitems,
+        mode: 'payment',
+        success_url: window.location.origin + '/new/payment/card/{CHECKOUT_SESSION_ID}',
+        cancel_url: window.location.origin + '/new/cart',
+        client_reference_id: this.iUser ? this.iUser.id : '',
+        customer_email: this.iUser ? this.iUser.email : ''
+      });
+      let url = paymentcheckout.url;
+      window.location.href = url;
     }
   }
 }

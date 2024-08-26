@@ -69,3 +69,31 @@ hr {
     border-width: 2px;
 }
 
+.card-payment {
+    border: 0.5px #5e17eb solid;
+    color: #fff;
+    font-size: 1rem;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-weight: bold;
+    background-color: #5e17eb;
+    display: block;
+    width: 100%;
+}
+
+.card-payment:hover{
+    color: #5e17eb;
+    background-color: #fff;
+}
+
+.card-payment:disabled {
+    background: lightgrey;
+    border: 0.5px solid lightgrey;
+    cursor: not-allowed;
+}
+
+.card-payment:disabled:hover {
+    background: lightgrey;
+    border: 0.5px solid lightgrey;
+    cursor: not-allowed;
+}

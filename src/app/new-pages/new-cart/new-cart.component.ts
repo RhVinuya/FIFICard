@@ -1,6 +1,10 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Subscription, timer } from 'rxjs';
+import { NewLoginComponent } from 'src/app/new-components/new-login/new-login.component';
 import { INewCart } from 'src/app/new-models/new-cart';
+import { INewUser } from 'src/app/new-models/new-user';
 import { NewStorageService } from 'src/app/new-services/new-storage.service';
 
 @Component({
@@ -8,21 +12,23 @@ import { NewStorageService } from 'src/app/new-services/new-storage.service';
   templateUrl: './new-cart.component.html',
   styleUrls: ['./new-cart.component.scss']
 })
-export class NewCartComponent implements OnInit {
+export class NewCartComponent implements OnInit, OnDestroy {
   storageService: NewStorageService;
+  modalService: NgbModal;
   router: Router;
   ref: ChangeDetectorRef;
 
   constructor(
     _storageService: NewStorageService,
+    _modalService: NgbModal,
     _router: Router,
     _ref: ChangeDetectorRef
   ) {
     this.storageService = _storageService;
+    this.modalService = _modalService;
     this.router = _router;
     this.ref = _ref;
   }
-
   breadcrumbs = [
     {
       title: "Home",
@@ -36,6 +42,8 @@ export class NewCartComponent implements OnInit {
     }
   ];
 
+  subs: Subscription;
+  user: INewUser | undefined = undefined;
   loading: boolean = false;
   ids: string[] | undefined = undefined;
   carts: INewCart[] = [];
@@ -45,6 +53,10 @@ export class NewCartComponent implements OnInit {
   saving: boolean = false;
 
   ngOnInit(): void {
+    this.subs = timer(100, 500).subscribe(time => {
+      this.user = this.storageService.getUser();
+    });
+
     this.loading = true;
     this.ref.detectChanges();
 
@@ -57,6 +69,11 @@ export class NewCartComponent implements OnInit {
     this.loading = false;
     this.ref.detectChanges();
   }
+
+  ngOnDestroy(): void {
+    this.subs.unsubscribe();
+  }
+
 
   calculate() {
     this.total = 0;
@@ -99,5 +116,9 @@ export class NewCartComponent implements OnInit {
     this.storageService.saveCheckoutList(this.carts.filter(x => x.mark === true).map(x => x.id));
     this.router.navigate(['/new/checkout']);
     this.saving = false;
+  }
+
+  onClickSignIn() {
+    this.modalService.open(NewLoginComponent, { animation: true });
   }
 }

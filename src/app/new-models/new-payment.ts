@@ -11,8 +11,8 @@ export interface INewPayment {
     total: number;
     items: INewPaymentItem[];
     location: 'ph' | 'sg' | 'us';
-    gateway: 'specialcode';
-    details: INewSpecialCodeDetails;
+    gateway: 'specialcode' | 'card';
+    details: INewSpecialCodeDetails | INewStripeDetails
     created: Timestamp;
 }
 
@@ -26,8 +26,8 @@ export class NewPayment {
     total: number;
     items: INewPaymentItem[];
     location: 'ph' | 'sg' | 'us';
-    gateway: 'specialcode';
-    details: INewSpecialCodeDetails;
+    gateway: 'specialcode' | 'card';
+    details: INewSpecialCodeDetails | INewStripeDetails
     created: Timestamp;
 
     constructor(){}
@@ -94,4 +94,13 @@ export interface INewSpecialCode {
     code: string;
     paymentids: string[];
     active: boolean;
+}
+
+export interface INewStripeDetails {
+    id: string;
+    type: string;
+    brand: string;
+    amount: number;
+    last4: string;
+
 }

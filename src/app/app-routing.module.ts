@@ -334,7 +334,16 @@ const routes: Routes = [
       },
       {
         path: 'payment',
-        component: NewPaymentComponent
+        children:[
+          {
+            path: ':gateway',
+            component: NewPaymentComponent
+          },
+          {
+            path: ':gateway/:id',
+            component: NewPaymentComponent
+          }
+        ]
       },
       {
         path: 'registration',
