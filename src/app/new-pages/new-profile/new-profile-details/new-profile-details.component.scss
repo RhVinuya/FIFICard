@@ -17,44 +17,40 @@
 
 .text-title{
     color: #631feb;
+    font-weight: bold;
 }
 
-.edit {
-    border: 1px #cb6ce6 solid;
+.btn-prof {
+    border: 1px #631feb solid;
     background: white;
-    color: #cb6ce6;
+    color: #631feb;
     cursor: pointer;
     padding-block: 3px;
     padding-inline: 10px;
     border-radius: 15px;
     font-weight: bold;
     display: inline-block;
-}
-
-.edit:hover {
-    font-family: "Proxima Nova";
-    border: 1px #cb6ce6 solid;
-    color: #fff;
-    background: #cb6ce6;
     font-size: 1rem;
 }
 
-.edit {
-    border: 1px #cb6ce6 solid;
+.btn-prof:hover {
+    font-family: "Proxima Nova";
+    border: 1px #631feb solid;
+    color: #fff;
+    background: #631feb;
+    
+}
+
+
+.btn-cancel {
+    border: 1px #631feb solid;
     background: white;
-    color: #cb6ce6;
+    color: #631feb;
     cursor: pointer;
     padding-block: 3px;
     padding-inline: 10px;
     border-radius: 15px;
     font-weight: bold;
     display: inline-block;
-}
-
-.edit:hover {
-    font-family: "Proxima Nova";
-    border: 1px #cb6ce6 solid;
-    color: #fff;
-    background: #cb6ce6;
     font-size: 1rem;
 }

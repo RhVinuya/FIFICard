@@ -1,6 +1,6 @@
 <div class="space-between mb-2">
     <h5 class="text-title my-0">BASIC INFORMATION</h5>
-    <button type="button" class="btn btn-sm btn-primary px-3" (click)="onClickEdit()" [disabled]="isEdit === true">EDIT</button>
+    <button type="button" class="btn btn-sm btn-primary px-3 btn-prof" (click)="onClickEdit()" [disabled]="isEdit === true"> <i class="fa fa-pen"></i> EDIT</button>
 </div>
 <form [formGroup]="form" (submit)="submit()">
     <div class="row mb-3">
@@ -35,10 +35,11 @@
         </div>
     </div>
     <div class="text-end mb-3">
-        <button type="submit" class="btn btn-sm btn-success px-3" [disabled]="isEdit === false || processing">
+        <button type="submit" class="btn btn-sm btn-success px-3 btn-prof" [disabled]="isEdit === false || processing">
+            <i class="fa fa-save"></i> 
             <span class="spinner-border spinner-border-sm me-1" aria-hidden="true" *ngIf="processing"></span>
             {{processing ? 'Saving ...' : 'Save'}}
         </button>
-        <button type="button" class="btn btn-sm btn-danger px-3 ms-2" [disabled]="isEdit === false" (click)="onClickCancel()">Cancel</button>
+        <button type="button" class="btn btn-sm btn-danger px-3 ms-2 btn-cancel" [disabled]="isEdit === false" (click)="onClickCancel()"> <i class="fa fa-ban"></i> Cancel</button>
     </div>
 </form>
