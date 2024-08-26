@@ -42,12 +42,12 @@
                             </a>
                         </li>
                         <li class="nav-item action">
-                            <a class="nav-link" [routerLink]="['/new/profile/wishlist']">
+                            <a class="nav-link" [routerLink]="['/new/wishlist']">
                                 <i class="fa fa-2x fa-heart text-purple" aria-hidden="true"></i>
                             </a>
                         </li>
                         <li class="nav-item action">
-                            <a class="nav-link" [routerLink]="['/new/profile']">
+                            <a class="nav-link" [routerLink]="['/new/profile/info']">
                                 <i class="fa fa-2x fa-user-circle text-purple" aria-hidden="true" *ngIf="_user === undefined || (_user !== undefined && (_user.photoURL === '' || _user.photoURL === null))"></i>
                                 <img class="profile" [src]="_user.photoURL" *ngIf="_user !== undefined && _user.photoURL !== '' && _user.photoURL !== null">
                             </a>
@@ -81,12 +81,12 @@
                             </a>
                         </li>
                         <li class="nav-item action">
-                            <a class="nav-link" [routerLink]="['/new/profile/wishlist']">
+                            <a class="nav-link" [routerLink]="['/new/wishlist']">
                                 <i class="fa fa-2x fa-heart text-purple" aria-hidden="true"></i>
                             </a>
                         </li>
                         <li class="nav-item action">
-                            <a class="nav-link" [routerLink]="['/new/profile']">
+                            <a class="nav-link" [routerLink]="['/new/profile/info']">
                                 <i class="fa fa-2x fa-user-circle text-purple" aria-hidden="true" *ngIf="_user === undefined || (_user !== undefined && (_user.photoURL === '' || _user.photoURL === null))"></i>
                                 <img class="profile" [src]="_user.photoURL" *ngIf="_user !== undefined && _user.photoURL !== '' && _user.photoURL !== null">
                             </a>

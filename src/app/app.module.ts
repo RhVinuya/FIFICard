@@ -193,6 +193,11 @@ import { NewProfileAddressesComponent } from './new-pages/new-profile/new-profil
 import { NewCreateAddressComponent } from './new-components/new-create-address/new-create-address.component';
 import { NewConfirmMessageComponent } from './new-components/new-confirm-message/new-confirm-message.component';
 import { NewCartItemComponent } from './new-pages/new-cart/new-cart-item/new-cart-item.component';
+import { NewCheckoutComponent } from './new-pages/new-checkout/new-checkout.component';
+import { NewCheckoutItemComponent } from './new-pages/new-checkout/new-checkout-item/new-checkout-item.component';
+import { NewCheckoutRecipientsComponent } from './new-pages/new-checkout/new-checkout-recipients/new-checkout-recipients.component';
+import { NewCheckoutSenderComponent } from './new-pages/new-checkout/new-checkout-sender/new-checkout-sender.component';
+import { NewPaymentComponent } from './new-pages/new-payment/new-payment.component';
 
 @NgModule({
   declarations: [
@@ -362,7 +367,12 @@ import { NewCartItemComponent } from './new-pages/new-cart/new-cart-item/new-car
     NewProfileAddressesComponent,
     NewCreateAddressComponent,
     NewConfirmMessageComponent,
-    NewCartItemComponent
+    NewCartItemComponent,
+    NewCheckoutComponent,
+    NewCheckoutItemComponent,
+    NewCheckoutRecipientsComponent,
+    NewCheckoutSenderComponent,
+    NewPaymentComponent
   ],
   imports: [
     BrowserModule,

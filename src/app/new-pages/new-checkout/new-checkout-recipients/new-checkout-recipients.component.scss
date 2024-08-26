@@ -1,0 +1,69 @@
+* {
+    font-family: Proxima Nova;
+}
+
+.fa,
+.far,
+.fas {
+    font-family: "Font Awesome 5 Free" !important;
+}
+
+.main {
+    position: relative;
+    min-height: 400px;
+}
+
+.main .btn-close {
+    position: absolute;
+    right: 1rem;
+    top: 1rem
+}
+
+.title {
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+.title img {
+    height: 50px;
+}
+
+.title h3 {
+    margin: 10px;
+}
+
+.card:hover {
+    cursor: pointer;
+    border-color: #ab37c9 !important;
+}
+
+.detail{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;;
+    justify-content: flex-start;
+    gap: 5px;
+}
+
+ion-icon{
+    color: #ab37c9;
+}
+
+.selected{
+    position: absolute;
+    color: #ab37c9;
+    right: 10px;
+    top: 10px
+}
+
+table{
+    width: 100%;
+}
+
+.auto{
+    width: auto;
+}
+
+.default{
+    width: 8%;
+}

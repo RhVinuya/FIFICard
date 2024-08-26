@@ -1,0 +1,26 @@
+* {
+    font-family: Proxima Nova;
+}
+
+.fa,
+.far,
+.fas {
+    font-family: "Font Awesome 5 Free" !important;
+}
+
+ion-spinner{
+    width: 100px;
+    height: 100px;
+    color: #cb6ce6;
+}
+
+.view{
+    border: 1px #ab37c9 solid;
+    color: #fff;
+    font-size: 1rem;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-weight: bold;
+    background-color: #ab37c9;
+    margin-bottom: 20px;
+}

@@ -110,7 +110,6 @@ export class NewCreateAddressComponent implements OnInit, OnDestroy {
       await this.onDefault.emit(this.form.controls.default.value ? value.id : '')
     }
     this.onSave.emit(value)
-    
   }
 
 }

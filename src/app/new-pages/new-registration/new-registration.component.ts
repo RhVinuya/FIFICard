@@ -133,7 +133,7 @@ export class NewRegistrationComponent implements OnInit {
     reference.componentInstance.button = "CONTINUE";
     reference.componentInstance.onContinue.subscribe((value: any) => {
       reference.close();
-      this.router.navigate(['/new/profile']);
+      this.router.navigate(['/new/profile/info']);
     })
   }
 

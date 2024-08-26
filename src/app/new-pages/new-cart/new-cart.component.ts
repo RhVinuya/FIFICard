@@ -1,4 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { INewCart } from 'src/app/new-models/new-cart';
 import { NewStorageService } from 'src/app/new-services/new-storage.service';
 
@@ -9,13 +10,16 @@ import { NewStorageService } from 'src/app/new-services/new-storage.service';
 })
 export class NewCartComponent implements OnInit {
   storageService: NewStorageService;
+  router: Router;
   ref: ChangeDetectorRef;
 
   constructor(
     _storageService: NewStorageService,
+    _router: Router,
     _ref: ChangeDetectorRef
   ) {
     this.storageService = _storageService;
+    this.router = _router;
     this.ref = _ref;
   }
 
@@ -31,6 +35,9 @@ export class NewCartComponent implements OnInit {
       active: true
     }
   ];
+
+  loading: boolean = false;
+  ids: string[] | undefined = undefined;
   carts: INewCart[] = [];
   count: number = 0;
   total: number = 0;
@@ -38,12 +45,16 @@ export class NewCartComponent implements OnInit {
   saving: boolean = false;
 
   ngOnInit(): void {
-    let ids = this.storageService.getCartList();
-    ids.reverse().forEach(id => {
+    this.loading = true;
+    this.ref.detectChanges();
+
+    this.ids = this.storageService.getCartList();
+    this.ids.reverse().forEach(id => {
       let iCart = this.storageService.getCart(id);
       if (iCart) this.carts.push(iCart)
     })
     this.calculate();
+    this.loading = false;
     this.ref.detectChanges();
   }
 
@@ -75,10 +86,18 @@ export class NewCartComponent implements OnInit {
   }
 
   onRemove(id: string) {
-    let ids = this.storageService.getCartList().filter(x => x !== id);
-    this.storageService.saveCartList(ids);
+    this.storageService.removeCart(id);
+    this.ids = this.storageService.getCartList().filter(x => x !== id);
+    this.storageService.saveCartList(this.ids);
     this.carts = [...this.carts.filter(x => x.id !== id)];
     this.calculate();
     this.ref.detectChanges();
+  }
+
+  onClickCheckout(){
+    this.saving = true;
+    this.storageService.saveCheckoutList(this.carts.filter(x => x.mark === true).map(x => x.id));
+    this.router.navigate(['/new/checkout']);
+    this.saving = false;
   }
 }

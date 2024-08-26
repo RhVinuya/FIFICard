@@ -72,6 +72,8 @@ import { NewSignAndSendComponent } from './new-pages/new-links/new-sign-and-send
 import { NewShippingAndDeliveryComponent } from './new-pages/new-links/new-shipping-and-delivery/new-shipping-and-delivery.component';
 import { NewPrivacyPolicyComponent } from './new-pages/new-links/new-privacy-policy/new-privacy-policy.component';
 import { NewRegistrationCompleteComponent } from './new-pages/new-registration-complete/new-registration-complete.component';
+import { NewCheckoutComponent } from './new-pages/new-checkout/new-checkout.component';
+import { NewPaymentComponent } from './new-pages/new-payment/new-payment.component';
 
 const routes: Routes = [
   {
@@ -309,14 +311,14 @@ const routes: Routes = [
         path: "profile",
         children: [
           {
-            path: '',
+            path: ':id',
             component: NewProfileComponent
           },
-          {
-            path: 'wishlist',
-            component: NewWishlistComponent
-          }
         ]
+      },
+      {
+        path: 'wishlist',
+            component: NewWishlistComponent
       },
       {
         path: 'details/:type/:id',
@@ -325,6 +327,14 @@ const routes: Routes = [
       {
         path: 'cart',
         component: NewCartComponent
+      },
+      {
+        path: 'checkout',
+        component: NewCheckoutComponent
+      },
+      {
+        path: 'payment',
+        component: NewPaymentComponent
       },
       {
         path: 'registration',

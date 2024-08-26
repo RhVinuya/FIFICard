@@ -12,23 +12,23 @@
 <div class="mxw-1080px" *ngIf="user !== undefined">
     <nav>
         <div class="nav nav-tabs" id="nav-tab" role="tablist">
-            <button class="nav-link active" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-div" type="button" role="tab">
+            <button class="nav-link" [ngClass]="default === 'info' ? 'active' : ''" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-div" type="button" role="tab">
                 Account Profile
             </button>
-            <button class="nav-link" id="communicationpreferences-tab" data-bs-toggle="tab" data-bs-target="#communicationpreferences-div"
+            <button class="nav-link" [ngClass]="default === 'comm' ? 'active' : ''" id="communicationpreferences-tab" data-bs-toggle="tab" data-bs-target="#communicationpreferences-div"
                 type="button" role="tab">
                 Communication Preferences
             </button>
-            <button class="nav-link" id="shippingaddresses-tab" data-bs-toggle="tab" data-bs-target="#shippingaddresses-div" type="button" role="tab">
+            <button class="nav-link" [ngClass]="default === 'shipping' ? 'active' : ''" id="shippingaddresses-tab" data-bs-toggle="tab" data-bs-target="#shippingaddresses-div" type="button" role="tab">
                 Shipping Addresses
             </button>
-            <button class="nav-link" id="orders-tab" data-bs-toggle="tab" data-bs-target="#orders-div" type="button" role="tab">
+            <button class="nav-link" [ngClass]="default === 'orders' ? 'active' : ''" id="orders-tab" data-bs-toggle="tab" data-bs-target="#orders-div" type="button" role="tab">
                 My Orders
             </button>
         </div>
     </nav>
     <div class="tab-content" id="nav-tabContent">
-        <div class="tab-pane fade show active mb-2" id="profile-div" role="tabpanel">
+        <div class="tab-pane fade mb-2" [ngClass]="default === 'info' ? 'show active' : ''" id="profile-div" role="tabpanel">
             <app-new-profile-details [user]="user"></app-new-profile-details>
             <hr>
             <div class="space-between">
@@ -45,7 +45,7 @@
             </div>
         </div>
 
-        <div class="tab-pane fade mb-2" id="communicationpreferences-div" role="tabpanel">
+        <div class="tab-pane fade mb-2" [ngClass]="default === 'comm' ? 'show active' : ''" id="communicationpreferences-div" role="tabpanel">
             <h5 class="text-title my-0">EMAIL PREFERENCES</h5>
             <p class="mt-3">
                 <span class="text-gray">The email address in your FibeiGreetings profile is</span>
@@ -56,11 +56,11 @@
             <p>See our <a href="/new/link/privacy-policy" target="_blank">PRIVACY POLICY</a></p>
         </div>
         
-        <div class="tab-pane fade mb-2" id="shippingaddresses-div" role="tabpanel">
+        <div class="tab-pane fade mb-2" [ngClass]="default === 'shipping' ? 'show active' : ''" id="shippingaddresses-div" role="tabpanel">
             <app-new-profile-addresses [id]="user.id" [default]="user.address" (onChangeDefault)="onChangeDefault($event)"></app-new-profile-addresses>
         </div>
         
-        <div class="tab-pane fade mb-2" id="orders-div" role="tabpanel">
+        <div class="tab-pane fade mb-2" [ngClass]="default === 'orders' ? 'show active' : ''" id="orders-div" role="tabpanel">
             <div class="card">
                 <div class="card-body">
                     <div class="row">

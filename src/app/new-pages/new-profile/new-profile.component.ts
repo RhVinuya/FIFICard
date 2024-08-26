@@ -1,4 +1,4 @@
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription, timer } from 'rxjs';
@@ -17,15 +17,18 @@ import { NewConfirmMessageComponent } from 'src/app/new-components/new-confirm-m
 })
 export class NewProfileComponent implements OnInit, OnDestroy {
 
+  activateRoute: ActivatedRoute;
   storageService: NewStorageService;
   modalService: NgbModal;
   router: Router;
 
   constructor(
+    _activateRoute: ActivatedRoute,
     _storageService: NewStorageService,
     _modalService: NgbModal,
     _router: Router
   ) {
+    this.activateRoute = _activateRoute;
     this.storageService = _storageService;
     this.modalService = _modalService;
     this.router = _router;
@@ -33,10 +36,14 @@ export class NewProfileComponent implements OnInit, OnDestroy {
 
   subs: Subscription;
   user: INewUser | undefined;
+  default: string = 'info'
 
   ngOnInit(): void {
     this.subs = timer(100, 500).subscribe(time => {
       this.user = this.storageService.getUser();
+    });
+    this.activateRoute.params.subscribe(params => {
+      this.default = params['id'];
     });
   }
 

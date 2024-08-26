@@ -1,10 +1,11 @@
 import { Payment } from './../models/payment';
-import { collection, collectionData, doc, docData, Firestore, getDocsFromServer, orderBy, query } from '@angular/fire/firestore';
+import { collection, collectionData, doc, docData, Firestore, getDocs, getDocsFromServer, orderBy, query } from '@angular/fire/firestore';
 import { Injectable } from '@angular/core';
 import { ref, Storage, uploadBytes, UploadResult } from '@angular/fire/storage';
 import { Observable } from 'rxjs';
 import { Status } from '../models/status';
-import { addDoc, getDocFromServer, serverTimestamp } from 'firebase/firestore';
+import { addDoc, getDocFromServer, serverTimestamp, Timestamp } from 'firebase/firestore';
+import { INewSpecialCode, NewPayment } from '../new-models/new-payment';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +21,46 @@ export class NewPaymentService {
     this.storage = _storage;
     this.store = _store;
   }
+
+  getSpecialCodes(): Promise<INewSpecialCode[]> {
+    return new Promise((resolve, rejects) => {
+      const col = collection(this.store, 'specialcode');
+      getDocs(col).then(docs => {
+        let codes: INewSpecialCode[] = [];
+        docs.forEach(doc => {
+          let code: INewSpecialCode = doc.data() as INewSpecialCode;
+          code.id = doc.id;
+          codes.push(code);
+        })
+        resolve(codes);
+      })
+    });
+  }
+
+  add(payment: NewPayment): Promise<string> {
+    return new Promise((resolve) => {
+      const data = collection(this.store, 'greetings_payment');
+      addDoc(data, {
+        userId: payment.userId,
+        sender: payment.sender,
+        receiver: payment.receiver,
+        subtotal: payment.subtotal,
+        shippingFee: payment.shippingFee,
+        total: payment.total,
+        items: payment.items,
+        location: payment.location,
+        gateway: payment.gateway,
+        details: payment.details,
+        created: serverTimestamp()
+      }).then(docRef => {
+        resolve(docRef.id);
+      });
+    });
+  }
+
+
+
+
 
   private getRandomString(): string {
     var randomChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { addDoc, collection, doc, Firestore, getDocs, orderBy, query, updateDoc, where } from '@angular/fire/firestore';
-import { INewAddress, INewAddressConfig } from '../new-models/new-address';
+import { INewAddress, INewAddressConfig, INewShippingFee } from '../new-models/new-address';
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +25,20 @@ export class NewAddressService {
           config.push(value);
         })
         resolve(config);
+      })
+    });
+  }
+
+  getShippingFees(): Promise<INewShippingFee[]>{
+    return new Promise((resolve) => {
+      const col = collection(this.store, 'shippingfee');
+      getDocs(col).then(docs => {
+        let fees: INewShippingFee[] = [];
+        docs.forEach(doc => {
+          let value: INewShippingFee = doc.data() as INewShippingFee;
+          fees.push(value);
+        })
+        resolve(fees);
       })
     });
   }

@@ -8,8 +8,37 @@
     font-family: "Font Awesome 5 Free" !important;
 }
 
-.is-cart-selected {
-    background: #f4ddff
+.no-item{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.no-item .buttons{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.no-item .product{
+    border: 1px #ab37c9 solid;
+    color: #fff;
+    font-size: 1rem;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-weight: bold;
+    background-color: #ab37c9;
+    display: block;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.no-item .product:hover{
+    color: #ab37c9;
+    background-color: #fff;
 }
 
 table {

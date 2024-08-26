@@ -1,0 +1,30 @@
+<div class="card bg-light border-light mb-2" *ngIf="iItem && model">
+    <div class="card-body">
+        <table>
+            <tr>
+                <td class="image">
+                    <img [src]="primary" [alt]="model.name">
+                </td>
+                <td class="details px-3">
+                    <span class="badge text-bg-secondary" *ngIf="iItem.type === 'card'">CARD</span>
+                    <span class="badge text-bg-secondary" *ngIf="iItem.type === 'sticker'">STICKER</span>
+                    <span class="badge text-bg-secondary" *ngIf="iItem.type === 'postcard'">POSTCARD</span>
+                    <span class="badge text-bg-secondary" *ngIf="iItem.type === undefined">GIFT</span>
+
+                    <h4 class="text-purple mt-2 mb-1">{{model.name}}</h4>
+                    <p class="text-gray mb-0">{{model.description}}</p>
+                    <p class="text-purple mb-0" *ngIf="bundleDetails !== ''">{{bundleDetails}}</p>
+                </td>
+                <td class="amount">
+                    <h6 class="my-0">{{convertAmount(iItem.price)}}</h6>
+                </td>
+                <td class="amount">
+                    <h6 class="my-0">{{iItem.shipping > 0 ? convertAmount(iItem.shipping) : 'FREE'}}</h6>
+                </td>
+                <td class="amount">
+                    <h6 class=" my-0">{{convertAmount(iItem.total)}}</h6>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

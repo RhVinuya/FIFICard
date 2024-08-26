@@ -1,0 +1,30 @@
+<div class="offcanvas-header">
+    <h3 class="offcanvas-title text-purple mt-0 mb-2">Receivers and Addresses</h3>
+    <button type="button" class="btn-close" aria-label="Close" (click)="close()"></button>
+</div>
+<div class="offcanvas-body p-2">
+    <div class="text-end mb-2">
+        <button type="button" class="btn btn-sm btn-primary" (click)="onClickCreate()">Create Receiver and Address</button>
+    </div>
+    <div class="card bg-light rounded-2 mb-2" [ngClass]="selected === address.id ? 'border-primary' : 'border-light'" *ngFor="let address of addresses">
+        <div class="card-body">
+            <div class="details" *ngIf="address" (click)="onClick(address.id)">
+                <div class="detail ms-2 mb-1">
+                    <ion-icon name="person-outline"></ion-icon>
+                    <h6 class="my-0">{{address.getFullName()}}</h6>
+                </div>
+                <div class="detail ms-2 mb-1">
+                    <ion-icon name="at-outline"></ion-icon>
+                    <h6 class="my-0">{{address.email}}</h6>
+                </div>
+                <div class="detail ms-2">
+                    <ion-icon name="home-outline"></ion-icon>
+                    <h6 class="my-0">{{address.getFullAddress()}}</h6>
+                </div>
+            </div>
+            <div class="text-end mt-1">
+                <a class="text-primary" (click)="onClickEdit(address)">EDIT</a>
+            </div>
+        </div>
+    </div>
+</div>

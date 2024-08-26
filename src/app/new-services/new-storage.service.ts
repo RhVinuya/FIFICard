@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { INewGoogleUser, INewUser } from '../new-models/new-user';
 import { INewCart } from '../new-models/new-cart';
+import { INewPayment } from '../new-models/new-payment';
 
 @Injectable({
   providedIn: 'root'
@@ -85,5 +86,37 @@ export class NewStorageService {
 
   clearWishlist(){
     localStorage.removeItem(environment.storage + 'WISHLIST');
+  }
+
+  //------------------
+  
+  saveCheckoutList(ids: string[]) {
+    localStorage.setItem(environment.storage + 'CHECKOUT', JSON.stringify(ids));
+  }
+
+  getCheckoutList(): string[] {
+    let ids: string | null = localStorage.getItem(environment.storage + 'CHECKOUT')
+    if (ids !== null) return JSON.parse(ids);
+    else return [];
+  }
+
+  clearCheckoutList(){
+    localStorage.removeItem(environment.storage + 'CHECKOUT');
+  }
+
+  //------------------
+
+  savePayment(payment: INewPayment) {
+    localStorage.setItem(environment.storage + 'PAYMENT', JSON.stringify(payment));
+  }
+
+  getPayment(): INewPayment | undefined {
+    let ids: string | null = localStorage.getItem(environment.storage + 'PAYMENT')
+    if (ids !== null) return JSON.parse(ids);
+    else return undefined;
+  }
+
+  clearPayment(){
+    localStorage.removeItem(environment.storage + 'PAYMENT');
   }
 }

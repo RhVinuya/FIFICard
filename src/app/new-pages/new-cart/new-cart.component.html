@@ -1,49 +1,71 @@
 <div class="mxw-1920px mt-2">
     <app-new-title title="Cart" [breadcrumbs]="breadcrumbs"></app-new-title>
 </div>
-<div class="mxw-1920px row">
-    
-    <div class="col-md-9">
-        <div class="card mb-2">
-            <div class="card-body">
-                <table>
-                    <tr>
-                        <td class="mark">
-                        </td>
-                        <td class="image">
-                            <span>Image</span>
-                        </td>
-                        <td class="details">
-                            <span>Description</span>
-                        </td>
-                        <td class="amount">
-                            <span>Price</span>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-        <app-new-cart-item *ngFor="let iCart of carts" [cart]="iCart" (onChangeMark)="onChangeItemMark(iCart.id, $event)" (onRemoveItem)="onRemove($event)"></app-new-cart-item>
+
+<div class="mxw-1920px no-item" *ngIf="ids && ids.length === 0">
+    <h3 class="text-purple my-0">No item on cart.</h3>
+    <h6 class="text-gray my-0">Explore our Products</h6>
+    <div class="buttons mt-4">
+        <button type="button" class="product" [routerLink]="['/new/cards/all']">
+            CARDS
+        </button>
+        <button type="button" class="product" [routerLink]="['/new/stickers/all']">
+            STICKERS
+        </button>
+        <button type="button" class="product" [routerLink]="['/new/postcards/all']">
+            POSTCARDS
+        </button>
+        <button type="button" class="product" [routerLink]="['/new/gifts']">
+            GIFTS
+        </button>
     </div>
-    <div class="col-md-3">
-        <h3 class="mt-0 mb-4">Order Summary</h3>
+</div>
 
-        <div class="space-between">
-            <span>Subtotal</span>
-            <h6 class="my-0 text-purple">{{totalDisplay}}</h6>
+<app-new-loading [loading]="loading"></app-new-loading>
+<div *ngIf="loading == false">
+    <div class="mxw-1920px row" *ngIf="ids && ids.length > 0">
+        <div class="col-md-9">
+            <div class="card mb-2">
+                <div class="card-body">
+                    <table>
+                        <tr>
+                            <td class="mark">
+                            </td>
+                            <td class="image">
+                                <span>Image</span>
+                            </td>
+                            <td class="details">
+                                <span>Description</span>
+                            </td>
+                            <td class="amount">
+                                <span>Price</span>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <app-new-cart-item *ngFor="let iCart of carts" [cart]="iCart" (onChangeMark)="onChangeItemMark(iCart.id, $event)" (onRemoveItem)="onRemove($event)"></app-new-cart-item>
         </div>
-        <div class="space-between">
-            <span>Shipping Fee</span>
-            <h6 class="my-0">?</h6>
+        <div class="col-md-3">
+            <h3 class="mt-0 mb-4">Order Summary</h3>
+    
+            <div class="space-between">
+                <span>Subtotal</span>
+                <h6 class="my-0 text-purple">{{totalDisplay}}</h6>
+            </div>
+            <div class="space-between">
+                <span>Shipping Fee</span>
+                <h6 class="my-0">?</h6>
+            </div>
+            <hr />
+            <div class="space-between mb-4">
+                <span>Estimated Total</span>
+                <h6 class="my-0 text-purple">{{totalDisplay}}</h6>
+            </div>
+            <div class="text-center">
+                <button class="checkout" [disabled]="count === 0 || saving === true" (click)="onClickCheckout()">Proceed to checkout</button>
+            </div>
+    
         </div>
-        <hr />
-        <div class="space-between mb-4">
-            <span>Estimated Total</span>
-            <h6 class="my-0 text-purple">{{totalDisplay}}</h6>
-        </div>
-        <div class="text-center">
-            <button class="checkout" [disabled]="count === 0 || saving === true">Proceed to checkout</button>
-        </div>
-
     </div>
 </div>

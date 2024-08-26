@@ -1,0 +1,12 @@
+<div class="mxw-1920px text-center" *ngIf="isProcessing === true">
+    <h4 class="text-purple mt-5 mb-0">Processing your Payment.</h4>
+    <h5 class="text-purple mt-0 mb-2">Please wait....</h5>
+    <ion-spinner name="dots"></ion-spinner>
+</div>
+
+<div class="mxw-1920px text-center" *ngIf="isProcessing === false">
+    <h4 class="text-purple mt-5 mb-5">Payment Saved.</h4>
+    <button type="button" class="product view" [routerLink]="['/new/profile/orders']">
+        VEIW TRANSACTION
+    </button>
+</div>
