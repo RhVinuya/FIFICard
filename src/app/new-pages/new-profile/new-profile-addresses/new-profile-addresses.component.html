@@ -1,16 +1,15 @@
 <div class="space-between mb-3">
     <div>
-        <h5 class="text-title my-0">Addresses</h5>
+        <h5 class="text-title my-0">ADDRESSES</h5>
         <label class="text-gray">To make checkout even faster, you can save shipping addresses.</label>
     </div>
-    <button type="button" class="btn btn-sm btn-primary" (click)="onClickCreate()">Add Address</button>
+    <button type="button" class="btn btn-sm btn-primary btn-prof" (click)="onClickCreate()">ADD ADDRESS</button>
 </div>
 
 <div class="border rounded-1 py-2 mb-1">
     <table class="w-100">
         <tr class="pe-2">
-            <td class="name ps-2">Name</td>
-            <td class="email ps-2">Email</td>
+            <td class="name ps-2">Info</td>
             <td class="address ps-2">Address</td>
             <td class="default ps-2 text-center">Default</td>
             <td class="action px-2 text-end">Action</td>
@@ -21,8 +20,10 @@
 <div class="border rounded-1 py-2 pe-1 mb-1" *ngFor="let address of addresses">
     <table class="w-100">
         <tr>
-            <td class="name ps-2 text-gray">{{address.getFullName()}}</td>
-            <td class="email ps-2 text-gray">{{address.email}}</td>
+            <td class="name ps-2 text-gray">
+                <b>{{address.getFullName()}}</b>
+                <br/>
+                {{address.email}}</td>
             <td class="address ps-2 text-gray">{{address.getFullAddress()}}</td>
             <td class="default ps-2 text-center">
                 <ion-icon name="checkmark-circle-outline" class="text-primary icon" *ngIf="address.id === defaultId"></ion-icon>

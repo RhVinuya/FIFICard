@@ -10,12 +10,9 @@
 }
 
 table .name{
-    width: 15%;
+    width: 25%;
 }
 
-table .email{
-    width: 20%;
-}
 
 table .address{
     width: auto;
@@ -31,4 +28,25 @@ table .action{
 
 .icon{
     font-size: 1.5rem;
+}
+
+.btn-prof {
+    border: 1px #631feb solid;
+    background: white;
+    color: #631feb;
+    cursor: pointer;
+    padding-block: 3px;
+    padding-inline: 10px;
+    border-radius: 15px;
+    font-weight: bold;
+    display: inline-block;
+    font-size: 1rem;
+}
+
+.btn-prof:hover {
+    font-family: "Proxima Nova";
+    border: 1px #631feb solid;
+    color: #fff;
+    background: #631feb;
+    
 }
