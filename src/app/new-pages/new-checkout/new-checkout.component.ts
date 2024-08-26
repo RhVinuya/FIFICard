@@ -327,10 +327,10 @@ export class NewCheckoutComponent implements OnInit, OnDestroy {
     for await (const item of this.items) {
       if (item.type === 'card') {
         let card = await this.cardService.get(item.itemid);
-        if (card){
+        if (card) {
           let image: string = '';
           let images = await this.cardService.getImages(item.itemid);
-          if (images.length > 0){
+          if (images.length > 0) {
             image = await this.fileService.getImageURL(images[0].url)
           }
 
@@ -357,7 +357,7 @@ export class NewCheckoutComponent implements OnInit, OnDestroy {
                 currency: 'PHP',
                 unit_amount: item.shipping.toFixed(2).replace(".", "")
               },
-              quantity: "1"
+              quantity: 1
             })
           }
 
@@ -365,10 +365,10 @@ export class NewCheckoutComponent implements OnInit, OnDestroy {
       }
       else if (item.type === 'sticker') {
         let card = await this.stickerService.get(item.itemid);
-        if (card){
+        if (card) {
           let image: string = '';
           let images = await this.stickerService.getImages(item.itemid);
-          if (images.length > 0){
+          if (images.length > 0) {
             image = await this.fileService.getImageURL(images[0].url)
           }
 
@@ -395,7 +395,7 @@ export class NewCheckoutComponent implements OnInit, OnDestroy {
                 currency: 'PHP',
                 unit_amount: item.shipping.toFixed(2).replace(".", "")
               },
-              quantity: "1"
+              quantity: 1
             })
           }
 
@@ -403,10 +403,10 @@ export class NewCheckoutComponent implements OnInit, OnDestroy {
       }
       else if (item.type === 'postcard') {
         let card = await this.postcardService.get(item.itemid);
-        if (card){
+        if (card) {
           let image: string = '';
           let images = await this.postcardService.getImages(item.itemid);
-          if (images.length > 0){
+          if (images.length > 0) {
             image = await this.fileService.getImageURL(images[0].url)
           }
 
@@ -433,23 +433,23 @@ export class NewCheckoutComponent implements OnInit, OnDestroy {
                 currency: 'PHP',
                 unit_amount: item.shipping.toFixed(2).replace(".", "")
               },
-              quantity: "1"
+              quantity: 1
             })
           }
 
         }
       }
-
-      const paymentcheckout = await stripe.checkout.sessions.create({
-        line_items: lineitems,
-        mode: 'payment',
-        success_url: window.location.origin + '/new/payment/card/{CHECKOUT_SESSION_ID}',
-        cancel_url: window.location.origin + '/new/cart',
-        client_reference_id: this.iUser ? this.iUser.id : '',
-        customer_email: this.iUser ? this.iUser.email : ''
-      });
-      let url = paymentcheckout.url;
-      window.location.href = url;
     }
+
+    const paymentcheckout = await stripe.checkout.sessions.create({
+      line_items: lineitems,
+      mode: 'payment',
+      success_url: window.location.origin + '/new/payment/card/{CHECKOUT_SESSION_ID}',
+      cancel_url: window.location.origin + '/new/cart',
+      client_reference_id: this.iUser ? this.iUser.id : '',
+      customer_email: this.iUser ? this.iUser.email : ''
+    });
+    let url = paymentcheckout.url;
+    window.location.href = url;
   }
 }
