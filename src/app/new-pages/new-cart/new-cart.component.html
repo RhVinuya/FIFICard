@@ -25,7 +25,7 @@
 <div *ngIf="loading == false">
     <div class="mxw-1920px row" *ngIf="ids && ids.length > 0">
         <div class="col-md-9">
-            <div class="card mb-2">
+            <div class="card bg-light border-light mb-2">
                 <div class="card-body">
                     <table>
                         <tr>
@@ -47,25 +47,28 @@
             <app-new-cart-item *ngFor="let iCart of carts" [cart]="iCart" (onChangeMark)="onChangeItemMark(iCart.id, $event)" (onRemoveItem)="onRemove($event)"></app-new-cart-item>
         </div>
         <div class="col-md-3">
-            <h3 class="mt-0 mb-4">Order Summary</h3>
+            <div class="card bg-light border-light">
+                <div class="card-body">
+                    <h3 class="mt-0 mb-4">Order Summary</h3>
     
-            <div class="space-between">
-                <span>Subtotal</span>
-                <h6 class="my-0 text-purple">{{totalDisplay}}</h6>
+                    <div class="space-between">
+                        <span>Subtotal</span>
+                        <h6 class="my-0 text-purple">{{totalDisplay}}</h6>
+                    </div>
+                    <div class="space-between">
+                        <span>Shipping Fee</span>
+                        <h6 class="my-0">?</h6>
+                    </div>
+                    <hr />
+                    <div class="space-between mb-4">
+                        <span>Estimated Total</span>
+                        <h6 class="my-0 text-purple">{{totalDisplay}}</h6>
+                    </div>
+                    <div class="text-center">
+                        <button class="checkout" [disabled]="count === 0 || saving === true" (click)="onClickCheckout()">Proceed to checkout</button>
+                    </div>
+                </div>
             </div>
-            <div class="space-between">
-                <span>Shipping Fee</span>
-                <h6 class="my-0">?</h6>
-            </div>
-            <hr />
-            <div class="space-between mb-4">
-                <span>Estimated Total</span>
-                <h6 class="my-0 text-purple">{{totalDisplay}}</h6>
-            </div>
-            <div class="text-center">
-                <button class="checkout" [disabled]="count === 0 || saving === true" (click)="onClickCheckout()">Proceed to checkout</button>
-            </div>
-    
         </div>
     </div>
 </div>
