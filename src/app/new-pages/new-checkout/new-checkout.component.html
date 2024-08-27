@@ -115,22 +115,25 @@
                     </div>
                 </form>
 
-                <button class="card-payment mt-4" [disabled]="accepted === false || isProcessingSpecialCode === true || isProcessingStripe === true || isProcessingGCash === true || isProcessingPayMaya === true"
+                <button class="btn-creditcard card-payment mt-4" [disabled]="accepted === false || isProcessingSpecialCode === true || isProcessingStripe === true || isProcessingGCash === true || isProcessingPayMaya === true"
                     (click)="onStripe()">
                     <span class="spinner-border spinner-border-sm me-1" aria-hidden="true" *ngIf="isProcessingStripe"></span>
                     {{isProcessingStripe ? 'Processing...' : ' Pay with Credit Card'}}
+                    <i class="p-credit"></i>
                 </button>
 
-                <button class="card-payment mt-2" [disabled]="accepted === false || isProcessingSpecialCode === true || isProcessingStripe === true || isProcessingGCash === true || isProcessingPayMaya === true"
+                <button class="btn-gcash card-payment mt-2" [disabled]="accepted === false || isProcessingSpecialCode === true || isProcessingStripe === true || isProcessingGCash === true || isProcessingPayMaya === true"
                     (click)="onGCash()">
                     <span class="spinner-border spinner-border-sm me-1" aria-hidden="true" *ngIf="isProcessingGCash"></span>
-                    {{isProcessingStripe ? 'Processing...' : ' Pay with GCash'}}
+                    {{isProcessingStripe ? 'Processing...' : ' Pay with  '}}
+                    <i class="p-gcash"></i>
                 </button>
 
-                <button class="card-payment mt-2" [disabled]="accepted === false || isProcessingSpecialCode === true || isProcessingStripe === true || isProcessingGCash === true || isProcessingPayMaya === true"
+                <button class="btn-paymaya card-payment mt-2" [disabled]="accepted === false || isProcessingSpecialCode === true || isProcessingStripe === true || isProcessingGCash === true || isProcessingPayMaya === true"
                     (click)="onPaymaya()">
                     <span class="spinner-border spinner-border-sm me-1" aria-hidden="true" *ngIf="isProcessingPayMaya"></span>
-                    {{isProcessingStripe ? 'Processing...' : ' Pay with PayMaya'}}
+                    {{isProcessingStripe ? 'Processing...' : ' Pay with '}}
+                    <i class="p-paymaya"></i>
                 </button>
             </div>
         </div>
