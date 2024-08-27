@@ -1,0 +1,35 @@
+<div class="card bg-light border-light mb-2" *ngIf="model">
+    <div class="card-body py-2">
+        <table>
+            <tr>
+                <td class="image">
+                    <img [src]="primary" [alt]="model.name">
+                </td>
+                <td class="details px-3">
+                    <span class="badge text-bg-secondary" *ngIf="iItem.type === 'card'">CARD</span>
+                    <span class="badge text-bg-secondary" *ngIf="iItem.type === 'sticker'">STICKER</span>
+                    <span class="badge text-bg-secondary" *ngIf="iItem.type === 'postcard'">POSTCARD</span>
+                    <span class="badge text-bg-secondary" *ngIf="iItem.type === 'gift'">GIFT</span>
+
+                    <p class="text-purple my-0">{{model.name}}</p>
+                    <p class="text-gray mb-0">{{model.description}}</p>
+                    <p class="text-purple mb-0" *ngIf="bundleDetails !== ''">{{bundleDetails}}</p>
+                </td>
+                <td class="amount text-end">
+                    <div class="totals">
+                        <span class="text-gray">PRICE</span>
+                        <span>{{getPrice()}}</span>
+                    </div>
+                    <div class="totals">
+                        <span class="text-gray">SHIPPING FEE</span>
+                        <span>{{getShipping()}}</span>
+                    </div>
+                    <div class="totals">
+                        <span class="text-gray">TOTAL</span>
+                        <span>{{getTotal()}}</span>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

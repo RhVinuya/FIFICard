@@ -3,6 +3,7 @@ import { Timestamp } from "@angular/fire/firestore";
 
 export interface INewPayment {
     id: string;
+    code: string;
     userId: string;
     sender: INewSender;
     receiver: INewAddress;
@@ -18,6 +19,7 @@ export interface INewPayment {
 
 export class NewPayment {
     id: string;
+    code: string;
     userId: string;
     sender: INewSender;
     receiver: INewAddress;
@@ -34,6 +36,7 @@ export class NewPayment {
 
     load(iPayment: INewPayment){
         this.id = iPayment.id;
+        this.code = iPayment.code;
         this.userId = iPayment.userId;
         this.sender = iPayment.sender;
         this.receiver = iPayment.receiver;
@@ -45,6 +48,30 @@ export class NewPayment {
         this.gateway = iPayment.gateway;
         this.details = iPayment.details;
         this.created = iPayment.created;
+    }
+
+    subTotalDisplay(){
+        return '₱' + this.subtotal.toLocaleString('en-US', { minimumFractionDigits: 2 })
+    }
+
+    shippingFeeDisplay(){
+        return '₱' + this.shippingFee.toLocaleString('en-US', { minimumFractionDigits: 2 })
+    }
+
+    totalDisplay(){
+        return '₱' + this.total.toLocaleString('en-US', { minimumFractionDigits: 2 })
+    }
+
+    createdDisplay(){
+        return this.created.toDate().toLocaleString();
+    }
+
+    getGateway(){
+        if (this.gateway === 'specialcode') return 'Special Code';
+        else if (this.gateway === 'card') return 'Card';
+        else if (this.gateway === 'gcash') return 'GCash';
+        else if (this.gateway === 'paymaya') return 'PayMaya';
+        else return '';
     }
 }
 

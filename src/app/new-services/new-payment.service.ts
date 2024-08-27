@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { ref, Storage, uploadBytes, UploadResult } from '@angular/fire/storage';
 import { Observable } from 'rxjs';
 import { Status } from '../models/status';
-import { addDoc, getDocFromServer, serverTimestamp, Timestamp } from 'firebase/firestore';
+import { addDoc, getDocFromServer, serverTimestamp, Timestamp, where } from 'firebase/firestore';
 import { INewPayment, INewPaymongoDetails, INewSpecialCode, INewStripeDetails, NewPayment } from '../new-models/new-payment';
 import { environment } from 'src/environments/environment';
 import { NewCardService } from './new-card.service';
@@ -62,6 +62,22 @@ export class NewPaymentService {
           codes.push(code);
         })
         resolve(codes);
+      })
+    });
+  }
+
+  getAll(id: string): Promise<INewPayment[]> {
+    return new Promise((resolve) => {
+      const col = collection(this.store, 'greetings_payment');
+      const q = query(col, where('userId', "==", id), orderBy('created', 'desc'))
+      getDocs(q).then(docs => {
+        let payments: INewPayment[] = [];
+        docs.forEach(doc => {
+          let payment: INewPayment = doc.data() as INewPayment;
+          payment.id = doc.id;
+          payments.push(payment);
+        })
+        resolve(payments);
       })
     });
   }

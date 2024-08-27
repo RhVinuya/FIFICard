@@ -1,0 +1,74 @@
+<div class="accordion" id="accordionExample">
+    <div class="accordion-item" *ngFor="let iPayment of iPayments">
+        <h2 class="accordion-header mt-0">
+            <button [ngClass]="selected === iPayment.id ? 'accordion-button py-2' : 'accordion-button py-2 collapsed'" type="button" data-bs-toggle="collapse" (click)="open(iPayment.id)">
+                #{{iPayment.code}}
+            </button>
+        </h2>
+        <div [ngClass]="selected === iPayment.id ? 'accordion-collapse collapse show' : 'accordion-collapse collapse'" data-bs-parent="#accordionExample">
+            <div class="accordion-body px-2">
+                <div class="row mb-2">
+                    <div class="col-4 pe-1">
+                        <div class="card bg-light border-light">
+                            <div class="card-body details py-2">
+                                <span class="text-purple">SENDER</span>
+                                <span>{{getSender(iPayment).getFullName()}}</span>
+                                <span class="text-gray">{{getSender(iPayment).email}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-8 ps-1">
+                        <div class="card bg-light border-light">
+                            <div class="card-body details py-2">
+                                <span class="text-purple">RECEIVER</span>
+                                <span>{{getReceiver(iPayment).getFullName()}}</span>
+                                <span class="text-gray">{{getReceiver(iPayment).email}}</span>
+                                <span class="text-gray">{{getReceiver(iPayment).getFullAddress()}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <app-new-profile-orders-item *ngFor="let item of iPayment.items" [iItem]="item"></app-new-profile-orders-item>
+                <div class="row">
+                    <div class="col-6 pe-1">
+                        <div class="card bg-light border-light">
+                            <div class="card-body details py-2">
+                                <span>{{getPayment(iPayment).getGateway()}}</span>
+                                <span class="text-gray" *ngIf="iPayment.gateway === 'specialcode'">{{getINewSpecialCodeDetails(iPayment).code}}</span>
+
+                                <span class="text-gray" *ngIf="iPayment.gateway === 'card'">ID: {{getINewStripeDetails(iPayment).id}}</span>
+                                <span class="text-gray" *ngIf="iPayment.gateway === 'card'">BRAND: {{getINewStripeDetails(iPayment).brand}}</span>
+                                <span class="text-gray" *ngIf="iPayment.gateway === 'card'">LAST: {{getINewStripeDetails(iPayment).last4}}</span>
+
+                                <span class="text-gray" *ngIf="iPayment.gateway === 'gcash' || iPayment.gateway === 'paymaya'">ID: {{getINewPaymongoDetails(iPayment).id}}</span>
+                                <span class="text-gray" *ngIf="iPayment.gateway === 'gcash' || iPayment.gateway === 'paymaya'">Type: {{getINewPaymongoDetails(iPayment).type}}</span>
+
+
+                                <span class="text-gray">DATE: {{getPayment(iPayment).createdDisplay()}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 ps-1">
+                        <div class="card bg-light border-light">
+                            <div class="card-body details py-2">
+                                <div class="space-between">
+                                    <span class="text-gray">SUBTOTAL</span>
+                                    <span>{{getPayment(iPayment).subTotalDisplay()}}</span>
+                                </div>
+                                <div class="space-between">
+                                    <span class="text-gray">SHIPPING FEE</span>
+                                    <span>{{getPayment(iPayment).shippingFeeDisplay()}}</span>
+                                </div>
+                                <hr class="my-1" />
+                                <div class="space-between">
+                                    <span class="text-gray">TOTAL</span>
+                                    <span>{{getPayment(iPayment).totalDisplay()}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
