@@ -11,8 +11,8 @@ export interface INewPayment {
     total: number;
     items: INewPaymentItem[];
     location: 'ph' | 'sg' | 'us';
-    gateway: 'specialcode' | 'card';
-    details: INewSpecialCodeDetails | INewStripeDetails
+    gateway: 'specialcode' | 'card' | 'gcash' | 'paymaya';
+    details: INewSpecialCodeDetails | INewStripeDetails | INewPaymongoDetails;
     created: Timestamp;
 }
 
@@ -26,8 +26,8 @@ export class NewPayment {
     total: number;
     items: INewPaymentItem[];
     location: 'ph' | 'sg' | 'us';
-    gateway: 'specialcode' | 'card';
-    details: INewSpecialCodeDetails | INewStripeDetails
+    gateway: 'specialcode' | 'card' | 'gcash' | 'paymaya';
+    details: INewSpecialCodeDetails | INewStripeDetails | INewPaymongoDetails;
     created: Timestamp;
 
     constructor(){}
@@ -102,5 +102,12 @@ export interface INewStripeDetails {
     brand: string;
     amount: number;
     last4: string;
+    live: boolean;
+}
 
+export interface INewPaymongoDetails {
+    id: string;
+    type: string;
+    amount: number;
+    live: boolean;
 }

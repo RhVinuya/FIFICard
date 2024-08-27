@@ -5,7 +5,14 @@ export const environment = {
   stripe: {
     enable: true,
     publishKey: "pk_test_04NqaZryqxUuqCsGYdsSAXgT00Ro4Gy5kx",
-    secretKey: "sk_test_51FPpNZCwtCGHnjTln7DmBVNvoaZOEVW1VexB4NIt9C0rYqT2SthuqbSjbUM8RYgYnyhatDEJZcVzKAyF4Kz6FFCy00WCZLSbOz"
+    secretKey: "sk_test_51FPpNZCwtCGHnjTln7DmBVNvoaZOEVW1VexB4NIt9C0rYqT2SthuqbSjbUM8RYgYnyhatDEJZcVzKAyF4Kz6FFCy00WCZLSbOz",
+    live: false
+  },
+  paymongo: {
+    enable: false,
+    publicKey: "pk_test_mn35mjjh1a15atCp4pLBdoDD",
+    secretKey: "sk_test_EZAHKnEJPJucTkS4V5geZeMM",
+    live: false
   },
   firebase: {
     projectId: 'fifi-greetings',

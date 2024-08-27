@@ -8,7 +8,7 @@
     <div class="col-md-9 pe-1">
         <div class="row mb-2">
             <div class="col-5 pe-1">
-                <div class="card h-100 bg-light border-light drop" (click)="openSender()">
+                <div class="card h-100 bg-light border-light drop" [ngClass]="isValidSender() ? '' : 'require'" (click)="openSender()">
                     <div class="card-body">
                         <div class="space-between mb-2 ">
                             <h5 class="card-title text-purple my-0">Sender Details</h5>
@@ -95,17 +95,19 @@
                     <span>Estimated Total</span>
                     <h6 class="my-0">{{convertNumberDisplay(total)}}</h6>
                 </div>
-                
+
                 <div class="form-check mt-4">
                     <input class="form-check-input" type="checkbox" id="accepted" [defaultValue]="accepted" (click)="onChangeAccepted($event)">
                     <label class="form-check-label" for="accepted">
                         I accept <a href="/new/link/terms-and-condition" target="_blank">License and Agreement</a>
                     </label>
                 </div>
-                
+
                 <form [formGroup]="form" (submit)="onVerify()">
                     <div class="input-group mt-4">
-                        <input type="text" class="form-control" placeholder="Enter Special Code" [readonly]="accepted === false || isProcessingSpecialCode === true || isProcessingStripe === true" formControlName="code" [ngClass]="{ 'is-invalid': verifySubmitted && form.controls.code.errors}">
+                        <input type="text" class="form-control" placeholder="Enter Special Code"
+                            [readonly]="accepted === false || isProcessingSpecialCode === true || isProcessingStripe === true || isProcessingGCash === true || isProcessingPayMaya === true" formControlName="code"
+                            [ngClass]="{ 'is-invalid': verifySubmitted && form.controls.code.errors}">
                         <button class="btn btn-outline-primary" type="submit" id="button-addon2" [disabled]="accepted === false">
                             <span class="spinner-border spinner-border-sm me-1" aria-hidden="true" *ngIf="isProcessingSpecialCode"></span>
                             {{isProcessingSpecialCode ? '' : ' Verify'}}
@@ -113,9 +115,22 @@
                     </div>
                 </form>
 
-                <button class="card-payment mt-4" [disabled]="accepted === false || isProcessingSpecialCode === true || isProcessingStripe === true" (click)="onStripe()">
+                <button class="card-payment mt-4" [disabled]="accepted === false || isProcessingSpecialCode === true || isProcessingStripe === true || isProcessingGCash === true || isProcessingPayMaya === true"
+                    (click)="onStripe()">
                     <span class="spinner-border spinner-border-sm me-1" aria-hidden="true" *ngIf="isProcessingStripe"></span>
-                    {{isProcessingStripe ? 'Processing...' : '  Pay with Credit Card'}}
+                    {{isProcessingStripe ? 'Processing...' : ' Pay with Credit Card'}}
+                </button>
+
+                <button class="card-payment mt-2" [disabled]="accepted === false || isProcessingSpecialCode === true || isProcessingStripe === true || isProcessingGCash === true || isProcessingPayMaya === true"
+                    (click)="onGCash()">
+                    <span class="spinner-border spinner-border-sm me-1" aria-hidden="true" *ngIf="isProcessingGCash"></span>
+                    {{isProcessingStripe ? 'Processing...' : ' Pay with GCash'}}
+                </button>
+
+                <button class="card-payment mt-2" [disabled]="accepted === false || isProcessingSpecialCode === true || isProcessingStripe === true || isProcessingGCash === true || isProcessingPayMaya === true"
+                    (click)="onPaymaya()">
+                    <span class="spinner-border spinner-border-sm me-1" aria-hidden="true" *ngIf="isProcessingPayMaya"></span>
+                    {{isProcessingStripe ? 'Processing...' : ' Pay with PayMaya'}}
                 </button>
             </div>
         </div>

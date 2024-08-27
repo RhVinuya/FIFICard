@@ -97,6 +97,8 @@ export class NewCheckoutComponent implements OnInit, OnDestroy {
   verifySubmitted: boolean = false;
   isProcessingSpecialCode: boolean = false;
   isProcessingStripe: boolean = false;
+  isProcessingGCash: boolean = false;
+  isProcessingPayMaya: boolean = false;
 
   form = new FormGroup({
     code: new FormControl<string>('', [Validators.required, Validators.maxLength(5)]),
@@ -237,6 +239,10 @@ export class NewCheckoutComponent implements OnInit, OnDestroy {
     return '₱ ' + value.toLocaleString('en-US', { minimumFractionDigits: 2 })
   }
 
+  isValidSender(){
+    return this.sender && this.sender.firstname && this.sender.firstname !== '' && this.sender.lastname && this.sender.lastname !== '' && this.sender.email && this.sender.email !== ''
+  }
+
   onChangeAccepted(e: any) {
     this.accepted = e.target.checked;
   }
@@ -322,134 +328,51 @@ export class NewCheckoutComponent implements OnInit, OnDestroy {
     payment.gateway = 'card';
     this.storageService.savePayment(payment as INewPayment);
 
-    const stripe = require('stripe')(environment.stripe.secretKey);
-    let lineitems: any[] = [];
-    for await (const item of this.items) {
-      if (item.type === 'card') {
-        let card = await this.cardService.get(item.itemid);
-        if (card) {
-          let image: string = '';
-          let images = await this.cardService.getImages(item.itemid);
-          if (images.length > 0) {
-            image = await this.fileService.getImageURL(images[0].url)
-          }
-
-          lineitems.push({
-            price_data: {
-              product_data: {
-                name: card.name,
-                description: card.description,
-                images: [image]
-              },
-              currency: 'PHP',
-              unit_amount: Number(item.price).toFixed(2).replace(".", "")
-            },
-            quantity: 1
-          })
-
-          if (item.shipping > 0) {
-            lineitems.push({
-              price_data: {
-                product_data: {
-                  name: "Shipping Fee",
-                  description: "Shipping Fee for " + card.name,
-                },
-                currency: 'PHP',
-                unit_amount: item.shipping.toFixed(2).replace(".", "")
-              },
-              quantity: 1
-            })
-          }
-
-        }
-      }
-      else if (item.type === 'sticker') {
-        let card = await this.stickerService.get(item.itemid);
-        if (card) {
-          let image: string = '';
-          let images = await this.stickerService.getImages(item.itemid);
-          if (images.length > 0) {
-            image = await this.fileService.getImageURL(images[0].url)
-          }
-
-          lineitems.push({
-            price_data: {
-              product_data: {
-                name: card.name,
-                description: card.description,
-                images: [image]
-              },
-              currency: 'PHP',
-              unit_amount: Number(item.price).toFixed(2).replace(".", "")
-            },
-            quantity: 1
-          })
-
-          if (item.shipping > 0) {
-            lineitems.push({
-              price_data: {
-                product_data: {
-                  name: "Shipping Fee",
-                  description: "Shipping Fee for " + card.name,
-                },
-                currency: 'PHP',
-                unit_amount: item.shipping.toFixed(2).replace(".", "")
-              },
-              quantity: 1
-            })
-          }
-
-        }
-      }
-      else if (item.type === 'postcard') {
-        let card = await this.postcardService.get(item.itemid);
-        if (card) {
-          let image: string = '';
-          let images = await this.postcardService.getImages(item.itemid);
-          if (images.length > 0) {
-            image = await this.fileService.getImageURL(images[0].url)
-          }
-
-          lineitems.push({
-            price_data: {
-              product_data: {
-                name: card.name,
-                description: "Bundle of " + item.bundle!.count.toLocaleString() + ' pcs',
-                images: [image]
-              },
-              currency: 'PHP',
-              unit_amount: Number(item.price).toFixed(2).replace(".", "")
-            },
-            quantity: 1
-          })
-
-          if (item.shipping > 0) {
-            lineitems.push({
-              price_data: {
-                product_data: {
-                  name: "Shipping Fee",
-                  description: "Shipping Fee for " + card.name,
-                },
-                currency: 'PHP',
-                unit_amount: item.shipping.toFixed(2).replace(".", "")
-              },
-              quantity: 1
-            })
-          }
-
-        }
-      }
+    if (this.iUser) {
+      let url = await this.paymentService.stripeCheckout(payment as INewPayment, this.iUser)
+      window.location.href = url;
     }
+  }
 
-    const paymentcheckout = await stripe.checkout.sessions.create({
-      line_items: lineitems,
-      mode: 'payment',
-      success_url: window.location.origin + '/new/payment/card/{CHECKOUT_SESSION_ID}',
-      cancel_url: window.location.origin + '/new/cart',
-      client_reference_id: this.iUser ? this.iUser.id : '',
-      customer_email: this.iUser ? this.iUser.email : ''
-    });
-    let url = paymentcheckout.url;
-    window.location.href = url;
+  async onGCash(){
+    this.isProcessingGCash = true;
+    this.ref.detectChanges();
+
+    let payment: NewPayment = new NewPayment();
+    payment.userId = this.iUser ? this.iUser.id : '';
+    payment.sender = this.sender as INewSender;
+    payment.receiver = this.receiver as INewAddress;
+    payment.subtotal = this.subtotal;
+    payment.shippingFee = this.shippingfee;
+    payment.total = this.total;
+    payment.items = this.items;
+    payment.location = 'ph';
+    payment.gateway = 'gcash';
+    this.storageService.savePayment(payment as INewPayment);
+
+    let data = await this.paymentService.payMongoCheckout('gcash', payment);
+    this.storageService.savePaymongoID(data.id);
+    window.location.href = data.url;
+  }
+
+  async onPaymaya(){
+    this.isProcessingPayMaya = true;
+    this.ref.detectChanges();
+
+    let payment: NewPayment = new NewPayment();
+    payment.userId = this.iUser ? this.iUser.id : '';
+    payment.sender = this.sender as INewSender;
+    payment.receiver = this.receiver as INewAddress;
+    payment.subtotal = this.subtotal;
+    payment.shippingFee = this.shippingfee;
+    payment.total = this.total;
+    payment.items = this.items;
+    payment.location = 'ph';
+    payment.gateway = 'paymaya';
+    this.storageService.savePayment(payment as INewPayment);
+
+    let data = await this.paymentService.payMongoCheckout('paymaya', payment);
+    this.storageService.savePaymongoID(data.id);
+    window.location.href = data.url;
   }
 }

@@ -119,4 +119,19 @@ export class NewStorageService {
   clearPayment(){
     localStorage.removeItem(environment.storage + 'PAYMENT');
   }
+
+  //-------------------
+
+  savePaymongoID(id: string) {
+    localStorage.setItem(environment.storage + 'PAYMONGO', id);
+  }
+
+  getPaymongoID(): string {
+    let id: string | null = localStorage.getItem(environment.storage + 'PAYMONGO')
+    return id === null ? '' : id;
+  }
+
+  clearPaymongoID(){
+    localStorage.removeItem(environment.storage + 'PAYMONGO');
+  }
 }

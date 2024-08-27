@@ -46,6 +46,13 @@ export class NewPaymentComponent implements OnInit {
           this.processCard(iPayment, id)
         }
       }
+      else if (params['gateway'] === 'paymongo') {
+        let id = this.storageService.getPaymongoID();
+        let iPayment = this.storageService.getPayment();
+        if (iPayment && (iPayment.gateway === 'gcash' || iPayment.gateway === 'paymaya')) {
+          this.processPayMongo(iPayment, id);
+        }
+      }
     });
   }
 
@@ -67,26 +74,33 @@ export class NewPaymentComponent implements OnInit {
     this.isProcessing = true;
     this.ref.detectChanges();
 
-    const stripe = require('stripe')(environment.stripe.secretKey);
-    const session = await stripe.checkout.sessions.retrieve(id);
-    const paymentIntent = await stripe.paymentIntents.retrieve(session.payment_intent);
-    const paymentMethod = await stripe.paymentMethods.retrieve(paymentIntent.payment_method);
-
     let payment: NewPayment = new NewPayment();
     payment.load(iPayment)
-    payment.details = {
-      id: paymentIntent.id,
-      type: paymentMethod.type,
-      brand: paymentMethod.card ? paymentMethod.card.brand : '',
-      amount: Number(paymentIntent.amount) / 100,
-      last4: paymentMethod.card ? paymentMethod.card.last4 : ''
-    }
+    payment.details = await this.paymentService.stripeConfirm(id);
     await this.paymentService.add(payment);
 
     this.clear(iPayment);
 
     this.isProcessing = false;
     this.ref.detectChanges(); 
+  }
+
+  async processPayMongo(iPayment: INewPayment, id: string) {
+    this.isProcessing = true;
+    this.ref.detectChanges();
+
+    let payment: NewPayment = new NewPayment();
+    payment.load(iPayment)
+    let details = await this.paymentService.payMongoConfirm(id);
+    if (details) {
+      console.log(details)
+      payment.details = details;
+      await this.paymentService.add(payment);
+      this.clear(iPayment);
+    }
+
+    this.isProcessing = false;
+    this.ref.detectChanges();
   }
 
   clear(iPayment: INewPayment) {
