@@ -88,6 +88,9 @@ export class NewCartComponent implements OnInit, OnDestroy {
         else if (cart.type === 'postcard') {
           if (cart.bundle) this.total = this.total + cart.bundle.price
         }
+        else if (cart.type === 'gift') {
+          this.total = this.total + cart.price;
+        }
       }
     })
     this.count = this.carts.filter(x => x.mark === true).length;

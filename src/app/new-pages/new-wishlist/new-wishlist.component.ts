@@ -1,9 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription, timer } from 'rxjs';
 import { INewCard } from 'src/app/new-models/new-card';
+import { INewGift } from 'src/app/new-models/new-gift';
 import { INewPostcard } from 'src/app/new-models/new-postcard';
 import { INewSticker } from 'src/app/new-models/new-sticker';
 import { NewCardService } from 'src/app/new-services/new-card.service';
+import { NewGiftService } from 'src/app/new-services/new-gift.service';
 import { NewPostcardService } from 'src/app/new-services/new-postcard.service';
 import { NewStickerService } from 'src/app/new-services/new-sticker.service';
 import { NewStorageService } from 'src/app/new-services/new-storage.service';
@@ -11,8 +13,8 @@ import { NewUtilService } from 'src/app/new-services/new-util.service';
 
 export interface IWishlist {
   id: string;
-  model: INewCard | INewSticker | INewPostcard;
-  type: 'card' | 'sticker' | 'postcard';
+  model: INewCard | INewSticker | INewPostcard | INewGift;
+  type: 'card' | 'sticker' | 'postcard' | 'gift';
 }
 
 @Component({
@@ -28,19 +30,22 @@ export class NewWishlistComponent implements OnInit, OnDestroy {
   cardService: NewCardService;
   stickerService: NewStickerService;
   postcardService: NewPostcardService;
+  giftService: NewGiftService;
 
   constructor(
     _storageService: NewStorageService,
     _utilService: NewUtilService,
     _cardService: NewCardService,
     _stickerService: NewStickerService,
-    _postcardService: NewPostcardService
+    _postcardService: NewPostcardService,
+    _giftService: NewGiftService
   ) {
     this.storageService = _storageService;
     this.utilService = _utilService;
     this.cardService = _cardService;
     this.stickerService = _stickerService;
     this.postcardService = _postcardService;
+    this.giftService = _giftService;
   }
 
   breadcrumbs = [
@@ -121,26 +126,38 @@ export class NewWishlistComponent implements OnInit, OnDestroy {
             type: type
           })
         }
+        else if (type === 'gift') {
+          let iGift = await this.giftService.get(id);
+          list.push({
+            id: id,
+            model: iGift,
+            type: type
+          })
+        }
       }
     }
     this.wishlist = [...list];
     this.loading = false;
   }
 
-  getList(type: 'card' | 'sticker' | 'postcard') {
+  getList(type: 'card' | 'sticker' | 'postcard' | 'gift') {
     return this.wishlist.filter(x => x.type === type)
   }
 
-  getICard(model: INewCard | INewSticker | INewPostcard) {
+  getICard(model: INewCard | INewSticker | INewPostcard | INewGift) {
     return model as INewCard
   }
 
-  getISticker(model: INewCard | INewSticker | INewPostcard) {
+  getISticker(model: INewCard | INewSticker | INewPostcard | INewGift) {
     return model as INewSticker
   }
 
-  getIPostcard(model: INewCard | INewSticker | INewPostcard) {
+  getIPostcard(model: INewCard | INewSticker | INewPostcard | INewGift) {
     return model as INewPostcard
+  }
+
+  getGift(model: INewCard | INewSticker | INewPostcard | INewGift) {
+    return model as INewGift
   }
 
 }

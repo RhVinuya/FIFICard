@@ -13,6 +13,7 @@ import { NewPostcardService } from './new-postcard.service';
 import { NewFileService } from './new-file.service';
 import { INewUser } from '../new-models/new-user';
 import { HttpClient } from '@angular/common/http';
+import { NewGiftService } from './new-gift.service';
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +25,7 @@ export class NewPaymentService {
   cardService: NewCardService;
   stickerService: NewStickerService;
   postcardService: NewPostcardService;
+  giftService: NewGiftService;
   fileService: NewFileService;
   http: HttpClient;
 
@@ -34,6 +36,7 @@ export class NewPaymentService {
     _cardService: NewCardService,
     _stickerService: NewStickerService,
     _postcardService: NewPostcardService,
+    _giftService: NewGiftService,
     _fileService: NewFileService,
     _http: HttpClient
   ) {
@@ -43,6 +46,7 @@ export class NewPaymentService {
     this.cardService = _cardService;
     this.stickerService = _stickerService;
     this.postcardService = _postcardService;
+    this.giftService = _giftService;
     this.fileService = _fileService;
     this.http = _http;
   }
@@ -121,6 +125,17 @@ export class NewPaymentService {
             name = iPostcard.name;
             description = "Bundle of " + item.bundle!.count.toString() + ' pcs';
             let images = await this.postcardService.getImages(item.itemid);
+            if (images && images.length > 0) {
+              image = await this.fileService.getImageURL(images[0].url)
+            }
+          }
+        }
+        else if (item.type === 'gift') {
+          let iGift = await this.giftService.get(item.itemid);
+          if (iGift) {
+            name = iGift.name;
+            description = iGift.description;
+            let images = await this.giftService.getImages(item.itemid);
             if (images && images.length > 0) {
               image = await this.fileService.getImageURL(images[0].url)
             }
@@ -209,6 +224,17 @@ export class NewPaymentService {
             name = iPostcard.name;
             description = "Bundle of " + item.bundle!.count.toString() + ' pcs';
             let images = await this.postcardService.getImages(item.itemid);
+            if (images && images.length > 0) {
+              image = await this.fileService.getImageURL(images[0].url)
+            }
+          }
+        }
+        else if (item.type === 'gift') {
+          let iGift = await this.giftService.get(item.itemid);
+          if (iGift) {
+            name = iGift.name;
+            description = iGift.description;
+            let images = await this.giftService.getImages(item.itemid);
             if (images && images.length > 0) {
               image = await this.fileService.getImageURL(images[0].url)
             }

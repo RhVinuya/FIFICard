@@ -40,6 +40,9 @@ export class NewStickerThumbComponent implements OnInit {
     if (stickerImages.length > 1) {
       this.secondary = await this.fileService.getImageURL(stickerImages[1].url);
     }
+    else {
+      this.secondary = this.primary;
+    }
   }
 
   onClick(){

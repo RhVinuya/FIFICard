@@ -224,6 +224,15 @@ export class NewCheckoutComponent implements OnInit, OnDestroy {
             else if (group === 'Mindanao') item.shipping = fee.mindanao;
           }
         }
+        if (item.type === 'gift') {
+          let fee = this.fees.find(x => x.name === 'Gift');
+          if (fee) {
+            if (group === 'NCR') item.shipping = fee.metromanila;
+            else if (group === 'Luzon') item.shipping = fee.luzon;
+            else if (group === 'Visayas') item.shipping = fee.visayas;
+            else if (group === 'Mindanao') item.shipping = fee.mindanao;
+          }
+        }
         item.total = item.price + item.shipping;
       })
       this.subtotal = 0;

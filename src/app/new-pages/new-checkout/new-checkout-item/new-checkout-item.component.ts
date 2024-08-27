@@ -1,11 +1,13 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { INewCard, NewCard } from 'src/app/new-models/new-card';
 import { INewCart } from 'src/app/new-models/new-cart';
+import { INewGift, NewGift } from 'src/app/new-models/new-gift';
 import { INewPaymentItem } from 'src/app/new-models/new-payment';
 import { INewPostcard, NewPostcard } from 'src/app/new-models/new-postcard';
 import { INewSticker, NewSticker } from 'src/app/new-models/new-sticker';
 import { NewCardService } from 'src/app/new-services/new-card.service';
 import { NewFileService } from 'src/app/new-services/new-file.service';
+import { NewGiftService } from 'src/app/new-services/new-gift.service';
 import { NewPostcardService } from 'src/app/new-services/new-postcard.service';
 import { NewStickerService } from 'src/app/new-services/new-sticker.service';
 
@@ -22,17 +24,20 @@ export class NewCheckoutItemComponent implements OnInit {
   cardService: NewCardService;
   stickerService: NewStickerService;
   postcardService: NewPostcardService;
+  giftService: NewGiftService;
   fileService: NewFileService;
 
   constructor(
     _cardService: NewCardService,
     _stickerService: NewStickerService,
     _postcardService: NewPostcardService,
+    _giftService: NewGiftService,
     _fileService: NewFileService
   ) { 
     this.cardService = _cardService;
     this.stickerService = _stickerService;
     this.postcardService = _postcardService;
+    this.giftService = _giftService;
     this.fileService = _fileService;
   }
 
@@ -61,6 +66,12 @@ export class NewCheckoutItemComponent implements OnInit {
         this.bundleDetails = 'Bundle of ' + this.iItem.bundle.count.toLocaleString() + ' pcs'
       }
       let images = await this.postcardService.getImages(this.iItem.itemid);
+      if (images.length > 0) this.loadImage(images[0].url)
+    }
+    else if (this.iItem.type === 'gift') {
+      let iGift = await this.giftService.get(this.iItem.itemid);
+      this.model = new NewGift(iGift as INewGift);
+      let images = await this.giftService.getImages(this.iItem.itemid);
       if (images.length > 0) this.loadImage(images[0].url)
     }
   }

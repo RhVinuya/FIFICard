@@ -43,6 +43,9 @@ export class NewPostcardThumbComponent implements OnInit {
     if (postcardImages.length > 1) {
       this.secondary = await this.fileService.getImageURL(postcardImages[1].url);
     }
+    else {
+      this.secondary = this.primary;
+    }
 
     this.bundles = await this.postcardService.getBundles(this._postcard.id);
     if (this.bundles.length > 0) {

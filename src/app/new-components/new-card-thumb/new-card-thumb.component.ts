@@ -41,6 +41,9 @@ export class NewCardThumbComponent implements OnInit {
     if (cardImages.length > 1) {
       this.secondary = await this.fileService.getImageURL(cardImages[1].url);
     }
+    else {
+      this.secondary = this.primary;
+    }
     this.loadRatings(await this.cardService.getRatings(this._card.id))
   }
 

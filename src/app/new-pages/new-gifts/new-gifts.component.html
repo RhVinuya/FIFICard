@@ -3,14 +3,25 @@
 </div>
 <div class="py-3 bg-light">
     <div class="mxw-1920px">
-        <app-new-events-options [events]="all"></app-new-events-options>
+        <app-new-events-options [events]="all" (onClick)="onClickEvent($event)"></app-new-events-options>
     </div>
 </div>
 <div class="mxw-1920px mt-4">
+    <div class="mb-4" *ngIf="events.length > 0">
+        <ion-chip [outline]="true" color="tertiary" *ngFor="let event of events">
+            <ion-icon name="close-circle" (click)="onRemoveEvent(event)"></ion-icon>
+            <ion-label>{{event}}</ion-label>
+        </ion-chip>
+    </div>
     <app-new-loading [loading]="loading"></app-new-loading>
     <div class="max-5" *ngIf="loading === false">
         <div *ngFor="let gift of display.slice(0, displayCount)">
             <app-new-gift-thumb [gift]="gift"></app-new-gift-thumb>
         </div>
+    </div>
+
+    <div class="load py-3" *ngIf="display.length > displayCount && loading === false">
+        <label class="mb-3">{{displayCount.toLocaleString()}} of {{display.length.toLocaleString()}}</label>
+        <button type="button" class="btn loadmore" (click)="loadmore()">SHOW MORE</button>
     </div>
 </div>

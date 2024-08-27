@@ -19,4 +19,9 @@
             <app-new-postcard-thumb [postcard]="getIPostcard(card.model)"></app-new-postcard-thumb>
         </div>
     </div>
+    <div class="max-5 mb-2" *ngIf="getList('gift').length > 0 && loading === false">
+        <div *ngFor="let card of getList('gift')">
+            <app-new-gift-thumb [gift]="getGift(card.model)"></app-new-gift-thumb>
+        </div>
+    </div>
 </div>

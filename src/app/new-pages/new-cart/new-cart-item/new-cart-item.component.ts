@@ -3,10 +3,12 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NewConfirmMessageComponent } from 'src/app/new-components/new-confirm-message/new-confirm-message.component';
 import { INewCard, NewCard } from 'src/app/new-models/new-card';
 import { INewCart } from 'src/app/new-models/new-cart';
+import { INewGift, NewGift } from 'src/app/new-models/new-gift';
 import { INewPostcard, NewPostcard } from 'src/app/new-models/new-postcard';
 import { INewSticker, NewSticker } from 'src/app/new-models/new-sticker';
 import { NewCardService } from 'src/app/new-services/new-card.service';
 import { NewFileService } from 'src/app/new-services/new-file.service';
+import { NewGiftService } from 'src/app/new-services/new-gift.service';
 import { NewPostcardService } from 'src/app/new-services/new-postcard.service';
 import { NewStickerService } from 'src/app/new-services/new-sticker.service';
 
@@ -25,6 +27,7 @@ export class NewCartItemComponent implements OnInit {
   cardService: NewCardService;
   stickerService: NewStickerService;
   postcardService: NewPostcardService;
+  giftService: NewGiftService;
   fileService: NewFileService;
   modalService: NgbModal;
 
@@ -32,17 +35,19 @@ export class NewCartItemComponent implements OnInit {
     _cardService: NewCardService,
     _stickerService: NewStickerService,
     _postcardService: NewPostcardService,
+    _giftService: NewGiftService,
     _fileService: NewFileService,
     _modalService: NgbModal
   ) {
     this.cardService = _cardService;
     this.stickerService = _stickerService;
     this.postcardService = _postcardService;
+    this.giftService = _giftService;
     this.fileService = _fileService;
     this.modalService = _modalService;
   }
 
-  model: NewCard | NewSticker | NewPostcard | undefined = undefined;
+  model: NewCard | NewSticker | NewPostcard | NewGift | undefined = undefined;
   iCart: INewCart | undefined = undefined;
   primary: string = '';
   bundleDetails: string = ''
@@ -72,6 +77,12 @@ export class NewCartItemComponent implements OnInit {
         this.bundleDetails = 'Bundle of ' + this.iCart.bundle.count.toLocaleString() + ' pcs'
       }
       let images = await this.postcardService.getImages(this.iCart.itemid);
+      if (images.length > 0) this.loadImage(images[0].url)
+    }
+    else if (this.iCart.type === 'gift') {
+      let iGift = await this.giftService.get(this.iCart.itemid);
+      this.model = new NewGift(iGift as INewGift);
+      let images = await this.giftService.getImages(this.iCart.itemid);
       if (images.length > 0) this.loadImage(images[0].url)
     }
   }

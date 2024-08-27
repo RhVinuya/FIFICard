@@ -5,11 +5,13 @@ import { NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';
 import { NewInYourCartComponent } from 'src/app/new-components/new-in-your-cart/new-in-your-cart.component';
 import { INewCard, INewCardImage, INewRating, NewCard } from 'src/app/new-models/new-card';
 import { INewCartBundle } from 'src/app/new-models/new-cart';
+import { INewGift, INewGiftImage, NewGift } from 'src/app/new-models/new-gift';
 import { INewPostcard, INewPostcardBundle, NewPostcard } from 'src/app/new-models/new-postcard';
 import { INewSticker, INewStickerImage, NewSticker } from 'src/app/new-models/new-sticker';
 import { NewCardService } from 'src/app/new-services/new-card.service';
 import { NewCartService } from 'src/app/new-services/new-cart.service';
 import { NewFileService } from 'src/app/new-services/new-file.service';
+import { NewGiftService } from 'src/app/new-services/new-gift.service';
 import { NewPostcardService } from 'src/app/new-services/new-postcard.service';
 import { NewStickerService } from 'src/app/new-services/new-sticker.service';
 
@@ -23,6 +25,7 @@ export class NewDetailsComponent implements OnInit {
   cardService: NewCardService;
   stickerService: NewStickerService;
   postcardService: NewPostcardService;
+  giftService: NewGiftService;
   fileService: NewFileService;
   cartService: NewCartService;
   toastController: ToastController;
@@ -34,6 +37,7 @@ export class NewDetailsComponent implements OnInit {
     _cardService: NewCardService,
     _stickerService: NewStickerService,
     _postcardService: NewPostcardService,
+    _giftService: NewGiftService,
     _fileService: NewFileService,
     _cartService: NewCartService,
     _toastController: ToastController,
@@ -44,6 +48,7 @@ export class NewDetailsComponent implements OnInit {
     this.cardService = _cardService;
     this.stickerService = _stickerService;
     this.postcardService = _postcardService;
+    this.giftService = _giftService;
     this.fileService = _fileService;
     this.cartService = _cartService;
     this.toastController = _toastController;
@@ -53,9 +58,9 @@ export class NewDetailsComponent implements OnInit {
 
   loading: boolean = false;
   id: string;
-  type: 'card' | 'sticker' | 'postcard';
-  model: NewCard | NewSticker | NewPostcard;
-  iModel: INewCard | INewSticker | INewPostcard;
+  type: 'card' | 'sticker' | 'postcard' | 'gift';
+  model: NewCard | NewSticker | NewPostcard | NewGift;
+  iModel: INewCard | INewSticker | INewPostcard | INewGift;
   bundles: INewPostcardBundle[] = [];
   images: string[] = [];
   rate: number = 0;
@@ -103,10 +108,20 @@ export class NewDetailsComponent implements OnInit {
           this.bundles.sort((a, b) => { return a.price - b.price });
         })
       }
+      else if (this.type === 'gift') {
+        this.giftService.get(this.id).then(async value => {
+          this.iModel = value;
+          this.model = new NewGift(value);
+          this.isFeatured = this.model.featured;
+          this.loading = false;
+          this.ref.detectChanges();
+          this.loadImages(await this.giftService.getImages(this.id));
+        })
+      }
     });
   }
 
-  async loadImages(items: INewCardImage[] | INewStickerImage[]) {
+  async loadImages(items: INewCardImage[] | INewStickerImage[] | INewGiftImage[]) {
     if (items.length > 0) {
       this.images = [];
       for await (let item of items) {
@@ -128,6 +143,7 @@ export class NewDetailsComponent implements OnInit {
   getPrice() {
     if (this.type === 'card') return (this.model as NewCard).priceDisplay();
     else if (this.type === 'sticker') return (this.model as NewSticker).priceDisplay();
+    else if (this.type === 'gift') return (this.model as NewGift).priceDisplay();
     else return '';
   }
 

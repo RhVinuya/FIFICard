@@ -40,6 +40,9 @@ export class NewGiftThumbComponent implements OnInit {
     if (giftImages.length > 1) {
       this.secondary = await this.fileService.getImageURL(giftImages[1].url);
     }
+    else {
+      this.secondary = this.primary;
+    }
   }
 
   onClick(){

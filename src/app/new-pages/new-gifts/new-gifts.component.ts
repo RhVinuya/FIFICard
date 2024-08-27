@@ -65,6 +65,11 @@ export class NewGiftsComponent implements OnInit {
     this.loading = false;
   }
 
+  loadmore() {
+    this.displayCount = this.displayCount + 20;
+    if (this.display.length < this.displayCount) this.displayCount = this.display.length
+  }
+
   loadDisplay() {
     if (this.gifts.length > 0) {
       this.display = [];
@@ -93,6 +98,16 @@ export class NewGiftsComponent implements OnInit {
     }
     this.ref.detectChanges();
     this.updateCount(this.display.length);
+  }
+
+  onClickEvent(event: string) {
+    if (this.events.findIndex(x => x === event) < 0) this.events.push(event);
+    this.loadDisplay();
+  }
+
+  onRemoveEvent(event: string) {
+    this.events = [...this.events.filter(x => x !== event)]
+    this.loadDisplay();
   }
 
   updateCount(count: number){
