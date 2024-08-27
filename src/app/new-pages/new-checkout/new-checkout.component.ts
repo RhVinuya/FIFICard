@@ -11,7 +11,6 @@ import { NewPaymentService } from 'src/app/new-services/new-payment.service';
 import { NewConfirmMessageComponent } from 'src/app/new-components/new-confirm-message/new-confirm-message.component';
 import { INewUser } from 'src/app/new-models/new-user';
 import { Router } from '@angular/router';
-import { environment } from 'src/environments/environment';
 import { NewStickerService } from 'src/app/new-services/new-sticker.service';
 import { NewPostcardService } from 'src/app/new-services/new-postcard.service';
 import { NewCardService } from 'src/app/new-services/new-card.service';
@@ -174,6 +173,7 @@ export class NewCheckoutComponent implements OnInit, OnDestroy {
 
   openRecipient() {
     const reference: NgbOffcanvasRef = this.offCanvas.open(NewCheckoutRecipientsComponent, { position: 'end', panelClass: 'large-offcanvas' });
+    reference.componentInstance.id = this.iUser!.id
     reference.componentInstance.iAddresses = this.addresses;
     reference.componentInstance.defaultAddressId = this.defaultAddressId;
     reference.componentInstance.selected = this.receiver ? this.receiver.id : '';
@@ -181,7 +181,7 @@ export class NewCheckoutComponent implements OnInit, OnDestroy {
       if (value) this.loadAddress(value)
       reference.close();
     })
-    const addressDefault = reference.componentInstance.defaultReference.subscribe((value: string) => {
+    const addressDefault = reference.componentInstance.onChangeDefault.subscribe((value: string) => {
       let iUser = this.storageService.getUser();
       if (iUser) {
         iUser.address = value;
@@ -190,6 +190,7 @@ export class NewCheckoutComponent implements OnInit, OnDestroy {
     })
     const addressChange = reference.componentInstance.onAddressChange.subscribe((value: INewAddress) => {
       let idx = this.addresses.findIndex(x => x.id === value.id)
+      console.log(idx, this.addresses)
       if (idx < 0) this.addresses = [...this.addresses, value]
       else this.addresses[idx] = value
     })

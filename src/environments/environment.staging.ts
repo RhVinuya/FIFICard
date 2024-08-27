@@ -79,7 +79,23 @@ export const environment = {
     "Family and Friends",
     "Letter and Quotes",
   ],
-
+  giftscategories: [
+    "Flowers",
+    "Bath and Body",
+    "Stuffed Toys",
+    "Apparels",
+    "Perfumery and Fragrances",
+    "Mugs and Teacups",
+    "Fruit Baskets",
+    "Gift Sets",
+    "Candies and Chocolates",
+    "Candles"
+  ],
+  giftsrecipients: [
+    "For Him",
+    "For Her",
+    "For Kids and Tennagers",
+  ],
 
   imageSize: {
     small: "_74x100",

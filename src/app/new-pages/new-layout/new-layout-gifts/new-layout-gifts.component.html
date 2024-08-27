@@ -9,36 +9,15 @@
     <div class="col-2">
         <img src="/assets/images/new/s-gifts.png" class="img-fluid" [routerLink]="['/new/gifts']">
     </div>
-    <div class="col-3  offset-1">
-        <h5><a [routerLink]="['/new/gifts']">Birthday</a></h5>
-        <h5><a [routerLink]="['/new/gifts']">Anniversary</a></h5>
-        <h5><a [routerLink]="['/new/gifts']">Wedding</a></h5>
-        <h5><a [routerLink]="['/new/gifts']">Retirement</a></h5>
-        <h5><a [routerLink]="['/new/gifts']">Graduation</a></h5>
-        <h5><a [routerLink]="['/new/gifts']">Mothers day</a></h5>
-        <h5><a [routerLink]="['/new/gifts']">Fathers day</a></h5>
-        <h5><a [routerLink]="['/new/gifts']">Grandparents day</a></h5>
-        <h5><a [routerLink]="['/new/gifts']">Baby</a></h5>
+    <div class="col-3 offset-1">
+        <h5>SHOP BY CATEGORIES</h5>
+        <h5 *ngFor="let event of eventcategories.slice(0, 8)"><a [routerLink]="['/new/gifts/' + event]">{{event}}</a></h5>
     </div>
     <div class="col-3 ">
-        <h5><a [routerLink]="['/new/gifts']">Baptism</a></h5>
-        <h5><a [routerLink]="['/new/gifts']">Confirmation</a></h5>
-        <h5><a [routerLink]="['/new/gifts']">Parents day</a></h5>
-        <h5><a [routerLink]="['/new/gifts']">Thanks giving</a></h5>
-        <h5><a [routerLink]="['/new/gifts']">Halloween</a></h5>
-        <h5><a [routerLink]="['/new/gifts']">Christmas</a></h5>
-        <h5><a [routerLink]="['/new/gifts']">New year</a></h5>
-        <h5><a [routerLink]="['/new/gifts']">Valentines</a></h5>
-        <h5><a [routerLink]="['/new/gifts']">Confirmation</a></h5>
-
-
+        <h5 *ngFor="let event of eventcategories.slice(8, 10)"><a [routerLink]="['/new/gifts/' + event]">{{event}}</a></h5>
     </div>
     <div class="col-3">
-        <h5><a [routerLink]="['/new/gifts']">Easter</a></h5>
-        <h5><a [routerLink]="['/new/gifts']">Sympathey</a></h5>
-        <h5><a [routerLink]="['/new/gifts']">Pet</a></h5>
-        <h5><a [routerLink]="['/new/gifts']">Frienship</a></h5>
-        <h5><a [routerLink]="['/new/gifts']">Congratulations</a></h5>
-        <h5><a [routerLink]="['/new/gifts']">Get well</a></h5>
+        <h5>SHOP BY RECIPIENTS</h5>
+        <h5 *ngFor="let event of eventrecipient.slice(0, 3)"><a [routerLink]="['/new/gifts/' + event]">{{event}}</a></h5>
     </div>
 </div>

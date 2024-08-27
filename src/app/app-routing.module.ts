@@ -80,7 +80,7 @@ const routes: Routes = [
     path: '',
     redirectTo: "/new",
     pathMatch: 'full'
-    
+
   },
   {
     path: 'old',
@@ -108,7 +108,7 @@ const routes: Routes = [
         path: 'father', component: FathersDayComponent, title: "FibeiGreetings FathersDay"
       },
       {
-        path: 'father/greetings', component: FatherGreetingsComponent, title: "FibeiGreetings FathersDay Greetings" 
+        path: 'father/greetings', component: FatherGreetingsComponent, title: "FibeiGreetings FathersDay Greetings"
       },
       {
         path: 'tabs', component: TabsComponent, title: "FibeiGreetings"
@@ -132,7 +132,7 @@ const routes: Routes = [
         path: 'stickercards', component: StickersCardsComponent, title: "FibeiGreetings Stickercards"
       },
       {
-        path: 'stickercards/:id', component: StickersCardsComponent, title: "FibeiGreetings Stickercards" 
+        path: 'stickercards/:id', component: StickersCardsComponent, title: "FibeiGreetings Stickercards"
       },
       {
         path: 'signandsend', component: SignAndSendEventsComponent, title: 'FibeiGreetings Sign & Send'
@@ -165,7 +165,7 @@ const routes: Routes = [
         path: 'order/:id', component: OrderComponent, title: "FibeiGreetings Order"
       },
       {
-        path: 'order/:id/:orderid', component: OrderComponent, title: "FibeiGreetings Order" 
+        path: 'order/:id/:orderid', component: OrderComponent, title: "FibeiGreetings Order"
       },
       {
         path: 'ecardorder/:id', component: ECardOrderComponent, title: "FibeiGreetings e-Card Order"
@@ -269,7 +269,7 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'new', 
+    path: 'new',
     component: NewLayoutComponent,
     children: [
       {
@@ -305,7 +305,12 @@ const routes: Routes = [
       },
       {
         path: 'gifts',
-        component: NewGiftsComponent
+        children: [
+          {
+            path: ':id',
+            component: NewGiftsComponent
+          }
+        ]
       },
       {
         path: "profile",
@@ -318,7 +323,7 @@ const routes: Routes = [
       },
       {
         path: 'wishlist',
-            component: NewWishlistComponent
+        component: NewWishlistComponent
       },
       {
         path: 'details/:type/:id',
@@ -334,7 +339,7 @@ const routes: Routes = [
       },
       {
         path: 'payment',
-        children:[
+        children: [
           {
             path: ':gateway',
             component: NewPaymentComponent

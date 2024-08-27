@@ -1,59 +1,16 @@
 <div class="mxw-1920px mt-2">
     <app-new-title title="Gifts" [breadcrumbs]="breadcrumbs"></app-new-title>
-
-<div class="">
-    <ul class="nav nav-tabs" id="myTab" role="tablist">
-        <li class="nav-item" role="presentation">
-            <button class="nav-link active" id="category-tab1" data-bs-toggle="tab" data-bs-target="#category1" type="button"
-                role="tab" aria-controls="category1" aria-selected="true">SHOP BY CATEGORY</button>
-        </li>
-        <li class="nav-item" role="presentation">
-            <button class="nav-link" id="recipient-tab2" data-bs-toggle="tab" data-bs-target="#recipient2" type="button"
-                role="tab" aria-controls="recipient2" aria-selected="false">SHOP BY RECIPIENT</button>
-        </li>
-        <li class="nav-item" role="presentation">
-            <button class="nav-link" id="event-tab3" data-bs-toggle="tab" data-bs-target="#event3" type="button"
-                role="tab" aria-controls="event3" aria-selected="false">SHOP BY EVENT</button>
-        </li>
-    </ul>
-    <br/>
-    <div class="tab-content" id="myTabContent">
-        <div class="tab-pane fade show active" id="category1" role="tabpanel" aria-labelledby="category-tab1">
-            <div class="col-md-12">
-                <h3 class="label-header lh-h3">Category</h3>
-                <span class="fibei-badge">Birthday</span>
-                <span class="fibei-badge">Anniversary</span>
-                <span class="fibei-badge">Wedding</span>
-                <span class="fibei-badge">Retirement</span>
-                <span class="fibei-badge">Graduation</span>
-                <span class="fibei-badge">Mothers Day</span>
-                <span class="fibei-badge">Fathers Day</span>
-            </div>
-        </div>
-        <div class="tab-pane fade" id="recipient2" role="tabpanel" aria-labelledby="recipient-tab2">
-            <div class="col-md-12">
-                <h3 class="label-header lh-h3">Recipient</h3>
-                <span class="fibei-badge">Birthday</span>
-                <span class="fibei-badge">Anniversary</span>
-                <span class="fibei-badge">Wedding</span>
-                <span class="fibei-badge">Retirement</span>
-                <span class="fibei-badge">Graduation</span>
-                <span class="fibei-badge">Mothers Day</span>
-                <span class="fibei-badge">Fathers Day</span>
-            </div>
-        </div>
-        <div class="tab-pane fade" id="event3" role="tabpanel" aria-labelledby="event-tab3">
-            <div class="col-md-12">
-                <h3 class="label-header lh-h3">Event</h3>
-                <span class="fibei-badge">Birthday</span>
-                <span class="fibei-badge">Anniversary</span>
-                <span class="fibei-badge">Wedding</span>
-                <span class="fibei-badge">Retirement</span>
-                <span class="fibei-badge">Graduation</span>
-                <span class="fibei-badge">Mothers Day</span>
-                <span class="fibei-badge">Fathers Day</span>
-            </div>
-        </div>
+</div>
+<div class="py-3 bg-light">
+    <div class="mxw-1920px">
+        <app-new-events-options [events]="all"></app-new-events-options>
     </div>
 </div>
+<div class="mxw-1920px mt-4">
+    <app-new-loading [loading]="loading"></app-new-loading>
+    <div class="max-5" *ngIf="loading === false">
+        <div *ngFor="let gift of display.slice(0, displayCount)">
+            <app-new-gift-thumb [gift]="gift"></app-new-gift-thumb>
+        </div>
+    </div>
 </div>

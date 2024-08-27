@@ -78,8 +78,7 @@ export class NewInYourCartComponent implements OnInit {
   }
 
   computeTotal() {
-    let subtotal: number = 0
-    this.carts.map(x => subtotal = subtotal + x.price);
+    let subtotal: number = 0;
     this.carts.forEach(x => {
       if (x.type !== 'postcard') subtotal = subtotal + x.price
       else if (x.bundle) subtotal = subtotal + x.bundle.price

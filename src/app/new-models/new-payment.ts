@@ -73,7 +73,7 @@ export class NewSender {
 export interface INewPaymentItem{
     id: string;
     itemid: string;
-    type: "card" | "sticker" | "postcard";
+    type: "card" | "sticker" | "postcard" | "gift";
     bundle: INewPaymentItemBundle | undefined;
     price: number;
     shipping: number;

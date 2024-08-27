@@ -198,6 +198,7 @@ import { NewCheckoutItemComponent } from './new-pages/new-checkout/new-checkout-
 import { NewCheckoutRecipientsComponent } from './new-pages/new-checkout/new-checkout-recipients/new-checkout-recipients.component';
 import { NewCheckoutSenderComponent } from './new-pages/new-checkout/new-checkout-sender/new-checkout-sender.component';
 import { NewPaymentComponent } from './new-pages/new-payment/new-payment.component';
+import { NewGiftThumbComponent } from './new-components/new-gift-thumb/new-gift-thumb.component';
 
 @NgModule({
   declarations: [
@@ -372,7 +373,8 @@ import { NewPaymentComponent } from './new-pages/new-payment/new-payment.compone
     NewCheckoutItemComponent,
     NewCheckoutRecipientsComponent,
     NewCheckoutSenderComponent,
-    NewPaymentComponent
+    NewPaymentComponent,
+    NewGiftThumbComponent
   ],
   imports: [
     BrowserModule,

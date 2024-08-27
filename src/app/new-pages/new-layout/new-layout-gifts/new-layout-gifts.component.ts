@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-new-layout-gifts',
@@ -8,6 +9,9 @@ import { Component, OnInit } from '@angular/core';
 export class NewLayoutGiftsComponent implements OnInit {
 
   constructor() { }
+
+  eventcategories: string[] = environment.giftscategories;
+  eventrecipient: string[] = environment.giftsrecipients;
 
   ngOnInit(): void {
   }

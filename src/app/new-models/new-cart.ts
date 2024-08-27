@@ -4,7 +4,7 @@ export interface INewCart {
     price: number;
     sgprice: number;
     usprice: number;
-    type: "card" | "sticker" | "postcard";
+    type: "card" | "sticker" | "postcard" | "gift";
     bundle: INewCartBundle | undefined;
     mark: boolean;
 }
