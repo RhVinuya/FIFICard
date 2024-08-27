@@ -28,7 +28,7 @@ export class NewRegistrationCompleteComponent implements OnInit {
     _modalService: NgbModal,
     _router: Router,
     _ref: ChangeDetectorRef
-  ) { 
+  ) {
     this.activateRoute = _activateRoute;
     this.accountService = _accountService;
     this.storageService = _storageService;
@@ -78,7 +78,7 @@ export class NewRegistrationCompleteComponent implements OnInit {
       return;
     }
 
-    if(this.user) {
+    if (this.user) {
       this.user.firstname = this.form.controls.firstname.value!;
       this.user.lastname = this.form.controls.lastname.value!;
       this.user.birthday = this.form.controls.birthday.value!.toString();
@@ -91,10 +91,13 @@ export class NewRegistrationCompleteComponent implements OnInit {
       this.ref.detectChanges();
 
       const reference = this.modalService.open(NewInfoMessageComponent, { animation: true });
+      reference.componentInstance.title = 'Registration';
+      reference.componentInstance.message = 'Registration Complete';
+      reference.componentInstance.button = 'Continue';
       reference.componentInstance.onContinue.subscribe((value: any) => {
-      reference.close();
-      this.router.navigate(['/']);
-    })
+        this.router.navigate(['/new/profile/info']);
+        reference.close();
+      })
 
     }
   }

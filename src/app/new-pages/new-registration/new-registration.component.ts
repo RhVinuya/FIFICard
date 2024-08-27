@@ -171,7 +171,7 @@ export class NewRegistrationComponent implements OnInit {
         reference.componentInstance.button = "CONTINUE";
         reference.componentInstance.onContinue.subscribe((value: any) => {
           reference.close();
-          this.router.navigate(['/new/registration/complete/' + value.id]);
+          this.router.navigate(['/new/registration/complete/' + user.id]);
         })
       }
       else {
