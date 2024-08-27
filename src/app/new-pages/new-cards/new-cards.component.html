@@ -8,7 +8,7 @@
         </div>
     </div>
     <div class="mxw-1920px row mt-4">
-        <div class="col-2">
+        <div class="col-md-2 col-sm-12">
             <h3 class="label-header lh-h3" style="margin-bottom: 10px;">Filter</h3>
             <div class="accordion accordion-flush">
                 <div class="accordion-item">
@@ -68,7 +68,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-10">
+        <div class="col-md-10 col-sm-12">
             <div class="mb-4" *ngIf="events.length > 0">
                 <ion-chip [outline]="true" color="tertiary" *ngFor="let event of events">
                     <ion-icon name="close-circle" (click)="onRemoveEvent(event)"></ion-icon>
@@ -84,7 +84,7 @@
             </div>
             -->
             <div class="row px-2" *ngIf="loading === false">
-                <div class="col-3 mb-4" *ngFor="let card of display.slice(0, displayCount)">
+                <div class="col-md-3 col-sm-4 col-xs-6 mb-4" *ngFor="let card of display.slice(0, displayCount)">
                     <app-new-card-thumb [card]="card"></app-new-card-thumb>
                 </div>
             </div>
