@@ -11,7 +11,7 @@
                     <span class="badge text-bg-secondary" *ngIf="iItem.type === 'postcard'">POSTCARD</span>
                     <span class="badge text-bg-secondary" *ngIf="iItem.type === 'gift'">GIFT</span>
 
-                    <p class="text-purple my-0">{{model.name}}</p>
+                    <p class="text-purple my-0 cursor" [routerLink]="['/new/details/' + iItem.type + '/' + iItem.itemid]">{{model.name}}</p>
                     <p class="text-gray mb-0">{{model.description}}</p>
                     <p class="text-purple mb-0" *ngIf="bundleDetails !== ''">{{bundleDetails}}</p>
                 </td>

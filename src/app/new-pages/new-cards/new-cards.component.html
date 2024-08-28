@@ -8,32 +8,20 @@
         </div>
     </div>
     <div class="mxw-1920px row mt-4">
-        <div class="col-md-2 col-sm-12">
+        <div class="col-md-2 col-sm-12 px-0">
             <h3 class="label-header lh-h3" style="margin-bottom: 10px;">Filter</h3>
             <div class="accordion accordion-flush">
                 <div class="accordion-item">
                     <h2 class="accordion-header">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#recipient" aria-expanded="false" aria-controls="flush-collapseOne">
+                        <button class="accordion-button show" [ngClass]="recipient ? '' : 'collapsed'" type="button" data-bs-toggle="collapse" data-bs-target="#recipient" aria-expanded="false" aria-controls="flush-collapseOne">
                             RECIPIENT
                         </button>
                     </h2>
-                    <div id="recipient" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                    <div id="recipient" class="accordion-collapse collapse" [ngClass]="recipient ? 'show' : ''" data-bs-parent="#accordionFlushExample">
                         <div class="accordion-body">
-                            <label class="mb-1">
-                                <input class="form-check-input me-2" type="checkbox" value="FOR ALL" (change)="onClickRecipient($event)">
-                                FOR ALL
-                            </label>
-                            <label class="mb-1">
-                                <input class="form-check-input me-2" type="checkbox" value="FOR HIM" (change)="onClickRecipient($event)">
-                                FOR HIM
-                            </label>
-                            <label class="mb-1">
-                                <input class="form-check-input me-2" type="checkbox" value="FOR HER" (change)="onClickRecipient($event)">
-                                FOR HER
-                            </label>
-                            <label class="mb-1">
-                                <input class="form-check-input me-2" type="checkbox" value="FOR KIDS AND TEENS" (change)="onClickRecipient($event)">
-                                FOR KIDS AND TEENS
+                            <label class="mb-1" *ngFor="let option of recipientoptions">
+                                <input class="form-check-input me-2" type="checkbox" [value]="option" (change)="onClickRecipient($event)" [defaultChecked]="option === recipient">
+                                {{option}}
                             </label>
                         </div>
                     </div>
@@ -41,27 +29,15 @@
 
                 <div class="accordion-item">
                     <h2 class="accordion-header">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#cardtype" aria-expanded="false" aria-controls="flush-collapseOne">
+                        <button class="accordion-button show" [ngClass]="filter ? '' : 'collapsed'" data-bs-toggle="collapse" data-bs-target="#cardtype" aria-expanded="false" aria-controls="flush-collapseOne">
                             CARD TYPE
                         </button>
                     </h2>
-                    <div id="cardtype" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                    <div id="cardtype" class="accordion-collapse collapse" [ngClass]="filter ? 'show' : ''"data-bs-parent="#accordionFlushExample">
                         <div class="accordion-body">
-                            <label class="mb-1">
-                                <input class="form-check-input me-2" type="checkbox" formControlName="notification">
-                                POETRY
-                            </label>
-                            <label class="mb-1">
-                                <input class="form-check-input me-2" type="checkbox" formControlName="notification">
-                                MESSAGE
-                            </label>
-                            <label class="mb-1">
-                                <input class="form-check-input me-2" type="checkbox" formControlName="notification">
-                                PERSONALIZED
-                            </label>
-                            <label class="mb-1">
-                                <input class="form-check-input me-2" type="checkbox" formControlName="notification">
-                                TALKING CARD
+                            <label class="mb-1" *ngFor="let option of filteroptions">
+                                <input class="form-check-input me-2" type="checkbox" [value]="option" (change)="onClickFilter($event)" [defaultChecked]="option === filter">
+                                {{option}}
                             </label>
                         </div>
                     </div>

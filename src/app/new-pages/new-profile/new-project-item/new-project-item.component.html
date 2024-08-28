@@ -1,0 +1,21 @@
+<div class="card bg-light border-light mb-1">
+    <div class="card-body">
+        <div class="space-between">
+            <span class="text-purple">#{{project.id}}</span>
+            <app-new-personalize-button [iCard]="iCard"></app-new-personalize-button>
+        </div>
+        <table>
+            <tr class="px-2">
+                <td class="img">
+                    <img [src]="primary">
+                </td>
+                <td class="details px-2">
+                    <div>
+                        <span class="text-purple" [routerLink]="['/new/details/card/' + iCard.id]">{{iCard.name}}</span>
+                        <span class="desc text-gray mb-3">{{iCard.description}}</span>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

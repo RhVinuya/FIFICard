@@ -13,8 +13,4 @@ export class NewHomeComponent implements OnInit {
 
   showHeader: boolean = false
 
-  async logScrolling(value: any) {
-    this.showHeader = value.detail.scrollTop >= 25;
-  }
-
 }

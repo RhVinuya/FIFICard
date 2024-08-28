@@ -65,6 +65,9 @@ export class NewDetailsComponent implements OnInit {
   images: string[] = [];
   rate: number = 0;
 
+  isAddToCart: boolean = false;
+  isBundle: boolean = false;
+  isPersonalize: boolean = false;
   isFeatured: boolean = false;
   isPoetry: boolean = false;
 
@@ -78,6 +81,8 @@ export class NewDetailsComponent implements OnInit {
         this.cardService.get(this.id).then(async value => {
           this.iModel = value;
           this.model = new NewCard(value);
+          this.isAddToCart = true;
+          this.isPersonalize = this.model.signAndSend;
           this.isFeatured = this.model.featured;
           this.isPoetry = this.model instanceof NewCard && this.model.messagetype === 'poetry';
           this.loading = false;
@@ -90,6 +95,7 @@ export class NewDetailsComponent implements OnInit {
         this.stickerService.get(this.id).then(async value => {
           this.iModel = value;
           this.model = new NewSticker(value);
+          this.isAddToCart = true;
           this.isFeatured = this.model.featured;
           this.loading = false;
           this.ref.detectChanges();
@@ -100,6 +106,7 @@ export class NewDetailsComponent implements OnInit {
         this.postcardService.get(this.id).then(async value => {
           this.iModel = value;
           this.model = new NewPostcard(value);
+          this.isBundle = true;
           this.isFeatured = this.model.featured;
           this.loading = false;
           this.ref.detectChanges();
@@ -112,6 +119,7 @@ export class NewDetailsComponent implements OnInit {
         this.giftService.get(this.id).then(async value => {
           this.iModel = value;
           this.model = new NewGift(value);
+          this.isAddToCart = true;
           this.isFeatured = this.model.featured;
           this.loading = false;
           this.ref.detectChanges();
@@ -172,4 +180,7 @@ export class NewDetailsComponent implements OnInit {
     this.offCanvas.open(NewInYourCartComponent, { position: 'end' });
   }
 
+  getICard() {
+    return this.iModel as INewCard;
+  }
 }

@@ -15,7 +15,7 @@
             <label class="text-purple"><b>{{_card.priceDisplay()}}</b></label>
             <app-new-rate size="sm" [rate]="rate"></app-new-rate>
         </div>
-        <app-new-personalize-button class="me-1"></app-new-personalize-button>
+        <app-new-personalize-button class="me-1" [iCard]="card" *ngIf="card.signAndSend"></app-new-personalize-button>
         <app-new-add-cart-button type="card" [item]="card"></app-new-add-cart-button>
     </div>
 </div>

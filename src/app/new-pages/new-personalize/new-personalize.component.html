@@ -1,1 +1,25 @@
-<p>new-personalize works!</p>
+<div class="main">
+    <div class="header px-4 py-2">
+        <img src="/assets/images/logo_fibeigreetings-com.png" class="logo" alt="Fibei Greetings">
+        <h4 class="text-puple">{{iCard && iCard.name}}</h4>
+        <div class="close text-end">
+            <button type="button" class="btn-close" aria-label="Close" (click)="close()"></button>
+        </div>
+    </div>
+    <div class="content p-1">
+        <img [src]="selected.url" *ngIf="selected !== undefined">
+    </div>
+    <div class="footer px-4 py-2">
+        <button class="btn btn-light text-primary border-0" (click)="onPrev()">
+            <i class="fa fa-chevron-left nav me-1 text-primary"></i>
+            PREV
+        </button>
+        <div class="images">
+            <img *ngFor="let iImage of iImages" [src]="iImage.url" (click)="onClick(iImage)">
+        </div>
+        <button class="btn btn-light text-primary border-0" (click)="onNext()">
+            NEXT
+            <i class="fa fa-chevron-right nav ms-1 text-primary"></i>
+        </button>
+    </div>
+</div>

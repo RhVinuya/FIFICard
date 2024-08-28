@@ -33,7 +33,7 @@ export class NewCardThumbComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     this._card = new NewCard(this.card);
-
+    
     let cardImages = await this.cardService.getImages(this._card.id);
     if (cardImages.length > 0) {
       this.primary = await this.fileService.getImageURL(cardImages[0].url);
@@ -44,6 +44,9 @@ export class NewCardThumbComponent implements OnInit {
     else {
       this.secondary = this.primary;
     }
+
+
+
     this.loadRatings(await this.cardService.getRatings(this._card.id))
   }
 

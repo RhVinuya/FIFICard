@@ -1,6 +1,7 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { INewPayment, NewPayment } from 'src/app/new-models/new-payment';
+import { NewCartService } from 'src/app/new-services/new-cart.service';
 import { NewPaymentService } from 'src/app/new-services/new-payment.service';
 import { NewStorageService } from 'src/app/new-services/new-storage.service';
 import { environment } from 'src/environments/environment';
@@ -15,17 +16,20 @@ export class NewPaymentComponent implements OnInit {
   activateRoute: ActivatedRoute;
   storageService: NewStorageService;
   paymentService: NewPaymentService;
+  cartService: NewCartService;
   ref: ChangeDetectorRef;
 
   constructor(
     _activateRoute: ActivatedRoute,
     _storageService: NewStorageService,
     _paymentService: NewPaymentService,
+    _cartService: NewCartService,
     _ref: ChangeDetectorRef
   ) {
     this.activateRoute = _activateRoute;
     this.storageService = _storageService;
     this.paymentService = _paymentService;
+    this.cartService = _cartService;
     this.ref = _ref;
   }
 
@@ -103,13 +107,10 @@ export class NewPaymentComponent implements OnInit {
     this.ref.detectChanges();
   }
 
-  clear(iPayment: INewPayment) {
-    let cartIds = this.storageService.getCartList();
-    iPayment.items.forEach(item => {
-      this.storageService.removeCart(item.id);
-      cartIds = [...cartIds.filter(x => x !== item.id)]
-    })
-    this.storageService.saveCartList(cartIds);
+  async clear(iPayment: INewPayment) {
+    for await (let item of iPayment.items) {
+      await this.cartService.delete(item.id)
+    }
     this.storageService.clearPayment();
   }
 

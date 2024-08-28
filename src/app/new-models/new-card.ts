@@ -15,6 +15,7 @@ export interface INewCard {
     featured: boolean;
     messagetype: 'regular' | 'poetry';
     type: 'card' | 'sticker' | 'postcard' | 'gift';
+    signAndSend: boolean;
     created: Timestamp;
     modified: Timestamp;
 }
@@ -33,6 +34,7 @@ export class NewCard {
     active: boolean;
     featured: boolean;
     messagetype: 'regular' | 'poetry';
+    signAndSend: boolean;
     created: Timestamp;
     modified: Timestamp;
 
@@ -50,6 +52,7 @@ export class NewCard {
         this.active = value.active;
         this.featured = value.featured;
         this.messagetype = value.messagetype;
+        this.signAndSend = value.signAndSend;
         this.created = value.created;
         this.modified = value.modified;
     }

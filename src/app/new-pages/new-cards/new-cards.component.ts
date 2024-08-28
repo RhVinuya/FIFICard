@@ -2,6 +2,7 @@
 import { ViewportScroller } from '@angular/common';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { filter } from 'rxjs';
 import { INewCard } from 'src/app/new-models/new-card';
 import { NewCardService } from 'src/app/new-services/new-card.service';
 import { environment } from 'src/environments/environment';
@@ -27,14 +28,6 @@ export class NewCardsComponent implements OnInit {
     this.ref = _ref;
   }
 
-  cardevents = environment.cardevents;
-  loading: boolean = false;
-  cards: INewCard[] = [];
-  display: INewCard[] = [];
-  displayCount: number = 20;
-  events: string[] = [];
-  recipeints: string[] = [];
-
   breadcrumbs = [
     {
       title: "Home",
@@ -48,13 +41,40 @@ export class NewCardsComponent implements OnInit {
     }
   ];
 
+  cardevents = environment.cardevents;
+  recipientoptions = ['FOR ALL', 'FOR HIM', 'FOR HER', 'FOR KIDS AND TEENS'];
+  filteroptions = ['POETRY', 'MESSAGE', 'PERSONALIZED', 'TALKING CARD'];
+  event: string;
+  recipient: string
+  filter: string;
+  loading: boolean = false;
+  cards: INewCard[] = [];
+  display: INewCard[] = [];
+  displayCount: number = 20;
+  events: string[] = [];
+  recipients: string[] = [];
+  filters: string[] = [];
+
   ngOnInit(): void {
     this.activateRoute.params.subscribe(params => {
       let id = params['id'];
       this.events = [];
+
       if (id !== 'all') {
-        if (this.events.findIndex(x => x === id) < 0) this.events.push(id);
+        if (this.cardevents.findIndex(x => x.toLowerCase() === id.toLowerCase()) >= 0) {
+          this.event = id;
+          this.events.push(id);
+        }
+        else if (this.recipientoptions.findIndex(x => x.toLowerCase() === id.toLowerCase()) >= 0) {
+          this.recipient = id;
+          this.recipients.push(id);
+        }
+        else if (this.filteroptions.findIndex(x => x.toLowerCase() === id.toLowerCase()) >= 0) {
+          this.filter = id;
+          this.filters.push(id);
+        }
       }
+
       this.ref.detectChanges();
       this.loadDisplay();
     });
@@ -65,7 +85,6 @@ export class NewCardsComponent implements OnInit {
     this.loading = true;
     this.cards = await this.cardService.getAll();
     this.loadDisplay();
-
     this.loading = false;
   }
 
@@ -99,14 +118,29 @@ export class NewCardsComponent implements OnInit {
       }
 
       //filter recipients
-      if (this.recipeints.length > 0 && this.display.length > 0) { 
+      if (this.recipients.length > 0 && this.display.length > 0) {
         const temp = this.display.map(object => ({ ...object }))
         this.display = [];
         temp.forEach(card => {
           let found: boolean = false;
-          this.recipeints.forEach(recipient => {
+          this.recipients.forEach(recipient => {
             if (recipient === 'FOR ALL') found = true
             else if (card.recipient.toLowerCase() === recipient.toLowerCase()) found = true
+          })
+          if (found) this.display = [...this.display, card];
+        })
+      }
+
+      //filter
+      if (this.filters.length > 0 && this.display.length > 0) {
+        const temp = this.display.map(object => ({ ...object }))
+        this.display = [];
+        temp.forEach(card => {
+          let found: boolean = false;
+          this.filters.forEach(filter => {
+            if (filter === 'POETRY' && card.messagetype === 'poetry') found = true;
+            else if (filter === 'MESSAGE' && card.messagetype === 'regular') found = true;
+            else if (filter === 'PERSONALIZED' && card.signAndSend === true) found = true;
           })
           if (found) this.display = [...this.display, card];
         })
@@ -128,12 +162,23 @@ export class NewCardsComponent implements OnInit {
   }
 
   onClickRecipient(e: any) {
-    let idx = this.recipeints.findIndex(x => x === e.target.value);
+    let idx = this.recipients.findIndex(x => x === e.target.value);
     if (e.target.checked === true) {
-      if (idx <= 0) this.recipeints.push(e.target.value)
+      if (idx <= 0) this.recipients.push(e.target.value)
     }
     else {
-      if (idx >= 0) this.recipeints = this.recipeints.filter(x => x !== e.target.value)
+      if (idx >= 0) this.recipients = this.recipients.filter(x => x !== e.target.value)
+    }
+    this.loadDisplay();
+  }
+
+  onClickFilter(e: any) {
+    let idx = this.filters.findIndex(x => x === e.target.value);
+    if (e.target.checked === true) {
+      if (idx <= 0) this.filters.push(e.target.value)
+    }
+    else {
+      if (idx >= 0) this.filters = this.filters.filter(x => x !== e.target.value)
     }
     this.loadDisplay();
   }

@@ -5,6 +5,7 @@ import { Subscription, timer } from 'rxjs';
 import { NewLoginComponent } from 'src/app/new-components/new-login/new-login.component';
 import { INewCart } from 'src/app/new-models/new-cart';
 import { INewUser } from 'src/app/new-models/new-user';
+import { NewCartService } from 'src/app/new-services/new-cart.service';
 import { NewStorageService } from 'src/app/new-services/new-storage.service';
 
 @Component({
@@ -13,22 +14,27 @@ import { NewStorageService } from 'src/app/new-services/new-storage.service';
   styleUrls: ['./new-cart.component.scss']
 })
 export class NewCartComponent implements OnInit, OnDestroy {
+
+  cartService: NewCartService;
   storageService: NewStorageService;
   modalService: NgbModal;
   router: Router;
   ref: ChangeDetectorRef;
 
   constructor(
+    _cartService: NewCartService,
     _storageService: NewStorageService,
     _modalService: NgbModal,
     _router: Router,
     _ref: ChangeDetectorRef
   ) {
+    this.cartService = _cartService;
     this.storageService = _storageService;
     this.modalService = _modalService;
     this.router = _router;
     this.ref = _ref;
   }
+
   breadcrumbs = [
     {
       title: "Home",
@@ -45,26 +51,20 @@ export class NewCartComponent implements OnInit, OnDestroy {
   subs: Subscription;
   user: INewUser | undefined = undefined;
   loading: boolean = false;
-  ids: string[] | undefined = undefined;
   carts: INewCart[] = [];
   count: number = 0;
   total: number = 0;
   totalDisplay: string = '';
   saving: boolean = false;
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     this.subs = timer(100, 500).subscribe(time => {
       this.user = this.storageService.getUser();
     });
 
     this.loading = true;
     this.ref.detectChanges();
-
-    this.ids = this.storageService.getCartList();
-    this.ids.reverse().forEach(id => {
-      let iCart = this.storageService.getCart(id);
-      if (iCart) this.carts.push(iCart)
-    })
+    this.carts = await this.cartService.getAll();
     this.calculate();
     this.loading = false;
     this.ref.detectChanges();
@@ -97,18 +97,16 @@ export class NewCartComponent implements OnInit, OnDestroy {
     this.totalDisplay = '₱ ' + this.total.toLocaleString('en-US', { minimumFractionDigits: 2 })
   }
 
-  onChangeItemMark(id: string, mark: boolean) {
+  async onChangeItemMark(id: string, mark: boolean) {
     let idx = this.carts.findIndex(x => x.id === id);
     this.carts[idx].mark = mark;
-    this.storageService.saveCart(this.carts[idx]);
+    await this.cartService.update(this.carts[idx]);
     this.calculate();
     this.ref.detectChanges();
   }
 
-  onRemove(id: string) {
-    this.storageService.removeCart(id);
-    this.ids = this.storageService.getCartList().filter(x => x !== id);
-    this.storageService.saveCartList(this.ids);
+  async onRemove(id: string) {
+    await this.cartService.delete(id);
     this.carts = [...this.carts.filter(x => x.id !== id)];
     this.calculate();
     this.ref.detectChanges();

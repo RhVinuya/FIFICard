@@ -25,6 +25,9 @@
             <button class="nav-link" [ngClass]="default === 'orders' ? 'active' : ''" id="orders-tab" data-bs-toggle="tab" data-bs-target="#orders-div" type="button" role="tab">
                 My Orders
             </button>
+            <button class="nav-link" [ngClass]="default === 'personalize' ? 'active' : ''" id="personalize-tab" data-bs-toggle="tab" data-bs-target="#personalize-div" type="button" role="tab">
+                Personalize Project
+            </button>
         </div>
     </nav>
     <div class="tab-content" id="nav-tabContent">
@@ -62,48 +65,10 @@
         
         <div class="tab-pane fade mb-2" [ngClass]="default === 'orders' ? 'show active' : ''" id="orders-div" role="tabpanel">
             <app-new-profile-orders [id]="user.id"></app-new-profile-orders>
-            <!--
-            <div class="card">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-12 ">
-                            <table>
-                                <tr>
+        </div>
 
-                                    <td class="image">
-                                        <span>Image</span>
-                                    </td>
-                                    <td class="details">
-                                        <span>Description</span>
-                                    </td>
-                                </tr>
-                            </table>
-                            <table>
-                                <tr>
-                                    <td class="image">
-                                        <img src="https://firebasestorage.googleapis.com/v0/b/fifi-greetings.appspot.com/o/card%2FBfpij5w6qKeXusgh5CwV%2Fbl8XSgGPndgTiD9cASbd?alt=media&token=4ca0c528-93b2-4ef3-9274-f4dab04cc964"
-                                            class="img-fluid">
-                                    </td>
-                                    <td class="details">
-                                        <b>Happy Birthday Kiddo</b>
-                                        <p>Description: "A birthday card features a colorful happy birthday letter design with
-                                            a boy having fun with his birthday cake and a light yellow background.</p>
-                                        <p>total Price: ₱ 99.00</p>
-                                        <hr />
-                                        <span></span>
-                                        <span class="badge text-bg-secondary">Onprocess</span>
-                                        <span class="badge text-bg-secondary">For Delivery</span>
-                                        <span class="badge text-bg-secondary">Complete</span>
-                                        <br />
-                                        <span>expected delivery: 01/01/2024</span>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            -->
+        <div class="tab-pane fade mb-2" [ngClass]="default === 'personalize' ? 'show active' : ''" id="personalize-div" role="tabpanel">
+            <app-new-project></app-new-project>
         </div>
     </div>
 </div>

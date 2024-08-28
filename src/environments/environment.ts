@@ -96,6 +96,18 @@ export const environment = {
     "For Her",
     "For Kids and Tennagers",
   ],
+  imagetitles: [
+    'Front',
+    'Inside',
+    'Outside',
+    'Side by Side',
+    'Back',
+    'Envelope',
+    'Sign & Send',
+    'Stickers',
+    'Other',
+    'QR'
+  ],
 
 
   imageSize: {
@@ -112,17 +124,7 @@ export const environment = {
       event: "mothers day"
     }
   ],
-  imagetitles: [
-    'Front',
-    'Inside',
-    'Outside',
-    'Side by Side',
-    'Back',
-    'Envelope',
-    'Sign & Send',
-    'Stickers',
-    'Other'
-  ],
+  
   us: ['us.fibeigreetings.com', 'fibeigreetings.us'],
   sg: ['sg.fibeigreetings.com', 'fibeigreetings.sg'],
   ecardexpiry: 30,

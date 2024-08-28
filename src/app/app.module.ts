@@ -201,6 +201,8 @@ import { NewPaymentComponent } from './new-pages/new-payment/new-payment.compone
 import { NewGiftThumbComponent } from './new-components/new-gift-thumb/new-gift-thumb.component';
 import { NewProfileOrdersComponent } from './new-pages/new-profile/new-profile-orders/new-profile-orders.component';
 import { NewProfileOrdersItemComponent } from './new-pages/new-profile/new-profile-orders-item/new-profile-orders-item.component';
+import { NewProjectComponent } from './new-pages/new-profile/new-project/new-project.component';
+import { NewProjectItemComponent } from './new-pages/new-profile/new-project-item/new-project-item.component';
 
 @NgModule({
   declarations: [
@@ -378,7 +380,9 @@ import { NewProfileOrdersItemComponent } from './new-pages/new-profile/new-profi
     NewPaymentComponent,
     NewGiftThumbComponent,
     NewProfileOrdersComponent,
-    NewProfileOrdersItemComponent
+    NewProfileOrdersItemComponent,
+    NewProjectComponent,
+    NewProjectItemComponent
   ],
   imports: [
     BrowserModule,

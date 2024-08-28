@@ -14,13 +14,13 @@
                 <app-new-wish-indicator [id]="model.id"></app-new-wish-indicator>
             </div>
             <div class="mb-3">
-                <app-new-personalize-button class="me-2" *ngIf="type === 'card'"></app-new-personalize-button>
-                <app-new-add-cart-button [type]="type" [item]="iModel" *ngIf="type !== 'postcard'"></app-new-add-cart-button>
+                <app-new-personalize-button class="me-2" *ngIf="isPersonalize" [iCard]="getICard()"></app-new-personalize-button>
+                <app-new-add-cart-button [type]="type" [item]="iModel" *ngIf="isAddToCart"></app-new-add-cart-button>
             </div>
-            <div class="mb-2" *ngIf="type !== 'postcard'">
+            <div class="mb-2" *ngIf="isBundle === false">
                 <h3 class="text-purple my-0"><b>{{getPrice()}}</b></h3>
             </div>
-            <div class="mb-3" *ngIf="type === 'postcard'">
+            <div class="mb-3" *ngIf="isBundle">
                 <button type="button" class="btn bundle me-1 mb-2" *ngFor="let bundle of bundles" (click)="onClickBundle(bundle)">
                     Bundle of <b>{{bundle.count.toLocaleString()}} pcs</b> for <b>{{'₱ ' + bundle.price.toLocaleString('en-US', { minimumFractionDigits: 2 })}}</b>
                 </button>

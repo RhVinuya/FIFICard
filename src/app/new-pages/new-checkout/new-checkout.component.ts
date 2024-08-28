@@ -15,6 +15,7 @@ import { NewStickerService } from 'src/app/new-services/new-sticker.service';
 import { NewPostcardService } from 'src/app/new-services/new-postcard.service';
 import { NewCardService } from 'src/app/new-services/new-card.service';
 import { NewFileService } from 'src/app/new-services/new-file.service';
+import { NewCartService } from 'src/app/new-services/new-cart.service';
 
 @Component({
   selector: 'app-new-checkout',
@@ -24,6 +25,7 @@ import { NewFileService } from 'src/app/new-services/new-file.service';
 export class NewCheckoutComponent implements OnInit, OnDestroy {
 
   storageService: NewStorageService;
+  cartService: NewCartService;
   addressService: NewAddressService;
   paymentService: NewPaymentService;
   cardService: NewCardService;
@@ -37,6 +39,7 @@ export class NewCheckoutComponent implements OnInit, OnDestroy {
 
   constructor(
     _storageService: NewStorageService,
+    _cartService: NewCartService,
     _addressService: NewAddressService,
     _paymentService: NewPaymentService,
     _cardService: NewCardService,
@@ -49,6 +52,7 @@ export class NewCheckoutComponent implements OnInit, OnDestroy {
     _ref: ChangeDetectorRef
   ) {
     this.storageService = _storageService;
+    this.cartService = _cartService;
     this.addressService = _addressService;
     this.paymentService = _paymentService;
     this.cardService = _cardService;
@@ -123,8 +127,9 @@ export class NewCheckoutComponent implements OnInit, OnDestroy {
     }
 
     this.ids = this.storageService.getCheckoutList();
-    this.ids.forEach(id => {
-      let iCart = this.storageService.getCart(id);
+
+    for await (let id of this.ids){
+      let iCart = await this.cartService.get(id);
       if (iCart) {
         let bundle: INewPaymentItemBundle | undefined = undefined;
         if (iCart.bundle) {
@@ -143,7 +148,7 @@ export class NewCheckoutComponent implements OnInit, OnDestroy {
           total: iCart.price
         })
       }
-    })
+    }
     this.calculateShipping();
     this.loading = false;
     this.ref.detectChanges();

@@ -2,7 +2,7 @@
     <app-new-title title="Cart" [breadcrumbs]="breadcrumbs"></app-new-title>
 </div>
 
-<div class="mxw-1920px no-item" *ngIf="ids && ids.length === 0">
+<div class="mxw-1920px no-item" *ngIf="carts.length === 0">
     <h3 class="text-purple my-0">No item on cart.</h3>
     <h6 class="text-gray my-0">Explore our Products</h6>
     <div class="buttons mt-4">
@@ -23,7 +23,7 @@
 
 <app-new-loading [loading]="loading"></app-new-loading>
 <div *ngIf="loading == false">
-    <div class="mxw-1920px row" *ngIf="ids && ids.length > 0">
+    <div class="mxw-1920px row" *ngIf="carts.length > 0">
         <div class="col-md-9">
             <div class="card bg-light border-light mb-2">
                 <div class="card-body">

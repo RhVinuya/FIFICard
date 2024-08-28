@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { INewGoogleUser, INewUser } from '../new-models/new-user';
+import { INewUser } from '../new-models/new-user';
 import { INewCart } from '../new-models/new-cart';
 import { INewPayment } from '../new-models/new-payment';
+import { INewPersonalize } from '../new-models/new-personalize';
 
 @Injectable({
   providedIn: 'root'
@@ -133,5 +134,31 @@ export class NewStorageService {
 
   clearPaymongoID(){
     localStorage.removeItem(environment.storage + 'PAYMONGO');
+  }
+
+  //---------------------
+
+  savePersonalizeIds(ids: string[]) {
+    localStorage.setItem(environment.storage + 'PERSONALIZE-IDS', JSON.stringify(ids));
+  }
+
+  getPersonalizeIds(): string[]{
+    let data: string | null = localStorage.getItem(environment.storage + 'PERSONALIZE-IDS')
+    if (data !== null) return JSON.parse(data);
+    else return [];
+  }
+
+  savePersonalize(value: INewPersonalize) {
+    localStorage.setItem(environment.storage + 'PERSONALIZE-' + value.id, JSON.stringify(value));
+  }
+
+  getPersonalize(id: string): INewPersonalize | undefined {
+    let data: string | null = localStorage.getItem(environment.storage + 'PERSONALIZE-' + id)
+    if (data !== null) return JSON.parse(data);
+    else return undefined;
+  }
+
+  removePersonalize(id: string){
+    localStorage.removeItem(environment.storage + 'PERSONALIZE-' + id);
   }
 }
