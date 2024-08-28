@@ -2,17 +2,21 @@ import { Injectable } from '@angular/core';
 import { collection, doc, Firestore, getDocFromServer, getDocs, getDocsFromServer, orderBy, query, where } from '@angular/fire/firestore';
 import { INewPostcard, INewPostcardBundle, INewPostcardImage } from '../new-models/new-postcard';
 import { environment } from 'src/environments/environment';
+import { NewStorageService } from './new-storage.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class NewPostcardService {
   store: Firestore;
+  storageService: NewStorageService;
 
   constructor(
-    _store: Firestore
+    _store: Firestore,
+    _storageService: NewStorageService
   ) {
     this.store = _store;
+    this.storageService = _storageService;
   }
 
   getAll(): Promise<INewPostcard[]> {
@@ -33,14 +37,18 @@ export class NewPostcardService {
 
   get(id: string): Promise<INewPostcard> {
     return new Promise((resolve) => {
-      let data = doc(this.store, 'cards/' + id);
-      getDocFromServer(data).then(doc => {
-        if (doc.exists()) {
-          let postcard: INewPostcard = doc.data() as INewPostcard;
-          postcard.id = doc.id;
-          resolve(postcard);
-        }
-      })
+      let postcard = this.storageService.getItemDetails(id)
+      if (postcard) resolve(postcard as INewPostcard)
+      else {
+        let data = doc(this.store, 'cards/' + id);
+        getDocFromServer(data).then(doc => {
+          if (doc.exists()) {
+            let postcard: INewPostcard = doc.data() as INewPostcard;
+            postcard.id = doc.id;
+            resolve(postcard);
+          }
+        })
+      }
     });
   }
 

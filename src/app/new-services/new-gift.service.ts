@@ -2,17 +2,21 @@ import { Injectable } from '@angular/core';
 import { collection, doc, Firestore, getDocFromServer, getDocs, getDocsFromServer, query, where } from '@angular/fire/firestore';
 import { INewGift, INewGiftImage } from '../new-models/new-gift';
 import { environment } from 'src/environments/environment';
+import { NewStorageService } from './new-storage.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class NewGiftService {
   store: Firestore;
+  storageService: NewStorageService;
 
   constructor(
-    _store: Firestore
+    _store: Firestore,
+    _storageService: NewStorageService
   ) {
     this.store = _store;
+    this.storageService = _storageService;
   }
 
   getAll(): Promise<INewGift[]> {
@@ -33,14 +37,18 @@ export class NewGiftService {
 
   get(id: string): Promise<INewGift> {
     return new Promise((resolve) => {
-      let data = doc(this.store, 'cards/' + id);
-      getDocFromServer(data).then(doc => {
-        if (doc.exists()) {
-          let gift: INewGift = doc.data() as INewGift;
-          gift.id = doc.id;
-          resolve(gift);
-        }
-      })
+      let gift = this.storageService.getItemDetails(id)
+      if (gift) resolve(gift as INewGift)
+      else {
+        let data = doc(this.store, 'cards/' + id);
+        getDocFromServer(data).then(doc => {
+          if (doc.exists()) {
+            let gift: INewGift = doc.data() as INewGift;
+            gift.id = doc.id;
+            resolve(gift);
+          }
+        })
+      }
     });
   }
 
@@ -51,7 +59,7 @@ export class NewGiftService {
       getDocsFromServer(q).then(docs => {
         let images: INewGiftImage[] = [];
         let temp: INewGiftImage[] = [];
-        
+
         docs.forEach(doc => {
           let image: INewGiftImage = doc.data() as INewGiftImage;
           temp.push(image);
@@ -61,7 +69,7 @@ export class NewGiftService {
           let image = temp.find(x => x.title === title);
           if (image) images.push(image)
         })
-        
+
         resolve(images);
       })
     });

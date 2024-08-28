@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { INewPostcard, INewPostcardBundle, NewPostcard } from 'src/app/new-models/new-postcard';
 import { NewFileService } from 'src/app/new-services/new-file.service';
 import { NewPostcardService } from 'src/app/new-services/new-postcard.service';
+import { NewStorageService } from 'src/app/new-services/new-storage.service';
 
 @Component({
   selector: 'app-new-postcard-thumb',
@@ -12,15 +13,18 @@ import { NewPostcardService } from 'src/app/new-services/new-postcard.service';
 export class NewPostcardThumbComponent implements OnInit {
   @Input() postcard: INewPostcard;
 
+  storageService: NewStorageService;
   postcardService: NewPostcardService;
   fileService: NewFileService;
   router: Router;
 
   constructor(
+    _storageService: NewStorageService,
     _postcardService: NewPostcardService,
     _fileService: NewFileService,
     _router: Router
   ) {
+    this.storageService = _storageService;
     this.postcardService = _postcardService;
     this.fileService = _fileService;
     this.router = _router;
@@ -34,6 +38,8 @@ export class NewPostcardThumbComponent implements OnInit {
   max: number = 0;
 
   async ngOnInit(): Promise<void> {
+    this.storageService.saveItemDetails(this.postcard);
+
     this._postcard = new NewPostcard(this.postcard);
 
     let postcardImages = await this.postcardService.getImages(this._postcard.id);

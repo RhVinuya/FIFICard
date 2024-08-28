@@ -4,6 +4,10 @@ import { INewUser } from '../new-models/new-user';
 import { INewCart } from '../new-models/new-cart';
 import { INewPayment } from '../new-models/new-payment';
 import { INewPersonalize } from '../new-models/new-personalize';
+import { INewCard } from '../new-models/new-card';
+import { INewSticker } from '../new-models/new-sticker';
+import { INewPostcard } from '../new-models/new-postcard';
+import { INewGift } from '../new-models/new-gift';
 
 @Injectable({
   providedIn: 'root'
@@ -161,4 +165,29 @@ export class NewStorageService {
   removePersonalize(id: string){
     localStorage.removeItem(environment.storage + 'PERSONALIZE-' + id);
   }
+
+  //--------------------
+
+  saveItemDetails(item: INewCard | INewSticker | INewPostcard | INewGift) {
+    localStorage.setItem(environment.storage + 'ITEM-' + item.id, JSON.stringify(item));
+  }
+
+  getItemDetails(id: string): INewCard | INewSticker | INewPostcard | INewGift | undefined {
+    let data: string | null = localStorage.getItem(environment.storage + 'ITEM-' + id)
+    if (data !== null) return JSON.parse(data);
+    else return undefined;
+  }
+
+  //-------------------
+
+  saveImageURL(id: string, value: string) {
+    localStorage.setItem(environment.storage + 'IMAGE-' + id, value);
+  }
+
+  getImageURL(id: string) {
+    let data: string | null = localStorage.getItem(environment.storage + 'IMAGE-' + id)
+    if (data !== null) return data;
+    else return '';
+  } 
+
 }

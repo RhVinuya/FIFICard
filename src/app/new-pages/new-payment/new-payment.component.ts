@@ -103,6 +103,7 @@ export class NewPaymentComponent implements OnInit {
       this.clear(iPayment);
     }
 
+    this.storageService.clearPaymongoID();
     this.isProcessing = false;
     this.ref.detectChanges();
   }

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { INewSticker, NewSticker } from 'src/app/new-models/new-sticker';
 import { NewFileService } from 'src/app/new-services/new-file.service';
 import { NewStickerService } from 'src/app/new-services/new-sticker.service';
+import { NewStorageService } from 'src/app/new-services/new-storage.service';
 
 @Component({
   selector: 'app-new-sticker-thumb',
@@ -12,15 +13,18 @@ import { NewStickerService } from 'src/app/new-services/new-sticker.service';
 export class NewStickerThumbComponent implements OnInit {
   @Input() sticker: INewSticker;
 
+  storageService: NewStorageService;
   stickerService: NewStickerService;
   fileService: NewFileService;
   router: Router;
 
   constructor(
+    _storageService: NewStorageService,
     _stickerService: NewStickerService,
     _fileService: NewFileService,
     _router: Router
   ) { 
+    this.storageService = _storageService;
     this.stickerService = _stickerService;
     this.fileService = _fileService;
     this.router = _router;
@@ -31,6 +35,7 @@ export class NewStickerThumbComponent implements OnInit {
   secondary: string = '';
 
   async ngOnInit(): Promise<void> {
+    this.storageService.saveItemDetails(this.sticker);
     this._sticker = new NewSticker(this.sticker);
 
     let stickerImages = await this.stickerService.getImages(this._sticker.id);

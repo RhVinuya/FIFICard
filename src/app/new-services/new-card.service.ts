@@ -2,17 +2,21 @@ import { Injectable } from '@angular/core';
 import { collection, doc, Firestore, getDocFromServer, getDocs, getDocsFromServer, query, where } from '@angular/fire/firestore';
 import { INewCard, INewCardImage, INewRating } from '../new-models/new-card';
 import { environment } from 'src/environments/environment';
+import { NewStorageService } from './new-storage.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class NewCardService {
   store: Firestore;
+  storageService: NewStorageService;
 
   constructor(
-    _store: Firestore
+    _store: Firestore,
+    _storageService: NewStorageService
   ) {
     this.store = _store;
+    this.storageService = _storageService;
   }
 
   getAll(): Promise<INewCard[]> {
@@ -33,14 +37,18 @@ export class NewCardService {
 
   get(id: string): Promise<INewCard> {
     return new Promise((resolve) => {
-      let data = doc(this.store, 'cards/' + id);
-      getDocFromServer(data).then(doc => {
-        if (doc.exists()) {
-          let card: INewCard = doc.data() as INewCard;
-          card.id = doc.id;
-          resolve(card);
-        }
-      })
+      let card = this.storageService.getItemDetails(id)
+      if (card) resolve(card as INewCard)
+      else {
+        let data = doc(this.store, 'cards/' + id);
+        getDocFromServer(data).then(doc => {
+          if (doc.exists()) {
+            let card: INewCard = doc.data() as INewCard;
+            card.id = doc.id;
+            resolve(card);
+          }
+        })
+      }
     });
   }
 
@@ -51,7 +59,7 @@ export class NewCardService {
       getDocsFromServer(q).then(docs => {
         let images: INewCardImage[] = [];
         let temp: INewCardImage[] = [];
-        
+
         docs.forEach(doc => {
           let image: INewCardImage = doc.data() as INewCardImage;
           temp.push(image);
@@ -61,7 +69,7 @@ export class NewCardService {
           let image = temp.find(x => x.title === title);
           if (image) images.push(image)
         })
-        
+
         resolve(images);
       })
     });
@@ -79,7 +87,7 @@ export class NewCardService {
           rating.id = doc.id;
           ratings.push(rating);
         });
-        
+
         resolve(ratings);
       })
     });

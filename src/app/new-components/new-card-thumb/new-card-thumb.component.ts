@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { INewCard, INewRating, NewCard } from 'src/app/new-models/new-card';
 import { NewCardService } from 'src/app/new-services/new-card.service';
 import { NewFileService } from 'src/app/new-services/new-file.service';
+import { NewStorageService } from 'src/app/new-services/new-storage.service';
 
 @Component({
   selector: 'app-new-card-thumb',
@@ -12,15 +13,18 @@ import { NewFileService } from 'src/app/new-services/new-file.service';
 export class NewCardThumbComponent implements OnInit {
   @Input() card: INewCard;
 
+  storageService: NewStorageService;
   cardService: NewCardService;
   fileService: NewFileService;
   router: Router;
 
   constructor(
+    _storageService: NewStorageService,
     _cardService: NewCardService,
     _fileService: NewFileService,
     _router: Router
   ) { 
+    this.storageService = _storageService;
     this.cardService = _cardService;
     this.fileService = _fileService;
     this.router = _router;
@@ -32,6 +36,8 @@ export class NewCardThumbComponent implements OnInit {
   rate: number = 0;
 
   async ngOnInit(): Promise<void> {
+    this.storageService.saveItemDetails(this.card);
+    
     this._card = new NewCard(this.card);
     
     let cardImages = await this.cardService.getImages(this._card.id);
