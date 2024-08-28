@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { collection, doc, Firestore, getDocFromServer, getDocs, getDocsFromServer, query, where } from '@angular/fire/firestore';
-import { INewGift, INewGiftImage } from '../new-models/new-gift';
+import { collection, doc, Firestore, getDocFromServer, getDocs, getDocsFromServer, query, where, limit } from '@angular/fire/firestore';
+import { INewGift, INewGiftImage, NewGift } from '../new-models/new-gift';
 import { environment } from 'src/environments/environment';
 import { NewStorageService } from './new-storage.service';
 
@@ -34,6 +34,31 @@ export class NewGiftService {
       })
     });
   }
+  
+  getByEvent(events: string[] | string): Promise <NewGift[]> {
+    console.log(events);
+    return new Promise((resolve) => {
+      const col = collection(this.store, 'cards');
+      const q = query(col, 
+        where('active', "==", true), 
+        where('type', "==", 'gift'), 
+        where('events', "array-contains-any", events.slice(0,10)),
+        limit(30)
+      )
+
+      console.log(events.slice(0,10));
+      getDocs(q).then(docs => {
+        let gifts: NewGift[] = [];
+        docs.forEach(doc => {
+          let gift: NewGift = new NewGift(doc.data() as  INewGift);
+          gift.id = doc.id;
+          gifts.push(gift);
+        })
+        resolve(gifts);
+      })
+    });
+  }
+
 
   get(id: string): Promise<INewGift> {
     return new Promise((resolve) => {

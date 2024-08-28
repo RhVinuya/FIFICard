@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { collection, doc, Firestore, getDocFromServer, getDocs, getDocsFromServer, orderBy, query, where } from '@angular/fire/firestore';
-import { INewSticker, INewStickerImage } from '../new-models/new-sticker';
+import { collection, doc, Firestore, getDocFromServer, getDocs, getDocsFromServer, orderBy, query, where, limit } from '@angular/fire/firestore';
+import { INewSticker, INewStickerImage, NewSticker } from '../new-models/new-sticker';
 import { environment } from 'src/environments/environment';
 import { NewStorageService } from './new-storage.service';
 
@@ -27,6 +27,27 @@ export class NewStickerService {
         let stickers: INewSticker[] = [];
         docs.forEach(doc => {
           let sticker: INewSticker = doc.data() as INewSticker;
+          sticker.id = doc.id;
+          stickers.push(sticker);
+        })
+        resolve(stickers);
+      })
+    });
+  }
+
+  getByEvent(events: string[] | string): Promise<NewSticker[]> {
+    return new Promise((resolve) => {
+      const col = collection(this.store, 'cards');
+      const q = query(col, 
+        where('active', "==", true), 
+        where('type', "==", 'sticker'), 
+        where('events', "array-contains-any", events),
+        limit(30)
+      )
+      getDocs(q).then(docs => {
+        let stickers: NewSticker[] = [];
+        docs.forEach(doc => {
+          let sticker: NewSticker = new NewSticker(doc.data() as INewSticker);
           sticker.id = doc.id;
           stickers.push(sticker);
         })

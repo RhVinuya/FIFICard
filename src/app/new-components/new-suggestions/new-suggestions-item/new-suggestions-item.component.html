@@ -1,14 +1,16 @@
 <div class="card">
     <div class="img-div">
-        <img src="https://firebasestorage.googleapis.com/v0/b/fifi-greetings.appspot.com/o/card%2F4nAQZomPLor9ezS5qqb3%2FPkK3guvJL0YQzacNmiZW?alt=media&token=95aa9b88-3de8-42d0-a2fa-8e2ed2e82847"
+        <img *ngIf="!model" src="https://firebasestorage.googleapis.com/v0/b/fifi-greetings.appspot.com/o/card%2F4nAQZomPLor9ezS5qqb3%2FPkK3guvJL0YQzacNmiZW?alt=media&token=95aa9b88-3de8-42d0-a2fa-8e2ed2e82847"
+            class="card-img" alt="...">
+        <img *ngIf="model" [src]="imageUrl"
             class="card-img" alt="...">
     </div>
     <div class="card-img-overlay">
         <a class="c-heart" href="#"> <i class="fa fa-2x fa-heart" aria-hidden="true"></i></a>
     </div>
     <div class="card-body">
-        <h6 class="card-title mt-0 mb-1">Remarkable!</h6>
-        <div class="mb-2"><b class="text-purple">P200.00</b></div>
+        <h6 class="card-title mt-0 mb-1">{{model.name}}</h6>
+        <div class="mb-2"><b class="text-purple">{{getPrice()}}</b></div>
         <app-new-add-cart-button></app-new-add-cart-button>
     </div>
 </div>
