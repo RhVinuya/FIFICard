@@ -35,19 +35,21 @@ export class NewCardService {
     });
   }
 
-  getByEvent(events: string[] | string): Promise<NewCard[]> {
+  getByEvent(event: string, signAndSend: boolean, messagetype: 'regular' | 'poetry'): Promise<INewCard[]> {
     return new Promise((resolve) => {
       const col = collection(this.store, 'cards');
       const q = query(col, 
         where('active', "==", true), 
         where('type', "==", 'card'), 
-        where('event', "==", events),
-        limit(30)
+        where('events', "array-contains", event),
+        where('signAndSend', '==', signAndSend),
+        where('messagetype', '==', messagetype),
+        limit(31)
       ) 
       getDocs(q).then(docs => {
-        let cards: NewCard[] = [];
+        let cards: INewCard[] = [];
         docs.forEach(doc => {
-          let card: NewCard = new NewCard(doc.data() as INewCard);
+          let card: INewCard = doc.data() as INewCard;
           card.id = doc.id;
           cards.push(card);
         })

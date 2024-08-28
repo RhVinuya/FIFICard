@@ -35,22 +35,20 @@ export class NewGiftService {
     });
   }
   
-  getByEvent(events: string[] | string): Promise <NewGift[]> {
-    console.log(events);
+  getByEvent(event: string): Promise <INewGift[]> {
     return new Promise((resolve) => {
       const col = collection(this.store, 'cards');
       const q = query(col, 
         where('active', "==", true), 
         where('type', "==", 'gift'), 
-        where('events', "array-contains-any", events.slice(0,10)),
-        limit(30)
+        where('events', "array-contains", event),
+        limit(31)
       )
 
-      console.log(events.slice(0,10));
       getDocs(q).then(docs => {
-        let gifts: NewGift[] = [];
+        let gifts: INewGift[] = [];
         docs.forEach(doc => {
-          let gift: NewGift = new NewGift(doc.data() as  INewGift);
+          let gift: INewGift = doc.data() as  INewGift;
           gift.id = doc.id;
           gifts.push(gift);
         })

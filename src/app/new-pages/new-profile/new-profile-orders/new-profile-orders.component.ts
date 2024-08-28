@@ -23,15 +23,18 @@ export class NewProfileOrdersComponent implements OnInit {
     this.paymentService = _paymentService
   }
 
+  loading: boolean = false;
   iPayments: INewPayment[] = [];
   selected: string = '';
 
   async ngOnInit(): Promise<void> {
+    this.loading = true;
     let iUser = this.storageService.getUser();
     if (iUser) {
       this.iPayments = await this.paymentService.getAll(iUser.id);
       if (this.iPayments.length > 0) this.selected = this.iPayments[0].id;
     }
+    this.loading = false
   }
 
   getSender(iPayment: INewPayment): NewSender {

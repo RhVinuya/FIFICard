@@ -41,26 +41,9 @@ export class NewPersonalizeButtonComponent implements OnInit {
     this.isHover = false;
   }
 
-  onPersonalize() {     
-    let personalize: INewPersonalize | undefined = undefined;
-    let ids = this.storageService.getPersonalizeIds();
-    ids.forEach(id => {
-      let data = this.storageService.getPersonalize(id);
-      if (data) {
-        if (data.itemId === this.iCard.id) {
-          personalize = data;
-        }
-      }
-    })
-    if (personalize === undefined) {
-      personalize = {
-        id: this.personalizeService.generateID(),
-        itemId: this.iCard.id
-      }
-      this.storageService.savePersonalize(personalize)
-      this.storageService.savePersonalizeIds([...ids, personalize.id])
-    }
-
+  async onPersonalize() {     
+    let personalize = await this.personalizeService.getByCard(this.iCard.id)
+    if (personalize === undefined) personalize = await this.personalizeService.create(this.iCard.id);
     const reference = this.modalService.open(NewPersonalizeComponent, { animation: true, fullscreen: true });
     reference.componentInstance.iPersonalize = personalize;
   }

@@ -76,7 +76,7 @@ export class NewStickersComponent implements OnInit {
       if (this.events.length === 0) {
         this.stickers.forEach(sticker => {
           let found: boolean = false;
-          environment.cardevents.forEach(event => {
+          environment.stickerevents.forEach(event => {
             if (sticker.events.findIndex(x => x.toLowerCase() === event.toLowerCase()) >= 0) {
               found = true
             }

@@ -154,7 +154,6 @@ import { NewWishlistComponent } from './new-pages/new-wishlist/new-wishlist.comp
 import { NewProfileComponent } from './new-pages/new-profile/new-profile.component';
 import { NewRegistrationComponent } from './new-pages/new-registration/new-registration.component';
 import { NewSuggestionsComponent } from './new-components/new-suggestions/new-suggestions.component';
-import { NewSuggestionsItemComponent } from './new-components/new-suggestions/new-suggestions-item/new-suggestions-item.component';
 import { NewLayoutHeaderComponent } from './new-pages/new-layout/new-layout-header/new-layout-header.component';
 import { NewLayoutStickersComponent } from './new-pages/new-layout/new-layout-stickers/new-layout-stickers.component';
 import { NewLayoutPostcardsComponent } from './new-pages/new-layout/new-layout-postcards/new-layout-postcards.component';
@@ -335,7 +334,6 @@ import { NewProjectItemComponent } from './new-pages/new-profile/new-project-ite
     NewProfileComponent,
     NewRegistrationComponent,
     NewSuggestionsComponent,
-    NewSuggestionsItemComponent,
     NewLayoutHeaderComponent,
     NewLayoutStickersComponent,
     NewLayoutPostcardsComponent,

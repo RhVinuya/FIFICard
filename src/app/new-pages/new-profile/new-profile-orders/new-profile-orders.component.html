@@ -1,4 +1,6 @@
-<div class="accordion" id="accordionExample">
+<app-new-loading [loading]="loading"></app-new-loading>
+
+<div class="accordion" id="accordionExample" *ngIf="loading == false">
     <div class="accordion-item" *ngFor="let iPayment of iPayments">
         <h2 class="accordion-header mt-0">
             <button [ngClass]="selected === iPayment.id ? 'accordion-button py-2' : 'accordion-button py-2 collapsed'" type="button" data-bs-toggle="collapse" (click)="open(iPayment.id)">

@@ -35,19 +35,19 @@ export class NewStickerService {
     });
   }
 
-  getByEvent(events: string[] | string): Promise<NewSticker[]> {
+  getByEvent(event:  string): Promise<INewSticker[]> {
     return new Promise((resolve) => {
       const col = collection(this.store, 'cards');
       const q = query(col, 
         where('active', "==", true), 
         where('type', "==", 'sticker'), 
-        where('events', "array-contains-any", events),
-        limit(30)
+        where('events', "array-contains", event),
+        limit(31)
       )
       getDocs(q).then(docs => {
-        let stickers: NewSticker[] = [];
+        let stickers: INewSticker[] = [];
         docs.forEach(doc => {
-          let sticker: NewSticker = new NewSticker(doc.data() as INewSticker);
+          let sticker: INewSticker = doc.data() as INewSticker;
           sticker.id = doc.id;
           stickers.push(sticker);
         })

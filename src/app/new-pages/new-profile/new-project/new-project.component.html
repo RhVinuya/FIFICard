@@ -1,1 +1,4 @@
-<app-new-project-item *ngFor="let project of projects" [project]="project"></app-new-project-item>
+<app-new-loading [loading]="loading"></app-new-loading>
+<div *ngIf="loading === false">
+    <app-new-project-item *ngFor="let project of projects" [project]="project"></app-new-project-item>
+</div>

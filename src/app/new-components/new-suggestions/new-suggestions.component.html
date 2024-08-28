@@ -1,37 +1,35 @@
+<app-new-loading [loading]="loading"></app-new-loading>
 
-
-<div class="data-row">
-    <button class="previous" color="primary" [disabled]="!canClickPrevious" (click)="previous()"> 
-        <i class="fa fa-2x fa-angle-left" aria-hidden="true"></i>
-    </button>
-    <button class="next"color="primary" [disabled]="!canClickNext" (click)="next()">
-        <i class="fa fa-2x fa-angle-right" aria-hidden="true"></i>
-    </button>
-    <div class="data-list show-in-row">
-        <div class="row" *ngIf="cardList">
-            <div class="col-2" *ngFor="let item of cardList;  let index = index; let last = last">
-                <app-new-suggestions-item [type]="type" [model]="item"></app-new-suggestions-item>
-            </div>
+<div class="main" *ngIf="loading === false">
+    <div class="action text-start">
+        <button [disabled]="!canClickPrevious" (click)="previous()">
+            <ion-icon name="chevron-back-outline"></ion-icon>
+        </button>
+    </div>
+    <div class="row content" *ngIf="type === 'card'">
+        <div class="col-2 px-2" *ngFor="let suggestion of getAsCard(list)">
+            <app-new-card-thumb [card]="suggestion"></app-new-card-thumb>
         </div>
-        
-        <div class="row" *ngIf="stickerList">
-            <div class="col-2" *ngFor="let item of stickerList;  let index = index; let last = last">
-                <app-new-suggestions-item [type]="type" [model]="item"></app-new-suggestions-item>
-            </div>
+    </div>
+    <div class="row content" *ngIf="type === 'sticker'">
+        <div class="col-2 px-2" *ngFor="let suggestion of getAsSticker(list)">
+            <app-new-sticker-thumb [sticker]="suggestion"></app-new-sticker-thumb>
         </div>
-        
-        <div class="row" *ngIf="postcardList">
-            <div class="col-2" *ngFor="let item of postcardList;  let index = index; let last = last">
-                <app-new-suggestions-item [type]="type" [model]="item"></app-new-suggestions-item>
-            </div>
-        
+    </div>
+    <div class="row content" *ngIf="type === 'postcard'">
+        <div class="col-2 px-2" *ngFor="let suggestion of getAsPostcard(list)">
+            <app-new-postcard-thumb [postcard]="suggestion"></app-new-postcard-thumb>
         </div>
-        
-        <div class="row" *ngIf="giftList">
-            <div class="col-2" *ngFor="let item of giftList;  let index = index; let last = last">
-                <app-new-suggestions-item [type]="type" [model]="item"></app-new-suggestions-item>
-            </div>
+    </div>
+    <div class="row content" *ngIf="type === 'gift'">
+        <div class="col-2 px-2" *ngFor="let suggestion of getAsGift(list)">
+            <app-new-gift-thumb [gift]="suggestion"></app-new-gift-thumb>
         </div>
+    </div>
+    <div class="action text-end">
+        <button [disabled]="!canClickNext" (click)="next()">
+            <ion-icon name="chevron-forward-outline"></ion-icon>
+        </button>
     </div>
 </div>
 

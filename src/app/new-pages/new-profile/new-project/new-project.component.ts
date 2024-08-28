@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { INewPersonalize } from 'src/app/new-models/new-personalize';
-import { NewStorageService } from 'src/app/new-services/new-storage.service';
+import { NewPersonalizeService } from 'src/app/new-services/new-personalize.service';
 
 @Component({
   selector: 'app-new-project',
@@ -9,22 +9,21 @@ import { NewStorageService } from 'src/app/new-services/new-storage.service';
 })
 export class NewProjectComponent implements OnInit {
 
-  storageService: NewStorageService;
+  personalizeService: NewPersonalizeService;
 
   constructor(
-    _storageService: NewStorageService
+    _personalizeService: NewPersonalizeService
   ) { 
-    this.storageService = _storageService;
+    this.personalizeService = _personalizeService;
   }
 
+  loading: boolean = false;
   projects: INewPersonalize[] = [];
 
-  ngOnInit(): void {
-    let ids = this.storageService.getPersonalizeIds();
-    ids.forEach(id => {
-      let project = this.storageService.getPersonalize(id)
-      if (project) this.projects.push(project)
-    })
+  async ngOnInit(): Promise<void> {
+    this.loading = true;
+    this.projects = await this.personalizeService.getAll();
+    this.loading = false;
   }
 
 }

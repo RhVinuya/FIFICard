@@ -35,19 +35,19 @@ export class NewPostcardService {
     });
   }
 
-  getByEvent(events: string[] | string): Promise <NewPostcard[]> {
+  getByEvent(event: string): Promise <INewPostcard[]> {
     return new Promise((resolve) => {
       const col = collection(this.store, 'cards');
       const q = query(col, 
         where('active', "==", true), 
         where('type', "==", 'postcard'), 
-        where('events', "array-contains-any", events),
-        limit(30)
+        where('events', "array-contains", event),
+        limit(31)
       )
       getDocs(q).then(docs => {
-        let postcards: NewPostcard[] = [];
+        let postcards: INewPostcard[] = [];
         docs.forEach(doc => {
-          let postcard: NewPostcard = new NewPostcard(doc.data() as  INewPostcard);
+          let postcard: INewPostcard = doc.data() as  INewPostcard;
           postcard.id = doc.id;
           postcards.push(postcard);
         })

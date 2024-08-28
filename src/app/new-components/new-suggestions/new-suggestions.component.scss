@@ -1,9 +1,27 @@
-.previous {
-    left: 0px;
+.main{
+    width: 100%;
+    min-height: 200px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
 }
 
-.next {
-    right: 30px;
-    position: absolute;
+.main .action {
+    width: 70px;
 }
-  
+
+.main .action button{
+    font-size: 30px;
+    color: #bb5ed3;
+    background: none;
+}
+
+.main .action button:disabled {
+    opacity: 0.5;
+}
+
+.main .content{
+    width: calc(100% - 70px - 70px);
+}
+

@@ -8,6 +8,7 @@ import { NewCartService } from 'src/app/new-services/new-cart.service';
 import { NewGiftService } from 'src/app/new-services/new-gift.service';
 import { NewPostcardService } from 'src/app/new-services/new-postcard.service';
 import { NewStickerService } from 'src/app/new-services/new-sticker.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-new-suggestions',
@@ -15,26 +16,11 @@ import { NewStickerService } from 'src/app/new-services/new-sticker.service';
   styleUrls: ['./new-suggestions.component.scss']
 })
 export class NewSuggestionsComponent implements OnInit {
-
-  @Input() model: NewCard | NewSticker | NewPostcard | NewGift;
-  @Input() type: string;
-
-  startIndex: number = 0;
-  endIndex: number = 6;
-  canClickPrevious: boolean = false;
-  canClickNext: boolean = false;
-
-  cardList: NewCard[]| undefined = undefined;
-  stickerList: NewSticker[] | undefined = undefined;
-  postcardList: NewPostcard[] | undefined = undefined;
-  giftList: NewGift[] | undefined = undefined;
-
-  cardSuggestions: NewCard[]| undefined = undefined;
-  stickerSuggestions: NewSticker[] | undefined = undefined;
-  postcardSuggestions: NewPostcard[] | undefined = undefined;
-  giftSuggestions: NewGift[] | undefined = undefined;
-
-  iModel: INewCard | INewSticker | INewPostcard | INewGift;
+  @Input() set model(value: INewCard | INewSticker | INewPostcard | INewGift) {
+    this.iModel = value;
+    this.inialize();
+  }
+  @Input() type: 'card' | 'sticker' | 'postcard' | 'gift';
 
   cardService: NewCardService;
   stickerService: NewStickerService;
@@ -42,7 +28,7 @@ export class NewSuggestionsComponent implements OnInit {
   giftService: NewGiftService;
   cartService: NewCartService;
 
-  constructor(   
+  constructor(
     _cardService: NewCardService,
     _stickerService: NewStickerService,
     _postcardService: NewPostcardService,
@@ -56,85 +42,102 @@ export class NewSuggestionsComponent implements OnInit {
     this.cartService = _cartService;
   }
 
-  ngOnInit(): void {
-    console.log(this.model);
+  loading: boolean = false;
+  iModel: INewCard | INewSticker | INewPostcard | INewGift;
+  startIndex: number = 0;
+  endIndex: number = 6;
+  canClickPrevious: boolean = false;
+  canClickNext: boolean = false;
 
-    if (this.model instanceof NewCard && this.type === 'card') {
-      this.cardService.getByEvent(this.model.event).then(async (cards: NewCard[]) => {
-        this.cardSuggestions = cards;
-        this.cardList = cards.slice(this.startIndex, this.endIndex);
-        this.loadData(this.cardSuggestions);
-      })
-    }
-    else if (this.model instanceof NewSticker && this.type === 'sticker') {
-      this.stickerService.getByEvent(this.model.events).then(async (stickers: NewSticker[]) => {
-        this.stickerSuggestions = stickers;
-        this.stickerList = stickers.slice(this.startIndex, this.endIndex);
-        this.loadData(this.stickerSuggestions);
-      })
-    }
-    else if (this.model instanceof NewPostcard && this.type === 'postcard') {
-      this.postcardService.getByEvent(this.model.events).then(async ( postcards: NewPostcard[] ) => {
-        this.postcardSuggestions = postcards;
-        this.postcardList = postcards.slice(this.startIndex, this.endIndex);
-        this.loadData(this.postcardSuggestions);
-      })
-    }
-    else if (this.model instanceof NewGift && this.type === 'gift') {
-      this.giftService.getByEvent(this.model.events).then(async gifts => {
-        this.giftSuggestions = gifts;
-        this.giftList = gifts.slice(this.startIndex, this.endIndex);
-        this.loadData(this.giftSuggestions);
-      })
-    }
+  suggestions: INewCard[] | INewSticker[] | INewPostcard[] | INewGift[] = [];
+  list: INewCard[] | INewSticker[] | INewPostcard[] | INewGift[] = [];
+
+  ngOnInit() {
   }
 
-  loadData(data: NewCard[] | NewSticker[] | NewPostcard[] | NewGift[]) {
-    if(this.startIndex < 6) {
-      this.canClickPrevious = false;
-    }else{
-      this.canClickPrevious = true;
+  async inialize() {
+    this.loading = true;
+    if (this.type === 'card') {
+      let iCard = this.iModel as INewCard;
+      this.suggestions = await this.cardService.getByEvent(iCard.event, iCard.signAndSend ? iCard.signAndSend : false, iCard.messagetype);
+      this.suggestions = this.suggestions.filter(x => x.id !== iCard.id).slice(0, 30)
+      this.list = this.suggestions.slice(this.startIndex, this.endIndex);
+      this.loadData();
     }
-    if(data.length > this.endIndex) {
-      this.canClickNext = true;
-    }else{
-      this.canClickNext = false;
+    else if (this.type === 'sticker') {
+      let iSticker = this.iModel as INewSticker;
+      let event = this.getAValidEvent(environment.stickerevents, iSticker.events);
+      this.suggestions = await this.stickerService.getByEvent(event)
+      this.suggestions = this.suggestions.filter(x => x.id !== iSticker.id).slice(0, 30)
+      this.list = this.suggestions.slice(this.startIndex, this.endIndex);
+      this.loadData();
     }
+    else if (this.type === 'postcard') {
+      let iPostcard = this.iModel as INewPostcard;
+      let event = this.getAValidEvent(environment.postcardevents, iPostcard.events);
+      this.suggestions = await this.postcardService.getByEvent(event)
+      this.suggestions = this.suggestions.filter(x => x.id !== iPostcard.id).slice(0, 30)
+      this.list = this.suggestions.slice(this.startIndex, this.endIndex);
+      this.loadData();
+    }
+    else if (this.type === 'gift') {
+      let iGift = this.iModel as INewGift;
+      let event = this.getAValidEvent([...environment.giftscategories, ...environment.giftsrecipients], iGift.events);
+      this.suggestions = await this.giftService.getByEvent(event);
+      this.suggestions = this.suggestions.filter(x => x.id !== iGift.id).slice(0, 30)
+      this.list = this.suggestions.slice(this.startIndex, this.endIndex);
+      this.loadData();
+    }
+    this.loading = false;
+  }
+
+  getAValidEvent(events: string[], itemEvents: string[]): string {
+    let result: string = '';
+    itemEvents.forEach(itemEvent => {
+      if (itemEvent) {
+        if (events.findIndex(event => event === itemEvent) >= 0) {
+          result = itemEvent;
+        }
+      }
+    })
+    return result;
+  }
+
+  loadData() {
+    if (this.startIndex < 6) this.canClickPrevious = false;
+    else this.canClickPrevious = true;
+    if (this.suggestions.length > this.endIndex) this.canClickNext = true;
+    else this.canClickNext = false;
   }
 
   previous() {
     this.startIndex -= 6;
     this.endIndex -= 6;
-    this.getList();
+    this.list = this.suggestions.slice(this.startIndex, this.endIndex)
+    this.loadData()
   }
 
   next() {
     this.startIndex += 6;
     this.endIndex += 6;
-    this.getList();
+    this.list = this.suggestions.slice(this.startIndex, this.endIndex)
+    this.loadData()
   }
 
-  getList() {
-    switch(this.type) {
-      case 'card': 
-          this.cardList = this.cardSuggestions!.slice(this.startIndex, this.endIndex);
-          this.loadData(this.cardSuggestions!);
-        break;
-      case 'sticker': 
-          this.stickerList = this.stickerSuggestions!.slice(this.startIndex, this.endIndex);
-          this.loadData(this.stickerSuggestions!);
-        break;
-      case 'postcard': 
-          this.postcardList = this.postcardSuggestions!.slice(this.startIndex, this.endIndex);
-          this.loadData(this.postcardSuggestions!);
-        break;
-      case 'gift': 
-          this.giftList = this.giftSuggestions!.slice(this.startIndex, this.endIndex);
-          this.loadData(this.giftSuggestions!);
-        break;
-    }
-
+  getAsCard(list: INewCard[] | INewSticker[] | INewPostcard[] | INewGift[]) {
+    return list as INewCard[];
   }
 
+  getAsSticker(list: INewCard[] | INewSticker[] | INewPostcard[] | INewGift[]) {
+    return list as INewSticker[];
+  }
+
+  getAsPostcard(list: INewCard[] | INewSticker[] | INewPostcard[] | INewGift[]) {
+    return list as INewPostcard[];
+  }
+
+  getAsGift(list: INewCard[] | INewSticker[] | INewPostcard[] | INewGift[]) {
+    return list as INewGift[];
+  }
 }
 
