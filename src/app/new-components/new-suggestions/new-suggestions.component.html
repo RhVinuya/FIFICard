@@ -1,20 +1,37 @@
-<div class="row">
-    <div class="col-2">
-        <app-new-suggestions-item></app-new-suggestions-item>
-    </div>
-    <div class="col-2">
-        <app-new-suggestions-item></app-new-suggestions-item>
-    </div>
-    <div class="col-2">
-        <app-new-suggestions-item></app-new-suggestions-item>
-    </div>
-    <div class="col-2">
-        <app-new-suggestions-item></app-new-suggestions-item>
-    </div>
-    <div class="col-2">
-        <app-new-suggestions-item></app-new-suggestions-item>
-    </div>
-    <div class="col-2">
-        <app-new-suggestions-item></app-new-suggestions-item>
+
+
+<div class="data-row">
+    <button class="previous" color="primary" [disabled]="!canClickPrevious" (click)="previous()"> 
+        <i class="fa fa-2x fa-angle-left" aria-hidden="true"></i>
+    </button>
+    <button class="next"color="primary" [disabled]="!canClickNext" (click)="next()">
+        <i class="fa fa-2x fa-angle-right" aria-hidden="true"></i>
+    </button>
+    <div class="data-list show-in-row">
+        <div class="row" *ngIf="cardList">
+            <div class="col-2" *ngFor="let item of cardList;  let index = index; let last = last">
+                <app-new-suggestions-item [type]="type" [model]="item"></app-new-suggestions-item>
+            </div>
+        </div>
+        
+        <div class="row" *ngIf="stickerList">
+            <div class="col-2" *ngFor="let item of stickerList;  let index = index; let last = last">
+                <app-new-suggestions-item [type]="type" [model]="item"></app-new-suggestions-item>
+            </div>
+        </div>
+        
+        <div class="row" *ngIf="postcardList">
+            <div class="col-2" *ngFor="let item of postcardList;  let index = index; let last = last">
+                <app-new-suggestions-item [type]="type" [model]="item"></app-new-suggestions-item>
+            </div>
+        
+        </div>
+        
+        <div class="row" *ngIf="giftList">
+            <div class="col-2" *ngFor="let item of giftList;  let index = index; let last = last">
+                <app-new-suggestions-item [type]="type" [model]="item"></app-new-suggestions-item>
+            </div>
+        </div>
     </div>
 </div>
+

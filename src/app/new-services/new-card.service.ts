@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { collection, doc, Firestore, getDocFromServer, getDocs, getDocsFromServer, query, where } from '@angular/fire/firestore';
-import { INewCard, INewCardImage, INewRating } from '../new-models/new-card';
+import { collection, doc, Firestore, getDocFromServer, getDocs, getDocsFromServer, query, where, limit  } from '@angular/fire/firestore';
+import { INewCard, INewCardImage, INewRating, NewCard } from '../new-models/new-card';
 import { environment } from 'src/environments/environment';
 import { NewStorageService } from './new-storage.service';
 
@@ -27,6 +27,27 @@ export class NewCardService {
         let cards: INewCard[] = [];
         docs.forEach(doc => {
           let card: INewCard = doc.data() as INewCard;
+          card.id = doc.id;
+          cards.push(card);
+        })
+        resolve(cards);
+      })
+    });
+  }
+
+  getByEvent(events: string[] | string): Promise<NewCard[]> {
+    return new Promise((resolve) => {
+      const col = collection(this.store, 'cards');
+      const q = query(col, 
+        where('active', "==", true), 
+        where('type', "==", 'card'), 
+        where('event', "==", events),
+        limit(30)
+      ) 
+      getDocs(q).then(docs => {
+        let cards: NewCard[] = [];
+        docs.forEach(doc => {
+          let card: NewCard = new NewCard(doc.data() as INewCard);
           card.id = doc.id;
           cards.push(card);
         })

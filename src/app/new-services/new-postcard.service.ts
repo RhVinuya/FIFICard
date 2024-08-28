@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { collection, doc, Firestore, getDocFromServer, getDocs, getDocsFromServer, orderBy, query, where } from '@angular/fire/firestore';
-import { INewPostcard, INewPostcardBundle, INewPostcardImage } from '../new-models/new-postcard';
+import { collection, doc, Firestore, getDocFromServer, getDocs, getDocsFromServer, orderBy, query, where, limit } from '@angular/fire/firestore';
+import { INewPostcard, INewPostcardBundle, INewPostcardImage, NewPostcard } from '../new-models/new-postcard';
 import { environment } from 'src/environments/environment';
 import { NewStorageService } from './new-storage.service';
 
@@ -27,6 +27,27 @@ export class NewPostcardService {
         let postcards: INewPostcard[] = [];
         docs.forEach(doc => {
           let postcard: INewPostcard = doc.data() as INewPostcard;
+          postcard.id = doc.id;
+          postcards.push(postcard);
+        })
+        resolve(postcards);
+      })
+    });
+  }
+
+  getByEvent(events: string[] | string): Promise <NewPostcard[]> {
+    return new Promise((resolve) => {
+      const col = collection(this.store, 'cards');
+      const q = query(col, 
+        where('active', "==", true), 
+        where('type', "==", 'postcard'), 
+        where('events', "array-contains-any", events),
+        limit(30)
+      )
+      getDocs(q).then(docs => {
+        let postcards: NewPostcard[] = [];
+        docs.forEach(doc => {
+          let postcard: NewPostcard = new NewPostcard(doc.data() as  INewPostcard);
           postcard.id = doc.id;
           postcards.push(postcard);
         })
