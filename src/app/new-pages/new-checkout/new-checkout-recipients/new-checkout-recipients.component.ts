@@ -36,8 +36,10 @@ export class NewCheckoutRecipientsComponent implements OnInit {
   }
 
   addresses: NewAddress[] = [];
+  defaultAddress: string;
 
   ngOnInit(): void {
+    this.defaultAddress = this.defaultAddressId;
     this.iAddresses.forEach(value => {
       this.addresses.push(new NewAddress(value))
     })
@@ -55,6 +57,7 @@ export class NewCheckoutRecipientsComponent implements OnInit {
     const reference = this.modalService.open(NewCreateAddressComponent, { animation: true, size: 'lg' });
     reference.componentInstance.title = "Create Receiver and Shipping Address";
     reference.componentInstance.userid = this.id;
+
     const onSaveReference = reference.componentInstance.onSave.subscribe((value: INewAddress) => {
       this.onAddressChange.emit(value);
       let address = new NewAddress(value as INewAddress)
@@ -63,13 +66,16 @@ export class NewCheckoutRecipientsComponent implements OnInit {
       this.onChange.emit(address.id);
       reference.close();
     })
+
     const defaultReference = reference.componentInstance.onDefault.subscribe(async (value: string) => {
       if (value !== '') {
         await this.accountService.updateDefaultAddress(this.id, value);
+        this.defaultAddress = value;
         this.onChangeDefault.emit(value)
         this.ref.detectChanges();
       }
     })
+
     reference.result.then(_ => {
       defaultReference.unsubscribe();
       onSaveReference.unsubscribe();
@@ -81,7 +87,8 @@ export class NewCheckoutRecipientsComponent implements OnInit {
     reference.componentInstance.title = "Edit Receiver and Shipping Address";
     reference.componentInstance.userid = this.id;
     reference.componentInstance.data = address as INewAddress;
-    reference.componentInstance.isDefault = this.defaultAddressId === this.id;
+    reference.componentInstance.isDefault = this.defaultAddress === address.id;
+
     const onSaveReference = reference.componentInstance.onSave.subscribe((value: INewAddress) => {
       this.onAddressChange.emit(value);
       let idx = this.addresses.findIndex(x => x.id === value.id);
@@ -90,11 +97,14 @@ export class NewCheckoutRecipientsComponent implements OnInit {
       this.onChange.emit(address.id);
       reference.close();
     })
+
     const defaultReference = reference.componentInstance.onDefault.subscribe(async (value: string) => {
+      this.onChangeDefault.emit(value);
       await this.accountService.updateDefaultAddress(this.id, value);
-      this.onChangeDefault.emit(value)
+      this.defaultAddress = value;
       this.ref.detectChanges();
     })
+
     reference.result.then(_ => {
       onSaveReference.unsubscribe();
       defaultReference.unsubscribe();

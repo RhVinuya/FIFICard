@@ -120,7 +120,7 @@ export class NewCheckoutComponent implements OnInit, OnDestroy {
         email: this.iUser.email
       })
       this.ref.detectChanges();
-      this.defaultAddressId = this.iUser.id;
+      this.defaultAddressId = this.iUser.address;
       this.addresses = await this.addressService.getAll(this.iUser.id);
       if (this.iUser.address && this.iUser.address !== '') this.loadAddress(this.iUser.address);
       this.ref.detectChanges();
@@ -182,23 +182,27 @@ export class NewCheckoutComponent implements OnInit, OnDestroy {
     reference.componentInstance.iAddresses = this.addresses;
     reference.componentInstance.defaultAddressId = this.defaultAddressId;
     reference.componentInstance.selected = this.receiver ? this.receiver.id : '';
+
     const clickRef = reference.componentInstance.onChange.subscribe((value: string) => {
       if (value) this.loadAddress(value)
       reference.close();
     })
+
     const addressDefault = reference.componentInstance.onChangeDefault.subscribe((value: string) => {
       let iUser = this.storageService.getUser();
       if (iUser) {
+        this.defaultAddressId = value;
         iUser.address = value;
         this.storageService.createUser(iUser);
       }
     })
+
     const addressChange = reference.componentInstance.onAddressChange.subscribe((value: INewAddress) => {
       let idx = this.addresses.findIndex(x => x.id === value.id)
-      console.log(idx, this.addresses)
       if (idx < 0) this.addresses = [...this.addresses, value]
       else this.addresses[idx] = value
     })
+
     reference.result.then(_ => {
       clickRef.unsubscribe();
       addressDefault.unsubscribe();

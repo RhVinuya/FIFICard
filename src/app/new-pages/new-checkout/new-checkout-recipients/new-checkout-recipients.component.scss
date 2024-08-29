@@ -33,37 +33,70 @@
 }
 
 .card:hover {
-    cursor: pointer;
     border-color: #ab37c9 !important;
 }
 
-.detail{
+.details {
+    cursor: pointer;
+}
+
+.detail {
+    cursor: pointer;
     display: flex;
     flex-direction: row;
-    align-items: flex-start;;
+    align-items: flex-start;
     justify-content: flex-start;
     gap: 5px;
 }
 
-ion-icon{
+ion-icon {
     color: #ab37c9;
 }
 
-.selected{
+.selected {
     position: absolute;
     color: #ab37c9;
     right: 10px;
     top: 10px
 }
 
-table{
+table {
     width: 100%;
 }
 
-.auto{
+.auto {
     width: auto;
 }
 
-.default{
+.default {
     width: 8%;
+}
+
+a {
+    font-size: 0.8rem;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+a:visited {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+a:active {
+    text-decoration: none;
+}
+
+.space-between{
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: space-between;
 }

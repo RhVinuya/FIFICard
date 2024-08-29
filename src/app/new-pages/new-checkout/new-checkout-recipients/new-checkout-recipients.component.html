@@ -22,8 +22,12 @@
                     <h6 class="my-0">{{address.getFullAddress()}}</h6>
                 </div>
             </div>
-            <div class="text-end mt-1">
+            <div class="space-between ms-2 mt-1">
                 <a class="text-primary" (click)="onClickEdit(address)">EDIT</a>
+                <div class="detail" *ngIf="defaultAddress === address.id">
+                    <ion-icon name="checkmark-circle-outline"></ion-icon>
+                    <h6 class="my-0">Default</h6>
+                </div>
             </div>
         </div>
     </div>
