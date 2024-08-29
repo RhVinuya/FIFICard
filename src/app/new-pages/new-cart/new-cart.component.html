@@ -5,21 +5,36 @@
 <div class="mxw-1920px no-item" *ngIf="carts.length === 0">
     <h3 class="text-purple my-0">No item on cart.</h3>
     <h6 class="text-gray my-0">Explore our Products</h6>
-    <div class="buttons mt-4">
-        <button type="button" class="product" [routerLink]="['/new/cards/all']">
-            CARDS
-        </button>
-        <button type="button" class="product" [routerLink]="['/new/stickers/all']">
-            STICKERS
-        </button>
-        <button type="button" class="product" [routerLink]="['/new/postcards/all']">
-            POSTCARDS
-        </button>
-        <button type="button" class="product" [routerLink]="['/new/gifts']">
-            GIFTS
-        </button>
+    <div class="col-md-8 offset-md-2">
+        <div class="row mt-4">
+            <div class="col-md-3">
+             <img src="/assets/images/new/s-cards.png" class="img-fluid" [routerLink]="['/new/cards/all']"><br/><br/>
+                <button type="button" class="product" [routerLink]="['/new/cards/all']">
+                    CARDS
+                </button>
+            </div>
+            <div class="col-md-3">
+                <img src="/assets/images/new/s-stickers.png" class="img-fluid" [routerLink]="['/new/stickers/all']"><br/><br/>
+                <button type="button" class="product" [routerLink]="['/new/stickers/all']">
+                    STICKERS
+                </button>
+            </div>
+            <div class="col-md-3">
+                <img src="/assets/images/new/s-postcards.png" class="img-fluid" [routerLink]="['/new/postcards/all']"><br/><br/>
+                <button type="button" class="product" [routerLink]="['/new/postcards/all']">
+                    POSTCARDS
+                </button>
+            </div>
+            <div class="col-md-3">
+                <img src="/assets/images/new/s-gifts.png" class="img-fluid" [routerLink]="['/new/gifts/all']"><br/><br/>
+                <button type="button" class="product" [routerLink]="['/new/gifts']">
+                    GIFTS
+                </button>
+            </div>
+        </div>
     </div>
 </div>
+
 
 <app-new-loading [loading]="loading"></app-new-loading>
 <div *ngIf="loading == false">
