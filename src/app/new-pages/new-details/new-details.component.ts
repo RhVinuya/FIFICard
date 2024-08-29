@@ -64,12 +64,14 @@ export class NewDetailsComponent implements OnInit {
   bundles: INewPostcardBundle[] = [];
   images: string[] = [];
   rate: number = 0;
+  qr: string = '';
 
   isAddToCart: boolean = false;
   isBundle: boolean = false;
   isPersonalize: boolean = false;
   isFeatured: boolean = false;
   isPoetry: boolean = false;
+  isRegular: boolean = false;
 
   ngOnInit(): void {
     this.activateRoute.params.subscribe(params => {
@@ -85,9 +87,15 @@ export class NewDetailsComponent implements OnInit {
           this.isPersonalize = this.model.signAndSend;
           this.isFeatured = this.model.featured;
           this.isPoetry = this.model instanceof NewCard && this.model.messagetype === 'poetry';
+          this.isRegular = this.model instanceof NewCard && this.model.messagetype === 'regular';
           this.loading = false;
           this.ref.detectChanges();
-          this.loadImages(await this.cardService.getImages(this.id));
+          let images = await this.cardService.getImages(this.id);
+          this.loadImages(images);
+          let qrImage = images.find(x => x.title === 'QR');
+          if (qrImage) {
+            this.qr = await this.fileService.getImageURL(qrImage.url);
+          }
           this.loadRatings(await this.cardService.getRatings(this.id));
         })
       }
@@ -100,6 +108,7 @@ export class NewDetailsComponent implements OnInit {
           this.loading = false;
           this.ref.detectChanges();
           this.loadImages(await this.stickerService.getImages(this.id));
+          this.loadRatings(await this.cardService.getRatings(this.id));
         })
       }
       else if (this.type === 'postcard') {
@@ -113,6 +122,7 @@ export class NewDetailsComponent implements OnInit {
           this.loadImages(await this.postcardService.getImages(this.id));
           this.bundles = await this.postcardService.getBundles(this.id);
           this.bundles.sort((a, b) => { return a.price - b.price });
+          this.loadRatings(await this.cardService.getRatings(this.id));
         })
       }
       else if (this.type === 'gift') {
@@ -124,6 +134,7 @@ export class NewDetailsComponent implements OnInit {
           this.loading = false;
           this.ref.detectChanges();
           this.loadImages(await this.giftService.getImages(this.id));
+          this.loadRatings(await this.cardService.getRatings(this.id));
         })
       }
     });
