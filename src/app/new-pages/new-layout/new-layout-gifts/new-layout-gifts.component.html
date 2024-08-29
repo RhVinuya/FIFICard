@@ -13,13 +13,13 @@
     </div>
     <div class="col-3 offset-1">
         <h5>SHOP BY CATEGORIES</h5>
-        <h5 *ngFor="let event of eventcategories.slice(0, 8)"><a (click)="onClick('/new/gifts/' + event)">{{event}}</a></h5>
+        <h5 *ngFor="let event of eventcategories.slice(0, 5)"><a (click)="onClick('/new/gifts/' + event)">{{event}}</a></h5>
     </div>
     <div class="col-3 ">
-        <h5 *ngFor="let event of eventcategories.slice(8, 10)"><a (click)="onClick('/new/gifts/' + event)">{{event}}</a></h5>
+        <h5 *ngFor="let event of eventcategories.slice(5, 10)"><a (click)="onClick('/new/gifts/' + event)">{{event}}</a></h5>
     </div>
     <div class="col-3">
         <h5>SHOP BY RECIPIENTS</h5>
-        <h5 *ngFor="let event of eventrecipient.slice(0, 3)"><a (click)="onClick('/new/gifts/' + event)">{{event}}</a></h5>
+        <h5 *ngFor="let event of eventrecipient.slice(0, 4)"><a (click)="onClick('/new/gifts/' + event.toUpperCase())">{{event}}</a></h5>
     </div>
 </div>

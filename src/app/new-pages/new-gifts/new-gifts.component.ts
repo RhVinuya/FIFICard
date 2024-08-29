@@ -25,12 +25,17 @@ export class NewGiftsComponent implements OnInit {
     this.ref = _ref;
   }
 
-  all = [...environment.giftscategories, ...environment.giftsrecipients];
+  giftevents = environment.giftscategories;
+  recipientoptions = environment.giftsrecipients;
+  
   loading: boolean = false;
   gifts: INewGift[] = [];
   display: INewGift[] = [];
   displayCount: number = 20;
-  events: string[] = []
+  events: string[] = [];
+  event: string
+  recipients: string[] = [];
+  recipient: string;
 
   breadcrumbs = [
     {
@@ -48,10 +53,23 @@ export class NewGiftsComponent implements OnInit {
   ngOnInit(): void {
     this.activateRoute.params.subscribe(params => {
       let id = params['id'];
+      this.event = '';
       this.events = [];
+      this.recipient = '';
+      this.recipients = [];
+      
       if (id !== 'all') {
-        if (this.events.findIndex(x => x === id) < 0) this.events.push(id);
+        if (this.giftevents.findIndex(x => x.toLowerCase() === id.toLowerCase()) >= 0) {
+          this.event = id;
+          this.events.push(id);
+        }
+        else if (this.recipientoptions.findIndex(x => x.toLowerCase() === id.toLowerCase()) >= 0) {
+          this.recipient = id;
+          this.recipients.push(id);
+        }
       }
+
+
       this.ref.detectChanges();
       this.loadDisplay();
     });
@@ -73,10 +91,12 @@ export class NewGiftsComponent implements OnInit {
   loadDisplay() {
     if (this.gifts.length > 0) {
       this.display = [];
+
+
       if (this.events.length === 0) {
         this.gifts.forEach(gift => {
           let found: boolean = false;
-          this.all.forEach(event => {
+          this.giftevents.forEach(event => {
             if (gift.events.findIndex(x => x.toLowerCase() === event.toLowerCase()) >= 0) {
               found = true
             }
@@ -124,5 +144,16 @@ export class NewGiftsComponent implements OnInit {
       }
     ];
     this.ref.detectChanges();
+  }
+
+  onClickRecipient(e: any) {
+    let idx = this.recipients.findIndex(x => x === e.target.value);
+    if (e.target.checked === true) {
+      if (idx <= 0) this.recipients.push(e.target.value)
+    }
+    else {
+      if (idx >= 0) this.recipients = this.recipients.filter(x => x !== e.target.value)
+    }
+    this.loadDisplay();
   }
 }

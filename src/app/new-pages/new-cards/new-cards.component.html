@@ -52,13 +52,6 @@
                 </ion-chip>
             </div>
             <app-new-loading [loading]="loading"></app-new-loading>
-            <!--
-            <div class="max-5" *ngIf="loading === false">
-                <div *ngFor="let card of display.slice(0, displayCount)">
-                    <app-new-card-thumb [card]="card"></app-new-card-thumb>
-                </div>
-            </div>
-            -->
             <div class="row px-2" *ngIf="loading === false">
                 <div class="col-md-3 col-sm-4 col-xs-6 mb-4" *ngFor="let card of display.slice(0, displayCount)">
                     <app-new-card-thumb [card]="card"></app-new-card-thumb>

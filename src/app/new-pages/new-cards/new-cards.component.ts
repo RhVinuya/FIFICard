@@ -44,6 +44,7 @@ export class NewCardsComponent implements OnInit {
   cardevents = environment.cardevents;
   recipientoptions = ['FOR ALL', 'FOR HIM', 'FOR HER', 'FOR KIDS AND TEENS'];
   filteroptions = ['POETRY', 'MESSAGE', 'PERSONALIZED', 'TALKING CARD'];
+
   event: string;
   recipient: string
   filter: string;
@@ -58,7 +59,10 @@ export class NewCardsComponent implements OnInit {
   ngOnInit(): void {
     this.activateRoute.params.subscribe(params => {
       let id = params['id'];
+      this.event = '';
       this.events = [];
+      this.recipient = '';
+      this.recipients = [];
 
       if (id !== 'all') {
         if (this.cardevents.findIndex(x => x.toLowerCase() === id.toLowerCase()) >= 0) {

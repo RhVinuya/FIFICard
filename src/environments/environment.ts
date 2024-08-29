@@ -92,6 +92,7 @@ export const environment = {
     "Candles"
   ],
   giftsrecipients: [
+    "For All",
     "For Him",
     "For Her",
     "For Kids and Tennagers",
