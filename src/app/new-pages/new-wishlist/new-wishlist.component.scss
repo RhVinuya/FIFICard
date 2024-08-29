@@ -8,6 +8,29 @@
     font-family: "Font Awesome 5 Free" !important;
 }
 
+.no-item{
+    text-align: center;
+     justify-content: center;
+ }
+ 
+ .no-item .product{
+     border: 1px #ab37c9 solid;
+     color: #fff;
+     font-size: 1rem;
+     padding: 10px 20px;
+     border-radius: 20px;
+     font-weight: bold;
+     background-color: #ab37c9;
+     display: block;
+     margin-bottom: 20px;
+     width: 100%;
+ }
+ 
+ .no-item .product:hover{
+     color: #ab37c9;
+     background-color: #fff;
+ }
+
 .max-5 {
     width: 100%;
     display: flex;
