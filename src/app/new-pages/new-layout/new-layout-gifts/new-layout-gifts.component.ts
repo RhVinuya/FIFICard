@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -7,6 +7,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./new-layout-gifts.component.scss']
 })
 export class NewLayoutGiftsComponent implements OnInit {
+  @Output() open: EventEmitter<string> = new EventEmitter();
 
   constructor() { }
 
@@ -16,4 +17,7 @@ export class NewLayoutGiftsComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onClick(value: string) {
+    this.open.emit(value);
+  }
 }

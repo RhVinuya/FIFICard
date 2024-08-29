@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { INewUser } from 'src/app/new-models/new-user';
 
 @Component({
@@ -12,7 +13,7 @@ export class NewLayoutHeaderComponent implements OnInit {
   @Input() set user(_value: INewUser | undefined) {
     this._user = _value
   }
-  
+
   @Input() set showHeader(_value: boolean) {
     this._showHeader = _value;
     if (_value == true) {
@@ -22,7 +23,13 @@ export class NewLayoutHeaderComponent implements OnInit {
   }
   @Output() onShowMenu: EventEmitter<boolean> = new EventEmitter();
 
-  constructor() { }
+  router: Router;
+
+  constructor(
+    _router: Router
+  ) { 
+    this.router = _router
+  }
 
   _user: INewUser | undefined = undefined;
   _showHeader: boolean = false;
@@ -51,6 +58,13 @@ export class NewLayoutHeaderComponent implements OnInit {
         this.onShowMenu.emit(this.showMenu)
       }
     }, 200);
+  }
+
+  onOpen(url: string) {
+    console.log(url)
+    this.showMenu = false;
+    this.onShowMenu.emit(this.showMenu);
+    this.router.navigate([url]);
   }
 
 }

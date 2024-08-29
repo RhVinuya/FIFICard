@@ -58,9 +58,9 @@
         </div>
         <div class="menu border-top" *ngIf="showMenu" (mouseenter)="onHover(undefined)" (mouseleave)="onHoverOut()">
             <div class="mxw-1320px row">
-                <app-new-layout-stickers *ngIf="menuType === 'stickers'"></app-new-layout-stickers>
-                <app-new-layout-postcards *ngIf="menuType === 'postcards'"></app-new-layout-postcards>
-                <app-new-layout-gifts *ngIf="menuType === 'gifts'"></app-new-layout-gifts>
+                <app-new-layout-stickers *ngIf="menuType === 'stickers'" (open)="onOpen($event)"></app-new-layout-stickers>
+                <app-new-layout-postcards *ngIf="menuType === 'postcards'" (open)="onOpen($event)"></app-new-layout-postcards>
+                <app-new-layout-gifts *ngIf="menuType === 'gifts'" (open)="onOpen($event)"></app-new-layout-gifts>
             </div>
         </div>
     </div>
@@ -126,9 +126,9 @@
     </div>
     <div class="menu" *ngIf="showMenu" (mouseenter)="onHover(undefined)" (mouseleave)="onHoverOut()">
         <div class="mxw-1320px row">
-            <app-new-layout-stickers *ngIf="menuType === 'stickers'"></app-new-layout-stickers>
-            <app-new-layout-postcards *ngIf="menuType === 'postcards'"></app-new-layout-postcards>
-            <app-new-layout-gifts *ngIf="menuType === 'gifts'"></app-new-layout-gifts>
+            <app-new-layout-stickers *ngIf="menuType === 'stickers'" (open)="onOpen($event)"></app-new-layout-stickers>
+            <app-new-layout-postcards *ngIf="menuType === 'postcards'" (open)="onOpen($event)"></app-new-layout-postcards>
+            <app-new-layout-gifts *ngIf="menuType === 'gifts'" (open)="onOpen($event)"></app-new-layout-gifts>
         </div>
     </div>
 </div>
