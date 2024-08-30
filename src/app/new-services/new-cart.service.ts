@@ -54,7 +54,7 @@ export class NewCartService {
         sgprice: cart.sgprice,
         usprice: cart.usprice,
         type: cart.type,
-        bundle: cart.bundle === undefined ? null : {
+        bundle: cart.bundle === undefined || cart.bundle === null ? null : {
           count: cart.bundle.count,
           price: cart.bundle.price,
           sgprice: cart.bundle.sgprice,

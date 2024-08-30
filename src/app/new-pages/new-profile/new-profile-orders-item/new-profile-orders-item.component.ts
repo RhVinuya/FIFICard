@@ -46,11 +46,11 @@ export class NewProfileOrdersItemComponent implements OnInit {
   bundleDetails: string = ''
 
   ngOnInit(): void {
-    this.item = new NewPaymentItem(this.iItem, this.location)
     this.loadDetails();
   }
 
   async loadDetails() {
+    this.item = new NewPaymentItem(this.iItem, this.location);
     if (this.iItem.type === 'card') {
       let iCard = await this.cardService.get(this.iItem.itemId);
       this.model = new NewCard(iCard as INewCard);
