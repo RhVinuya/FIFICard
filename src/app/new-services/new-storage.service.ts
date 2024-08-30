@@ -4,11 +4,7 @@ import { INewUser } from '../new-models/new-user';
 import { INewCart } from '../new-models/new-cart';
 import { INewPayment } from '../new-models/new-payment';
 import { INewPersonalize } from '../new-models/new-personalize';
-import { INewCard } from '../new-models/new-card';
-import { INewSticker } from '../new-models/new-sticker';
-import { INewPostcard } from '../new-models/new-postcard';
-import { INewGift } from '../new-models/new-gift';
-import { IModelType } from '../new-models/new-enum';
+import { IModelType, StorageEnum } from '../new-models/new-enum';
 
 @Injectable({
   providedIn: 'root'
@@ -17,31 +13,44 @@ export class NewStorageService {
 
   constructor() { }
 
+  getKeyIds(value: string): string[] {
+    let keys: string[] = [];
+    for (let i = 0; i < localStorage.length; i++) {
+      let key = localStorage.key(i);
+      if (key !== null) {
+        if (key.includes(environment.storage + value)) keys.push(key);
+      }
+    }
+    return keys;
+  }
+
+  //-----------------
+
   createRemember(email: string, password: string) {
-    localStorage.setItem(environment.storage + 'REMEMBER_EMAIL', email);
-    localStorage.setItem(environment.storage + 'REMEMBER_PASSWORD', password);
+    localStorage.setItem(environment.storage + StorageEnum.RememberEmail, email);
+    localStorage.setItem(environment.storage + StorageEnum.RememberPassword, password);
   }
 
   getRemember() {
     return {
-      email: localStorage.getItem(environment.storage + 'REMEMBER_EMAIL'),
-      password: localStorage.getItem(environment.storage + 'REMEMBER_PASSWORD')
+      email: localStorage.getItem(environment.storage + StorageEnum.RememberEmail),
+      password: localStorage.getItem(environment.storage + StorageEnum.RememberPassword)
     }
   }
 
   clearRemember() {
-    localStorage.removeItem(environment.storage + 'REMEMBER_EMAIL');
-    localStorage.removeItem(environment.storage + 'REMEMBER_PASSWORD');
+    localStorage.removeItem(environment.storage + StorageEnum.RememberEmail);
+    localStorage.removeItem(environment.storage + StorageEnum.RememberPassword);
   }
 
   //-----------------
 
   createUser(user: INewUser) {
-    localStorage.setItem(environment.storage + 'ACCOUNT', JSON.stringify(user));
+    localStorage.setItem(environment.storage + StorageEnum.Account, JSON.stringify(user));
   }
 
   getUser(): INewUser | undefined {
-    let user: string | null = localStorage.getItem(environment.storage + 'ACCOUNT')
+    let user: string | null = localStorage.getItem(environment.storage + StorageEnum.Account)
     if (user !== null) {
       return JSON.parse(user);
     }
@@ -49,132 +58,120 @@ export class NewStorageService {
   }
 
   clearUser() {
-    localStorage.removeItem(environment.storage + 'ACCOUNT');
+    localStorage.removeItem(environment.storage + StorageEnum.Account);
   }
 
   //------------------
 
-  saveCartList(ids: string[]) {
-    localStorage.setItem(environment.storage + 'CART-LIST', JSON.stringify(ids));
-  }
-
-  getCartList(): string[] {
-    let ids: string | null = localStorage.getItem(environment.storage + 'CART-LIST')
-    if (ids !== null) return JSON.parse(ids);
-    else return [];
-  }
-
   saveCart(cart: INewCart) {
-    localStorage.setItem(environment.storage + 'CART-' + cart.id, JSON.stringify(cart));
+    localStorage.setItem(environment.storage + StorageEnum.Cart + cart.id, JSON.stringify(cart));
   }
 
   getCart(id: string): INewCart | undefined {
-    let value: string | null = localStorage.getItem(environment.storage + 'CART-' + id)
+    let key: string = '';
+    if (id.includes(environment.storage + StorageEnum.Cart)) key = id;
+    else key = environment.storage + StorageEnum.Cart + id;
+    
+    let value: string | null = localStorage.getItem(key)
     if (value !== null) return JSON.parse(value);
     else return undefined;
   }
 
   removeCart(id: string) {
-    localStorage.removeItem(environment.storage + 'CART-' + id);
+    localStorage.removeItem(environment.storage + StorageEnum.Cart + id);
   }
 
   //------------------
 
   saveWishlist(ids: string[]) {
-    localStorage.setItem(environment.storage + 'WISHLIST', JSON.stringify(ids));
+    localStorage.setItem(environment.storage + StorageEnum.Wishlist, JSON.stringify(ids));
   }
 
   getWishist(): string[] {
-    let ids: string | null = localStorage.getItem(environment.storage + 'WISHLIST')
+    let ids: string | null = localStorage.getItem(environment.storage + StorageEnum.Wishlist)
     if (ids !== null) return JSON.parse(ids);
     else return [];
   }
 
-  clearWishlist(){
-    localStorage.removeItem(environment.storage + 'WISHLIST');
+  clearWishlist() {
+    localStorage.removeItem(environment.storage + StorageEnum.Wishlist);
   }
 
   //------------------
-  
+
   saveCheckoutList(ids: string[]) {
-    localStorage.setItem(environment.storage + 'CHECKOUT', JSON.stringify(ids));
+    localStorage.setItem(environment.storage + StorageEnum.Checkout, JSON.stringify(ids));
   }
 
   getCheckoutList(): string[] {
-    let ids: string | null = localStorage.getItem(environment.storage + 'CHECKOUT')
+    let ids: string | null = localStorage.getItem(environment.storage + StorageEnum.Checkout)
     if (ids !== null) return JSON.parse(ids);
     else return [];
   }
 
-  clearCheckoutList(){
-    localStorage.removeItem(environment.storage + 'CHECKOUT');
+  clearCheckoutList() {
+    localStorage.removeItem(environment.storage + StorageEnum.Checkout);
   }
 
   //------------------
 
   savePayment(payment: INewPayment) {
-    localStorage.setItem(environment.storage + 'PAYMENT', JSON.stringify(payment));
+    localStorage.setItem(environment.storage + StorageEnum.Payment, JSON.stringify(payment));
   }
 
   getPayment(): INewPayment | undefined {
-    let ids: string | null = localStorage.getItem(environment.storage + 'PAYMENT')
+    let ids: string | null = localStorage.getItem(environment.storage + StorageEnum.Payment)
     if (ids !== null) return JSON.parse(ids);
     else return undefined;
   }
 
-  clearPayment(){
-    localStorage.removeItem(environment.storage + 'PAYMENT');
+  clearPayment() {
+    localStorage.removeItem(environment.storage + StorageEnum.Payment);
   }
 
   //-------------------
 
   savePaymongoID(id: string) {
-    localStorage.setItem(environment.storage + 'PAYMONGO', id);
+    localStorage.setItem(environment.storage + StorageEnum.PayMongo, id);
   }
 
   getPaymongoID(): string {
-    let id: string | null = localStorage.getItem(environment.storage + 'PAYMONGO')
+    let id: string | null = localStorage.getItem(environment.storage + StorageEnum.PayMongo)
     return id === null ? '' : id;
   }
 
-  clearPaymongoID(){
-    localStorage.removeItem(environment.storage + 'PAYMONGO');
+  clearPaymongoID() {
+    localStorage.removeItem(environment.storage + StorageEnum.PayMongo);
   }
 
   //---------------------
 
-  savePersonalizeIds(ids: string[]) {
-    localStorage.setItem(environment.storage + 'PERSONALIZE-IDS', JSON.stringify(ids));
-  }
-
-  getPersonalizeIds(): string[]{
-    let data: string | null = localStorage.getItem(environment.storage + 'PERSONALIZE-IDS')
-    if (data !== null) return JSON.parse(data);
-    else return [];
-  }
-
   savePersonalize(value: INewPersonalize) {
-    localStorage.setItem(environment.storage + 'PERSONALIZE-' + value.id, JSON.stringify(value));
+    localStorage.setItem(environment.storage + StorageEnum.Personalize + value.id, JSON.stringify(value));
   }
 
   getPersonalize(id: string): INewPersonalize | undefined {
-    let data: string | null = localStorage.getItem(environment.storage + 'PERSONALIZE-' + id)
+    let key: string = '';
+    if (id.includes(environment.storage + StorageEnum.Personalize)) key = id;
+    else key = environment.storage + StorageEnum.Personalize + id;
+
+    let data: string | null = localStorage.getItem(key)
     if (data !== null) return JSON.parse(data);
     else return undefined;
   }
 
-  removePersonalize(id: string){
-    localStorage.removeItem(environment.storage + 'PERSONALIZE-' + id);
+  removePersonalize(id: string) {
+    localStorage.removeItem(environment.storage + StorageEnum.Personalize + id);
   }
 
   //--------------------
 
   saveItemDetails(item: IModelType) {
-    localStorage.setItem(environment.storage + 'ITEM-' + item.id, JSON.stringify(item));
+    localStorage.setItem(environment.storage + StorageEnum.Item + item.id, JSON.stringify(item));
   }
 
   getItemDetails(id: string): IModelType | undefined {
-    let data: string | null = localStorage.getItem(environment.storage + 'ITEM-' + id)
+    let data: string | null = localStorage.getItem(environment.storage + StorageEnum.Item + id)
     if (data !== null) return JSON.parse(data);
     else return undefined;
   }
@@ -182,13 +179,13 @@ export class NewStorageService {
   //-------------------
 
   saveImageURL(id: string, value: string) {
-    localStorage.setItem(environment.storage + 'IMAGE-' + id, value);
+    localStorage.setItem(environment.storage + StorageEnum.Image + id, value);
   }
 
   getImageURL(id: string) {
-    let data: string | null = localStorage.getItem(environment.storage + 'IMAGE-' + id)
+    let data: string | null = localStorage.getItem(environment.storage + StorageEnum.Image + id)
     if (data !== null) return data;
     else return '';
-  } 
+  }
 
 }

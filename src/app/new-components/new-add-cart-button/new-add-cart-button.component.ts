@@ -5,7 +5,6 @@ import { INewCard } from 'src/app/new-models/new-card';
 import { INewSticker } from 'src/app/new-models/new-sticker';
 import { NewCartService } from 'src/app/new-services/new-cart.service';
 import { ToastController } from '@ionic/angular';
-import { INewPostcard } from 'src/app/new-models/new-postcard';
 import { INewGift } from 'src/app/new-models/new-gift';
 import { IModelType, ItemType } from 'src/app/new-models/new-enum';
 
@@ -69,7 +68,8 @@ export class NewAddCartButtonComponent implements OnInit {
     await this.cartService.add(
       {
         id: '',
-        itemid: this.item.id,
+        itemId: this.item.id,
+        userId: '',
         price: this.price,
         sgprice: this.sgprice,
         usprice: this.usprice,
@@ -79,17 +79,9 @@ export class NewAddCartButtonComponent implements OnInit {
       }
     );
     let message: string = '';
-
-    if (this.type === 'card') {
-      message = 'Card is added on the Cart'
-    }
-    else if (this.type === 'sticker') {
-      message = 'Sticker is added on the Cart'
-    }
-    else if (this.type === 'gift') {
-      message = 'Gift is added on the Cart'
-    }
-
+    if (this.type === 'card') message = 'Card is added on the Cart';
+    else if (this.type === 'sticker') message = 'Sticker is added on the Cart';
+    else if (this.type === 'gift')  message = 'Gift is added on the Cart';
     const toast = await this.toastController.create({
       message: message,
       duration: 1500,

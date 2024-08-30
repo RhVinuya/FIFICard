@@ -4,7 +4,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription, timer } from 'rxjs';
 import { NewLoginComponent } from 'src/app/new-components/new-login/new-login.component';
 import { INewCart } from 'src/app/new-models/new-cart';
-import { LocationType } from 'src/app/new-models/new-enum';
+import { LocationType, StorageEnum } from 'src/app/new-models/new-enum';
 import { INewUser } from 'src/app/new-models/new-user';
 import { NewCartService } from 'src/app/new-services/new-cart.service';
 import { NewLocationService } from 'src/app/new-services/new-location.service';

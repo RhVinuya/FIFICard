@@ -43,48 +43,48 @@ export class NewCartViewComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     if (this.cart.type === 'card') {
-      let iCard = await this.cardService.get(this.cart.itemid);
+      let iCard = await this.cardService.get(this.cart.itemId);
       if (iCard) {
         this.name = iCard.name;
         this.description = iCard.description;
         this.price = this.cart.priceDisplay()
-        let images = await this.cardService.getImages(this.cart.itemid);
+        let images = await this.cardService.getImages(this.cart.itemId);
         if (images.length > 0) {
           this.fileService.getImageURL(images[0].url).then(value => this.image = value)
         }
       }
     }
     if (this.cart.type === 'sticker') {
-      let iSticker = await this.stickerService.get(this.cart.itemid);
+      let iSticker = await this.stickerService.get(this.cart.itemId);
       if (iSticker) {
         this.name = iSticker.name;
         this.description = iSticker.description;
         this.price = this.cart.priceDisplay()
-        let images = await this.stickerService.getImages(this.cart.itemid);
+        let images = await this.stickerService.getImages(this.cart.itemId);
         if (images.length > 0) {
           this.fileService.getImageURL(images[0].url).then(value => this.image = value)
         }
       }
     }
     if (this.cart.type === 'postcard') {
-      let iPostcard = await this.postcardService.get(this.cart.itemid);
+      let iPostcard = await this.postcardService.get(this.cart.itemId);
       if (iPostcard) {
         this.name = iPostcard.name;
         this.description = iPostcard.description;
         if (this.cart.bundle !== undefined) this.bundle = 'Bundle of ' + this.cart.bundle.countDisplay() + ' pcs for ' + '₱' + this.cart.bundle.priceDisplay()
-        let images = await this.postcardService.getImages(this.cart.itemid);
+        let images = await this.postcardService.getImages(this.cart.itemId);
         if (images.length > 0) {
           this.fileService.getImageURL(images[0].url).then(value => this.image = value)
         }
       }
     }
     if (this.cart.type === 'gift') {
-      let iGift = await this.giftService.get(this.cart.itemid);
+      let iGift = await this.giftService.get(this.cart.itemId);
       if (iGift) {
         this.name = iGift.name;
         this.description = iGift.description;
         this.price = this.cart.priceDisplay()
-        let images = await this.giftService.getImages(this.cart.itemid);
+        let images = await this.giftService.getImages(this.cart.itemId);
         if (images.length > 0) {
           this.fileService.getImageURL(images[0].url).then(value => this.image = value)
         }

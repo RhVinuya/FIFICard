@@ -7,9 +7,9 @@ import { NewVideoPlayerComponent } from 'src/app/new-components/new-video-player
 import { INewCard, INewCardImage, INewRating, NewCard } from 'src/app/new-models/new-card';
 import { INewCartBundle } from 'src/app/new-models/new-cart';
 import { IModelType, ModelType } from 'src/app/new-models/new-enum';
-import { INewGift, INewGiftImage, NewGift } from 'src/app/new-models/new-gift';
-import { INewPostcard, INewPostcardBundle, NewPostcard, NewPostcardBundle } from 'src/app/new-models/new-postcard';
-import { INewSticker, INewStickerImage, NewSticker } from 'src/app/new-models/new-sticker';
+import { INewGiftImage, NewGift } from 'src/app/new-models/new-gift';
+import { INewPostcardBundle, NewPostcard, NewPostcardBundle } from 'src/app/new-models/new-postcard';
+import { INewStickerImage, NewSticker } from 'src/app/new-models/new-sticker';
 import { NewCardService } from 'src/app/new-services/new-card.service';
 import { NewCartService } from 'src/app/new-services/new-cart.service';
 import { NewFileService } from 'src/app/new-services/new-file.service';
@@ -177,7 +177,8 @@ export class NewDetailsComponent implements OnInit {
   async onClickBundle(bundle: INewPostcardBundle) {
     this.cartService.add({
       id: '',
-      itemid: this.id,
+      itemId: this.id,
+      userId: '',
       price: 0,
       sgprice: 0,
       usprice: 0,

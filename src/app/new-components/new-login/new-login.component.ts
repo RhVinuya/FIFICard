@@ -60,7 +60,6 @@ export class NewLoginComponent implements OnInit {
       this.form.controls.password.setValue(remember.password);
       this.form.controls.remember.setValue(true);
     }
-
   }
 
   onChangeShowPassword() {
@@ -104,6 +103,7 @@ export class NewLoginComponent implements OnInit {
 
       if (user) {
         this.storageService.createUser(user);
+        
         const toast = await this.toastController.create({
           message: 'Welcome ' + (user.firstname ? user.firstname : user.email),
           duration: 1500,

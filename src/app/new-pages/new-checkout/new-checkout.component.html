@@ -106,7 +106,7 @@
                 <form [formGroup]="form" (submit)="onVerify()">
                     <div class="input-group mt-4">
                         <input type="text" class="form-control" placeholder="Enter Special Code"
-                            [readonly]="accepted === false || isProcessingSpecialCode === true || isProcessingStripe === true || isProcessingGCash === true || isProcessingPayMaya === true" formControlName="code"
+                            [readonly]="!isReady()" formControlName="code"
                             [ngClass]="{ 'is-invalid': verifySubmitted && form.controls.code.errors}">
                         <button class="btn btn-outline-primary" type="submit" id="button-addon2" [disabled]="accepted === false">
                             <span class="spinner-border spinner-border-sm me-1" aria-hidden="true" *ngIf="isProcessingSpecialCode"></span>
@@ -115,21 +115,21 @@
                     </div>
                 </form>
 
-                <button class="btn-creditcard card-payment mt-4" [disabled]="accepted === false || isProcessingSpecialCode === true || isProcessingStripe === true || isProcessingGCash === true || isProcessingPayMaya === true"
+                <button class="btn-creditcard card-payment mt-4" [disabled]="!isReady()"
                     (click)="onStripe()">
                     <span class="spinner-border spinner-border-sm me-1" aria-hidden="true" *ngIf="isProcessingStripe"></span>
                     {{isProcessingStripe ? 'Processing...' : ' Pay with Credit Card'}}
                     <i class="p-credit"></i>
                 </button>
 
-                <button class="btn-gcash card-payment mt-2" [disabled]="accepted === false || isProcessingSpecialCode === true || isProcessingStripe === true || isProcessingGCash === true || isProcessingPayMaya === true"
+                <button class="btn-gcash card-payment mt-2" [disabled]="!isReady()"
                     (click)="onGCash()" *ngIf="location === 'ph'">
                     <span class="spinner-border spinner-border-sm me-1" aria-hidden="true" *ngIf="isProcessingGCash"></span>
                     {{isProcessingStripe ? 'Processing...' : ' Pay with  '}}
                     <i class="p-gcash"></i>
                 </button>
 
-                <button class="btn-paymaya card-payment mt-2" [disabled]="accepted === false || isProcessingSpecialCode === true || isProcessingStripe === true || isProcessingGCash === true || isProcessingPayMaya === true"
+                <button class="btn-paymaya card-payment mt-2" [disabled]="!isReady()"
                     (click)="onPaymaya()" *ngIf="location === 'ph'">
                     <span class="spinner-border spinner-border-sm me-1" aria-hidden="true" *ngIf="isProcessingPayMaya"></span>
                     {{isProcessingStripe ? 'Processing...' : ' Pay with '}}

@@ -180,4 +180,8 @@ export class NewAccountService {
       })
     })
   }
+
+  synchoronizeCart(userId: string) {
+    
+  }
 }

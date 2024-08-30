@@ -1,11 +1,10 @@
 import { NewLocationService } from "../new-services/new-location.service";
 import { ItemType, LocationType } from "./new-enum";
 
-
-
 export interface INewCart {
     id: string;
-    itemid: string;
+    itemId: string;
+    userId: string;
     price: number;
     sgprice: number;
     usprice: number;
@@ -16,7 +15,8 @@ export interface INewCart {
 
 export class NewCart {
     id: string;
-    itemid: string;
+    itemId: string;
+    userId: string;
     price: number;
     sgprice: number;
     usprice: number;
@@ -26,7 +26,8 @@ export class NewCart {
 
     constructor(value: INewCart) {
         this.id = value.id;
-        this.itemid = value.itemid;
+        this.itemId = value.itemId;
+        this.userId = value.userId;
         this.price = value.price;
         this.sgprice = value.sgprice;
         this.usprice = value.usprice;

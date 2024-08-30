@@ -159,7 +159,7 @@ export class NewCheckoutComponent implements OnInit, OnDestroy {
         }
         this.items.push({
           id: iCart.id,
-          itemid: iCart.itemid,
+          itemId: iCart.itemId,
           type: iCart.type,
           bundle: bundle,
           price: price,
@@ -231,7 +231,7 @@ export class NewCheckoutComponent implements OnInit, OnDestroy {
 
   calculateShipping() {
     if (this.location === 'ph') {
-      if (this.receiver.province !== '') {
+      if (this.receiver && this.receiver.province !== '') {
         let group = this.addressConfig.find(x => x.name === this.receiver.province)!.group;
         this.items.forEach(item => {
           if (item.type === 'card' || item.type === 'postcard') {
@@ -263,14 +263,14 @@ export class NewCheckoutComponent implements OnInit, OnDestroy {
           }
           item.total = item.price + item.shipping;
         })
-        this.subtotal = 0;
-        this.shippingfee = 0;
-        this.total = 0;
-        this.items.map(x => this.subtotal = this.subtotal + x.price)
-        this.items.map(x => this.shippingfee = this.shippingfee + x.shipping)
-        this.items.map(x => this.total = this.total + x.total)
-        this.ref.detectChanges();
       }
+      this.subtotal = 0;
+      this.shippingfee = 0;
+      this.total = 0;
+      this.items.map(x => this.subtotal = this.subtotal + x.price)
+      this.items.map(x => this.shippingfee = this.shippingfee + x.shipping)
+      this.items.map(x => this.total = this.total + x.total)
+      this.ref.detectChanges();
     }
     else {
       this.items.forEach(item => {
@@ -307,6 +307,26 @@ export class NewCheckoutComponent implements OnInit, OnDestroy {
 
   onChangeAccepted(e: any) {
     this.accepted = e.target.checked;
+  }
+
+  isReady(){
+    return this.accepted === true && 
+      this.isProcessingSpecialCode === false && 
+      this.isProcessingStripe === false && 
+      this.isProcessingGCash === false && 
+      this.isProcessingPayMaya === false &&
+      this.sender &&
+      this.sender.email !== '' &&
+      this.sender.firstname !== '' &&
+      this.sender.lastname !== '' &&
+      this.receiver &&
+      this.receiver.firstname !== '' &&
+      this.receiver.lastname !== '' &&
+      this.receiver.email !== '' &&
+      this.receiver.address !== '' &&
+      this.receiver.country !== '' &&
+      this.receiver.postcode !== '' &&
+      this.items.length > 0;
   }
 
   async onVerify() {

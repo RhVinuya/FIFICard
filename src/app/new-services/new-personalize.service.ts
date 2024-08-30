@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { INewPersonalize } from '../new-models/new-personalize';
 import { NewStorageService } from './new-storage.service';
+import { StorageEnum } from '../new-models/new-enum';
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +27,7 @@ export class NewPersonalizeService {
   getAll(): Promise<INewPersonalize[]>{
     return new Promise((resolve) => { 
       let personalizes: INewPersonalize[] = [];
-      let ids = this.storageService.getPersonalizeIds();
+      let ids = this.storageService.getKeyIds(StorageEnum.Personalize)
       ids.forEach(id => {
         let personalize = this.storageService.getPersonalize(id);
         if (personalize) personalizes.push(personalize)
@@ -37,7 +38,7 @@ export class NewPersonalizeService {
 
   getByCard(cardId: string): Promise<INewPersonalize | undefined> {
     return new Promise((resolve) => { 
-      let ids = this.storageService.getPersonalizeIds();
+      let ids = this.storageService.getKeyIds(StorageEnum.Personalize)
       ids.forEach(id => {
         let personalize = this.storageService.getPersonalize(id);
         if (personalize && personalize.itemId === cardId) resolve(personalize)
@@ -52,9 +53,7 @@ export class NewPersonalizeService {
         id: this.generateID(),
         itemId: cardId
       }
-      let ids = this.storageService.getPersonalizeIds();
       this.storageService.savePersonalize(personalize);
-      this.storageService.savePersonalizeIds([...ids, personalize.id])
       resolve(personalize);
     });
   }

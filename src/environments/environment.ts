@@ -109,7 +109,7 @@ export const environment = {
     'Other',
     'QR'
   ],
-  us: ['us.fibeigreetings.com', 'fibeigreetings.us', 'localhost'],
+  us: ['us.fibeigreetings.com', 'fibeigreetings.us'],
   sg: ['sg.fibeigreetings.com', 'fibeigreetings.sg'],
 
 

@@ -108,7 +108,7 @@ export class NewSender {
 
 export interface INewPaymentItem{
     id: string;
-    itemid: string;
+    itemId: string;
     type: ItemType;
     bundle: INewPaymentItemBundle | undefined;
     price: number;
@@ -118,7 +118,7 @@ export interface INewPaymentItem{
 
 export class NewPaymentItem{
     id: string;
-    itemid: string;
+    itemId: string;
     type: ItemType;
     bundle: NewPaymentItemBundle | undefined;
     price: number;
@@ -129,7 +129,7 @@ export class NewPaymentItem{
 
     constructor(value: INewPaymentItem, location: LocationType) {
         this.id = value.id;
-        this.itemid = value.itemid;
+        this.itemId = value.itemId;
         this.type = value.type;
         if (value.bundle) this.bundle = new NewPaymentItemBundle(value.bundle as INewPaymentItemBundle)
         this.price = value.price;

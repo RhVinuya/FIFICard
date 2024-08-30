@@ -59,30 +59,30 @@ export class NewCartItemComponent implements OnInit {
   async loadDetails(cart: INewCart) {
     this._cart = new NewCart(cart);
     if (this._cart.type === 'card') {
-      let iCard = await this.cardService.get(this._cart.itemid);
+      let iCard = await this.cardService.get(this._cart.itemId);
       this.model = new NewCard(iCard as INewCard);
-      let images = await this.cardService.getImages(this._cart.itemid);
+      let images = await this.cardService.getImages(this._cart.itemId);
       if (images.length > 0) this.loadImage(images[0].url)
     }
     else if (this._cart.type === 'sticker') {
-      let iSticker = await this.stickerService.get(this._cart.itemid);
+      let iSticker = await this.stickerService.get(this._cart.itemId);
       this.model = new NewSticker(iSticker as INewSticker);
-      let images = await this.stickerService.getImages(this._cart.itemid);
+      let images = await this.stickerService.getImages(this._cart.itemId);
       if (images.length > 0) this.loadImage(images[0].url)
     }
     else if (this._cart.type === 'postcard') {
-      let iPostcard = await this.postcardService.get(this._cart.itemid);
+      let iPostcard = await this.postcardService.get(this._cart.itemId);
       this.model = new NewPostcard(iPostcard as INewPostcard);
       if (this._cart.bundle){
         this.bundleDetails = 'Bundle of ' + this._cart.bundle.countDisplay()+ ' pcs'
       }
-      let images = await this.postcardService.getImages(this._cart.itemid);
+      let images = await this.postcardService.getImages(this._cart.itemId);
       if (images.length > 0) this.loadImage(images[0].url)
     }
     else if (this._cart.type === 'gift') {
-      let iGift = await this.giftService.get(this._cart.itemid);
+      let iGift = await this.giftService.get(this._cart.itemId);
       this.model = new NewGift(iGift as INewGift);
-      let images = await this.giftService.getImages(this._cart.itemid);
+      let images = await this.giftService.getImages(this._cart.itemId);
       if (images.length > 0) this.loadImage(images[0].url)
     }
   }

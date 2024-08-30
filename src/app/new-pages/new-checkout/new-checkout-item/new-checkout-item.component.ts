@@ -51,30 +51,30 @@ export class NewCheckoutItemComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     if (this.item.type === 'card') {
-      let iCard = await this.cardService.get(this.item.itemid);
+      let iCard = await this.cardService.get(this.item.itemId);
       this.model = new NewCard(iCard as INewCard);
-      let images = await this.cardService.getImages(this.item.itemid);
+      let images = await this.cardService.getImages(this.item.itemId);
       if (images.length > 0) this.loadImage(images[0].url)
     }
     else if (this.item.type === 'sticker') {
-      let iSticker = await this.stickerService.get(this.item.itemid);
+      let iSticker = await this.stickerService.get(this.item.itemId);
       this.model = new NewSticker(iSticker as INewSticker);
-      let images = await this.stickerService.getImages(this.item.itemid);
+      let images = await this.stickerService.getImages(this.item.itemId);
       if (images.length > 0) this.loadImage(images[0].url)
     }
     else if (this.item.type === 'postcard') {
-      let iPostcard = await this.postcardService.get(this.item.itemid);
+      let iPostcard = await this.postcardService.get(this.item.itemId);
       this.model = new NewPostcard(iPostcard as INewPostcard);
       if (this.item.bundle){
         this.bundleDetails = 'Bundle of ' + this.item.bundle.countDisplay() + ' pcs'
       }
-      let images = await this.postcardService.getImages(this.item.itemid);
+      let images = await this.postcardService.getImages(this.item.itemId);
       if (images.length > 0) this.loadImage(images[0].url)
     }
     else if (this.item.type === 'gift') {
-      let iGift = await this.giftService.get(this.item.itemid);
+      let iGift = await this.giftService.get(this.item.itemId);
       this.model = new NewGift(iGift as INewGift);
-      let images = await this.giftService.getImages(this.item.itemid);
+      let images = await this.giftService.getImages(this.item.itemId);
       if (images.length > 0) this.loadImage(images[0].url)
     }
   }
