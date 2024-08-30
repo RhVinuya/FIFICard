@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { INewPostcard, INewPostcardBundle, NewPostcard } from 'src/app/new-models/new-postcard';
+import { INewPostcard, INewPostcardBundle, NewPostcard, NewPostcardBundle } from 'src/app/new-models/new-postcard';
 import { NewFileService } from 'src/app/new-services/new-file.service';
 import { NewPostcardService } from 'src/app/new-services/new-postcard.service';
 import { NewStorageService } from 'src/app/new-services/new-storage.service';
@@ -34,8 +34,9 @@ export class NewPostcardThumbComponent implements OnInit {
   bundles: INewPostcardBundle[] = []
   primary: string = '';
   secondary: string = '';
-  min: number = 0;
-  max: number = 0;
+
+  min: NewPostcardBundle;
+  max: NewPostcardBundle;
 
   async ngOnInit(): Promise<void> {
     this.storageService.saveItemDetails(this.postcard);
@@ -56,8 +57,8 @@ export class NewPostcardThumbComponent implements OnInit {
     this.bundles = await this.postcardService.getBundles(this._postcard.id);
     if (this.bundles.length > 0) {
       this.bundles.sort((a, b) => { return a.price - b.price });
-      this.min = this.bundles[0].price;
-      this.max = this.bundles[this.bundles.length - 1].price
+      this.min = new NewPostcardBundle(this.bundles[0]);
+      this.max = new NewPostcardBundle(this.bundles[this.bundles.length - 1]); 
     }
   }
 

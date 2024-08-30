@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { INewCart } from 'src/app/new-models/new-cart';
+import { NewCart } from 'src/app/new-models/new-cart';
 import { NewCardService } from 'src/app/new-services/new-card.service';
 import { NewFileService } from 'src/app/new-services/new-file.service';
 import { NewGiftService } from 'src/app/new-services/new-gift.service';
@@ -12,7 +12,7 @@ import { NewStickerService } from 'src/app/new-services/new-sticker.service';
   styleUrls: ['./new-cart-view.component.scss']
 })
 export class NewCartViewComponent implements OnInit {
-  @Input() cart: INewCart;
+  @Input() cart: NewCart;
   @Output() delete: EventEmitter<string> = new EventEmitter();
 
   cardService: NewCardService;
@@ -47,7 +47,7 @@ export class NewCartViewComponent implements OnInit {
       if (iCard) {
         this.name = iCard.name;
         this.description = iCard.description;
-        this.price = '₱' + this.cart.price.toLocaleString('en-US', { minimumFractionDigits: 2 });
+        this.price = this.cart.priceDisplay()
         let images = await this.cardService.getImages(this.cart.itemid);
         if (images.length > 0) {
           this.fileService.getImageURL(images[0].url).then(value => this.image = value)
@@ -59,7 +59,7 @@ export class NewCartViewComponent implements OnInit {
       if (iSticker) {
         this.name = iSticker.name;
         this.description = iSticker.description;
-        this.price = '₱' + this.cart.price.toLocaleString('en-US', { minimumFractionDigits: 2 });
+        this.price = this.cart.priceDisplay()
         let images = await this.stickerService.getImages(this.cart.itemid);
         if (images.length > 0) {
           this.fileService.getImageURL(images[0].url).then(value => this.image = value)
@@ -71,7 +71,7 @@ export class NewCartViewComponent implements OnInit {
       if (iPostcard) {
         this.name = iPostcard.name;
         this.description = iPostcard.description;
-        if (this.cart.bundle !== undefined) this.bundle = 'Bundle of ' + this.cart.bundle.count.toLocaleString() + ' pcs for ' + '₱' + this.cart.bundle.price.toLocaleString('en-US', { minimumFractionDigits: 2 })
+        if (this.cart.bundle !== undefined) this.bundle = 'Bundle of ' + this.cart.bundle.countDisplay() + ' pcs for ' + '₱' + this.cart.bundle.priceDisplay()
         let images = await this.postcardService.getImages(this.cart.itemid);
         if (images.length > 0) {
           this.fileService.getImageURL(images[0].url).then(value => this.image = value)
@@ -83,7 +83,7 @@ export class NewCartViewComponent implements OnInit {
       if (iGift) {
         this.name = iGift.name;
         this.description = iGift.description;
-        this.price = '₱' + this.cart.price.toLocaleString('en-US', { minimumFractionDigits: 2 });
+        this.price = this.cart.priceDisplay()
         let images = await this.giftService.getImages(this.cart.itemid);
         if (images.length > 0) {
           this.fileService.getImageURL(images[0].url).then(value => this.image = value)

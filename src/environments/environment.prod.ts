@@ -111,7 +111,8 @@ export const environment = {
     'Other',
     'QR'
   ],
-
+  us: ['us.fibeigreetings.com', 'fibeigreetings.us'],
+  sg: ['sg.fibeigreetings.com', 'fibeigreetings.sg'],
 
 
   
@@ -129,8 +130,6 @@ export const environment = {
       event: "mothers day"
     }
   ],
-  us: ['us.fibeigreetings.com', 'fibeigreetings.us'],
-  sg: ['sg.fibeigreetings.com', 'fibeigreetings.sg'],
   ecardexpiry: 30,
   accounts: {
     facebook: {

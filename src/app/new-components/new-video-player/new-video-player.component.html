@@ -1,0 +1,6 @@
+<div class="video pt-2 px-2">
+    <span class="text-danger" (click)="close()"><ion-icon name="close-outline"></ion-icon></span>
+    <video width="100%" controls *ngIf="url !== ''" oncontextmenu="return false;" controlsList="nodownload">
+        <source [src]="url">
+    </video>
+</div>

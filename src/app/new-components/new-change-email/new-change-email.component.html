@@ -1,20 +1,16 @@
 <div class="modal-body main">
     <button type="button" class="btn-close" aria-label="Close" (click)="close()"></button>
     <div class="text-center title">
-        <h3>Change email</h3>
-
-        <h6 *ngIf="step == 1">Enter your new email address</h6>
-        <h6 *ngIf="step == 2">Confirm your password</h6>
+        <h3 class="text-purple mb-2">Change Email</h3>
+        <h6 *ngIf="step == 1" class="mt-1">Enter your new email address</h6>
+        <h6 *ngIf="step == 2" class="mt-1">Confirm your password</h6>
     </div>
-
-
-
     <div class="text-center px-5 mb-5">
         <form [formGroup]="form">
             <div class="form-floating mb-3" *ngIf="step == 1">
                 <input type="email" class="form-control" id="email" placeholder="{{user!.email}}" formControlName="email" [disabled]="processing"
                     [ngClass]="{ 'is-invalid': submitted && form.controls.email.errors}">
-                <label for="email">Email address</label>
+                <label for="email">Email Address</label>
             </div>
             <div class="form-floating password mb-3"  *ngIf="step == 2">
                 <input [type]="showPassword ? 'text' : 'password'" class="form-control" id="password" placeholder="Password" formControlName="password"
@@ -31,27 +27,22 @@
                     Authentication Failed.
                 </label>
             </div>
-
             <div class="alert alert-danger" *ngIf="emailError != '' || passwordError != ''">
                 <div *ngIf="emailError != ''">
                     {{emailError}}
                 </div>
-    
                 <div *ngIf="passwordError != ''">
                     {{passwordError}}
                 </div>
             </div>
-
-            <button *ngIf="step == 1" type="button" class="login-btn" [disabled]="processing" (click)="checkEmail()">
+            <button *ngIf="step == 1" type="button" class="login-btn mt-3" [disabled]="processing" (click)="checkEmail()">
                 <span class="spinner-border spinner-border-sm me-1" aria-hidden="true" *ngIf="processing"></span>
                 {{processing ? 'Checking email ...' : 'Change Email'}}
             </button>
-            <button *ngIf="step == 2" type="button" class="login-btn" [disabled]="processing" (click)="confirmPassword()">
+            <button *ngIf="step == 2" type="button" class="login-btn mt-3" [disabled]="processing" (click)="confirmPassword()">
                 <span class="spinner-border spinner-border-sm me-1" aria-hidden="true" *ngIf="processing"></span>
                 {{processing ? 'Changing password ...' : 'Confirm'}}
             </button>
         </form>
-    </div>
-    <div class="link text-center py-3">
     </div>
 </div>

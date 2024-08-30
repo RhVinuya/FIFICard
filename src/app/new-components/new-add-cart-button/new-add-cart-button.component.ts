@@ -7,6 +7,7 @@ import { NewCartService } from 'src/app/new-services/new-cart.service';
 import { ToastController } from '@ionic/angular';
 import { INewPostcard } from 'src/app/new-models/new-postcard';
 import { INewGift } from 'src/app/new-models/new-gift';
+import { ItemType } from 'src/app/new-models/new-cart';
 
 @Component({
   selector: 'app-new-add-cart-button',
@@ -16,7 +17,7 @@ import { INewGift } from 'src/app/new-models/new-gift';
 export class NewAddCartButtonComponent implements OnInit {
   @ViewChild('content') content: TemplateRef<NewAddCartButtonComponent>;
 
-  @Input() type: "card" | "sticker" | "postcard" | "gift";
+  @Input() type: ItemType;
   @Input() item: INewCard | INewSticker | INewPostcard | INewGift;
 
   offCanvas: NgbOffcanvas;

@@ -97,8 +97,6 @@ export class SuggestionListComponent implements OnInit {
         cards = [...cards, ..._cards]
     }
 
-    console.log(cards)
-
     this.loadBatch(card, this.shuffle(cards));
     this.getImages();
   }

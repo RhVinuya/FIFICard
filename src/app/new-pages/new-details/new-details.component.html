@@ -16,9 +16,12 @@
             <div class="mb-3 rel">
                 <app-new-personalize-button class="me-2" *ngIf="isPersonalize" [iCard]="getICard()"></app-new-personalize-button>
                 <app-new-add-cart-button [type]="type" [item]="iModel" *ngIf="isAddToCart"></app-new-add-cart-button>
-                <div class="qr" *ngIf="qr !== ''">
-                    <img src="/assets/images/talking-card.gif">
+                <div class="qr text-center" *ngIf="qr !== ''">
+                    <img src="/assets/images/talking-card-1.gif" class="qr-icon">
                     <img [src]="qr" class="qr-image">
+                    <div class="mt-1">
+                        <a class="info" (click)="playInstruction()">Click here to know how to play</a>
+                    </div>
                 </div>
             </div>
             <div class="mb-2" *ngIf="isBundle === false">
@@ -26,7 +29,7 @@
             </div>
             <div class="mb-3" *ngIf="isBundle">
                 <button type="button" class="btn bundle me-1 mb-2" *ngFor="let bundle of bundles" (click)="onClickBundle(bundle)">
-                    Bundle of <b>{{bundle.count.toLocaleString()}} pcs</b> for <b>{{'₱ ' + bundle.price.toLocaleString('en-US', { minimumFractionDigits: 2 })}}</b>
+                    Bundle of <b>{{bundle.countDisplay()}} pcs</b> for <b>{{bundle.priceDisplay()}}</b>
                 </button>
             </div>
             <div class="mb-2">
@@ -34,8 +37,8 @@
             </div>
             <div class="details text-gray mb-3">{{model.details}}</div>
             <div class="icons pt-3">
-                <img src="/assets/images/poetry-card.png" *ngIf="isPoetry">
-                <img src="/assets/images/standard-card.png" *ngIf="isRegular">
+                <img src="/assets/images/poetry-card.png" class="me-2" *ngIf="isPoetry">
+                <img src="/assets/images/standard-card.png" class="me-2" *ngIf="isRegular">
                 <span class="badge text-bg-secondary i-featured me-2" *ngIf="isFeatured"><i class="fa fa-fire" aria-hidden="true"></i> Featured</span>
                 <img class="me-2" src="/assets/images/icon_free_shipping.png">
             </div>

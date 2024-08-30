@@ -76,7 +76,7 @@
                 </table>
             </div>
         </div>
-        <app-new-checkout-item *ngFor="let item of items" [item]="item"></app-new-checkout-item>
+        <app-new-checkout-item *ngFor="let item of items" [iItem]="item"></app-new-checkout-item>
     </div>
     <div class="col-md-3 ps-1">
         <div class="card bg-light border-light pb-2">
@@ -123,14 +123,14 @@
                 </button>
 
                 <button class="btn-gcash card-payment mt-2" [disabled]="accepted === false || isProcessingSpecialCode === true || isProcessingStripe === true || isProcessingGCash === true || isProcessingPayMaya === true"
-                    (click)="onGCash()">
+                    (click)="onGCash()" *ngIf="location === 'ph'">
                     <span class="spinner-border spinner-border-sm me-1" aria-hidden="true" *ngIf="isProcessingGCash"></span>
                     {{isProcessingStripe ? 'Processing...' : ' Pay with  '}}
                     <i class="p-gcash"></i>
                 </button>
 
                 <button class="btn-paymaya card-payment mt-2" [disabled]="accepted === false || isProcessingSpecialCode === true || isProcessingStripe === true || isProcessingGCash === true || isProcessingPayMaya === true"
-                    (click)="onPaymaya()">
+                    (click)="onPaymaya()" *ngIf="location === 'ph'">
                     <span class="spinner-border spinner-border-sm me-1" aria-hidden="true" *ngIf="isProcessingPayMaya"></span>
                     {{isProcessingStripe ? 'Processing...' : ' Pay with '}}
                     <i class="p-paymaya"></i>

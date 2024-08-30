@@ -6,6 +6,7 @@ import { NewLoginComponent } from 'src/app/new-components/new-login/new-login.co
 import { INewCart } from 'src/app/new-models/new-cart';
 import { INewUser } from 'src/app/new-models/new-user';
 import { NewCartService } from 'src/app/new-services/new-cart.service';
+import { LocationType, NewLocationService } from 'src/app/new-services/new-location.service';
 import { NewStorageService } from 'src/app/new-services/new-storage.service';
 
 @Component({
@@ -17,6 +18,7 @@ export class NewCartComponent implements OnInit, OnDestroy {
 
   cartService: NewCartService;
   storageService: NewStorageService;
+  locationService: NewLocationService;
   modalService: NgbModal;
   router: Router;
   ref: ChangeDetectorRef;
@@ -24,12 +26,14 @@ export class NewCartComponent implements OnInit, OnDestroy {
   constructor(
     _cartService: NewCartService,
     _storageService: NewStorageService,
+    _locationService: NewLocationService,
     _modalService: NgbModal,
     _router: Router,
     _ref: ChangeDetectorRef
   ) {
     this.cartService = _cartService;
     this.storageService = _storageService;
+    this.locationService = _locationService;
     this.modalService = _modalService;
     this.router = _router;
     this.ref = _ref;
@@ -76,25 +80,37 @@ export class NewCartComponent implements OnInit, OnDestroy {
 
 
   calculate() {
+    let location: LocationType = this.locationService.getlocation()
+    let symbol: string = this.locationService.getPriceSymbol();
     this.total = 0;
     this.carts.forEach(cart => {
-      if (cart.mark === true){
+      if (cart.mark === true) {
         if (cart.type === 'card') {
-          this.total = this.total + cart.price;
+          if (location === 'ph') this.total = this.total + cart.price;
+          else if (location === 'us') this.total = this.total + cart.usprice;
+          else this.total = this.total + cart.sgprice;
         }
         else if (cart.type === 'sticker') {
-          this.total = this.total + cart.price;
+          if (location === 'ph') this.total = this.total + cart.price;
+          else if (location === 'us') this.total = this.total + cart.usprice;
+          else this.total = this.total + cart.sgprice;
         }
         else if (cart.type === 'postcard') {
-          if (cart.bundle) this.total = this.total + cart.bundle.price
+          if (cart.bundle) {
+            if (location === 'ph') this.total = this.total + cart.bundle.price
+            else if (location === 'us') this.total = this.total + cart.bundle.usprice
+            else this.total = this.total + cart.bundle.sgprice
+          }
         }
         else if (cart.type === 'gift') {
-          this.total = this.total + cart.price;
+          if (location === 'ph') this.total = this.total + cart.price;
+          else if (location === 'us') this.total = this.total + cart.usprice;
+          else this.total = this.total + cart.sgprice;
         }
       }
     })
     this.count = this.carts.filter(x => x.mark === true).length;
-    this.totalDisplay = '₱ ' + this.total.toLocaleString('en-US', { minimumFractionDigits: 2 })
+    this.totalDisplay = symbol + this.total.toLocaleString('en-US', { minimumFractionDigits: 2 })
   }
 
   async onChangeItemMark(id: string, mark: boolean) {
@@ -112,7 +128,7 @@ export class NewCartComponent implements OnInit, OnDestroy {
     this.ref.detectChanges();
   }
 
-  onClickCheckout(){
+  onClickCheckout() {
     this.saving = true;
     this.storageService.saveCheckoutList(this.carts.filter(x => x.mark === true).map(x => x.id));
     this.router.navigate(['/new/checkout']);

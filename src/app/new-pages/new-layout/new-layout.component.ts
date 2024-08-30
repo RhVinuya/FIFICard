@@ -6,6 +6,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { timer } from 'rxjs';
 import { NewLoginComponent } from 'src/app/new-components/new-login/new-login.component';
 import { INewUser } from 'src/app/new-models/new-user';
+import { NewLocationService } from 'src/app/new-services/new-location.service';
 import { NewStorageService } from 'src/app/new-services/new-storage.service';
 
 @Component({
@@ -19,17 +20,20 @@ export class NewLayoutComponent implements OnInit {
   router: Router; 
   viewportScroller: ViewportScroller;
   storageService: NewStorageService;
+  locationService: NewLocationService;
   modalService: NgbModal;
 
   constructor(
     _router: Router,
     _viewportScroller: ViewportScroller,
     _storageService: NewStorageService,
+    _locationService: NewLocationService,
     _modalService: NgbModal
   ) { 
     this.router = _router;
     this.viewportScroller = _viewportScroller;
     this.storageService = _storageService;
+    this.locationService = _locationService;
     this.modalService = _modalService
   }
 
@@ -37,7 +41,7 @@ export class NewLayoutComponent implements OnInit {
   showMenu: boolean = false;
   user: INewUser | undefined;
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.viewportScroller.scrollToPosition([0, 0]);
@@ -48,7 +52,7 @@ export class NewLayoutComponent implements OnInit {
       let value = this.storageService.getUser()
       this.user = value === undefined ? undefined : value;
     });
-  }
+  }  
 
   logScrolling(value: any) {
     this.showHeader = value.detail.scrollTop >= 25;

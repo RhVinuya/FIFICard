@@ -1,4 +1,5 @@
 import { Timestamp } from "@angular/fire/firestore";
+import { LocationType, NewLocationService } from "../new-services/new-location.service";
 
 export interface INewPostcard {
     id: string;
@@ -51,5 +52,33 @@ export interface INewPostcardBundle {
     price: number;
     sgprice: number;
     usprice: number;
-    active: boolean
+    active: boolean;
+}
+
+export class NewPostcardBundle {
+    count: number;
+    price: number;
+    sgprice: number;
+    usprice: number;
+    active: boolean;
+
+    constructor(value: INewPostcardBundle) {
+        this.count = value.count;
+        this.price = value.price;
+        this.sgprice = value.sgprice;
+        this.usprice = value.usprice;
+        this.active = value.active;
+    }
+
+    countDisplay(){
+        return this.count.toLocaleString();
+    }
+
+    priceDisplay(){
+        let locationService: NewLocationService = new NewLocationService();
+        let location: LocationType = locationService.getlocation();
+        if (location === 'us') return '$' + this.usprice.toLocaleString('en-US', { minimumFractionDigits: 2 })
+        else if (location === 'sg') return 'S$' + this.sgprice.toLocaleString('en-US', { minimumFractionDigits: 2 })
+        else return '₱' + this.price.toLocaleString('en-US', { minimumFractionDigits: 2 })
+    }
 }

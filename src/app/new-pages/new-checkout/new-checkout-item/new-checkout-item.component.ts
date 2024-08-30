@@ -1,8 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { INewCard, NewCard } from 'src/app/new-models/new-card';
-import { INewCart } from 'src/app/new-models/new-cart';
 import { INewGift, NewGift } from 'src/app/new-models/new-gift';
-import { INewPaymentItem } from 'src/app/new-models/new-payment';
+import { INewPaymentItem, NewPaymentItem } from 'src/app/new-models/new-payment';
 import { INewPostcard, NewPostcard } from 'src/app/new-models/new-postcard';
 import { INewSticker, NewSticker } from 'src/app/new-models/new-sticker';
 import { NewCardService } from 'src/app/new-services/new-card.service';
@@ -17,8 +16,8 @@ import { NewStickerService } from 'src/app/new-services/new-sticker.service';
   styleUrls: ['./new-checkout-item.component.scss']
 })
 export class NewCheckoutItemComponent implements OnInit {
-  @Input() set item(value: INewPaymentItem){
-    this.iItem = value;
+  @Input() set iItem(value: INewPaymentItem){
+    this.item = new NewPaymentItem(value);
   }
 
   cardService: NewCardService;
@@ -41,46 +40,42 @@ export class NewCheckoutItemComponent implements OnInit {
     this.fileService = _fileService;
   }
 
-  iItem: INewPaymentItem;
+  item: NewPaymentItem;
   model: NewCard | NewSticker | NewPostcard | undefined = undefined;
   primary: string = '';
   bundleDetails: string = ''
 
   async ngOnInit(): Promise<void> {
-    if (this.iItem.type === 'card') {
-      let iCard = await this.cardService.get(this.iItem.itemid);
+    if (this.item.type === 'card') {
+      let iCard = await this.cardService.get(this.item.itemid);
       this.model = new NewCard(iCard as INewCard);
-      let images = await this.cardService.getImages(this.iItem.itemid);
+      let images = await this.cardService.getImages(this.item.itemid);
       if (images.length > 0) this.loadImage(images[0].url)
     }
-    else if (this.iItem.type === 'sticker') {
-      let iSticker = await this.stickerService.get(this.iItem.itemid);
+    else if (this.item.type === 'sticker') {
+      let iSticker = await this.stickerService.get(this.item.itemid);
       this.model = new NewSticker(iSticker as INewSticker);
-      let images = await this.stickerService.getImages(this.iItem.itemid);
+      let images = await this.stickerService.getImages(this.item.itemid);
       if (images.length > 0) this.loadImage(images[0].url)
     }
-    else if (this.iItem.type === 'postcard') {
-      let iPostcard = await this.postcardService.get(this.iItem.itemid);
+    else if (this.item.type === 'postcard') {
+      let iPostcard = await this.postcardService.get(this.item.itemid);
       this.model = new NewPostcard(iPostcard as INewPostcard);
-      if (this.iItem.bundle){
-        this.bundleDetails = 'Bundle of ' + this.iItem.bundle.count.toLocaleString() + ' pcs'
+      if (this.item.bundle){
+        this.bundleDetails = 'Bundle of ' + this.item.bundle.countDisplay() + ' pcs'
       }
-      let images = await this.postcardService.getImages(this.iItem.itemid);
+      let images = await this.postcardService.getImages(this.item.itemid);
       if (images.length > 0) this.loadImage(images[0].url)
     }
-    else if (this.iItem.type === 'gift') {
-      let iGift = await this.giftService.get(this.iItem.itemid);
+    else if (this.item.type === 'gift') {
+      let iGift = await this.giftService.get(this.item.itemid);
       this.model = new NewGift(iGift as INewGift);
-      let images = await this.giftService.getImages(this.iItem.itemid);
+      let images = await this.giftService.getImages(this.item.itemid);
       if (images.length > 0) this.loadImage(images[0].url)
     }
   }
 
   async loadImage(url: string) {
     this.primary = await this.fileService.getImageURL(url);
-  }
-
-  convertAmount(value: number) {
-    return '₱ ' + value.toLocaleString('en-US', { minimumFractionDigits: 2 })
   }
 }

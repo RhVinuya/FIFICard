@@ -41,7 +41,7 @@ export class NewAddress {
     }
 
     getFullAddress(){
-        return this.address + ' ' + this.city + ' ' + this.province + ' ' + this.country + ' ' + this.postcode;
+        return this.address + ' ' + (this.city ? this.city + ' ' : '') + (this.province ? this.province + ' ' : '') + this.country + ' ' + this.postcode;
     }
 }
 

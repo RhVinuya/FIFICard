@@ -2,11 +2,11 @@
     <div class="v3" *ngIf="type===0">
         <div class="mxw-1920px">
             <div class="row my-2">
-                <div class="col-3 ps-0" size="auto">
-                    <img src="/assets/images/logo_fibeigreetings-com.png" title="FibeiGreetings.com" routerlink="/" oncontextmenu="return false;"
+                <div class="col-2 ps-0" size="auto">
+                    <img [src]="logo" title="FibeiGreetings.com" routerlink="/" oncontextmenu="return false;"
                         class="img-title img-fluid" style="cursor: pointer;" tabindex="0" [routerLink]="['/new']">
                 </div>
-                <div class="col-6 ps-0 my-auto" size="auto">
+                <div class="col-8 ps-0 my-auto" size="auto">
                     <ul class="nav justify-content-center my-menu-links">
                         <li class="nav-item">
                             <a class="nav-link" [routerLink]="['/new']">Home</a>
@@ -29,12 +29,12 @@
                         <li class="nav-item">
                             <a class="nav-link" (mouseenter)="onHover('postcards')" (mouseleave)="onHoverOut()">Postcards</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item" *ngIf="location === 'ph'">
                             <a class="nav-link" (mouseenter)="onHover('gifts')" (mouseleave)="onHoverOut()">Gifts </a>
                         </li>
                     </ul>
                 </div>
-                <div class="col-3" size="auto">
+                <div class="col-2" size="auto">
                     <ul class="nav justify-content-end">
                         <li class="nav-item action">
                             <a class="nav-link active" aria-current="page" [routerLink]="['/new/cart']">
@@ -70,7 +70,7 @@
         <div class="mxw-1920px">
             <div class="row mt-2">
                 <div class="col-6" size="auto">
-                    <img src="/assets/images/logo_fibeigreetings-com.png" title="FibeiGreetings.com" routerlink="/" oncontextmenu="return false;"
+                    <img [src]="logo" title="FibeiGreetings.com" routerlink="/" oncontextmenu="return false;"
                         class="img-title img-fluid" style="cursor: pointer;" tabindex="0" [routerLink]="['/new']">
                 </div>
                 <div class="col-6 pe-0" size="auto">
@@ -116,7 +116,7 @@
                         <li class="nav-item">
                             <a class="nav-link" (mouseenter)="onHover('postcards')" (mouseleave)="onHoverOut()">Postcards</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item" *ngIf="location === 'ph'">
                             <a class="nav-link" (mouseenter)="onHover('gifts')" (mouseleave)="onHoverOut()">Gifts </a>
                         </li>
                     </ul>

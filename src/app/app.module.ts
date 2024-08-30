@@ -202,6 +202,8 @@ import { NewProfileOrdersComponent } from './new-pages/new-profile/new-profile-o
 import { NewProfileOrdersItemComponent } from './new-pages/new-profile/new-profile-orders-item/new-profile-orders-item.component';
 import { NewProjectComponent } from './new-pages/new-profile/new-project/new-project.component';
 import { NewProjectItemComponent } from './new-pages/new-profile/new-project-item/new-project-item.component';
+import { NewVideoPlayerComponent } from './new-components/new-video-player/new-video-player.component';
+import { NewPasswordResetComponent } from './new-components/new-password-reset/new-password-reset.component';
 
 @NgModule({
   declarations: [
@@ -380,7 +382,9 @@ import { NewProjectItemComponent } from './new-pages/new-profile/new-project-ite
     NewProfileOrdersComponent,
     NewProfileOrdersItemComponent,
     NewProjectComponent,
-    NewProjectItemComponent
+    NewProjectItemComponent,
+    NewVideoPlayerComponent,
+    NewPasswordResetComponent
   ],
   imports: [
     BrowserModule,

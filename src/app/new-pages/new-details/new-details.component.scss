@@ -116,12 +116,39 @@ h1{
 }
 
 .qr{
-    width: 180px;
+    width: 170px;
     position: absolute;
     right: 0;
     top: 1px;
 }
 
+.qr-icon{
+    width: 150px;
+}
+
 .qr-image:hover{
     opacity: 0.8;
+}
+
+.info{
+    font-size: 0.8rem;
+    line-height: 0.8rem;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.info:link {
+    text-decoration: none;
+}
+
+.info:visited {
+    text-decoration: none;
+}
+
+.info:hover {
+    text-decoration: none;
+}
+
+.info:active {
+    text-decoration: none;
 }

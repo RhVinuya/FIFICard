@@ -34,19 +34,17 @@
                 <div class="action" style="top: 29.6%; left: 84%; width: 11%; height: 53.7%;" [routerLink]="['/new/details/card/advVx8q64nASYEm8zpWL']"></div>
                 <div class="action" style="top: 87.7%; left: 70.9%; width: 16.5%; height: 6.9%;" [routerLink]="['/new/cards/Sympathy']"></div>
             </div>
-            <div class="col-md-12 relative">
+            <div class="col-md-12 relative" *ngIf="location === 'ph'">
                 <img src="/assets/images/2024/v3/homepage/banner5.png">
                 <div class="action" style="top: 6.8%; left: 36.1%; width: 19.2%; height: 87.7%;" [routerLink]="['/new/stickers/all']"></div>
                 <div class="action" style="top: 6.8%; left: 56.5%; width: 19.2%; height: 87.7%;" [routerLink]="['/new/postcards']"></div>
                 <div class="action" style="top: 6.8%; left: 77.2%; width: 19.2%; height: 87.7%;" [routerLink]="['/new/gifts']"></div>
             </div>
-            <!--
-            <div class="col-md-12 relative">
+            <div class="col-md-12 relative" *ngIf="location !== 'ph'">
                 <img src="/assets/images/2024/v3/homepage/banner5.5.png">
                 <div class="action" style="top: 6.8%; left: 47.2%; width: 19.2%; height: 87.2%;" [routerLink]="['/new/stickers/all']"></div>
                 <div class="action" style="top: 6.8%; left: 70.9%; width: 19.2%; height: 87.2%;" [routerLink]="['/new/postcards']"></div>
             </div>
-            -->
             <div class="col-md-12 relative">
                 <img src="/assets/images/2024/v3/homepage/banner6.png">
                 <div class="action" style="top: 88.3%; left: 74.1%; width: 20.1%; height: 5.6%;" [routerLink]="['/new/cards/PERSONALIZED']"></div>

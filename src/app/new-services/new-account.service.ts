@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { collection, doc, Firestore, getDocFromServer, getDocsFromServer, query, setDoc, updateDoc, where } from '@angular/fire/firestore';
-import { Auth, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from '@angular/fire/auth';
+import { Auth, createUserWithEmailAndPassword, GoogleAuthProvider, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup } from '@angular/fire/auth';
 import { INewGoogleUser, INewUser } from '../new-models/new-user';
 
 export class UpdateResponse {
@@ -62,6 +62,10 @@ export class NewAccountService {
     });
   }
 
+  passwordReset(email: string): Promise<void> {
+    return sendPasswordResetEmail(this.auth, email)
+  }
+
   setUser(user: INewUser): Promise<void> {
     return new Promise((resolve) => {
       const data = doc(this.store, this.colname + '/' + user.id);
@@ -88,7 +92,7 @@ export class NewAccountService {
     })
   }
 
-  updateDefaultAddress(id: string, addressId: string): Promise<void>{
+  updateDefaultAddress(id: string, addressId: string): Promise<void> {
     const data = doc(this.store, this.colname + '/' + id);
     return updateDoc(data, {
       address: addressId

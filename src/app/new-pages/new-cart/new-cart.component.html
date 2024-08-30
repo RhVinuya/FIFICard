@@ -68,13 +68,13 @@
                     <h3 class="mt-0 mb-4">Order Summary</h3>
 
                     <div class="space-between">
-                        <span>Subtotal</span>
-                        <h6 class="my-0 text-purple">{{totalDisplay}}</h6>
+                        <h5 class="my-0">Subtotal</h5>
+                        <h5 class="my-0 text-purple">{{totalDisplay}}</h5>
                     </div>
                     <hr />
                     <div class="space-between mb-4">
-                        <span>Estimated Total</span>
-                        <h6 class="my-0 text-purple">{{totalDisplay}}</h6>
+                        <h5 class="my-0">Estimated Total</h5>
+                        <h5 class="my-0 text-purple">{{totalDisplay}}</h5>
                     </div>
                     <div class="text-center" *ngIf="user !== undefined">
                         <button class="checkout" [disabled]="count === 0 || saving === true" (click)="onClickCheckout()">Proceed to checkout</button>

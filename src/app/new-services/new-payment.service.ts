@@ -14,6 +14,7 @@ import { NewFileService } from './new-file.service';
 import { INewUser } from '../new-models/new-user';
 import { HttpClient } from '@angular/common/http';
 import { NewGiftService } from './new-gift.service';
+import { NewLocationService } from './new-location.service';
 
 @Injectable({
   providedIn: 'root'
@@ -105,6 +106,7 @@ export class NewPaymentService {
 
   stripeCheckout(payment: INewPayment, iUser: INewUser): Promise<string> {
     return new Promise(async (resolve) => {
+      let locationService: NewLocationService = new NewLocationService();
       const stripe = require('stripe')(environment.stripe.secretKey);
       let lineitems: any[] = [];
 
@@ -165,7 +167,7 @@ export class NewPaymentService {
               description: description,
               images: [image]
             },
-            currency: 'PHP',
+            currency: locationService.getCurrency(),
             unit_amount: Number(item.total).toFixed(2).replace(".", "")
           },
           quantity: 1
@@ -205,6 +207,8 @@ export class NewPaymentService {
 
   payMongoCheckout(type: 'gcash' | 'paymaya', payment: INewPayment): Promise<any> {
     return new Promise(async (resolve) => {
+      let locationService: NewLocationService = new NewLocationService();
+
       let lineitems: any[] = [];
 
       for await (const item of payment.items) {
@@ -259,7 +263,7 @@ export class NewPaymentService {
 
         lineitems.push({
           amount: Number(item.total.toFixed(2).replace(".", "")),
-          currency: 'PHP',
+          currency: locationService.getCurrency(),
           name: name,
           description: description.substring(0, 255),
           images: [image],
@@ -308,7 +312,6 @@ export class NewPaymentService {
 
       let response = this.http.get('https://api.paymongo.com/v1/checkout_sessions/' + id, { 'headers': headers });
       response.subscribe(result => {
-        console.log(result)
         let data: any = JSON.parse(JSON.stringify(result));
         if ((data.data.attributes.payments as any[]).length > 0) {
           (data.data.attributes.payments as any[]).forEach(payment => {

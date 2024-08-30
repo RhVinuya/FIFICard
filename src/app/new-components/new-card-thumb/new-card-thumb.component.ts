@@ -51,8 +51,6 @@ export class NewCardThumbComponent implements OnInit {
       this.secondary = this.primary;
     }
 
-
-
     this.loadRatings(await this.cardService.getRatings(this._card.id))
   }
 

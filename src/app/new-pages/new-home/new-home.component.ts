@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LocationType, NewLocationService } from 'src/app/new-services/new-location.service';
 
 @Component({
   selector: 'app-new-home',
@@ -7,10 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewHomeComponent implements OnInit {
 
-  constructor() { }
+  locationService: NewLocationService;
 
-  ngOnInit(): void { }
+  constructor(
+    _locationService: NewLocationService
+  ) { 
+    this.locationService = _locationService;
+  }
 
-  showHeader: boolean = false
+  location: LocationType;
+  showHeader: boolean = false;
+
+  ngOnInit(): void { 
+    this.location = this.locationService.getlocation();
+  }
 
 }

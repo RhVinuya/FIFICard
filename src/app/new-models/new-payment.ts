@@ -1,5 +1,9 @@
+import { LocationType, NewLocationService } from "../new-services/new-location.service";
 import { INewAddress } from "./new-address";
 import { Timestamp } from "@angular/fire/firestore";
+import { ItemType } from "./new-cart";
+
+export type Gateway = 'specialcode' | 'card' | 'gcash' | 'paymaya';
 
 export interface INewPayment {
     id: string;
@@ -12,7 +16,7 @@ export interface INewPayment {
     total: number;
     items: INewPaymentItem[];
     location: 'ph' | 'sg' | 'us';
-    gateway: 'specialcode' | 'card' | 'gcash' | 'paymaya';
+    gateway: Gateway;
     details: INewSpecialCodeDetails | INewStripeDetails | INewPaymongoDetails;
     created: Timestamp;
 }
@@ -27,11 +31,13 @@ export class NewPayment {
     shippingFee: number;
     total: number;
     items: INewPaymentItem[];
-    location: 'ph' | 'sg' | 'us';
-    gateway: 'specialcode' | 'card' | 'gcash' | 'paymaya';
+    location: LocationType;
+    gateway: Gateway;
     details: INewSpecialCodeDetails | INewStripeDetails | INewPaymongoDetails;
     created: Timestamp;
 
+    locationService: NewLocationService;
+    
     constructor(){}
 
     load(iPayment: INewPayment){
@@ -100,16 +106,70 @@ export class NewSender {
 export interface INewPaymentItem{
     id: string;
     itemid: string;
-    type: "card" | "sticker" | "postcard" | "gift";
+    type: ItemType;
     bundle: INewPaymentItemBundle | undefined;
     price: number;
     shipping: number;
     total: number;
 }
 
+export class NewPaymentItem{
+    id: string;
+    itemid: string;
+    type: ItemType;
+    bundle: NewPaymentItemBundle | undefined;
+    price: number;
+    shipping: number;
+    total: number;
+
+    constructor(value: INewPaymentItem) {
+        this.id = value.id;
+        this.itemid = value.itemid;
+        this.type = value.type;
+        if (value.bundle) this.bundle = new NewPaymentItemBundle(value.bundle as INewPaymentItemBundle)
+        this.price = value.price;
+        this.shipping = value.shipping;
+        this.total = value.total;
+    }
+
+    priceDisplay(){
+        let locationService: NewLocationService = new NewLocationService();
+        return locationService.getPriceSymbol() + this.price.toLocaleString('en-US', { minimumFractionDigits: 2 })
+    }
+
+    shippingDisplay(){
+        let locationService: NewLocationService = new NewLocationService();
+        return locationService.getPriceSymbol() + this.shipping.toLocaleString('en-US', { minimumFractionDigits: 2 })
+    }
+
+    totalDisplay(){
+        let locationService: NewLocationService = new NewLocationService();
+        return locationService.getPriceSymbol() + this.total.toLocaleString('en-US', { minimumFractionDigits: 2 })
+    }
+}
+
 export interface INewPaymentItemBundle {
     count: number;
     price: number;
+}
+
+export class NewPaymentItemBundle{
+    count: number;
+    price: number;
+
+    constructor(value: INewPaymentItemBundle) {
+        this.count = value.count;
+        this.price = value.price;
+    }
+
+    countDisplay() {
+        return this.count.toLocaleString();
+    }
+
+    priceDisplay(){
+        let locationService: NewLocationService = new NewLocationService();
+        return locationService.getPriceSymbol() + this.price.toLocaleString('en-US', { minimumFractionDigits: 2 })
+    }
 }
 
 export interface INewSpecialCodeDetails {

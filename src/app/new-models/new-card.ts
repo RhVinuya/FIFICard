@@ -1,4 +1,5 @@
 import { Timestamp } from "@angular/fire/firestore";
+import { LocationType, NewLocationService } from "../new-services/new-location.service";
 
 export interface INewCard {
     id: string;
@@ -58,15 +59,11 @@ export class NewCard {
     }
 
     priceDisplay(){
-        return '₱' + this.price.toLocaleString('en-US', { minimumFractionDigits: 2 })
-    }
-
-    usPriceDisplay(){
-        return '$' + this.sgprice.toLocaleString('en-US', { minimumFractionDigits: 2 })
-    }
-
-    sgPriceDisplay(){
-        return 'S$' + this.usprice.toLocaleString('en-US', { minimumFractionDigits: 2 })
+        let locationService: NewLocationService = new NewLocationService();
+        let location: LocationType = locationService.getlocation();
+        if (location === 'us') return '$' + this.usprice.toLocaleString('en-US', { minimumFractionDigits: 2 })
+        else if (location === 'sg') return 'S$' + this.sgprice.toLocaleString('en-US', { minimumFractionDigits: 2 })
+        else return '₱' + this.price.toLocaleString('en-US', { minimumFractionDigits: 2 })
     }
 }
 

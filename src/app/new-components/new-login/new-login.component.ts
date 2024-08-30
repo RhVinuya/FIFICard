@@ -7,6 +7,7 @@ import { INewUser } from 'src/app/new-models/new-user';
 import { NewAccountService } from 'src/app/new-services/new-account.service';
 import { NewStorageService } from 'src/app/new-services/new-storage.service';
 import { NewInfoMessageComponent } from '../new-info-message/new-info-message.component';
+import { NewPasswordResetComponent } from '../new-password-reset/new-password-reset.component';
 
 @Component({
   selector: 'app-new-login',
@@ -36,7 +37,7 @@ export class NewLoginComponent implements OnInit {
     this.activeModal = _activeModal;
     this.accountService = _accountService;
     this.storageService = _storageService;
-    this.modalService = _modalService ;
+    this.modalService = _modalService;
     this.router = _router;
     this.toastController = _toastController;
     this.ref = _ref
@@ -170,5 +171,11 @@ export class NewLoginComponent implements OnInit {
     }).catch(err => {
       this.processing = false;
     })
+  }
+
+  onResetPassword() {
+    this.activeModal.close();
+    const reference = this.modalService.open(NewPasswordResetComponent, { animation: true });
+    if (this.form.controls.email.value) reference.componentInstance.email = this.form.controls.email.value!;
   }
 }

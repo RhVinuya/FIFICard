@@ -4,6 +4,7 @@ import { NewCreateAddressComponent } from 'src/app/new-components/new-create-add
 import { INewAddress, INewAddressConfig, NewAddress } from 'src/app/new-models/new-address';
 import { NewAccountService } from 'src/app/new-services/new-account.service';
 import { NewAddressService } from 'src/app/new-services/new-address.service';
+import { LocationType, NewLocationService } from 'src/app/new-services/new-location.service';
 
 @Component({
   selector: 'app-new-profile-addresses',
@@ -16,27 +17,32 @@ export class NewProfileAddressesComponent implements OnInit {
 
   @Output() onChangeDefault: EventEmitter<string> = new EventEmitter();
 
+  locationService: NewLocationService;
   addressService: NewAddressService;
   accountService: NewAccountService;
   modalService: NgbModal;
   ref: ChangeDetectorRef;
 
   constructor(
+    _locationService: NewLocationService,
     _addressService: NewAddressService,
     _accountService: NewAccountService,
     _modalService: NgbModal,
     _ref: ChangeDetectorRef
   ) { 
+    this.locationService = _locationService;
     this.addressService = _addressService;
     this.accountService = _accountService;
     this.modalService = _modalService;
     this.ref = _ref;
   }
 
+  location: LocationType = 'ph';
   defaultId: string;
   addresses: NewAddress[] = [];
 
   async ngOnInit() {
+    this.location = this.locationService.getlocation();
     this.defaultId = this.default;
     this.loadAdderesses();
   }
@@ -44,7 +50,9 @@ export class NewProfileAddressesComponent implements OnInit {
   async loadAdderesses() {
     let data = await this.addressService.getAll(this.id); 
     data.forEach(value => {
-      this.addresses.push(new NewAddress(value));
+      if (this.location === 'ph' && value.country === 'Philippines') this.addresses.push(new NewAddress(value));
+      else if (this.location === 'sg' && value.country === 'Singapore') this.addresses.push(new NewAddress(value));
+      else if (this.location === 'us' && value.country === 'United States') this.addresses.push(new NewAddress(value));
     })
   }
 

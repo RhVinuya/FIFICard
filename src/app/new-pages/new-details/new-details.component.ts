@@ -1,12 +1,13 @@
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastController } from '@ionic/angular';
-import { NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';
 import { NewInYourCartComponent } from 'src/app/new-components/new-in-your-cart/new-in-your-cart.component';
+import { NewVideoPlayerComponent } from 'src/app/new-components/new-video-player/new-video-player.component';
 import { INewCard, INewCardImage, INewRating, NewCard } from 'src/app/new-models/new-card';
 import { INewCartBundle } from 'src/app/new-models/new-cart';
 import { INewGift, INewGiftImage, NewGift } from 'src/app/new-models/new-gift';
-import { INewPostcard, INewPostcardBundle, NewPostcard } from 'src/app/new-models/new-postcard';
+import { INewPostcard, INewPostcardBundle, NewPostcard, NewPostcardBundle } from 'src/app/new-models/new-postcard';
 import { INewSticker, INewStickerImage, NewSticker } from 'src/app/new-models/new-sticker';
 import { NewCardService } from 'src/app/new-services/new-card.service';
 import { NewCartService } from 'src/app/new-services/new-cart.service';
@@ -30,6 +31,7 @@ export class NewDetailsComponent implements OnInit {
   cartService: NewCartService;
   toastController: ToastController;
   offCanvas: NgbOffcanvas;
+  modalService: NgbModal;
   ref: ChangeDetectorRef;
 
   constructor(
@@ -42,6 +44,7 @@ export class NewDetailsComponent implements OnInit {
     _cartService: NewCartService,
     _toastController: ToastController,
     _offCanvas: NgbOffcanvas,
+    _modalService: NgbModal,
     _ref: ChangeDetectorRef
   ) {
     this.activateRoute = _activateRoute;
@@ -53,6 +56,7 @@ export class NewDetailsComponent implements OnInit {
     this.cartService = _cartService;
     this.toastController = _toastController;
     this.offCanvas = _offCanvas;
+    this.modalService = _modalService;
     this.ref = _ref
   }
 
@@ -61,7 +65,7 @@ export class NewDetailsComponent implements OnInit {
   type: 'card' | 'sticker' | 'postcard' | 'gift';
   model: NewCard | NewSticker | NewPostcard | NewGift;
   iModel: INewCard | INewSticker | INewPostcard | INewGift;
-  bundles: INewPostcardBundle[] = [];
+  bundles: NewPostcardBundle[] = [];
   images: string[] = [];
   rate: number = 0;
   qr: string = '';
@@ -120,8 +124,11 @@ export class NewDetailsComponent implements OnInit {
           this.loading = false;
           this.ref.detectChanges();
           this.loadImages(await this.postcardService.getImages(this.id));
-          this.bundles = await this.postcardService.getBundles(this.id);
-          this.bundles.sort((a, b) => { return a.price - b.price });
+          let ibundles = await this.postcardService.getBundles(this.id);
+          ibundles.sort((a, b) => { return a.price - b.price });
+          ibundles.forEach(ibundle => {
+            this.bundles.push(new NewPostcardBundle(ibundle));
+          })
           this.loadRatings(await this.cardService.getRatings(this.id));
         })
       }
@@ -193,5 +200,10 @@ export class NewDetailsComponent implements OnInit {
 
   getICard() {
     return this.iModel as INewCard;
+  }
+
+  playInstruction() {
+    const reference = this.modalService.open(NewVideoPlayerComponent, { animation: true, size: 'xl', centered: true });
+    reference.componentInstance.url = '/assets/images/talking-card.mp4'
   }
 }

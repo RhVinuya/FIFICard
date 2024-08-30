@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NewConfirmMessageComponent } from 'src/app/new-components/new-confirm-message/new-confirm-message.component';
 import { INewCard, NewCard } from 'src/app/new-models/new-card';
-import { INewCart } from 'src/app/new-models/new-cart';
+import { INewCart, NewCart } from 'src/app/new-models/new-cart';
 import { INewGift, NewGift } from 'src/app/new-models/new-gift';
 import { INewPostcard, NewPostcard } from 'src/app/new-models/new-postcard';
 import { INewSticker, NewSticker } from 'src/app/new-models/new-sticker';
@@ -48,41 +48,40 @@ export class NewCartItemComponent implements OnInit {
   }
 
   model: NewCard | NewSticker | NewPostcard | NewGift | undefined = undefined;
-  iCart: INewCart | undefined = undefined;
+  _cart: NewCart | undefined = undefined;
   primary: string = '';
   bundleDetails: string = ''
 
   ngOnInit() {
-
   }
 
   async loadDetails(cart: INewCart) {
-    this.iCart = cart
-    if (this.iCart.type === 'card') {
-      let iCard = await this.cardService.get(this.iCart.itemid);
+    this._cart = new NewCart(cart);
+    if (this._cart.type === 'card') {
+      let iCard = await this.cardService.get(this._cart.itemid);
       this.model = new NewCard(iCard as INewCard);
-      let images = await this.cardService.getImages(this.iCart.itemid);
+      let images = await this.cardService.getImages(this._cart.itemid);
       if (images.length > 0) this.loadImage(images[0].url)
     }
-    else if (this.iCart.type === 'sticker') {
-      let iSticker = await this.stickerService.get(this.iCart.itemid);
+    else if (this._cart.type === 'sticker') {
+      let iSticker = await this.stickerService.get(this._cart.itemid);
       this.model = new NewSticker(iSticker as INewSticker);
-      let images = await this.stickerService.getImages(this.iCart.itemid);
+      let images = await this.stickerService.getImages(this._cart.itemid);
       if (images.length > 0) this.loadImage(images[0].url)
     }
-    else if (this.iCart.type === 'postcard') {
-      let iPostcard = await this.postcardService.get(this.iCart.itemid);
+    else if (this._cart.type === 'postcard') {
+      let iPostcard = await this.postcardService.get(this._cart.itemid);
       this.model = new NewPostcard(iPostcard as INewPostcard);
-      if (this.iCart.bundle){
-        this.bundleDetails = 'Bundle of ' + this.iCart.bundle.count.toLocaleString() + ' pcs'
+      if (this._cart.bundle){
+        this.bundleDetails = 'Bundle of ' + this._cart.bundle.countDisplay()+ ' pcs'
       }
-      let images = await this.postcardService.getImages(this.iCart.itemid);
+      let images = await this.postcardService.getImages(this._cart.itemid);
       if (images.length > 0) this.loadImage(images[0].url)
     }
-    else if (this.iCart.type === 'gift') {
-      let iGift = await this.giftService.get(this.iCart.itemid);
+    else if (this._cart.type === 'gift') {
+      let iGift = await this.giftService.get(this._cart.itemid);
       this.model = new NewGift(iGift as INewGift);
-      let images = await this.giftService.getImages(this.iCart.itemid);
+      let images = await this.giftService.getImages(this._cart.itemid);
       if (images.length > 0) this.loadImage(images[0].url)
     }
   }
@@ -92,12 +91,12 @@ export class NewCartItemComponent implements OnInit {
   }
 
   getAmount() {
-    if (this.iCart) {
-      if (this.iCart.type === 'postcard') {
-        if (this.iCart.bundle) return this.iCart.bundle.price.toLocaleString('en-US', { minimumFractionDigits: 2 })
-        else return this.iCart.price.toLocaleString('en-US', { minimumFractionDigits: 2 })
+    if (this._cart) {
+      if (this._cart.type === 'postcard') {
+        if (this._cart.bundle) return this._cart.bundle.priceDisplay()
+        else return this._cart.priceDisplay();
       }
-      else return '₱ ' + this.iCart.price.toLocaleString('en-US', { minimumFractionDigits: 2 })
+      else return this._cart.priceDisplay();
     }
     return '';
   }
@@ -113,8 +112,8 @@ export class NewCartItemComponent implements OnInit {
     reference.componentInstance.yes = 'YES';
     reference.componentInstance.no = 'NO';
     let resultSubs = reference.componentInstance.result.subscribe((value: any) => {
-      if (this.iCart !== undefined && value) {
-        this.onRemoveItem.emit(this.iCart.id)
+      if (this._cart !== undefined && value) {
+        this.onRemoveItem.emit(this._cart.id)
       }
       reference.close();
       resultSubs.unsubscribe();

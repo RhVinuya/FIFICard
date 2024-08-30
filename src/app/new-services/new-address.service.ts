@@ -68,8 +68,8 @@ export class NewAddressService {
         lastname: address.lastname,
         email: address.email,
         address: address.address,
-        city: address.city,
-        province: address.province,
+        city: address.city ? address.city : '',
+        province: address.province ? address.province : '',
         country: address.country,
         postcode: address.postcode,
       }).then(docRef => {
@@ -85,8 +85,8 @@ export class NewAddressService {
         lastname: address.lastname,
         email: address.email,
         address: address.address,
-        city: address.city,
-        province: address.province,
+        city: address.city ? address.city : '',
+        province: address.province ? address.province : '',
         country: address.country,
         postcode: address.postcode
     })

@@ -12,6 +12,6 @@
     <div class="card-body px-2 py-3">
         <h4 class="card-title my-0" (click)="onClick()">{{_postcard.name}}</h4>
         <p class="text-gray my-1" (click)="onClick()">{{_postcard.description}}</p>
-        <label class="text-purple"><b class="mb-2">{{'₱' + min.toLocaleString('en-US', { minimumFractionDigits: 2 })}} - {{'₱' + max.toLocaleString('en-US', { minimumFractionDigits: 2 })}}</b></label>
+        <label class="text-purple"><b class="mb-2" *ngIf="min && max" >{{min.priceDisplay()}} - {{max.priceDisplay()}}</b></label>
     </div>
 </div>

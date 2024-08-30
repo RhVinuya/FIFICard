@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { INewUser } from 'src/app/new-models/new-user';
+import { LocationType, NewLocationService } from 'src/app/new-services/new-location.service';
 
 @Component({
   selector: 'app-new-layout-header',
@@ -23,14 +24,19 @@ export class NewLayoutHeaderComponent implements OnInit {
   }
   @Output() onShowMenu: EventEmitter<boolean> = new EventEmitter();
 
+  locationService: NewLocationService;
   router: Router;
 
   constructor(
+    _locationService: NewLocationService,
     _router: Router
   ) { 
+    this.locationService = _locationService;
     this.router = _router
   }
 
+  location: LocationType;
+  logo: string = '';
   _user: INewUser | undefined = undefined;
   _showHeader: boolean = false;
   showMenu: boolean = false;
@@ -39,6 +45,8 @@ export class NewLayoutHeaderComponent implements OnInit {
   hideDivTimeout: any;
 
   ngOnInit(): void {
+    this.location = this.locationService.getlocation();
+    this.logo = this.locationService.getLogo();
   }
 
   onHover(menu: 'stickers' | 'postcards' | 'gifts' | undefined) {
@@ -61,7 +69,6 @@ export class NewLayoutHeaderComponent implements OnInit {
   }
 
   onOpen(url: string) {
-    console.log(url)
     this.showMenu = false;
     this.onShowMenu.emit(this.showMenu);
     this.router.navigate([url]);

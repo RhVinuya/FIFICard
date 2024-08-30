@@ -1,0 +1,17 @@
+.video{
+    position: relative;
+}
+
+span{
+    position: absolute;
+    top: 2%;
+    right: 1%;
+    font-size: 30px;
+    font-weight: 700;
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+span:hover{
+    opacity: 1;
+}

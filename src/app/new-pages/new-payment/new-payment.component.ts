@@ -97,7 +97,6 @@ export class NewPaymentComponent implements OnInit {
     payment.load(iPayment)
     let details = await this.paymentService.payMongoConfirm(id);
     if (details) {
-      console.log(details)
       payment.details = details;
       await this.paymentService.add(payment);
       this.clear(iPayment);

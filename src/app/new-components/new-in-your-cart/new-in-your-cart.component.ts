@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { NgbActiveOffcanvas, NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';
-import { INewCart } from 'src/app/new-models/new-cart';
+import { INewCart, NewCart } from 'src/app/new-models/new-cart';
 import { NewCartService } from 'src/app/new-services/new-cart.service';
+import { LocationType, NewLocationService } from 'src/app/new-services/new-location.service';
 import { NewStorageService } from 'src/app/new-services/new-storage.service';
 
 @Component({
@@ -15,27 +16,33 @@ export class NewInYourCartComponent implements OnInit {
 
   activeOffCanvas: NgbActiveOffcanvas;
   cartService: NewCartService;
+  locationService: NewLocationService;
   router: Router;
   toastController: ToastController;
 
   constructor(
     _activeOffCanvas: NgbActiveOffcanvas,
     _cartService: NewCartService,
+    _locationService: NewLocationService,
     _router: Router,
     _toastController: ToastController
   ) {
     this.activeOffCanvas = _activeOffCanvas;
     this.cartService = _cartService;
+    this.locationService = _locationService;
     this.router = _router;
     this.toastController = _toastController
   }
 
-  carts: INewCart[] = [];
+  carts: NewCart[] = [];
   total: string = '';
 
   async ngOnInit(): Promise<void> {
-    this.carts = await this.cartService.getAll();
-    this.carts.reverse();
+    let iCarts = await this.cartService.getAll();
+    iCarts.reverse();
+    for await (let iCart of iCarts) {
+      this.carts.push(new NewCart(iCart));
+    }
     this.computeTotal();
   }
 
@@ -68,12 +75,24 @@ export class NewInYourCartComponent implements OnInit {
   }
 
   computeTotal() {
+    let location: LocationType = this.locationService.getlocation();
+    let symbol: string = this.locationService.getPriceSymbol();
     let subtotal: number = 0;
     this.carts.forEach(x => {
-      if (x.type !== 'postcard') subtotal = subtotal + x.price
-      else if (x.bundle) subtotal = subtotal + x.bundle.price
+      if (location === 'ph') {
+        if (x.type !== 'postcard') subtotal = subtotal + x.price
+        else if (x.bundle) subtotal = subtotal + x.bundle.price
+      }
+      else if (location === 'sg') {
+        if (x.type !== 'postcard') subtotal = subtotal + x.sgprice
+        else if (x.bundle) subtotal = subtotal + x.bundle.sgprice
+      }
+      else {
+        if (x.type !== 'postcard') subtotal = subtotal + x.usprice
+        else if (x.bundle) subtotal = subtotal + x.bundle.usprice
+      }
     })
-    this.total = subtotal.toLocaleString('en-US', { minimumFractionDigits: 2 })
+    this.total = symbol + subtotal.toLocaleString('en-US', { minimumFractionDigits: 2 })
   }
 
   openCart() {

@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { INewAddress, INewAddressConfig, INewShippingFee, NewAddress } from 'src/app/new-models/new-address';
-import { INewPayment, INewPaymentItem, INewPaymentItemBundle, INewSender, INewSpecialCode, NewPayment, NewSender } from 'src/app/new-models/new-payment';
+import { INewPayment, INewPaymentItem, INewPaymentItemBundle, INewSender, NewPayment, NewSender } from 'src/app/new-models/new-payment';
 import { NewAddressService } from 'src/app/new-services/new-address.service';
 import { NewStorageService } from 'src/app/new-services/new-storage.service';
 import { NewCheckoutRecipientsComponent } from './new-checkout-recipients/new-checkout-recipients.component';
@@ -16,6 +16,7 @@ import { NewPostcardService } from 'src/app/new-services/new-postcard.service';
 import { NewCardService } from 'src/app/new-services/new-card.service';
 import { NewFileService } from 'src/app/new-services/new-file.service';
 import { NewCartService } from 'src/app/new-services/new-cart.service';
+import { LocationType, NewLocationService } from 'src/app/new-services/new-location.service';
 
 @Component({
   selector: 'app-new-checkout',
@@ -25,6 +26,7 @@ import { NewCartService } from 'src/app/new-services/new-cart.service';
 export class NewCheckoutComponent implements OnInit, OnDestroy {
 
   storageService: NewStorageService;
+  locationService: NewLocationService;
   cartService: NewCartService;
   addressService: NewAddressService;
   paymentService: NewPaymentService;
@@ -39,6 +41,7 @@ export class NewCheckoutComponent implements OnInit, OnDestroy {
 
   constructor(
     _storageService: NewStorageService,
+    _locationService: NewLocationService,
     _cartService: NewCartService,
     _addressService: NewAddressService,
     _paymentService: NewPaymentService,
@@ -52,6 +55,7 @@ export class NewCheckoutComponent implements OnInit, OnDestroy {
     _ref: ChangeDetectorRef
   ) {
     this.storageService = _storageService;
+    this.locationService = _locationService;
     this.cartService = _cartService;
     this.addressService = _addressService;
     this.paymentService = _paymentService;
@@ -84,6 +88,7 @@ export class NewCheckoutComponent implements OnInit, OnDestroy {
   ];
 
   loading: boolean = false;
+  location: LocationType;
   iUser: INewUser | undefined;
   addressConfig: INewAddressConfig[] = [];
   fees: INewShippingFee[] = [];
@@ -109,6 +114,7 @@ export class NewCheckoutComponent implements OnInit, OnDestroy {
 
   async ngOnInit(): Promise<void> {
     this.loading = true;
+    this.location = this.locationService.getlocation();
     this.ref.detectChanges();
     this.addressConfig = await this.addressService.getConfig();
     this.fees = await this.addressService.getShippingFees();
@@ -121,21 +127,33 @@ export class NewCheckoutComponent implements OnInit, OnDestroy {
       })
       this.ref.detectChanges();
       this.defaultAddressId = this.iUser.address;
-      this.addresses = await this.addressService.getAll(this.iUser.id);
+      let adds = await this.addressService.getAll(this.iUser.id);
+      adds.forEach(value => {
+        if (this.location === 'ph' && value.country === 'Philippines') this.addresses.push(value);
+        else if (this.location === 'sg' && value.country === 'Singapore') this.addresses.push(value);
+        else if (this.location === 'us' && value.country === 'United States') this.addresses.push(value);
+      })
+
+
       if (this.iUser.address && this.iUser.address !== '') this.loadAddress(this.iUser.address);
       this.ref.detectChanges();
     }
 
     this.ids = this.storageService.getCheckoutList();
 
-    for await (let id of this.ids){
+    for await (let id of this.ids) {
       let iCart = await this.cartService.get(id);
       if (iCart) {
+        let price: number = 0;
+        if (this.location === 'ph') price = iCart.bundle ? iCart.bundle.price : iCart.price;
+        else if (this.location === 'sg') price = iCart.bundle ? iCart.bundle.sgprice : iCart.sgprice;
+        else if (this.location === 'us') price = iCart.bundle ? iCart.bundle.usprice : iCart.usprice;
+
         let bundle: INewPaymentItemBundle | undefined = undefined;
         if (iCart.bundle) {
           bundle = {
             count: iCart.bundle.count,
-            price: iCart.bundle.price
+            price: price
           }
         }
         this.items.push({
@@ -143,9 +161,9 @@ export class NewCheckoutComponent implements OnInit, OnDestroy {
           itemid: iCart.itemid,
           type: iCart.type,
           bundle: bundle,
-          price: iCart.bundle ? iCart.bundle.price : iCart.price,
+          price: price,
           shipping: 0,
-          total: iCart.price
+          total: price
         })
       }
     }
@@ -211,39 +229,63 @@ export class NewCheckoutComponent implements OnInit, OnDestroy {
   }
 
   calculateShipping() {
-    if (this.receiver.province !== '') {
-      let group = this.addressConfig.find(x => x.name === this.receiver.province)!.group;
-
+    if (this.location === 'ph') {
+      if (this.receiver.province !== '') {
+        let group = this.addressConfig.find(x => x.name === this.receiver.province)!.group;
+        this.items.forEach(item => {
+          if (item.type === 'card' || item.type === 'postcard') {
+            let fee = this.fees.find(x => x.name === 'Card');
+            if (fee) {
+              if (group === 'NCR') item.shipping = fee.metromanila;
+              else if (group === 'Luzon') item.shipping = fee.luzon;
+              else if (group === 'Visayas') item.shipping = fee.visayas;
+              else if (group === 'Mindanao') item.shipping = fee.mindanao;
+            }
+          }
+          if (item.type === 'sticker') {
+            let fee = this.fees.find(x => x.name === 'Sticker');
+            if (fee) {
+              if (group === 'NCR') item.shipping = fee.metromanila;
+              else if (group === 'Luzon') item.shipping = fee.luzon;
+              else if (group === 'Visayas') item.shipping = fee.visayas;
+              else if (group === 'Mindanao') item.shipping = fee.mindanao;
+            }
+          }
+          if (item.type === 'gift') {
+            let fee = this.fees.find(x => x.name === 'Gift');
+            if (fee) {
+              if (group === 'NCR') item.shipping = fee.metromanila;
+              else if (group === 'Luzon') item.shipping = fee.luzon;
+              else if (group === 'Visayas') item.shipping = fee.visayas;
+              else if (group === 'Mindanao') item.shipping = fee.mindanao;
+            }
+          }
+          item.total = item.price + item.shipping;
+        })
+        this.subtotal = 0;
+        this.shippingfee = 0;
+        this.total = 0;
+        this.items.map(x => this.subtotal = this.subtotal + x.price)
+        this.items.map(x => this.shippingfee = this.shippingfee + x.shipping)
+        this.items.map(x => this.total = this.total + x.total)
+        this.ref.detectChanges();
+      }
+    }
+    else {
       this.items.forEach(item => {
         if (item.type === 'card' || item.type === 'postcard') {
           let fee = this.fees.find(x => x.name === 'Card');
-          if (fee) {
-            if (group === 'NCR') item.shipping = fee.metromanila;
-            else if (group === 'Luzon') item.shipping = fee.luzon;
-            else if (group === 'Visayas') item.shipping = fee.visayas;
-            else if (group === 'Mindanao') item.shipping = fee.mindanao;
-          }
+          if (fee) item.shipping = this.location === 'us' ? fee.us : fee.singapore;
         }
         if (item.type === 'sticker') {
           let fee = this.fees.find(x => x.name === 'Sticker');
-          if (fee) {
-            if (group === 'NCR') item.shipping = fee.metromanila;
-            else if (group === 'Luzon') item.shipping = fee.luzon;
-            else if (group === 'Visayas') item.shipping = fee.visayas;
-            else if (group === 'Mindanao') item.shipping = fee.mindanao;
-          }
+          if (fee) item.shipping = this.location === 'us' ? fee.us : fee.singapore;
         }
         if (item.type === 'gift') {
           let fee = this.fees.find(x => x.name === 'Gift');
-          if (fee) {
-            if (group === 'NCR') item.shipping = fee.metromanila;
-            else if (group === 'Luzon') item.shipping = fee.luzon;
-            else if (group === 'Visayas') item.shipping = fee.visayas;
-            else if (group === 'Mindanao') item.shipping = fee.mindanao;
-          }
+          if (fee) item.shipping = this.location === 'us' ? fee.us : fee.singapore;
         }
-        item.total = item.price + item.shipping;
-      })
+      });
       this.subtotal = 0;
       this.shippingfee = 0;
       this.total = 0;
@@ -255,10 +297,10 @@ export class NewCheckoutComponent implements OnInit, OnDestroy {
   }
 
   convertNumberDisplay(value: number) {
-    return '₱ ' + value.toLocaleString('en-US', { minimumFractionDigits: 2 })
+    return this.locationService.getPriceSymbol() + value.toLocaleString('en-US', { minimumFractionDigits: 2 })
   }
 
-  isValidSender(){
+  isValidSender() {
     return this.sender && this.sender.firstname && this.sender.firstname !== '' && this.sender.lastname && this.sender.lastname !== '' && this.sender.email && this.sender.email !== ''
   }
 
@@ -308,7 +350,7 @@ export class NewCheckoutComponent implements OnInit, OnDestroy {
           payment.shippingFee = this.shippingfee;
           payment.total = this.total;
           payment.items = this.items;
-          payment.location = 'ph';
+          payment.location = this.locationService.getlocation();
           payment.gateway = 'specialcode';
           payment.details = {
             code: code ? code.code : ''
@@ -343,7 +385,7 @@ export class NewCheckoutComponent implements OnInit, OnDestroy {
     payment.shippingFee = this.shippingfee;
     payment.total = this.total;
     payment.items = this.items;
-    payment.location = 'ph';
+    payment.location = this.locationService.getlocation();
     payment.gateway = 'card';
     this.storageService.savePayment(payment as INewPayment);
 
@@ -353,7 +395,7 @@ export class NewCheckoutComponent implements OnInit, OnDestroy {
     }
   }
 
-  async onGCash(){
+  async onGCash() {
     this.isProcessingGCash = true;
     this.ref.detectChanges();
 
@@ -365,7 +407,7 @@ export class NewCheckoutComponent implements OnInit, OnDestroy {
     payment.shippingFee = this.shippingfee;
     payment.total = this.total;
     payment.items = this.items;
-    payment.location = 'ph';
+    payment.location = this.locationService.getlocation();
     payment.gateway = 'gcash';
     this.storageService.savePayment(payment as INewPayment);
 
@@ -374,7 +416,7 @@ export class NewCheckoutComponent implements OnInit, OnDestroy {
     window.location.href = data.url;
   }
 
-  async onPaymaya(){
+  async onPaymaya() {
     this.isProcessingPayMaya = true;
     this.ref.detectChanges();
 
@@ -386,7 +428,7 @@ export class NewCheckoutComponent implements OnInit, OnDestroy {
     payment.shippingFee = this.shippingfee;
     payment.total = this.total;
     payment.items = this.items;
-    payment.location = 'ph';
+    payment.location = this.locationService.getlocation();
     payment.gateway = 'paymaya';
     this.storageService.savePayment(payment as INewPayment);
 

@@ -4,6 +4,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs';
 import { INewAddress, INewAddressConfig } from 'src/app/new-models/new-address';
 import { NewAddressService } from 'src/app/new-services/new-address.service';
+import { LocationType, NewLocationService } from 'src/app/new-services/new-location.service';
 
 @Component({
   selector: 'app-new-create-address',
@@ -20,18 +21,22 @@ export class NewCreateAddressComponent implements OnInit, OnDestroy {
 
   activeModal: NgbActiveModal;
   addressService: NewAddressService;
+  locationService: NewLocationService;
   ref: ChangeDetectorRef;
 
   constructor(
     _activeModal: NgbActiveModal,
     _addressService: NewAddressService,
+    _locationService: NewLocationService,
     _ref: ChangeDetectorRef
   ) { 
     this.activeModal = _activeModal;
     this.addressService = _addressService;
+    this.locationService = _locationService;
     this.ref = _ref;
   }
 
+  location: LocationType = 'ph';
   config: INewAddressConfig[] = [];
   provinceSubscription: Subscription;
   provinces: string[] = [];
@@ -44,8 +49,8 @@ export class NewCreateAddressComponent implements OnInit, OnDestroy {
     firstname: new FormControl<string>('', [Validators.required]),
     lastname: new FormControl<string>('', [Validators.required]),
     address: new FormControl<string>('', [Validators.required]),
-    province: new FormControl<string>('', [Validators.required]),
-    city: new FormControl<string>('', [Validators.required]),
+    province: new FormControl<string>(''),
+    city: new FormControl<string>(''),
     country: new FormControl<string>('Philippines', [Validators.required]),
     postcode: new FormControl<string>('', [Validators.required])
   });
@@ -54,6 +59,7 @@ export class NewCreateAddressComponent implements OnInit, OnDestroy {
   processing: boolean = false;
 
   async ngOnInit(): Promise<void> {
+    this.location = this.locationService.getlocation();
     this.config = await this.addressService.getConfig();
     this.provinces = this.config.map(x => x.name);
 
@@ -82,6 +88,15 @@ export class NewCreateAddressComponent implements OnInit, OnDestroy {
         postcode: this.data.postcode ? this.data.postcode : '',
       });
       this.ref.detectChanges();
+    }
+    else{
+      if (this.location === 'us') this.form.controls.country.setValue('United States');
+      if (this.location === 'sg') this.form.controls.country.setValue('Singapore');
+    }
+
+    if (this.location === 'ph') {
+      this.form.controls.province.setValidators([Validators.required]);
+      this.form.controls.city.setValidators([Validators.required]);
     }
   }
 

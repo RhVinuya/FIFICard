@@ -1,20 +1,20 @@
-<div class="card bg-light border-light mb-2" *ngIf="iCart && model">
+<div class="card bg-light border-light mb-2" *ngIf="_cart && model">
     <div class="card-body">
         <table>
             <tr>
                 <td class="mark">
-                    <input class="form-check-input" type="checkbox" [checked]="iCart.mark" (change)="onChange($event)">
+                    <input class="form-check-input" type="checkbox" [checked]="_cart.mark" (change)="onChange($event)">
                 </td>
                 <td class="image">
                     <img [src]="primary" [alt]="model.name">
                 </td>
                 <td class="details px-3">
-                    <span class="badge text-bg-secondary" *ngIf="iCart.type === 'card'">CARD</span>
-                    <span class="badge text-bg-secondary" *ngIf="iCart.type === 'sticker'">STICKER</span>
-                    <span class="badge text-bg-secondary" *ngIf="iCart.type === 'postcard'">POSTCARD</span>
-                    <span class="badge text-bg-secondary" *ngIf="iCart.type === 'gift'">GIFT</span>
+                    <span class="badge text-bg-secondary" *ngIf="_cart.type === 'card'">CARD</span>
+                    <span class="badge text-bg-secondary" *ngIf="_cart.type === 'sticker'">STICKER</span>
+                    <span class="badge text-bg-secondary" *ngIf="_cart.type === 'postcard'">POSTCARD</span>
+                    <span class="badge text-bg-secondary" *ngIf="_cart.type === 'gift'">GIFT</span>
 
-                    <h4 class="text-purple mt-2 mb-1 cursor" [routerLink]="['/new/details/' + iCart.type + '/' + iCart.itemid]">{{model.name}}</h4>
+                    <h4 class="text-purple mt-2 mb-1 cursor" [routerLink]="['/new/details/' + _cart.type + '/' + _cart.itemid]">{{model.name}}</h4>
                     <p class="text-gray mb-0">{{model.description}}</p>
                     <p class="text-purple mb-0" *ngIf="bundleDetails !== ''">{{bundleDetails}}</p>
                 </td>
