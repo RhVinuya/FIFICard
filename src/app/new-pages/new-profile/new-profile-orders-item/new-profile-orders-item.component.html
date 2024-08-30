@@ -1,4 +1,4 @@
-<div class="card bg-light border-light mb-2" *ngIf="model">
+<div class="card bg-light border-light mb-2" *ngIf="item && model">
     <div class="card-body py-2">
         <table>
             <tr>
@@ -18,15 +18,15 @@
                 <td class="amount text-end">
                     <div class="totals">
                         <span class="text-gray">PRICE</span>
-                        <span>{{getPrice()}}</span>
+                        <span>{{item.priceDisplay()}}</span>
                     </div>
                     <div class="totals">
                         <span class="text-gray">SHIPPING FEE</span>
-                        <span>{{getShipping()}}</span>
+                        <span>{{item.shippingDisplay()}}</span>
                     </div>
                     <div class="totals">
                         <span class="text-gray">TOTAL</span>
-                        <span>{{getTotal()}}</span>
+                        <span>{{item.totalDisplay()}}</span>
                     </div>
                 </td>
             </tr>

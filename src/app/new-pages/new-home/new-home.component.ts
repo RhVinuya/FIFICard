@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { LocationType, NewLocationService } from 'src/app/new-services/new-location.service';
+import { LocationType } from 'src/app/new-models/new-enum';
+import { NewLocationService } from 'src/app/new-services/new-location.service';
 
 @Component({
   selector: 'app-new-home',

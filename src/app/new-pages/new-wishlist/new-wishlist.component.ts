@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription, timer } from 'rxjs';
 import { INewCard } from 'src/app/new-models/new-card';
+import { IModelType } from 'src/app/new-models/new-enum';
 import { INewGift } from 'src/app/new-models/new-gift';
 import { INewPostcard } from 'src/app/new-models/new-postcard';
 import { INewSticker } from 'src/app/new-models/new-sticker';
@@ -13,7 +14,7 @@ import { NewUtilService } from 'src/app/new-services/new-util.service';
 
 export interface IWishlist {
   id: string;
-  model: INewCard | INewSticker | INewPostcard | INewGift;
+  model: IModelType;
   type: 'card' | 'sticker' | 'postcard' | 'gift';
 }
 
@@ -144,19 +145,19 @@ export class NewWishlistComponent implements OnInit, OnDestroy {
     return this.wishlist.filter(x => x.type === type)
   }
 
-  getICard(model: INewCard | INewSticker | INewPostcard | INewGift) {
+  getICard(model: IModelType) {
     return model as INewCard
   }
 
-  getISticker(model: INewCard | INewSticker | INewPostcard | INewGift) {
+  getISticker(model: IModelType) {
     return model as INewSticker
   }
 
-  getIPostcard(model: INewCard | INewSticker | INewPostcard | INewGift) {
+  getIPostcard(model: IModelType) {
     return model as INewPostcard
   }
 
-  getGift(model: INewCard | INewSticker | INewPostcard | INewGift) {
+  getGift(model: IModelType) {
     return model as INewGift
   }
 

@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { INewCard, NewCard } from 'src/app/new-models/new-card';
+import { IModelType } from 'src/app/new-models/new-enum';
 import { INewGift, NewGift } from 'src/app/new-models/new-gift';
 import { INewPostcard, NewPostcard } from 'src/app/new-models/new-postcard';
 import { INewSticker, NewSticker } from 'src/app/new-models/new-sticker';
@@ -16,7 +17,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./new-suggestions.component.scss']
 })
 export class NewSuggestionsComponent implements OnInit {
-  @Input() set model(value: INewCard | INewSticker | INewPostcard | INewGift) {
+  @Input() set model(value: IModelType) {
     this.iModel = value;
     this.inialize();
   }
@@ -43,7 +44,7 @@ export class NewSuggestionsComponent implements OnInit {
   }
 
   loading: boolean = false;
-  iModel: INewCard | INewSticker | INewPostcard | INewGift;
+  iModel: IModelType;
   startIndex: number = 0;
   endIndex: number = 6;
   canClickPrevious: boolean = false;

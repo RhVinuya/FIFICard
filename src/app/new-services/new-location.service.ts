@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-
-export type LocationType = 'ph' | 'us' | 'sg' ;
+import { LocationType } from '../new-models/new-enum';
 
 @Injectable({
   providedIn: 'root'
@@ -31,17 +30,25 @@ export class NewLocationService {
     else return '/assets/images/logo_fibeigreetings-com.png'
   }
 
+  getSymbol(value: LocationType) {
+    if (value === 'us') return '$'
+    else if (value === 'sg') return 'S$'
+    else return '₱'
+  }
+
+  getCurrencySymbol(value: LocationType) {
+    if (value === 'us') return 'USD'
+    else if (value === 'sg') return 'SGD'
+    else return 'PHP'
+  }
+
   getPriceSymbol(): string {
     let location: LocationType = this.getlocation();
-    if (location === 'us') return '$'
-    else if (location === 'sg') return 'S$'
-    else return '₱'
+    return this.getSymbol(location)
   }
 
   getCurrency(): string {
     let location = this.getlocation();
-    if (location === 'us') return 'USD'
-    else if (location === 'sg') return 'SGD'
-    else return 'PHP'
+    return this.getCurrencySymbol(location)
   }
 }

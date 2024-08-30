@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { NgbActiveOffcanvas, NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';
-import { INewCart, NewCart } from 'src/app/new-models/new-cart';
+import { NewCart } from 'src/app/new-models/new-cart';
+import { LocationType } from 'src/app/new-models/new-enum';
 import { NewCartService } from 'src/app/new-services/new-cart.service';
-import { LocationType, NewLocationService } from 'src/app/new-services/new-location.service';
-import { NewStorageService } from 'src/app/new-services/new-storage.service';
+import { NewLocationService } from 'src/app/new-services/new-location.service';
 
 @Component({
   selector: 'app-new-in-your-cart',

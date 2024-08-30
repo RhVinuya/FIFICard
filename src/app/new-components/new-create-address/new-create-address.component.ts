@@ -3,8 +3,9 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs';
 import { INewAddress, INewAddressConfig } from 'src/app/new-models/new-address';
+import { LocationType } from 'src/app/new-models/new-enum';
 import { NewAddressService } from 'src/app/new-services/new-address.service';
-import { LocationType, NewLocationService } from 'src/app/new-services/new-location.service';
+import { NewLocationService } from 'src/app/new-services/new-location.service';
 
 @Component({
   selector: 'app-new-create-address',

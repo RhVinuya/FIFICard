@@ -7,6 +7,7 @@ import { INewSticker, NewSticker } from 'src/app/new-models/new-sticker';
 import { NewCardService } from 'src/app/new-services/new-card.service';
 import { NewFileService } from 'src/app/new-services/new-file.service';
 import { NewGiftService } from 'src/app/new-services/new-gift.service';
+import { NewLocationService } from 'src/app/new-services/new-location.service';
 import { NewPostcardService } from 'src/app/new-services/new-postcard.service';
 import { NewStickerService } from 'src/app/new-services/new-sticker.service';
 
@@ -17,9 +18,10 @@ import { NewStickerService } from 'src/app/new-services/new-sticker.service';
 })
 export class NewCheckoutItemComponent implements OnInit {
   @Input() set iItem(value: INewPaymentItem){
-    this.item = new NewPaymentItem(value);
+    this.item = new NewPaymentItem(value, this.locationService.getlocation());
   }
 
+  locationService: NewLocationService;
   cardService: NewCardService;
   stickerService: NewStickerService;
   postcardService: NewPostcardService;
@@ -27,12 +29,14 @@ export class NewCheckoutItemComponent implements OnInit {
   fileService: NewFileService;
 
   constructor(
+    _locationService: NewLocationService,
     _cardService: NewCardService,
     _stickerService: NewStickerService,
     _postcardService: NewPostcardService,
     _giftService: NewGiftService,
     _fileService: NewFileService
   ) { 
+    this.locationService = _locationService;
     this.cardService = _cardService;
     this.stickerService = _stickerService;
     this.postcardService = _postcardService;

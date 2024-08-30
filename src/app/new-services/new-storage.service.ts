@@ -8,6 +8,7 @@ import { INewCard } from '../new-models/new-card';
 import { INewSticker } from '../new-models/new-sticker';
 import { INewPostcard } from '../new-models/new-postcard';
 import { INewGift } from '../new-models/new-gift';
+import { IModelType } from '../new-models/new-enum';
 
 @Injectable({
   providedIn: 'root'
@@ -168,11 +169,11 @@ export class NewStorageService {
 
   //--------------------
 
-  saveItemDetails(item: INewCard | INewSticker | INewPostcard | INewGift) {
+  saveItemDetails(item: IModelType) {
     localStorage.setItem(environment.storage + 'ITEM-' + item.id, JSON.stringify(item));
   }
 
-  getItemDetails(id: string): INewCard | INewSticker | INewPostcard | INewGift | undefined {
+  getItemDetails(id: string): IModelType | undefined {
     let data: string | null = localStorage.getItem(environment.storage + 'ITEM-' + id)
     if (data !== null) return JSON.parse(data);
     else return undefined;

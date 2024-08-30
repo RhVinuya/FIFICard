@@ -1,5 +1,6 @@
 import { Timestamp } from "@angular/fire/firestore";
-import { LocationType, NewLocationService } from "../new-services/new-location.service";
+import { NewLocationService } from "../new-services/new-location.service";
+import { LocationType } from "./new-enum";
 
 export interface INewPostcard {
     id: string;

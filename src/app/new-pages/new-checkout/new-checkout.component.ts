@@ -16,7 +16,8 @@ import { NewPostcardService } from 'src/app/new-services/new-postcard.service';
 import { NewCardService } from 'src/app/new-services/new-card.service';
 import { NewFileService } from 'src/app/new-services/new-file.service';
 import { NewCartService } from 'src/app/new-services/new-cart.service';
-import { LocationType, NewLocationService } from 'src/app/new-services/new-location.service';
+import { NewLocationService } from 'src/app/new-services/new-location.service';
+import { LocationType } from 'src/app/new-models/new-enum';
 
 @Component({
   selector: 'app-new-checkout',

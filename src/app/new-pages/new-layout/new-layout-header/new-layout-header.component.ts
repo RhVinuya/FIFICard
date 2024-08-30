@@ -1,7 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import { LocationType } from 'src/app/new-models/new-enum';
 import { INewUser } from 'src/app/new-models/new-user';
-import { LocationType, NewLocationService } from 'src/app/new-services/new-location.service';
+import { NewLocationService } from 'src/app/new-services/new-location.service';
 
 @Component({
   selector: 'app-new-layout-header',

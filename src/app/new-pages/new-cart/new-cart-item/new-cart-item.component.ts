@@ -3,6 +3,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NewConfirmMessageComponent } from 'src/app/new-components/new-confirm-message/new-confirm-message.component';
 import { INewCard, NewCard } from 'src/app/new-models/new-card';
 import { INewCart, NewCart } from 'src/app/new-models/new-cart';
+import { ModelType } from 'src/app/new-models/new-enum';
 import { INewGift, NewGift } from 'src/app/new-models/new-gift';
 import { INewPostcard, NewPostcard } from 'src/app/new-models/new-postcard';
 import { INewSticker, NewSticker } from 'src/app/new-models/new-sticker';
@@ -47,7 +48,7 @@ export class NewCartItemComponent implements OnInit {
     this.modalService = _modalService;
   }
 
-  model: NewCard | NewSticker | NewPostcard | NewGift | undefined = undefined;
+  model: ModelType | undefined = undefined;
   _cart: NewCart | undefined = undefined;
   primary: string = '';
   bundleDetails: string = ''

@@ -30,7 +30,7 @@
                         </div>
                     </div>
                 </div>
-                <app-new-profile-orders-item *ngFor="let item of iPayment.items" [iItem]="item"></app-new-profile-orders-item>
+                <app-new-profile-orders-item *ngFor="let item of iPayment.items" [iItem]="item" [location]="iPayment.location"></app-new-profile-orders-item>
                 <div class="row">
                     <div class="col-6 pe-1">
                         <div class="card bg-light border-light">

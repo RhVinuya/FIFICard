@@ -1,7 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { INewCard, NewCard } from 'src/app/new-models/new-card';
+import { LocationType, ModelType } from 'src/app/new-models/new-enum';
 import { INewGift, NewGift } from 'src/app/new-models/new-gift';
-import { INewPaymentItem } from 'src/app/new-models/new-payment';
+import { INewPaymentItem, NewPaymentItem } from 'src/app/new-models/new-payment';
 import { INewPostcard, NewPostcard } from 'src/app/new-models/new-postcard';
 import { INewSticker, NewSticker } from 'src/app/new-models/new-sticker';
 import { NewCardService } from 'src/app/new-services/new-card.service';
@@ -17,6 +18,7 @@ import { NewStickerService } from 'src/app/new-services/new-sticker.service';
 })
 export class NewProfileOrdersItemComponent implements OnInit {
   @Input() iItem: INewPaymentItem;
+  @Input() location: LocationType;
 
   cardService: NewCardService;
   stickerService: NewStickerService;
@@ -38,11 +40,13 @@ export class NewProfileOrdersItemComponent implements OnInit {
     this.fileService = _fileService;
   }
 
-  model: NewCard | NewSticker | NewPostcard | NewGift | undefined = undefined;
+  item: NewPaymentItem;
+  model: ModelType | undefined = undefined;
   primary: string = '';
   bundleDetails: string = ''
 
   ngOnInit(): void {
+    this.item = new NewPaymentItem(this.iItem, this.location)
     this.loadDetails();
   }
 

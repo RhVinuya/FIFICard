@@ -2,9 +2,10 @@ import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } fro
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NewCreateAddressComponent } from 'src/app/new-components/new-create-address/new-create-address.component';
 import { INewAddress, INewAddressConfig, NewAddress } from 'src/app/new-models/new-address';
+import { LocationType } from 'src/app/new-models/new-enum';
 import { NewAccountService } from 'src/app/new-services/new-account.service';
 import { NewAddressService } from 'src/app/new-services/new-address.service';
-import { LocationType, NewLocationService } from 'src/app/new-services/new-location.service';
+import { NewLocationService } from 'src/app/new-services/new-location.service';
 
 @Component({
   selector: 'app-new-profile-addresses',

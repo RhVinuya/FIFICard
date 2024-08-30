@@ -1,6 +1,7 @@
-import { LocationType, NewLocationService } from "../new-services/new-location.service";
+import { NewLocationService } from "../new-services/new-location.service";
+import { ItemType, LocationType } from "./new-enum";
 
-export type ItemType = "card" | "sticker" | "postcard" | "gift";
+
 
 export interface INewCart {
     id: string;

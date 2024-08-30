@@ -6,6 +6,7 @@ import { NewInYourCartComponent } from 'src/app/new-components/new-in-your-cart/
 import { NewVideoPlayerComponent } from 'src/app/new-components/new-video-player/new-video-player.component';
 import { INewCard, INewCardImage, INewRating, NewCard } from 'src/app/new-models/new-card';
 import { INewCartBundle } from 'src/app/new-models/new-cart';
+import { IModelType, ModelType } from 'src/app/new-models/new-enum';
 import { INewGift, INewGiftImage, NewGift } from 'src/app/new-models/new-gift';
 import { INewPostcard, INewPostcardBundle, NewPostcard, NewPostcardBundle } from 'src/app/new-models/new-postcard';
 import { INewSticker, INewStickerImage, NewSticker } from 'src/app/new-models/new-sticker';
@@ -63,8 +64,8 @@ export class NewDetailsComponent implements OnInit {
   loading: boolean = false;
   id: string;
   type: 'card' | 'sticker' | 'postcard' | 'gift';
-  model: NewCard | NewSticker | NewPostcard | NewGift;
-  iModel: INewCard | INewSticker | INewPostcard | INewGift;
+  model: ModelType;
+  iModel: IModelType;
   bundles: NewPostcardBundle[] = [];
   images: string[] = [];
   rate: number = 0;
