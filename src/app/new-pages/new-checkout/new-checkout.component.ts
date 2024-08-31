@@ -18,6 +18,7 @@ import { NewFileService } from 'src/app/new-services/new-file.service';
 import { NewCartService } from 'src/app/new-services/new-cart.service';
 import { NewLocationService } from 'src/app/new-services/new-location.service';
 import { LocationType } from 'src/app/new-models/new-enum';
+import { NewCheckoutGcashComponent } from './new-checkout-gcash/new-checkout-gcash.component';
 
 @Component({
   selector: 'app-new-checkout',
@@ -309,11 +310,11 @@ export class NewCheckoutComponent implements OnInit, OnDestroy {
     this.accepted = e.target.checked;
   }
 
-  isReady(){
-    return this.accepted === true && 
-      this.isProcessingSpecialCode === false && 
-      this.isProcessingStripe === false && 
-      this.isProcessingGCash === false && 
+  isReady() {
+    return this.accepted === true &&
+      this.isProcessingSpecialCode === false &&
+      this.isProcessingStripe === false &&
+      this.isProcessingGCash === false &&
       this.isProcessingPayMaya === false &&
       this.sender &&
       this.sender.email !== '' &&
@@ -456,5 +457,9 @@ export class NewCheckoutComponent implements OnInit, OnDestroy {
     let data = await this.paymentService.payMongoCheckout('paymaya', payment);
     this.storageService.savePaymongoID(data.id);
     window.location.href = data.url;
+  }
+
+  onGCashUpload() {
+    const reference: NgbModalRef = this.modalService.open(NewCheckoutGcashComponent, { animation: true});
   }
 }

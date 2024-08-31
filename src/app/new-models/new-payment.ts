@@ -1,9 +1,7 @@
 import { NewLocationService } from "../new-services/new-location.service";
 import { INewAddress } from "./new-address";
 import { Timestamp } from "@angular/fire/firestore";
-import { ItemType, LocationType } from "./new-enum";
-
-export type Gateway = 'specialcode' | 'card' | 'gcash' | 'paymaya';
+import { Gateway, ItemType, LocationType, PaymentDetails } from "./new-enum";
 
 export interface INewPayment {
     id: string;
@@ -17,7 +15,7 @@ export interface INewPayment {
     items: INewPaymentItem[];
     location: 'ph' | 'sg' | 'us';
     gateway: Gateway;
-    details: INewSpecialCodeDetails | INewStripeDetails | INewPaymongoDetails;
+    details: PaymentDetails;
     created: Timestamp;
 }
 
@@ -33,7 +31,7 @@ export class NewPayment {
     items: INewPaymentItem[];
     location: LocationType;
     gateway: Gateway;
-    details: INewSpecialCodeDetails | INewStripeDetails | INewPaymongoDetails;
+    details: PaymentDetails;
     created: Timestamp;
     
     constructor() {}
@@ -206,6 +204,12 @@ export interface INewStripeDetails {
 export interface INewPaymongoDetails {
     id: string;
     type: string;
+    amount: number;
+    live: boolean;
+}
+
+export interface INewGCashDetails {
+    url: string;
     amount: number;
     live: boolean;
 }

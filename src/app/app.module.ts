@@ -204,6 +204,7 @@ import { NewProjectComponent } from './new-pages/new-profile/new-project/new-pro
 import { NewProjectItemComponent } from './new-pages/new-profile/new-project-item/new-project-item.component';
 import { NewVideoPlayerComponent } from './new-components/new-video-player/new-video-player.component';
 import { NewPasswordResetComponent } from './new-components/new-password-reset/new-password-reset.component';
+import { NewCheckoutGcashComponent } from './new-pages/new-checkout/new-checkout-gcash/new-checkout-gcash.component';
 
 @NgModule({
   declarations: [
@@ -384,7 +385,8 @@ import { NewPasswordResetComponent } from './new-components/new-password-reset/n
     NewProjectComponent,
     NewProjectItemComponent,
     NewVideoPlayerComponent,
-    NewPasswordResetComponent
+    NewPasswordResetComponent,
+    NewCheckoutGcashComponent
   ],
   imports: [
     BrowserModule,
