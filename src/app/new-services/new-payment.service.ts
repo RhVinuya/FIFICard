@@ -1,6 +1,6 @@
-import { collection, Firestore, getDocs, orderBy, query } from '@angular/fire/firestore';
+import { collection, doc, Firestore, getDocs, orderBy, query } from '@angular/fire/firestore';
 import { Injectable } from '@angular/core';
-import { addDoc, serverTimestamp, where } from 'firebase/firestore';
+import { addDoc, getDoc, serverTimestamp, where } from 'firebase/firestore';
 import { INewPayment, INewPaymongoDetails, INewSpecialCode, INewStripeDetails, NewPayment } from '../new-models/new-payment';
 import { environment } from 'src/environments/environment';
 import { NewCardService } from './new-card.service';
@@ -75,6 +75,19 @@ export class NewPaymentService {
         })
         resolve(payments);
       })
+    });
+  }
+
+  get(id: string): Promise<INewPayment> {
+    return new Promise((resolve) => {
+      let data = doc(this.store, 'greetings_payment/' + id);
+        getDoc(data).then(doc => {
+          if (doc.exists()) {
+            let payment: INewPayment = doc.data() as INewPayment;
+            payment.id = doc.id;
+            resolve(payment);
+          }
+        })
     });
   }
 

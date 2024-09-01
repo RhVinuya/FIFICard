@@ -37,32 +37,6 @@ export class NewProfileOrdersComponent implements OnInit {
     this.loading = false
   }
 
-  getSender(iPayment: INewPayment): NewSender {
-    return new NewSender(iPayment.sender);
-  }
-
-  getReceiver(iPayment: INewPayment): NewAddress {
-    return new NewAddress(iPayment.receiver)
-  }
-
-  getPayment(iPayment: INewPayment): NewPayment {
-    let payment = new NewPayment()
-    payment.load(iPayment)
-    return payment;
-  }
-
-  getINewSpecialCodeDetails(iPayment: INewPayment): INewSpecialCodeDetails{
-    return iPayment.details as INewSpecialCodeDetails;
-  }
-
-  getINewStripeDetails(iPayment: INewPayment): INewStripeDetails{
-    return iPayment.details as INewStripeDetails;
-  }
-
-  getINewPaymongoDetails(iPayment: INewPayment): INewPaymongoDetails{
-    return iPayment.details as INewPaymongoDetails;
-  }
-
   open(id: string) {
     this.selected = id;
   }

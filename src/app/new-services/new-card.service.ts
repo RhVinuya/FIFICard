@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { collection, doc, Firestore, getDocFromServer, getDocs, getDocsFromServer, query, where, limit  } from '@angular/fire/firestore';
+import { collection, doc, Firestore, getDocFromServer, getDocs, getDocsFromServer, query, where, limit, getDoc  } from '@angular/fire/firestore';
 import { INewCard, INewCardImage, INewRating, NewCard } from '../new-models/new-card';
 import { environment } from 'src/environments/environment';
 import { NewStorageService } from './new-storage.service';
@@ -64,7 +64,7 @@ export class NewCardService {
       if (card) resolve(card as INewCard)
       else {
         let data = doc(this.store, 'cards/' + id);
-        getDocFromServer(data).then(doc => {
+        getDoc(data).then(doc => {
           if (doc.exists()) {
             let card: INewCard = doc.data() as INewCard;
             card.id = doc.id;

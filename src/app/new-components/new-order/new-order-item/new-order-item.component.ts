@@ -12,11 +12,11 @@ import { NewPostcardService } from 'src/app/new-services/new-postcard.service';
 import { NewStickerService } from 'src/app/new-services/new-sticker.service';
 
 @Component({
-  selector: 'app-new-profile-orders-item',
-  templateUrl: './new-profile-orders-item.component.html',
-  styleUrls: ['./new-profile-orders-item.component.scss']
+  selector: 'app-new-order-item',
+  templateUrl: './new-order-item.component.html',
+  styleUrls: ['./new-order-item.component.scss']
 })
-export class NewProfileOrdersItemComponent implements OnInit {
+export class NewOrderItemComponent implements OnInit {
   @Input() iItem: INewPaymentItem;
   @Input() location: LocationType;
 
@@ -84,15 +84,4 @@ export class NewProfileOrdersItemComponent implements OnInit {
     this.primary = await this.fileService.getImageURL(url);
   }
 
-  getPrice(){
-    return '₱' + this.iItem.price.toLocaleString('en-US', { minimumFractionDigits: 2 })
-  }
-
-  getShipping(){
-    return this.iItem.shipping > 0 ? '₱' + this.iItem.shipping.toLocaleString('en-US', { minimumFractionDigits: 2 }) : 'FREE'
-  }
-
-  getTotal(){
-    return '₱' + this.iItem.total.toLocaleString('en-US', { minimumFractionDigits: 2 })
-  }
 }

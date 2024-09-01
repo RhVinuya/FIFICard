@@ -34,6 +34,8 @@ export class NewPaymentComponent implements OnInit {
   }
 
   isProcessing: boolean | undefined = undefined;
+  isRefreshing: boolean | undefined = undefined;
+  iPayment: INewPayment | undefined = undefined;
 
   ngOnInit(): void {
     this.activateRoute.params.subscribe(async params => {
@@ -72,11 +74,13 @@ export class NewPaymentComponent implements OnInit {
 
     let payment: NewPayment = new NewPayment();
     payment.load(iPayment)
-    await this.paymentService.add(payment);
+    let paymentId = await this.paymentService.add(payment);
 
     this.clear(iPayment);
 
     this.isProcessing = false;
+
+    this.loadPaymentDetails(paymentId);
     this.ref.detectChanges();
   }
 
@@ -87,12 +91,14 @@ export class NewPaymentComponent implements OnInit {
     let payment: NewPayment = new NewPayment();
     payment.load(iPayment)
     payment.details = await this.paymentService.stripeConfirm(id);
-    await this.paymentService.add(payment);
+    let paymentId = await this.paymentService.add(payment);
 
     this.clear(iPayment);
 
     this.isProcessing = false;
-    this.ref.detectChanges(); 
+
+    this.loadPaymentDetails(paymentId);
+    this.ref.detectChanges();
   }
 
   async processPayMongo(iPayment: INewPayment, id: string) {
@@ -104,12 +110,34 @@ export class NewPaymentComponent implements OnInit {
     let details = await this.paymentService.payMongoConfirm(id);
     if (details) {
       payment.details = details;
-      await this.paymentService.add(payment);
+      let paymentId = await this.paymentService.add(payment);
+
       this.clear(iPayment);
+
+      this.isProcessing = false;
+
+      this.loadPaymentDetails(paymentId);
     }
 
     this.storageService.clearPaymongoID();
     this.isProcessing = false;
+    this.ref.detectChanges();
+  }
+
+  async processGCashUpload(iPayment: INewPayment) {
+    this.isProcessing = true;
+    this.ref.detectChanges();
+
+    let payment: NewPayment = new NewPayment();
+    payment.load(iPayment)
+    let paymentId = await this.paymentService.add(payment);
+
+    this.clear(iPayment);
+
+    this.isProcessing = false;
+
+    this.loadPaymentDetails(paymentId);
+
     this.ref.detectChanges();
   }
 
@@ -120,18 +148,11 @@ export class NewPaymentComponent implements OnInit {
     this.storageService.clearPayment();
   }
 
-  async processGCashUpload(iPayment: INewPayment) {
-    this.isProcessing = true;
+  async loadPaymentDetails(id: string) {
+    this.isRefreshing = true;
+    this.iPayment = await this.paymentService.get(id);
     this.ref.detectChanges();
-
-    let payment: NewPayment = new NewPayment();
-    payment.load(iPayment)
-    await this.paymentService.add(payment);
-
-    this.clear(iPayment);
-
-    this.isProcessing = false;
-    this.ref.detectChanges();
+    this.isRefreshing = false;
   }
 
 }
