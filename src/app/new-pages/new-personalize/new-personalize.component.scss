@@ -21,6 +21,8 @@
     align-items: center;
     justify-content: space-between;
     border-bottom: 0.5px solid #cb6ce6;
+    background: white;
+    z-index: 100;
 }
 
 .content {
@@ -48,6 +50,8 @@
     align-items: center;
     justify-content: space-between;
     border-top: 0.5px solid #cb6ce6;
+    background: white;
+    z-index: 100;
 }
 
 .footer .images {
@@ -70,4 +74,26 @@
 
 .close {
     width: 200px;
+}
+
+.primary {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.editing {
+    position: relative;
+}
+
+.editing img {
+    max-width: 1400px !important;
+}
+
+.editing .text-area {
+    position: absolute;
+    border: 1px solid #9a0abf;
 }

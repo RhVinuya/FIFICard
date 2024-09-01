@@ -7,7 +7,16 @@
         </div>
     </div>
     <div class="content p-1">
-        <img [src]="selected.url" *ngIf="selected !== undefined">
+        <app-new-loading [loading]="loading"></app-new-loading>
+
+        <div class="primary" *ngIf="selected !== undefined && loading === false && selected.title === 'Primary'">
+            <img [src]="selected.url">
+        </div>
+
+        <div class="editing" *ngIf="selected !== undefined && loading === false && selected.title === 'Sign and Send'">
+            <img [src]="selected.url">
+            <app-new-textarea *ngFor="let item of getSignAndSendDetails(selected.url)" [detail]="item" (onChange)="changeTextarea($event)"></app-new-textarea>
+        </div>
     </div>
     <div class="footer px-4 py-2">
         <button class="btn btn-light text-primary border-0" (click)="onPrev()">

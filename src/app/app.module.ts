@@ -206,6 +206,7 @@ import { NewPasswordResetComponent } from './new-components/new-password-reset/n
 import { NewCheckoutGcashComponent } from './new-pages/new-checkout/new-checkout-gcash/new-checkout-gcash.component';
 import { NewOrderComponent } from './new-components/new-order/new-order.component';
 import { NewOrderItemComponent } from './new-components/new-order/new-order-item/new-order-item.component';
+import { NewTextareaComponent } from './new-pages/new-personalize/new-textarea/new-textarea.component';
 
 @NgModule({
   declarations: [
@@ -388,7 +389,8 @@ import { NewOrderItemComponent } from './new-components/new-order/new-order-item
     NewPasswordResetComponent,
     NewCheckoutGcashComponent,
     NewOrderComponent,
-    NewOrderItemComponent
+    NewOrderItemComponent,
+    NewTextareaComponent
   ],
   imports: [
     BrowserModule,

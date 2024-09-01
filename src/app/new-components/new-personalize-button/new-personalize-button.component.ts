@@ -44,7 +44,7 @@ export class NewPersonalizeButtonComponent implements OnInit {
   async onPersonalize() {     
     let personalize = await this.personalizeService.getByCard(this.iCard.id)
     if (personalize === undefined) personalize = await this.personalizeService.create(this.iCard.id);
-    const reference = this.modalService.open(NewPersonalizeComponent, { animation: true, fullscreen: true });
+    const reference = this.modalService.open(NewPersonalizeComponent, { animation: true, fullscreen: true, keyboard: false, backdrop: true });
     reference.componentInstance.iPersonalize = personalize;
   }
 

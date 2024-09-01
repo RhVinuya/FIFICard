@@ -1,0 +1,36 @@
+<div class="text-area p-1" 
+    [style.top.px]="detail.top" 
+    [style.left.px]="detail.left" 
+    [style.width.px]="detail.width" 
+    [style.height.px]="detail.height"
+    [style.font-family]="font" 
+    [style.color]="color" 
+    [style.font-size.px]="size"
+    [style.text-align]="alignment"
+    contenteditable="true" (blur)="onBlur($event)" (click)="onClick()" #editableDiv>
+    {{text}}
+</div>
+
+<div class="floating-toolbar px-2 py-3 rounded-1" [style.top.px]="detail.top - 2" [style.left.px]="detail.left + detail.width + 5"
+    [hidden]="!isDisplay">
+    <label for="font-select">Font Option:</label>
+    <select id="font-select" class="mb-2" (change)="changeFont($event)" [(ngModel)]="font">
+        <option *ngFor="let font of fonts" [value]="font">{{font}}</option>
+    </select>
+    <label for="color-input">Font Size:</label>
+    <div class="font-size mb-2">
+        <ion-icon class="mx-2" name="remove-circle-outline" (click)="onFontMinus()"></ion-icon>
+        <input type="text" class="text-center" [value]="size" [disabled]="true">
+        <ion-icon class="mx-2" name="add-circle-outline" (click)="onFontAdd()"></ion-icon>
+    </div>
+    <label for="color-input">Color:</label>
+    <select id="color-select" class="mb-2" (change)="changeColor($event)" [(ngModel)]="color">
+        <option *ngFor="let color of colors" [value]="color.hex">{{color.name}}</option>
+    </select>
+    <label for="color-input">Allignment:</label>
+    <div class="allignment">
+        <i class="fas fa-align-left" [ngClass]="alignment === 'left' ? 'selected' : ''" (click)="changeAllignment('left')"></i>
+        <i class="fas fa-align-center" [ngClass]="alignment === 'center' ? 'selected' : ''"  (click)="changeAllignment('center')"></i>
+        <i class="fas fa-align-right" [ngClass]="alignment === 'right' ? 'selected' : ''"  (click)="changeAllignment('right')"></i>
+    </div>
+</div>

@@ -1,0 +1,79 @@
+* {
+    font-family: Proxima Nova;
+}
+
+.fa,
+.far,
+.fas {
+    font-family: "Font Awesome 5 Free" !important;
+}
+
+.text-area {
+    position: absolute;
+    border: 1px solid #9a0abf;
+    overflow-y: auto;
+}
+
+.floating-toolbar {
+    position: absolute;
+    width: 250px;
+    border: 1px solid #9a0abf;
+    background-color: white;
+    z-index: 1000;
+}
+
+.floating-toolbar label {
+    color: #9a0abf;
+}
+
+.floating-toolbar select,
+.floating-toolbar input {
+    width: 100%;
+    height: 35px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    background-color: white;
+}
+
+.font-size{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px
+}
+
+.font-size ion-icon{
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.font-size ion-icon:hover{
+    color: #9a0abf;
+}
+
+.allignment{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 30px
+}
+
+.allignment i{
+    border: 1px solid lightgrey;
+    border-radius: 2px;
+    padding-inline: 6px;
+    padding-block: 5px;
+    aspect-ratio: 1/1;
+    cursor: pointer;
+}
+
+.allignment i:hover{
+    color: #9a0abf;
+    border: 1px solid #9a0abf;
+}
+
+.allignment .selected{
+    color: #9a0abf;
+}

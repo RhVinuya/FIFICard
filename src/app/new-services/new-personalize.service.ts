@@ -51,10 +51,15 @@ export class NewPersonalizeService {
     return new Promise((resolve) => { 
       let personalize = {
         id: this.generateID(),
-        itemId: cardId
+        itemId: cardId,
+        data:[]
       }
       this.storageService.savePersonalize(personalize);
       resolve(personalize);
     });
+  }
+
+  save(personalize: INewPersonalize) {
+    this.storageService.savePersonalize(personalize);
   }
 }

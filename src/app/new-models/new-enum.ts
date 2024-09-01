@@ -11,6 +11,7 @@ export type IModelType = INewCard | INewSticker | INewPostcard | INewGift;
 export type Gateway = 'specialcode' | 'card' | 'gcash' | 'paymaya';
 export type Provider = 'stripe' | 'paymongo';
 export type PaymentDetails = INewSpecialCodeDetails | INewStripeDetails | INewPaymongoDetails | INewGCashDetails | INewGCashUploadDetails;
+export type Allignment = 'left' | 'center' | 'right';
 
 export enum StorageEnum {
     RememberEmail = 'REMEMBER_EMAIL',
