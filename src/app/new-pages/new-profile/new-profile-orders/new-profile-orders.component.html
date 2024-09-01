@@ -38,13 +38,14 @@
                                 <span>{{getPayment(iPayment).getGateway()}}</span>
                                 <span class="text-gray" *ngIf="iPayment.gateway === 'specialcode'">{{getINewSpecialCodeDetails(iPayment).code}}</span>
 
-                                <span class="text-gray" *ngIf="iPayment.gateway === 'card'">ID: {{getINewStripeDetails(iPayment).id}}</span>
-                                <span class="text-gray" *ngIf="iPayment.gateway === 'card'">BRAND: {{getINewStripeDetails(iPayment).brand}}</span>
-                                <span class="text-gray" *ngIf="iPayment.gateway === 'card'">LAST: {{getINewStripeDetails(iPayment).last4}}</span>
+                                <span class="text-gray" *ngIf="iPayment.provider === 'stripe' && iPayment.gateway === 'card'">ID: {{getINewStripeDetails(iPayment).id}}</span>
+                                <span class="text-gray" *ngIf="iPayment.provider === 'stripe' && iPayment.gateway === 'card'">BRAND: {{getINewStripeDetails(iPayment).brand}}</span>
+                                <span class="text-gray" *ngIf="iPayment.provider === 'stripe' && iPayment.gateway === 'card'">LAST: {{getINewStripeDetails(iPayment).last4}}</span>
 
-                                <span class="text-gray" *ngIf="iPayment.gateway === 'gcash' || iPayment.gateway === 'paymaya'">ID: {{getINewPaymongoDetails(iPayment).id}}</span>
-                                <span class="text-gray" *ngIf="iPayment.gateway === 'gcash' || iPayment.gateway === 'paymaya'">Type: {{getINewPaymongoDetails(iPayment).type}}</span>
+                                <span class="text-gray" *ngIf="iPayment.provider === 'paymongo' && (iPayment.gateway === 'gcash' || iPayment.gateway === 'paymaya')">ID: {{getINewPaymongoDetails(iPayment).id}}</span>
+                                <span class="text-gray" *ngIf="iPayment.provider === 'paymongo' && (iPayment.gateway === 'gcash' || iPayment.gateway === 'paymaya')">Type: {{getINewPaymongoDetails(iPayment).type}}</span>
 
+                                <span class="text-gray fst-italic" *ngIf="iPayment.provider === undefined && iPayment.gateway === 'gcash'">Proof of payment is uploaded</span>
 
                                 <span class="text-gray">DATE: {{getPayment(iPayment).createdDisplay()}}</span>
                             </div>

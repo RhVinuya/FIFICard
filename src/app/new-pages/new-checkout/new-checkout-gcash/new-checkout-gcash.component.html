@@ -5,8 +5,38 @@
     <div class="text-center title mb-2">
         <h3 class="text-purple">GCash Payment</h3>
     </div>
-    <div *ngIf="step === 1">
-        <h6 class="text-purple mb-3">Scan</h6>
-        <img src="assets/images/gcash.png">
+    <div class="header mb-3">
+        <label [ngClass]="step === 1 ? 'text-purple' : 'text-gray'">Login</label>
+        <ion-icon name="arrow-forward-outline"></ion-icon>
+        <label [ngClass]="step === 2 ? 'text-purple' : 'text-gray'">Scan</label>
+        <ion-icon name="arrow-forward-outline"></ion-icon>
+        <label [ngClass]="step === 3 ? 'text-purple' : 'text-gray'">Pay</label>
+        <ion-icon name="arrow-forward-outline"></ion-icon>
+        <label [ngClass]="step === 4 ? 'text-purple' : 'text-gray'">Upload</label>
+    </div>
+    <div class="content" *ngIf="step === 1">
+        <label>1. Login to your GCash app and tap QR</label>
+    </div>
+    <div class="content" *ngIf="step === 2">
+        <div class="text-center">
+            <label>2. Scan your phone to the merchant's QR code. Make sure the QR code is within the frame</label>
+        </div>
+        <img src="assets/images/gcash.png" class="mt-2">
+    </div>
+    <div class="content" *ngIf="step === 3">
+        <label>3. Review and confirm the details then tap Pay</label>
+    </div>
+    <div class="content" *ngIf="step === 4">
+        <label class="mb-3">4. Upload your proof of payment</label>
+        <button class="btn btn-success px-4" (click)="fileInput.click()" [disabled]="processing">
+            <span class="spinner-border spinner-border-sm me-1" aria-hidden="true" *ngIf="processing"></span>
+            {{processing ? 'Uploading ...' : 'Upload'}}
+        </button>
+        <input type="file" #fileInput (change)="onFileSelected($event)" accept="image/*" style="display: none;" />
+    </div>
+    <hr />
+    <div class="space-between mt-3">
+        <button class="btn btn-sm btn-primary px-3" [disabled]="step === 1" (click)="prev()">Back</button>
+        <button class="btn btn-sm btn-primary px-3" [disabled]="step === 4" (click)="next()">Next</button>
     </div>
 </div>

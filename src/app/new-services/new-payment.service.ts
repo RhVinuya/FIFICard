@@ -11,6 +11,7 @@ import { INewUser } from '../new-models/new-user';
 import { HttpClient } from '@angular/common/http';
 import { NewGiftService } from './new-gift.service';
 import { NewLocationService } from './new-location.service';
+import { Provider } from '../new-models/new-enum';
 
 @Injectable({
   providedIn: 'root'
@@ -90,6 +91,7 @@ export class NewPaymentService {
         items: payment.items,
         location: payment.location,
         gateway: payment.gateway,
+        parovider: payment.provider !== undefined ? payment.provider : null,
         details: payment.details,
         created: serverTimestamp()
       }).then(docRef => {
@@ -324,5 +326,5 @@ export class NewPaymentService {
       })
     });
   }
-  
+
 }

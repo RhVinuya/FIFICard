@@ -81,7 +81,7 @@ hr {
     width: 100%;
 }
 
-.card-payment:hover{
+.card-payment:hover {
     color: #5e17eb;
     background-color: #fff;
 }
@@ -98,36 +98,35 @@ hr {
     cursor: not-allowed;
 }
 
-.p-credit
-{
+.p-credit {
     background-image: url('../../../assets/images/new/payment/w-atm-card.png');
-    height:24px;
-    width:24px;
+    height: 24px;
+    width: 24px;
     display: inline-block;
 }
-.btn-creditcard:hover .p-credit
-{
+
+.btn-creditcard:hover .p-credit {
     background-image: url('../../../assets/images/new/payment/atm-card.png');
 }
-.p-gcash
-{
+
+.p-gcash {
     background-image: url('../../../assets/images/new/payment/w-gcash.png');
-    height:24px;
-    width:102px; 
-    display: inline-block; 
-}
-.btn-gcash:hover .p-gcash
-{
-    background-image: url('../../../assets/images/new/payment/gcash.png');
-}
-.p-paymaya
-{
-    background-image: url('../../../assets/images/new/payment/w-paymaya.png');
-    height:24px;
-    width:109px;
+    height: 24px;
+    width: 102px;
     display: inline-block;
 }
-.btn-paymaya:hover .p-paymaya
-{
+
+.btn-gcash:hover .p-gcash {
+    background-image: url('../../../assets/images/new/payment/gcash.png');
+}
+
+.p-paymaya {
+    background-image: url('../../../assets/images/new/payment/w-paymaya.png');
+    height: 24px;
+    width: 109px;
+    display: inline-block;
+}
+
+.btn-paymaya:hover .p-paymaya {
     background-image: url('../../../assets/images/new/payment/paymaya.png');
 }

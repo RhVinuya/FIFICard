@@ -57,6 +57,12 @@ export class NewPaymentComponent implements OnInit {
           this.processPayMongo(iPayment, id);
         }
       }
+      else if (params['gateway'] === 'gcash-upload') {
+        let iPayment = this.storageService.getPayment();
+        if (iPayment && iPayment.gateway === 'gcash') {
+          this.processGCashUpload(iPayment);
+        }
+      }
     });
   }
 
@@ -112,6 +118,20 @@ export class NewPaymentComponent implements OnInit {
       await this.cartService.delete(item.id)
     }
     this.storageService.clearPayment();
+  }
+
+  async processGCashUpload(iPayment: INewPayment) {
+    this.isProcessing = true;
+    this.ref.detectChanges();
+
+    let payment: NewPayment = new NewPayment();
+    payment.load(iPayment)
+    await this.paymentService.add(payment);
+
+    this.clear(iPayment);
+
+    this.isProcessing = false;
+    this.ref.detectChanges();
   }
 
 }

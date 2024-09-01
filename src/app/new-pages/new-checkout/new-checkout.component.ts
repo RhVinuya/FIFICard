@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { INewAddress, INewAddressConfig, INewShippingFee, NewAddress } from 'src/app/new-models/new-address';
-import { INewPayment, INewPaymentItem, INewPaymentItemBundle, INewSender, NewPayment, NewSender } from 'src/app/new-models/new-payment';
+import { INewGCashUploadDetails, INewPayment, INewPaymentItem, INewPaymentItemBundle, INewSender, NewPayment, NewSender } from 'src/app/new-models/new-payment';
 import { NewAddressService } from 'src/app/new-services/new-address.service';
 import { NewStorageService } from 'src/app/new-services/new-storage.service';
 import { NewCheckoutRecipientsComponent } from './new-checkout-recipients/new-checkout-recipients.component';
@@ -19,6 +19,7 @@ import { NewCartService } from 'src/app/new-services/new-cart.service';
 import { NewLocationService } from 'src/app/new-services/new-location.service';
 import { LocationType } from 'src/app/new-models/new-enum';
 import { NewCheckoutGcashComponent } from './new-checkout-gcash/new-checkout-gcash.component';
+import { url } from 'inspector';
 
 @Component({
   selector: 'app-new-checkout',
@@ -109,6 +110,7 @@ export class NewCheckoutComponent implements OnInit, OnDestroy {
   isProcessingStripe: boolean = false;
   isProcessingGCash: boolean = false;
   isProcessingPayMaya: boolean = false;
+  iSProcessingGCashUpload: boolean = false;
 
   form = new FormGroup({
     code: new FormControl<string>('', [Validators.required, Validators.maxLength(5)]),
@@ -316,6 +318,7 @@ export class NewCheckoutComponent implements OnInit, OnDestroy {
       this.isProcessingStripe === false &&
       this.isProcessingGCash === false &&
       this.isProcessingPayMaya === false &&
+      this.iSProcessingGCashUpload == false &&
       this.sender &&
       this.sender.email !== '' &&
       this.sender.firstname !== '' &&
@@ -409,6 +412,7 @@ export class NewCheckoutComponent implements OnInit, OnDestroy {
     payment.items = this.items;
     payment.location = this.locationService.getlocation();
     payment.gateway = 'card';
+    payment.provider = 'stripe';
     this.storageService.savePayment(payment as INewPayment);
 
     if (this.iUser) {
@@ -431,6 +435,7 @@ export class NewCheckoutComponent implements OnInit, OnDestroy {
     payment.items = this.items;
     payment.location = this.locationService.getlocation();
     payment.gateway = 'gcash';
+    payment.provider = 'paymongo';
     this.storageService.savePayment(payment as INewPayment);
 
     let data = await this.paymentService.payMongoCheckout('gcash', payment);
@@ -452,6 +457,7 @@ export class NewCheckoutComponent implements OnInit, OnDestroy {
     payment.items = this.items;
     payment.location = this.locationService.getlocation();
     payment.gateway = 'paymaya';
+    payment.provider = 'paymongo';
     this.storageService.savePayment(payment as INewPayment);
 
     let data = await this.paymentService.payMongoCheckout('paymaya', payment);
@@ -460,6 +466,35 @@ export class NewCheckoutComponent implements OnInit, OnDestroy {
   }
 
   onGCashUpload() {
-    const reference: NgbModalRef = this.modalService.open(NewCheckoutGcashComponent, { animation: true});
+    const reference: NgbModalRef = this.modalService.open(NewCheckoutGcashComponent, { animation: true });
+    const fileReceivedRef = reference.componentInstance.onFileReceived.subscribe(async (value: string) => {
+      reference.close();
+      if (value !== '') {
+        this.iSProcessingGCashUpload = true;
+        let payment: NewPayment = new NewPayment();
+        payment.userId = this.iUser ? this.iUser.id : '';
+        payment.sender = this.sender as INewSender;
+        payment.receiver = this.receiver as INewAddress;
+        payment.subtotal = this.subtotal;
+        payment.shippingFee = this.shippingfee;
+        payment.total = this.total;
+        payment.items = this.items;
+        payment.location = this.locationService.getlocation();
+        payment.gateway = 'gcash';
+        payment.details = {
+          url: value ? value : ''
+        } as INewGCashUploadDetails;
+  
+        this.storageService.savePayment(payment as INewPayment);
+        this.iSProcessingGCashUpload = false;
+        this.ref.detectChanges();
+
+        this.router.navigate(['/new/payment/gcash-upload'])
+      }
+      
+    })
+    reference.result.then(_ => {
+      fileReceivedRef.unsubscribe();
+    });
   }
 }
