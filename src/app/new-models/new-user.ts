@@ -9,6 +9,7 @@ export interface INewUser {
     providerId: string;
     photoURL: string
     address: string;
+    greetings_wishlist: string[];
 }
 
 export interface INewGoogleUser{

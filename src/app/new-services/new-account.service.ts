@@ -78,7 +78,8 @@ export class NewAccountService {
         customer: true,
         providerId: user.providerId,
         photoURL: user.photoURL,
-        address: user.address
+        address: user.address,
+        greetings_wishlist: []
       }).then(user => resolve());
     });
   }
@@ -96,6 +97,13 @@ export class NewAccountService {
     const data = doc(this.store, this.colname + '/' + id);
     return updateDoc(data, {
       address: addressId
+    })
+  }
+
+  updateWishlist(id: string, ids: string[]): Promise<void> {
+    const data = doc(this.store, this.colname + '/' + id);
+    return updateDoc(data, {
+      greetings_wishlist: ids
     })
   }
 
@@ -181,7 +189,4 @@ export class NewAccountService {
     })
   }
 
-  synchoronizeCart(userId: string) {
-    
-  }
 }

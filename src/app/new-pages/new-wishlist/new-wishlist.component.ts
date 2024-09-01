@@ -9,8 +9,8 @@ import { NewCardService } from 'src/app/new-services/new-card.service';
 import { NewGiftService } from 'src/app/new-services/new-gift.service';
 import { NewPostcardService } from 'src/app/new-services/new-postcard.service';
 import { NewStickerService } from 'src/app/new-services/new-sticker.service';
-import { NewStorageService } from 'src/app/new-services/new-storage.service';
 import { NewUtilService } from 'src/app/new-services/new-util.service';
+import { NewWishlistService } from 'src/app/new-services/new-wishlist.service';
 
 export interface IWishlist {
   id: string;
@@ -25,8 +25,7 @@ export interface IWishlist {
 })
 export class NewWishlistComponent implements OnInit, OnDestroy {
 
-  storageService: NewStorageService;
-
+  wishlistService: NewWishlistService;
   utilService: NewUtilService;
   cardService: NewCardService;
   stickerService: NewStickerService;
@@ -34,14 +33,14 @@ export class NewWishlistComponent implements OnInit, OnDestroy {
   giftService: NewGiftService;
 
   constructor(
-    _storageService: NewStorageService,
+    _wishlistService: NewWishlistService,
     _utilService: NewUtilService,
     _cardService: NewCardService,
     _stickerService: NewStickerService,
     _postcardService: NewPostcardService,
     _giftService: NewGiftService
   ) {
-    this.storageService = _storageService;
+    this.wishlistService = _wishlistService;
     this.utilService = _utilService;
     this.cardService = _cardService;
     this.stickerService = _stickerService;
@@ -69,7 +68,7 @@ export class NewWishlistComponent implements OnInit, OnDestroy {
 
   async ngOnInit(): Promise<void> {
     this.subs = timer(100, 500).subscribe(time => {
-      let ids = this.storageService.getWishist();
+      let ids = this.wishlistService.get();
       if (ids.length !== this.ids.length) {
         this.loaddata(ids);
         this.breadcrumbs = [

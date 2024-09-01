@@ -2,7 +2,9 @@
     <app-new-title title="Wishlist" [breadcrumbs]="breadcrumbs"></app-new-title>
 </div>
 
-<div class="mxw-1920px no-item" *ngIf="wishlist.length === 0">
+<app-new-loading [loading]="loading"></app-new-loading>
+
+<div class="mxw-1920px no-item" *ngIf="wishlist && wishlist.length === 0 && loading === false">
     <h3 class="text-purple my-0">No item on the wishlist.</h3>
     <h6 class="text-gray my-0">Explore our Products</h6>
     <div class="col-md-8 offset-md-2">
@@ -35,9 +37,7 @@
     </div>
 </div>
 
-<div class="mxw-1920px row" *ngIf="wishlist.length > 0">
-    <app-new-loading [loading]="loading"></app-new-loading>
-
+<div class="mxw-1920px row" *ngIf="wishlist && wishlist.length > 0 && loading === false">
     <div class="max-5 mb-2" *ngIf="getList('card').length > 0 && loading === false">
         <div *ngFor="let card of getList('card')">
             <app-new-card-thumb [card]="getICard(card.model)"></app-new-card-thumb>

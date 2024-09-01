@@ -136,7 +136,8 @@ export class NewLoginComponent implements OnInit {
           notification: true,
           providerId: value.providerId,
           photoURL: value.photoURL,
-          address: ''
+          address: '',
+          greetings_wishlist: []
         }
         await this.accountService.setUser(user);
         this.form.reset();

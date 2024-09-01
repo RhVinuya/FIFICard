@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { NewStorageService } from 'src/app/new-services/new-storage.service';
+import { NewWishlistService } from 'src/app/new-services/new-wishlist.service';
 
 @Component({
   selector: 'app-new-wish-indicator',
@@ -11,12 +11,12 @@ export class NewWishIndicatorComponent implements OnInit {
     this.load(value);
   }
 
-  storageService: NewStorageService;
+  wishlistService: NewWishlistService;
 
   constructor(
-    _storageService: NewStorageService
+    _wishlistService: NewWishlistService
   ) { 
-    this.storageService = _storageService;
+    this.wishlistService = _wishlistService;
   }
 
   _id: string;
@@ -27,20 +27,16 @@ export class NewWishIndicatorComponent implements OnInit {
 
   load(value: string){
     this._id = value;
-    let list = this.storageService.getWishist();
+    let list = this.wishlistService.get();
     this.isMark = list.findIndex(x => x === this._id) >= 0;
   }
 
   onClick(){
     this.isMark = !this.isMark;
-    let list = this.storageService.getWishist();
-    if (this.isMark) {
-      list = [this._id, ...list.filter(x => x !== this._id)]
-    }
-    else {
-      list = [...list.filter(x => x !== this._id)]
-    }
-    this.storageService.saveWishlist(list);
+    let list = this.wishlistService.get();
+    if (this.isMark) list = [this._id, ...list.filter(x => x !== this._id)];
+    else list = [...list.filter(x => x !== this._id)];
+    this.wishlistService.save(list);
   }
 
 }

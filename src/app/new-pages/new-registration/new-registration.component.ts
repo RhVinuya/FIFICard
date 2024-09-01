@@ -116,7 +116,8 @@ export class NewRegistrationComponent implements OnInit {
       notification: this.form.controls.notification.value!,
       providerId: '',
       photoURL: '',
-      address: ''
+      address: '',
+      greetings_wishlist: []
     }
     user.id = await this.accountService.register(this.form.controls.email.value!, this.form.controls.password.value!);
     await this.accountService.setUser(user);
@@ -156,7 +157,8 @@ export class NewRegistrationComponent implements OnInit {
           notification: true,
           providerId: value.providerId,
           photoURL: value.photoURL,
-          address: ''
+          address: '',
+          greetings_wishlist: []
         }
         await this.accountService.setUser(user);
         this.form.reset();

@@ -9,6 +9,7 @@ import { INewUser } from 'src/app/new-models/new-user';
 import { NewCartService } from 'src/app/new-services/new-cart.service';
 import { NewLocationService } from 'src/app/new-services/new-location.service';
 import { NewStorageService } from 'src/app/new-services/new-storage.service';
+import { NewWishlistService } from 'src/app/new-services/new-wishlist.service';
 
 @Component({
   selector: 'app-new-layout',
@@ -23,6 +24,7 @@ export class NewLayoutComponent implements OnInit {
   storageService: NewStorageService;
   locationService: NewLocationService;
   cartService: NewCartService;
+  wishlistService: NewWishlistService;
   modalService: NgbModal;
 
   constructor(
@@ -31,6 +33,7 @@ export class NewLayoutComponent implements OnInit {
     _storageService: NewStorageService,
     _locationService: NewLocationService,
     _cartService: NewCartService,
+    _wishlistService: NewWishlistService,
     _modalService: NgbModal
   ) {
     this.router = _router;
@@ -38,6 +41,7 @@ export class NewLayoutComponent implements OnInit {
     this.storageService = _storageService;
     this.locationService = _locationService;
     this.cartService = _cartService;
+    this.wishlistService = _wishlistService;
     this.modalService = _modalService
   }
 
@@ -58,11 +62,13 @@ export class NewLayoutComponent implements OnInit {
       if (this.user === undefined && value !== undefined) {
         //trigger synchronization
         this.synchronizeCart(value);
+        this.syncrhronizeWishlist(value);
       }
 
       if (this.user !== undefined && value === undefined) {
         //trigger clearing 
         this.clearingCart();
+        this.wishlistService.clear();
       }
 
       this.user = value === undefined ? undefined : value;
@@ -96,6 +102,15 @@ export class NewLayoutComponent implements OnInit {
     this.cartService.getAll().then(iCarts => {
       iCarts.forEach(iCart => this.cartService.removeStorage(iCart.id) )
     });
+  }
+
+  syncrhronizeWishlist(user: INewUser) {
+    let ids = this.wishlistService.get();
+    let wishlist = user.greetings_wishlist ? user.greetings_wishlist : [];
+    ids.forEach(id => {
+      if (wishlist.findIndex(x => x === id) < 0) wishlist.push(id)
+    })
+    this.wishlistService.save(wishlist);
   }
 
   logScrolling(value: any) {
