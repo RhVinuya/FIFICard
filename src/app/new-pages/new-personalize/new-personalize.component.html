@@ -9,6 +9,16 @@
     <div class="content p-1">
         <app-new-loading [loading]="loading"></app-new-loading>
 
+        <button class="btn btn-light text-primary border-0 left" (click)="onPrev()">
+            <i class="fa fa-chevron-left nav me-1 text-primary"></i>
+            PREV
+        </button>
+
+        <button class="btn btn-light text-primary border-0 right" (click)="onNext()">
+            NEXT
+            <i class="fa fa-chevron-right nav ms-1 text-primary"></i>
+        </button>
+
         <div class="primary" *ngIf="selected !== undefined && loading === false && selected.title === 'Primary'">
             <img [src]="selected.url">
         </div>
@@ -19,16 +29,15 @@
         </div>
     </div>
     <div class="footer px-4 py-2">
-        <button class="btn btn-light text-primary border-0" (click)="onPrev()">
-            <i class="fa fa-chevron-left nav me-1 text-primary"></i>
-            PREV
-        </button>
+        <div></div>
         <div class="images">
-            <img *ngFor="let iImage of iImages" [src]="iImage.url" (click)="onClick(iImage)">
+            <img *ngFor="let iImage of iImages" [src]="iImage.url" [ngClass]="selected!.url === iImage.url ? 'selected' : ''" (click)="onClick(iImage)">
         </div>
-        <button class="btn btn-light text-primary border-0" (click)="onNext()">
-            NEXT
-            <i class="fa fa-chevron-right nav ms-1 text-primary"></i>
-        </button>
+        <div>
+            <button type="button" class="btn addtocart" [disabled]="isProcessing" (click)="onAddToCart()">
+                <span class="spinner-border spinner-border-sm me-1" aria-hidden="true" *ngIf="isProcessing"></span>
+                Add to Cart
+            </button>
+        </div>
     </div>
 </div>

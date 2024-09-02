@@ -10,6 +10,7 @@
                 </td>
                 <td class="details px-3">
                     <span class="badge text-bg-secondary" *ngIf="_cart.type === 'card'">CARD</span>
+                    <span class="badge text-bg-secondary" *ngIf="_cart.type === 'card' && _cart.personalize !== undefined">PERSONALIZE</span>
                     <span class="badge text-bg-secondary" *ngIf="_cart.type === 'sticker'">STICKER</span>
                     <span class="badge text-bg-secondary" *ngIf="_cart.type === 'postcard'">POSTCARD</span>
                     <span class="badge text-bg-secondary" *ngIf="_cart.type === 'gift'">GIFT</span>

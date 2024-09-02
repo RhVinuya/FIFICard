@@ -60,6 +60,7 @@ export class NewCartService {
           sgprice: cart.bundle.sgprice,
           usprice: cart.bundle.usprice
         },
+        personalize: cart.personalize ? cart.personalize : null,
         mark: cart.mark,
       }).then(user => resolve());
     });

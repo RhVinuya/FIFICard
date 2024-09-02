@@ -1,8 +1,12 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NewConfirmMessageComponent } from 'src/app/new-components/new-confirm-message/new-confirm-message.component';
 import { INewCard } from 'src/app/new-models/new-card';
 import { INewPersonalize } from 'src/app/new-models/new-personalize';
 import { NewCardService } from 'src/app/new-services/new-card.service';
 import { NewFileService } from 'src/app/new-services/new-file.service';
+import { NewPersonalizeService } from 'src/app/new-services/new-personalize.service';
+
 
 @Component({
   selector: 'app-new-project-item',
@@ -11,16 +15,23 @@ import { NewFileService } from 'src/app/new-services/new-file.service';
 })
 export class NewProjectItemComponent implements OnInit {
   @Input() project: INewPersonalize;
+  @Output() delete: EventEmitter<string> = new EventEmitter()
 
   cardService: NewCardService;
+  personalizeService: NewPersonalizeService;
   fileService: NewFileService;
+  modalService: NgbModal;
 
   constructor(
     _cardService: NewCardService,
-    _fileService: NewFileService
+    _personalizeService: NewPersonalizeService,
+    _fileService: NewFileService,
+    _modalService: NgbModal
   ) { 
     this.cardService = _cardService;
+    this.personalizeService = _personalizeService;
     this.fileService = _fileService;
+    this.modalService = _modalService;
   }
 
   iCard: INewCard;
@@ -34,4 +45,7 @@ export class NewProjectItemComponent implements OnInit {
     }
   }
 
+  onDelete(id: string) {
+    this.delete.emit(id);
+  }
 }

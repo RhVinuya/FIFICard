@@ -7,6 +7,7 @@
                 </td>
                 <td class="details px-3">
                     <span class="badge text-bg-secondary" *ngIf="iItem.type === 'card'">CARD</span>
+                    <span class="badge text-bg-secondary" *ngIf="iItem.type === 'card' && iItem.personalize !== undefined">PERSONALIZE</span>
                     <span class="badge text-bg-secondary" *ngIf="iItem.type === 'sticker'">STICKER</span>
                     <span class="badge text-bg-secondary" *ngIf="iItem.type === 'postcard'">POSTCARD</span>
                     <span class="badge text-bg-secondary" *ngIf="iItem.type === 'gift'">GIFT</span>

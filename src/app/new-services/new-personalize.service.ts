@@ -62,4 +62,8 @@ export class NewPersonalizeService {
   save(personalize: INewPersonalize) {
     this.storageService.savePersonalize(personalize);
   }
+
+  delete(id:  string) {
+    this.storageService.removePersonalize(id)
+  }
 }

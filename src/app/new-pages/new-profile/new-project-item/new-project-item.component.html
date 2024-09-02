@@ -2,7 +2,13 @@
     <div class="card-body">
         <div class="space-between">
             <span class="text-purple">#{{project.id}}</span>
-            <app-new-personalize-button [iCard]="iCard"></app-new-personalize-button>
+            <div>
+                <button class="delete" (click)="onDelete(project.id)">
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                    Delete
+                </button>
+                <app-new-personalize-button [iCard]="iCard"></app-new-personalize-button>
+            </div>
         </div>
         <table>
             <tr class="px-2">

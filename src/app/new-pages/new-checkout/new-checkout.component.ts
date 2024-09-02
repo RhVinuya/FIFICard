@@ -165,6 +165,7 @@ export class NewCheckoutComponent implements OnInit, OnDestroy {
           itemId: iCart.itemId,
           type: iCart.type,
           bundle: bundle,
+          personalize: iCart.personalize ? iCart.personalize : undefined,
           price: price,
           shipping: 0,
           total: price

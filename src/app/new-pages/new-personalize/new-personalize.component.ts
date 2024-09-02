@@ -1,8 +1,9 @@
-import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { INewCard } from 'src/app/new-models/new-card';
 import { INewPersonalize, INewPersonalizeData, INewPersonalizeDetail } from 'src/app/new-models/new-personalize';
 import { NewCardService } from 'src/app/new-services/new-card.service';
+import { NewCartService } from 'src/app/new-services/new-cart.service';
 import { NewFileService } from 'src/app/new-services/new-file.service';
 import { NewPersonalizeService } from 'src/app/new-services/new-personalize.service';
 import { NewStorageService } from 'src/app/new-services/new-storage.service';
@@ -19,11 +20,13 @@ export interface IImage {
 })
 export class NewPersonalizeComponent implements OnInit {
   @Input() iPersonalize: INewPersonalize;
+  @Output() added: EventEmitter<boolean> = new EventEmitter()
 
   activeModal: NgbActiveModal;
   personalizeService: NewPersonalizeService;
   cardService: NewCardService;
   storageService: NewStorageService;
+  cartService: NewCartService;
   fileService: NewFileService;
   ref: ChangeDetectorRef;
 
@@ -32,12 +35,14 @@ export class NewPersonalizeComponent implements OnInit {
     _personalizeService: NewPersonalizeService,
     _cardService: NewCardService,
     _storageService: NewStorageService,
+    _cartService: NewCartService,
     _fileService: NewFileService,
     _ref: ChangeDetectorRef
   ) {
     this.activeModal = _activeModal;
     this.personalizeService = _personalizeService;
     this.cardService = _cardService;
+    this.cartService = _cartService;
     this.storageService = _storageService;
     this.fileService = _fileService;
     this.ref = _ref;
@@ -48,6 +53,7 @@ export class NewPersonalizeComponent implements OnInit {
   personalizeData: INewPersonalizeData[] = [];
   selected: IImage | undefined = undefined;
   loading: boolean = false;
+  isProcessing: boolean = false;
 
   async ngOnInit(): Promise<void> {
     this.loading = true;
@@ -62,7 +68,7 @@ export class NewPersonalizeComponent implements OnInit {
       })
     }
 
-    if (this.iPersonalize.data.length === 0) {    
+    if (this.iPersonalize.data.length === 0) {
       let signAndSends = await this.cardService.getSignAndSend(this.iPersonalize.itemId);
       for await (let signAndSend of signAndSends) {
         let idx = this.personalizeData.findIndex(x => x.image === signAndSend.image);
@@ -162,5 +168,23 @@ export class NewPersonalizeComponent implements OnInit {
     })
     this.iPersonalize.data = this.personalizeData
     this.personalizeService.save(this.iPersonalize);
+  }
+
+  onAddToCart() {
+    this.isProcessing = true;
+    this.cartService.add({
+      id: '',
+      itemId: this.iPersonalize.itemId,
+      userId: '',
+      price: this.iCard.price,
+      sgprice: this.iCard.usprice,
+      usprice: this.iCard.sgprice,
+      type: 'card',
+      bundle: undefined,
+      personalize: this.iPersonalize,
+      mark: true
+    });
+    this.isProcessing = false;
+    this.added.emit(true);
   }
 }

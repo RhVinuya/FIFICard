@@ -189,6 +189,7 @@ export class NewDetailsComponent implements OnInit {
         sgprice: bundle.sgprice,
         usprice: bundle.usprice,
       } as INewCartBundle,
+      personalize: undefined,
       mark: true
     })
     const toast = await this.toastController.create({

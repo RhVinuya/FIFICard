@@ -75,6 +75,7 @@ export class NewAddCartButtonComponent implements OnInit {
         usprice: this.usprice,
         type: this.type,
         bundle: undefined,
+        personalize: undefined,
         mark: true
       }
     );

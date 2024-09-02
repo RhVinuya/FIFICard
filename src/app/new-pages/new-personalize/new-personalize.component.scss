@@ -28,19 +28,27 @@
 .content {
     flex-grow: 2;
     height: calc(100% - 70px - 67px);
-}
-
-.content {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    position: relative;
 }
 
 .content img {
     max-width: 100%;
     max-height: 100%;
     object-fit: cover;
+}
+
+.content .left{
+    position: absolute;
+    left: 10px;
+}
+
+.content .right{
+    position: absolute;
+    right: 10px;
 }
 
 .footer {
@@ -97,3 +105,36 @@
     position: absolute;
     border: 1px solid #9a0abf;
 }
+
+.selected{
+    border: 1px solid #cb6ce6;
+}
+
+
+.addtocart {
+    font-family: "Proxima Nova";
+    border: 1px #ab37c9 solid;
+    background: white;
+    color: #ab37c9;
+    cursor: pointer;
+    padding-block: 6px;
+    padding-inline: 20px;
+    border-radius: 20px;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.addtocart:hover {
+    font-family: "Proxima Nova";
+    border: 1px #ab37c9 solid;
+    color: #fff;
+    background: #ab37c9;
+    font-size: 1rem;
+}
+
+.addtocart:disabled {
+    background: lightgrey;
+    border: 0.5px solid lightgrey;
+    cursor: not-allowed;
+}
+

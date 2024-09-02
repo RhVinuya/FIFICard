@@ -4,5 +4,5 @@
         <ion-icon name="information-circle-outline"></ion-icon>
         Note: Personalize Project data is saved locally.
     </h6>
-    <app-new-project-item *ngFor="let project of projects" [project]="project"></app-new-project-item>
+    <app-new-project-item *ngFor="let project of projects" [project]="project" (delete)="delete($event)"></app-new-project-item>
 </div>

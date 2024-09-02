@@ -1,5 +1,6 @@
 import { NewLocationService } from "../new-services/new-location.service";
 import { ItemType, LocationType } from "./new-enum";
+import { INewPersonalize } from "./new-personalize";
 
 export interface INewCart {
     id: string;
@@ -10,6 +11,7 @@ export interface INewCart {
     usprice: number;
     type: ItemType;
     bundle: INewCartBundle | undefined;
+    personalize: INewPersonalize | undefined;
     mark: boolean;
 }
 
@@ -22,6 +24,7 @@ export class NewCart {
     usprice: number;
     type: ItemType;
     bundle: NewCartBundle | undefined;
+    personalize: INewPersonalize | undefined;
     mark: boolean;
 
     constructor(value: INewCart) {
@@ -33,6 +36,7 @@ export class NewCart {
         this.usprice = value.usprice;
         this.type = value.type;
         if (value.bundle) this.bundle = new NewCartBundle(value.bundle as INewCartBundle)
+        this.personalize = value.personalize;
         this.mark = value.mark;
     }
 

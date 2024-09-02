@@ -2,6 +2,7 @@ import { NewLocationService } from "../new-services/new-location.service";
 import { INewAddress } from "./new-address";
 import { Timestamp } from "@angular/fire/firestore";
 import { Gateway, ItemType, LocationType, PaymentDetails, Provider } from "./new-enum";
+import { INewPersonalize } from "./new-personalize";
 
 export interface INewPayment {
     id: string;
@@ -35,13 +36,13 @@ export class NewPayment {
     provider: Provider | undefined;
     details: PaymentDetails;
     created: Timestamp;
-    
-    constructor() {}
+
+    constructor() { }
 
     locationService: NewLocationService = new NewLocationService();
     symbol: string = '';
 
-    load(iPayment: INewPayment){
+    load(iPayment: INewPayment) {
         this.id = iPayment.id;
         this.code = iPayment.code;
         this.userId = iPayment.userId;
@@ -59,24 +60,24 @@ export class NewPayment {
         this.symbol = this.locationService.getSymbol(this.location)
     }
 
-    subTotalDisplay(){
-        
+    subTotalDisplay() {
+
         return this.symbol + this.subtotal.toLocaleString('en-US', { minimumFractionDigits: 2 })
     }
 
-    shippingFeeDisplay(){
+    shippingFeeDisplay() {
         return this.symbol + this.shippingFee.toLocaleString('en-US', { minimumFractionDigits: 2 })
     }
 
-    totalDisplay(){
+    totalDisplay() {
         return this.symbol + this.total.toLocaleString('en-US', { minimumFractionDigits: 2 })
     }
 
-    createdDisplay(){
+    createdDisplay() {
         return this.created.toDate().toLocaleString();
     }
 
-    getGateway(){
+    getGateway() {
         if (this.gateway === 'specialcode') return 'Special Code';
         else if (this.gateway === 'card') return 'Card';
         else if (this.gateway === 'gcash') return 'GCash';
@@ -85,7 +86,7 @@ export class NewPayment {
     }
 }
 
-export interface INewSender{
+export interface INewSender {
     firstname: string;
     lastname: string;
     email: string;
@@ -102,26 +103,28 @@ export class NewSender {
         this.email = iSender.email;
     }
 
-    getFullName(){
+    getFullName() {
         return this.firstname + ' ' + this.lastname;
     }
 }
 
-export interface INewPaymentItem{
+export interface INewPaymentItem {
     id: string;
     itemId: string;
     type: ItemType;
     bundle: INewPaymentItemBundle | undefined;
+    personalize: INewPersonalize | undefined;
     price: number;
     shipping: number;
     total: number;
 }
 
-export class NewPaymentItem{
+export class NewPaymentItem {
     id: string;
     itemId: string;
     type: ItemType;
     bundle: NewPaymentItemBundle | undefined;
+    personalize: INewPersonalize | undefined;
     price: number;
     shipping: number;
     total: number;
@@ -133,28 +136,29 @@ export class NewPaymentItem{
         this.itemId = value.itemId;
         this.type = value.type;
         if (value.bundle) this.bundle = new NewPaymentItemBundle(value.bundle as INewPaymentItemBundle)
+        this.personalize = value.personalize;
         this.price = value.price;
         this.shipping = value.shipping;
         this.total = value.total;
         this.location = location;
     }
 
-    priceDisplay(){
+    priceDisplay() {
         let locationService: NewLocationService = new NewLocationService();
         return locationService.getSymbol(this.location) + this.price.toLocaleString('en-US', { minimumFractionDigits: 2 })
     }
 
-    shippingDisplay(){
+    shippingDisplay() {
         if (this.shipping === 0) {
             return 'FREE'
         }
         else {
             let locationService: NewLocationService = new NewLocationService();
-            return locationService.getSymbol(this.location)  + this.shipping.toLocaleString('en-US', { minimumFractionDigits: 2 })
+            return locationService.getSymbol(this.location) + this.shipping.toLocaleString('en-US', { minimumFractionDigits: 2 })
         }
     }
 
-    totalDisplay(){
+    totalDisplay() {
         let locationService: NewLocationService = new NewLocationService();
         return locationService.getSymbol(this.location) + this.total.toLocaleString('en-US', { minimumFractionDigits: 2 })
     }
@@ -165,7 +169,7 @@ export interface INewPaymentItemBundle {
     price: number;
 }
 
-export class NewPaymentItemBundle{
+export class NewPaymentItemBundle {
     count: number;
     price: number;
 
@@ -178,7 +182,7 @@ export class NewPaymentItemBundle{
         return this.count.toLocaleString();
     }
 
-    priceDisplay(){
+    priceDisplay() {
         let locationService: NewLocationService = new NewLocationService();
         return locationService.getPriceSymbol() + this.price.toLocaleString('en-US', { minimumFractionDigits: 2 })
     }
