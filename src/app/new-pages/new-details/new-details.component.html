@@ -17,7 +17,7 @@
                 <app-new-personalize-button class="me-2" *ngIf="isPersonalize" [iCard]="getICard()"></app-new-personalize-button>
                 <app-new-add-cart-button [type]="type" [item]="iModel" *ngIf="isAddToCart"></app-new-add-cart-button>
                 <div class="qr text-center" *ngIf="qr !== ''">
-                    <img src="/assets/images/talking-card-1.gif" class="qr-icon">
+                    <img src="/assets/images/talking-card-1.gif" class="qr-icon" onContextMenu="return false;">
                     <img [src]="qr" class="qr-image">
                     <div class="mt-1">
                         <a class="info" (click)="playInstruction()">Click here to know how to play</a>
@@ -37,10 +37,10 @@
             </div>
             <div class="details text-gray mb-3">{{model.details}}</div>
             <div class="icons pt-3">
-                <img src="/assets/images/poetry-card.png" class="me-2" *ngIf="isPoetry">
-                <img src="/assets/images/standard-card.png" class="me-2" *ngIf="isRegular">
+                <img src="/assets/images/poetry-card.png" class="me-2" *ngIf="isPoetry" onContextMenu="return false;">
+                <img src="/assets/images/standard-card.png" class="me-2" *ngIf="isRegular" onContextMenu="return false;">
                 <span class="badge text-bg-secondary i-featured me-2" *ngIf="isFeatured"><i class="fa fa-fire" aria-hidden="true"></i> Featured</span>
-                <img class="me-2" src="/assets/images/icon_free_shipping.png">
+                <img class="me-2" src="/assets/images/icon_free_shipping.png" onContextMenu="return false;">
             </div>
         </div>
     </div>
