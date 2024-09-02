@@ -1,7 +1,7 @@
 <div class="modal-body main">
     <button type="button" class="btn-close" aria-label="Close" (click)="close()"></button>
     <div class="text-center title">
-        <img src="/assets/images/logo_fibeigreetings-com.png">
+        <img src="/assets/images/logo_fibeigreetings-com.png" onContextMenu="return false;">
         <h3>Sign in</h3>
     </div>
     <div class="text-center px-5 mb-3">
@@ -50,7 +50,7 @@
         <label>OR</label>
     </div>
     <div class="external mb-5l">
-        <img src="/assets/images/google.png" (click)="onGoogleClick()">
+        <img src="/assets/images/google.png" (click)="onGoogleClick()" onContextMenu="return false;">
     </div>
     <div class="px-5 mt-2 mb-3">
         <label>Forgot password? <a (click)="onResetPassword()">Click here to reset.</a></label>
