@@ -70,6 +70,7 @@ export class NewCartComponent implements OnInit, OnDestroy {
     this.loading = true;
     this.ref.detectChanges();
     this.carts = await this.cartService.getAll();
+    console.log(this.carts)
     this.calculate();
     this.loading = false;
     this.ref.detectChanges();
