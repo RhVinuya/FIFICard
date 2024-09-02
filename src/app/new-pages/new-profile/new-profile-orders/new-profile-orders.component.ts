@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { NewAddress } from 'src/app/new-models/new-address';
-import { INewPayment, INewPaymongoDetails, INewSpecialCodeDetails, INewStripeDetails, NewPayment, NewSender } from 'src/app/new-models/new-payment';
+import { INewPayment } from 'src/app/new-models/new-payment';
 import { NewPaymentService } from 'src/app/new-services/new-payment.service';
 import { NewStorageService } from 'src/app/new-services/new-storage.service';
 

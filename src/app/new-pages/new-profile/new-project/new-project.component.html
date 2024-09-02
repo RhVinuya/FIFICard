@@ -1,6 +1,16 @@
 <app-new-loading [loading]="loading"></app-new-loading>
 <div *ngIf="loading === false">
-    <h6 class="text-purple fst-italic">
+    <div class="text-center">
+        <h3 class="text-purple" *ngIf="projects.length === 0">
+            No Pending Personalize Project
+        </h3>
+        <h5 class="text-gray">
+            Explore are 
+            <a [routerLink]="['/new/cards/PERSONALIZED']">Cards for Personalize</a>
+        </h5>
+    </div>
+
+    <h6 class="text-purple fst-italic" *ngIf="projects.length > 0">
         <ion-icon name="information-circle-outline"></ion-icon>
         Note: Personalize Project data is saved locally.
     </h6>
