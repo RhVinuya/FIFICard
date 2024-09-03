@@ -1,9 +1,9 @@
 <div class="primary mb-3">
-    <img [src]="selected" *ngIf="selected !== ''" (click)="openGallery(selected)">
+    <img [src]="selected" *ngIf="selected !== ''" (click)="openGallery(selected)" onContextMenu="return false;">
 </div>
 <div class="items">
     <div *ngFor="let image of _images">
-        <img [src]="image" (click)="onClickItem(image)">
+        <img [src]="image" (click)="onClickItem(image)" onContextMenu="return false;">
     </div>
 </div>
 <ng-template #modal>
@@ -11,12 +11,12 @@
         <div class="display">
             <button type="button" class="btn-close" aria-label="Close" (click)="onClose()"></button>
             <i class="fa fa-2x fa-chevron-left nav" (click)="onPrev()"></i>
-            <img [src]="display" *ngIf="display !== ''">
+            <img [src]="display" *ngIf="display !== ''" onContextMenu="return false;">
             <i class="fa fa-2x fa-chevron-right nav" (click)="onNext()"></i>
         </div>
         <div class="options">
             <div *ngFor="let image of _images">
-                <img [src]="image" (click)="onClickDisplay(image)">
+                <img [src]="image" (click)="onClickDisplay(image)" onContextMenu="return false;">
             </div>
         </div>
     </div>

@@ -22,7 +22,7 @@
         </button>
 
         <div class="primary" *ngIf="selected !== undefined && loading === false && selected.title === 'Primary'">
-            <img [src]="selected.url">
+            <img [src]="selected.url" onContextMenu="return false;">
         </div>
 
         <div class="editing" 
@@ -35,7 +35,7 @@
             <img [src]="selected.url" (load)="loaded()"
                 ngbPopover='Instructions: Click inside each box to add your greetings or message. Once youve finished, click "Save" to store it in your personalized cards, or click "Add to Cart" to complete your purchase.'
                 placement="right-start"
-                #primary="ngbPopover">
+                #primary="ngbPopover" onContextMenu="return false;">
 
             <app-new-textarea *ngFor="let item of getSignAndSendDetails(selected.url)" 
                 [detail]="item"
@@ -47,7 +47,7 @@
         <div></div>
         <div class="images">
             <img *ngFor="let iImage of iImages" [src]="iImage.url" [ngClass]="selected!.url === iImage.url ? 'selected' : ''"
-                (click)="onClick(iImage)">
+                (click)="onClick(iImage)" onContextMenu="return false;">
         </div>
         <div>
             <button type="button" class="btn addtocart" [disabled]="isProcessing" (click)="onAddToCart()">

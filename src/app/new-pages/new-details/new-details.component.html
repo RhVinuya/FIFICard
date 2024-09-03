@@ -24,7 +24,7 @@
                 </div>
                 <div class="qr text-center" *ngIf="qr !== ''">
                     <img src="/assets/images/talking-card-1.gif" class="qr-icon" onContextMenu="return false;">
-                    <img [src]="qr" class="qr-image">
+                    <img [src]="qr" class="qr-image" onContextMenu="return false;">
                     <div class="mt-1">
                         <a class="info" (click)="playInstruction()">Click here to know how to play</a>
                     </div>

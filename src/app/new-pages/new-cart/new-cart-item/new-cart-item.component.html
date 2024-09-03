@@ -6,7 +6,7 @@
                     <input class="form-check-input" type="checkbox" [checked]="_cart.mark" (change)="onChange($event)">
                 </td>
                 <td class="image">
-                    <img [src]="primary" [alt]="model.name">
+                    <img [src]="primary" [alt]="model.name" onContextMenu="return false;">
                 </td>
                 <td class="details px-3">
                     <span class="badge text-bg-secondary" *ngIf="_cart.type === 'card'">CARD</span>

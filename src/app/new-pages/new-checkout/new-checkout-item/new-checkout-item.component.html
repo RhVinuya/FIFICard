@@ -3,7 +3,7 @@
         <table>
             <tr>
                 <td class="image">
-                    <img [src]="primary" [alt]="model.name">
+                    <img [src]="primary" [alt]="model.name" onContextMenu="return false;">
                 </td>
                 <td class="details px-3">
                     <span class="badge text-bg-secondary" *ngIf="item.type === 'card'">CARD</span>
