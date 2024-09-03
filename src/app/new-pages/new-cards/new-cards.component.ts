@@ -152,6 +152,7 @@ export class NewCardsComponent implements OnInit {
             if (filter === 'POETRY' && card.messagetype === 'poetry') found = true;
             else if (filter === 'MESSAGE' && card.messagetype === 'regular') found = true;
             else if (filter === 'PERSONALIZED' && card.signAndSend === true) found = true;
+            else if (filter === 'TALKING CARD' && card.talkingcard === true) found = true;
           })
           if (found) this.display = [...this.display, card];
         })
