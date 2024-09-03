@@ -16,6 +16,8 @@
 
         <button class="btn btn-light text-primary border-0 right" (click)="onNext()"
             ngbPopover='Add your message, and we will print and send it for you. Click "Next" to proceed.' 
+            container="body"
+            popoverClass="next-class"
             #next="ngbPopover">
             NEXT
             <i class="fa fa-chevron-right nav ms-1 text-primary"></i>
@@ -29,12 +31,15 @@
             *ngIf="selected !== undefined && loading === false && selected.title === 'Sign and Send'" 
             ngbPopover='Disclaimer: The FiBeiGreetings logo shown on the card is for presentation and security purposes only and will not be included in the printed card sent to your recipient.' 
             placement="bottom" 
-            ngbPopoverClass="dynamic-popover"
+            container="body"
+            popoverClass="bottom-class"
             #purpose="ngbPopover">
 
             <img [src]="selected.url" (load)="loaded()"
                 ngbPopover='Instructions: Click inside each box to add your greetings or message. Once youve finished, click "Save" to store it in your personalized cards, or click "Add to Cart" to complete your purchase.'
                 placement="right-start"
+                container="body"
+                popoverClass="image-class"
                 #primary="ngbPopover" onContextMenu="return false;">
 
             <app-new-textarea *ngFor="let item of getSignAndSendDetails(selected.url)" 

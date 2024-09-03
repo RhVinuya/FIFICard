@@ -27,12 +27,14 @@
 
 .content {
     flex-grow: 2;
-    height: calc(100% - 70px - 67px);
+    min-height: calc(100% - 70px - 67px);
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
     position: relative;
+    overflow-y: scroll;
+    
 }
 
 .content img {
@@ -120,6 +122,10 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
+}
+
+.editing img{
+    border: 0.1px solid #cb6ce6;
 }
 
 .editing {
