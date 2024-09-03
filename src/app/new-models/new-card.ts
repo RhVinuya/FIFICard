@@ -40,7 +40,7 @@ export class NewCard {
     created: Timestamp;
     modified: Timestamp;
 
-    constructor(value: INewCard){
+    constructor(value: INewCard) {
         this.id = value.id;
         this.code = value.code;
         this.name = value.name;
@@ -59,12 +59,35 @@ export class NewCard {
         this.modified = value.modified;
     }
 
-    priceDisplay(){
+    priceDisplay() {
         let locationService: NewLocationService = new NewLocationService();
         let location: LocationType = locationService.getlocation();
         if (location === 'us') return '$' + this.usprice.toLocaleString('en-US', { minimumFractionDigits: 2 })
         else if (location === 'sg') return 'S$' + this.sgprice.toLocaleString('en-US', { minimumFractionDigits: 2 })
         else return '₱' + this.price.toLocaleString('en-US', { minimumFractionDigits: 2 })
+    }
+
+    getPersonalizePHPrice() {
+        return this.price + 50;
+    }
+
+    getPersonalizeUSPrice() {
+        return this.usprice + 1;
+    }
+
+    getPersonalizeSGPrice() {
+        return this.usprice + 1;
+    }
+
+    getPersonalizePriceDisplay() {
+        if (this.signAndSend) {
+            let locationService: NewLocationService = new NewLocationService();
+            let location: LocationType = locationService.getlocation();
+            if (location === 'us') return '$' + this.getPersonalizeUSPrice().toLocaleString('en-US', { minimumFractionDigits: 2 })
+            else if (location === 'sg') return 'S$' + this.getPersonalizeSGPrice().toLocaleString('en-US', { minimumFractionDigits: 2 })
+            else return '₱' + this.getPersonalizePHPrice().toLocaleString('en-US', { minimumFractionDigits: 2 })
+        }
+        else return '';
     }
 }
 

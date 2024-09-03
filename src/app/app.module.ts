@@ -199,14 +199,14 @@ import { NewCheckoutSenderComponent } from './new-pages/new-checkout/new-checkou
 import { NewPaymentComponent } from './new-pages/new-payment/new-payment.component';
 import { NewGiftThumbComponent } from './new-components/new-gift-thumb/new-gift-thumb.component';
 import { NewProfileOrdersComponent } from './new-pages/new-profile/new-profile-orders/new-profile-orders.component';
-import { NewProjectComponent } from './new-pages/new-profile/new-project/new-project.component';
-import { NewProjectItemComponent } from './new-pages/new-profile/new-project-item/new-project-item.component';
 import { NewVideoPlayerComponent } from './new-components/new-video-player/new-video-player.component';
 import { NewPasswordResetComponent } from './new-components/new-password-reset/new-password-reset.component';
 import { NewCheckoutGcashComponent } from './new-pages/new-checkout/new-checkout-gcash/new-checkout-gcash.component';
 import { NewOrderComponent } from './new-components/new-order/new-order.component';
 import { NewOrderItemComponent } from './new-components/new-order/new-order-item/new-order-item.component';
 import { NewTextareaComponent } from './new-pages/new-personalize/new-textarea/new-textarea.component';
+import { NewPersonalizesComponent } from './new-pages/new-personalizes/new-personalizes.component';
+import { NewPersonalizeItemComponent } from './new-pages/new-personalizes/new-personalize-item/new-personalize-item.component';
 
 @NgModule({
   declarations: [
@@ -383,14 +383,14 @@ import { NewTextareaComponent } from './new-pages/new-personalize/new-textarea/n
     NewPaymentComponent,
     NewGiftThumbComponent,
     NewProfileOrdersComponent,
-    NewProjectComponent,
-    NewProjectItemComponent,
     NewVideoPlayerComponent,
     NewPasswordResetComponent,
     NewCheckoutGcashComponent,
     NewOrderComponent,
     NewOrderItemComponent,
-    NewTextareaComponent
+    NewTextareaComponent,
+    NewPersonalizesComponent,
+    NewPersonalizeItemComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,24 @@
+<div class="mxw-1920px mt-2">
+    <app-new-title title="Personalize Projects" [breadcrumbs]="breadcrumbs"></app-new-title>
+</div>
+
+<app-new-loading [loading]="loading"></app-new-loading>
+
+<div class="mxw-1080px" *ngIf="loading === false">
+    <div class="text-center" *ngIf="projects.length === 0">
+        <h3 class="text-purple">
+            No Pending Personalize Project
+        </h3>
+        <h5 class="text-gray">
+            Explore are 
+            <a [routerLink]="['/new/cards/PERSONALIZED']">Cards for Personalize</a>
+        </h5>
+    </div>
+    <div *ngIf="projects.length > 0">
+        <h6 class="text-purple fst-italic">
+            <ion-icon name="information-circle-outline"></ion-icon>
+            Note: Personalize Project data is saved locally.
+        </h6>
+        <app-new-personalize-item *ngFor="let project of projects" [project]="project" (delete)="delete($event)"></app-new-personalize-item>
+    </div>
+</div>

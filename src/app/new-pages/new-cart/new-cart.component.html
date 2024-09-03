@@ -38,7 +38,7 @@
 <app-new-loading [loading]="loading"></app-new-loading>
 <div *ngIf="loading == false">
     <div class="mxw-1920px row" *ngIf="carts.length > 0">
-        <div class="col-md-9">
+        <div class="col-md-9 pe-1">
             <div class="card bg-light border-light mb-2">
                 <div class="card-body">
                     <table>
@@ -61,7 +61,7 @@
             <app-new-cart-item *ngFor="let iCart of carts" [cart]="iCart" (onChangeMark)="onChangeItemMark(iCart.id, $event)"
                 (onRemoveItem)="onRemove($event)"></app-new-cart-item>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-3 ps-1">
             <div class="card bg-light border-light">
                 <div class="card-body">
                     <h3 class="mt-0 mb-4">Order Summary</h3>

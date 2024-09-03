@@ -5,11 +5,11 @@ import { INewPersonalize } from 'src/app/new-models/new-personalize';
 import { NewPersonalizeService } from 'src/app/new-services/new-personalize.service';
 
 @Component({
-  selector: 'app-new-project',
-  templateUrl: './new-project.component.html',
-  styleUrls: ['./new-project.component.scss']
+  selector: 'app-new-personalizes',
+  templateUrl: './new-personalizes.component.html',
+  styleUrls: ['./new-personalizes.component.scss']
 })
-export class NewProjectComponent implements OnInit {
+export class NewPersonalizesComponent implements OnInit {
 
   personalizeService: NewPersonalizeService;
   modalService: NgbModal;
@@ -24,6 +24,19 @@ export class NewProjectComponent implements OnInit {
 
   loading: boolean = false;
   projects: INewPersonalize[] = [];
+
+  breadcrumbs = [
+    {
+      title: "Home",
+      url: "/",
+      active: false
+    },
+    {
+      title: "Personalize Projects",
+      url: "",
+      active: true
+    }
+  ];
 
   async ngOnInit(): Promise<void> {
     this.loading = true;

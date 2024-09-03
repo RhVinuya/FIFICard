@@ -3,8 +3,8 @@
         <div class="mxw-1920px">
             <div class="row my-2">
                 <div class="col-2 ps-0" size="auto">
-                    <img [src]="logo" title="FibeiGreetings.com" routerlink="/" oncontextmenu="return false;"
-                        class="img-title img-fluid" style="cursor: pointer;" tabindex="0" [routerLink]="['/new']">
+                    <img [src]="logo" title="FibeiGreetings.com" routerlink="/" oncontextmenu="return false;" class="img-title img-fluid"
+                        style="cursor: pointer;" tabindex="0" [routerLink]="['/new']">
                 </div>
                 <div class="col-8 ps-0 my-auto" size="auto">
                     <ul class="nav justify-content-center my-menu-links">
@@ -37,10 +37,10 @@
                 <div class="col-2" size="auto">
                     <ul class="nav justify-content-end">
                         <li class="nav-item action">
-                            <a class="nav-link active" aria-current="page">   <!-- [routerLink]="['/new/cart']" -->
-                                  <i class="fa fa-2x fa-star text-purple gelatine" aria-hidden="true" title="Personalize"></i>
-                              </a>
-                          </li>
+                            <a class="nav-link active" aria-current="page" [routerLink]="['/new/projects']">
+                                <i class="fa fa-2x fa-star text-purple gelatine" aria-hidden="true" title="Personalize"></i>
+                            </a>
+                        </li>
                         <li class="nav-item action">
                             <a class="nav-link active" aria-current="page" [routerLink]="['/new/cart']">
                                 <i class="fa fa-2x fa-shopping-cart text-purple" aria-hidden="true" title="Cart"></i>
@@ -53,8 +53,10 @@
                         </li>
                         <li class="nav-item action">
                             <a class="nav-link" [routerLink]="['/new/profile/info']" title="Profile">
-                                <i class="fa fa-2x fa-user-circle text-purple" aria-hidden="true" *ngIf="_user === undefined || (_user !== undefined && (_user.photoURL === '' || _user.photoURL === null))"></i>
-                                <img class="profile" [src]="_user.photoURL" *ngIf="_user !== undefined && _user.photoURL !== '' && _user.photoURL !== null">
+                                <i class="fa fa-2x fa-user-circle text-purple" aria-hidden="true"
+                                    *ngIf="_user === undefined || (_user !== undefined && (_user.photoURL === '' || _user.photoURL === null))"></i>
+                                <img class="profile" [src]="_user.photoURL"
+                                    *ngIf="_user !== undefined && _user.photoURL !== '' && _user.photoURL !== null">
                             </a>
                         </li>
                     </ul>
@@ -75,13 +77,13 @@
         <div class="mxw-1920px">
             <div class="row mt-2">
                 <div class="col-6" size="auto">
-                    <img [src]="logo" title="FibeiGreetings.com" routerlink="/" oncontextmenu="return false;"
-                        class="img-title img-fluid" style="cursor: pointer;" tabindex="0" [routerLink]="['/new']">
+                    <img [src]="logo" title="FibeiGreetings.com" routerlink="/" oncontextmenu="return false;" class="img-title img-fluid"
+                        style="cursor: pointer;" tabindex="0" [routerLink]="['/new']">
                 </div>
                 <div class="col-6 pe-0" size="auto">
                     <ul class="nav justify-content-end">
                         <li class="nav-item action">
-                          <a class="nav-link active" aria-current="page">   <!-- [routerLink]="['/new/cart']" -->
+                            <a class="nav-link active" aria-current="page"  [routerLink]="['/new/projects']">
                                 <i class="fa fa-2x fa-star text-purple gelatine" aria-hidden="true" title="Personalize"></i>
                             </a>
                         </li>
@@ -97,8 +99,10 @@
                         </li>
                         <li class="nav-item action">
                             <a class="nav-link" [routerLink]="['/new/profile/info']" title="Profile">
-                                <i class="fa fa-2x fa-user-circle text-purple" aria-hidden="true" *ngIf="_user === undefined || (_user !== undefined && (_user.photoURL === '' || _user.photoURL === null))"></i>
-                                <img class="profile" [src]="_user.photoURL" *ngIf="_user !== undefined && _user.photoURL !== '' && _user.photoURL !== null">
+                                <i class="fa fa-2x fa-user-circle text-purple" aria-hidden="true"
+                                    *ngIf="_user === undefined || (_user !== undefined && (_user.photoURL === '' || _user.photoURL === null))"></i>
+                                <img class="profile" [src]="_user.photoURL"
+                                    *ngIf="_user !== undefined && _user.photoURL !== '' && _user.photoURL !== null">
                             </a>
                         </li>
                     </ul>

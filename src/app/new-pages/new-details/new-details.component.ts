@@ -174,6 +174,11 @@ export class NewDetailsComponent implements OnInit {
     else return '';
   }
 
+  getPersonalizePrice(){
+    if (this.type === 'card' && this.isPersonalize) return (this.model as NewCard).getPersonalizePriceDisplay();
+    else return ''
+  }
+
   async onClickBundle(bundle: INewPostcardBundle) {
     this.cartService.add({
       id: '',

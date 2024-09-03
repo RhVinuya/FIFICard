@@ -1,6 +1,7 @@
-import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { INewCard } from 'src/app/new-models/new-card';
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { PopoverController } from '@ionic/angular';
+import { NgbActiveModal, NgbPopover } from '@ng-bootstrap/ng-bootstrap';
+import { INewCard, NewCard } from 'src/app/new-models/new-card';
 import { INewPersonalize, INewPersonalizeData, INewPersonalizeDetail } from 'src/app/new-models/new-personalize';
 import { NewCardService } from 'src/app/new-services/new-card.service';
 import { NewCartService } from 'src/app/new-services/new-cart.service';
@@ -19,6 +20,10 @@ export interface IImage {
   styleUrls: ['./new-personalize.component.scss']
 })
 export class NewPersonalizeComponent implements OnInit {
+  @ViewChild('next', { static: false }) public next!: NgbPopover;
+  @ViewChild('primary', { static: false }) public primary!: NgbPopover;
+  @ViewChild('purpose', { static: false }) public purpose!: NgbPopover;
+
   @Input() iPersonalize: INewPersonalize;
   @Output() added: EventEmitter<boolean> = new EventEmitter()
 
@@ -37,7 +42,8 @@ export class NewPersonalizeComponent implements OnInit {
     _storageService: NewStorageService,
     _cartService: NewCartService,
     _fileService: NewFileService,
-    _ref: ChangeDetectorRef
+    _ref: ChangeDetectorRef,
+    _popoverController: PopoverController
   ) {
     this.activeModal = _activeModal;
     this.personalizeService = _personalizeService;
@@ -123,6 +129,11 @@ export class NewPersonalizeComponent implements OnInit {
     })
 
     if (this.iImages.length > 0) this.selected = this.iImages[0];
+
+    if (!this.next.isOpen()) {
+      this.next.open();
+    }
+
     this.ref.detectChanges();
     this.loading = false;
   }
@@ -149,6 +160,9 @@ export class NewPersonalizeComponent implements OnInit {
     let idx = this.iImages.findIndex(x => x === this.selected);
     if (idx !== (this.iImages.length - 1)) {
       this.selected = this.iImages[idx + 1];
+      if (this.next.isOpen()) {
+        this.next.close();
+      }
     }
     else {
       this.selected = this.iImages[0];
@@ -171,14 +185,15 @@ export class NewPersonalizeComponent implements OnInit {
   }
 
   onAddToCart() {
+    let card: NewCard = new NewCard(this.iCard);
     this.isProcessing = true;
     this.cartService.add({
       id: '',
       itemId: this.iPersonalize.itemId,
       userId: '',
-      price: this.iCard.price + 50,
-      sgprice: this.iCard.usprice + 1,
-      usprice: this.iCard.sgprice + 1,
+      price: card.getPersonalizePHPrice(),
+      sgprice: card.getPersonalizeSGPrice(),
+      usprice: card.getPersonalizeUSPrice(),
       type: 'card',
       bundle: undefined,
       personalize: this.iPersonalize,
@@ -186,5 +201,15 @@ export class NewPersonalizeComponent implements OnInit {
     });
     this.isProcessing = false;
     this.added.emit(true);
+  }
+
+  loaded(){
+    if (!this.primary.isOpen()) {
+      this.primary.open();
+    }
+
+    if (!this.purpose.isOpen()) {
+      this.purpose.open();
+    }
   }
 }

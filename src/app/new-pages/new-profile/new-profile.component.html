@@ -25,9 +25,6 @@
             <button class="nav-link" [ngClass]="default === 'orders' ? 'active' : ''" id="orders-tab" data-bs-toggle="tab" data-bs-target="#orders-div" type="button" role="tab">
                 My Orders
             </button>
-            <button class="nav-link" [ngClass]="default === 'personalize' ? 'active' : ''" id="personalize-tab" data-bs-toggle="tab" data-bs-target="#personalize-div" type="button" role="tab">
-                Personalize Project
-            </button>
         </div>
     </nav>
     <div class="tab-content" id="nav-tabContent">
@@ -65,10 +62,6 @@
         
         <div class="tab-pane fade mb-2" [ngClass]="default === 'orders' ? 'show active' : ''" id="orders-div" role="tabpanel">
             <app-new-profile-orders [id]="user.id"></app-new-profile-orders>
-        </div>
-
-        <div class="tab-pane fade mb-2" [ngClass]="default === 'personalize' ? 'show active' : ''" id="personalize-div" role="tabpanel">
-            <app-new-project></app-new-project>
         </div>
     </div>
 </div>

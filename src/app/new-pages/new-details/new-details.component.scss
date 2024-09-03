@@ -152,3 +152,10 @@ h1{
 .info:active {
     text-decoration: none;
 }
+
+.prices{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}

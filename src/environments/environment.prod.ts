@@ -4,10 +4,6 @@ export const environment = {
   paypalClientId: 'AQW1wB3h__RDiIOYHpk_1QLpcrPT5sH0GBWemRc3ycpVohV-dqzNwWtSDuvsaUcVH3Ipam9zwYlNy_nB',
   stripe: {
     enable: true,
-    publishKey: "pk_test_04NqaZryqxUuqCsGYdsSAXgT00Ro4Gy5kx",
-    secretKey: "sk_test_51FPpNZCwtCGHnjTln7DmBVNvoaZOEVW1VexB4NIt9C0rYqT2SthuqbSjbUM8RYgYnyhatDEJZcVzKAyF4Kz6FFCy00WCZLSbOz",
-    //publishKey: "pk_live_51O0OjMJ9Lk6Ni3t7gFC52OLkrXRVtzJnXnxNoIS9A9cld4N1yceb9HQaENZ5V5XZfr0l6RWU8EzqvOzoRyfj31Nk00ZInUVWbD",
-    //secretKey: "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",
     live: true
   },
   paymongo: {

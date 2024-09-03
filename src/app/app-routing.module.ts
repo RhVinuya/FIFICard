@@ -74,6 +74,7 @@ import { NewPrivacyPolicyComponent } from './new-pages/new-links/new-privacy-pol
 import { NewRegistrationCompleteComponent } from './new-pages/new-registration-complete/new-registration-complete.component';
 import { NewCheckoutComponent } from './new-pages/new-checkout/new-checkout.component';
 import { NewPaymentComponent } from './new-pages/new-payment/new-payment.component';
+import { NewPersonalizesComponent } from './new-pages/new-personalizes/new-personalizes.component';
 
 const routes: Routes = [
   {
@@ -328,6 +329,10 @@ const routes: Routes = [
       {
         path: 'details/:type/:id',
         component: NewDetailsComponent
+      },
+      {
+        path: 'projects',
+        component: NewPersonalizesComponent
       },
       {
         path: 'cart',

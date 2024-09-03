@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { concat } from 'rxjs';
 import { INewPersonalizeDetail } from 'src/app/new-models/new-personalize';
 import { environment } from 'src/environments/environment';
@@ -13,15 +13,21 @@ export class NewTextareaComponent implements OnInit {
   @Input() detail: INewPersonalizeDetail;
   @Output() onChange: EventEmitter<INewPersonalizeDetail> = new EventEmitter();
 
+  ref: ChangeDetectorRef;
+
   constructor(
-    private elRef: ElementRef
-  ) { }
+    private elRef: ElementRef,
+    _ref: ChangeDetectorRef
+  ) { 
+    this.ref = _ref;
+  }
 
 
   fonts = environment.fontstyles;
   colors = environment.fontcolors;
 
   text: string;
+  placeholder: string = 'Add your greetings/message';
   font: string;
   color: string;
   size: number;
@@ -47,6 +53,7 @@ export class NewTextareaComponent implements OnInit {
     this.text = content;
     this.detail.text = content;
     this.onChange.emit(this.detail);
+    this.ref.detectChanges();
   }
 
   changeFont(event: Event): void {
@@ -54,6 +61,7 @@ export class NewTextareaComponent implements OnInit {
     this.font = selectedFont;
     this.detail.font = selectedFont;
     this.onChange.emit(this.detail);
+    this.ref.detectChanges();
   }
 
   changeColor(event: Event): void {
@@ -61,6 +69,7 @@ export class NewTextareaComponent implements OnInit {
     this.color = selectedColor;
     this.detail.color = selectedColor;
     this.onChange.emit(this.detail);
+    this.ref.detectChanges();
   }
 
   onFontMinus() {
@@ -68,6 +77,7 @@ export class NewTextareaComponent implements OnInit {
       this.size = this.size - 1;
       this.detail.size = Number(this.size);
       this.onChange.emit(this.detail);
+      this.ref.detectChanges();
     }
   }
 
@@ -76,18 +86,21 @@ export class NewTextareaComponent implements OnInit {
       this.size = this.size + 1;
       this.detail.size = Number(this.size);
       this.onChange.emit(this.detail);
+      this.ref.detectChanges();
     }
   }
 
   changeSize(event: Event): void {
     const size = (event.target as HTMLInputElement).value;
     this.onChange.emit(this.detail);
+    this.ref.detectChanges();
   }
 
   changeAllignment(alignment: 'left' | 'center' | 'right') {
     this.alignment = alignment
     this.detail.alignment = alignment;
     this.onChange.emit(this.detail);
+    this.ref.detectChanges();
   }
 
   @HostListener('document:click', ['$event'])

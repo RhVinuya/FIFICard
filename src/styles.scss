@@ -44,17 +44,17 @@
 @import "ngx-material-pages_theme.scss";
 @import '@ctrl/ngx-emoji-mart/picker';
 
-@font-face{
+@font-face {
    font-family: "Now Bold";
    src: url("https://db.onlinewebfonts.com/t/9dcdfe1b9b9e5bbdf8020454d1724578.eot");
    src: url("https://db.onlinewebfonts.com/t/9dcdfe1b9b9e5bbdf8020454d1724578.eot?#iefix")format("embedded-opentype"),
-       url("https://db.onlinewebfonts.com/t/9dcdfe1b9b9e5bbdf8020454d1724578.woff")format("woff"),
-       url("https://db.onlinewebfonts.com/t/9dcdfe1b9b9e5bbdf8020454d1724578.woff2")format("woff2"),
-       url("https://db.onlinewebfonts.com/t/9dcdfe1b9b9e5bbdf8020454d1724578.ttf")format("truetype"),
-       url("https://db.onlinewebfonts.com/t/9dcdfe1b9b9e5bbdf8020454d1724578.svg#Now Bold")format("svg");
-   font-weight:normal;
-   font-style:normal;
-   font-display:swap;
+      url("https://db.onlinewebfonts.com/t/9dcdfe1b9b9e5bbdf8020454d1724578.woff")format("woff"),
+      url("https://db.onlinewebfonts.com/t/9dcdfe1b9b9e5bbdf8020454d1724578.woff2")format("woff2"),
+      url("https://db.onlinewebfonts.com/t/9dcdfe1b9b9e5bbdf8020454d1724578.ttf")format("truetype"),
+      url("https://db.onlinewebfonts.com/t/9dcdfe1b9b9e5bbdf8020454d1724578.svg#Now Bold")format("svg");
+   font-weight: normal;
+   font-style: normal;
+   font-display: swap;
 }
 
 :root {
@@ -190,16 +190,25 @@ body {
    border-left: 10px solid #871c2d;
 }
 
-.text-purple{
+.text-purple {
    color: #ab37c9;
 }
 
-.text-purple:hover{
-   color: #a18ec8;
+.text-gray {
+   color: #666;
 }
 
-.text-gray{
-   color: #666;
+.text-lightgray {
+   color: #aaa;
+}
+
+.text-blue {
+   color: #5e17eb;
+}
+
+.sub {
+   font-size: 0.7rem;
+   line-height: 0.7rem;
 }
 
 .small-offcanvas {
@@ -214,6 +223,16 @@ body {
    width: 600px !important;
 }
 
-.cursor{
+.cursor {
    cursor: pointer;
+}
+
+.dynamic-popover .popover-body {
+   width: 500px;
+   /* Allow dynamic width adjustment */
+}
+
+.dynamic-popover .popover-header {
+   width: 400px;
+   /* Allow dynamic width adjustment */
 }

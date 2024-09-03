@@ -7,8 +7,10 @@
     [style.color]="color" 
     [style.font-size.px]="size"
     [style.text-align]="alignment"
-    contenteditable="true" (blur)="onBlur($event)" (click)="onClick()" #editableDiv>
-    {{text}}
+    contenteditable="true" 
+    (blur)="onBlur($event)" 
+    (click)="onClick()" #editableDiv>
+    {{text !== '' ? text : placeholder}}
 </div>
 
 <div class="floating-toolbar px-2 py-3 rounded-1" [style.top.px]="detail.top - 2" [style.left.px]="detail.left + detail.width + 5"
@@ -30,7 +32,7 @@
     <label for="color-input">Allignment:</label>
     <div class="allignment">
         <i class="fas fa-align-left" [ngClass]="alignment === 'left' ? 'selected' : ''" (click)="changeAllignment('left')"></i>
-        <i class="fas fa-align-center" [ngClass]="alignment === 'center' ? 'selected' : ''"  (click)="changeAllignment('center')"></i>
-        <i class="fas fa-align-right" [ngClass]="alignment === 'right' ? 'selected' : ''"  (click)="changeAllignment('right')"></i>
+        <i class="fas fa-align-center" [ngClass]="alignment === 'center' ? 'selected' : ''" (click)="changeAllignment('center')"></i>
+        <i class="fas fa-align-right" [ngClass]="alignment === 'right' ? 'selected' : ''" (click)="changeAllignment('right')"></i>
     </div>
 </div>

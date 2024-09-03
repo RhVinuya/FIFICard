@@ -6,16 +6,22 @@
             <app-new-details-images [images]="images"></app-new-details-images>
         </div>
         <div class="col-6 ps-2 pe-1 pt-5">
-            <div class="space-around-top mb-4">
+            <div class="space-around-top mb-1">
                 <div>
                     <h1 class="text-purple"><b>{{model.name}}</b></h1>
                     <label class="text-gray">CODE: {{model.code}}</label>
                 </div>
                 <app-new-wish-indicator [id]="model.id"></app-new-wish-indicator>
             </div>
+            <div class="mt-0 mb-4">
+                <app-new-rate [rate]="rate"></app-new-rate>
+            </div>
             <div class="mb-3 rel">
-                <app-new-personalize-button class="me-2" *ngIf="isPersonalize" [iCard]="getICard()"></app-new-personalize-button>
-                <app-new-add-cart-button [type]="type" [item]="iModel" *ngIf="isAddToCart"></app-new-add-cart-button>
+                <div class="prices" *ngIf="isBundle === false">
+                    <h3 class="text-purple my-0"><b>{{getPrice()}}</b></h3>
+                    <h3 class="text-gray mx-2 my-0" *ngIf="isPersonalize">-</h3>
+                    <h3 class="text-blue my-0" *ngIf="isPersonalize"><b>{{getPersonalizePrice()}}</b></h3>
+                </div>
                 <div class="qr text-center" *ngIf="qr !== ''">
                     <img src="/assets/images/talking-card-1.gif" class="qr-icon" onContextMenu="return false;">
                     <img [src]="qr" class="qr-image">
@@ -24,16 +30,14 @@
                     </div>
                 </div>
             </div>
-            <div class="mb-2" *ngIf="isBundle === false">
-                <h3 class="text-purple my-0"><b>{{getPrice()}}</b></h3>
-            </div>
             <div class="mb-3" *ngIf="isBundle">
                 <button type="button" class="btn bundle me-1 mb-2" *ngFor="let bundle of bundles" (click)="onClickBundle(bundle)">
                     Bundle of <b>{{bundle.countDisplay()}} pcs</b> for <b>{{bundle.priceDisplay()}}</b>
                 </button>
             </div>
-            <div class="mb-2">
-                <app-new-rate [rate]="rate"></app-new-rate>
+            <div class="mb-4">
+                <app-new-add-cart-button class="me-2" [type]="type" [item]="iModel" *ngIf="isAddToCart"></app-new-add-cart-button>
+                <app-new-personalize-button *ngIf="isPersonalize" [iCard]="getICard()"></app-new-personalize-button>
             </div>
             <div class="details text-gray mb-3">{{model.details}}</div>
             <div class="icons pt-3">
