@@ -64,6 +64,7 @@ export class NewCardsComponent implements OnInit {
       this.recipients = [];
 
       if (id !== 'all') {
+        console.log(this.cardevents)
         if (this.cardevents.findIndex(x => x.toLowerCase() === id.toLowerCase()) >= 0) {
           this.event = id;
           this.events.push(id);

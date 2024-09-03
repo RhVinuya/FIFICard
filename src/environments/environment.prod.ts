@@ -33,7 +33,7 @@ export const environment = {
     "Thank you",
     "Sympathy",
     "Pet",
-    "Frienship",
+    "Friendship",
     "Baby",
     "Congratulations",
     "Get well",
