@@ -104,7 +104,7 @@ export class NewPaymentService {
         items: payment.items,
         location: payment.location,
         gateway: payment.gateway,
-        parovider: payment.provider !== undefined ? payment.provider : null,
+        provider: payment.provider !== undefined ? payment.provider : null,
         details: payment.details,
         created: serverTimestamp()
       }).then(docRef => {
