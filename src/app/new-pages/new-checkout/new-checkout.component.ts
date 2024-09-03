@@ -20,6 +20,7 @@ import { NewLocationService } from 'src/app/new-services/new-location.service';
 import { LocationType } from 'src/app/new-models/new-enum';
 import { NewCheckoutGcashComponent } from './new-checkout-gcash/new-checkout-gcash.component';
 import { url } from 'inspector';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-new-checkout',
@@ -111,6 +112,7 @@ export class NewCheckoutComponent implements OnInit, OnDestroy {
   isProcessingGCash: boolean = false;
   isProcessingPayMaya: boolean = false;
   iSProcessingGCashUpload: boolean = false;
+  payments: any | undefined = undefined;
 
   form = new FormGroup({
     code: new FormControl<string>('', [Validators.required, Validators.maxLength(5)]),
@@ -119,7 +121,13 @@ export class NewCheckoutComponent implements OnInit, OnDestroy {
   async ngOnInit(): Promise<void> {
     this.loading = true;
     this.location = this.locationService.getlocation();
+
+    if (this.location == 'ph') this.payments = environment.payments.ph;
+    else if (this.location == 'us') this.payments = environment.payments.us;
+    else  this.payments = environment.payments.sg;
+
     this.ref.detectChanges();
+    
     this.addressConfig = await this.addressService.getConfig();
     this.fees = await this.addressService.getShippingFees();
     this.iUser = this.storageService.getUser();

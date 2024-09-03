@@ -125,6 +125,55 @@ export const environment = {
       title: 'Anniversary', url: '/new/cards/Anniversary'
     }
   ],
+  fontstyles: [
+    'Open Sans',
+    'Dancing Script',
+    'Pacifico',
+    'Satisfy',
+    'Cookie',
+    'Great Vibes',
+    'Lora',
+    'Lobster',
+    'Playball',
+    'Courgette',
+    'Smooch',
+    'Zen Loop'
+  ],
+  fontcolors: [
+    { name: "Black", hex: '#000000' },
+    { name: "Red", hex: '#800000' },
+    { name: "Blue", hex: '#3A9BDC' },
+    { name: "White", hex: '#F8F8FF' },
+    { name: "Yellow", hex: '#FDD128' },
+    { name: "Violet", hex: '#6B2D98' },
+    { name: "Brown", hex: '#B87333' },
+    { name: "Green", hex: '#228B22' }
+  ],
+  payments: {
+    ph: {
+      specialcode: true,
+      card: true,
+      gcash: false,
+      paymaya: false,
+      gcashupload: true
+    },
+    us: {
+      specialcode: true,
+      card: true,
+      gcash: false,
+      paymaya: false,
+      gcashupload: false
+    },
+    sg: {
+      specialcode: true,
+      card: true,
+      gcash: false,
+      paymaya: false,
+      gcashupload: false
+    }
+  },
+
+
 
 
   imageSize: {
@@ -174,30 +223,6 @@ export const environment = {
       us: "https://www.pinterest.ph/FiBeiGreetingsUSA/"
     }
   },
-  fontstyles: [
-    'Open Sans',
-    'Dancing Script',
-    'Pacifico',
-    'Satisfy',
-    'Cookie',
-    'Great Vibes',
-    'Lora',
-    'Lobster',
-    'Playball',
-    'Courgette',
-    'Smooch',
-    'Zen Loop'
-  ],
-  fontcolors: [
-    { name: "Black", hex: '#000000' },
-    { name: "Red", hex: '#800000' },
-    { name: "Blue", hex: '#3A9BDC' },
-    { name: "White", hex: '#F8F8FF' },
-    { name: "Yellow", hex: '#FDD128' },
-    { name: "Violet", hex: '#6B2D98' },
-    { name: "Brown", hex: '#B87333' },
-    { name: "Green", hex: '#228B22' }
-  ],
   priority: [
     { event: "Anniversary", card: "E33L7gYiAiEXx7YLKyAE" },
     { event: "Baby", card: "XtC1VuuBvv5tfxyZuFEI" },

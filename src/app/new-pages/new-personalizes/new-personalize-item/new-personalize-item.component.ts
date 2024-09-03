@@ -40,7 +40,6 @@ export class NewPersonalizeItemComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     this.iCard = await this.cardService.get(this.project.itemId);
     this.card = new NewCard(this.iCard);
-    console.log(this.card)
     let images = await this.cardService.getImages(this.project.itemId);
     if (images && images.length > 0) {
       this.primary = await this.fileService.getImageURL(images[0].url)

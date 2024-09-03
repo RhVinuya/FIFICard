@@ -35,7 +35,6 @@ export class NewTextareaComponent implements OnInit {
   isDisplay: boolean = false;
 
   ngOnInit(): void {
-    console.log(this.detail)
     this.text = this.detail.text;
     this.font = this.detail.font;
     this.color = this.detail.color
