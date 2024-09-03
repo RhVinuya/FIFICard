@@ -11,14 +11,8 @@
                         <li class="nav-item">
                             <a class="nav-link" [routerLink]="['/new']">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" [routerLink]="['/new/cards/Birthday']">Birthday</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" [routerLink]="['/new/cards/Wedding']">Wedding</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" [routerLink]="['/new/cards/Anniversary']">Anniversary</a>
+                        <li class="nav-item" *ngFor="let event of eventpriorities">
+                            <a class="nav-link" [routerLink]="[event.url]">{{event.title}}</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" [routerLink]="['/new/cards/all']">Browse all cards </a>
@@ -112,14 +106,8 @@
                         <li class="nav-item">
                             <a class="nav-link" [routerLink]="['/new']">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" [routerLink]="['/new/cards/Birthday']">Birthday</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" [routerLink]="['/new/cards/Wedding']">Wedding</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" [routerLink]="['/new/cards/Anniversary']">Anniversary</a>
+                        <li class="nav-item" *ngFor="let event of eventpriorities">
+                            <a class="nav-link" [routerLink]="[event.url]">{{event.title}}</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" [routerLink]="['/new/cards/all']">Browse all cards </a>
