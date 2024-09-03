@@ -33,19 +33,19 @@
                         <li class="nav-item action">
                             <a class="nav-link active" aria-current="page" [routerLink]="['/new/projects']">
                                 <i class="fa fa-2x fa-star text-purple gelatine" aria-hidden="true" title="Personalize"></i>
-                                <span class="personalize-count">1</span>
+                                <span class="personalize-count" *ngIf="projectCountDisplay !== ''">{{projectCountDisplay}}</span>
                             </a>
                         </li>
                         <li class="nav-item action">
                             <a class="nav-link active" aria-current="page" [routerLink]="['/new/cart']">
                                 <i class="fa fa-2x fa-shopping-cart text-purple" aria-hidden="true" title="Cart"></i>
-                                <span class="cart-count">2</span>
+                                <span class="cart-count" *ngIf="cartCountDisplay !== ''">{{cartCountDisplay}}</span>
                             </a>
                         </li>
                         <li class="nav-item action">
                             <a class="nav-link" [routerLink]="['/new/wishlist']">
                                 <i class="fa fa-2x fa-heart text-purple" aria-hidden="true" title="Wishlist"></i>
-                                <span class="wishlist-count">3</span>
+                                <span class="wishlist-count" *ngIf="wishlistCountDisplay !== ''">{{wishlistCountDisplay}}</span>
                             </a>
                         </li>
                         <li class="nav-item action">
@@ -82,19 +82,19 @@
                         <li class="nav-item action">
                             <a class="nav-link active" aria-current="page"  [routerLink]="['/new/projects']">
                                 <i class="fa fa-2x fa-star text-purple gelatine" aria-hidden="true" title="Personalize"></i>
-                                <span class="personalize-count">1</span>
+                                <span class="personalize-count" *ngIf="projectCountDisplay !== ''">{{projectCountDisplay}}</span>
                             </a>
                         </li>
                         <li class="nav-item action">
                             <a class="nav-link active" aria-current="page" [routerLink]="['/new/cart']">
                                 <i class="fa fa-2x fa-shopping-cart text-purple" aria-hidden="true" title="Cart"></i>
-                                <span class="cart-count">2</span>
+                                <span class="wishlist-count" *ngIf="cartCountDisplay !== ''">{{cartCountDisplay}}</span>
                             </a>
                         </li>
                         <li class="nav-item action">
                             <a class="nav-link" [routerLink]="['/new/wishlist']">
                                 <i class="fa fa-2x fa-heart text-purple" aria-hidden="true" title="Wishlist"></i>
-                                <span class="wishlist-count">3</span>
+                                <span class="wishlist-count" *ngIf="wishlistCountDisplay !== ''">{{wishlistCountDisplay}}</span>
                             </a>
                         </li>
                         <li class="nav-item action">
