@@ -94,7 +94,7 @@ export class NewPersonalizeComponent implements OnInit {
               font: 'Open Sans',
               color: '#000000',
               size: 18,
-              alignment: 'left'
+              alignment: 'center'
             }]
           })
         }
@@ -110,7 +110,7 @@ export class NewPersonalizeComponent implements OnInit {
             font: 'Open Sans',
             color: '#000000',
             size: 18,
-            alignment: 'left'
+            alignment: 'center'
           })
         }
       }

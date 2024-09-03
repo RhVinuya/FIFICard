@@ -113,7 +113,20 @@ export const environment = {
   ],
   us: ['us.fibeigreetings.com', 'fibeigreetings.us'],
   sg: ['sg.fibeigreetings.com', 'fibeigreetings.sg'],
-
+  eventpriorities: [
+    {
+      title: 'Halloween', url: '/new/cards/Halloween'
+    },
+    {
+      title: 'Birthday', url: '/new/cards/Birthday'
+    },
+    {
+      title: 'Wedding', url: '/new/cards/Wedding'
+    },
+    {
+      title: 'Anniversary', url: '/new/cards/Anniversary'
+    }
+  ],
 
   
   imageSize: {

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { LocationType } from 'src/app/new-models/new-enum';
 import { INewUser } from 'src/app/new-models/new-user';
 import { NewLocationService } from 'src/app/new-services/new-location.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-new-layout-header',
@@ -44,6 +45,7 @@ export class NewLayoutHeaderComponent implements OnInit {
   forClose: boolean = false;
   menuType: 'stickers' | 'postcards' | 'gifts' | undefined;
   hideDivTimeout: any;
+  eventpriorities = environment.eventpriorities;
 
   ngOnInit(): void {
     this.location = this.locationService.getlocation();
