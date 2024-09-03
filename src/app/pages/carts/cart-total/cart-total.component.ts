@@ -332,7 +332,7 @@ export class CartTotalComponent implements OnInit {
 
     this.storageService.saveItems(this.selected);
 
-    const stripe = require('stripe')(environment.stripe.secretKey);
+    const stripe = require('stripe')(environment.stripe.pass);
     let lineitems: any[] = [];
 
     for await (const item of this.selected) {

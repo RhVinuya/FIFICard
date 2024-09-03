@@ -77,7 +77,7 @@ export class CartConfirmComponent implements OnInit {
       let selected: any[] = this.storageService.getItems();
       let status = await this.paymentService.getInitial();
 
-      const stripe = require('stripe')(environment.stripe.secretKey);
+      const stripe = require('stripe')(environment.stripe.pass);
       const session = await stripe.checkout.sessions.retrieve(id);
       const paymentIntent = await stripe.paymentIntents.retrieve(session.payment_intent);
       const paymentMethod = await stripe.paymentMethods.retrieve(paymentIntent.payment_method);

@@ -116,7 +116,7 @@ export class NewPaymentService {
   stripeCheckout(payment: INewPayment, iUser: INewUser): Promise<string> {
     return new Promise(async (resolve) => {
       let locationService: NewLocationService = new NewLocationService();
-      const stripe = require('stripe')(environment.stripe.secretKey);
+      const stripe = require('stripe')(environment.stripe.pass);
       let lineitems: any[] = [];
 
       for await (const item of payment.items) {
@@ -198,7 +198,7 @@ export class NewPaymentService {
 
   stripeConfirm(id: string): Promise<INewStripeDetails> {
     return new Promise(async (resolve) => {
-      const stripe = require('stripe')(environment.stripe.secretKey);
+      const stripe = require('stripe')(environment.stripe.pass);
       const session = await stripe.checkout.sessions.retrieve(id);
       const paymentIntent = await stripe.paymentIntents.retrieve(session.payment_intent);
       const paymentMethod = await stripe.paymentMethods.retrieve(paymentIntent.payment_method);
