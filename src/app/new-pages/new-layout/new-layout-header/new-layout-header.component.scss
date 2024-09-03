@@ -107,18 +107,22 @@ font-size: 18px;
     70% { transform: scale(.9); }
     100% { transform: scale(1); }
   }
+  .personalize-count,
+  .cart-count,
   .wishlist-count
   {
-  background: #de22c1;
-  color: white;
-  height: 25px;
-  display: inline-block;
-  width: 25px;
-  line-height: 22px;
-  text-align: center;
-  border-radius: 50%;
-  font-size: 12px;
-  font-weight: bold;
-  margin-left: -14px;
-  border: 2px solid white;
+    background: #de22c1;
+    color: white;
+    height: 25px;
+    display: inline-block;
+    width: 25px;
+    line-height: 22px;
+    text-align: center;
+    border-radius: 50%;
+    font-size: 12px;
+    font-weight: bold;
+    margin-left: -10px;
+    margin-bottom: -10pxs;
+    border: 2px solid white;
+    position: absolute;
 }
