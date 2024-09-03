@@ -17,7 +17,7 @@ import { NewWishlistService } from 'src/app/new-services/new-wishlist.service';
   styleUrls: ['./new-layout.component.scss']
 })
 export class NewLayoutComponent implements OnInit {
-  @ViewChild(IonContent) content: IonContent;
+  @ViewChild(IonContent, { static: false }) content: IonContent;
 
   router: Router;
   viewportScroller: ViewportScroller;
@@ -52,7 +52,7 @@ export class NewLayoutComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
-        this.viewportScroller.scrollToPosition([0, 0]);
+        this.content.scrollToTop(300); // 300ms to scroll to top
       }
     });
 
