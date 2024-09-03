@@ -1,4 +1,3 @@
-
 .label-header {
     font-family: Proxima Nova;
     font-size: 2.5rem;
@@ -38,26 +37,19 @@
 
 }
 
-
 .image-panel>div {
     margin-bottom: 20px;
 }
 
 .image-panel img {
-    opacity: 0.8;
-    cursor: pointer;
-}
-
-.image-panel img:hover,
-.image-panel img:active {
     opacity: 1;
 }
 
-.relative{
+.relative {
     position: relative;
 }
 
-.relative .action{
+.relative .action {
     position: absolute;
     cursor: pointer;
 }
