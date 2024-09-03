@@ -1,8 +1,6 @@
 
-import { ViewportScroller } from '@angular/common';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { filter } from 'rxjs';
 import { INewCard } from 'src/app/new-models/new-card';
 import { NewCardService } from 'src/app/new-services/new-card.service';
 import { environment } from 'src/environments/environment';
@@ -45,6 +43,7 @@ export class NewCardsComponent implements OnInit {
   recipientoptions = ['FOR ALL', 'FOR HIM', 'FOR HER', 'FOR KIDS AND TEENS'];
   filteroptions = ['POETRY', 'MESSAGE', 'PERSONALIZED', 'TALKING CARD'];
 
+  activeevents: string[] = [];
   event: string;
   recipient: string
   filter: string;
@@ -78,7 +77,7 @@ export class NewCardsComponent implements OnInit {
           this.filters.push(id);
         }
       }
-
+      
       this.ref.detectChanges();
       this.loadDisplay();
     });
@@ -88,6 +87,12 @@ export class NewCardsComponent implements OnInit {
   async loadCards() {
     this.loading = true;
     this.cards = await this.cardService.getAll();
+
+    this.cardevents.forEach(event => {
+      let list = this.cards.filter(x => x.event.toLowerCase() === event.toLowerCase())
+      if (list.length > 0) this.activeevents.push(event)
+    })
+  
     this.loadDisplay();
     this.loading = false;
   }
@@ -99,6 +104,7 @@ export class NewCardsComponent implements OnInit {
 
   loadDisplay() {
     if (this.cards.length > 0) {
+
       this.display = [];
 
       //filter events

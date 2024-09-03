@@ -27,7 +27,7 @@ export class NewGiftsComponent implements OnInit {
 
   giftevents = environment.giftscategories;
   recipientoptions = environment.giftsrecipients;
-  
+  activeevents: string[] = [];
   loading: boolean = false;
   gifts: INewGift[] = [];
   display: INewGift[] = [];
@@ -79,6 +79,12 @@ export class NewGiftsComponent implements OnInit {
   async loadGifts() {
     this.loading = true;
     this.gifts = await this.giftService.getAll();
+
+    this.giftevents.forEach(event => {
+      let list = this.gifts.filter(x => x.events.filter(y => y.toLowerCase() === event.toLowerCase()) )
+      if (list.length > 0) this.activeevents.push(event)
+    })
+
     this.loadDisplay();
     this.loading = false;
   }

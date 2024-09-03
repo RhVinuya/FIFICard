@@ -26,6 +26,7 @@ export class NewPostcardsComponent implements OnInit {
   }
 
   postcardevents = environment.postcardevents;
+  activeevents: string[] = [];
   loading: boolean = false;
   postcards: INewPostcard[] = [];
   display: INewPostcard[] = [];
@@ -61,6 +62,12 @@ export class NewPostcardsComponent implements OnInit {
   async loadPostcards() {
     this.loading = true;
     this.postcards = await this.postcardService.getAll();
+
+    this.postcardevents.forEach(event => {
+      let list = this.postcards.filter(x => x.events.filter(y => y.toLowerCase() === event.toLowerCase()) )
+      if (list.length > 0) this.activeevents.push(event)
+    })
+  
     this.loadDisplay();
     this.loading = false;
   }

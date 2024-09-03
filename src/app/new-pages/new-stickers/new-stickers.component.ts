@@ -26,6 +26,7 @@ export class NewStickersComponent implements OnInit {
   }
 
   stickerevents = environment.stickerevents;
+  activeevents: string[] = [];
   loading: boolean = false;
   stickers: INewSticker[] = [];
   display: INewSticker[] = [];
@@ -61,6 +62,12 @@ export class NewStickersComponent implements OnInit {
   async loadStickers() {
     this.loading = true;
     this.stickers = await this.stickerService.getAll();
+
+    this.stickerevents.forEach(event => {
+      let list = this.stickers.filter(x => x.events.filter(y => y.toLowerCase() === event.toLowerCase()) )
+      if (list.length > 0) this.activeevents.push(event)
+    })
+    
     this.loadDisplay();
     this.loading = false;
   }
