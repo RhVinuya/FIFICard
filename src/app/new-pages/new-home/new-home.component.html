@@ -42,13 +42,18 @@
                 <div class="action" style="top: 87.7%; left: 70.9%; width: 16.5%; height: 6.9%;" [routerLink]="['/new/cards/Sympathy']"></div>
             </div>
             <div class="col-md-12 relative" *ngIf="location === 'ph'">
-                <img src="/assets/images/new/homepage/banner5.png" onContextMenu="return false;">
+                <img src="/assets/images/new/homepage/banner5-ph.png" onContextMenu="return false;">
                 <div class="action" style="top: 6.8%; left: 36.1%; width: 19.2%; height: 87.7%;" [routerLink]="['/new/stickers/all']"></div>
                 <div class="action" style="top: 6.8%; left: 56.5%; width: 19.2%; height: 87.7%;" [routerLink]="['/new/postcards/all']"></div>
                 <div class="action" style="top: 6.8%; left: 77.2%; width: 19.2%; height: 87.7%;" [routerLink]="['/new/gifts/all']"></div>
             </div>
-            <div class="col-md-12 relative" *ngIf="location !== 'ph'">
-                <img src="/assets/images/new/homepage/banner5.5.png" onContextMenu="return false;">
+            <div class="col-md-12 relative" *ngIf="location === 'us'">
+                <img src="/assets/images/new/homepage/banner5-us.png" onContextMenu="return false;">
+                <div class="action" style="top: 6.8%; left: 47.2%; width: 19.2%; height: 87.2%;" [routerLink]="['/new/stickers/all']"></div>
+                <div class="action" style="top: 6.8%; left: 70.9%; width: 19.2%; height: 87.2%;" [routerLink]="['/new/postcards/all']"></div>
+            </div>
+            <div class="col-md-12 relative" *ngIf="location === 'sg'">
+                <img src="/assets/images/new/homepage/banner5-sg.png" onContextMenu="return false;">
                 <div class="action" style="top: 6.8%; left: 47.2%; width: 19.2%; height: 87.2%;" [routerLink]="['/new/stickers/all']"></div>
                 <div class="action" style="top: 6.8%; left: 70.9%; width: 19.2%; height: 87.2%;" [routerLink]="['/new/postcards/all']"></div>
             </div>
