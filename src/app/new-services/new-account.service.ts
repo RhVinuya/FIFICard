@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { collection, doc, Firestore, getDocFromServer, getDocsFromServer, query, setDoc, updateDoc, where } from '@angular/fire/firestore';
+import { addDoc, collection, doc, Firestore, getDocFromServer, getDocsFromServer, query, serverTimestamp, setDoc, updateDoc, where } from '@angular/fire/firestore';
 import { Auth, createUserWithEmailAndPassword, GoogleAuthProvider, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup } from '@angular/fire/auth';
 import { INewGoogleUser, INewUser } from '../new-models/new-user';
 
@@ -187,6 +187,20 @@ export class NewAccountService {
         });
       })
     })
+  }
+
+  addSignUp(email: string, firstname: string, lastname: string): Promise<string> {
+    return new Promise((resolve) => {
+      const data = collection(this.store, 'signup-greetings');
+      addDoc(data, {
+        email: email,
+        firstname: firstname,
+        lastname: lastname,
+        created: serverTimestamp()
+      }).then(docRef => {
+        resolve(docRef.id);
+      });
+    });
   }
 
 }

@@ -1,6 +1,6 @@
 <ion-footer>
     <div class="mxw-1920px">
-        <br/>
+        <br />
         <ion-row class="footer-links">
             <ion-col>
                 <h3 class="label-header footer-h3"> CUSTOMER SERVICE</h3>
@@ -31,11 +31,13 @@
             <div class="col-md-4 offset-md-4">
                 <div class="text-center">
                     <h3>Connect with us</h3>
-                    <div class="input-group mb-4">
-                        <input type="text" class="form-control" placeholder="Enter your email" aria-label="Enter your email"
-                            aria-describedby="button-addon2">
-                        <button class="btn btn-outline-secondary btn-signup" type="button" id="button-addon2">Sign Up</button>
-                    </div>
+                    <form [formGroup]="form" (submit)="onSubmit()">
+                        <div class="input-group mb-4">
+                            <input type="text" class="form-control" placeholder="Enter your email" aria-label="Enter your email"
+                                formControlName="email" [ngClass]="{ 'is-invalid': submitted && form.controls.email.errors}">
+                            <button class="btn btn-outline-secondary btn-signup" type="submit" id="button-addon2">Sign Up</button>
+                        </div>
+                    </form>
                     <div class="im-social mb-3">
                         <a href="https://www.instagram.com/fibeigreetings_/" target="_blank" title="Instagram">
                             <i class="fab fa-2x fa-instagram"></i>
@@ -56,7 +58,8 @@
                             <i class="fa fa-2x fa-envelope"></i>
                         </a>
                     </div>
-                    <a href="/" class="mb-4"><img src="/assets/images/logo_fibeigreetings.png" class="img-fluid" style="max-height:50px;" onContextMenu="return false;"></a>
+                    <a href="/" class="mb-4"><img src="/assets/images/logo_fibeigreetings.png" class="img-fluid" style="max-height:50px;"
+                            onContextMenu="return false;"></a>
                     <div class="mb-5">© 2024 FiBeiGreetings.com</div>
                 </div>
 

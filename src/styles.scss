@@ -158,6 +158,11 @@ body {
    margin: auto;
 }
 
+.mxw-800px {
+   max-width: 800px;
+   margin: auto;
+}
+
 .i-poetry {
    border: 2px solid purple;
    background: white !important;
@@ -221,6 +226,10 @@ body {
 
 .large-offcanvas {
    width: 600px !important;
+}
+
+.sign-up-offcanvas {
+   height: 350px !important;
 }
 
 .cursor {

@@ -1,0 +1,39 @@
+<div class="text-center p-2">
+    <div class="text-end">
+        <button type="button" class="btn-close" aria-label="Close" (click)="close()"></button>
+    </div>
+    <h2 class="label-header mb-1">Sign up</h2>
+    <div class="mxw-800px">
+        <form [formGroup]="form" (submit)="onSubmit()">
+            <div class="row">
+                <div class="col-12 mb-3">
+                    <div class="form-floating">
+                        <input type="email" class="form-control" id="email" placeholder="Email address" formControlName="email"
+                            [ngClass]="{ 'is-invalid': submitted && form.controls.email.errors}">
+                        <label for="email">Email Address</label>
+                    </div>
+                </div>
+                <div class="col-6 pe-1 mb-3">
+                    <div class="form-floating">
+                        <input class="form-control" id="firstname" placeholder="Firstname" formControlName="firstname"
+                            [ngClass]="{ 'is-invalid': submitted && form.controls.firstname.errors}">
+                        <label for="firstname">Firstname</label>
+                    </div>
+                </div>
+                <div class="col-6 ps-1 mb-3">
+                    <div class="form-floating">
+                        <input class="form-control" id="lastname" placeholder="Lastname" formControlName="lastname"
+                            [ngClass]="{ 'is-invalid': submitted && form.controls.lastname.errors}">
+                        <label for="lastname">Lastname</label>
+                    </div>
+                </div>
+                <div class="col-12 text-center mt-3">
+                    <button type="submit" class="submit" [disabled]="processing">
+                        <span class="spinner-border spinner-border-sm me-1" aria-hidden="true" *ngIf="processing"></span>
+                        {{processing === true ? 'SUBMITING ....' : 'SUBMIT'}}
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
