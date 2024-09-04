@@ -208,6 +208,7 @@ import { NewTextareaComponent } from './new-pages/new-personalize/new-textarea/n
 import { NewPersonalizesComponent } from './new-pages/new-personalizes/new-personalizes.component';
 import { NewPersonalizeItemComponent } from './new-pages/new-personalizes/new-personalize-item/new-personalize-item.component';
 import { NewSignupComponent } from './new-pages/new-layout/new-signup/new-signup.component';
+import { NewProductsComponent } from './new-components/new-products/new-products.component';
 
 @NgModule({
   declarations: [
@@ -392,7 +393,8 @@ import { NewSignupComponent } from './new-pages/new-layout/new-signup/new-signup
     NewTextareaComponent,
     NewPersonalizesComponent,
     NewPersonalizeItemComponent,
-    NewSignupComponent
+    NewSignupComponent,
+    NewProductsComponent
   ],
   imports: [
     BrowserModule,

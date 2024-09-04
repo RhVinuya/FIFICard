@@ -1,0 +1,29 @@
+.products{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 20px
+}
+
+.products div{
+    width: 250px;
+}
+
+button{
+    border: 1px #ab37c9 solid;
+    color: #fff;
+    font-size: 1rem;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-weight: bold;
+    background-color: #ab37c9;
+    display: block;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+button:hover{
+    color: #ab37c9;
+    background-color: #fff;
+}

@@ -53,6 +53,7 @@ export class NewCartComponent implements OnInit, OnDestroy {
     }
   ];
 
+  location: LocationType = 'ph';
   subs: Subscription;
   user: INewUser | undefined = undefined;
   loading: boolean = false;
@@ -63,6 +64,8 @@ export class NewCartComponent implements OnInit, OnDestroy {
   saving: boolean = false;
 
   async ngOnInit(): Promise<void> {
+    this.location = this.locationService.getlocation();
+
     this.subs = timer(100, 500).subscribe(time => {
       this.user = this.storageService.getUser();
     });

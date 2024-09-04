@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription, timer } from 'rxjs';
 import { INewCard } from 'src/app/new-models/new-card';
-import { IModelType } from 'src/app/new-models/new-enum';
+import { IModelType, LocationType } from 'src/app/new-models/new-enum';
 import { INewGift } from 'src/app/new-models/new-gift';
 import { INewPostcard } from 'src/app/new-models/new-postcard';
 import { INewSticker } from 'src/app/new-models/new-sticker';
@@ -38,7 +38,7 @@ export class NewWishlistComponent implements OnInit, OnDestroy {
     _cardService: NewCardService,
     _stickerService: NewStickerService,
     _postcardService: NewPostcardService,
-    _giftService: NewGiftService
+    _giftService: NewGiftService,
   ) {
     this.wishlistService = _wishlistService;
     this.utilService = _utilService;
@@ -61,12 +61,13 @@ export class NewWishlistComponent implements OnInit, OnDestroy {
     }
   ];
 
+  location: LocationType = 'ph';
   subs: Subscription;
   ids: string[] = []
   wishlist: IWishlist[] = [];
   loading: boolean = false;
 
-  async ngOnInit(): Promise<void> {
+  async ngOnInit(): Promise<void> {    
     this.subs = timer(100, 500).subscribe(time => {
       let ids = this.wishlistService.get();
       if (ids.length !== this.ids.length) {

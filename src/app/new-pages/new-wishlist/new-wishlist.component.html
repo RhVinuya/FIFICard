@@ -7,33 +7,8 @@
 <div class="mxw-1920px no-item" *ngIf="wishlist && wishlist.length === 0 && loading === false">
     <h3 class="text-purple my-0">No item on the wishlist.</h3>
     <h6 class="text-gray my-0">Explore our Products</h6>
-    <div class="col-md-8 offset-md-2">
-        <div class="row mt-4">
-            <div class="col-md-3">
-             <img src="/assets/images/new/s-cards.png" class="img-fluid" [routerLink]="['/new/cards/all']" onContextMenu="return false;"><br/><br/>
-                <button type="button" class="product" [routerLink]="['/new/cards/all']">
-                    CARDS
-                </button>
-            </div>
-            <div class="col-md-3">
-                <img src="/assets/images/new/s-stickers.png" class="img-fluid" [routerLink]="['/new/stickers/all']" onContextMenu="return false;"><br/><br/>
-                <button type="button" class="product" [routerLink]="['/new/stickers/all']">
-                    STICKERS
-                </button>
-            </div>
-            <div class="col-md-3">
-                <img src="/assets/images/new/s-postcards.png" class="img-fluid" [routerLink]="['/new/postcards/all']" onContextMenu="return false;"><br/><br/>
-                <button type="button" class="product" [routerLink]="['/new/postcards/all']">
-                    POSTCARDS
-                </button>
-            </div>
-            <div class="col-md-3">
-                <img src="/assets/images/new/s-gifts.png" class="img-fluid" [routerLink]="['/new/gifts/all']" onContextMenu="return false;"><br/><br/>
-                <button type="button" class="product" [routerLink]="['//new/gifts/all']">
-                    GIFTS
-                </button>
-            </div>
-        </div>
+    <div class="mt-4">
+        <app-new-products></app-new-products>
     </div>
 </div>
 

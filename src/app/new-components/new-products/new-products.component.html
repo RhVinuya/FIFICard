@@ -1,0 +1,27 @@
+<div class="products">
+    <div>
+        <img src="/assets/images/new/s-cards.png" class="img-fluid" [routerLink]="['/new/cards/all']" onContextMenu="return false;"><br /><br />
+        <button type="button" [routerLink]="['/new/cards/all']">
+            CARDS
+        </button>
+    </div>
+    <div>
+        <img src="/assets/images/new/s-stickers.png" class="img-fluid" [routerLink]="['/new/stickers/all']" onContextMenu="return false;"><br /><br />
+        <button type="button" [routerLink]="['/new/stickers/all']">
+            STICKERS
+        </button>
+    </div>
+    <div>
+        <img src="/assets/images/new/s-postcards.png" class="img-fluid" [routerLink]="['/new/postcards/all']"
+            onContextMenu="return false;"><br /><br />
+        <button type="button" [routerLink]="['/new/postcards/all']">
+            POSTCARDS
+        </button>
+    </div>
+    <div *ngIf="location === 'ph'">
+        <img src="/assets/images/new/s-gifts.png" class="img-fluid" [routerLink]="['/new/gifts/all']" onContextMenu="return false;"><br /><br />
+        <button type="button" [routerLink]="['/new/gifts/all']">
+            GIFTS
+        </button>
+    </div>
+</div>
