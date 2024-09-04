@@ -207,6 +207,7 @@ import { NewOrderItemComponent } from './new-components/new-order/new-order-item
 import { NewTextareaComponent } from './new-pages/new-personalize/new-textarea/new-textarea.component';
 import { NewPersonalizesComponent } from './new-pages/new-personalizes/new-personalizes.component';
 import { NewPersonalizeItemComponent } from './new-pages/new-personalizes/new-personalize-item/new-personalize-item.component';
+import { NewSignupComponent } from './new-pages/new-layout/new-signup/new-signup.component';
 
 @NgModule({
   declarations: [
@@ -390,7 +391,8 @@ import { NewPersonalizeItemComponent } from './new-pages/new-personalizes/new-pe
     NewOrderItemComponent,
     NewTextareaComponent,
     NewPersonalizesComponent,
-    NewPersonalizeItemComponent
+    NewPersonalizeItemComponent,
+    NewSignupComponent
   ],
   imports: [
     BrowserModule,

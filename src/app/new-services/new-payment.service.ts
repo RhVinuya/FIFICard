@@ -173,7 +173,6 @@ export class NewPaymentService {
           price_data: {
             product_data: {
               name: name,
-              description: description,
               images: [image]
             },
             currency: locationService.getCurrency(),
@@ -182,6 +181,8 @@ export class NewPaymentService {
           quantity: 1
         });
       }
+
+      console.log(lineitems)
 
       const paymentcheckout = await stripe.checkout.sessions.create({
         line_items: lineitems,
