@@ -7,12 +7,14 @@
                 </td>
                 <td class="details px-3">
                     <span class="badge text-bg-secondary" *ngIf="iItem.type === 'card'">CARD</span>
-                    <span class="badge text-bg-secondary" *ngIf="iItem.type === 'card' && iItem.personalize !== undefined">PERSONALIZE</span>
+                    <span class="badge text-bg-secondary"
+                        *ngIf="iItem.type === 'card' && iItem.personalize !== undefined">PERSONALIZE</span>
                     <span class="badge text-bg-secondary" *ngIf="iItem.type === 'sticker'">STICKER</span>
                     <span class="badge text-bg-secondary" *ngIf="iItem.type === 'postcard'">POSTCARD</span>
                     <span class="badge text-bg-secondary" *ngIf="iItem.type === 'gift'">GIFT</span>
 
-                    <p class="text-purple my-0 cursor" [routerLink]="['/new/details/' + iItem.type + '/' + iItem.itemId]">{{model.name}}</p>
+                    <p class="text-purple my-0 cursor"
+                        [routerLink]="['/new/details/' + iItem.type + '/' + iItem.itemId]">{{model.name}}</p>
                     <p class="text-gray mb-0">{{model.description}}</p>
                     <p class="text-purple mb-0" *ngIf="bundleDetails !== ''">{{bundleDetails}}</p>
                 </td>
@@ -30,7 +32,7 @@
                         <span>{{item.totalDisplay()}}</span>
                     </div>
                     <div class="totals">
-                        <button class="btn btn-primary" (click)="openNewReview()">Rate</button>
+                        <button class="btn btn-prof-no " (click)="openNewReview()"> <i class="fa fa-star"></i> Rate </button>
                     </div>
                 </td>
             </tr>
@@ -42,62 +44,62 @@
 <ng-template #newRating>
     <div class="modal-main">
         <div class="header">
-            <table>
-                <tr>
-                    <td class="image">
-                        <img [src]="primary" [alt]="model!.name" onContextMenu="return false;">
-                    </td>
-                    <td class="details px-3">
-                        <span class="badge text-bg-secondary" *ngIf="iItem.type === 'card'">CARD</span>
-                        <span class="badge text-bg-secondary" *ngIf="iItem.type === 'card' && iItem.personalize !== undefined">PERSONALIZE</span>
-                        <span class="badge text-bg-secondary" *ngIf="iItem.type === 'sticker'">STICKER</span>
-                        <span class="badge text-bg-secondary" *ngIf="iItem.type === 'postcard'">POSTCARD</span>
-                        <span class="badge text-bg-secondary" *ngIf="iItem.type === 'gift'">GIFT</span>
-    
-                        <p class="text-purple my-0 cursor" [routerLink]="['/new/details/' + iItem.type + '/' + iItem.itemId]">{{model!.name}}</p>
-                        <p class="text-gray mb-0">{{model!.description}}</p>
-                        <p class="text-purple mb-0" *ngIf="bundleDetails !== ''">{{bundleDetails}}</p>
-                    </td>
-                </tr>
-            </table>
-        </div>
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2 class="label-header text-purple">Rate</h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3 image">
+                            <img [src]="primary" [alt]="model!.name" onContextMenu="return false;">
+                        </div>
+                        <div class="col-md-9 details">
+                            <span class="badge text-bg-secondary" *ngIf="iItem.type === 'card'">CARD</span>
+                            <span class="badge text-bg-secondary"
+                                *ngIf="iItem.type === 'card' && iItem.personalize !== undefined">PERSONALIZE</span>
+                            <span class="badge text-bg-secondary" *ngIf="iItem.type === 'sticker'">STICKER</span>
+                            <span class="badge text-bg-secondary" *ngIf="iItem.type === 'postcard'">POSTCARD</span>
+                            <span class="badge text-bg-secondary" *ngIf="iItem.type === 'gift'">GIFT</span>
 
-        <form>
-            <form [formGroup]="reviewForm">
-                <div class="px-5 mb-5">
-                    <div class="row mb-3">
-                        <div class="col-md-12 px-1">
+                            <p class="text-purple my-0 cursor"
+                                [routerLink]="['/new/details/' + iItem.type + '/' + iItem.itemId]">{{model!.name}}</p>
+                            <p class="text-gray mb-0">{{model!.description}}</p>
+                            <p class="text-purple mb-0" *ngIf="bundleDetails !== ''">{{bundleDetails}}</p>
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="col-md-12">
+                        <form [formGroup]="reviewForm">
+                            <b> Add Title:</b>
                             <div class="form-floating">
-                                <input type="text" class="form-control" id="title" placeholder="title" formControlName="title"
+                                <input type="text" class="form-control" id="title" placeholder="title"
+                                    formControlName="title"
                                     [ngClass]="{ 'is-invalid': submitted && reviewForm.controls.title.errors}">
                                 <label for="title">Title</label>
                             </div>
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <div class="col-md-4 px-1">
+                            <br/>
+                            <b> Select a rating:</b>
                             <div [ngClass]="'rating-lg'">
-                                <ngb-rating [max]="5" [rate]="rate"id="rate" placeholder="rate" formControlName="rate"
-                                [ngClass]="{ 'is-invalid': submitted && reviewForm.controls.rate.errors}"></ngb-rating>
+                                <ngb-rating [max]="5" [rate]="rate" id="rate" placeholder="rate" formControlName="rate"
+                                    [ngClass]="{ 'is-invalid': submitted && reviewForm.controls.rate.errors}"></ngb-rating>
                             </div>
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <div class="col-md-12 px-1">
+                            <b> Add Review:</b>
                             <div class="form-floating">
-                                <textarea class="form-control" placeholder="Review" rows="5" formControlName="review" [ngClass]="{ 'is-invalid': submitted && reviewForm.controls.review.errors}"></textarea>
+                                <textarea class="form-control" placeholder="Review" rows="5" formControlName="review"
+                                    [ngClass]="{ 'is-invalid': submitted && reviewForm.controls.review.errors}"></textarea>
                             </div>
-                        </div>
+                        </form>
+                        <br />
+                        <button type="button" class="btn btn-prof" aria-label="Close"
+                            (click)="onClose()"><i class="fa fa-ban"></i> Cancel</button>
+                        <button type="button" class="btn btn-prof-no" aria-label="Submit" (click)="submit()"
+                            [disabled]="!(item && model)"> <i class="fa fa-check"></i> Submit</button>
                     </div>
                 </div>
-            </form>
-        </form>
-
-        <div class="display">
-            <button type="button" class="btn btn-secondary" aria-label="Close" (click)="onClose()">Cancel</button>
-            <button type="button" class="btn btn-primary" aria-label="Submit" (click)="submit()" [disabled]="!(item && model)">Submit</button>
+            </div>
         </div>
-        
 
     </div>
 </ng-template>

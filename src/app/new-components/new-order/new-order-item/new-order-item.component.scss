@@ -43,10 +43,49 @@ table .amount {
 
 .rating-sm {
     color: #ffc900;
-    font-size: 20px;
+    font-size: 24px;
 }
 
 .rating-lg {
     color: #ffc900;
-    font-size: 30px;
+    font-size: 36px;
+}
+
+.btn-prof {
+    border: 1px #631feb solid;
+    background: white;
+    color: #631feb;
+    cursor: pointer;
+    padding-block: 3px;
+    padding-inline: 10px;
+    border-radius: 15px;
+    font-weight: bold;
+    display: inline-block;
+    font-size: 1rem;
+    padding: 10px;
+    margin-right: 10px;
+}
+
+.btn-prof:hover {
+    font-family: "Proxima Nova";
+    border: 1px #631feb solid;
+    color: #fff;
+    background: #631feb;
+    
+}
+
+.btn-prof-no {
+    border: 1px #631feb solid;
+    color: #fff;
+    background: #631feb;
+    cursor: pointer;
+    padding-block: 3px;
+    padding-inline: 10px;
+    border-radius: 15px;
+    font-weight: bold;
+    display: inline-block;
+    font-size: 1rem;
+    padding: 10px;
+    margin-right: 10px;
+
 }
