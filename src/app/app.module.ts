@@ -209,6 +209,8 @@ import { NewPersonalizesComponent } from './new-pages/new-personalizes/new-perso
 import { NewPersonalizeItemComponent } from './new-pages/new-personalizes/new-personalize-item/new-personalize-item.component';
 import { NewSignupComponent } from './new-pages/new-layout/new-signup/new-signup.component';
 import { NewProductsComponent } from './new-components/new-products/new-products.component';
+import { NewReviewsComponent } from './new-components/new-reviews/new-reviews.component';
+
 
 @NgModule({
   declarations: [
@@ -394,7 +396,8 @@ import { NewProductsComponent } from './new-components/new-products/new-products
     NewPersonalizesComponent,
     NewPersonalizeItemComponent,
     NewSignupComponent,
-    NewProductsComponent
+    NewProductsComponent,
+    NewReviewsComponent
   ],
   imports: [
     BrowserModule,
