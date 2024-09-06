@@ -7,7 +7,7 @@ export interface INewGift {
     description: string;
     details: string;
     events: string[];
-    recipient: string;
+    recipients: string[];
     price: number;
     active: boolean;
     featured: boolean;
@@ -23,7 +23,7 @@ export class NewGift {
     description: string;
     details: string;
     events: string[];
-    recipient: string;
+    recipients: string[];
     price: number;
     active: boolean;
     featured: boolean;
@@ -37,7 +37,7 @@ export class NewGift {
         this.description = value.description;
         this.details = value.details;
         this.events = value.events;
-        this.recipient = value.recipient
+        this.recipients = value.recipients
         this.price = value.price;
         this.active = value.active;
         this.featured = value.featured;

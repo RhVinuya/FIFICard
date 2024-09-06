@@ -97,8 +97,7 @@ export class NewGiftsComponent implements OnInit {
   loadDisplay() {
     if (this.gifts.length > 0) {
       this.display = [];
-
-
+      //filter events
       if (this.events.length === 0) {
         this.gifts.forEach(gift => {
           let found: boolean = false;
@@ -117,6 +116,20 @@ export class NewGiftsComponent implements OnInit {
             if (gift.events.findIndex(x => x.toLowerCase() === event.toLowerCase()) >= 0) {
               found = true
             }
+          })
+          if (found) this.display = [...this.display, gift];
+        })
+      }
+
+      //filter recipients
+      if (this.recipients.length > 0 && this.display.length > 0) {
+        const temp = this.display.map(object => ({ ...object }))
+        this.display = [];
+        temp.forEach(gift => {
+          let found: boolean = false;
+          this.recipients.forEach(recipient => {
+            if (recipient === 'FOR ALL') found = true
+            else if (gift.recipients.findIndex(x => x.toLowerCase() === recipient.toLowerCase()) >= 0) found = true
           })
           if (found) this.display = [...this.display, gift];
         })
