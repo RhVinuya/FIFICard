@@ -1,0 +1,11 @@
+
+<app-loading-mobile [loading]="loading"></app-loading-mobile>
+
+<ion-grid *ngIf="!loading">
+
+  <ion-row class="events-container">
+    <ion-col [size]="getColumnSize()" *ngFor="let event of events">
+      <app-gift-category-mobile [event]="event"></app-gift-category-mobile>
+    </ion-col>
+  </ion-row>
+</ion-grid>

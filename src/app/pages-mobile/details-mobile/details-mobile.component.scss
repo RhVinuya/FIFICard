@@ -1,0 +1,148 @@
+* {
+  font-family: Proxima Nova;
+}
+
+ion-grid {
+  padding: 25px;
+}
+
+.icon-heart,
+.icon-cart {
+  font-size: 30px;
+  color: gray;
+}
+
+.btn-close {
+  font-size: 10px;
+  color: black;
+}
+
+.img-container {
+  border: 1px solid gray;
+  border-radius: 5px;
+  width: 100%;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+}
+
+ion-thumbnail {
+  --size: 100%;
+  height: 100%;
+}
+
+.card-header-container > h2 {
+  line-height: 0.5;
+  font-size: 20px;
+  font-weight: bold;
+  color: #ab62c2;
+}
+.card-header {
+  display: flex;
+}
+
+.card-header > p {
+  line-height: 1;
+  margin-top: 0;
+  font-weight: bold;
+}
+
+.card-header > .prices {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.card-header > .prices > p {
+  font-size: 1rem;
+}
+
+.card-header > p:nth-child(2) {
+  font-weight: 400;
+}
+
+.card-message h5 {
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 0;
+}
+
+.card-message p {
+  font-size: 11px;
+  margin-bottom: 10px;
+  white-space: pre-line;
+  line-height: 1;
+}
+
+.btn-container > button {
+  background: #8cc0c2;
+  border-radius: 10px;
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+  padding: 8px 24px;
+  margin-right: 15px;
+  margin-top: 20px;
+}
+
+.terms > button {
+  font-size: 12px;
+  padding: 5px 10px;
+  background: gray;
+  border-radius: 3px;
+  color: white;
+  display: inline-block;
+  margin-top: 10px;
+}
+
+.terms_conditions {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+.terms_conditions ion-label {
+  font-size: 12px;
+  color: gray;
+}
+
+ion-input,
+ion-textarea {
+  font-size: 12px;
+  background: white;
+  border-radius: 5px;
+  border: 1px solid rgba(128, 128, 128, 0.171);
+  width: 100%;
+  --padding-start: 8px;
+}
+
+.arrow-container {
+  position: relative;
+}
+
+.return-top {
+  position: absolute;
+  right: 10px;
+  bottom: 0px;
+  z-index: 10;
+  font-size: 20px;
+  color: gray;
+}
+
+.recipients {
+  margin-top: 10px;
+  margin-right: 5px;
+}
+
+.slider {
+  display: flex;
+}
+
+.prices {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}

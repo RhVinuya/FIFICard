@@ -1,0 +1,44 @@
+<ion-content fullscreen="true">
+  <ion-grid class="ion-justify-content-center ion-align-items-center">
+    <ion-row
+      class="slide-content-container ion-justify-content-center ion-align-items-center"
+    >
+      <ion-col size="12">
+        <ion-img
+          class="logo"
+          src="/assets/images/logo_fibeigreetings.png"
+          alt="Fibeigreetings"
+        ></ion-img>
+      </ion-col>
+
+      <ion-col size="11">
+        <div class="list-container">
+          <div class="list-item" (click)="goto('profile/details')">
+            <ion-label>Profile</ion-label>
+            <ion-icon name="chevron-forward-outline"></ion-icon>
+          </div>
+          <div class="list-item" (click)="goto('transactions')">
+            <ion-label>Transactions History</ion-label>
+            <ion-icon name="chevron-forward-outline"></ion-icon>
+          </div>
+          <div class="list-item" (click)="goto('wishlist')">
+            <ion-label>Wishlist</ion-label>
+            <ion-icon name="chevron-forward-outline"></ion-icon>
+          </div>
+          <div class="list-item" (click)="goto('referrals')">
+            <ion-label>Refer a Friend</ion-label>
+            <ion-icon name="chevron-forward-outline"></ion-icon>
+          </div>
+          <div class="list-item-disable">
+            <ion-label>Communication Preferences</ion-label>
+            <ion-icon name="chevron-forward-outline"></ion-icon>
+          </div>
+          <div class="list-item" (click)="onSignout()">
+            <ion-label>Sign Out</ion-label>
+            <ion-icon name="chevron-forward-outline"></ion-icon>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

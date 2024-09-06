@@ -1,0 +1,28 @@
+<ion-content fullscreen="true">
+  <ion-grid class="ion-justify-content-center ion-align-items-center">
+    <ion-row
+      class="slide-content-container ion-justify-content-center ion-align-items-center"
+    >
+      <ion-col size="8">
+        <ion-img
+          class="logo"
+          src="/assets/images/logo_fibeigreetings.png"
+          alt="Fibeigreetings"
+        ></ion-img>
+      </ion-col>
+
+      <ion-col size="10">
+        <h2>Transaction</h2>
+      </ion-col>
+
+      <ion-col size="10" *ngFor="let transaction of transactions">
+        <div class="transactions-container">
+          <p class="transaction-number">#{{transaction.code}}</p>
+          <p class="transaction-amount">Total: {{ getPayment(transaction).totalDisplay() }}</p>
+          <p class="payment-type">Payment: {{ getPayment(transaction).getGateway() | titlecase }}</p>
+          <p class="payment-date">Created: {{ getPayment(transaction).createdDisplay() | date}}</p>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

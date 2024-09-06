@@ -2,6 +2,7 @@
   "projects": {
     "development": "fibeigreetings-development",
     "staging": "fibeigreetings-stage",
-    "production": "fifi-greetings"
+    "production": "fifi-greetings",
+    "default": "fifi-greetings"
   }
 }

@@ -1,0 +1,58 @@
+* {
+    font-family: "Proxima Nova";
+  }
+  
+  .fa,
+  .far,
+  .fas {
+    font-family: "Font Awesome 5 Free" !important;
+  }
+  
+  .fa-trash {
+    cursor: pointer;
+  }
+  
+
+  ion-img {
+    height: 5rem;
+  }
+  
+  .item-col {
+    flex: 1 1 auto;
+    padding: 5px;
+  }
+  
+  .item-checkbox {
+    display: flex;
+    width: 20%;
+  }
+  
+  .item-image {
+    width: 20%;
+  }
+  
+  .item-details {
+    width: 60%;
+    overflow: hidden;
+    white-space: nowrap
+  }
+  
+  ion-item {
+    --padding-start: 0px;
+    background-color: rgb(218, 218, 218);
+  }
+  
+  ion-item-options {
+    padding:5px;
+    background-color: rgb(218, 218, 218);
+  }
+  
+  ion-item-sliding {
+    margin-bottom: 5px;
+    padding: 5px;
+    width: 100%;
+    background-color: rgb(218, 218, 218);
+  }
+  
+  
+  

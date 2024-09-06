@@ -1,0 +1,23 @@
+<div class="card p-2 mb-2 rounded-0" *ngIf="cart">
+    <div class="card-body p-0">
+        <div class="t-image">
+            <img [src]="image" [title]="name" onContextMenu="return false;">
+        </div>
+        <div class="t-details ps-2">
+            <div class="space-between mb-1">
+                <label><b class="text-purple ellipsis-1">{{name}}</b></label>
+                <i aria-hidden="true" class="fa fa-trash trash" (click)="onDelete()"></i>
+            </div>
+            <p class="text-gray mb-2">{{description}}</p>
+            <label class="text-purple" *ngIf="cart.type !== 'postcard'">{{price}}</label>
+            <label class="text-purple" *ngIf="cart.type === 'postcard'">{{bundle}}</label>
+            <div>
+                <span class="badge text-bg-secondary" *ngIf="cart.type === 'card'">CARD</span>
+                <span class="badge text-bg-secondary" *ngIf="cart.type === 'card' && cart.personalize !== undefined">PERSONALIZE</span>
+                <span class="badge text-bg-secondary" *ngIf="cart.type === 'sticker'">STICKER</span>
+                <span class="badge text-bg-secondary" *ngIf="cart.type === 'postcard'">POSTCARD</span>
+                <span class="badge text-bg-secondary" *ngIf="cart.type === 'gift'">GIFT</span>
+            </div>
+        </div>
+    </div>
+</div>

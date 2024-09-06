@@ -27,6 +27,29 @@ export class NewFileService {
   }
 
   async getImageURL(path: string): Promise<string> {
+    console.log("getImageURL");
+    
+
+    return new Promise( async resolve => {
+
+      let id = path.replaceAll('/', '-');
+      let url = this.storageService.getImageURL(id);
+      if (url == '') {
+        const fileRef = ref(this.storage, path);
+        url = await getDownloadURL(fileRef);
+        this.storageService.saveImageURL(id, url);
+      }
+
+      
+      //console.log(url);
+      //let base64: string | null = "";
+      //await this.cacheImageToLocalStorage(id, url);
+      // base64 = localStorage.getItem(id);
+      // console.log(base64);
+      resolve(url);
+    });
+
+
     return new Promise(async resolve => {
       let id = path.replaceAll('/', '-');
       let url = this.storageService.getImageURL(id);
@@ -44,5 +67,27 @@ export class NewFileService {
     let id = this.getRandomString();
     const reference = ref(this.storage, 'payment-proof/' + id);
     return uploadBytes(reference, file);
+  }
+
+  async cacheImageToLocalStorage(id:string, url: string): Promise<void> {
+    console.log("cacheImageToLocalStorage");
+    try {
+        const response = await fetch(url);
+        const blob = await response.blob();
+        console.log(blob);
+        //const reader = new FileReader();
+        
+        // console.log(response);
+        // reader.onloadend = () => {
+        //     const base64data = reader.result as string;
+        //     localStorage.setItem(id, base64data);
+        //     console.log(`Image cached in localStorage: ${id}`);
+        // };
+        
+        // reader.readAsDataURL(blob);
+    } catch (error) {
+        console.log(error);
+        console.error(`Error caching image: ${id}`);
+    }
   }
 }

@@ -212,7 +212,50 @@ import { NewProductsComponent } from './new-components/new-products/new-products
 import { NewReviewsComponent } from './new-components/new-reviews/new-reviews.component';
 import { NewDetailsBundlesComponent } from './new-pages/new-details/new-details-bundles/new-details-bundles.component';
 import { NewDataDeletionComponent } from './new-pages/new-links/new-data-deletion/new-data-deletion.component';
+import { LayoutMobileComponent } from "./pages-mobile/layout-mobile/layout-mobile.component";
+import { LoginMobileComponent } from "./pages-mobile/login-mobile/login-mobile.component";
+import { OnboardingMobileComponent } from "./pages-mobile/onboarding-mobile/onboarding-mobile.component";
+import { HomeMobileComponent } from "./pages-mobile/home-mobile/home-mobile.component";
+import { HeaderMobileComponent } from "./components-mobile/header-mobile/header-mobile.component";
+import { CardCategoriesMobileComponent } from "./components-mobile/categories/card-categories-mobile/card-categories-mobile.component";
+import { CardCategoryMobileComponent } from "./components-mobile/categories/card-categories-mobile/card-category-mobile/card-category-mobile.component";
+import { RegisterMobileComponent } from "./pages-mobile/register-mobile/register-mobile.component";
+import { DetailsMobileComponent } from "./pages-mobile/details-mobile/details-mobile.component";
+import { StickersMobileComponent } from "./pages-mobile/stickers-mobile/stickers-mobile.component";
+import { PostcardsMobileComponent } from "./pages-mobile/postcards-mobile/postcards-mobile.component";
+import { GiftsMobileComponent } from "./pages-mobile/gifts-mobile/gifts-mobile.component";
+import { ProfileMobileComponent } from "./pages-mobile/profile-mobile/profile-mobile.component";
+import { StickerCategoriesMobileComponent } from "./components-mobile/categories/sticker-categories-mobile/sticker-categories-mobile.component";
+import { PostcardCategoriesMobileComponent } from "./components-mobile/categories/postcard-categories-mobile/postcard-categories-mobile.component";
+import { GiftCategoriesMobileComponent } from "./components-mobile/categories/gift-categories-mobile/gift-categories-mobile.component";
+import { StickerCategoryMobileComponent } from "./components-mobile/categories/sticker-categories-mobile/sticker-category-mobile/sticker-category-mobile.component";
+import { ProductListMobileComponent } from "./components-mobile/product-list-mobile/product-list-mobile.component";
+import { ProductTileMobileComponent } from "./components-mobile/product-list-mobile/product-tile-mobile/product-tile-mobile.component";
+import { ProductMobileComponent } from "./pages-mobile/product-mobile/product-mobile.component";
+import { PostcardCategoryMobileComponent } from "./components-mobile/categories/postcard-categories-mobile/postcard-category-mobile/postcard-category-mobile.component";
+import { GiftCategoryMobileComponent } from "./components-mobile/categories/gift-categories-mobile/gift-category-mobile/gift-category-mobile.component";
+import { OrderSummaryMobileComponent } from "./pages-mobile/order-summary-mobile/order-summary-mobile.component";
+import { ProfileDetailsMobileComponent } from "./pages-mobile/profile-mobile/profile-details-mobile/profile-details-mobile.component";
+import { TransactionsMobileComponent } from "./pages-mobile/profile-mobile/transactions-mobile/transactions-mobile.component";
+import { ReferralsMobileComponent } from "./pages-mobile/referrals-mobile/referrals-mobile.component";
+import { CartMobileComponent } from './pages-mobile/cart-mobile/cart-mobile.component';
+import { AddCartButtonMobileComponent } from './components-mobile/add-cart-button-mobile/add-cart-button-mobile.component'
+import { InYourCartMobileComponent } from "./pages-mobile/in-your-cart-mobile/in-your-cart-mobile.component";
+import { CartViewMobileComponent } from "./pages-mobile/in-your-cart-mobile/cart-view-mobile/cart-view-mobile.component";
+import { LoadingMobileComponent } from "./components-mobile/loading-mobile/loading-mobile.component";
+import { CartItemMobileComponent } from "./pages-mobile/cart-mobile/cart-item/cart-item-mobile.component";
+import { CheckoutMobileComponent } from "./pages-mobile/checkout-mobile/checkout-mobile.component";
+import { CheckoutSenderMobileComponent } from "./pages-mobile/checkout-mobile/checkout-sender-mobile/checkout-sender-mobile.component";
+import { CheckoutGcashMobileComponent } from "./pages-mobile/checkout-mobile/checkout-gcash-mobile/checkout-gcash-mobile.component";
+import { CheckoutItemMobileComponent } from "./pages-mobile/checkout-mobile/checkout-item-mobile/checkout-item-mobile.component";
+import { CheckoutRecipientsMobileComponent } from "./pages-mobile/checkout-mobile/checkout-recipients-mobile/checkout-recipients-mobile.component";
+import { BundlesMobileComponent } from './pages-mobile/bundles-mobile/bundles-mobile.component';
 
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { WishIndicatorMobileComponent } from './components-mobile/wish-indicator-mobile/wish-indicator-mobile.component';
+import { WishlistMobileComponent } from './pages-mobile/wishlist-mobile/wishlist-mobile.component';
+import { TitleMobileComponent } from './components-mobile/title-mobile/title-mobile.component';
+import { WishlistTileMobileComponent } from './components-mobile/wishlist-tile-mobile/wishlist-tile-mobile.component';
 
 @NgModule({
   declarations: [
@@ -401,7 +444,51 @@ import { NewDataDeletionComponent } from './new-pages/new-links/new-data-deletio
     NewProductsComponent,
     NewReviewsComponent,
     NewDetailsBundlesComponent,
-    NewDataDeletionComponent
+    NewDataDeletionComponent,
+    LayoutMobileComponent,
+    LoginMobileComponent,
+    OnboardingMobileComponent,
+    HomeMobileComponent,
+    HeaderMobileComponent,
+    CardCategoriesMobileComponent,
+    CardCategoryMobileComponent,
+    RegisterMobileComponent,
+    DetailsMobileComponent,
+    StickersMobileComponent,
+    PostcardsMobileComponent,
+    GiftsMobileComponent,
+    ProfileMobileComponent,
+    StickerCategoriesMobileComponent,
+    PostcardCategoriesMobileComponent,
+    GiftCategoriesMobileComponent,
+    StickerCategoryMobileComponent,
+    ProductListMobileComponent,
+    ProductTileMobileComponent,
+    ProductMobileComponent,
+    PostcardCategoryMobileComponent,
+    GiftCategoryMobileComponent,
+    OrderSummaryMobileComponent,
+    ProfileDetailsMobileComponent,
+    TransactionsMobileComponent,
+    ReferralsMobileComponent,
+    CartMobileComponent,
+    NewAddCartButtonComponent,
+    AddCartButtonMobileComponent,
+    InYourCartMobileComponent,
+    CartViewMobileComponent,
+    LoadingMobileComponent,
+    CartMobileComponent,
+    CartItemMobileComponent,
+    CheckoutMobileComponent,
+    CheckoutSenderMobileComponent,
+    CheckoutGcashMobileComponent,
+    CheckoutItemMobileComponent,
+    CheckoutRecipientsMobileComponent,
+    BundlesMobileComponent,
+    WishIndicatorMobileComponent,
+    WishlistMobileComponent,
+    TitleMobileComponent,
+    WishlistTileMobileComponent
   ],
   imports: [
     BrowserModule,
@@ -435,19 +522,24 @@ import { NewDataDeletionComponent } from './new-pages/new-links/new-data-deletio
       loader: {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
-      }
-    })
+        deps: [HttpClient],
+      },
+    }),
   ],
-  providers: [{
-    provide: MatDialogRef,
-    useValue: {}
-  }],
-  bootstrap: [AppComponent]
+  providers: [
+    {
+      provide: MatDialogRef,
+      useValue: {},
+    },
+  ],
+  bootstrap: [AppComponent],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA
+  ]
 })
-export class AppModule { }
+export class AppModule {}
 
 // required for AOT compilation
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
-  return new TranslateHttpLoader(http, './assets/lang/', '.json');
+  return new TranslateHttpLoader(http, "./assets/lang/", ".json");
 }
