@@ -209,6 +209,9 @@ import { NewPersonalizesComponent } from './new-pages/new-personalizes/new-perso
 import { NewPersonalizeItemComponent } from './new-pages/new-personalizes/new-personalize-item/new-personalize-item.component';
 import { NewSignupComponent } from './new-pages/new-layout/new-signup/new-signup.component';
 import { NewProductsComponent } from './new-components/new-products/new-products.component';
+import { LayoutMobileComponent } from './pages-mobile/layout-mobile/layout-mobile.component';
+import { LoginMobileComponent } from './pages-mobile/login-mobile/login-mobile.component';
+import { OnboardingMobileComponent } from './pages-mobile/onboarding-mobile/onboarding-mobile.component';
 
 @NgModule({
   declarations: [
@@ -394,7 +397,10 @@ import { NewProductsComponent } from './new-components/new-products/new-products
     NewPersonalizesComponent,
     NewPersonalizeItemComponent,
     NewSignupComponent,
-    NewProductsComponent
+    NewProductsComponent,
+    LayoutMobileComponent,
+    LoginMobileComponent,
+    OnboardingMobileComponent,
   ],
   imports: [
     BrowserModule,

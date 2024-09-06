@@ -1,0 +1,35 @@
+<ion-grid className="ion-justify-content-center ion-align-items-center ion-align-self-center">
+
+    <ion-row className="slide-content-container">
+        <ion-col size="10" className="slide-content">
+            <ion-img
+            src="/assets/images/logo_fibeigreetings.png"
+            alt="Fibeigreetings"
+            ></ion-img>
+        </ion-col>
+    </ion-row>
+    <ion-row>
+        <form>
+            <ion-col size="12">
+                <ion-input label="Outline input" label-placement="floating" fill="outline" placeholder="Email"></ion-input>
+            </ion-col>
+            <ion-col size="12">
+                <ion-input label="Outline input" label-placement="floating" fill="outline" [type]="'password'" placeholder="Password"></ion-input>
+            </ion-col>
+            <ion-col size="12">
+                <ion-checkbox></ion-checkbox>
+                <ion-label> Show Password</ion-label>
+            </ion-col>
+        </form>
+    </ion-row>
+    
+    <ion-row>
+        <ion-button expand="block" fill="outline">Log In</ion-button>
+    </ion-row>
+    <ion-row ngClass="external mb-5l">
+            <ion-img src="/assets/images/google.png" (click)="onGoogleClick()"></ion-img>
+    </ion-row>
+    <div class="px-5 mt-2 mb-3">
+        <label>Forgot password? <a (click)="onResetPassword()">Click here to reset.</a></label>
+    </div>
+</ion-grid>

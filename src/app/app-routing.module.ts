@@ -5,7 +5,8 @@ import { SignAndSendCardsComponent } from './pages/sign-and-send-cards/sign-and-
 import { StickersComponent } from './pages/stickers/stickers.component';
 import { StatusComponent } from './pages/status/status.component';
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { Platform } from '@ionic/angular';
+import { Router, RouterModule, Routes } from '@angular/router';
 import { TabsComponent } from './components/tabs/tabs.component';
 import { ProfileComponent } from './pages/settings/profile/profile.component';
 import { SignAndSendPageComponent } from './pages/sign-and-send-page/sign-and-send-page.component';
@@ -75,6 +76,10 @@ import { NewRegistrationCompleteComponent } from './new-pages/new-registration-c
 import { NewCheckoutComponent } from './new-pages/new-checkout/new-checkout.component';
 import { NewPaymentComponent } from './new-pages/new-payment/new-payment.component';
 import { NewPersonalizesComponent } from './new-pages/new-personalizes/new-personalizes.component';
+
+import { HomeMobileComponent } from './pages-mobile/home-mobile/home-mobile.component';
+import { LayoutMobileComponent } from './pages-mobile/layout-mobile/layout-mobile.component';
+import { LoginMobileComponent } from './pages-mobile/login-mobile/login-mobile.component';
 
 const routes: Routes = [
   {
@@ -413,12 +418,178 @@ const routes: Routes = [
   }
 ];
 
+
+const mobileRoutes: Routes = [
+  {
+    path: '',
+    redirectTo: "/mobile",
+    pathMatch: 'full'
+
+  },
+  {
+    path: 'mobile',
+    component: LayoutMobileComponent,
+    children: [      
+      {
+        path: 'login',
+        component: LoginMobileComponent
+      },
+      {
+        path: '',
+        component: HomeMobileComponent
+      },
+      // {
+      //   path: 'cards',
+      //   children: [
+      //     {
+      //       path: ':id',
+      //       component: NewCardsComponent
+      //     }
+      //   ]
+      // },
+      // {
+      //   path: 'stickers',
+      //   children: [
+      //     {
+      //       path: ':id',
+      //       component: NewStickersComponent
+      //     }
+      //   ]
+      // },
+      // {
+      //   path: 'postcards',
+      //   children: [
+      //     {
+      //       path: ':id',
+      //       component: NewPostcardsComponent
+      //     }
+      //   ]
+      // },
+      // {
+      //   path: 'gifts',
+      //   children: [
+      //     {
+      //       path: ':id',
+      //       component: NewGiftsComponent
+      //     }
+      //   ]
+      // },
+      // {
+      //   path: "profile",
+      //   children: [
+      //     {
+      //       path: ':id',
+      //       component: NewProfileComponent
+      //     },
+      //   ]
+      // },
+      // {
+      //   path: 'wishlist',
+      //   component: NewWishlistComponent
+      // },
+      // {
+      //   path: 'details/:type/:id',
+      //   component: NewDetailsComponent
+      // },
+      // {
+      //   path: 'projects',
+      //   component: NewPersonalizesComponent
+      // },
+      // {
+      //   path: 'cart',
+      //   component: NewCartComponent
+      // },
+      // {
+      //   path: 'checkout',
+      //   component: NewCheckoutComponent
+      // },
+      // {
+      //   path: 'payment',
+      //   children: [
+      //     {
+      //       path: ':gateway',
+      //       component: NewPaymentComponent
+      //     },
+      //     {
+      //       path: ':gateway/:id',
+      //       component: NewPaymentComponent
+      //     }
+      //   ]
+      // },
+      // {
+      //   path: 'registration',
+      //   children: [
+      //     {
+      //       path: '',
+      //       component: NewRegistrationComponent
+      //     },
+      //     {
+      //       path: 'complete/:id',
+      //       component: NewRegistrationCompleteComponent
+      //     }
+      //   ]
+      // },
+      // {
+      //   path: 'link',
+      //   children: [
+      //     {
+      //       path: 'contact-us',
+      //       component: NewContactUsComponent
+      //     },
+      //     {
+      //       path: 'chat-now',
+      //       component: NewChatNowComponent
+      //     },
+      //     {
+      //       path: 'review-product',
+      //       component: NewReviewProductComponent
+      //     },
+      //     {
+      //       path: 'about',
+      //       component: NewAboutComponent
+      //     },
+      //     {
+      //       path: 'press-page',
+      //       component: NewPressPageComponent
+      //     },
+      //     {
+      //       path: 'sign-and-send',
+      //       component: NewSignAndSendComponent
+      //     },
+      //     {
+      //       path: 'shipping-and-delivery',
+      //       component: NewShippingAndDeliveryComponent
+      //     },
+      //     {
+      //       path: 'terms-and-condition',
+      //       component: NewTermsAndConditionComponent
+      //     },
+      //     {
+      //       path: 'privacy-policy',
+      //       component: NewPrivacyPolicyComponent
+      //     }
+      //   ]
+      // }
+    ]
+  }
+];
+
 @NgModule({
   imports: [RouterModule.forRoot(routes, { scrollPositionRestoration: "top", anchorScrolling: 'enabled' })],
   exports: [RouterModule]
 })
 
-export class AppRoutingModule { }
+export class AppRoutingModule {
+  
+  constructor(platform: Platform, router: Router) {
+    let isMobile: boolean =
+      platform.is("capacitor") || platform.is("mobileweb");
+
+    console.log("isMobile", isMobile);
+    if (isMobile) router.resetConfig(mobileRoutes);
+  }
+
+}
 
 
 

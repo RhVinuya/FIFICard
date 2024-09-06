@@ -1,0 +1,125 @@
+* {
+    font-family: Proxima Nova;
+}
+
+.fa,
+.far,
+.fas {
+    font-family: "Font Awesome 5 Free" !important;
+}
+
+.main {
+    position: relative;
+}
+
+.main .btn-close {
+    position: absolute;
+    right: 1rem;
+    top: 1rem
+}
+
+.title {
+    margin-block: 40px;
+}
+
+.title img {
+    height: 50px;
+}
+
+.title h3 {
+    margin: 10px;
+}
+
+.password {
+    position: relative;
+}
+
+.password .eye {
+    position: absolute;
+    width: 20px;
+    aspect-ratio: 1/1;
+    background: white;
+    right: 10px;
+    top: 35%;
+}
+
+.password .eye i {
+    color: #000;
+    opacity: 0.6;
+    font-size: 18px;
+}
+
+.password .eye i:hover {
+    opacity: 1;
+    cursor: pointer;
+}
+
+.login-btn {
+    font-family: 'Proxima Nova';
+    color: #fff;
+    background: #5e17eb;
+    font-size: 1rem;
+    padding-block: 10px;
+    padding-inline: 20px;
+    border-radius: 20px;
+    border: 0.5px solid #5e17eb;
+    font-weight: bold;
+    cursor: pointer;
+    text-transform: uppercase
+}
+
+.login-btn:hover {
+    color: #5e17eb;
+    background: #fff;
+}
+
+.login-btn:disabled {
+    background: lightgrey;
+    border: 0.5px solid lightgrey;
+    cursor: not-allowed;
+}
+
+.login-btn:disabled:hover {
+    color: #fff;
+}
+
+.link {
+    border-top: 1px solid lightgrey;
+}
+
+a{
+    color: #92baff !important;
+}
+
+a:link {
+    color: #92baff !important;
+    text-decoration: none;
+}
+
+a:visited {
+    color: #92baff !important;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #92baff !important;
+    text-decoration: none;
+}
+
+a:active {
+    color: #92baff !important;
+    text-decoration: none;
+}
+
+.external{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.external img{
+    aspect-ratio: 1/1;
+    height: 60px;
+    cursor: pointer;
+}
