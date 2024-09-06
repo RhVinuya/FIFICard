@@ -392,7 +392,7 @@ const routes: Routes = [
             component: NewPressPageComponent
           },
           {
-            path: 'sign-and-send',
+            path: 'personalize-cards',
             component: NewSignAndSendComponent
           },
           {

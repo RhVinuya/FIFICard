@@ -2,54 +2,42 @@
     <h1 class="text-purple">Sign & Sign Page</h1>
     <div class="card">
         <div class="card-body">
-            <img src="/assets/images/new/static/sns/banner.png" class="img-fluid" onContextMenu="return false;">
-            <img src="/assets/images/new/static/sns/icons.png" class="img-fluid" onContextMenu="return false;">
-            <img src="/assets/images/new/static/sns/Sign Send Process.gif" style="width:100%"
-                onContextMenu="return false;">
-            <img src="/assets/images/new/static/sns/snsp-02-min.png" onContextMenu="return false;">
-            <img src="/assets/images/new/static/sns/2.png" style="width:100%" onContextMenu="return false;">
-            <img src="/assets/images/new/static/sns/3.png" style="width:100%" onContextMenu="return false;">
-            <div routerLink="/signandsend" class="to-link"><img src="/assets/images/new/static/sns/SandS-banner2.png"
-                    class="img-fluid" onContextMenu="return false;"></div>
-            <img src="/assets/images/new/static/sns/more-min.png" onContextMenu="return false;">
-            <div class="col-md-12" style="position: relative">
-                <img src="/assets/images/new/static/sns/more-2-min.png" onContextMenu="return false;">
-                <div style="height: 67%;width: 21%; position: absolute; left: 23%; bottom: 0%;cursor: pointer;"
-                    [routerLink]="['/poetry']"></div>
-                <div style="height: 67%;width: 21%; position: absolute; left: 45.5%; bottom: 0%;cursor: pointer;"
-                    [routerLink]="['/postcards']">
+            <div class="row">
+                <div class="col-md-12">
+                    <img src="/assets/images/new/static/personalized/b1.png" class="img-fluid"
+                        onContextMenu="return false;">
+
                 </div>
-                <div style="height: 67%;width: 21%; position: absolute; left: 68.5%; bottom: 0%;cursor: pointer;"
-                    [routerLink]="['/signandsend']">
+                <div class="col-md-6 offset-md-3 text-center">
+                    <img src="/assets/images/new/static/personalized/b2.png" class="img-fluid"
+                        onContextMenu="return false;">
+                        <br/><br/>
+                        <a class="btn btn-lg btn-pc" [routerLink]="['/new/cards/PERSONALIZED']" target="_blank">CLICK HERE TO SHOP MORE CARDS</a>
+                        <br/><br/>
+                        <br/><br/>
                 </div>
             </div>
             <div class="row">
-                <!-- *ngIf="priceService.getLocation() == 'ph'" -->
-                <div class="col-md-12" style="position: relative">
-                    <img src="/assets/images/new/static/sns/2-ecard-sticker-2-min.png" onContextMenu="return false;">
-                    <a href="https://fibeidigicards.com/home"
-                        style="height: 100%;width: 50%; position: absolute; left: 0%; bottom: 0%;cursor: pointer;"
-                        target="_blank"></a>
-                    <div style="height: 100%;width: 50%; position: absolute; right: 0%; bottom: 0%;cursor: pointer;"
-                        [routerLink]="['/stickercards']">
-                    </div>
-                </div>
-                <!-- <div class="col-md-12" style="position: relative" *ngIf="priceService.getLocation() != 'ph'">
-                    <img src="/assets/images/new/static/sns/2-ecard-sticker-2-min.png" onContextMenu="return false;">
-                    <a href="https://fibeidigicards.com/home"
-                        style="height: 100%;width: 50%; position: absolute; left: 0%; bottom: 0%;cursor: pointer;" target="_blank"></a>
-                    <div style="height: 100%;width: 50%; position: absolute; right: 0%; bottom: 0%;cursor: pointer;" [routerLink]="['/stickercards']">
-                    </div>
-                </div> -->
-                <div class="col-md-12">
-                    <!-- *ngIf="priceService.getLocation() == 'ph'"  -->
-                    <img src="/assets/images/new/static/sns/delivery-ph-min.png" class="img-fluid " style="width:100%"
-                        onContextMenu="return false;">
-                    <!-- <img src="/assets/images/new/static/sns/delivery-min.png" *ngIf="priceService.getLocation() != 'ph'" class="img-fluid "
-                        style="width:100%" onContextMenu="return false;"> -->
-                    <br /> <br />
-                </div>
+            <div class="col-md-6">
+                <ol id="pc">
+                    <li>Click Personalize tab on Homepage</li>
+                    <li>Select a Greeting Card</li>
+                    <li>Click Buy Now</li>
+                    <li>Fill in the necessary form</li>
+                    <li>Click Personalize Card button</li>
+                    <li>Click the write logo to type in your message</li>
+                    <li>You can choose different fonts, sizes and alignment that best suites your style. Click “Done”
+                        when finished.</li>
+                    <li>Add your payment details and click add to cart.</li>
+                    <li>Yehey! You are now ready to Send!</li>
+                </ol>
+            </div>
+            <div class="col-md-3">
+                <img src="/assets/images/new/static/personalized/b3.png" class="img-fluid"
+                    onContextMenu="return false;">
             </div>
         </div>
+        </div>
     </div>
+  
 </div>
