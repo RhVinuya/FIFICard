@@ -123,3 +123,25 @@ export interface INewSignAndSend {
     created: Timestamp;
 }
 
+export class NewRating {
+    id: string;
+    title: string
+    review: string;
+    rate: number;
+    username: string;
+    approve: boolean;
+    created: Timestamp;
+    modified: Timestamp;
+
+    constructor(value: INewRating){
+        this.id = value.id;
+        this.title = value.title;
+        this.review = value.review;
+        this.rate = value.rate;
+        this.username = value.username;
+        this.approve = value.approve;
+        this.created = value.created;
+        this.modified = value.modified;
+    }
+
+}

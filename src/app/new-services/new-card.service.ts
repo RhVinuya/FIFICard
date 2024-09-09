@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { collection, doc, Firestore, getDocFromServer, getDocs, getDocsFromServer, query, where, limit, getDoc, orderBy  } from '@angular/fire/firestore';
-import { INewCard, INewCardImage, INewRating, INewSignAndSend, NewCard } from '../new-models/new-card';
+import { collection, doc, Firestore, getDocFromServer, getDocs, getDocsFromServer, query, where, limit, getDoc, orderBy, addDoc, serverTimestamp   } from '@angular/fire/firestore';
+import { INewCard, INewCardImage, INewRating, INewSignAndSend, NewCard, NewRating } from '../new-models/new-card';
 import { environment } from 'src/environments/environment';
 import { NewStorageService } from './new-storage.service';
 
@@ -131,4 +131,22 @@ export class NewCardService {
       })
     });
   }
+
+  async addRating(id: string, rating: NewRating): Promise<string> {
+    return new Promise(resolve => {
+      addDoc(collection(this.store, 'cards/' + id + "/ratings"), {
+        date: serverTimestamp(),
+        username: rating.username,
+        rate: rating.rate,
+        title: rating.title,
+        review: rating.review,
+        approve: false,
+        created: serverTimestamp()
+      }).then((value) => {
+        console.log("ItemId: ", id, " - ReviewId: ", value.id);
+        resolve(value.id);
+      });
+    });
+  }
+
 }

@@ -4,7 +4,7 @@ import { ToastController } from '@ionic/angular';
 import { NgbModal, NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';
 import { NewInYourCartComponent } from 'src/app/new-components/new-in-your-cart/new-in-your-cart.component';
 import { NewVideoPlayerComponent } from 'src/app/new-components/new-video-player/new-video-player.component';
-import { INewCard, INewCardImage, INewRating, NewCard } from 'src/app/new-models/new-card';
+import { INewCard, INewCardImage, INewRating, NewCard, NewRating } from 'src/app/new-models/new-card';
 import { INewCartBundle } from 'src/app/new-models/new-cart';
 import { IModelType, ModelType } from 'src/app/new-models/new-enum';
 import { INewGiftImage, NewGift } from 'src/app/new-models/new-gift';
@@ -68,6 +68,7 @@ export class NewDetailsComponent implements OnInit {
   iModel: IModelType;
   bundles: NewPostcardBundle[] = [];
   images: string[] = [];
+  ratings: NewRating[] = [];
   rate: number = 0;
   qr: string = '';
 
@@ -101,7 +102,7 @@ export class NewDetailsComponent implements OnInit {
           if (qrImage) {
             this.qr = await this.fileService.getImageURL(qrImage.url);
           }
-          this.loadRatings(await this.cardService.getRatings(this.id));
+          await this.loadRatings(await this.cardService.getRatings(this.id));
         })
       }
       else if (this.type === 'sticker') {
@@ -113,7 +114,7 @@ export class NewDetailsComponent implements OnInit {
           this.loading = false;
           this.ref.detectChanges();
           this.loadImages(await this.stickerService.getImages(this.id));
-          this.loadRatings(await this.cardService.getRatings(this.id));
+          await this.loadRatings(await this.cardService.getRatings(this.id));
         })
       }
       else if (this.type === 'postcard') {
@@ -125,12 +126,14 @@ export class NewDetailsComponent implements OnInit {
           this.loading = false;
           this.ref.detectChanges();
           this.loadImages(await this.postcardService.getImages(this.id));
+
           let ibundles = await this.postcardService.getBundles(this.id);
           ibundles.sort((a, b) => { return a.price - b.price });
           ibundles.forEach(ibundle => {
             this.bundles.push(new NewPostcardBundle(ibundle));
           })
-          this.loadRatings(await this.cardService.getRatings(this.id));
+
+          await this.loadRatings(await this.cardService.getRatings(this.id));
         })
       }
       else if (this.type === 'gift') {
@@ -142,7 +145,7 @@ export class NewDetailsComponent implements OnInit {
           this.loading = false;
           this.ref.detectChanges();
           this.loadImages(await this.giftService.getImages(this.id));
-          this.loadRatings(await this.cardService.getRatings(this.id));
+          await this.loadRatings(await this.cardService.getRatings(this.id));
         })
       }
     });
@@ -159,12 +162,19 @@ export class NewDetailsComponent implements OnInit {
     }
   }
 
-  loadRatings(ratings: INewRating[]) {
+  async loadRatings(ratings: INewRating[]) {
     let value: number = 0;
     ratings.forEach(rating => {
       value = value + rating.rate;
     })
     this.rate = value / ratings.length;
+
+    this.ratings = this.ratings.sort( (a, b) => {
+
+      if (a.created > b.created) return 1;
+      if (a.created < b.created) return -1;
+      return 0;
+    });
   }
 
   getPrice() {
