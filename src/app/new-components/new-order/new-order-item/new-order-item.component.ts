@@ -14,6 +14,7 @@ import { NewStickerService } from 'src/app/new-services/new-sticker.service';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { NewStorageService } from 'src/app/new-services/new-storage.service';
+import { NewInfoMessageComponent } from '../../new-info-message/new-info-message.component';
 
 @Component({
   selector: 'app-new-order-item',
@@ -121,5 +122,14 @@ export class NewOrderItemComponent implements OnInit {
     let value: INewRating = this.reviewForm.value as INewRating;
     value.username = user?.firstname + " " + user?.lastname;
     await this.cardService.addRating(this.model!.id, value);
+
+    this.modalRef.close();
+    const reference = this.modalService.open(NewInfoMessageComponent, { animation: true });
+    reference.componentInstance.title = "SUCCESSFULL";
+    reference.componentInstance.message = "Review's successfully submitted.";
+    reference.componentInstance.button = "CONTINUE";
+    reference.componentInstance.onContinue.subscribe((value: any) => {
+      reference.close();
+    })
   }
 }

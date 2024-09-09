@@ -143,6 +143,7 @@ export class NewCardService {
         approve: false,
         created: serverTimestamp()
       }).then((value) => {
+        console.log("ItemId: ", id, " - ReviewId: ", value.id);
         resolve(value.id);
       });
     });
