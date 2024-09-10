@@ -23,6 +23,8 @@ export class AppComponent {
   isLogIn = true;
   @Output() onSignOut: EventEmitter<void> = new EventEmitter();
 
+  isMobile: boolean = false;
+
 
   constructor(
     private translate: TranslateService,
@@ -34,6 +36,7 @@ export class AppComponent {
     public platform: Platform
   ) {
     this.setlanguage();
+    this.isMobile = platform.is('capacitor') || platform.is('mobileweb');
   }
 
   ngOnInit(): void {

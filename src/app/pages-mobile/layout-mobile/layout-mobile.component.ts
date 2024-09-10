@@ -24,14 +24,6 @@ export class LayoutMobileComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = this.storageService.getUser();
-
-    if (this.user === undefined)
-      this.router.navigate(['/mobile/login']);
-    else
-      this.router.navigate(['/mobile/']);
-
-
-
   }
 
 }

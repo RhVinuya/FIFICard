@@ -212,6 +212,11 @@ import { NewProductsComponent } from './new-components/new-products/new-products
 import { LayoutMobileComponent } from './pages-mobile/layout-mobile/layout-mobile.component';
 import { LoginMobileComponent } from './pages-mobile/login-mobile/login-mobile.component';
 import { OnboardingMobileComponent } from './pages-mobile/onboarding-mobile/onboarding-mobile.component';
+import { HomeMobileComponent } from './pages-mobile/home-mobile/home-mobile.component';
+import { HeaderMobileComponent } from './components-mobile/header-mobile/header-mobile.component';
+import { CardCategoriesMobileComponent } from './components-mobile/categories/card-categories-mobile/card-categories-mobile.component';
+import { CardCategoryMobileComponent } from './components-mobile/categories/card-categories-mobile/card-category-mobile/card-category-mobile.component';
+import { CardsMobileComponent } from './pages-mobile/cards-mobile/cards-mobile.component';
 
 @NgModule({
   declarations: [
@@ -401,6 +406,11 @@ import { OnboardingMobileComponent } from './pages-mobile/onboarding-mobile/onbo
     LayoutMobileComponent,
     LoginMobileComponent,
     OnboardingMobileComponent,
+    HomeMobileComponent,
+    HeaderMobileComponent,
+    CardCategoriesMobileComponent,
+    CardCategoryMobileComponent,
+    CardsMobileComponent,
   ],
   imports: [
     BrowserModule,

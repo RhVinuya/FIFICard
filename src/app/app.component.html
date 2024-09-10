@@ -1,1 +1,34 @@
-<ion-router-outlet></ion-router-outlet>
+<ion-app  *ngIf="isMobile" >
+    <ion-content>
+        <ion-tabs>
+            <ion-tab-bar slot="bottom">
+              <ion-tab-button tab="home" [routerLink]="['/home']" [routerDirection]="'forward'">
+                <img src="../assets/images/2024/new/mobile/nav/home.png" height="30px">
+                <span>HOME</span>
+              </ion-tab-button>
+              <ion-tab-button tab="cards" [routerLink]="['/cards']" [routerDirection]="'forward'">
+                <img src="../assets/images/2024/new/mobile/nav/ecard.png" height="30px">
+                <span>CARDS</span>
+              </ion-tab-button>
+              <ion-tab-button tab="sticker" [routerLink]="['/cliparts']" [routerDirection]="'forward'">
+                <img src="../assets/images/2024/new/mobile/nav/clipart.png" height="30px">
+                <span>STICKERS</span>
+              </ion-tab-button>
+              <ion-tab-button tab="cliparts" [routerLink]="['/cliparts']" [routerDirection]="'forward'">
+                <img src="../assets/images/2024/new/mobile/nav/clipart.png" height="30px">
+                <span>POSTCARDS</span>
+              </ion-tab-button>
+              <ion-tab-button tab="e-postcards" [routerLink]="['/e-postcards']" [routerDirection]="'forward'">
+                <img src="../assets/images/2024/new/mobile/nav/epostcard.png" height="30px">
+                <span>GIFTS</span>
+              </ion-tab-button>
+              <ion-tab-button tab="profile" [routerLink]="['/profile']" [routerDirection]="'forward'">
+                <ion-icon name="person-outline"></ion-icon>
+                <span>ACCOUNT</span>
+              </ion-tab-button>
+            </ion-tab-bar>
+          </ion-tabs>
+    </ion-content>
+</ion-app>
+
+<ion-router-outlet *ngIf="!isMobile"></ion-router-outlet>
