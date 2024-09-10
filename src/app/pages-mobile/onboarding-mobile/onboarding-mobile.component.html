@@ -1,11 +1,15 @@
-<ion-grid className="ion-justify-content-center ion-align-items-center ion-align-self-center">
+<ion-grid
+  className="ion-justify-content-center ion-align-items-center ion-align-self-center"
+>
+  <ion-row className="slide-content-container">
+    <ion-col size="10" className="slide-content">
+      <img
+        src="/assets/images/logo_fibeigreetings.png"
+        onContextMenu="return false;"
+      />
 
-    <ion-row className="slide-content-container">
-        <ion-col size="10" className="slide-content">
-            <img src="/assets/images/logo_fibeigreetings.png" onContextMenu="return false;">
-                
-            <ion-button expand="block" fill="solid">Register</ion-button>
-            <ion-button href="/login" expand="block" fill="outline">Login</ion-button>
-        </ion-col>
-    </ion-row>
+      <ion-button expand="block" fill="solid">Register</ion-button>
+      <ion-button href="/login" expand="block" fill="outline">Login</ion-button>
+    </ion-col>
+  </ion-row>
 </ion-grid>
