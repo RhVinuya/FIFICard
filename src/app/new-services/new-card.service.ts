@@ -22,7 +22,7 @@ export class NewCardService {
   getAll(): Promise<INewCard[]> {
     return new Promise((resolve) => {
       const col = collection(this.store, 'cards');
-      const q = query(col, where('active', "==", true), where('type', "==", 'card'))
+      const q = query(col, where('active', "==", true), where('type', "==", 'card'), where('cardbundle', "==", false))
       getDocs(q).then(docs => {
         let cards: INewCard[] = [];
         docs.forEach(doc => {
@@ -44,6 +44,7 @@ export class NewCardService {
         where('events', "array-contains", event),
         where('signAndSend', '==', signAndSend),
         where('messagetype', '==', messagetype),
+        where('cardbundle', "==", false),
         limit(31)
       ) 
       getDocs(q).then(docs => {
@@ -58,13 +59,14 @@ export class NewCardService {
     });
   }
 
-  getAllByEvent(event: string): Promise<INewCard[]> {
+  getAllByEvent(event: string, bundle: boolean = false): Promise<INewCard[]> {
     return new Promise((resolve) => {
       const col = collection(this.store, 'cards');
       const q = query(col, 
         where('active', "==", true), 
         where('type', "==", 'card'), 
         where('events', "array-contains", event),
+        where('cardbundle', "==", bundle),
         limit(31)
       ) 
       getDocs(q).then(docs => {

@@ -3,7 +3,7 @@
   
   <ion-row class="events-container">
     <ion-col [size]="getColumnSize()" *ngFor="let event of events">
-      <app-card-category-mobile [event]="event"></app-card-category-mobile>
+      <app-card-category-mobile [bundle]="bundle" [event]="event"></app-card-category-mobile>
     </ion-col>
   </ion-row>
 </ion-grid>

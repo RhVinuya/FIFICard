@@ -10,6 +10,7 @@ import { NewFileService } from "src/app/new-services/new-file.service";
 })
 export class CardCategoryMobileComponent implements OnInit {
   @Input() event: NewEvent;
+  @Input() bundle: boolean = false;
   
   fileService: NewFileService;
   iconUrl: string = 'https://ionicframework.com/docs/img/demos/card-media.png';
@@ -28,6 +29,10 @@ export class CardCategoryMobileComponent implements OnInit {
   }
 
   onClick() {
-    this.router.navigate(['/cards/' + this.event.name]);
+    if (this.bundle) {
+      this.router.navigate(['/cards/' + this.event.name], { queryParams: {bundle: true}});
+    } else {
+      this.router.navigate(['/cards/' + this.event.name]);
+    }
   }
 }

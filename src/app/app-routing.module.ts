@@ -100,6 +100,7 @@ import { InYourCartMobileComponent } from "./pages-mobile/in-your-cart-mobile/in
 import { CheckoutMobileComponent } from "./pages-mobile/checkout-mobile/checkout-mobile.component";
 import { BundlesMobileComponent } from "./pages-mobile/bundles-mobile/bundles-mobile.component";
 import { WishlistMobileComponent } from "./pages-mobile/wishlist-mobile/wishlist-mobile.component";
+import { PaymentCardMobileComponent } from './pages-mobile/payment-card-mobile/payment-card-mobile.component';
 
 const routes: Routes = [
   {
@@ -563,6 +564,11 @@ const routes: Routes = [
 
 const mobileRoutes: Routes = [
   {
+    path: "new",
+    redirectTo: "/onboarding",
+    pathMatch: "full"
+  },
+  {
     path: "",
     redirectTo: "/onboarding",
     pathMatch: "full"
@@ -670,6 +676,11 @@ const mobileRoutes: Routes = [
     path: "wishlist",
     component: WishlistMobileComponent,
     canActivate: [SecureInnerGuard]
+  },
+  {
+    path: "payment/:gateway/:id",
+    component: PaymentCardMobileComponent,
+    canActivate: [SecureInnerGuard]
   }
 
 ];
@@ -687,8 +698,6 @@ export class AppRoutingModule {
   constructor(platform: Platform, router: Router) {
     let isMobile: boolean =
       platform.is("capacitor") || platform.is("mobileweb");
-
-    console.log("isMobile", isMobile);
     if (isMobile) {
       router.resetConfig(mobileRoutes)
     };

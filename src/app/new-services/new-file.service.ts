@@ -27,9 +27,6 @@ export class NewFileService {
   }
 
   async getImageURL(path: string): Promise<string> {
-    console.log("getImageURL");
-    
-
     return new Promise( async resolve => {
 
       let id = path.replaceAll('/', '-');

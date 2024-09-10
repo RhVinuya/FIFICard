@@ -138,17 +138,6 @@ export class LoginMobileComponent implements OnInit {
         this.submitted = false;
         this.processing = false;
         this.storageService.createUser(user);
-        // this.onLogin.emit(user);
-        // this.activeModal.close();
-        // this.ref.detectChanges();
-        // const reference = this.modalService.open(NewInfoMessageComponent, { animation: true });
-        // reference.componentInstance.title = "SUCCESSFULL";
-        // reference.componentInstance.message = "Account created successfully.";
-        // reference.componentInstance.button = "CONTINUE";
-        // reference.componentInstance.onContinue.subscribe((value: any) => {
-        //   reference.close();
-        //   this.router.navigate(['/new/registration/complete/' + value.id]);
-        // })
         
         window.location.href = "/cards";
       }

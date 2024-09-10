@@ -98,7 +98,7 @@ export class NewDetailsComponent implements OnInit {
           this.isFeatured = this.model.featured;
           this.isPoetry = this.model instanceof NewCard && this.model.messagetype === 'poetry';
           this.isRegular = this.model instanceof NewCard && this.model.messagetype === 'regular';
-          this.isCardBundle = this.model.cardbundle;
+          this.isCardBundle = this.model instanceof NewCard? this.model.cardbundle : false;
           this.loading = false;
           this.ref.detectChanges();
           let images = await this.cardService.getImages(this.id, true);

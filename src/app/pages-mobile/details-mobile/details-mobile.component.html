@@ -74,7 +74,7 @@
       </p>
     </ion-row>
 
-    <form [formGroup]="form" *ngIf="type=='cards'">
+    <form [formGroup]="form" *ngIf="type=='cards' && showPersonalize">
       <ion-row>
         <ion-col
           size="12"
@@ -164,12 +164,12 @@
     <ion-row>
       <ion-col size="12" class="btn-container ion-align-items-center">
         <div *ngIf="isBundle">
-          <button type="button" class="btn bundle me-1 mb-2" *ngFor="let bundle of bundles" (click)="onClickBundle(bundle)">
+          <ion-button  fill="outline" size="small" class="me-1 mb-2" *ngFor="let bundle of bundles" (click)="onClickBundle(bundle)">
               Bundle of <b>{{bundle.countDisplay()}} pcs</b> for <b>{{bundle.priceDisplay()}}</b>
-          </button>
+          </ion-button>
         </div>
         <app-add-cart-button-mobile class="me-2" [type]="itemType" [item]="iModel" *ngIf="isAddToCart"></app-add-cart-button-mobile>
-        <app-new-personalize-button *ngIf="isPersonalize" [iCard]="getICard()"></app-new-personalize-button>
+        <!-- <app-personalize-button-mobile *ngIf="isPersonalize" [iCard]="getICard()"></app-personalize-button-mobile> -->
       </ion-col>
     </ion-row>
   </ion-grid>

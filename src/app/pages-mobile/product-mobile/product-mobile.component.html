@@ -5,18 +5,21 @@
   <ion-grid *ngIf="currentEvent">
     <ion-row>
       <ion-col size="12" class="header-col">
-        <h2>{{ currentEvent.name | uppercase }} CARDS</h2>
-        <div>
-          <ion-icon name="heart" (click)="goToWishlist()"></ion-icon>
-          <ion-icon (click)="goToCart()" name="cart-outline"></ion-icon>
-        </div>
+          <div style="width: 80%">
+            <h3>{{ currentEvent.name | uppercase }} CARDS</h3>
+          </div>
+          <div style="width: 20%;">
+            <ion-icon name="heart" (click)="goToWishlist()"></ion-icon>
+            <ion-icon (click)="goToCart()" name="cart-outline"></ion-icon>
+          </div>
       </ion-col>
     </ion-row>
 
     <ion-row class="badge-row" >
-      <div *ngFor="let recipient of recipients">
-        <ion-badge (click)="onRecipientSelect(recipient)">{{recipient}}</ion-badge>
-      </div>
+      <ion-select label="Filter" placeholder="Filter" interface="alert" (ionChange)="onRecipientSelect($event)">
+          <ion-select-option *ngFor="let recipient of recipients" [value]="recipient"
+          >{{recipient}}</ion-select-option>
+        </ion-select>
     </ion-row>
 
     <ion-row class="ion-align-items-center ion-justify-content-center">

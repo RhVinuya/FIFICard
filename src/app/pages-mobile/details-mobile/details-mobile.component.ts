@@ -33,6 +33,8 @@ export class DetailsMobileComponent implements OnInit {
   
   swiperModules = [IonicSlides];
 
+  showPersonalize = false;
+
   activateRoute: ActivatedRoute;
   cardService: NewCardService;
   stickerService: NewStickerService;

@@ -256,6 +256,12 @@ import { WishIndicatorMobileComponent } from './components-mobile/wish-indicator
 import { WishlistMobileComponent } from './pages-mobile/wishlist-mobile/wishlist-mobile.component';
 import { TitleMobileComponent } from './components-mobile/title-mobile/title-mobile.component';
 import { WishlistTileMobileComponent } from './components-mobile/wishlist-tile-mobile/wishlist-tile-mobile.component';
+import { CreateAddressMobileComponent } from './components-mobile/create-address-mobile/create-address-mobile.component';
+import { PersonalizeMobileComponent } from './components-mobile/personalize-mobile/personalize-mobile.component';
+import { PersonalizeButtonMobileComponent } from './components-mobile/personalize-button-mobile/personalize-button-mobile.component';
+import { PaymentCardMobileComponent } from './pages-mobile/payment-card-mobile/payment-card-mobile.component';
+import { OrderMobileComponent } from './components-mobile/order-mobile/order-mobile.component';
+import { OrderItemMobileComponent } from './components-mobile/order-mobile/order-item-mobile/order-item-mobile.component';
 
 @NgModule({
   declarations: [
@@ -488,7 +494,13 @@ import { WishlistTileMobileComponent } from './components-mobile/wishlist-tile-m
     WishIndicatorMobileComponent,
     WishlistMobileComponent,
     TitleMobileComponent,
-    WishlistTileMobileComponent
+    WishlistTileMobileComponent,
+    CreateAddressMobileComponent,
+    PersonalizeMobileComponent,
+    PersonalizeButtonMobileComponent,
+    PaymentCardMobileComponent,
+    OrderMobileComponent,
+    OrderItemMobileComponent
   ],
   imports: [
     BrowserModule,

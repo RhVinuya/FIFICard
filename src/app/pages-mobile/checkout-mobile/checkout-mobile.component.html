@@ -82,7 +82,7 @@
             <div class="form-check mt-4">
                 <input class="form-check-input" type="checkbox" id="accepted" [defaultValue]="accepted" (click)="onChangeAccepted($event)">
                 <label class="form-check-label" for="accepted">
-                    I accept <a href="/new/link/terms-and-condition" target="_blank">License and Agreement</a>
+                    I accept <a href="/mobile/terms-and-condition" target="_blank">License and Agreement</a>
                 </label>
             </div>
 
@@ -97,7 +97,7 @@
             <span>by Stripe</span>
             </button>
 
-            <button class="btn-gcash card-payment mt-2" [disabled]="!isReady()" (click)="onGCash()" *ngIf="payments && payments.gcash === true">
+            <!-- <button class="btn-gcash card-payment mt-2" [disabled]="!isReady()" (click)="onGCash()" *ngIf="false && payments && payments.gcash === true">
                 <span class="spinner-border spinner-border-sm me-1" aria-hidden="true" *ngIf="isProcessingGCash"></span>
                 <span>{{isProcessingStripe ? 'Processing...' : 'Pay with'}}</span>
                 <i class="p-gcash mx-1"></i>
@@ -116,7 +116,7 @@
                 *ngIf="payments && payments.gcashupload === true">
                 <span>Pay with</span>
                 <i class="p-gcash mx-1"></i>
-            </button>
+            </button> -->
         </ion-row>
     </ion-grid>
 </ion-content>

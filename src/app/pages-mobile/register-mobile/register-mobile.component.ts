@@ -13,6 +13,9 @@ import { NewStorageService } from 'src/app/new-services/new-storage.service';
 })
 export class RegisterMobileComponent implements OnInit {
  
+
+  StrongPasswordRegx: RegExp = /^(?=[^A-Z]*[A-Z])(?=[^a-z]*[a-z])(?=\D*\d).{8,}$/;
+
   submitted: boolean = false;
   processing: boolean = false;
   showPassword:boolean = false;
@@ -26,8 +29,8 @@ export class RegisterMobileComponent implements OnInit {
     email: new FormControl<string>('', [Validators.required, Validators.email]),
     firstname: new FormControl<string>('', [Validators.required]),
     lastname: new FormControl<string>('', [Validators.required]),
-    password: new FormControl<string>('', [Validators.required, Validators.minLength(8)]),
-    confirm: new FormControl<string>('', [Validators.required, Validators.minLength(8)]),
+    password: new FormControl<string>('', [Validators.required, Validators.pattern(this.StrongPasswordRegx)]),
+    confirm: new FormControl<string>('', [Validators.required, Validators.pattern(this.StrongPasswordRegx)]),
     notification: new FormControl<boolean>(false),
     terms: new FormControl<boolean>(false),
   });

@@ -1,5 +1,6 @@
 import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NgbActiveOffcanvas, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { CreateAddressMobileComponent } from 'src/app/components-mobile/create-address-mobile/create-address-mobile.component';
 import { NewCreateAddressComponent } from 'src/app/new-components/new-create-address/new-create-address.component';
 import { INewAddress, NewAddress } from 'src/app/new-models/new-address';
 import { NewAccountService } from 'src/app/new-services/new-account.service';
@@ -54,7 +55,7 @@ export class CheckoutRecipientsMobileComponent implements OnInit {
   }
 
   onClickCreate() {
-    const reference = this.modalService.open(NewCreateAddressComponent, { animation: true, size: 'lg' });
+    const reference = this.modalService.open(CreateAddressMobileComponent, { animation: true, size: 'lg' });
     reference.componentInstance.title = "Create Receiver and Shipping Address";
     reference.componentInstance.userid = this.id;
 
@@ -83,7 +84,7 @@ export class CheckoutRecipientsMobileComponent implements OnInit {
   }
 
   onClickEdit(address: NewAddress) {
-    const reference = this.modalService.open(NewCreateAddressComponent, { animation: true, size: 'lg' });
+    const reference = this.modalService.open(CreateAddressMobileComponent, { animation: true, size: 'lg' });
     reference.componentInstance.title = "Edit Receiver and Shipping Address";
     reference.componentInstance.userid = this.id;
     reference.componentInstance.data = address as INewAddress;

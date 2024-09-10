@@ -50,6 +50,7 @@
       <ion-col size="12">
         <ion-item class="input" fill="solid">
           <ion-input
+            id="password"
             [type]="showPassword ? 'text' : 'password'"
             formControlName="password"
             placeholder="Password"
@@ -59,9 +60,21 @@
             slot="end"
             (click)="togglePasswordVisibility()"
           ></ion-icon>
-          <ion-note *ngIf="form.controls.password.errors" slot="error"
-            >Invalid Password!</ion-note
+          <ion-note slot="helper"
+            >Requires at least 1 Uppercase, 1 Lowercase, a number or
+            symbol</ion-note
           >
+          <ion-note
+            *ngIf="
+              form.controls.password.dirty &&
+              form.controls.password.errors
+            "
+            slot="error"
+          >
+            Invalid password.
+            Requires at least 1 Uppercase, 1 Lowercase, a number or
+            symbol
+          </ion-note>
         </ion-item>
       </ion-col>
     </ion-row>
@@ -74,16 +87,18 @@
             formControlName="confirm"
             placeholder="Confirm Password"
           ></ion-input>
-          <ion-note
-            *ngIf="form.controls.confirm.getError('mismatch')"
-            slot="error"
-            >Password doesn't match!</ion-note
-          >
           <ion-icon
             name="{{ showConfirmPassword ? 'eye-off' : 'eye' }}"
             slot="end"
             (click)="togglePasswordVisibility('confirm')"
           ></ion-icon>
+          <ion-note
+            *ngIf="
+              form.controls.confirm.getError('mismatch')
+            "
+            slot="error"
+            >Password doesn't match!</ion-note
+          >
         </ion-item>
       </ion-col>
     </ion-row>

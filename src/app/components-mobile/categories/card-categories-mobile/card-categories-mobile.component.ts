@@ -1,5 +1,5 @@
 
-import { Component, OnInit } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 import { environment } from "src/environments/environment";
 import { INewCard } from "src/app/new-models/new-card";
 import { NewEventService } from "src/app/new-services/new-event.service";
@@ -14,6 +14,7 @@ import { NewStorageService } from 'src/app/new-services/new-storage.service';
   styleUrls: ["./card-categories-mobile.component.scss"],
 })
 export class CardCategoriesMobileComponent implements OnInit {
+  @Input() bundle: boolean = false;
   eventService: NewEventService;
   columns: number = 2;
   storageService: NewStorageService;

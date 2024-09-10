@@ -59,9 +59,7 @@ export class AppComponent {
       this.isLogIn = userDetails == null || userDetails.length < 0 ? true : false;
     } else {
       const userDetails = this.storageService.getUser();
-      console.log(userDetails);
       this.isLogIn = userDetails !== undefined ? true : false;
-      console.log( this.isLogIn );
     }
 
   }

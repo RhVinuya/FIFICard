@@ -59,8 +59,10 @@ export class ProductMobileComponent implements OnInit {
   products: INewCard[] | INewSticker[] | INewPostcard[] | INewGift[] = [];
   display: INewCard[] | INewSticker[] | INewPostcard[] | INewGift[] = [];
   displayCount: number = 20;
-  recipients: string[] = [ "For All" ];
+  recipients: string[] = [];
   filters: string[] = [];
+  
+  bundle: boolean = false;
 
   events: NewEvent[] | null = [];
   currentEvent: NewEvent;
@@ -69,8 +71,14 @@ export class ProductMobileComponent implements OnInit {
     
     this.loading = true;
     this.activateRoute.params.subscribe( params => {
+      console.log(params);
       this.type = params['type'];
       this.event = params['event'];
+
+      this.activateRoute.queryParams.subscribe( queueParams => {
+        this.bundle = typeof queueParams['bundle'] != undefined ? queueParams['bundle'] == "true" : false;
+      })
+
 
       console.log('Product Mobile');
       console.log(this.type);
@@ -93,9 +101,11 @@ export class ProductMobileComponent implements OnInit {
 
   async loadCards () {
 
+    console.log(this.bundle);
+
     switch(this.type) {
       case 'cards':  
-          this.products = await this.cardService.getAllByEvent(this.event);
+          this.products = await this.cardService.getAllByEvent(this.event, this.bundle);
         break;
       case 'stickers':  
           this.products = await this.stickerService.getByEvent(this.event);
@@ -124,16 +134,16 @@ export class ProductMobileComponent implements OnInit {
     console.log(this.display);
   }
 
-  onRecipientSelect(recipient: string) {
+  onRecipientSelect(e: any) {
 
-    if(recipient == this.recipients[0]) {
+    if(e.detail.value == this.recipients[0]) {
 
       this.display = this.products;
 
     }else {
 
       this.display = this.products.filter( o => {
-        return o.recipients!.includes(recipient);
+        return o.recipients!.includes(e.detail.value);
       })
   
       console.log(this.display);
