@@ -1,1 +1,26 @@
-<p>home-mobile works!</p>
+<ion-content [fullscreen]="true">
+    <app-header-mobile type="lg"></app-header-mobile>
+
+    <div id="homepage" class="page-main">
+        <ion-grid>
+            <ion-row class="ion-align-items-center">    
+                <ion-col>
+                    <div class="ion-text-center">
+                        <h3>[Image]</h3>
+                    </div>
+                </ion-col>
+            </ion-row>
+            <ion-row class="ion-align-items-center">    
+                <ion-col>
+                    <div class="ion-text-center">
+                        <h3>Where Every Card Speaks from the Heart</h3>
+                    </div>
+                </ion-col>
+            </ion-row>
+            <ion-row class="ion-align-items-center">
+                <app-card-categories-mobile></app-card-categories-mobile>
+            </ion-row>
+        </ion-grid>
+    </div>
+
+</ion-content>

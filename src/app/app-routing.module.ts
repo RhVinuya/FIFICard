@@ -6,7 +6,7 @@ import { StickersComponent } from './pages/stickers/stickers.component';
 import { StatusComponent } from './pages/status/status.component';
 import { NgModule } from '@angular/core';
 import { Platform } from '@ionic/angular';
-import { Router, RouterModule, Routes } from '@angular/router';
+import { Router, RouterModule, Routes, CanActivate } from '@angular/router';
 import { TabsComponent } from './components/tabs/tabs.component';
 import { ProfileComponent } from './pages/settings/profile/profile.component';
 import { SignAndSendPageComponent } from './pages/sign-and-send-page/sign-and-send-page.component';
@@ -80,6 +80,9 @@ import { NewPersonalizesComponent } from './new-pages/new-personalizes/new-perso
 import { HomeMobileComponent } from './pages-mobile/home-mobile/home-mobile.component';
 import { LayoutMobileComponent } from './pages-mobile/layout-mobile/layout-mobile.component';
 import { LoginMobileComponent } from './pages-mobile/login-mobile/login-mobile.component';
+import { OnboardingMobileComponent } from './pages-mobile/onboarding-mobile/onboarding-mobile.component';
+
+import { AuthGuard } from '../app/guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -422,156 +425,23 @@ const routes: Routes = [
 const mobileRoutes: Routes = [
   {
     path: '',
-    redirectTo: "/mobile",
+    redirectTo: "/home",
     pathMatch: 'full'
 
   },
   {
-    path: 'mobile',
-    component: LayoutMobileComponent,
-    children: [      
-      {
-        path: 'login',
-        component: LoginMobileComponent
-      },
-      {
-        path: '',
-        component: HomeMobileComponent
-      },
-      // {
-      //   path: 'cards',
-      //   children: [
-      //     {
-      //       path: ':id',
-      //       component: NewCardsComponent
-      //     }
-      //   ]
-      // },
-      // {
-      //   path: 'stickers',
-      //   children: [
-      //     {
-      //       path: ':id',
-      //       component: NewStickersComponent
-      //     }
-      //   ]
-      // },
-      // {
-      //   path: 'postcards',
-      //   children: [
-      //     {
-      //       path: ':id',
-      //       component: NewPostcardsComponent
-      //     }
-      //   ]
-      // },
-      // {
-      //   path: 'gifts',
-      //   children: [
-      //     {
-      //       path: ':id',
-      //       component: NewGiftsComponent
-      //     }
-      //   ]
-      // },
-      // {
-      //   path: "profile",
-      //   children: [
-      //     {
-      //       path: ':id',
-      //       component: NewProfileComponent
-      //     },
-      //   ]
-      // },
-      // {
-      //   path: 'wishlist',
-      //   component: NewWishlistComponent
-      // },
-      // {
-      //   path: 'details/:type/:id',
-      //   component: NewDetailsComponent
-      // },
-      // {
-      //   path: 'projects',
-      //   component: NewPersonalizesComponent
-      // },
-      // {
-      //   path: 'cart',
-      //   component: NewCartComponent
-      // },
-      // {
-      //   path: 'checkout',
-      //   component: NewCheckoutComponent
-      // },
-      // {
-      //   path: 'payment',
-      //   children: [
-      //     {
-      //       path: ':gateway',
-      //       component: NewPaymentComponent
-      //     },
-      //     {
-      //       path: ':gateway/:id',
-      //       component: NewPaymentComponent
-      //     }
-      //   ]
-      // },
-      // {
-      //   path: 'registration',
-      //   children: [
-      //     {
-      //       path: '',
-      //       component: NewRegistrationComponent
-      //     },
-      //     {
-      //       path: 'complete/:id',
-      //       component: NewRegistrationCompleteComponent
-      //     }
-      //   ]
-      // },
-      // {
-      //   path: 'link',
-      //   children: [
-      //     {
-      //       path: 'contact-us',
-      //       component: NewContactUsComponent
-      //     },
-      //     {
-      //       path: 'chat-now',
-      //       component: NewChatNowComponent
-      //     },
-      //     {
-      //       path: 'review-product',
-      //       component: NewReviewProductComponent
-      //     },
-      //     {
-      //       path: 'about',
-      //       component: NewAboutComponent
-      //     },
-      //     {
-      //       path: 'press-page',
-      //       component: NewPressPageComponent
-      //     },
-      //     {
-      //       path: 'sign-and-send',
-      //       component: NewSignAndSendComponent
-      //     },
-      //     {
-      //       path: 'shipping-and-delivery',
-      //       component: NewShippingAndDeliveryComponent
-      //     },
-      //     {
-      //       path: 'terms-and-condition',
-      //       component: NewTermsAndConditionComponent
-      //     },
-      //     {
-      //       path: 'privacy-policy',
-      //       component: NewPrivacyPolicyComponent
-      //     }
-      //   ]
-      // }
-    ]
-  }
+    path: 'onboarding',
+    component: OnboardingMobileComponent,
+  },
+  {
+    path: 'login',
+    component: LoginMobileComponent
+  },
+  {
+    path: 'home',
+    component: HomeMobileComponent,
+    //canActivate: [AuthGuard]
+  },
 ];
 
 @NgModule({
