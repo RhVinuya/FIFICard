@@ -54,6 +54,10 @@ form {
   margin: 0 auto;
   font-weight: bold;
   font-size: 12px;
+  --padding-start: 10px;
+  --padding-end: 16px;
+  --padding-top: 8px;
+  --padding-bottom: 16px;
 }
 
 .ion-grid {
@@ -122,13 +126,6 @@ ion-button::part(native) {
   height: 20px;
   background: #ab62c2;
   margin-bottom: 10px;
-}
-
-ion-input {
-  --padding-start: 10px;
-  --padding-end: 16px;
-  --padding-top: 8px;
-  --padding-bottom: 16px;
 }
 
 .lbl-forgot {

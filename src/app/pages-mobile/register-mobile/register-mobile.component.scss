@@ -1,0 +1,82 @@
+/* Global Styles */
+* {
+  font-family: Proxima Nova;
+}
+
+.top-bar {
+  width: 100%;
+  height: 20px;
+  background: #ab62c2;
+  margin-bottom: 30px;
+}
+
+ion-grid {
+  width: 100%;
+  padding: 0 20px;
+  margin: 0 auto;
+}
+
+.logo-container > ion-img {
+  width: 180px;
+  margin: 0 auto 20px;
+}
+
+ion-input {
+  border: 1px solid gray;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 11px;
+  --padding-start: 10px;
+  --padding-end: 16px;
+  --padding-top: 8px;
+  --padding-bottom: 16px;
+}
+
+ion-button {
+  --background: #8cc0c2;
+  font-weight: bold;
+  letter-spacing: 1px;
+  margin: 15px auto;
+}
+
+ion-button::part(native) {
+  border-radius: 25px;
+  height: 40px;
+  width: 180px;
+}
+
+.external > ion-img {
+  width: 90px;
+}
+
+.external > ion-img:first-child {
+  margin-right: 35px;
+}
+
+.external > ion-img:last-child {
+  width: 105px;
+  margin-bottom: 2px;
+}
+
+ion-toggle {
+  --track-background-checked: #377ffd;
+  --track-background: white;
+  --handle-background: darkgray;
+  --handle-width: 18px;
+  --handle-height: 18px;
+  --handle-max-height: auto;
+  --handle-spacing: 6px;
+
+  --handle-border-radius: 25px;
+  --handle-box-shadow: none;
+  padding: 2px;
+}
+
+ion-toggle::part(track) {
+  height: 22px;
+  width: 50px;
+  border: 1px solid darkgray;
+
+  /* Required for iOS handle to overflow the height of the track */
+  overflow: visible;
+}
