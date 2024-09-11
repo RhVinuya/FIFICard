@@ -10,7 +10,7 @@
 }
 
 a {
-  color: #92baff !important;
+  color: black;
   text-decoration: none;
 }
 
@@ -180,4 +180,10 @@ ion-label {
 
 .input input::placeholder{
   font-weight: normal;
+}
+
+.lbl-forgot {
+  font-weight: bold;
+  font-size: 12px;
+  color: gray;
 }
