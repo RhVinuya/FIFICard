@@ -10,7 +10,7 @@
 }
 
 a {
-  color: #92baff !important;
+  color: black;
   text-decoration: none;
 }
 
@@ -38,11 +38,22 @@ ion-checkbox::part(container) {
   background: #8cc0c2;
 }
 
+.logo-container > ion-img {
+  margin: 50px auto 0;
+}
+
+form {
+  width: 100%;
+}
+
 .email-input,
 .password-input {
-  width: 100%;
+  width: 95%;
   border: 1px solid gray;
   border-radius: 6px;
+  margin: 0 auto;
+  font-weight: bold;
+  font-size: 12px;
 }
 
 .ion-grid {
@@ -66,11 +77,20 @@ ion-button {
   --padding: 3px 30px;
 }
 
+ion-button > svg {
+  margin-right: 5px;
+}
+
+ion-button::part(native) {
+  height: 40px;
+  width: 135px;
+}
+
 .external {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  margin-top: 30px;
+  margin-top: 20px;
 }
 
 .external img {
@@ -109,4 +129,10 @@ ion-input {
   --padding-end: 16px;
   --padding-top: 8px;
   --padding-bottom: 16px;
+}
+
+.lbl-forgot {
+  font-weight: bold;
+  font-size: 12px;
+  color: gray;
 }
