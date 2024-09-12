@@ -1,12 +1,17 @@
-
 <div class="ion-text-center">
-    <h3>CHOOSE A CATEGORY</h3>
+  <h3>CHOOSE A CATEGORY</h3>
 </div>
 
 <ion-grid *ngIf="events">
-    <ion-row>
-        <ion-col size="4" *ngFor="let event of events">
-            <app-card-category-mobile [event]="event"></app-card-category-mobile>
-        </ion-col>
-    </ion-row>
+  <div class="ion-text-right">
+    <button (click)="columns = columns === 2 ? 3 : 2" class="btn-grid-outline">
+      <ion-icon name="grid-outline"></ion-icon>
+    </button>
+  </div>
+
+  <ion-row class="events-container">
+    <ion-col [size]="getColumnSize()" *ngFor="let event of events">
+      <app-card-category-mobile [event]="event"></app-card-category-mobile>
+    </ion-col>
+  </ion-row>
 </ion-grid>
