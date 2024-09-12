@@ -1,4 +1,3 @@
-/* Global Styles */
 * {
   font-family: Proxima Nova;
 }
@@ -62,21 +61,25 @@ ion-toggle {
   --track-background-checked: #377ffd;
   --track-background: white;
   --handle-background: darkgray;
-  --handle-width: 18px;
-  --handle-height: 18px;
+  --handle-width: 14px;
+  --handle-height: 14px;
   --handle-max-height: auto;
-  --handle-spacing: 6px;
-
+  --handle-spacing: 5px;
   --handle-border-radius: 25px;
   --handle-box-shadow: none;
-  padding: 2px;
+  padding: 1px;
 }
 
 ion-toggle::part(track) {
-  height: 22px;
-  width: 50px;
+  height: 18px;
+  width: 40px;
   border: 1px solid darkgray;
-
-  /* Required for iOS handle to overflow the height of the track */
   overflow: visible;
+}
+
+.lbl-toggle {
+  text-align: left;
+  font-size: 14px;
+  white-space: normal;
+  line-height: 1.2;
 }
