@@ -84,6 +84,7 @@ import { OnboardingMobileComponent } from "./pages-mobile/onboarding-mobile/onbo
 
 import { AuthGuard } from "../app/guards/auth.guard";
 import { RegisterMobileComponent } from "./pages-mobile/register-mobile/register-mobile.component";
+import { CardsMobileComponent } from "./pages-mobile/cards-mobile/cards-mobile.component";
 
 const routes: Routes = [
   {
@@ -563,7 +564,10 @@ const mobileRoutes: Routes = [
   {
     path: "register",
     component: RegisterMobileComponent,
-    //canActivate: [AuthGuard]
+  },
+  {
+    path: "cards",
+    component: CardsMobileComponent,
   },
 ];
 
