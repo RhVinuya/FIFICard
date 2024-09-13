@@ -23,5 +23,7 @@
             </div>
         </div>
     </div>
-    <button type="button" class="btn btn-outline-secondary btn-sm full-width" *ngIf="displayRatings.length != recordCount" (click)="loadmore()">{{'card.loadmore'|translate}}</button>
+    <div class="text-center">
+    <button type="button" class="btn btn-outline-secondary btn-sm" *ngIf="displayRatings.length != recordCount" (click)="loadmore()">{{'card.loadmore'|translate}}</button>
+</div>
 </div>
