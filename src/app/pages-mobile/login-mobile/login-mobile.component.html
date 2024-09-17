@@ -1,36 +1,71 @@
-<ion-grid className="ion-justify-content-center ion-align-items-center ion-align-self-center">
+<div class="top-bar"></div>
 
-    <ion-row className="slide-content-container">
-        <ion-col size="10" className="slide-content">
-            <ion-img
-            src="/assets/images/logo_fibeigreetings.png"
-            alt="Fibeigreetings"
-            ></ion-img>
-        </ion-col>
-    </ion-row>
-    <ion-row>
-        <form [formGroup]="form" (submit)="submit()">
-            <ion-col size="12">
-                <ion-input id="email" formControlName="email" label="Outline input" label-placement="floating" fill="outline" 
-                    placeholder="Email"></ion-input>
-            </ion-col>
-            <ion-col size="12">
-                <ion-input id="password" formControlName="password" label="Outline input" label-placement="floating" fill="outline" 
-                    [type]="showPassword? 'text':'password'" placeholder="Password"></ion-input>
-                <div class="eye">
-                    <i class="fa fab fa-eye" *ngIf="showPassword === false" (click)="onChangeShowPassword()"></i>
-                    <i class="fa fab fa-eye-slash" *ngIf="showPassword === true" (click)="onChangeShowPassword()"></i>
-                </div>
-            </ion-col>
-            <ion-col size="12">
-                <ion-button [type]="'submin'" expand="block" fill="outline">Log In</ion-button>
-            </ion-col>
-        </form>
-    </ion-row>
-    <ion-row ngClass="external mb-5l">
-            <ion-img src="/assets/images/google.png" (click)="onGoogleClick()"></ion-img>
-    </ion-row>
-    <div class="px-5 mt-2 mb-3">
-        <label>Forgot password? <a (click)="onResetPassword()">Click here to reset.</a></label>
-    </div>
+<ion-grid class="ion-justify-content-center ion-align-items-center">
+  <ion-row
+    class="slide-content-container ion-justify-content-center ion-align-items-center"
+  >
+    <ion-col size="8" class="slide-content ion-text-center logo-container">
+      <ion-img
+        src="/assets/images/logo_fibeigreetings.png"
+        alt="Fibeigreetings"
+      ></ion-img>
+    </ion-col>
+  </ion-row>
+
+  <ion-row class="ion-justify-content-center ion-align-items-center">
+    <form class="ion-justify-content-center ion-margin-horizontal">
+      <ion-col
+        size="8"
+        class="ion-justify-content-center ion-align-items-center"
+      >
+        <ion-input
+          class="email-input"
+          label="Email"
+          label-placement="floating"
+          fill="outline"
+          placeholder="Email Address"
+        ></ion-input>
+      </ion-col>
+      <ion-col
+        size="8"
+        class="ion-justify-content-center ion-align-items-center"
+      >
+        <ion-input
+          class="password-input"
+          label="Password"
+          label-placement="floating"
+          fill="outline"
+          type="password"
+          placeholder="Password"
+        ></ion-input>
+      </ion-col>
+    </form>
+  </ion-row>
+
+  <ion-row class="ion-justify-content-center">
+    <ion-button
+      expand="inline-block"
+      shape="round"
+      class="btn-login"
+      fill="outline"
+    >
+      <ion-icon name="log-in-outline" class="btn-login-icon"></ion-icon>
+      LOG IN
+    </ion-button>
+  </ion-row>
+
+  <ion-row class="ion-justify-content-center external">
+    <ion-img
+      src="/assets/images/google.png"
+      (click)="onGoogleClick()"
+    ></ion-img>
+    <ion-img src="/assets/images/facebook_logo.png"></ion-img>
+  </ion-row>
+
+  <div class="ion-text-center lbl-forgot">
+    <label>
+      Forgot password?
+      <a (click)="onResetPassword()">Click here to reset.</a>
+    </label>
+  </div>
 </ion-grid>

@@ -1,0 +1,21 @@
+h3 {
+  font-weight: bold;
+  border: 1px solid rgb(194, 64, 238);
+  border-width: 1px 0;
+  padding: 8px 0;
+}
+
+ion-grid {
+  position: relative;
+}
+
+.btn-grid-outline {
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin-right: 12px;
+}
+
+.events-container {
+  margin-top: 15px;
+}
