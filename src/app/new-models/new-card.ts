@@ -106,6 +106,7 @@ export interface INewRating {
     title: string
     review: string;
     rate: number;
+    userId: string;
     username: string;
     approve: boolean;
     created: Timestamp;
@@ -128,6 +129,7 @@ export class NewRating {
     title: string
     review: string;
     rate: number;
+    userId: string;
     username: string;
     approve: boolean;
     created: Timestamp;
@@ -138,6 +140,7 @@ export class NewRating {
         this.title = value.title;
         this.review = value.review;
         this.rate = value.rate;
+        this.userId = value.userId;
         this.username = value.username;
         this.approve = value.approve;
         this.created = value.created;
