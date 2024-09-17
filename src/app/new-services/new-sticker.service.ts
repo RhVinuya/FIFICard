@@ -73,7 +73,7 @@ export class NewStickerService {
     });
   }
 
-  getImages(id: string): Promise<INewStickerImage[]> {
+  getImages(id: string, isGallery: boolean = false): Promise<INewStickerImage[]> {
     return new Promise((resolve) => {
       const col = collection(this.store, 'cards/' + id + '/cardimages');
       const q = query(col, where('active', "==", true))
@@ -86,10 +86,18 @@ export class NewStickerService {
           temp.push(image);
         });
 
-        environment.imagetitles.forEach(title => {
-          let image = temp.find(x => x.title === title);
-          if (image) images.push(image)
-        })
+        if (isGallery === false) {
+          environment.imagetitles.forEach(title => {
+            let image = temp.find(x => x.title === title);
+            if (image) images.push(image)
+          })
+        }
+        else {
+          environment.gallerytitles.forEach(title => {
+            let image = temp.find(x => x.title === title);
+            if (image) images.push(image)
+          })
+        }
 
         resolve(images);
       })

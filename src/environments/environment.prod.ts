@@ -111,6 +111,17 @@ export const environment = {
     'Other',
     'QR'
   ],
+  gallerytitles: [
+    'Front',
+    'Sign & Send',
+    'Inside',
+    'Outside',
+    'Back',
+    'Envelope',
+    'Stickers',
+    'Other',
+    'QR'
+  ],
   us: ['us.fibeigreetings.com', 'fibeigreetings.us'],
   sg: ['sg.fibeigreetings.com', 'fibeigreetings.sg'],
   eventpriorities: [

@@ -96,7 +96,7 @@ export class NewDetailsComponent implements OnInit {
           this.isRegular = this.model instanceof NewCard && this.model.messagetype === 'regular';
           this.loading = false;
           this.ref.detectChanges();
-          let images = await this.cardService.getImages(this.id);
+          let images = await this.cardService.getImages(this.id, true);
           this.loadImages(images);
           let qrImage = images.find(x => x.title === 'QR');
           if (qrImage) {
@@ -113,7 +113,7 @@ export class NewDetailsComponent implements OnInit {
           this.isFeatured = this.model.featured;
           this.loading = false;
           this.ref.detectChanges();
-          this.loadImages(await this.stickerService.getImages(this.id));
+          this.loadImages(await this.stickerService.getImages(this.id, true));
           await this.loadRatings(await this.cardService.getRatings(this.id));
         })
       }
@@ -125,7 +125,7 @@ export class NewDetailsComponent implements OnInit {
           this.isFeatured = this.model.featured;
           this.loading = false;
           this.ref.detectChanges();
-          this.loadImages(await this.postcardService.getImages(this.id));
+          this.loadImages(await this.postcardService.getImages(this.id, true));
 
           let ibundles = await this.postcardService.getBundles(this.id);
           ibundles.sort((a, b) => { return a.price - b.price });
@@ -144,7 +144,7 @@ export class NewDetailsComponent implements OnInit {
           this.isFeatured = this.model.featured;
           this.loading = false;
           this.ref.detectChanges();
-          this.loadImages(await this.giftService.getImages(this.id));
+          this.loadImages(await this.giftService.getImages(this.id, true));
           await this.loadRatings(await this.cardService.getRatings(this.id));
         })
       }
