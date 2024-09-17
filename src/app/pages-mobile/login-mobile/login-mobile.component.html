@@ -13,7 +13,7 @@
   </ion-row>
 
   <ion-row class="ion-justify-content-center ion-align-items-center">
-    <form class="ion-justify-content-center ion-margin-horizontal">
+    <form [formGroup]="form" class="ion-justify-content-center ion-margin-horizontal">
       <ion-col
         size="8"
         class="ion-justify-content-center ion-align-items-center"
@@ -24,6 +24,7 @@
           label-placement="floating"
           fill="outline"
           placeholder="Email Address"
+          formControlName="email"
         ></ion-input>
       </ion-col>
       <ion-col
@@ -37,6 +38,7 @@
           fill="outline"
           type="password"
           placeholder="Password"
+          formControlName="password"
         ></ion-input>
       </ion-col>
     </form>
@@ -48,6 +50,7 @@
       shape="round"
       class="btn-login"
       fill="outline"
+      (click)="submit()"
     >
       <ion-icon name="log-in-outline" class="btn-login-icon"></ion-icon>
       LOG IN

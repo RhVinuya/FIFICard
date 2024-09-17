@@ -22,4 +22,6 @@ export class NewEvent {
     public thumbnails: string[];
     public banner: string;
     public banners: string[];
+    public icon: string;
+    public icons: string[];
 }

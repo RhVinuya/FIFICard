@@ -38,7 +38,9 @@ export class CardCategoriesMobileComponent implements OnInit {
   }
 
   async load() {
-    this.events = await this.eventService.getEventByType('card');
+    let events = await this.eventService.getEventByType('card');
+
+    this.events = events.filter( o => o.icon);
     this.storageService.saveCategories('card', this.events);
   }
 
