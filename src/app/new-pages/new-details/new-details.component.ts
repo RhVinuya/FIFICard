@@ -7,9 +7,9 @@ import { NewVideoPlayerComponent } from 'src/app/new-components/new-video-player
 import { INewCard, INewCardImage, INewRating, NewCard, NewRating } from 'src/app/new-models/new-card';
 import { INewCartBundle } from 'src/app/new-models/new-cart';
 import { IModelType, ModelType } from 'src/app/new-models/new-enum';
-import { INewGiftImage, NewGift } from 'src/app/new-models/new-gift';
-import { INewPostcardBundle, NewPostcard, NewPostcardBundle } from 'src/app/new-models/new-postcard';
-import { INewStickerImage, NewSticker } from 'src/app/new-models/new-sticker';
+import { INewGift, INewGiftImage, NewGift } from 'src/app/new-models/new-gift';
+import { INewPostcard, INewPostcardBundle, NewPostcard, NewPostcardBundle } from 'src/app/new-models/new-postcard';
+import { INewSticker, INewStickerImage, NewSticker } from 'src/app/new-models/new-sticker';
 import { NewCardService } from 'src/app/new-services/new-card.service';
 import { NewCartService } from 'src/app/new-services/new-cart.service';
 import { NewFileService } from 'src/app/new-services/new-file.service';
@@ -223,5 +223,25 @@ export class NewDetailsComponent implements OnInit {
   playInstruction() {
     const reference = this.modalService.open(NewVideoPlayerComponent, { animation: true, size: 'xl', centered: true });
     reference.componentInstance.url = '/assets/images/talking-card.mp4'
+  }
+
+  getEvents(){
+    if (this.type === 'card') {
+      let iNewCard = this.iModel as INewCard;
+      return iNewCard.event
+    }
+    else if (this.type === 'sticker') {
+      let iNewSticker = this.iModel as INewSticker
+      return iNewSticker.events.join(", ")
+    }
+    else if (this.type === 'postcard') {
+      let iNewPostcard = this.iModel as INewPostcard
+      return iNewPostcard.events.join(", ")
+    }
+    else if (this.type === 'gift') {
+      let iNewGift = this.iModel as INewGift
+      return iNewGift.events.join(", ")
+    }
+    return "";
   }
 }
