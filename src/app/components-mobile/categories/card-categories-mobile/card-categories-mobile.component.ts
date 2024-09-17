@@ -1,10 +1,12 @@
-import { EventService } from "./../../../services/event.service";
-import { NewCardService } from "src/app/new-services/new-card.service";
+
 import { Component, OnInit } from "@angular/core";
 import { environment } from "src/environments/environment";
 import { INewCard } from "src/app/new-models/new-card";
 import { NewEventService } from "src/app/new-services/new-event.service";
 import { NewEvent } from "src/app/new-models/new-event";
+import { EventService } from './../../../services/event.service';
+import { NewCardService } from 'src/app/new-services/new-card.service';
+import { NewStorageService } from 'src/app/new-services/new-storage.service';
 
 @Component({
   selector: "app-card-categories-mobile",
@@ -14,14 +16,19 @@ import { NewEvent } from "src/app/new-models/new-event";
 export class CardCategoriesMobileComponent implements OnInit {
   eventService: NewEventService;
   columns: number = 2;
+  storageService: NewStorageService;
 
   cardevents = environment.cardevents;
 
   activeevents: string[] = [];
   events: NewEvent[] = [];
 
-  constructor(_eventService: NewEventService) {
+  constructor(
+    _eventService: NewEventService,
+    _storageService: NewStorageService
+  ) {
     this.eventService = _eventService;
+    this.storageService = _storageService;
   }
 
   ngOnInit(): void {
@@ -31,8 +38,8 @@ export class CardCategoriesMobileComponent implements OnInit {
   }
 
   async load() {
-    this.events = await this.eventService.getEventByType("card");
-    console.log(this.events);
+    this.events = await this.eventService.getEventByType('card');
+    this.storageService.saveCategories('card', this.events);
   }
 
   getColumnSize() {

@@ -219,6 +219,7 @@ import { CardCategoryMobileComponent } from './components-mobile/categories/card
 import { CardsMobileComponent } from './pages-mobile/cards-mobile/cards-mobile.component';
 import { RegisterMobileComponent } from './pages-mobile/register-mobile/register-mobile.component';
 import { CardEventsMobileComponent } from './components-mobile/events/card-events-mobile/card-events-mobile.component';
+import { DetailsMobileComponent } from './pages-mobile/details-mobile/details-mobile.component';
 
 @NgModule({
   declarations: [
@@ -415,6 +416,7 @@ import { CardEventsMobileComponent } from './components-mobile/events/card-event
     CardsMobileComponent,
     RegisterMobileComponent,
     CardEventsMobileComponent,
+    DetailsMobileComponent,
   ],
   imports: [
     BrowserModule,

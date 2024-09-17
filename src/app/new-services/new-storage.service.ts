@@ -5,6 +5,7 @@ import { INewCart } from '../new-models/new-cart';
 import { INewPayment } from '../new-models/new-payment';
 import { INewPersonalize } from '../new-models/new-personalize';
 import { IModelType, StorageEnum } from '../new-models/new-enum';
+import { NewEvent } from '../new-models/new-event';
 
 @Injectable({
   providedIn: 'root'
@@ -187,5 +188,18 @@ export class NewStorageService {
     if (data !== null) return data;
     else return '';
   }
+
+  
+
+  getCategories(type: 'card' | 'stickers' | 'postcard' | 'gift'): NewEvent[] | null {
+    let data: string | null = localStorage.getItem(environment.storage + type.toUpperCase() + "-" + StorageEnum.Categories)
+    if (data !== null) return JSON.parse(data);
+    else return null;
+  }
+
+  saveCategories(type: 'card' | 'stickers' | 'postcard' | 'gift', items: NewEvent[]) {
+    localStorage.setItem(environment.storage + type.toUpperCase() + "-" + StorageEnum.Categories, JSON.stringify(items));
+  }
+
 
 }
