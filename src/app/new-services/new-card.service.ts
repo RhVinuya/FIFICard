@@ -144,6 +144,7 @@ export class NewCardService {
     return new Promise(resolve => {
       addDoc(collection(this.store, 'cards/' + id + "/ratings"), {
         date: serverTimestamp(),
+        userId: rating.userId,
         username: rating.username,
         rate: rating.rate,
         title: rating.title,
@@ -157,4 +158,19 @@ export class NewCardService {
     });
   }
 
+  async getUserRating(id: string, userId: string): Promise<INewRating[]> {
+    return new Promise((resolve) => {
+      const col = collection(this.store, 'cards/' + id + '/ratings');
+      const q = query(col, where('userId', "==", userId))
+      getDocs(q).then(docs => {
+        let items: INewRating[] = [];
+        docs.forEach(doc => {
+          let item: INewRating = doc.data() as INewRating;
+          item.id = doc.id;
+          items.push(item);
+        })
+        resolve(items);
+      })
+    });
+  }
 }

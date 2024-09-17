@@ -15,6 +15,7 @@ import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { NewStorageService } from 'src/app/new-services/new-storage.service';
 import { NewInfoMessageComponent } from '../../new-info-message/new-info-message.component';
+import { INewUser } from 'src/app/new-models/new-user';
 
 @Component({
   selector: 'app-new-order-item',
@@ -29,13 +30,17 @@ export class NewOrderItemComponent implements OnInit {
   @Input() iItem: INewPaymentItem;
   @Input() location: LocationType;
 
+  processing: boolean = false;
   submitted: boolean = false;
-  rate: number = 0;
+  rate: number = 1;
+  user: INewUser | undefined;
+  ratings: INewRating[] = [];
+  reviewed: boolean = true;
   
   reviewForm = new FormGroup({
     title: new FormControl<string>('', [Validators.required]),
     review: new FormControl<string>('', [Validators.required]),
-    rate: new FormControl<number>(this.rate, [Validators.required]),
+    rate: new FormControl<number>(this.rate, [Validators.required, Validators.min(1), Validators.max(5)]),
   });
 
   cardService: NewCardService;
@@ -75,22 +80,28 @@ export class NewOrderItemComponent implements OnInit {
   }
 
   async loadDetails() {
+
+    this.user = this.storageService.getUser();
+
     this.item = new NewPaymentItem(this.iItem, this.location);
     if (this.iItem.type === 'card') {
       let iCard = await this.cardService.get(this.iItem.itemId);
       this.model = new NewCard(iCard as INewCard);
+      this.ratings = await this.cardService.getUserRating(this.iItem.itemId, this.user!.id);
       let images = await this.cardService.getImages(this.iItem.itemId);
       if (images.length > 0) this.loadImage(images[0].url)
     }
     else if (this.iItem.type === 'sticker') {
       let iSticker = await this.stickerService.get(this.iItem.itemId);
       this.model = new NewSticker(iSticker as INewSticker);
+      this.ratings = await this.cardService.getUserRating(this.iItem.itemId, this.user!.id);
       let images = await this.stickerService.getImages(this.iItem.itemId);
       if (images.length > 0) this.loadImage(images[0].url)
     }
     else if (this.iItem.type === 'postcard') {
       let iPostcard = await this.postcardService.get(this.iItem.itemId);
       this.model = new NewPostcard(iPostcard as INewPostcard);
+      this.ratings = await this.cardService.getUserRating(this.iItem.itemId, this.user!.id);
       if (this.iItem.bundle){
         this.bundleDetails = 'Bundle of ' + this.iItem.bundle.count.toLocaleString() + ' pcs'
       }
@@ -100,9 +111,13 @@ export class NewOrderItemComponent implements OnInit {
     else if (this.iItem.type === 'gift') {
       let iGift = await this.giftService.get(this.iItem.itemId);
       this.model = new NewGift(iGift as INewGift);
+      this.ratings = await this.cardService.getUserRating(this.iItem.itemId, this.user!.id);
       let images = await this.giftService.getImages(this.iItem.itemId);
       if (images.length > 0) this.loadImage(images[0].url)
     }
+
+    this.reviewed = this.ratings.length > 0;
+    
   }
 
   async loadImage(url: string) {
@@ -118,9 +133,17 @@ export class NewOrderItemComponent implements OnInit {
   }
 
   async submit() {
-    let user = this.storageService.getUser();
+    this.submitted = true;
+    if (this.reviewForm.invalid) return;
+    this.processing = true;
+
+    this.reviewForm.controls.title.setErrors(null);
+    this.reviewForm.controls.review.setErrors(null);
+    this.reviewForm.controls.rate.setErrors(null);
+
     let value: INewRating = this.reviewForm.value as INewRating;
-    value.username = user?.firstname + " " + user?.lastname;
+    value.userId = this.user!.id;
+    value.username = this.user?.firstname + " " + this.user?.lastname;
     await this.cardService.addRating(this.model!.id, value);
 
     this.modalRef.close();
