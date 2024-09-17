@@ -76,15 +76,14 @@ import { NewRegistrationCompleteComponent } from "./new-pages/new-registration-c
 import { NewCheckoutComponent } from "./new-pages/new-checkout/new-checkout.component";
 import { NewPaymentComponent } from "./new-pages/new-payment/new-payment.component";
 import { NewPersonalizesComponent } from "./new-pages/new-personalizes/new-personalizes.component";
-
 import { HomeMobileComponent } from "./pages-mobile/home-mobile/home-mobile.component";
 import { LayoutMobileComponent } from "./pages-mobile/layout-mobile/layout-mobile.component";
 import { LoginMobileComponent } from "./pages-mobile/login-mobile/login-mobile.component";
 import { OnboardingMobileComponent } from "./pages-mobile/onboarding-mobile/onboarding-mobile.component";
-
-import { AuthGuard } from "../app/guards/auth.guard";
 import { RegisterMobileComponent } from "./pages-mobile/register-mobile/register-mobile.component";
-import { CardsMobileComponent } from "./pages-mobile/cards-mobile/cards-mobile.component";
+import { AuthGuard } from '../app/guards/auth.guard';
+import { DetailsMobileComponent } from './pages-mobile/details-mobile/details-mobile.component';
+import { CardsMobileComponent } from './pages-mobile/cards-mobile/cards-mobile.component';
 
 const routes: Routes = [
   {
@@ -566,8 +565,19 @@ const mobileRoutes: Routes = [
     component: RegisterMobileComponent,
   },
   {
-    path: "cards",
+    path: 'home',
+    component: HomeMobileComponent,
+    //canActivate: [AuthGuard]
+  },
+  {
+    path: ':type/:id/details',
+    component: DetailsMobileComponent,
+    //canActivate: [AuthGuard]
+  },
+  {
+    path: 'cards/:category',
     component: CardsMobileComponent,
+    //canActivate: [AuthGuard]
   },
 ];
 

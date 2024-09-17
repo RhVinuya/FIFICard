@@ -15,6 +15,6 @@ export class CardCategoryMobileComponent implements OnInit {
   ngOnInit(): void {}
 
   onClick() {
-    this.router.navigate(["/cards/event/" + this.event.id]);
+    this.router.navigate(['/cards/' + this.event.name]);
   }
 }
