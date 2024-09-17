@@ -117,8 +117,6 @@ export class NewOrderItemComponent implements OnInit {
     }
 
     this.reviewed = this.ratings.length > 0;
-    console.log(this.iItem.itemId);
-    console.log(this.reviewed);
     
   }
 
