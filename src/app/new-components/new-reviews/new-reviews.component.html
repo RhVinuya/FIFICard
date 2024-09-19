@@ -1,27 +1,32 @@
 <div>
+    <h3 class="text-purple mb-4" *ngIf="displayRatings.length != 0">Reviews</h3>
     <div class="row" *ngFor="let rating of displayRatings">
         <div class="card">
             <div class="card-body">
-            <div class="row">
-                <div class="col-md-9">
-                <header class="">
-                    <h6 class="section-title" style="font-weight: bold;margin:0">{{rating.title}}</h6>
-                </header>
+                <div class="row">
+                    <div class="col-md-9">
+                        <header class="">
+                            <h6 class="section-title" style="font-weight: bold;margin:0">{{rating.title}}</h6>
+                        </header>
+                    </div>
+                    <div class="col-md-3 text-right" style="float:right">
+                        <section style="float:right">
+                            <app-new-rate [rate]="rating.rate"></app-new-rate>
+                        </section>
+                    </div>
                 </div>
-                <div class="col-md-3 text-right" style="float:right">
-                <section style="float:right">
-                    <app-new-rate [rate]="rating.rate"></app-new-rate>
+                <section>
+                    <h6><i>“{{rating?.review}}”</i></h6>
                 </section>
-                </div>
-            </div>
-            <section>
-                <h6><i>“{{rating?.review}}”</i></h6>
-            </section>
-            <section style="text-align:right">
-                <h6 class="section-title">{{rating?.username}} | {{rating?.created?.toDate()?.toLocaleDateString()}}</h6>
-            </section>
+                <section style="text-align:right">
+                    <h6 class="section-title">{{rating?.username}} | {{rating?.created?.toDate()?.toLocaleDateString()}}
+                    </h6>
+                </section>
             </div>
         </div>
     </div>
-    <button type="button" class="btn btn-outline-secondary btn-sm full-width" *ngIf="displayRatings.length != recordCount" (click)="loadmore()">{{'card.loadmore'|translate}}</button>
+    <div class="ion-text-center">
+        <button type="button" class="btn btn-outline-secondary btn-lg" *ngIf="displayRatings.length != recordCount"
+            (click)="loadmore()">{{'card.loadmore'|translate}}</button>
+    </div>
 </div>
