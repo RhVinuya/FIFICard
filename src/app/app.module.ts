@@ -218,8 +218,9 @@ import { CardCategoriesMobileComponent } from "./components-mobile/categories/ca
 import { CardCategoryMobileComponent } from "./components-mobile/categories/card-categories-mobile/card-category-mobile/card-category-mobile.component";
 import { CardsMobileComponent } from "./pages-mobile/cards-mobile/cards-mobile.component";
 import { RegisterMobileComponent } from "./pages-mobile/register-mobile/register-mobile.component";
-import { CardEventsMobileComponent } from "./components-mobile/events/card-events-mobile/card-events-mobile.component";
 import { DetailsMobileComponent } from "./pages-mobile/cards-mobile/details-mobile/details-mobile.component";
+import { CardListMobileComponent } from "./components-mobile/card-list-mobile/card-list-mobile.component";
+import { CardTileMobileComponent } from "./components-mobile/card-list-mobile/card-tile-mobile/card-tile-mobile.component";
 
 @NgModule({
   declarations: [
@@ -415,8 +416,9 @@ import { DetailsMobileComponent } from "./pages-mobile/cards-mobile/details-mobi
     CardCategoryMobileComponent,
     CardsMobileComponent,
     RegisterMobileComponent,
-    CardEventsMobileComponent,
     DetailsMobileComponent,
+    CardListMobileComponent,
+    CardTileMobileComponent,
   ],
   imports: [
     BrowserModule,

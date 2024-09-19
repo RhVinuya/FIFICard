@@ -1,277 +1,286 @@
 /* You can add global styles to this file, and also import other style files */
-@import '~lightgallery/scss/lightgallery';
+@import "lightgallery/scss/lightgallery";
 
 @font-face {
-   font-family: Constantia;
-   src: url(assets/webfonts/Constantia/Constantia.otf) format("opentype");
+  font-family: Constantia;
+  src: url(assets/webfonts/Constantia/Constantia.otf) format("opentype");
 }
 
 @font-face {
-   font-family: Proxima Nova;
-   font-style: normal;
-   font-weight: normal;
-   src: url('assets/webfonts/ProximaNova/proximanova_regular.ttf') format('truetype');
+  font-family: Proxima Nova;
+  font-style: normal;
+  font-weight: normal;
+  src: url("assets/webfonts/ProximaNova/proximanova_regular.ttf")
+    format("truetype");
 }
 
 @font-face {
-   font-family: Proxima Nova;
-   font-style: normal;
-   font-weight: bold;
-   src: url('assets/webfonts/ProximaNova/proximanova_bold.otf') format('opentype');
+  font-family: Proxima Nova;
+  font-style: normal;
+  font-weight: bold;
+  src: url("assets/webfonts/ProximaNova/proximanova_bold.otf")
+    format("opentype");
 }
 
 @font-face {
-   font-family: Neue Einstellung;
-   font-style: normal;
-   font-weight: normal;
-   src: url('assets/webfonts/Neue_Einstellung/Hanken Design Co - Neue Einstellung Regular.otf') format('opentype');
+  font-family: Neue Einstellung;
+  font-style: normal;
+  font-weight: normal;
+  src: url("assets/webfonts/Neue_Einstellung/Hanken Design Co - Neue Einstellung Regular.otf")
+    format("opentype");
 }
 
 @font-face {
-   font-family: Neue Einstellung;
-   font-style: normal;
-   font-weight: bold;
-   src: url('assets/webfonts/Neue_Einstellung/Hanken Design Co - Neue Einstellung Bold.otf') format('opentype');
+  font-family: Neue Einstellung;
+  font-style: normal;
+  font-weight: bold;
+  src: url("assets/webfonts/Neue_Einstellung/Hanken Design Co - Neue Einstellung Bold.otf")
+    format("opentype");
 }
 
 @font-face {
-   font-family: Aristotelica Pro;
-   font-style: normal;
-   font-weight: normal;
-   src: url('assets/webfonts/aristotelica/AristotelicaSmallCaps-Regular.ttf') format('truetype');
+  font-family: Aristotelica Pro;
+  font-style: normal;
+  font-weight: normal;
+  src: url("assets/webfonts/aristotelica/AristotelicaSmallCaps-Regular.ttf")
+    format("truetype");
 }
 
 @import "ngx-material-pages_theme.scss";
-@import '@ctrl/ngx-emoji-mart/picker';
+@import "@ctrl/ngx-emoji-mart/picker";
 
 @font-face {
-   font-family: "Now Bold";
-   src: url("https://db.onlinewebfonts.com/t/9dcdfe1b9b9e5bbdf8020454d1724578.eot");
-   src: url("https://db.onlinewebfonts.com/t/9dcdfe1b9b9e5bbdf8020454d1724578.eot?#iefix")format("embedded-opentype"),
-      url("https://db.onlinewebfonts.com/t/9dcdfe1b9b9e5bbdf8020454d1724578.woff")format("woff"),
-      url("https://db.onlinewebfonts.com/t/9dcdfe1b9b9e5bbdf8020454d1724578.woff2")format("woff2"),
-      url("https://db.onlinewebfonts.com/t/9dcdfe1b9b9e5bbdf8020454d1724578.ttf")format("truetype"),
-      url("https://db.onlinewebfonts.com/t/9dcdfe1b9b9e5bbdf8020454d1724578.svg#Now Bold")format("svg");
-   font-weight: normal;
-   font-style: normal;
-   font-display: swap;
+  font-family: "Now Bold";
+  src: url("https://db.onlinewebfonts.com/t/9dcdfe1b9b9e5bbdf8020454d1724578.eot");
+  src: url("https://db.onlinewebfonts.com/t/9dcdfe1b9b9e5bbdf8020454d1724578.eot?#iefix")
+      format("embedded-opentype"),
+    url("https://db.onlinewebfonts.com/t/9dcdfe1b9b9e5bbdf8020454d1724578.woff")
+      format("woff"),
+    url("https://db.onlinewebfonts.com/t/9dcdfe1b9b9e5bbdf8020454d1724578.woff2")
+      format("woff2"),
+    url("https://db.onlinewebfonts.com/t/9dcdfe1b9b9e5bbdf8020454d1724578.ttf")
+      format("truetype"),
+    url("https://db.onlinewebfonts.com/t/9dcdfe1b9b9e5bbdf8020454d1724578.svg#Now Bold")
+      format("svg");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
 }
 
 :root {
-   --ion-font-family: Constantia;
-   --ion-default-font: Constantia;
-   --bs-body-font-family: Constantia;
+  --ion-font-family: Constantia;
+  --ion-default-font: Constantia;
+  --bs-body-font-family: Constantia;
 }
 
 html,
 body {
-   height: 100%;
+  height: 100%;
 }
 
 body {
-   margin: 0;
-   font-family: Constantia;
+  margin: 0;
+  font-family: Constantia;
 }
 
 .full-width-dialog .mat-dialog-container {
-   max-width: 40vw !important;
+  max-width: 40vw !important;
 }
 
 .sign-out-button {
-   display: none !important;
+  display: none !important;
 }
 
 .modal-backdrop {
-   z-index: 1 !important;
+  z-index: 1 !important;
 }
 
 .visually-hidden {
-   display: none !important;
+  display: none !important;
 }
 
 .rate-count {
-   padding-top: 7%;
+  padding-top: 7%;
 }
 
 .center-content {
-   justify-content: center;
+  justify-content: center;
 }
 
-@media(min-width: 768px) {
-   ion-header {
-      display: block;
-   }
+@media (min-width: 768px) {
+  ion-header {
+    display: block;
+  }
 
-   app-footer {
-      display: block;
-   }
-
+  app-footer {
+    display: block;
+  }
 }
 
-@media(max-width: 768px) {
-   ion-header {
-      display: block !important;
-   }
+@media (max-width: 768px) {
+  ion-header {
+    display: block !important;
+  }
 
-   .fb_dialog_content>iframe {
-      bottom: 70px !Important;
-   }
+  .fb_dialog_content > iframe {
+    bottom: 70px !important;
+  }
 
-   .navbar.navbar-main,
-   .tag-line,
-   .my-cart {
-      display: none !important;
-   }
+  .navbar.navbar-main,
+  .tag-line,
+  .my-cart {
+    display: none !important;
+  }
 
-   app-footer {
-      display: none;
-   }
+  app-footer {
+    display: none;
+  }
 }
 
-.fb_dialog_content>iframe {
-   bottom: 90px !Important;
+.fb_dialog_content > iframe {
+  bottom: 90px !important;
 }
 
 .mxw-1920px {
-   max-width: 1920px;
-   margin: auto;
-   padding-inline: 20px;
+  max-width: 1920px;
+  margin: auto;
+  padding-inline: 20px;
 }
 
 .mxw-1536px {
-   max-width: 1536px;
-   margin: auto;
+  max-width: 1536px;
+  margin: auto;
 }
 
 .mxw-1440px {
-   max-width: 1440px;
-   margin: auto;
+  max-width: 1440px;
+  margin: auto;
 }
 
 .mxw-1320px {
-   max-width: 1320px;
-   margin: auto;
+  max-width: 1320px;
+  margin: auto;
 }
 
 .mxw-1080px {
-   max-width: 1080px;
-   margin: auto;
+  max-width: 1080px;
+  margin: auto;
 }
 
 .mxw-800px {
-   max-width: 800px;
-   margin: auto;
+  max-width: 800px;
+  margin: auto;
 }
 
 .i-poetry {
-   border: 2px solid purple;
-   background: white !important;
-   color: purple !important;
-   font-size: 16px;
-   border-left: 10px solid;
+  border: 2px solid purple;
+  background: white !important;
+  color: purple !important;
+  font-size: 16px;
+  border-left: 10px solid;
 }
 
 .i-poetry:hover {
-   border: 2px solid #550255;
-   background: purple !important;
-   color: #fff !important;
-   font-size: 16px;
-   border-left: 10px solid #550255;
+  border: 2px solid #550255;
+  background: purple !important;
+  color: #fff !important;
+  font-size: 16px;
+  border-left: 10px solid #550255;
 }
 
 .i-featured {
-   border: 2px solid #bd283e;
-   background: white !important;
-   color: #bd283e !important;
-   font-size: 16px;
-   border-left: 10px solid;
+  border: 2px solid #bd283e;
+  background: white !important;
+  color: #bd283e !important;
+  font-size: 16px;
+  border-left: 10px solid;
 }
 
 .i-featured:hover {
-   border: 2px solid #871c2d;
-   background: #bd283e !important;
-   color: #fff !important;
-   font-size: 16px;
-   border-left: 10px solid #871c2d;
+  border: 2px solid #871c2d;
+  background: #bd283e !important;
+  color: #fff !important;
+  font-size: 16px;
+  border-left: 10px solid #871c2d;
 }
 
 .text-purple {
-   color: #ab37c9;
+  color: #ab37c9;
 }
 
 .text-gray {
-   color: #666;
+  color: #666;
 }
 
 .text-lightgray {
-   color: #aaa;
+  color: #aaa;
 }
 
 .text-blue {
-   color: #5e17eb;
+  color: #5e17eb;
 }
 
 .sub {
-   font-size: 0.7rem;
-   line-height: 0.7rem;
+  font-size: 0.7rem;
+  line-height: 0.7rem;
 }
 
 .small-offcanvas {
-   width: 200px;
+  width: 200px;
 }
 
 .medium-offcanvas {
-   width: 400px;
+  width: 400px;
 }
 
 .large-offcanvas {
-   width: 600px !important;
+  width: 600px !important;
 }
 
 .sign-up-offcanvas {
-   height: 350px !important;
+  height: 350px !important;
 }
 
 .cursor {
-   cursor: pointer;
+  cursor: pointer;
 }
 
 .dynamic-popover .popover-body {
-   width: 500px;
-   /* Allow dynamic width adjustment */
+  width: 500px;
+  /* Allow dynamic width adjustment */
 }
 
 .dynamic-popover .popover-header {
-   width: 400px;
-   /* Allow dynamic width adjustment */
+  width: 400px;
+  /* Allow dynamic width adjustment */
 }
 
-.next-class{
-   max-width: 500px !important;
+.next-class {
+  max-width: 500px !important;
 }
 
-.next-class .popover-body{
-   font-size: 20px;
-   line-height: 23px;
-   color: #ab37c9;
+.next-class .popover-body {
+  font-size: 20px;
+  line-height: 23px;
+  color: #ab37c9;
 }
 
 .image-class {
-   max-width: 400px !important;
+  max-width: 400px !important;
 }
 
-.image-class .popover-body{
-   font-size: 20px;
-   line-height: 23px;
-   color: #ab37c9;
+.image-class .popover-body {
+  font-size: 20px;
+  line-height: 23px;
+  color: #ab37c9;
 }
 
 .bottom-class {
-   max-width: 1400px !important;
+  max-width: 1400px !important;
 }
 
-.bottom-class .popover-body{
-   font-size: 20px;
-   line-height: 23px;
-   color: #ab37c9;
+.bottom-class .popover-body {
+  font-size: 20px;
+  line-height: 23px;
+  color: #ab37c9;
 }

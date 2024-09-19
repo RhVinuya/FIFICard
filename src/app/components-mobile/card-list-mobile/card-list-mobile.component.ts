@@ -7,7 +7,6 @@ import { INewCard } from "src/app/new-models/new-card";
   styleUrls: ["./card-list-mobile.component.scss"],
 })
 export class CardListMobileComponent implements OnInit {
-
   @Input() cards: INewCard[];
 
   columns: number = 3;
@@ -15,5 +14,4 @@ export class CardListMobileComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
-
 }

@@ -565,23 +565,13 @@ const mobileRoutes: Routes = [
     component: RegisterMobileComponent,
   },
   {
-    path: "home",
-    component: HomeMobileComponent,
-    //canActivate: [AuthGuard]
-  },
-  {
     path: ":type/:id/details",
     component: DetailsMobileComponent,
     //canActivate: [AuthGuard]
   },
   {
-    path: "cards/:category",
+    path: "cards/:event",
     component: CardsMobileComponent,
-    //canActivate: [AuthGuard]
-  },
-  {
-    path: "details",
-    component: DetailsMobileComponent,
     //canActivate: [AuthGuard]
   },
 ];
