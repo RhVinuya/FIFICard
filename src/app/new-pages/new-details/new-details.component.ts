@@ -79,6 +79,8 @@ export class NewDetailsComponent implements OnInit {
   isPoetry: boolean = false;
   isRegular: boolean = false;
 
+  stickerimage: string = '';
+
   ngOnInit(): void {
     this.activateRoute.params.subscribe(params => {
       this.loading = true;
@@ -98,6 +100,7 @@ export class NewDetailsComponent implements OnInit {
           this.ref.detectChanges();
           let images = await this.cardService.getImages(this.id, true);
           this.loadImages(images);
+          console.log(images)
           let qrImage = images.find(x => x.title === 'QR');
           if (qrImage) {
             this.qr = await this.fileService.getImageURL(qrImage.url);
@@ -157,6 +160,7 @@ export class NewDetailsComponent implements OnInit {
       for await (let item of items) {
         let url = await this.fileService.getImageURL(item.url);
         this.images = [...this.images, url]
+        if (item.title === 'Stickers') this.stickerimage = url;
       }
       this.ref.detectChanges();
     }

@@ -1,4 +1,5 @@
 <div class="primary mb-3">
+    <a [routerLink]="['/new/stickers/all']" class="abs" *ngIf="sticker !== '' && sticker === selected">CLICK HERE TO BUY MORE STICKERS</a>
     <img [src]="selected" *ngIf="selected !== ''" (click)="openGallery(selected)" onContextMenu="return false;">
 </div>
 <div class="items">

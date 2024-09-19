@@ -15,6 +15,11 @@ export class NewDetailsImagesComponent implements OnInit {
     this.ref.detectChanges();
   }
 
+  @Input() set stickerimage(value: string) {
+    console.log(value)
+    this.sticker = value
+  }
+
   modalService: NgbModal;
   ref: ChangeDetectorRef;
 
@@ -30,6 +35,7 @@ export class NewDetailsImagesComponent implements OnInit {
   selected: string = '';
   display: string = '';
   modalRef: NgbModalRef;
+  sticker: string = '';
 
   ngOnInit(): void {}
 

@@ -5,6 +5,7 @@
 }
 
 .primary {
+    position: relative;
     aspect-ratio: 1/1;
     display: flex;
     flex-direction: row;
@@ -17,6 +18,20 @@
     max-height: 100%;
     object-fit: cover;
     cursor: zoom-in;
+}
+
+.primary .abs{
+    color: #5e17eb;
+    text-decoration: none;
+    position: absolute;
+    top: 20%;
+    width: fit-content;
+    margin-inline: auto; 
+}
+
+.primary .abs:hover{
+    text-decoration: underline;
+    color: #cb6ce6;
 }
 
 .items {
