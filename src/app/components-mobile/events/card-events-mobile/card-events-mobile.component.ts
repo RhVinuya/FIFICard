@@ -17,6 +17,6 @@ export class CardEventsMobileComponent implements OnInit {
   }
 
   toggleColumns(): void {
-    this.columns = this.columns === 2 ? 3 : 2;
+    this.columns === 3;
   }
 }

@@ -81,9 +81,9 @@ import { LayoutMobileComponent } from "./pages-mobile/layout-mobile/layout-mobil
 import { LoginMobileComponent } from "./pages-mobile/login-mobile/login-mobile.component";
 import { OnboardingMobileComponent } from "./pages-mobile/onboarding-mobile/onboarding-mobile.component";
 import { RegisterMobileComponent } from "./pages-mobile/register-mobile/register-mobile.component";
-import { AuthGuard } from '../app/guards/auth.guard';
-import { DetailsMobileComponent } from './pages-mobile/details-mobile/details-mobile.component';
-import { CardsMobileComponent } from './pages-mobile/cards-mobile/cards-mobile.component';
+import { AuthGuard } from "../app/guards/auth.guard";
+import { DetailsMobileComponent } from "./pages-mobile/cards-mobile/details-mobile/details-mobile.component";
+import { CardsMobileComponent } from "./pages-mobile/cards-mobile/cards-mobile.component";
 
 const routes: Routes = [
   {
@@ -565,18 +565,23 @@ const mobileRoutes: Routes = [
     component: RegisterMobileComponent,
   },
   {
-    path: 'home',
+    path: "home",
     component: HomeMobileComponent,
     //canActivate: [AuthGuard]
   },
   {
-    path: ':type/:id/details',
+    path: ":type/:id/details",
     component: DetailsMobileComponent,
     //canActivate: [AuthGuard]
   },
   {
-    path: 'cards/:category',
+    path: "cards/:category",
     component: CardsMobileComponent,
+    //canActivate: [AuthGuard]
+  },
+  {
+    path: "details",
+    component: DetailsMobileComponent,
     //canActivate: [AuthGuard]
   },
 ];

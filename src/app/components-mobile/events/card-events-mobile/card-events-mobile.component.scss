@@ -9,10 +9,6 @@
   position: relative;
 }
 
-.two-columns {
-  border-radius: 15px;
-}
-
 .three-columns {
   padding: 5px;
 }
@@ -34,7 +30,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 15px;
 }
 
 .img-container > img {
@@ -50,10 +45,11 @@
 }
 
 .card-info {
-  margin: 12px auto 5px;
+  margin: 0 auto 5px;
 }
 
 .card-info > h2 {
+  margin-top: 5px;
   margin-bottom: 5px;
   white-space: nowrap;
 }

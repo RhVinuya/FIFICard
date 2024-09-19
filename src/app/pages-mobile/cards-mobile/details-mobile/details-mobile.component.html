@@ -1,0 +1,153 @@
+<ion-content fullscreen="true">
+  <ion-grid>
+    <ion-row class="ion-align-items-center ion-justify-content-between">
+      <ion-col size="6">
+        <p class="btn-close"></p>
+      </ion-col>
+      <ion-col size="6" class="ion-text-right">
+        <div>
+          <ion-icon name="heart" class="icon-heart"></ion-icon>
+          <ion-icon name="cart-outline" class="icon-cart"></ion-icon>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="12">
+        <div class="card-header-container">
+          <h2>BIRTHDAY CARD</h2>
+          <div class="card-header ion-justify-content-between">
+            <p>ANOTHER YEAR OF MEMORIES</p>
+            <p>PRICE 99.00</p>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="12" class="ion-text-center img-container">
+        <ion-thumbnail>
+          <img
+            alt="Silhouette of mountains"
+            src="https://ionicframework.com/docs/img/demos/thumbnail.svg"
+          />
+        </ion-thumbnail>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="card-message">
+      <h2>Inside Message</h2>
+      <p>
+        In the dance of time, a special day is spun, a celebration of you, the
+        radiant sun. With each passing year, your light grows strong, Happy
+        Birthday to you, a melody, a sopng.
+      </p>
+    </ion-row>
+
+    <form>
+      <ion-row>
+        <ion-col
+          size="12"
+          class="ion-justify-content-center ion-align-items-center"
+        >
+          <ion-input
+            class="recipient-input"
+            label="Recipient"
+            label-placement="floating"
+            fill="outline"
+            placeholder="Who is it for?"
+            formControlName="recipient"
+          ></ion-input>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col
+          size="12"
+          class="ion-justify-content-center ion-align-items-center"
+        >
+          <ion-input
+            class="email-input"
+            label="Email"
+            label-placement="floating"
+            fill="outline"
+            placeholder="Email Address:"
+            formControlName="email"
+          ></ion-input>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col
+          size="12"
+          class="ion-justify-content-center ion-align-items-center"
+        >
+          <ion-textarea
+            class="message-input"
+            label="Message"
+            label-placement="floating"
+            fill="outline"
+            placeholder="Add a Message"
+            formControlName="message"
+          ></ion-textarea>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col
+          size="12"
+          class="ion-justify-content-center ion-align-items-center"
+        >
+          <ion-input
+            class="sender-input"
+            label="Sender"
+            label-placement="floating"
+            fill="outline"
+            placeholder="Sender:"
+            formControlName="sender"
+          ></ion-input>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col
+          size="12"
+          class="ion-justify-content-center ion-align-items-center"
+        >
+          <ion-input
+            class="email-from-input"
+            label="Email From"
+            label-placement="floating"
+            fill="outline"
+            placeholder="Email Address:"
+            formControlName="email-from"
+          ></ion-input>
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="terms">
+        <button>See Terms and Conditions</button>
+      </ion-row>
+
+      <div lines="none" class="terms_conditions">
+        <ion-item lines="none">
+          <ion-checkbox
+            id="custom-checkbox"
+            slot="start"
+            class="custom-checkbox"
+          ></ion-checkbox>
+          <ion-label for="custom-checkbox"
+            >Accept Terms and Conditions</ion-label
+          >
+        </ion-item>
+      </div>
+
+      <ion-row>
+        <ion-col size="12" class="btn-container ion-align-items-center">
+          <button>BUY NOW</button>
+          <button>ADD TO CART</button>
+        </ion-col>
+      </ion-row>
+    </form>
+  </ion-grid>
+</ion-content>
