@@ -2,6 +2,11 @@
   font-family: Proxima Nova;
 }
 
+.card-list {
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+}
+
 h2 {
   margin: 0;
   font-weight: bold;
@@ -11,7 +16,6 @@ h2 {
 ion-grid {
   position: relative;
   margin-top: 15px;
-  padding: auto 10px;
   width: 90%;
 }
 

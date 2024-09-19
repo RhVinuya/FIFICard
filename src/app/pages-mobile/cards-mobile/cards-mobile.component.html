@@ -2,26 +2,24 @@
   <ion-grid>
     <ion-row>
       <ion-col size="12" class="header-col">
-        <h2>BIRTHDAY CARDS</h2>
+        <h2>{{ currentEvent.name | uppercase }} CARDS</h2>
         <div>
           <ion-icon name="heart"></ion-icon>
           <ion-icon name="cart-outline"></ion-icon>
         </div>
       </ion-col>
     </ion-row>
-  
-    <ion-row class="badge-row">
-      <ion-badge>FOR HER</ion-badge>
-  
-      <ion-badge>FOR HIM</ion-badge>
-  
-      <ion-badge>FOR KIDS AND TEENS</ion-badge>
-  
-      <ion-badge>FOR ALL</ion-badge>
+
+    <ion-row class="badge-row" >
+      <div *ngFor="let recipient of recipients">
+        <ion-badge (click)="onRecipientSelect(recipient)">{{recipient}}</ion-badge>
+      </div>
     </ion-row>
-  
+
     <ion-row>
-      <app-card-events-mobile></app-card-events-mobile>
+      <ion-col class="card-list" size="12" >
+        <app-card-list-mobile [cards]="display"></app-card-list-mobile>
+      </ion-col>
     </ion-row>
   </ion-grid>
 </ion-content>
