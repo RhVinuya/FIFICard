@@ -2,8 +2,10 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { INewCard } from 'src/app/new-models/new-card';
 import { NewEvent } from 'src/app/new-models/new-event';
+import { NewRecipient } from 'src/app/new-models/new-recipient';
 import { NewCardService } from 'src/app/new-services/new-card.service';
 import { NewEventService } from 'src/app/new-services/new-event.service';
+import { NewRecipientService } from 'src/app/new-services/new-recipients.service';
 import { NewStorageService } from 'src/app/new-services/new-storage.service';
 
 @Component({
@@ -17,17 +19,20 @@ export class CardsMobileComponent implements OnInit {
   cardService: NewCardService;
   eventService: NewEventService;
   storageService: NewStorageService
+  recipientService: NewRecipientService;
 
   constructor(
     _activateRoute: ActivatedRoute,
     _cardService: NewCardService,
     _eventService: NewEventService,
-    _storageService: NewStorageService
+    _storageService: NewStorageService,
+    _recipientService: NewRecipientService,
   ) {
     this.activateRoute = _activateRoute;
     this.cardService = _cardService;
     this.eventService = _eventService;
     this.storageService = _storageService;
+    this.recipientService = _recipientService;
   }
 
   activeevents: string[] = [];
@@ -38,42 +43,59 @@ export class CardsMobileComponent implements OnInit {
   cards: INewCard[] = [];
   display: INewCard[] = [];
   displayCount: number = 20;
-  events: string[] = [];
-  recipients: string[] = [];
+  recipients: string[] = [ "For All" ];
   filters: string[] = [];
 
-
-  cardevents: NewEvent[] | null = null;
+  events: NewEvent[] | null = [];
+  currentEvent: NewEvent;
 
   ngOnInit(): void {
     
     this.activateRoute.params.subscribe( async params => {
-      let id = params['id'];
-      this.event = '';
-      this.events = [];
-      this.recipient = '';
-      this.recipients = [];
+      this.event = params['event'];
 
-      this.cardevents = this.storageService.getCategories('card');
+      this.events = this.storageService.getCategories('card');
 
-      console.log(this.cardevents);
+      this.events?.forEach( (event) => {
+        if(event.name == this.event){
+          this.currentEvent = event;
+        }
+      })
 
-      // if (id !== 'all') {
-      //   console.log(this.cardevents)
-      //   // if (this.cardevents.findIndex(x => x.toLowerCase() === id.toLowerCase()) >= 0) {
-      //   //   this.event = id;
-      //   //   this.events.push(id);
-      //   // }
-      //   // else if (this.recipientoptions.findIndex(x => x.toLowerCase() === id.toLowerCase()) >= 0) {
-      //   //   this.recipient = id;
-      //   //   this.recipients.push(id);
-      //   // }
-      //   // else if (this.filteroptions.findIndex(x => x.toLowerCase() === id.toLowerCase()) >= 0) {
-      //   //   this.filter = id;
-      //   //   this.filters.push(id);
-      //   // }
-      // }
+      await this.loadCards();
     });
+
+  }
+
+  async loadCards () {
+    this.cards = await this.cardService.getByEvent(this.event, false, 'regular');
+    this.display = this.cards;
+
+    for(const card of this.cards) {
+      for(let recipient of card.recipients!) {
+        if(!this.recipients.find( x => x == recipient)){
+          this.recipients.push(recipient);
+        }
+      }
+
+      console.log(card.name, " ----- ",  card.recipient);
+    }
+  }
+
+  onRecipientSelect(recipient: string) {
+
+    if(recipient == this.recipients[0]) {
+
+      this.display = this.cards;
+
+    }else {
+
+      this.display = this.cards.filter( o => {
+        return o.recipients!.includes(recipient);
+      })
+  
+      console.log(this.display);
+    }
   }
 
 }

@@ -575,7 +575,7 @@ const mobileRoutes: Routes = [
     //canActivate: [AuthGuard]
   },
   {
-    path: 'cards/:category',
+    path: 'cards/:event',
     component: CardsMobileComponent,
     //canActivate: [AuthGuard]
   },
