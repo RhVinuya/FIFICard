@@ -12,7 +12,11 @@ export class CardEventsMobileComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  getColumnSize() {
+  getColumnSize(): number {
     return 12 / this.columns;
+  }
+
+  toggleColumns(): void {
+    this.columns = this.columns === 2 ? 3 : 2;
   }
 }
