@@ -1,0 +1,30 @@
+<ion-content [fullscreen]="true">
+    <app-header-mobile type="lg"></app-header-mobile>
+  
+    <div id="homepage" class="page-main">
+      <ion-grid>
+        <ion-row class="ion-align-items-center">
+          <ion-col>
+            <div class="ion-text-center">
+              <img
+                src="/assets/images/logo_fibeigreetings.png"
+                onContextMenu="return false;"
+                class="main-logo ion-justiy-self-centers"
+              />
+            </div>
+          </ion-col>
+        </ion-row>
+        <ion-row class="ion-align-items-center">
+          <ion-col>
+            <div class="ion-text-center">
+              <h3>{{ title | uppercase}}</h3>
+            </div>
+          </ion-col>
+        </ion-row>
+        <ion-row class="ion-align-items-center">
+          <app-sticker-categories-mobile></app-sticker-categories-mobile>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </ion-content>
+  

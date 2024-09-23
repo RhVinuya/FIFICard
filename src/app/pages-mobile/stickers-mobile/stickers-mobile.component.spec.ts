@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CardListMobileComponent } from './card-list-mobile.component';
+import { StickersMobileComponent } from './stickers-mobile.component';
 
-describe('CardListMobileComponent', () => {
-  let component: CardListMobileComponent;
-  let fixture: ComponentFixture<CardListMobileComponent>;
+describe('StickersMobileComponent', () => {
+  let component: StickersMobileComponent;
+  let fixture: ComponentFixture<StickersMobileComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CardListMobileComponent ]
+      declarations: [ StickersMobileComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(CardListMobileComponent);
+    fixture = TestBed.createComponent(StickersMobileComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

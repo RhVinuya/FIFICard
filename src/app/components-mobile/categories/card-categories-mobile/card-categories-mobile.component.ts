@@ -41,7 +41,7 @@ export class CardCategoriesMobileComponent implements OnInit {
     let events = await this.eventService.getEventByType('card');
 
     this.events = events.filter( o => o.icon);
-    this.storageService.saveCategories('card', this.events);
+    this.storageService.saveCategories('cards', this.events);
   }
 
   getColumnSize() {

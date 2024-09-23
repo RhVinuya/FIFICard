@@ -24,7 +24,6 @@ export class CardCategoryMobileComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     if(this.event.icon) {
       this.iconUrl =  await this.fileService.getImageURL(this.event.icon);
-      console.log(this.iconUrl);
     }
   }
 

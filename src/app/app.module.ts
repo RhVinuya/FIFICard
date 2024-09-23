@@ -216,11 +216,21 @@ import { HomeMobileComponent } from './pages-mobile/home-mobile/home-mobile.comp
 import { HeaderMobileComponent } from './components-mobile/header-mobile/header-mobile.component';
 import { CardCategoriesMobileComponent } from './components-mobile/categories/card-categories-mobile/card-categories-mobile.component';
 import { CardCategoryMobileComponent } from './components-mobile/categories/card-categories-mobile/card-category-mobile/card-category-mobile.component';
-import { CardsMobileComponent } from './pages-mobile/cards-mobile/cards-mobile.component';
 import { RegisterMobileComponent } from './pages-mobile/register-mobile/register-mobile.component';
-import { CardListMobileComponent } from './components-mobile/card-list-mobile/card-list-mobile.component';
 import { DetailsMobileComponent } from './pages-mobile/details-mobile/details-mobile.component';
-import { CardTileMobileComponent } from './components-mobile/card-list-mobile/card-tile-mobile/card-tile-mobile.component';
+import { StickersMobileComponent } from './pages-mobile/stickers-mobile/stickers-mobile.component';
+import { PostcardsMobileComponent } from './pages-mobile/postcards-mobile/postcards-mobile.component';
+import { GiftsMobileComponent } from './pages-mobile/gifts-mobile/gifts-mobile.component';
+import { ProfileMobileComponent } from './pages-mobile/profile-mobile/profile-mobile.component';
+import { StickerCategoriesMobileComponent } from './components-mobile/categories/sticker-categories-mobile/sticker-categories-mobile.component';
+import { PostcardCategoriesMobileComponent } from './components-mobile/categories/postcard-categories-mobile/postcard-categories-mobile.component';
+import { GiftCategoriesMobileComponent } from './components-mobile/categories/gift-categories-mobile/gift-categories-mobile.component';
+import { StickerCategoryMobileComponent } from './components-mobile/categories/sticker-categories-mobile/sticker-category-mobile/sticker-category-mobile.component';
+import { ProductListMobileComponent } from './components-mobile/product-list-mobile/product-list-mobile.component';
+import { ProductTileMobileComponent } from './components-mobile/product-list-mobile/product-tile-mobile/product-tile-mobile.component';
+import { ProductMobileComponent } from './pages-mobile/product-mobile/product-mobile.component';
+import { PostcardCategoryMobileComponent } from './components-mobile/categories/postcard-categories-mobile/postcard-category-mobile/postcard-category-mobile.component';
+import { GiftCategoryMobileComponent } from './components-mobile/categories/gift-categories-mobile/gift-category-mobile/gift-category-mobile.component';
 
 @NgModule({
   declarations: [
@@ -414,11 +424,21 @@ import { CardTileMobileComponent } from './components-mobile/card-list-mobile/ca
     HeaderMobileComponent,
     CardCategoriesMobileComponent,
     CardCategoryMobileComponent,
-    CardsMobileComponent,
     RegisterMobileComponent,
-    CardListMobileComponent,
     DetailsMobileComponent,
-    CardTileMobileComponent,
+    StickersMobileComponent,
+    PostcardsMobileComponent,
+    GiftsMobileComponent,
+    ProfileMobileComponent,
+    StickerCategoriesMobileComponent,
+    PostcardCategoriesMobileComponent,
+    GiftCategoriesMobileComponent,
+    StickerCategoryMobileComponent,
+    ProductListMobileComponent,
+    ProductTileMobileComponent,
+    ProductMobileComponent,
+    PostcardCategoryMobileComponent,
+    GiftCategoryMobileComponent,
   ],
   imports: [
     BrowserModule,
