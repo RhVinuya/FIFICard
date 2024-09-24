@@ -191,13 +191,13 @@ export class NewStorageService {
 
   
 
-  getCategories(type: 'card' | 'stickers' | 'postcard' | 'gift'): NewEvent[] | null {
+  getCategories(type: 'cards' | 'stickers' | 'postcards' | 'gifts'): NewEvent[] | null {
     let data: string | null = localStorage.getItem(environment.storage + type.toUpperCase() + "-" + StorageEnum.Categories)
     if (data !== null) return JSON.parse(data);
     else return null;
   }
 
-  saveCategories(type: 'card' | 'stickers' | 'postcard' | 'gift', items: NewEvent[]) {
+  saveCategories(type: 'cards' | 'stickers' | 'postcards' | 'gifts' , items: NewEvent[]) {
     localStorage.setItem(environment.storage + type.toUpperCase() + "-" + StorageEnum.Categories, JSON.stringify(items));
   }
 

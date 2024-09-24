@@ -89,7 +89,7 @@ export class NewDetailsComponent implements OnInit {
           this.iModel = value;
           this.model = new NewCard(value);
           this.isAddToCart = true;
-          this.isPersonalize = this.model.signAndSend;
+          this.isPersonalize = this.model instanceof NewCard ?  this.model.signAndSend : false;
           this.isFeatured = this.model.featured;
           this.isPoetry = this.model instanceof NewCard && this.model.messagetype === 'poetry';
           this.isRegular = this.model instanceof NewCard && this.model.messagetype === 'regular';

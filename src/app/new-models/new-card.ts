@@ -9,6 +9,7 @@ export interface INewCard {
     description: string;
     details: string;
     event: string;
+    events: string[];
     recipient: string;
     recipients?: string[];
     price: number;
@@ -31,6 +32,7 @@ export class NewCard {
     description: string;
     details: string;
     event: string;
+    events: string[];
     recipient: string;
     recipients?: string[];
     price: number;
@@ -51,6 +53,7 @@ export class NewCard {
         this.description = value.description;
         this.details = value.details;
         this.event = value.event;
+        this.events = value.events;
         this.recipient = value.recipient
         this.recipients = value.recipients? value.recipients : [];
         this.price = value.price;

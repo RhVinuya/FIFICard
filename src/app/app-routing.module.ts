@@ -82,9 +82,13 @@ import { LoginMobileComponent } from "./pages-mobile/login-mobile/login-mobile.c
 import { OnboardingMobileComponent } from "./pages-mobile/onboarding-mobile/onboarding-mobile.component";
 import { RegisterMobileComponent } from "./pages-mobile/register-mobile/register-mobile.component";
 import { AuthGuard } from "../app/guards/auth.guard";
-import { DetailsMobileComponent } from "./pages-mobile/cards-mobile/details-mobile/details-mobile.component";
-import { CardsMobileComponent } from "./pages-mobile/cards-mobile/cards-mobile.component";
+import { StickersMobileComponent } from "./pages-mobile/stickers-mobile/stickers-mobile.component";
+import { GiftsMobileComponent } from "./pages-mobile/gifts-mobile/gifts-mobile.component";
+import { PostcardsMobileComponent } from "./pages-mobile/postcards-mobile/postcards-mobile.component";
+import { ProfileMobileComponent } from "./pages-mobile/profile-mobile/profile-mobile.component";
+import { ProductMobileComponent } from "./pages-mobile/product-mobile/product-mobile.component";
 import { OrderSummaryMobileComponent } from "./pages-mobile/order-summary-mobile/order-summary-mobile.component";
+import { DetailsMobileComponent } from "./pages-mobile/cards-mobile/details-mobile/details-mobile.component";
 
 const routes: Routes = [
   {
@@ -562,6 +566,31 @@ const mobileRoutes: Routes = [
     //canActivate: [AuthGuard]
   },
   {
+    path: "cards",
+    component: HomeMobileComponent,
+    //canActivate: [AuthGuard]
+  },
+  {
+    path: "stickers",
+    component: StickersMobileComponent,
+    //canActivate: [AuthGuard]
+  },
+  {
+    path: "gifts",
+    component: GiftsMobileComponent,
+    //canActivate: [AuthGuard]
+  },
+  {
+    path: "postcards",
+    component: PostcardsMobileComponent,
+    //canActivate: [AuthGuard]
+  },
+  {
+    path: "profile",
+    component: ProfileMobileComponent,
+    //canActivate: [AuthGuard]
+  },
+  {
     path: "register",
     component: RegisterMobileComponent,
   },
@@ -571,8 +600,8 @@ const mobileRoutes: Routes = [
     //canActivate: [AuthGuard]
   },
   {
-    path: "cards/:event",
-    component: CardsMobileComponent,
+    path: ":type/:event",
+    component: ProductMobileComponent,
     //canActivate: [AuthGuard]
   },
   {

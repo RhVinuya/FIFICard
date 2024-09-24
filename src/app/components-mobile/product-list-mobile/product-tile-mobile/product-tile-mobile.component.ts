@@ -1,17 +1,21 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { INewCard, NewCard } from 'src/app/new-models/new-card';
+import { INewCard } from 'src/app/new-models/new-card';
+import { INewGift } from 'src/app/new-models/new-gift';
+import { INewPostcard } from 'src/app/new-models/new-postcard';
+import { INewSticker } from 'src/app/new-models/new-sticker';
 import { NewCardService } from 'src/app/new-services/new-card.service';
 import { NewFileService } from 'src/app/new-services/new-file.service';
 import { NewStorageService } from 'src/app/new-services/new-storage.service';
 
 @Component({
-  selector: 'app-card-tile-mobile',
-  templateUrl: './card-tile-mobile.component.html',
-  styleUrls: ['./card-tile-mobile.component.scss']
+  selector: 'app-product-tile-mobile',
+  templateUrl: './product-tile-mobile.component.html',
+  styleUrls: ['./product-tile-mobile.component.scss']
 })
-export class CardTileMobileComponent implements OnInit {
-  @Input() card: INewCard;
+export class ProductTileMobileComponent implements OnInit {
+
+  @Input() product: INewCard | INewSticker | INewPostcard | INewGift;
 
   storageService: NewStorageService;
   cardService: NewCardService;
@@ -33,7 +37,7 @@ export class CardTileMobileComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
-    let cardImages = await this.cardService.getImages(this.card.id);
+    let cardImages = await this.cardService.getImages(this.product.id);
     if (cardImages.length > 0) {
       this.primary = await this.fileService.getImageURL(cardImages[0].url.split(".png").join('_74x100.png'));
     }
@@ -44,5 +48,6 @@ export class CardTileMobileComponent implements OnInit {
       this.secondary = this.primary;
     }
   }
+
 
 }

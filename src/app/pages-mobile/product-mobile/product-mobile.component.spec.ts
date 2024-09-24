@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CardTileMobileComponent } from './card-tile-mobile.component';
+import { ProductMobileComponent } from './product-mobile.component';
 
-describe('CardTileMobileComponent', () => {
-  let component: CardTileMobileComponent;
-  let fixture: ComponentFixture<CardTileMobileComponent>;
+describe('ProductMobileComponent', () => {
+  let component: ProductMobileComponent;
+  let fixture: ComponentFixture<ProductMobileComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CardTileMobileComponent ]
+      declarations: [ ProductMobileComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(CardTileMobileComponent);
+    fixture = TestBed.createComponent(ProductMobileComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

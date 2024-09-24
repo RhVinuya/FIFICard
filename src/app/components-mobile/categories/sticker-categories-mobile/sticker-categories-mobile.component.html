@@ -1,0 +1,13 @@
+<div class="ion-text-center">
+    <h3>CHOOSE A CATEGORY</h3>
+  </div>
+  
+  <ion-grid *ngIf="events">
+  
+    <ion-row class="events-container">
+      <ion-col [size]="getColumnSize()" *ngFor="let event of events">
+        <app-sticker-category-mobile [event]="event"></app-sticker-category-mobile>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  
