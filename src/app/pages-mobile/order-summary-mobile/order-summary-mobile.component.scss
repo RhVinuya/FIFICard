@@ -1,0 +1,92 @@
+* {
+  font-family: Proxima Nova;
+}
+
+.logo {
+  width: 180px;
+  margin: 45px auto 0;
+}
+
+.order-details {
+  position: relative;
+}
+
+.details-header {
+  border: 1px solid #ab62c2;
+  padding: 3px 6px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.details-content {
+  border: 1px solid #ab62c2;
+  padding: 3px 6px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  min-height: 100px;
+  margin-bottom: 5px;
+}
+
+.total-amount {
+  text-align: right;
+}
+
+.details-header > p {
+  margin: 0;
+}
+
+.order-details > h2 {
+  background: #ab62c2;
+  color: white;
+  width: 100%;
+  font-size: 12px;
+  font-weight: bold;
+  text-align: left;
+  padding: 5px;
+  text-transform: uppercase;
+}
+
+.cc-image {
+  width: 200px;
+  margin: 0 auto;
+}
+
+.btn-container {
+  width: 300px;
+  margin: 0 auto;
+}
+
+.gpay {
+  --background: black;
+  --border-radius: 10px;
+}
+
+.logo-gpay {
+  width: 50px;
+}
+
+.code-container {
+  margin: 10px 0;
+  text-align: right;
+}
+
+.special-code {
+  border: 1px solid gray;
+  height: 25px;
+}
+
+.btn-verify {
+  font-size: 12px;
+  background: white;
+  color: gray;
+  border-radius: 0px 5px 5px 0;
+  border-color: gray;
+  border-style: solid;
+  border-width: 1px;
+  padding: 5px;
+  height: 25px;
+}

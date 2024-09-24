@@ -221,6 +221,7 @@ import { RegisterMobileComponent } from "./pages-mobile/register-mobile/register
 import { DetailsMobileComponent } from "./pages-mobile/cards-mobile/details-mobile/details-mobile.component";
 import { CardListMobileComponent } from "./components-mobile/card-list-mobile/card-list-mobile.component";
 import { CardTileMobileComponent } from "./components-mobile/card-list-mobile/card-tile-mobile/card-tile-mobile.component";
+import { OrderSummaryMobileComponent } from './pages-mobile/order-summary-mobile/order-summary-mobile.component';
 
 @NgModule({
   declarations: [
@@ -419,6 +420,7 @@ import { CardTileMobileComponent } from "./components-mobile/card-list-mobile/ca
     DetailsMobileComponent,
     CardListMobileComponent,
     CardTileMobileComponent,
+    OrderSummaryMobileComponent,
   ],
   imports: [
     BrowserModule,

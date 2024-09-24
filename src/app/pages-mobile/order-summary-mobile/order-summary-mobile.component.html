@@ -1,0 +1,72 @@
+<ion-content>
+  <ion-grid class="ion-justify-content-center ion-align-items-center">
+    <ion-row
+      class="slide-content-container ion-justify-content-center ion-align-items-center"
+    >
+      <ion-img
+        class="logo"
+        src="/assets/images/logo_fibeigreetings.png"
+        alt="Fibeigreetings"
+      ></ion-img>
+
+      <ion-col size="11" class="slide-content ion-text-center order-details">
+        <h2>Order Summary</h2>
+
+        <div class="details-header">
+          <p>QTY</p>
+          <p>Title of the card</p>
+          <p>Amount</p>
+        </div>
+
+        <div class="details-content">
+          <p>QTY</p>
+          <p>Title of the card</p>
+          <p>Amount</p>
+        </div>
+
+        <div class="total-amount">Total Amount: 99.00</div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col class="code-container ion-justify-content-end" size="11">
+        <input class="special-code" placeholder="Enter Special Code" />
+        <button class="btn-verify">Verify</button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="btn-container">
+      <ion-col size="12">
+        <ion-button class="gpay" expand="full" fill="solid"
+          ><ion-img class="logo-gpay" src="/assets/images/gpay.png"></ion-img
+        ></ion-button>
+        <p>Or pay with Card</p>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="12" class="slide-content ion-text-center">
+        <ion-img
+          class="cc-image"
+          src="/assets/images/creditcard.png"
+          alt="cc-image"
+        ></ion-img>
+      </ion-col>
+    </ion-row>
+
+    <ion-radio-group value="Visa">
+      <ion-item>
+        <ion-label>Visa</ion-label>
+        <ion-radio slot="start" value="visa"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label>Gcash</ion-label>
+        <ion-radio slot="start" value="gcash"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label>Paymongo</ion-label>
+        <ion-radio slot="start" value="paymongo"></ion-radio>
+      </ion-item>
+    </ion-radio-group>
+  </ion-grid>
+</ion-content>

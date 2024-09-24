@@ -13,7 +13,8 @@ ion-grid {
 }
 
 .btn-close {
-  font-size: 15px;
+  font-size: 10px;
+  color: black;
 }
 
 .img-container {
@@ -52,24 +53,25 @@ ion-thumbnail {
 }
 
 .card-message h2 {
-  font-size: 14px;
+  font-size: 12px;
   font-weight: bold;
   line-height: 0;
 }
 
 .card-message p {
-  font-size: 12px;
+  font-size: 11px;
   margin-bottom: 10px;
 }
 
 .btn-container > button {
   background: #8cc0c2;
-  border-radius: 8px;
+  border-radius: 10px;
   color: white;
   font-weight: bold;
   font-size: 14px;
   padding: 8px 24px;
   margin-right: 15px;
+  margin-top: 20px;
 }
 
 .terms > button {
@@ -95,7 +97,7 @@ ion-thumbnail {
 
 ion-input,
 ion-textarea {
-  font-size: 14px;
+  font-size: 12px;
   background: white;
   border-radius: 5px;
   border: 1px solid rgba(128, 128, 128, 0.171);
@@ -103,8 +105,15 @@ ion-textarea {
   --padding-start: 8px;
 }
 
-.custom-checkbox {
-  --border-radius: 5px;
-  --size: 16px;
-  margin: 5px;
+.arrow-container {
+  position: relative;
+}
+
+.return-top {
+  position: absolute;
+  right: 10px;
+  bottom: 0px;
+  z-index: 10;
+  font-size: 20px;
+  color: gray;
 }

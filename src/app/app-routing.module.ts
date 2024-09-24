@@ -84,6 +84,7 @@ import { RegisterMobileComponent } from "./pages-mobile/register-mobile/register
 import { AuthGuard } from "../app/guards/auth.guard";
 import { DetailsMobileComponent } from "./pages-mobile/cards-mobile/details-mobile/details-mobile.component";
 import { CardsMobileComponent } from "./pages-mobile/cards-mobile/cards-mobile.component";
+import { OrderSummaryMobileComponent } from "./pages-mobile/order-summary-mobile/order-summary-mobile.component";
 
 const routes: Routes = [
   {
@@ -565,13 +566,18 @@ const mobileRoutes: Routes = [
     component: RegisterMobileComponent,
   },
   {
-    path: ":type/:id/details",
+    path: "details",
     component: DetailsMobileComponent,
     //canActivate: [AuthGuard]
   },
   {
     path: "cards/:event",
     component: CardsMobileComponent,
+    //canActivate: [AuthGuard]
+  },
+  {
+    path: "order-summary",
+    component: OrderSummaryMobileComponent,
     //canActivate: [AuthGuard]
   },
 ];
