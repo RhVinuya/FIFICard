@@ -231,6 +231,7 @@ import { ProductTileMobileComponent } from "./components-mobile/product-list-mob
 import { ProductMobileComponent } from "./pages-mobile/product-mobile/product-mobile.component";
 import { PostcardCategoryMobileComponent } from "./components-mobile/categories/postcard-categories-mobile/postcard-category-mobile/postcard-category-mobile.component";
 import { GiftCategoryMobileComponent } from "./components-mobile/categories/gift-categories-mobile/gift-category-mobile/gift-category-mobile.component";
+import { OrderSummaryMobileComponent } from "./pages-mobile/order-summary-mobile/order-summary-mobile.component";
 
 @NgModule({
   declarations: [
@@ -439,6 +440,7 @@ import { GiftCategoryMobileComponent } from "./components-mobile/categories/gift
     ProductMobileComponent,
     PostcardCategoryMobileComponent,
     GiftCategoryMobileComponent,
+    OrderSummaryMobileComponent,
   ],
   imports: [
     BrowserModule,
