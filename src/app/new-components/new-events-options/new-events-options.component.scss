@@ -22,6 +22,7 @@
     margin-right: 8px;
     display: inline-block;
     margin-bottom: 8px;
+    cursor: pointer;
 }
 
 .fibei-badge:hover {
@@ -29,6 +30,19 @@
     border: 1px #cb6ce6 solid;
     color: #fff;
     background: #cb6ce6;
-    cursor: pointer;
+}
 
+.fibei-badge-select {
+    font-family: "Proxima Nova";
+    border: 1px #cb6ce6 solid;
+    color: #fff;
+    background: #cb6ce6;
+    font-size: 1rem;
+    padding: 5px 20px;
+    border-radius: 20px;
+    font-weight: bold;
+    margin-right: 8px;
+    display: inline-block;
+    margin-bottom: 8px;
+    cursor: pointer;
 }

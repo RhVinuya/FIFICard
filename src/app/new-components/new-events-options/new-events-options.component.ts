@@ -6,11 +6,15 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   styleUrls: ['./new-events-options.component.scss']
 })
 export class NewEventsOptionsComponent implements OnInit {
+  @Input() events: string[];
+  @Input() set selected(value: string) {
+    this.select = value;
+  }
   @Output() onClick: EventEmitter<string> = new EventEmitter<string>()
 
-  @Input() events: string[];
-
   constructor() { }
+
+  select: string = '';
 
   ngOnInit(): void {
   }

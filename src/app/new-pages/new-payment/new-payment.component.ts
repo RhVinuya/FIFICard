@@ -4,7 +4,6 @@ import { INewPayment, NewPayment } from 'src/app/new-models/new-payment';
 import { NewCartService } from 'src/app/new-services/new-cart.service';
 import { NewPaymentService } from 'src/app/new-services/new-payment.service';
 import { NewStorageService } from 'src/app/new-services/new-storage.service';
-import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-new-payment',

@@ -108,7 +108,11 @@ export class NewStickersComponent implements OnInit {
   }
 
   onClickEvent(event: string) {
-    if (this.events.findIndex(x => x === event) < 0) this.events.push(event);
+    if (this.events.length > 0) {
+      if (this.events[0] === event) this.events = [];
+      else this.events = [event];
+    }
+    else this.events = [event]
     this.loadDisplay();
   }
 
