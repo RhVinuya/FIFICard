@@ -99,12 +99,9 @@ export class NewDetailsComponent implements OnInit {
           this.loading = false;
           this.ref.detectChanges();
           let images = await this.cardService.getImages(this.id, true);
-          this.loadImages(images);
-          console.log(images)
+          this.loadImages(images.filter(x => x.title !== 'QR'));
           let qrImage = images.find(x => x.title === 'QR');
-          if (qrImage) {
-            this.qr = await this.fileService.getImageURL(qrImage.url);
-          }
+          if (qrImage) this.qr = await this.fileService.getImageURL(qrImage.url);
           await this.loadRatings(await this.cardService.getRatings(this.id));
         })
       }
