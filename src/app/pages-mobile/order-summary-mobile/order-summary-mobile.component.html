@@ -19,17 +19,17 @@
         </div>
 
         <div class="details-content">
-          <p>QTY</p>
-          <p>Title of the card</p>
-          <p>Amount</p>
+          <p>1</p>
+          <p>Another Year of Memories</p>
+          <p>₱99.00</p>
         </div>
 
-        <div class="total-amount">Total Amount: 99.00</div>
+        <div class="total-amount">Total Amount: <span>₱ 99.00</span></div>
       </ion-col>
     </ion-row>
 
     <ion-row>
-      <ion-col class="code-container ion-justify-content-end" size="11">
+      <ion-col class="code-container ion-justify-content-end" size="12">
         <input class="special-code" placeholder="Enter Special Code" />
         <button class="btn-verify">Verify</button>
       </ion-col>
@@ -54,19 +54,41 @@
       </ion-col>
     </ion-row>
 
-    <ion-radio-group value="Visa">
-      <ion-item>
-        <ion-label>Visa</ion-label>
-        <ion-radio slot="start" value="visa"></ion-radio>
-      </ion-item>
-      <ion-item>
-        <ion-label>Gcash</ion-label>
-        <ion-radio slot="start" value="gcash"></ion-radio>
-      </ion-item>
-      <ion-item>
-        <ion-label>Paymongo</ion-label>
-        <ion-radio slot="start" value="paymongo"></ion-radio>
-      </ion-item>
-    </ion-radio-group>
+    <ion-list>
+      <ion-radio-group>
+        <ion-item class="payment-item">
+          <ion-img
+            class="payment-logo"
+            src="/assets/images/visa_mastercard.png"
+          ></ion-img>
+          <div class="payment-label">
+            <ion-label class="small-label">Credit and Debit Card</ion-label>
+            <ion-radio slot="end" value="visa"></ion-radio>
+          </div>
+        </ion-item>
+
+        <ion-item class="payment-item">
+          <ion-img
+            class="payment-logo"
+            src="/assets/images/payment_gcash.png"
+          ></ion-img>
+          <div class="payment-label">
+            <ion-label class="small-label">GCash</ion-label>
+            <ion-radio slot="end" value="gcash"></ion-radio>
+          </div>
+        </ion-item>
+
+        <ion-item class="payment-item">
+          <ion-img
+            class="payment-logo"
+            src="/assets/images/paymongo.png"
+          ></ion-img>
+          <div class="payment-label">
+            <ion-label class="small-label">GrabPay</ion-label>
+            <ion-radio slot="end" value="paymongo"></ion-radio>
+          </div>
+        </ion-item>
+      </ion-radio-group>
+    </ion-list>
   </ion-grid>
 </ion-content>
