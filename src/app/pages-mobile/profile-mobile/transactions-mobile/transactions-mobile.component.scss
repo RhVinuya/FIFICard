@@ -1,0 +1,35 @@
+* {
+  font-family: Proxima Nova;
+}
+
+.logo {
+  width: 180px;
+  margin: 45px auto 0;
+}
+
+h2 {
+  margin-bottom: 25px;
+}
+
+h2,
+.transaction-number {
+  font-weight: bold;
+  font-size: 16px;
+  text-transform: uppercase;
+}
+
+.transactions-container {
+  padding: 10px auto;
+  margin-bottom: 25px;
+}
+
+.transactions-container > p {
+  line-height: 5px;
+  font-size: 14px;
+}
+
+.transactions-container > p:last-child {
+  padding-bottom: 25px;
+  border-bottom: 1px solid purple;
+  width: 215px;
+}

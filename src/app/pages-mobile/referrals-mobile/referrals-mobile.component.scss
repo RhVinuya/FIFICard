@@ -1,0 +1,104 @@
+* {
+  font-family: Proxima Nova;
+}
+
+.logo {
+  width: 180px;
+  margin: 45px auto 0;
+}
+
+h2 {
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  line-height: 1rem;
+  margin-bottom: 5px;
+}
+
+p {
+  font-size: 14px;
+}
+
+.icons-container {
+  border: 1px solid gray;
+  padding: 40px 20px 30px;
+  margin-top: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.icon-text {
+  text-align: center;
+}
+
+.icon-text > svg {
+  fill: #ab62c2;
+}
+
+.icon-text > p {
+  font-size: 12px;
+}
+
+.learn-more {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  padding: 5px 10px;
+  background: #8cc0c2;
+  border-radius: 25px;
+}
+
+.points-container {
+  display: flex;
+  align-content: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 30px;
+}
+
+ion-input {
+  border: 1px solid rgb(92, 92, 92);
+  border-radius: 8px;
+  box-shadow: none;
+  margin-bottom: 10px;
+  --padding-start: 10px;
+  --padding-end: 16px;
+  --padding-top: 8px;
+  --padding-bottom: 16px;
+  font-size: 12px;
+  font-weight: bold;
+  --background: #f0f0f0;
+}
+
+ion-input:focus {
+  border-color: #007bff;
+}
+
+.points-container label {
+  font-size: 12px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.points-container ion-input {
+  margin-bottom: 15px;
+}
+
+.points-container > div {
+  text-align: center;
+}
+
+.earned-points {
+  width: 100%;
+}
+
+.sub-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  color: gray;
+}

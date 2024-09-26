@@ -232,7 +232,9 @@ import { ProductMobileComponent } from "./pages-mobile/product-mobile/product-mo
 import { PostcardCategoryMobileComponent } from "./components-mobile/categories/postcard-categories-mobile/postcard-category-mobile/postcard-category-mobile.component";
 import { GiftCategoryMobileComponent } from "./components-mobile/categories/gift-categories-mobile/gift-category-mobile/gift-category-mobile.component";
 import { OrderSummaryMobileComponent } from "./pages-mobile/order-summary-mobile/order-summary-mobile.component";
-import { ProfileDetailsMobileComponent } from './pages-mobile/profile-mobile/profile-details-mobile/profile-details-mobile.component';
+import { ProfileDetailsMobileComponent } from "./pages-mobile/profile-mobile/profile-details-mobile/profile-details-mobile.component";
+import { TransactionsMobileComponent } from "./pages-mobile/profile-mobile/transactions-mobile/transactions-mobile.component";
+import { ReferralsMobileComponent } from "./pages-mobile/referrals-mobile/referrals-mobile.component";
 
 @NgModule({
   declarations: [
@@ -443,6 +445,8 @@ import { ProfileDetailsMobileComponent } from './pages-mobile/profile-mobile/pro
     GiftCategoryMobileComponent,
     OrderSummaryMobileComponent,
     ProfileDetailsMobileComponent,
+    TransactionsMobileComponent,
+    ReferralsMobileComponent,
   ],
   imports: [
     BrowserModule,

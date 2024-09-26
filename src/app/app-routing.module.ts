@@ -90,6 +90,8 @@ import { ProductMobileComponent } from "./pages-mobile/product-mobile/product-mo
 import { OrderSummaryMobileComponent } from "./pages-mobile/order-summary-mobile/order-summary-mobile.component";
 import { DetailsMobileComponent } from "./pages-mobile/cards-mobile/details-mobile/details-mobile.component";
 import { ProfileDetailsMobileComponent } from "./pages-mobile/profile-mobile/profile-details-mobile/profile-details-mobile.component";
+import { TransactionsMobileComponent } from "./pages-mobile/profile-mobile/transactions-mobile/transactions-mobile.component";
+import { ReferralsMobileComponent } from "./pages-mobile/referrals-mobile/referrals-mobile.component";
 
 const routes: Routes = [
   {
@@ -613,6 +615,16 @@ const mobileRoutes: Routes = [
   {
     path: "order-summary",
     component: OrderSummaryMobileComponent,
+    //canActivate: [AuthGuard]
+  },
+  {
+    path: "transactions",
+    component: TransactionsMobileComponent,
+    //canActivate: [AuthGuard]
+  },
+  {
+    path: "referrals",
+    component: ReferralsMobileComponent,
     //canActivate: [AuthGuard]
   },
 ];
