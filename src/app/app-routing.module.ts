@@ -89,6 +89,7 @@ import { ProfileMobileComponent } from "./pages-mobile/profile-mobile/profile-mo
 import { ProductMobileComponent } from "./pages-mobile/product-mobile/product-mobile.component";
 import { OrderSummaryMobileComponent } from "./pages-mobile/order-summary-mobile/order-summary-mobile.component";
 import { DetailsMobileComponent } from "./pages-mobile/cards-mobile/details-mobile/details-mobile.component";
+import { ProfileDetailsMobileComponent } from "./pages-mobile/profile-mobile/profile-details-mobile/profile-details-mobile.component";
 
 const routes: Routes = [
   {
@@ -588,6 +589,11 @@ const mobileRoutes: Routes = [
   {
     path: "profile",
     component: ProfileMobileComponent,
+    //canActivate: [AuthGuard]
+  },
+  {
+    path: "profile/details",
+    component: ProfileDetailsMobileComponent,
     //canActivate: [AuthGuard]
   },
   {

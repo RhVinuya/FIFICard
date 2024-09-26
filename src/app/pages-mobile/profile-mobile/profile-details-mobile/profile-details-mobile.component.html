@@ -1,0 +1,46 @@
+<ion-content fullscreen="true">
+  <ion-grid class="ion-justify-content-center ion-align-items-center">
+    <ion-row
+      class="slide-content-container ion-justify-content-center ion-align-items-center"
+    >
+      <ion-col size="11">
+        <ion-img
+          class="logo"
+          src="/assets/images/logo_fibeigreetings.png"
+          alt="Fibeigreetings"
+        ></ion-img>
+      </ion-col>
+
+      <ion-col size="11">
+        <h2>Basic Information</h2>
+        <div class="name-input">
+          <ion-input placeholder="First Name"></ion-input>
+          <ion-input placeholder="Last Name"></ion-input>
+        </div>
+        <ion-input placeholder="Email Address"></ion-input>
+      </ion-col>
+    </ion-row>
+
+    <ion-row
+      class="slide-content-container ion-justify-content-center ion-align-items-center"
+    >
+      <ion-col size="11">
+        <h2>Change Password</h2>
+        <ion-input placeholder="Password"></ion-input>
+        <ion-input placeholder="New Password"></ion-input>
+        <ion-input placeholder="Confirm Password"></ion-input>
+      </ion-col>
+    </ion-row>
+
+    <ion-item lines="none">
+      <ion-checkbox slot="start"></ion-checkbox>
+      <ion-label>Show Password</ion-label>
+    </ion-item>
+
+    <ion-row class="btn-container">
+      <ion-buttons><p>Cancel</p></ion-buttons>
+
+      <ion-buttons><p>Save</p></ion-buttons>
+    </ion-row>
+  </ion-grid>
+</ion-content>
