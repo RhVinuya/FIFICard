@@ -1,4 +1,7 @@
+import { StorageService } from './../../services/storage.service';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { NewStorageService } from 'src/app/new-services/new-storage.service';
 
 @Component({
   selector: 'app-profile-mobile',
@@ -7,9 +10,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileMobileComponent implements OnInit {
 
-  constructor() { }
+  storageService: NewStorageService;
+
+  constructor(
+    public router: Router,
+    _storageService: NewStorageService
+  ) {
+    
+    this.storageService = _storageService;
+   }
 
   ngOnInit(): void {
+
+  }
+
+
+  goto(page: string) {
+      this.router.navigateByUrl(page);
+  }
+
+  onSignout() {
+    
+    this.storageService.clearUser();
+    window.location.href = "/onboarding";
   }
 
 }

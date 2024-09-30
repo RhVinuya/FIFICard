@@ -28,6 +28,20 @@
   padding: 10px;
 }
 
+.list-item-disable {
+  width: 100%;
+  max-width: 400px;
+  margin: 10px auto;
+  background: #f8f8f8;
+  border-radius: 8px;
+  color: rgb(92, 92, 92);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+
 ion-icon {
   font-size: 14px;
 }

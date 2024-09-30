@@ -1,7 +1,5 @@
-import { StorageService } from './../services/storage.service';
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { Observable } from 'rxjs';
+import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { NewStorageService } from '../new-services/new-storage.service';
 
 @Injectable({
@@ -13,16 +11,25 @@ export class AuthGuard implements CanActivate {
   storageService: NewStorageService;
 
   constructor(
+    public router: Router,
     _storageService: NewStorageService
   ) {
     this.storageService =  _storageService;
   }
 
-  async canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-  ): Promise<boolean> {
-    return this.checkUser();
+  canActivate(
+    childRoute: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot): Promise<boolean> {
+      return new Promise ( (resolve, reject) => {
+        let hasUser = this.checkUser();
+        if(hasUser) {
+          this.router.navigateByUrl('/home');
+          resolve(false);
+        } else {
+          //this.router.navigateByUrl('/onboarding');
+          resolve(true);
+        }
+      })
   }
 
   private checkUser() {

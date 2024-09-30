@@ -92,6 +92,7 @@ import { DetailsMobileComponent } from "./pages-mobile/cards-mobile/details-mobi
 import { ProfileDetailsMobileComponent } from "./pages-mobile/profile-mobile/profile-details-mobile/profile-details-mobile.component";
 import { TransactionsMobileComponent } from "./pages-mobile/profile-mobile/transactions-mobile/transactions-mobile.component";
 import { ReferralsMobileComponent } from "./pages-mobile/referrals-mobile/referrals-mobile.component";
+import { SecureInnerGuard } from "./guards/secure-inner.guard";
 
 const routes: Routes = [
   {
@@ -552,46 +553,48 @@ const routes: Routes = [
 const mobileRoutes: Routes = [
   {
     path: "",
-    redirectTo: "/home",
-    pathMatch: "full",
+    redirectTo: "/onboarding",
+    pathMatch: "full"
   },
   {
     path: "onboarding",
     component: OnboardingMobileComponent,
+    canActivate:[AuthGuard]
   },
   {
     path: "login",
     component: LoginMobileComponent,
+    canActivate:[AuthGuard]
   },
   {
     path: "home",
     component: HomeMobileComponent,
-    //canActivate: [AuthGuard]
+    canActivate: [SecureInnerGuard]
   },
   {
     path: "cards",
     component: HomeMobileComponent,
-    //canActivate: [AuthGuard]
+    canActivate: [SecureInnerGuard]
   },
   {
     path: "stickers",
     component: StickersMobileComponent,
-    //canActivate: [AuthGuard]
+    canActivate: [SecureInnerGuard]
   },
   {
     path: "gifts",
     component: GiftsMobileComponent,
-    //canActivate: [AuthGuard]
+    canActivate: [SecureInnerGuard]
   },
   {
     path: "postcards",
     component: PostcardsMobileComponent,
-    //canActivate: [AuthGuard]
+    canActivate: [SecureInnerGuard]
   },
   {
     path: "profile",
     component: ProfileMobileComponent,
-    //canActivate: [AuthGuard]
+    canActivate: [SecureInnerGuard]
   },
   {
     path: "profile/details",
@@ -601,6 +604,7 @@ const mobileRoutes: Routes = [
   {
     path: "register",
     component: RegisterMobileComponent,
+    canActivate:[AuthGuard]
   },
   {
     path: "details",
@@ -644,6 +648,8 @@ export class AppRoutingModule {
       platform.is("capacitor") || platform.is("mobileweb");
 
     console.log("isMobile", isMobile);
-    if (isMobile) router.resetConfig(mobileRoutes);
+    if (isMobile) {
+      router.resetConfig(mobileRoutes)
+    };
   }
 }

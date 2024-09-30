@@ -10,6 +10,7 @@ export class OnboardingMobileComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    console.log('onboarding');
   }
 
 }

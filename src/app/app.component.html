@@ -1,7 +1,7 @@
 <ion-app  *ngIf="isMobile" >
-    <ion-content>
-        <ion-tabs>
-            <ion-tab-bar slot="bottom">
+    <ion-content [fullscreen]="true">
+        <ion-tabs >
+            <ion-tab-bar slot="bottom" *ngIf="isLogIn">
               <ion-tab-button tab="home" [routerLink]="['/home']" [routerDirection]="'forward'">
                 <img src="../assets/images/mobile/home.png" height="30px">
                 <span>HOME</span>

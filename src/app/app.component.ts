@@ -9,6 +9,7 @@ import { ViewportScroller } from '@angular/common';
 import { Platform } from '@ionic/angular';
 import { NavigationEnd, Router } from '@angular/router';
 import { LoginComponent } from './pages/login/login.component';
+import { NewStorageService } from './new-services/new-storage.service';
 
 @Component({
   selector: 'app-root',
@@ -24,6 +25,7 @@ export class AppComponent {
   @Output() onSignOut: EventEmitter<void> = new EventEmitter();
 
   isMobile: boolean = false;
+  storageService: NewStorageService;
 
 
   constructor(
@@ -33,24 +35,35 @@ export class AppComponent {
     public authProcess: AuthProcessService,
     public router: Router,
     public viewportScroller: ViewportScroller,
-    public platform: Platform
+    public platform: Platform,
+    _storageService: NewStorageService
   ) {
     this.setlanguage();
     this.isMobile = platform.is('capacitor') || platform.is('mobileweb');
+    this.storageService = _storageService;
   }
 
   ngOnInit(): void {
-    this.platform.ready().then(() => {
-      this.router.events.subscribe((event) => {
-        if (event instanceof NavigationEnd) {
-          this.viewportScroller.scrollToPosition([0, 0]);
-        }
-      });
-    });
 
-    const userDetails = JSON.parse(localStorage.getItem('user')!);
-    this.userDetails = userDetails;
-    this.isLogIn = userDetails == null || userDetails.length < 0 ? true : false;
+    if(!this.isMobile) {
+      this.platform.ready().then(() => {
+        this.router.events.subscribe((event) => {
+          if (event instanceof NavigationEnd) {
+            this.viewportScroller.scrollToPosition([0, 0]);
+          }
+        });
+      });
+  
+      const userDetails = JSON.parse(localStorage.getItem('user')!);
+      this.userDetails = userDetails;
+      this.isLogIn = userDetails == null || userDetails.length < 0 ? true : false;
+    } else {
+      const userDetails = this.storageService.getUser();
+      console.log(userDetails);
+      this.isLogIn = userDetails !== undefined ? true : false;
+      console.log( this.isLogIn );
+    }
+
   }
 
   openLoginDialog(id: any): void {

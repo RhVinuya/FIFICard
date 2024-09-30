@@ -1,5 +1,5 @@
 <ion-content fullscreen="true">
-    <ion-grid>
+    <ion-grid *ngIf="currentEvent">
       <ion-row>
         <ion-col size="12" class="header-col">
           <h2>{{ currentEvent.name | uppercase }} CARDS</h2>
@@ -18,9 +18,11 @@
   
       <ion-row>
         <ion-col class="card-list" size="12" >
-          <app-product-list-mobile [products]="display"></app-product-list-mobile>
+          <app-product-list-mobile *ngIf="display" [products]="display"></app-product-list-mobile>
         </ion-col>
       </ion-row>
     </ion-grid>
+
+    <h5 *ngIf="!currentEvent"> No Cards available right now </h5>
   </ion-content>
   

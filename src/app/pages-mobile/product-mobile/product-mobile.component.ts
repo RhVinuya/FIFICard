@@ -50,7 +50,7 @@ export class ProductMobileComponent implements OnInit {
   }
 
   activeevents: string[] = [];
-  type: "cards" | "stickers" | "postcards" | "gifts";
+  type: "cards" | "stickers" | "postcards" | "gifts" | undefined = undefined;
   event: string;
   recipient: string
   filter: string;
@@ -66,19 +66,24 @@ export class ProductMobileComponent implements OnInit {
 
   ngOnInit(): void {
     
-    this.activateRoute.params.subscribe( async params => {
+    this.activateRoute.params.subscribe( params => {
       this.type = params['type'];
       this.event = params['event'];
 
-      this.events = this.storageService.getCategories(this.type);
+      console.log('Product Mobile');
+      console.log(this.type);
+      console.log(params);
+      this.events = this.storageService.getCategories(this.type!);
 
       this.events?.forEach( (event) => {
         if(event.name == this.event){
           this.currentEvent = event;
+          this.loadCards().then(() => {
+            console.log('cards loaded');
+          });
         }
       })
 
-      await this.loadCards();
     });
 
   }
@@ -110,8 +115,7 @@ export class ProductMobileComponent implements OnInit {
           this.recipients.push(recipient);
         }
       }
-
-      console.log(card.name, " ----- ",  card.recipient);
+      //console.log(card.name, " ----- ",  card.recipient);
     }
   }
 

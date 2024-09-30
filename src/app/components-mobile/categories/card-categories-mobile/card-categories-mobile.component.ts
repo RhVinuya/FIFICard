@@ -17,6 +17,9 @@ export class CardCategoriesMobileComponent implements OnInit {
   eventService: NewEventService;
   columns: number = 2;
   storageService: NewStorageService;
+  
+  loading: boolean = false;
+
 
   cardevents = environment.cardevents;
 
@@ -32,8 +35,10 @@ export class CardCategoriesMobileComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.loading = true;
     this.load().then(() => {
       console.log("card categories loaded");
+      this.loading = false;
     });
   }
 
@@ -42,6 +47,7 @@ export class CardCategoriesMobileComponent implements OnInit {
 
     this.events = events.filter( o => o.icon);
     this.storageService.saveCategories('cards', this.events);
+    
   }
 
   getColumnSize() {

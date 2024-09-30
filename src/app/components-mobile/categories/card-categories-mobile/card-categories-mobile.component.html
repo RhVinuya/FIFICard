@@ -1,14 +1,4 @@
-<div class="ion-text-center">
-  <h3>CHOOSE A CATEGORY</h3>
-</div>
-
-<ion-grid *ngIf="events">
-  <div class="ion-text-right">
-    <button (click)="columns = columns === 2 ? 3 : 2" class="btn-grid-outline">
-      <ion-icon name="grid-outline"></ion-icon>
-    </button>
-  </div>
-
+<ion-grid *ngIf="events && !loading">
   <ion-row class="events-container">
     <ion-col [size]="getColumnSize()" *ngFor="let event of events">
       <app-card-category-mobile [event]="event"></app-card-category-mobile>
