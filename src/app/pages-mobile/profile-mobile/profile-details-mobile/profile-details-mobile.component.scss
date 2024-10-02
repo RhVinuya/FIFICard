@@ -14,18 +14,7 @@ h2 {
   letter-spacing: 1px;
 }
 
-ion-input {
-  border: 1px solid rgb(92, 92, 92);
-  border-radius: 8px;
-  box-shadow: none;
-  margin-bottom: 10px;
-  --padding-start: 10px;
-  --padding-end: 16px;
-  --padding-top: 8px;
-  --padding-bottom: 16px;
-  font-size: 12px;
-  font-weight: bold;
-}
+
 
 ion-input:focus {
   border-color: #007bff;
@@ -46,9 +35,14 @@ ion-input:focus {
   margin: 25px auto 0;
 }
 
-.btn-container > ion-buttons {
-  color: white;
-  padding: 5px 35px;
+.title-btn {
+  display: flex;
+  justify-content: space-around;
+  width: 300px;
+
+}
+
+.btn-container > ion-buttons{
   width: 120px;
   border-radius: 25px;
   background: gray;
@@ -60,9 +54,47 @@ ion-input:focus {
 .btn-container > ion-buttons:first-child {
   background: #8cc0c2;
 }
-ion-item {
-  --inner-padding-end: 0;
+
+ion-button {
+  color: white !important;
 }
+
+ion-toolbar {
+  --background: white;
+}
+
+ion-item {
+  --padding-start: 0px;
+  --background-activated: white;
+  margin-bottom: 10px;
+}
+
+ion-item > div > ion-input, ion-item > ion-input {
+  border: 1px solid rgb(92, 92, 92);
+  border-radius: 8px;
+  box-shadow: none;
+  margin-bottom: 10px;
+  --padding-start: 10px;
+  --padding-end: 16px;
+  --padding-top: 8px;
+  --padding-bottom: 16px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+ion-input {
+  border: 1px solid rgb(92, 92, 92);
+  border-radius: 8px;
+  box-shadow: none;
+  margin-bottom: 10px;
+  --padding-start: 10px;
+  --padding-end: 16px;
+  --padding-top: 8px;
+  --padding-bottom: 16px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
 ion-checkbox {
   --size: 32px;
   --checkbox-background-checked: #8cc0c2;

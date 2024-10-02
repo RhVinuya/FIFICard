@@ -1,46 +1,109 @@
 <ion-content fullscreen="true">
-  <ion-grid class="ion-justify-content-center ion-align-items-center">
-    <ion-row
-      class="slide-content-container ion-justify-content-center ion-align-items-center"
-    >
-      <ion-col size="11">
-        <ion-img
-          class="logo"
-          src="/assets/images/logo_fibeigreetings.png"
-          alt="Fibeigreetings"
-        ></ion-img>
-      </ion-col>
+    <ion-grid class="ion-justify-content-center ion-align-items-center">
+      <form [formGroup]="form" (submit)="submit()">
+        <ion-row
+          class="slide-content-container ion-justify-content-center ion-align-items-center"
+        >
+            <ion-col size="11">
+              <ion-img
+                class="logo"
+                src="/assets/images/logo_fibeigreetings.png"
+                alt="Fibeigreetings"
+              ></ion-img>
+            </ion-col>
 
-      <ion-col size="11">
-        <h2>Basic Information</h2>
-        <div class="name-input">
-          <ion-input placeholder="First Name"></ion-input>
-          <ion-input placeholder="Last Name"></ion-input>
-        </div>
-        <ion-input placeholder="Email Address"></ion-input>
-      </ion-col>
-    </ion-row>
+            <ion-col size="11">
+              <h2>Basic Information</h2>
+              
+              <ion-item lines="none">
+                <div class="name-input">
+                  <ion-input id="firstname" formControlName="firstname" placeholder="First Name"></ion-input>
+                  <ion-input id="lastname" formControlName="lastname" placeholder="Last Name"></ion-input>
+                </div>
+              </ion-item>
 
-    <ion-row
-      class="slide-content-container ion-justify-content-center ion-align-items-center"
-    >
-      <ion-col size="11">
-        <h2>Change Password</h2>
-        <ion-input placeholder="Password"></ion-input>
-        <ion-input placeholder="New Password"></ion-input>
-        <ion-input placeholder="Confirm Password"></ion-input>
-      </ion-col>
-    </ion-row>
+              <ion-item lines="none">
+                <ion-input 
+                  id="email" 
+                  formControlName="email" 
+                  placeholder="Email Address" 
+                  errorText="invalid email"></ion-input>
+                <ion-note *ngIf="form.controls.email.errors" slot="error">Invalid email</ion-note>
+              </ion-item>
 
-    <ion-item lines="none">
-      <ion-checkbox slot="start"></ion-checkbox>
-      <ion-label>Show Password</ion-label>
-    </ion-item>
+              <ion-item lines="none">
+                <ion-input type="date" id="birthday" formControlName="birthday" placeholder="Birthday"></ion-input>
+              </ion-item>
+            </ion-col>   
+        </ion-row>
+        <ion-row class="btn-container">
+            <ion-buttons [hidden]="!form.dirty" >
+              <ion-button size="small" (click)="loadUserData()">Clear</ion-button>
+            </ion-buttons>
+            <ion-buttons [hidden]="!form.dirty">
+              <ion-button [type]="'submit'" size="small" [disabled]="processing">
+                <span class="spinner-border spinner-border-sm me-1" aria-hidden="true" *ngIf="processing"></span>
+                {{processing ? 'Saving ...' : 'Save'}}
+              </ion-button>
+            </ion-buttons>
+        </ion-row>
+      </form>
 
-    <ion-row class="btn-container">
-      <ion-buttons><p>Cancel</p></ion-buttons>
 
-      <ion-buttons><p>Save</p></ion-buttons>
-    </ion-row>
-  </ion-grid>
+      <form [formGroup]="passwordForm" (submit)="changePasswordSubmit()">
+        <ion-row class="slide-content-container ion-justify-content-center ion-align-items-center">
+          <ion-col size="11">
+              <ion-toolbar>
+                <h2 slot="start">Change Password</h2>
+                <ion-buttons slot="end" >
+                  <ion-button size="small" (click)="changePasswordToggle()">
+                    <ion-icon [name]="showPasswordForm? 'chevron-up-outline' : 'chevron-down-outline'"></ion-icon>
+                  </ion-button>
+                </ion-buttons>
+              </ion-toolbar>
+          </ion-col>
+          <ion-col size="11" [hidden]="!showPasswordForm">
+
+            <ion-item lines="none"> 
+              <ion-input id="current" formControlName="current" placeholder="Password" [type]="showPassCurrent? 'text' : 'password'"></ion-input>
+              <ion-icon (click)="showPassCurrent = !!!showPassCurrent"  [name]=" !showPassCurrent? 'eye-outline' : 'eye-off-outline'" slot="end"></ion-icon>
+              <ion-note *ngIf="passwordForm.controls.current.dirty && passwordForm.controls.current.errors" slot="error">Invalid Password</ion-note>
+              <ion-note *ngIf="passwordForm.controls.current.dirty && passwordForm.controls.current.errors" slot="error">Incorrect Password</ion-note>
+            </ion-item>
+
+            <ion-item lines="none"> 
+              <ion-input id="new" formControlName="new" placeholder="New Password" [type]="showPassNew? 'text' : 'password'"></ion-input>
+              <ion-icon (click)="showPassNew = !!!showPassNew"  [name]=" !showPassNew? 'eye-outline' : 'eye-off-outline'" slot="end"></ion-icon>
+              <ion-note slot="helper">Requires atleast 1 Uppercase, 1 Lowercase, a number or symbol</ion-note>
+              <ion-note *ngIf="passwordForm.controls.new.dirty && passwordForm.controls.new.errors" slot="error">Invalid password</ion-note>
+            </ion-item>
+
+            <ion-item lines="none"> 
+              <ion-input id="confirm" formControlName="confirm" placeholder="Confirm Password" [type]="showPassConfirm? 'text' : 'password'"></ion-input>
+              <ion-icon (click)="showPassConfirm = !!!showPassConfirm" [name]=" !showPassConfirm? 'eye-outline' : 'eye-off-outline'" slot="end"></ion-icon>
+              <ion-note *ngIf="passwordForm.controls.confirm.dirty && passwordForm.controls.confirm.errors" slot="error">Password doesn't match</ion-note>
+            </ion-item>
+
+            <ion-item lines="none" [hidden]="!showPasswordForm">
+              <ion-checkbox slot="start"></ion-checkbox>
+              <ion-label>Show Password</ion-label>
+            </ion-item>
+          </ion-col>   
+        </ion-row>
+        <ion-row>
+        </ion-row>
+        <ion-row class="btn-container" [hidden]="!showPasswordForm">
+          <ion-buttons [hidden]="!passwordForm.dirty" >
+            <ion-button size="small" (click)="passwordForm.reset()">Cancel</ion-button>
+          </ion-buttons>
+          <ion-buttons [hidden]="!passwordForm.dirty">
+            <ion-button [type]="'submit'" size="small" [disabled]="processing">
+              <span class="spinner-border spinner-border-sm me-1" aria-hidden="true" *ngIf="processing"></span>
+              {{processing ? 'Updating ...' : 'Update'}}
+            </ion-button>
+          </ion-buttons>
+        </ion-row>
+      </form>
+
+    </ion-grid>
 </ion-content>
