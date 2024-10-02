@@ -71,30 +71,35 @@ ion-item {
 
 ion-item > div > ion-input, ion-item > ion-input {
   border: 1px solid rgb(92, 92, 92);
-  border-radius: 8px;
-  box-shadow: none;
-  margin-bottom: 10px;
+   border-radius: 8px;
+  // box-shadow: none;
+   margin-bottom: 10px;
   --padding-start: 10px;
-  --padding-end: 16px;
-  --padding-top: 8px;
-  --padding-bottom: 16px;
-  font-size: 12px;
-  font-weight: bold;
+  // --padding-end: 16px;
+  // --padding-top: 8px;
+  // --padding-bottom: 16px;
+  // font-size: 12px;
+  // font-weight: bold;
 }
 
-ion-input {
-  border: 1px solid rgb(92, 92, 92);
-  border-radius: 8px;
-  box-shadow: none;
-  margin-bottom: 10px;
-  --padding-start: 10px;
-  --padding-end: 16px;
-  --padding-top: 8px;
-  --padding-bottom: 16px;
-  font-size: 12px;
-  font-weight: bold;
-}
+// ion-input {
+//   border: 1px solid rgb(92, 92, 92);
+//   border-radius: 8px;
+//   box-shadow: none;
+//   margin-bottom: 10px;
+//   --padding-start: 10px;
+//   --padding-end: 16px;
+//   --padding-top: 8px;
+//   --padding-bottom: 16px;
+//   font-size: 12px;
+//   font-weight: bold;
+// }
 
+
+.native-input
+{
+  padding:12px !important
+}
 ion-checkbox {
   --size: 32px;
   --checkbox-background-checked: #8cc0c2;

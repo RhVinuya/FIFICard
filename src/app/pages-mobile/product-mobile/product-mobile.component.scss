@@ -35,8 +35,8 @@
   
   .badge-row {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    // justify-content: space-between;
+    align-items: left;
     gap: 5px;
   }
   
@@ -46,7 +46,7 @@
     border-radius: 8px;
     padding: 6px 10px;
     font-size: 10px;
-    margin-top: 10px;
+    // margin-top: 10px;
   }
   
   ion-item {
