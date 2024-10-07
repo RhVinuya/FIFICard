@@ -88,11 +88,15 @@ import { PostcardsMobileComponent } from "./pages-mobile/postcards-mobile/postca
 import { ProfileMobileComponent } from "./pages-mobile/profile-mobile/profile-mobile.component";
 import { ProductMobileComponent } from "./pages-mobile/product-mobile/product-mobile.component";
 import { OrderSummaryMobileComponent } from "./pages-mobile/order-summary-mobile/order-summary-mobile.component";
-import { DetailsMobileComponent } from "./pages-mobile/cards-mobile/details-mobile/details-mobile.component";
+import { DetailsMobileComponent } from "./pages-mobile/details-mobile/details-mobile.component";
 import { ProfileDetailsMobileComponent } from "./pages-mobile/profile-mobile/profile-details-mobile/profile-details-mobile.component";
 import { TransactionsMobileComponent } from "./pages-mobile/profile-mobile/transactions-mobile/transactions-mobile.component";
 import { ReferralsMobileComponent } from "./pages-mobile/referrals-mobile/referrals-mobile.component";
 import { SecureInnerGuard } from "./guards/secure-inner.guard";
+import { CartMobileComponent } from "./pages-mobile/cart-mobile/cart-mobile.component";
+import { NewInYourCartComponent } from "./new-components/new-in-your-cart/new-in-your-cart.component";
+import { InYourCartMobileComponent } from "./pages-mobile/in-your-cart-mobile/in-your-cart-mobile.component";
+import { CheckoutMobileComponent } from "./pages-mobile/checkout-mobile/checkout-mobile.component";
 
 const routes: Routes = [
   {
@@ -607,7 +611,7 @@ const mobileRoutes: Routes = [
     canActivate:[AuthGuard]
   },
   {
-    path: "details",
+    path: ":type/:id/details",
     component: DetailsMobileComponent,
     //canActivate: [AuthGuard]
   },
@@ -631,6 +635,24 @@ const mobileRoutes: Routes = [
     component: ReferralsMobileComponent,
     //canActivate: [AuthGuard]
   },
+  {
+    path: "add-cart",
+    component: NewInYourCartComponent,
+  },
+  {
+    path: "cart",
+    component: CartMobileComponent,
+    //canActivate: [AuthGuard]
+  },
+  {
+    path: "checkout",
+    component: CheckoutMobileComponent,
+  },
+  {
+    path: "in-your-cart",
+    component: InYourCartMobileComponent,
+  }
+
 ];
 
 @NgModule({

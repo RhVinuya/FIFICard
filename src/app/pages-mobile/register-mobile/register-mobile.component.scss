@@ -83,3 +83,16 @@ ion-toggle::part(track) {
   white-space: normal;
   line-height: 1.2;
 }
+
+.lbl-forgot {
+  font-weight: bold;
+  font-size: 12px;
+  color: gray;
+}
+
+.external {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 20px;
+}

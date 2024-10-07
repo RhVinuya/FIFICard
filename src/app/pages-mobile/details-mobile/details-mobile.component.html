@@ -1,5 +1,8 @@
 <ion-content fullscreen="true">
-  <ion-grid>
+
+  <app-new-loading [loading]="!model"></app-new-loading>
+
+  <ion-grid *ngIf="model">
     <ion-row class="ion-align-items-center ion-justify-content-between">
       <ion-col size="6">
         <p class="btn-close"></p>
@@ -7,7 +10,7 @@
       <ion-col size="6" class="ion-text-right">
         <div>
           <ion-icon name="heart" class="icon-heart"></ion-icon>
-          <ion-icon name="cart-outline" class="icon-cart"></ion-icon>
+          <ion-icon (click)="goToCart()" name="cart-outline" class="icon-cart"></ion-icon>
         </div>
       </ion-col>
     </ion-row>
@@ -15,10 +18,10 @@
     <ion-row>
       <ion-col size="12">
         <div class="card-header-container">
-          <h2>BIRTHDAY CARD</h2>
-          <div class="card-header ion-justify-content-between">
-            <p>ANOTHER YEAR OF MEMORIES</p>
-            <p>PRICE 99.00</p>
+          <h2> {{model.name}} </h2>
+          <div class="card-header">
+            <p> {{model.description}} </p>
+            <p>PRICE {{getPrice()}}</p>
           </div>
         </div>
       </ion-col>
@@ -35,22 +38,27 @@
       </ion-col>
     </ion-row>
 
-    <ion-row class="card-message">
-      <h2>Inside Message</h2>
+    <ion-row class="card-message" *ngIf="type=='cards'">
+      <h5>Recipient:<p>{{ model.recipient }}</p></h5> 
+    </ion-row>
+
+    <ion-row class="card-message" *ngIf="type=='cards'">
+      <h5>Details: </h5>
+    </ion-row>
+    <ion-row class="card-message" *ngIf="type=='cards'">
       <p>
-        In the dance of time, a special day is spun, a celebration of you, the
-        radiant sun. With each passing year, your light grows strong, Happy
-        Birthday to you, a melody, a sopng.
+        {{ getMessage() }}
       </p>
     </ion-row>
 
-    <form>
+    <form [formGroup]="form" *ngIf="type=='cards'">
       <ion-row>
         <ion-col
           size="12"
           class="ion-justify-content-center ion-align-items-center"
         >
           <ion-input
+            id="recipient"
             class="recipient-input"
             label="Recipient"
             label-placement="floating"
@@ -67,12 +75,13 @@
           class="ion-justify-content-center ion-align-items-center"
         >
           <ion-input
+            id="emailto"
             class="email-input"
             label="Email"
             label-placement="floating"
             fill="outline"
             placeholder="Email Address:"
-            formControlName="email"
+            formControlName="emailto"
           ></ion-input>
         </ion-col>
       </ion-row>
@@ -83,6 +92,7 @@
           class="ion-justify-content-center ion-align-items-center"
         >
           <ion-textarea
+            id="message"
             class="message-input"
             label="Message"
             label-placement="floating"
@@ -99,6 +109,7 @@
           class="ion-justify-content-center ion-align-items-center"
         >
           <ion-input
+            id="sender"
             class="sender-input"
             label="Sender"
             label-placement="floating"
@@ -115,20 +126,22 @@
           class="ion-justify-content-center ion-align-items-center"
         >
           <ion-input
+            id="emailfrom"
             class="email-from-input"
             label="Email From"
             label-placement="floating"
             fill="outline"
             placeholder="Email Address:"
-            formControlName="email-from"
+            formControlName="emailfrom"
           ></ion-input>
         </ion-col>
       </ion-row>
 
       <ion-row>
         <ion-col size="12" class="btn-container ion-align-items-center">
-          <button>PERSONALIZE</button>
-          <button>ADD TO CART</button>
+          <ion-button>PERSONALIZE</ion-button>
+          <!-- <ion-button (click)="addToCart()">ADD TO CART</ion-button> -->
+          <app-add-cart-button-mobile class="me-2" [type]="itemType" [item]="iModel" *ngIf="isAddToCart"></app-add-cart-button-mobile>
         </ion-col>
       </ion-row>
     </form>

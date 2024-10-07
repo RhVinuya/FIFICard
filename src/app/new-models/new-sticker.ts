@@ -28,6 +28,7 @@ export class NewSticker {
     description: string;
     details: string;
     events: string[];
+    recipient: string;
     recipients?: string[];
     price: number;
     sgprice: number;

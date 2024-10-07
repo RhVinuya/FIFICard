@@ -1,0 +1,21 @@
+<ion-content [fullscreen]="true">
+    <div class="offcanvas-header">
+        <h4 class="offcanvas-title text-purple ion-text-bold mt-0">
+            <b><i aria-hidden="true" class="fa fa-shopping-cart me-1"></i>In your cart</b>
+        </h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="close()"></button>
+    </div>
+    <div class="offcanvas-body p-2">
+        <div class="content">
+            <div class="details">
+                <app-cart-view-mobile *ngFor="let cart of carts" [cart]="cart" (delete)="onDelete($event)"></app-cart-view-mobile>
+            </div>
+            <div class="totals">
+                <label class="my-2 text-purple"><b>SUBTOTAL: {{total}}</b></label>
+                <button type="button" class="btn gotocart mb-2" (click)="openCart()">
+                    VIEW CART
+                </button>
+            </div>
+        </div>
+    </div>
+</ion-content>

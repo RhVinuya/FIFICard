@@ -1,6 +1,9 @@
-<div class="top-bar"></div>
+<div class="top-bar">
+
+</div>
 
 <ion-grid class="ion-justify-content-center ion-align-items-center">
+  
   <ion-row
     class="slide-content-container ion-justify-content-center ion-align-items-center"
   >
@@ -53,8 +56,17 @@
       (click)="submit()"
     >
       <ion-icon name="log-in-outline" class="btn-login-icon"></ion-icon>
-      LOG IN
+      {{ processing ? 'LOGGING IN...' : 'LOG IN' }}
     </ion-button>
+  </ion-row>
+
+  <ion-row class="ion-justify-content-center external">
+    <div class="ion-text-center lbl-forgot">
+      <label>
+        Doesn't have an account yet?
+        <a href="/register">Tap here to register</a>
+      </label>
+    </div>
   </ion-row>
 
   <ion-row class="ion-justify-content-center external">
@@ -68,7 +80,7 @@
   <div class="ion-text-center lbl-forgot">
     <label>
       Forgot password?
-      <a (click)="onResetPassword()">Click here to reset.</a>
+      <a (click)="onResetPassword()">Tap here to reset.</a>
     </label>
   </div>
 </ion-grid>

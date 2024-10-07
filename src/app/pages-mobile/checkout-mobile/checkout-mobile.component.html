@@ -1,0 +1,151 @@
+<ion-content [fullscreen]="true">
+
+    <div class="mxw-1920px mt-2">
+        <app-new-title title="Checkout" ></app-new-title>
+    </div>
+    
+    <app-new-loading [loading]="loading"></app-new-loading>
+    
+    <div class="mxw-1920px row" *ngIf="loading == false">
+        <div class="col-md-9 pe-1">
+            <div class="row mb-2">
+                <div class="col-5 pe-1">
+                    <div class="card h-100 bg-light border-light drop" [ngClass]="isValidSender() ? '' : 'require'" (click)="openSender()">
+                        <div class="card-body">
+                            <div class="space-between mb-2 ">
+                                <h5 class="card-title text-purple my-0">Sender Details</h5>
+                                <ion-icon name="pencil-outline"></ion-icon>
+                            </div>
+                            <div class="details" *ngIf="sender">
+                                <div class="detail ms-2 mb-1">
+                                    <ion-icon name="person-outline"></ion-icon>
+                                    <h6 class="my-0">{{sender.getFullName()}}</h6>
+                                </div>
+                                <div class="detail ms-2">
+                                    <ion-icon name="at-outline"></ion-icon>
+                                    <h6 class="my-0">{{sender.email}}</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-7 ps-1">
+                    <div class="card h-100 bg-light border-light  drop" [ngClass]="receiver === undefined ? 'require' : ''" (click)="openRecipient()">
+                        <div class="card-body">
+                            <div class="space-between mb-2">
+                                <h5 class="card-title text-purple my-0">Receiver Details</h5>
+                                <ion-icon name="chevron-forward-outline"></ion-icon>
+                            </div>
+                            <div class="details" *ngIf="receiver">
+                                <div class="detail ms-2 mb-1">
+                                    <ion-icon name="person-outline"></ion-icon>
+                                    <h6 class="my-0">{{receiver.getFullName()}}</h6>
+                                </div>
+                                <div class="detail ms-2 mb-1">
+                                    <ion-icon name="at-outline"></ion-icon>
+                                    <h6 class="my-0">{{receiver.email}}</h6>
+                                </div>
+                                <div class="detail ms-2">
+                                    <ion-icon name="home-outline"></ion-icon>
+                                    <h6 class="my-0">{{receiver.getFullAddress()}}</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="card bg-light border-light mb-2">
+                <div class="card-body">
+                    <table>
+                        <tr>
+                            <td class="image">
+                                <span>Image</span>
+                            </td>
+                            <td class="details">
+                                <span>Description</span>
+                            </td>
+                            <td class="amount">
+                                <span>Price</span>
+                            </td>
+                            <td class="amount">
+                                <span>Shipping Fee</span>
+                            </td>
+                            <td class="amount">
+                                <span>Total</span>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <app-new-checkout-item *ngFor="let item of items" [iItem]="item"></app-new-checkout-item>
+        </div>
+        <div class="col-md-3 ps-1">
+            <div class="card bg-light border-light pb-2">
+                <div class="card-body">
+                    <h3 class="text-purple mt-0 mb-4">Order Summary</h3>
+                    <div class="space-between">
+                        <span>Subtotal</span>
+                        <h6 class="my-0">{{convertNumberDisplay(subtotal)}}</h6>
+                    </div>
+                    <div class="space-between">
+                        <span>Shipping Fee</span>
+                        <h6 class="my-0">{{convertNumberDisplay(shippingfee)}}</h6>
+                    </div>
+                    <hr />
+                    <div class="space-between mb-2">
+                        <span>Estimated Total</span>
+                        <h6 class="my-0">{{convertNumberDisplay(total)}}</h6>
+                    </div>
+    
+                    <div class="form-check mt-4">
+                        <input class="form-check-input" type="checkbox" id="accepted" [defaultValue]="accepted" (click)="onChangeAccepted($event)">
+                        <label class="form-check-label" for="accepted">
+                            I accept <a href="/new/link/terms-and-condition" target="_blank">License and Agreement</a>
+                        </label>
+                    </div>
+    
+                    <form [formGroup]="form" (submit)="onVerify()" *ngIf="payments && payments.specialcode === true">
+                        <div class="input-group mt-4">
+                            <input type="text" class="form-control" placeholder="Enter Special Code" [readonly]="!isReady()" formControlName="code"
+                                [ngClass]="{ 'is-invalid': verifySubmitted && form.controls.code.errors}">
+                            <button class="btn btn-outline-primary" type="submit" id="button-addon2" [disabled]="accepted === false">
+                                <span class="spinner-border spinner-border-sm me-1" aria-hidden="true" *ngIf="isProcessingSpecialCode"></span>
+                                {{isProcessingSpecialCode ? '' : ' Verify'}}
+                            </button>
+                        </div>
+                    </form>
+    
+                    <button class="btn-creditcard card-payment mt-4" [disabled]="!isReady()" (click)="onStripe()"
+                        *ngIf="payments && payments.card === true">
+                        <span class="spinner-border spinner-border-sm me-1" aria-hidden="true" *ngIf="isProcessingStripe"></span>
+                        <span>{{isProcessingStripe ? 'Processing...' : ' Pay with Credit Card'}}</span>
+                        <i class="p-credit mx-1"></i>
+                        <span>by Stripe</span>
+                    </button>
+    
+                    <button class="btn-gcash card-payment mt-2" [disabled]="!isReady()" (click)="onGCash()" *ngIf="payments && payments.gcash === true">
+                        <span class="spinner-border spinner-border-sm me-1" aria-hidden="true" *ngIf="isProcessingGCash"></span>
+                        <span>{{isProcessingStripe ? 'Processing...' : 'Pay with'}}</span>
+                        <i class="p-gcash mx-1"></i>
+                        <span>by PayMongo</span>
+                    </button>
+    
+                    <button class="btn-paymaya card-payment mt-2" [disabled]="!isReady()" (click)="onPaymaya()"
+                        *ngIf="payments && payments.paymaya === true">
+                        <span class="spinner-border spinner-border-sm me-1" aria-hidden="true" *ngIf="isProcessingPayMaya"></span>
+                        <span>{{isProcessingStripe ? 'Processing...' : ' Pay with '}}</span>
+                        <i class="p-paymaya mx-1"></i>
+                        <span>by PayMongo</span>
+                    </button>
+    
+                    <button class="btn-gcash card-payment mt-2" [disabled]="!isReady()" (click)="onGCashUpload()"
+                        *ngIf="payments && payments.gcashupload === true">
+                        <span>Pay with</span>
+                        <i class="p-gcash mx-1"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</ion-content>

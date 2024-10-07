@@ -1,0 +1,39 @@
+* {
+    font-family: "Proxima Nova";
+}
+
+.fa,
+.far,
+.fas {
+    font-family: "Font Awesome 5 Free" !important;
+}
+
+.card:hover{
+    background: #f4ddff
+}
+
+img {
+    font-size: 10px;
+}
+
+table {
+    width: 100%;
+}
+
+table tr td {
+    background-color: transparent;
+    padding-inline: 3px;
+    vertical-align: top;
+}
+
+table .image {
+    width: 10%;
+}
+
+table .details {
+    width: auto;
+}
+
+table .amount {
+    width: 10%;
+}

@@ -1,0 +1,102 @@
+* {
+    font-family: "Proxima Nova";
+}
+
+.fa,
+.far,
+.fas {
+    font-family: "Font Awesome 5 Free" !important;
+}
+
+.no-item{
+   text-align: center;
+    justify-content: center;
+}
+
+.no-item .product{
+    border: 1px #ab37c9 solid;
+    color: #fff;
+    font-size: 1rem;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-weight: bold;
+    background-color: #ab37c9;
+    display: block;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.no-item .product:hover{
+    color: #ab37c9;
+    background-color: #fff;
+}
+
+table {
+    width: 100%;
+}
+
+table tr td {
+    background-color: transparent;
+    padding-inline: 3px;
+    vertical-align: top;
+}
+
+table .mark {
+    width: 3%;
+}
+
+table .image {
+    width: 7%;
+}
+
+table .details {
+    width: auto;
+}
+
+table .amount {
+    width: 13%;
+}
+
+h3 {
+    margin-bottom: 0px;
+}
+
+hr{
+    border-color: #550255;
+    border-width: 2px;
+}
+
+.space-between{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.checkout {
+    border: 1px #5e17eb solid;
+    color: #fff;
+    font-size: 1rem;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-weight: bold;
+    background-color: #5e17eb;
+    display: block;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.checkout:hover{
+    color: #5e17eb;
+    background-color: #fff;
+}
+
+.checkout:disabled {
+    background: lightgrey;
+    border: 0.5px solid lightgrey;
+    cursor: not-allowed;
+}
+
+a{
+    cursor: pointer;
+}

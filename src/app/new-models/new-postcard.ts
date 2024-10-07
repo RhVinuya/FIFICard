@@ -25,6 +25,7 @@ export class NewPostcard {
     description: string;
     details: string;
     events: string[];
+    recipient: string;
     recipients?: string[];
     active: boolean;
     featured: boolean;

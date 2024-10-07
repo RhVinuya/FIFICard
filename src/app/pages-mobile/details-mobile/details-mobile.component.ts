@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NewInYourCartComponent } from 'src/app/new-components/new-in-your-cart/new-in-your-cart.component';
 import { NewVideoPlayerComponent } from 'src/app/new-components/new-video-player/new-video-player.component';
 import { INewCard, INewCardImage, INewRating, NewCard } from 'src/app/new-models/new-card';
 import { INewCartBundle } from 'src/app/new-models/new-cart';
-import { IModelType, ModelType } from 'src/app/new-models/new-enum';
+import { IModelType, ItemType, ModelType } from 'src/app/new-models/new-enum';
 import { INewGiftImage, NewGift } from 'src/app/new-models/new-gift';
 import { INewPostcardBundle, NewPostcard, NewPostcardBundle } from 'src/app/new-models/new-postcard';
 import { INewStickerImage, NewSticker } from 'src/app/new-models/new-sticker';
@@ -30,6 +31,15 @@ export class DetailsMobileComponent implements OnInit {
   fileService: NewFileService;
   cartService: NewCartService;
 
+  form = new FormGroup({
+    recipient: new FormControl<string>('', [Validators.required]),
+    emailto: new FormControl<string>('', [Validators.required, Validators.email]),
+    message: new FormControl<string>('', [Validators.required]),
+    sender: new FormControl<string>('', [Validators.required]),
+    emailfrom: new FormControl<string>('', [Validators.required, Validators.email]),
+  });
+
+
   constructor(
     _activateRoute: ActivatedRoute,
     _cardService: NewCardService,
@@ -38,13 +48,20 @@ export class DetailsMobileComponent implements OnInit {
     _giftService: NewGiftService,
     _fileService: NewFileService,
     _cartService: NewCartService,
+    public router: Router
   ) {
     this.activateRoute = _activateRoute;
+    this.cardService = _cardService;
+    this.stickerService = _stickerService;
+    this.postcardService = _postcardService;
+    this.giftService = _giftService;
+    this.fileService = _fileService;
   }
 
   loading: boolean = false;
   id: string;
-  type: 'card' | 'sticker' | 'postcard' | 'gift';
+  type: 'cards' | 'stickers' | 'postcards' | 'gifts';
+  itemType: ItemType;
   model: ModelType;
   iModel: IModelType;
   bundles: NewPostcardBundle[] = [];
@@ -64,11 +81,18 @@ export class DetailsMobileComponent implements OnInit {
       this.loading = true;
       this.id = params['id'];
       this.type = params['type'];
+      console.log('details');
+      console.log(this.type);
 
-      if (this.type === 'card') {
+      if (this.type === 'cards') {
+        this.itemType = "card";
         this.cardService.get(this.id).then(async value => {
+          console.log('data');
+          console.log(value);
           this.isAddToCart = true;
           let images = await this.cardService.getImages(this.id);
+          this.model = new NewCard(value);
+          this.iModel = value;
           this.loadImages(images);
           let qrImage = images.find(x => x.title === 'QR');
           if (qrImage) {
@@ -77,7 +101,8 @@ export class DetailsMobileComponent implements OnInit {
           this.loadRatings(await this.cardService.getRatings(this.id));
         })
       }
-      else if (this.type === 'sticker') {
+      else if (this.type === 'stickers') {
+        this.itemType = "sticker";
         this.stickerService.get(this.id).then(async value => {
           this.iModel = value;
           this.model = new NewSticker(value);
@@ -88,7 +113,8 @@ export class DetailsMobileComponent implements OnInit {
           this.loadRatings(await this.cardService.getRatings(this.id));
         })
       }
-      else if (this.type === 'postcard') {
+      else if (this.type === 'postcards') {
+        this.itemType = "postcard";
         this.postcardService.get(this.id).then(async value => {
           this.iModel = value;
           this.model = new NewPostcard(value);
@@ -104,7 +130,8 @@ export class DetailsMobileComponent implements OnInit {
           this.loadRatings(await this.cardService.getRatings(this.id));
         })
       }
-      else if (this.type === 'gift') {
+      else if (this.type === 'gifts') {
+        this.itemType = "gift";
         this.giftService.get(this.id).then(async value => {
           this.iModel = value;
           this.model = new NewGift(value);
@@ -115,6 +142,9 @@ export class DetailsMobileComponent implements OnInit {
           this.loadRatings(await this.cardService.getRatings(this.id));
         })
       }
+
+
+      console.log(this.model);
     });
   }
 
@@ -137,14 +167,14 @@ export class DetailsMobileComponent implements OnInit {
   }
 
   getPrice() {
-    if (this.type === 'card') return (this.model as NewCard).priceDisplay();
-    else if (this.type === 'sticker') return (this.model as NewSticker).priceDisplay();
-    else if (this.type === 'gift') return (this.model as NewGift).priceDisplay();
+    if (this.type === 'cards') return (this.model as NewCard).priceDisplay();
+    else if (this.type === 'stickers') return (this.model as NewSticker).priceDisplay();
+    else if (this.type === 'gifts') return (this.model as NewGift).priceDisplay();
     else return '';
   }
 
   getPersonalizePrice(){
-    if (this.type === 'card' && this.isPersonalize) return (this.model as NewCard).getPersonalizePriceDisplay();
+    if (this.type === 'cards' && this.isPersonalize) return (this.model as NewCard).getPersonalizePriceDisplay();
     else return ''
   }
 
@@ -168,6 +198,8 @@ export class DetailsMobileComponent implements OnInit {
     })
   }
 
+
+
   getICard() {
     return this.iModel as INewCard;
   }
@@ -175,4 +207,16 @@ export class DetailsMobileComponent implements OnInit {
   playInstruction() {
   }
 
+  getMessage() {
+    return this.model.details.split('\n\n', 2)[1];
+  }
+
+  addToCart() {
+    this.router.navigateByUrl('/add-cart');
+  }
+
+  
+  goToCart() {
+    this.router.navigateByUrl('/cart');
+}
 }

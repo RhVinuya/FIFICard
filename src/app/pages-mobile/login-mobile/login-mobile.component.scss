@@ -133,3 +133,22 @@ ion-button::part(native) {
   font-size: 12px;
   color: gray;
 }
+
+ion-toolbar {
+  --background: white;
+}
+
+.backbtn {
+  --background: white;
+  --color: black;
+}
+
+.backbtn:active {
+  --background-activated: white;
+  --background: white;
+  --color: black;
+}
+
+.btn-login-icon {
+  margin-right: 5px;
+}

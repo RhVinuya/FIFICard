@@ -52,7 +52,7 @@ ion-thumbnail {
   font-weight: 400;
 }
 
-.card-message h2 {
+.card-message h5 {
   font-size: 12px;
   font-weight: bold;
   line-height: 0;
@@ -61,6 +61,8 @@ ion-thumbnail {
 .card-message p {
   font-size: 11px;
   margin-bottom: 10px;
+  white-space: pre-line;
+  line-height: 1;
 }
 
 .btn-container > button {

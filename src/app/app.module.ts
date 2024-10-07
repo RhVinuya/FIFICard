@@ -217,7 +217,7 @@ import { HeaderMobileComponent } from "./components-mobile/header-mobile/header-
 import { CardCategoriesMobileComponent } from "./components-mobile/categories/card-categories-mobile/card-categories-mobile.component";
 import { CardCategoryMobileComponent } from "./components-mobile/categories/card-categories-mobile/card-category-mobile/card-category-mobile.component";
 import { RegisterMobileComponent } from "./pages-mobile/register-mobile/register-mobile.component";
-import { DetailsMobileComponent } from "./pages-mobile/cards-mobile/details-mobile/details-mobile.component";
+import { DetailsMobileComponent } from "./pages-mobile/details-mobile/details-mobile.component";
 import { StickersMobileComponent } from "./pages-mobile/stickers-mobile/stickers-mobile.component";
 import { PostcardsMobileComponent } from "./pages-mobile/postcards-mobile/postcards-mobile.component";
 import { GiftsMobileComponent } from "./pages-mobile/gifts-mobile/gifts-mobile.component";
@@ -235,6 +235,17 @@ import { OrderSummaryMobileComponent } from "./pages-mobile/order-summary-mobile
 import { ProfileDetailsMobileComponent } from "./pages-mobile/profile-mobile/profile-details-mobile/profile-details-mobile.component";
 import { TransactionsMobileComponent } from "./pages-mobile/profile-mobile/transactions-mobile/transactions-mobile.component";
 import { ReferralsMobileComponent } from "./pages-mobile/referrals-mobile/referrals-mobile.component";
+import { CartMobileComponent } from './pages-mobile/cart-mobile/cart-mobile.component';
+import { AddCartButtonMobileComponent } from './components-mobile/add-cart-button-mobile/add-cart-button-mobile.component'
+import { InYourCartMobileComponent } from "./pages-mobile/in-your-cart-mobile/in-your-cart-mobile.component";
+import { CartViewMobileComponent } from "./pages-mobile/in-your-cart-mobile/cart-view-mobile/cart-view-mobile.component";
+import { LoadingMobileComponent } from "./components-mobile/loading-mobile/loading-mobile.component";
+import { CartItemMobileComponent } from "./pages-mobile/cart-mobile/cart-item/cart-item-mobile.component";
+import { CheckoutMobileComponent } from "./pages-mobile/checkout-mobile/checkout-mobile.component";
+import { CheckoutSenderMobileComponent } from "./pages-mobile/checkout-mobile/checkout-sender-mobile/checkout-sender-mobile.component";
+import { CheckoutGcashMobileComponent } from "./pages-mobile/checkout-mobile/checkout-gcash-mobile/checkout-gcash-mobile.component";
+import { CheckoutItemMobileComponent } from "./pages-mobile/checkout-mobile/checkout-item-mobile/checkout-item-mobile.component";
+import { CheckoutRecipientsMobileComponent } from "./pages-mobile/checkout-mobile/checkout-recipients-mobile/checkout-recipients-mobile.component";
 
 @NgModule({
   declarations: [
@@ -447,6 +458,19 @@ import { ReferralsMobileComponent } from "./pages-mobile/referrals-mobile/referr
     ProfileDetailsMobileComponent,
     TransactionsMobileComponent,
     ReferralsMobileComponent,
+    CartMobileComponent,
+    NewAddCartButtonComponent,
+    AddCartButtonMobileComponent,
+    InYourCartMobileComponent,
+    CartViewMobileComponent,
+    LoadingMobileComponent,
+    CartMobileComponent,
+    CartItemMobileComponent,
+    CheckoutMobileComponent,
+    CheckoutSenderMobileComponent,
+    CheckoutGcashMobileComponent,
+    CheckoutItemMobileComponent,
+    CheckoutRecipientsMobileComponent
   ],
   imports: [
     BrowserModule,

@@ -16,6 +16,7 @@ import { NewStorageService } from 'src/app/new-services/new-storage.service';
 export class ProductTileMobileComponent implements OnInit {
 
   @Input() product: INewCard | INewSticker | INewPostcard | INewGift;
+  @Input() type: string;
 
   storageService: NewStorageService;
   cardService: NewCardService;
@@ -49,5 +50,8 @@ export class ProductTileMobileComponent implements OnInit {
     }
   }
 
+  gotoDetails(){
+    this.router.navigateByUrl(`/${this.type}/${this.product.id}/details`);
+  }
 
 }

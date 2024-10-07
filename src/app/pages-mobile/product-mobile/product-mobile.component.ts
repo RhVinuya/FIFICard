@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { INewCard } from 'src/app/new-models/new-card';
 import { NewEvent } from 'src/app/new-models/new-event';
 import { INewGift } from 'src/app/new-models/new-gift';
@@ -38,6 +38,7 @@ export class ProductMobileComponent implements OnInit {
     _eventService: NewEventService,
     _storageService: NewStorageService,
     _recipientService: NewRecipientService,
+    public router: Router
   ) {
     this.activateRoute = _activateRoute;
     this.cardService = _cardService;
@@ -135,4 +136,7 @@ export class ProductMobileComponent implements OnInit {
     }
   }
 
+  goToCart() {
+      this.router.navigateByUrl('/cart');
+  }
 }

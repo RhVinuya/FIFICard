@@ -11,6 +11,7 @@ import { INewSticker } from 'src/app/new-models/new-sticker';
 })
 export class ProductListMobileComponent implements OnInit {
 
+  @Input() type: string;
   @Input() products: INewCard[] | INewSticker[] | INewPostcard[] | INewGift[];
 
   columns: number = 3;

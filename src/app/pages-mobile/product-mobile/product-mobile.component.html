@@ -1,27 +1,30 @@
 <ion-content fullscreen="true">
-    <ion-grid *ngIf="currentEvent">
-      <ion-row>
-        <ion-col size="12" class="header-col">
-          <h2>{{ currentEvent.name | uppercase }} CARDS</h2>
-          <div>
-            <ion-icon name="heart"></ion-icon>
-            <ion-icon name="cart-outline"></ion-icon>
-          </div>
-        </ion-col>
-      </ion-row>
-  
-      <ion-row class="badge-row" >
-        <div *ngFor="let recipient of recipients">
-          <ion-badge (click)="onRecipientSelect(recipient)">{{recipient}}</ion-badge>
+
+  <app-new-loading [loading]="!currentEvent"></app-new-loading>
+
+  <ion-grid *ngIf="currentEvent">
+    <ion-row>
+      <ion-col size="12" class="header-col">
+        <h2>{{ currentEvent.name | uppercase }} CARDS</h2>
+        <div>
+          <ion-icon name="heart"></ion-icon>
+          <ion-icon (click)="goToCart()" name="cart-outline"></ion-icon>
         </div>
-      </ion-row>
-  
-      <ion-row>
-        <ion-col class="card-list" size="12" >
-          <app-product-list-mobile *ngIf="display" [products]="display"></app-product-list-mobile>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="badge-row" >
+      <div *ngFor="let recipient of recipients">
+        <ion-badge (click)="onRecipientSelect(recipient)">{{recipient}}</ion-badge>
+      </div>
+    </ion-row>
+
+    <ion-row>
+      <ion-col class="card-list" size="12" >
+        <app-product-list-mobile *ngIf="display" [products]="display" [type]="type!"></app-product-list-mobile>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
     <h5 *ngIf="!currentEvent"> No Cards available right now </h5>
   </ion-content>
