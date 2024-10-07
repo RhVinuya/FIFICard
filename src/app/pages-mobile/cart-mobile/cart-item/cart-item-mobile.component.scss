@@ -1,161 +1,161 @@
 * {
-    font-family: "Proxima Nova";
+  font-family: "Proxima Nova";
 }
 
 .fa,
 .far,
 .fas {
-    font-family: "Font Awesome 5 Free" !important;
+  font-family: "Font Awesome 5 Free" !important;
 }
 
 .is-cart-selected {
-    background: #f4ddff
+  background: #f4ddff;
 }
 
-.card:hover{
-    background: #f4ddff
+.card:hover {
+  background: #f4ddff;
 }
 
 img {
-    font-size: 10px;
+  font-size: 10px;
 }
 
 table {
-    width: 100%;
+  width: 100%;
 }
 
 table tr td {
-    background-color: transparent;
-    padding-inline: 3px;
-    vertical-align: top;
+  background-color: transparent;
+  padding-inline: 3px;
+  vertical-align: center;
 }
 
 table .mark {
-    width: 3%;
+  width: 3%;
 }
 
 table .image {
-    width: 7%;
+  width: 20%;
 }
 
 table .details {
-    width: auto;
+  width: auto;
 }
 
 table .amount {
-    width: 10%;
+  width: 10%;
 }
 
 table .delete {
-    width: 3%;
+  width: 3%;
 }
 
-h3 {
-    margin-bottom: 0px;
+h4 {
+  margin-bottom: 0px;
+  font-size: 16px;
 }
 
-.fa-trash{
-    cursor: pointer;
+.fa-trash {
+  cursor: pointer;
 }
 
 .fibei-checkout {
-    font-family: "Proxima Nova";
-    border: 2px #5e17eb solid;
-    color: #fff;
-    font-size: 1rem;
-    padding: 10px 20px;
-    border-radius: 20px;
-    font-weight: bold;
-    background-color: #5e17eb;
-    display: block;
-    margin-bottom: 20px;
-    width: 100%;
+  font-family: "Proxima Nova";
+  border: 2px #5e17eb solid;
+  color: #fff;
+  font-size: 1rem;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-weight: bold;
+  background-color: #5e17eb;
+  display: block;
+  margin-bottom: 20px;
+  width: 100%;
 }
 
 .cart-paypal {
-    font-size: 1rem;
-    padding: 10px 20px;
-    border-radius: 20px;
-    font-weight: bold;
-    background-color: #e6f44e;
-    display: block;
-    margin-bottom: 20px;
-    width: 100%;
+  font-size: 1rem;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-weight: bold;
+  background-color: #e6f44e;
+  display: block;
+  margin-bottom: 20px;
+  width: 100%;
 }
 
 .fibei-btn {
-    font-family: "Proxima Nova";
-    border: 2px #5e17eb solid;
-    color: #5e17eb;
-    font-size: 1rem;
-    padding: 10px;
-    border-radius: 20px;
-    font-weight: bold;
-    margin-right: 8px;
-    display: inline-block;
-    cursor: pointer;
+  font-family: "Proxima Nova";
+  border: 2px #5e17eb solid;
+  color: #5e17eb;
+  font-size: 1rem;
+  padding: 10px;
+  border-radius: 20px;
+  font-weight: bold;
+  margin-right: 8px;
+  display: inline-block;
+  cursor: pointer;
 }
 
 .fibei-btn:hover {
-    font-family: "Proxima Nova";
-    border: 2px #5e17eb solid;
-    color: #fff;
-    background: #5e17eb;
-
+  font-family: "Proxima Nova";
+  border: 2px #5e17eb solid;
+  color: #fff;
+  background: #5e17eb;
 }
 
 .fibei-btn-o {
-    font-family: "Proxima Nova";
-    color: #fff;
-    background: #5e17eb;
-    cursor: pointer;
-    padding-inline: 10px;
-    padding-block: 5px;
-    border-radius: 20px;
-    margin-right: 8px;
-    display: inline-block;
-    border: none;
+  font-family: "Proxima Nova";
+  color: #fff;
+  background: #5e17eb;
+  cursor: pointer;
+  padding-inline: 10px;
+  padding-block: 5px;
+  border-radius: 20px;
+  margin-right: 8px;
+  display: inline-block;
+  border: none;
 }
 
 .fibei-btn-o:hover {
-    font-family: "Proxima Nova";
-    background: #fff;
-    color: #5e17eb;
-    font-size: 1rem;
+  font-family: "Proxima Nova";
+  background: #fff;
+  color: #5e17eb;
+  font-size: 1rem;
 }
 
 .fa-star {
-    font-size: 13px;
+  font-size: 13px;
 }
 
 .i-poetry {
-    border: 2px solid purple;
-    background: white !important;
-    color: purple !important;
-    font-size: 16px;
-    border-left: 10px solid;
+  border: 2px solid purple;
+  background: white !important;
+  color: purple !important;
+  font-size: 16px;
+  border-left: 10px solid;
 }
 
 .i-poetry:hover {
-    border: 2px solid #550255;
-    background: purple !important;
-    color: #fff !important;
-    font-size: 16px;
-    border-left: 10px solid #550255;
+  border: 2px solid #550255;
+  background: purple !important;
+  color: #fff !important;
+  font-size: 16px;
+  border-left: 10px solid #550255;
 }
 
 .i-featured {
-    border: 2px solid #bd283e;
-    background: white !important;
-    color: #bd283e !important;
-    font-size: 16px;
-    border-left: 10px solid;
+  border: 2px solid #bd283e;
+  background: white !important;
+  color: #bd283e !important;
+  font-size: 16px;
+  border-left: 10px solid;
 }
 
 .i-featured:hover {
-    border: 2px solid #871c2d;
-    background: #bd283e !important;
-    color: #fff !important;
-    font-size: 16px;
-    border-left: 10px solid #871c2d;
+  border: 2px solid #871c2d;
+  background: #bd283e !important;
+  color: #fff !important;
+  font-size: 16px;
+  border-left: 10px solid #871c2d;
 }

@@ -1,68 +1,77 @@
 <ion-content [fullscreen]="true">
-    <div class="mxw-1920px mt-2">
-        <app-new-title title="Cart" ></app-new-title>
+  <div class="mxw-1920px mt-2">
+    <app-new-title title="Cart"></app-new-title>
+  </div>
+
+  <div class="mxw-1920px no-item" *ngIf="carts.length === 0">
+    <h3 class="text-purple my-0">No item on cart.</h3>
+    <h6 class="text-gray my-0">Explore our Products</h6>
+    <div class="mt-4">
+      <app-new-products></app-new-products>
     </div>
-    
-    <div class="mxw-1920px no-item" *ngIf="carts.length === 0">
-        <h3 class="text-purple my-0">No item on cart.</h3>
-        <h6 class="text-gray my-0">Explore our Products</h6>
-        <div class="mt-4">
-            <app-new-products></app-new-products>
+  </div>
+
+  <app-new-loading [loading]="loading"></app-new-loading>
+  <div *ngIf="loading == false">
+    <div class="mxw-1920px row" *ngIf="carts.length > 0">
+      <div class="col-md-9 pe-1">
+        <div class="card bg-light border-light mb-2">
+          <div class="card-body">
+            <table>
+              <tr>
+                <td class="mark"></td>
+                <td class="image">
+                  <span>Image</span>
+                </td>
+                <td class="details">
+                  <span>Description</span>
+                </td>
+                <td class="amount">
+                  <span>Price</span>
+                </td>
+              </tr>
+            </table>
+          </div>
         </div>
-    </div>
-    
-    <app-new-loading [loading]="loading"></app-new-loading>
-    <div *ngIf="loading == false">
-        <div class="mxw-1920px row" *ngIf="carts.length > 0">
-            <div class="col-md-9 pe-1">
-                <div class="card bg-light border-light mb-2">
-                    <div class="card-body">
-                        <table>
-                            <tr>
-                                <td class="mark">
-                                </td>
-                                <td class="image">
-                                    <span>Image</span>
-                                </td>
-                                <td class="details">
-                                    <span>Description</span>
-                                </td>
-                                <td class="amount">
-                                    <span>Price</span>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-                <app-cart-item-mobile *ngFor="let iCart of carts" [cart]="iCart" (onChangeMark)="onChangeItemMark(iCart.id, $event)"
-                    (onRemoveItem)="onRemove($event)"></app-cart-item-mobile>
+        <app-cart-item-mobile
+          *ngFor="let iCart of carts"
+          [cart]="iCart"
+          (onChangeMark)="onChangeItemMark(iCart.id, $event)"
+          (onRemoveItem)="onRemove($event)"
+        ></app-cart-item-mobile>
+      </div>
+      <div class="col-md-3 ps-1">
+        <div class="card bg-light border-light">
+          <div class="card-body">
+            <h3 class="mt-0 mb-4">Order Summary</h3>
+
+            <div class="space-between">
+              <h5 class="my-0">Subtotal</h5>
+              <h5 class="my-0 text-purple">{{ totalDisplay }}</h5>
             </div>
-            <div class="col-md-3 ps-1">
-                <div class="card bg-light border-light">
-                    <div class="card-body">
-                        <h3 class="mt-0 mb-4">Order Summary</h3>
-    
-                        <div class="space-between">
-                            <h5 class="my-0">Subtotal</h5>
-                            <h5 class="my-0 text-purple">{{totalDisplay}}</h5>
-                        </div>
-                        <hr />
-                        <div class="space-between mb-4">
-                            <h5 class="my-0">Estimated Total</h5>
-                            <h5 class="my-0 text-purple">{{totalDisplay}}</h5>
-                        </div>
-                        <div class="text-center" *ngIf="user !== undefined">
-                            <button class="checkout" [disabled]="count === 0 || saving === true" (click)="onClickCheckout()">Proceed to checkout</button>
-                        </div>
-                        <div *ngIf="user === undefined">
-                            <label>No user sign in!</label>
-                            <a class="mx-1" (click)="onClickSignIn()">Sign in</a>
-                            <label class="mx-1">or</label>
-                            <a [routerLink]="['/new/registration']">Join us now!</a>
-                        </div>
-                    </div>
-                </div>
+            <hr />
+            <div class="space-between mb-4">
+              <h5 class="my-0">Estimated Total</h5>
+              <h5 class="my-0 text-purple">{{ totalDisplay }}</h5>
             </div>
+            <div class="text-center" *ngIf="user !== undefined">
+              <button
+                class="checkout"
+                [disabled]="count === 0 || saving === true"
+                (click)="onClickCheckout()"
+              >
+                Proceed to checkout
+              </button>
+            </div>
+            <div *ngIf="user === undefined">
+              <label>No user sign in!</label>
+              <a class="mx-1" (click)="onClickSignIn()">Sign in</a>
+              <label class="mx-1">or</label>
+              <a [routerLink]="['/new/registration']">Join us now!</a>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </ion-content>

@@ -1,65 +1,69 @@
 * {
-    font-family: Proxima Nova;
+  font-family: Proxima Nova;
 }
 
 .fa,
 .far,
 .fas {
-    font-family: "Font Awesome 5 Free" !important;
+  font-family: "Font Awesome 5 Free" !important;
 }
 
 .divider {
-    border-top: 2px solid #5e17eb;
+  border-top: 2px solid #5e17eb;
 }
 
-.offcanvas-body{
-    height: calc(100vh - 60px);
+.offcanvas-header {
+  padding: 15px;
 }
 
-.content{
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: space-between;
+.offcanvas-body {
+  height: calc(100vh - 60px);
 }
 
-.details{
-    width: 100%;
-    flex-grow: 2;
+.content {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
 }
 
-.some-component{
-    width: 100%;
-} 
+.details {
+  width: 100%;
+  flex-grow: 2;
+}
 
-.totals{
-    border-top: 1px solid lightgrey;
-    width: 100%;
-    position: sticky;
-    display: flex;
-    flex-direction: column;
-    align-self: start;
-    justify-content: baseline;
+.some-component {
+  width: 100%;
+}
+
+.totals {
+  border-top: 1px solid lightgrey;
+  width: 100%;
+  position: sticky;
+  display: flex;
+  flex-direction: column;
+  align-self: start;
+  justify-content: baseline;
 }
 
 .gotocart {
-    font-family: "Proxima Nova";
-    border: 1px #ab37c9 solid;
-    background: white;
-    color: #ab37c9;
-    cursor: pointer;
-    padding-block: 6px;
-    padding-inline: 10px;
-    border-radius: 20px;
-    font-weight: bold;
-    display: inline-block;
+  font-family: "Proxima Nova";
+  border: 1px #ab37c9 solid;
+  background: white;
+  color: #ab37c9;
+  cursor: pointer;
+  padding-block: 6px;
+  padding-inline: 10px;
+  border-radius: 20px;
+  font-weight: bold;
+  display: inline-block;
 }
 
 .gotocart:hover {
-    font-family: "Proxima Nova";
-    border: 1px #ab37c9 solid;
-    color: #fff;
-    background: #ab37c9;
-    font-size: 1rem;
+  font-family: "Proxima Nova";
+  border: 1px #ab37c9 solid;
+  color: #fff;
+  background: #ab37c9;
+  font-size: 1rem;
 }
