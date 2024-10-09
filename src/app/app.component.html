@@ -2,13 +2,13 @@
     <ion-content [fullscreen]="true">
         <ion-tabs >
             <ion-tab-bar slot="bottom" *ngIf="isLogIn">
-              <ion-tab-button tab="home" [routerLink]="['/home']" [routerDirection]="'forward'">
-                <img src="../assets/images/mobile/home.png" height="30px">
-                <span>HOME</span>
-              </ion-tab-button>
               <ion-tab-button tab="cards" [routerLink]="['/cards']" [routerDirection]="'forward'">
                 <img src="../assets/images/mobile/pcard.png" height="30px">
                 <span>CARDS</span>
+              </ion-tab-button>
+              <ion-tab-button tab="bundles" [routerLink]="['/bundels']" [routerDirection]="'forward'">
+                <img src="../assets/images/mobile/mail.png" height="30px">
+                <span>BUNDLES</span>
               </ion-tab-button>
               <ion-tab-button tab="stickers" [routerLink]="['/stickers']" [routerDirection]="'forward'">
                 <img src="../assets/images/mobile/sticker.png" height="30px">

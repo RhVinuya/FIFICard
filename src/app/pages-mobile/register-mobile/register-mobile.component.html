@@ -12,93 +12,95 @@
     </ion-col>
   </ion-row>
 
-  <!-- Email Input -->
-  <ion-row class="ion-justify-content-center ion-align-items-center">
-    <ion-col size="12">
-      <ion-input
-        class="email-input"
-        label="Email"
-        label-placement="floating"
-        fill="outline"
-        placeholder="Email Address"
-      ></ion-input>
-    </ion-col>
-  </ion-row>
+  <form [formGroup]="form" (submit)="submit()">
+    <!-- Email Input -->
+    <ion-row class="ion-justify-content-center ion-align-items-center">
+      <ion-col size="12">
+        <ion-item class="input">
+          <ion-label position="floating">Email</ion-label>
+          <ion-input formControlName="email"></ion-input>
+          <ion-note *ngIf="form.controls.email.getError('used')" slot="error">Email already exist!</ion-note>
+        </ion-item>
+      </ion-col>
+    </ion-row>
 
-  <!-- Name Input -->
-  <ion-row clas>
-    <ion-col size="6">
-      <ion-input
-        class="first-name-input"
-        label="First Name"
-        label-placement="floating"
-        fill="outline"
-        placeholder="First Name"
-      ></ion-input>
-    </ion-col>
-    <ion-col size="6">
-      <ion-input
-        class="last-name-input"
-        label="Last Name"
-        label-placement="floating"
-        fill="outline"
-        placeholder="Last Name"
-      ></ion-input>
-    </ion-col>
-  </ion-row>
+    <!-- Name Input -->
+    <ion-row clas>
+      <ion-col size="6">
+        <ion-item class="input" fill="solid">
+          <ion-label position="floating">First Name</ion-label>
+          <ion-input formControlName="firstname"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col size="6">
+        <ion-item class="input" fill="solid">
+          <ion-label position="floating">Last Name</ion-label>
+          <ion-input formControlName="lastname"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
 
-  <!-- Password Input -->
-  <ion-row class="ion-justify-content-center ion-align-items-center">
-    <ion-col size="12">
-      <ion-input
-        class="password-input"
-        label="Password"
-        label-placement="floating"
-        fill="outline"
-        placeholder="Password"
-      ></ion-input>
-    </ion-col>
-  </ion-row>
+    <!-- Password Input -->
+    <ion-row class="ion-justify-content-center ion-align-items-center">
+      <ion-col size="12">
+        <ion-item class="input"  fill="solid">
+          <ion-label position="floating">Password</ion-label>
+          <ion-input
+            [type]="showPassword ? 'text' : 'password'"
+            formControlName="password"
+          ></ion-input>
+          <ion-icon name="{{ showPassword ? 'eye-off' : 'eye' }}" slot="end" (click)="togglePasswordVisibility()"></ion-icon>
+          <ion-note *ngIf="form.controls.password.errors" slot="error">Invalid Password!</ion-note>
+        </ion-item>
+      </ion-col>
+    </ion-row>
 
-  <ion-row class="ion-justify-content-center ion-align-items-center">
-    <ion-col size="12">
-      <ion-input
-        class="confirm-password-input"
-        label="Confirm Password"
-        label-placement="floating"
-        fill="outline"
-        placeholder="Confirm Password"
-      ></ion-input>
-    </ion-col>
-  </ion-row>
+    <ion-row class="ion-justify-content-center ion-align-items-center">
+      <ion-col size="12">
+        <ion-item class="input" fill="solid">
+          <ion-label position="floating">Confirm Password</ion-label>
+          <ion-input
+            [type]="showConfirmPassword ? 'text' : 'password'"
+            formControlName="confirm"
+          ></ion-input>
+          <ion-note *ngIf="form.controls.confirm.getError('mismatch')" slot="error">Password doesn't match!</ion-note>
+          <ion-icon name="{{ showConfirmPassword ? 'eye-off' : 'eye' }}" slot="end" (click)="togglePasswordVisibility('confirm')"></ion-icon>
+        </ion-item>
+      </ion-col>
+    </ion-row>
 
-  <!-- Toggle -->
-  <ion-row class="ion-justify-content-center ion-align-items-center">
-    <ion-col size="12">
-      <ion-item lines="none" class="ion-no-padding">
-        <ion-toggle slot="start"></ion-toggle>
-        <ion-label slot="end" class="lbl-toggle"
-          >Sign up for email updates, notifications, special offers and
-          promotion emails</ion-label
-        >
-      </ion-item>
-    </ion-col>
+    <!-- Toggle -->
+    <ion-row class="ion-justify-content-center ion-align-items-center">
+      <ion-col size="12">
+        <ion-item lines="none" class="ion-no-padding">
+          <ion-toggle slot="start"
+          formControlName="notification"
+          ></ion-toggle>
+          <ion-label slot="end" class="lbl-toggle"
+            >Sign up for email updates, notifications, special offers and
+            promotion emails</ion-label
+          >
+        </ion-item>
+      </ion-col>
 
-    <ion-col size="12">
-      <ion-item lines="none" class="ion-no-padding">
-        <ion-toggle slot="start"></ion-toggle>
-        <ion-label slot="end" class="lbl-toggle"
-          >I Agree with the <span>Terms and Agreement</span>
-        </ion-label>
-      </ion-item>
-    </ion-col>
+      <ion-col size="12">
+        <ion-item lines="none" class="ion-no-padding">
+          <ion-toggle slot="start"
+          formControlName="terms"
+          ></ion-toggle>
+          <ion-label slot="end" class="lbl-toggle"
+            >I Agree with the <span>Terms and Agreement</span>
+          </ion-label>
+        </ion-item>
+      </ion-col>
 
-    <ion-button expand="full" fill="solid"> REGISTER </ion-button>
-  </ion-row>
+      <ion-button expand="full" fill="solid" type="submit"> {{processing? 'Processing...' : 'Register'}} </ion-button>
+    </ion-row>
+  </form>
 
   <ion-row class="ion-justify-content-center external">
-    <ion-img src="/assets/images/google.png"></ion-img>
-    <ion-img src="/assets/images/facebook_logo.png"></ion-img>
+    <ion-img (click)="onGoogleClick()" src="/assets/images/google.png"></ion-img>
+    <!-- <ion-img src="/assets/images/facebook_logo.png"></ion-img> -->
   </ion-row>
 
   <ion-row class="ion-justify-content-center external">

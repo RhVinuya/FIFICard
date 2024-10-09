@@ -81,7 +81,7 @@ export class LoginMobileComponent implements OnInit {
 
       if (user) {
         this.storageService.createUser(user);
-        window.location.href = "/home";
+        window.location.href = "/cards";
       }
     }).catch(err => {
       console.log(err);
@@ -94,5 +94,9 @@ export class LoginMobileComponent implements OnInit {
   }
 
   onResetPassword() {
+  }
+
+  togglePasswordVisibility(type: string = '') {
+      this.showPassword = !!!this.showPassword;
   }
 }

@@ -83,11 +83,6 @@
               <ion-icon (click)="showPassConfirm = !!!showPassConfirm" [name]=" !showPassConfirm? 'eye-outline' : 'eye-off-outline'" slot="end"></ion-icon>
               <ion-note *ngIf="passwordForm.controls.confirm.dirty && passwordForm.controls.confirm.errors" slot="error">Password doesn't match</ion-note>
             </ion-item>
-
-            <ion-item lines="none" [hidden]="!showPasswordForm">
-              <ion-checkbox slot="start"></ion-checkbox>
-              <ion-label>Show Password</ion-label>
-            </ion-item>
           </ion-col>   
         </ion-row>
         <ion-row>

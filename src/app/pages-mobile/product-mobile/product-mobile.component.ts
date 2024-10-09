@@ -93,7 +93,7 @@ export class ProductMobileComponent implements OnInit {
 
     switch(this.type) {
       case 'cards':  
-          this.products = await this.cardService.getByEvent(this.event, false, 'regular');
+          this.products = await this.cardService.getAllByEvent(this.event);
         break;
       case 'stickers':  
           this.products = await this.stickerService.getByEvent(this.event);

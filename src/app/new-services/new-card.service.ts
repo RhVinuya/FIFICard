@@ -58,6 +58,27 @@ export class NewCardService {
     });
   }
 
+  getAllByEvent(event: string): Promise<INewCard[]> {
+    return new Promise((resolve) => {
+      const col = collection(this.store, 'cards');
+      const q = query(col, 
+        where('active', "==", true), 
+        where('type', "==", 'card'), 
+        where('events', "array-contains", event),
+        limit(31)
+      ) 
+      getDocs(q).then(docs => {
+        let cards: INewCard[] = [];
+        docs.forEach(doc => {
+          let card: INewCard = doc.data() as INewCard;
+          card.id = doc.id;
+          cards.push(card);
+        })
+        resolve(cards);
+      })
+    });
+  }
+
   get(id: string): Promise<INewCard> {
     return new Promise((resolve) => {
       let card = this.storageService.getItemDetails(id)

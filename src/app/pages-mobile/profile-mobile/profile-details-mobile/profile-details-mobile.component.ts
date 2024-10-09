@@ -99,7 +99,7 @@ export class ProfileDetailsMobileComponent implements OnInit {
 
   async changePasswordSubmit() {
     this.submitted = true;
-    if (this.form.invalid) return;
+    if (this.passwordForm.invalid) return;
     this.processing = true;
 
     this.passwordForm.controls.current.setErrors(null);
@@ -111,7 +111,7 @@ export class ProfileDetailsMobileComponent implements OnInit {
       this.passwordForm.controls['confirm'].setErrors(null);
       
 
-      let authenticate: boolean = await this.accountService.changePassword(this.user!.email, this.passwordForm.value.confirm!, this.passwordForm.value.new!);
+      let authenticate: boolean = await this.accountService.changePassword(this.user!.email, this.passwordForm.value.current!, this.passwordForm.value.new!);
       if (authenticate) {
         this.processing = false;
         this.submitted = false;
@@ -126,6 +126,7 @@ export class ProfileDetailsMobileComponent implements OnInit {
         });
     
         await toast.present();
+        window.location.reload();
       }
       else {
         this.passwordForm.controls['current'].setErrors({ 'error': true });

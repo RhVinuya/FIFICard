@@ -97,6 +97,7 @@ import { CartMobileComponent } from "./pages-mobile/cart-mobile/cart-mobile.comp
 import { NewInYourCartComponent } from "./new-components/new-in-your-cart/new-in-your-cart.component";
 import { InYourCartMobileComponent } from "./pages-mobile/in-your-cart-mobile/in-your-cart-mobile.component";
 import { CheckoutMobileComponent } from "./pages-mobile/checkout-mobile/checkout-mobile.component";
+import { BundlesMobileComponent } from "./pages-mobile/bundles-mobile/bundles-mobile.component";
 
 const routes: Routes = [
   {
@@ -578,6 +579,11 @@ const mobileRoutes: Routes = [
   {
     path: "cards",
     component: HomeMobileComponent,
+    canActivate: [SecureInnerGuard]
+  },
+  {
+    path: "bundles",
+    component: BundlesMobileComponent,
     canActivate: [SecureInnerGuard]
   },
   {

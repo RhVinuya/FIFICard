@@ -246,6 +246,7 @@ import { CheckoutSenderMobileComponent } from "./pages-mobile/checkout-mobile/ch
 import { CheckoutGcashMobileComponent } from "./pages-mobile/checkout-mobile/checkout-gcash-mobile/checkout-gcash-mobile.component";
 import { CheckoutItemMobileComponent } from "./pages-mobile/checkout-mobile/checkout-item-mobile/checkout-item-mobile.component";
 import { CheckoutRecipientsMobileComponent } from "./pages-mobile/checkout-mobile/checkout-recipients-mobile/checkout-recipients-mobile.component";
+import { BundlesMobileComponent } from './pages-mobile/bundles-mobile/bundles-mobile.component';
 
 @NgModule({
   declarations: [
@@ -470,7 +471,8 @@ import { CheckoutRecipientsMobileComponent } from "./pages-mobile/checkout-mobil
     CheckoutSenderMobileComponent,
     CheckoutGcashMobileComponent,
     CheckoutItemMobileComponent,
-    CheckoutRecipientsMobileComponent
+    CheckoutRecipientsMobileComponent,
+    BundlesMobileComponent
   ],
   imports: [
     BrowserModule,

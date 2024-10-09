@@ -40,7 +40,7 @@ export class ProductTileMobileComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     let cardImages = await this.cardService.getImages(this.product.id);
     if (cardImages.length > 0) {
-      this.primary = await this.fileService.getImageURL(cardImages[0].url.split(".png").join('_74x100.png'));
+      this.primary = await this.fileService.getImageURL(cardImages[0].url); //.split(".png").join('_74x100.png'));
     }
     if (cardImages.length > 1) {
       this.secondary = await this.fileService.getImageURL(cardImages[1].url);
