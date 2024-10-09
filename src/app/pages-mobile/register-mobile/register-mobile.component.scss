@@ -22,11 +22,10 @@ ion-grid {
 
 ion-input {
   font-weight: bold;
-  font-size: 11px;
+  font-size: 14px;
   --padding-start: 10px;
-  --padding-end: 16px;
-  // --padding-top: 8px;
-  // --padding-bottom: 16px;
+  --padding-end: 10px;
+  --min-height: 40px;
 }
 
 ion-button {
@@ -78,10 +77,22 @@ ion-toggle::part(track) {
 }
 
 .lbl-toggle {
-  text-align: left;
   font-size: 14px;
+  font-weight: bold;
   white-space: normal;
+  margin-left: 10px;
   line-height: 1.2;
+  width: 90%;
+  color: #545454;
+}
+
+.lbl-toggle > span {
+  font-weight: normal;
+}
+
+.toggle-container {
+  display: flex;
+  align-items: center;
 }
 
 .lbl-forgot {
@@ -97,27 +108,25 @@ ion-toggle::part(track) {
   margin-top: 20px;
 }
 
-ion-label {
-  font-weight: 200;
-  font-size: 11px;
-  --color: #545454
-  height:50px;
-}
-
 .input {
   --background: #fff;
   --background-activated: #fff;
   --background-focused: #fff;
-  --color: #545454
+  --color: #545454;
 }
 
 .input::part(native) {
   border-color: #000000;
   border-width: 1px;
   border-radius: 10px;
-  //color: #545454
+  padding-left: 10px;
 }
 
-.input input {
-  padding-bottom: 10px;
+.external ion-img {
+  width: 120px;
+  height: 50px;
+  margin: 0 auto;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 50%;
 }

@@ -19,7 +19,9 @@
         <ion-item class="input">
           <ion-label position="floating">Email</ion-label>
           <ion-input formControlName="email"></ion-input>
-          <ion-note *ngIf="form.controls.email.getError('used')" slot="error">Email already exist!</ion-note>
+          <ion-note *ngIf="form.controls.email.getError('used')" slot="error"
+            >Email already exist!</ion-note
+          >
         </ion-item>
       </ion-col>
     </ion-row>
@@ -43,14 +45,20 @@
     <!-- Password Input -->
     <ion-row class="ion-justify-content-center ion-align-items-center">
       <ion-col size="12">
-        <ion-item class="input"  fill="solid">
+        <ion-item class="input" fill="solid">
           <ion-label position="floating">Password</ion-label>
           <ion-input
             [type]="showPassword ? 'text' : 'password'"
             formControlName="password"
           ></ion-input>
-          <ion-icon name="{{ showPassword ? 'eye-off' : 'eye' }}" slot="end" (click)="togglePasswordVisibility()"></ion-icon>
-          <ion-note *ngIf="form.controls.password.errors" slot="error">Invalid Password!</ion-note>
+          <ion-icon
+            name="{{ showPassword ? 'eye-off' : 'eye' }}"
+            slot="end"
+            (click)="togglePasswordVisibility()"
+          ></ion-icon>
+          <ion-note *ngIf="form.controls.password.errors" slot="error"
+            >Invalid Password!</ion-note
+          >
         </ion-item>
       </ion-col>
     </ion-row>
@@ -63,8 +71,16 @@
             [type]="showConfirmPassword ? 'text' : 'password'"
             formControlName="confirm"
           ></ion-input>
-          <ion-note *ngIf="form.controls.confirm.getError('mismatch')" slot="error">Password doesn't match!</ion-note>
-          <ion-icon name="{{ showConfirmPassword ? 'eye-off' : 'eye' }}" slot="end" (click)="togglePasswordVisibility('confirm')"></ion-icon>
+          <ion-note
+            *ngIf="form.controls.confirm.getError('mismatch')"
+            slot="error"
+            >Password doesn't match!</ion-note
+          >
+          <ion-icon
+            name="{{ showConfirmPassword ? 'eye-off' : 'eye' }}"
+            slot="end"
+            (click)="togglePasswordVisibility('confirm')"
+          ></ion-icon>
         </ion-item>
       </ion-col>
     </ion-row>
@@ -72,35 +88,37 @@
     <!-- Toggle -->
     <ion-row class="ion-justify-content-center ion-align-items-center">
       <ion-col size="12">
-        <ion-item lines="none" class="ion-no-padding">
-          <ion-toggle slot="start"
-          formControlName="notification"
-          ></ion-toggle>
-          <ion-label slot="end" class="lbl-toggle"
-            >Sign up for email updates, notifications, special offers and
+        <div class="toggle-container">
+          <ion-toggle formControlName="notification"></ion-toggle>
+          <ion-label class="lbl-toggle"
+            >Sign up for email updates, notifications, special offers &
             promotion emails</ion-label
           >
-        </ion-item>
+        </div>
       </ion-col>
 
       <ion-col size="12">
-        <ion-item lines="none" class="ion-no-padding">
-          <ion-toggle slot="start"
-          formControlName="terms"
-          ></ion-toggle>
-          <ion-label slot="end" class="lbl-toggle"
-            >I Agree with the <span>Terms and Agreement</span>
-          </ion-label>
-        </ion-item>
+        <div class="toggle-container">
+          <ion-toggle formControlName="terms"></ion-toggle>
+          <ion-label class="lbl-toggle"
+            >I Agree with the <span>Terms and Agreement</span></ion-label
+          >
+        </div>
       </ion-col>
 
-      <ion-button expand="full" fill="solid" type="submit"> {{processing? 'Processing...' : 'Register'}} </ion-button>
+      <ion-button expand="full" fill="solid" type="submit">
+        {{ processing ? "Processing..." : "Register" }}
+      </ion-button>
     </ion-row>
   </form>
 
-  <ion-row class="ion-justify-content-center external">
-    <ion-img (click)="onGoogleClick()" src="/assets/images/google.png"></ion-img>
-    <!-- <ion-img src="/assets/images/facebook_logo.png"></ion-img> -->
+  <ion-row class="ion-justify-content-center external ion-align-items-center">
+    <ion-col size="12">
+      <ion-img
+        (click)="onGoogleClick()"
+        src="/assets/images/google.png"
+      ></ion-img>
+    </ion-col>
   </ion-row>
 
   <ion-row class="ion-justify-content-center external">
