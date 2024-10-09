@@ -58,30 +58,30 @@ ion-button::part(native) {
 }
 
 ion-toggle {
+  --track-background: gray;
   --track-background-checked: #377ffd;
-  --track-background: white;
-  --handle-background: darkgray;
+  --handle-background: white;
   --handle-width: 14px;
   --handle-height: 14px;
-  --handle-max-height: auto;
   --handle-spacing: 5px;
-  --handle-border-radius: 25px;
+  --handle-border-radius: 30px;
   --handle-box-shadow: none;
-  padding: 1px;
+  height: 25px;
+  width: 45px;
 }
 
 ion-toggle::part(track) {
-  height: 18px;
-  width: 40px;
   border: 1px solid darkgray;
   overflow: visible;
 }
 
 .lbl-toggle {
   text-align: left;
-  font-size: 14px;
+  width: 100%;
+  font-size: 13px;
   white-space: normal;
   line-height: 1.2;
+  margin: 0;
 }
 
 .lbl-forgot {
