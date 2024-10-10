@@ -1,9 +1,6 @@
-<div class="top-bar">
-
-</div>
+<div class="top-bar"></div>
 
 <ion-grid class="ion-justify-content-center ion-align-items-center">
-  
   <ion-row
     class="slide-content-container ion-justify-content-center ion-align-items-center"
   >
@@ -16,29 +13,33 @@
   </ion-row>
 
   <ion-row class="ion-justify-content-center ion-align-items-center">
-    <form [formGroup]="form" class="ion-justify-content-center ion-margin-horizontal">
+    <form
+      [formGroup]="form"
+      class="ion-justify-content-center ion-margin-horizontal"
+    >
       <ion-col
         size="8"
         class="ion-justify-content-center ion-align-items-center"
       >
-        <ion-item class="input"  fill="solid">
-          <ion-label position="floating">Email</ion-label>
-          <ion-input
-            formControlName="email"
-          ></ion-input>
+        <ion-item class="input" fill="solid">
+          <ion-input formControlName="email" placeholder="Email"></ion-input>
         </ion-item>
       </ion-col>
       <ion-col
         size="8"
         class="ion-justify-content-center ion-align-items-center"
       >
-        <ion-item class="input"  fill="solid">
-          <ion-label position="floating">Password</ion-label>
+        <ion-item class="input" fill="solid">
           <ion-input
             [type]="showPassword ? 'text' : 'password'"
             formControlName="password"
+            placeholder="Password"
           ></ion-input>
-          <ion-icon name="{{ showPassword ? 'eye-off' : 'eye' }}" slot="end" (click)="togglePasswordVisibility()"></ion-icon>
+          <ion-icon
+            name="{{ showPassword ? 'eye-off' : 'eye' }}"
+            slot="end"
+            (click)="togglePasswordVisibility()"
+          ></ion-icon>
         </ion-item>
       </ion-col>
     </form>
@@ -53,7 +54,7 @@
       (click)="submit()"
     >
       <ion-icon name="log-in-outline" class="btn-login-icon"></ion-icon>
-      {{ processing ? 'LOGGING IN...' : 'LOG IN' }}
+      {{ processing ? "LOGGING IN..." : "LOG IN" }}
     </ion-button>
   </ion-row>
 

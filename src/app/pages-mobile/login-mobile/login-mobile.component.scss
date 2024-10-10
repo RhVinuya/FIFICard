@@ -177,3 +177,7 @@ ion-label {
 .input input {
   padding-bottom: 10px;
 }
+
+.input input::placeholder{
+  font-weight: normal;
+}
