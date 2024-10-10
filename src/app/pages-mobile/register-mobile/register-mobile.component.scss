@@ -113,6 +113,8 @@ ion-toggle::part(track) {
   --background-activated: #fff;
   --background-focused: #fff;
   --color: #545454;
+  display: flex;
+  flex-direction: column;
 }
 
 .input::part(native) {

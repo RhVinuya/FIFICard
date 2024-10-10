@@ -17,8 +17,7 @@
     <ion-row class="ion-justify-content-center ion-align-items-center">
       <ion-col size="12">
         <ion-item class="input">
-          <ion-label position="floating">Email</ion-label>
-          <ion-input formControlName="email"></ion-input>
+          <ion-input formControlName="email" placeholder="Email"></ion-input>
           <ion-note *ngIf="form.controls.email.getError('used')" slot="error"
             >Email already exist!</ion-note
           >
@@ -30,14 +29,18 @@
     <ion-row clas>
       <ion-col size="6">
         <ion-item class="input" fill="solid">
-          <ion-label position="floating">First Name</ion-label>
-          <ion-input formControlName="firstname"></ion-input>
+          <ion-input
+            formControlName="firstname"
+            placeholder="First Name"
+          ></ion-input>
         </ion-item>
       </ion-col>
       <ion-col size="6">
         <ion-item class="input" fill="solid">
-          <ion-label position="floating">Last Name</ion-label>
-          <ion-input formControlName="lastname"></ion-input>
+          <ion-input
+            formControlName="lastname"
+            placeholder="Last Name"
+          ></ion-input>
         </ion-item>
       </ion-col>
     </ion-row>
@@ -46,10 +49,10 @@
     <ion-row class="ion-justify-content-center ion-align-items-center">
       <ion-col size="12">
         <ion-item class="input" fill="solid">
-          <ion-label position="floating">Password</ion-label>
           <ion-input
             [type]="showPassword ? 'text' : 'password'"
             formControlName="password"
+            placeholder="Password"
           ></ion-input>
           <ion-icon
             name="{{ showPassword ? 'eye-off' : 'eye' }}"
@@ -66,10 +69,10 @@
     <ion-row class="ion-justify-content-center ion-align-items-center">
       <ion-col size="12">
         <ion-item class="input" fill="solid">
-          <ion-label position="floating">Confirm Password</ion-label>
           <ion-input
             [type]="showConfirmPassword ? 'text' : 'password'"
             formControlName="confirm"
+            placeholder="Confirm Password"
           ></ion-input>
           <ion-note
             *ngIf="form.controls.confirm.getError('mismatch')"
