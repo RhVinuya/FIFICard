@@ -90,14 +90,12 @@ export class NewCardService {
 
         if (isGallery === false) {
           environment.imagetitles.forEach(title => {
-            let image = temp.find(x => x.title === title);
-            if (image) images.push(image)
+            images = [...images, ...temp.filter(x => x.title === title)]
           })
         }
         else {
           environment.gallerytitles.forEach(title => {
-            let image = temp.find(x => x.title === title);
-            if (image) images.push(image)
+            images = [...images, ...temp.filter(x => x.title === title)]
           })
         }        
 

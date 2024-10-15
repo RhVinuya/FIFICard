@@ -1,6 +1,6 @@
 <app-new-loading [loading]="loading"></app-new-loading>
-
-<div class="main" *ngIf="loading === false">
+<h3 class="text-purple mb-4" *ngIf="loading === false && list.length > 0">You may also like</h3>
+<div class="main" *ngIf="loading === false && list.length > 0">
     <div class="action text-start">
         <button [disabled]="!canClickPrevious" (click)="previous()">
             <ion-icon name="chevron-back-outline"></ion-icon>

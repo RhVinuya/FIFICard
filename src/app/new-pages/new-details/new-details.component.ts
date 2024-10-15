@@ -78,6 +78,7 @@ export class NewDetailsComponent implements OnInit {
   isFeatured: boolean = false;
   isPoetry: boolean = false;
   isRegular: boolean = false;
+  isCardBundle: boolean = false;
 
   stickerimage: string = '';
 
@@ -89,6 +90,7 @@ export class NewDetailsComponent implements OnInit {
 
       if (this.type === 'card') {
         this.cardService.get(this.id).then(async value => {
+          console.log(value)
           this.iModel = value;
           this.model = new NewCard(value);
           this.isAddToCart = true;
@@ -96,6 +98,7 @@ export class NewDetailsComponent implements OnInit {
           this.isFeatured = this.model.featured;
           this.isPoetry = this.model instanceof NewCard && this.model.messagetype === 'poetry';
           this.isRegular = this.model instanceof NewCard && this.model.messagetype === 'regular';
+          this.isCardBundle = this.model.cardbundle;
           this.loading = false;
           this.ref.detectChanges();
           let images = await this.cardService.getImages(this.id, true);

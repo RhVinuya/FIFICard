@@ -210,6 +210,7 @@ import { NewPersonalizeItemComponent } from './new-pages/new-personalizes/new-pe
 import { NewSignupComponent } from './new-pages/new-layout/new-signup/new-signup.component';
 import { NewProductsComponent } from './new-components/new-products/new-products.component';
 import { NewReviewsComponent } from './new-components/new-reviews/new-reviews.component';
+import { NewDetailsBundlesComponent } from './new-pages/new-details/new-details-bundles/new-details-bundles.component';
 
 
 @NgModule({
@@ -397,7 +398,8 @@ import { NewReviewsComponent } from './new-components/new-reviews/new-reviews.co
     NewPersonalizeItemComponent,
     NewSignupComponent,
     NewProductsComponent,
-    NewReviewsComponent
+    NewReviewsComponent,
+    NewDetailsBundlesComponent
   ],
   imports: [
     BrowserModule,

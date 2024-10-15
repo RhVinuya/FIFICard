@@ -23,11 +23,13 @@
                 <label class="text-blue">Purchase this lovely and glittery greeting card today</label>
             </div>
             <div class="mb-3 rel">
+                
                 <div class="prices" *ngIf="isBundle === false">
                     <h3 class="text-purple my-0"><b>{{getPrice()}}</b></h3>
                     <h3 class="text-gray mx-2 my-0" *ngIf="isPersonalize">-</h3>
                     <h3 class="text-blue my-0" *ngIf="isPersonalize"><b>{{getPersonalizePrice()}}</b></h3>
                 </div>
+
                 <div class="qr text-center" *ngIf="qr !== ''">
                     <img src="/assets/images/talking-card-1.gif" class="qr-icon" onContextMenu="return false;">
                     <img [src]="qr" class="qr-image" onContextMenu="return false;">
@@ -35,6 +37,7 @@
                         <a class="info" (click)="playInstruction()">To activate your talking card, please follow the procedure</a>
                     </div>
                 </div>
+
             </div>
             <div class="mb-3" *ngIf="isBundle">
                 <button type="button" class="btn bundle me-1 mb-2" *ngFor="let bundle of bundles" (click)="onClickBundle(bundle)">
@@ -46,6 +49,11 @@
                 <app-new-personalize-button *ngIf="isPersonalize" [iCard]="getICard()"></app-new-personalize-button>
             </div>
             <div class="details text-gray mb-3">{{model.details}}</div>
+
+            <div class="mb-3" *ngIf="isCardBundle">
+                <app-new-details-bundles [ids]="getICard().cardbundleIds"></app-new-details-bundles>
+            </div>
+
             <div class="icons pt-3">
                 <img src="/assets/images/poetry-card.png" class="me-2" *ngIf="isPoetry" onContextMenu="return false;">
                 <img src="/assets/images/standard-card.png" class="me-2" *ngIf="isRegular" onContextMenu="return false;">
@@ -55,7 +63,6 @@
         </div>
 
         <div class="mxw-1920px row mt-5">
-         
             <app-new-reviews [id]="id"></app-new-reviews>
         </div>
     </div>
@@ -63,7 +70,6 @@
 
 
 <div class="mxw-1920px row mt-5" *ngIf="iModel">
-    <h3 class="text-purple mb-4">You may also like</h3>
     <app-new-suggestions [type]="type" [model]="iModel"></app-new-suggestions>
 </div>
 

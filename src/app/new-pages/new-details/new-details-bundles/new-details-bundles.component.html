@@ -1,0 +1,6 @@
+<h6 class="text-purple">What's in the bundle?</h6>
+<div class="images">
+    <a *ngFor="let bundle of bunles" [routerLink]="['/new/details/card/' + bundle.id]" target="_blank">
+        <img  [src]="bundle.url">
+    </a>
+</div>

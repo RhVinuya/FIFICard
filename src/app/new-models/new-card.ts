@@ -19,6 +19,8 @@ export interface INewCard {
     type: 'card' | 'sticker' | 'postcard' | 'gift';
     signAndSend: boolean;
     talkingcard: boolean;
+    cardbundle: boolean;
+    cardbundleIds: string[];
     created: Timestamp;
     modified: Timestamp;
 }
@@ -39,6 +41,8 @@ export class NewCard {
     messagetype: 'regular' | 'poetry';
     signAndSend: boolean;
     talkingcard: boolean;
+    cardbundle: boolean;
+    cardBundleIds: string[];
     created: Timestamp;
     modified: Timestamp;
 
@@ -58,6 +62,8 @@ export class NewCard {
         this.messagetype = value.messagetype;
         this.signAndSend = value.signAndSend;
         this.talkingcard = value.talkingcard;
+        this.cardbundle = value.cardbundle;
+        this.cardBundleIds = value.cardbundleIds;
         this.created = value.created;
         this.modified = value.modified;
     }
