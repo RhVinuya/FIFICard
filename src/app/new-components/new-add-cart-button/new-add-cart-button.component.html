@@ -1,4 +1,4 @@
-<button type="button" class="btn addtocart" (mouseenter)="mouserEnter()" (mouseleave)="mouseLeave()" (click)="onClick()" [disabled]="isProcessing">
+<button type="button" class="btn addtocart" (mouseenter)="mouserEnter()" (mouseleave)="mouseLeave()" (click)="onClick($event)" [disabled]="isProcessing">
     <i class="fa fa-cart-plus" aria-hidden="true" *ngIf="isHover === false && isProcessing === false"></i>
     <i class="fa fa-cart-arrow-down" aria-hidden="true" *ngIf="isHover === true && isProcessing === false"></i>
     <span class="spinner-border spinner-border-sm me-1" aria-hidden="true" *ngIf="isProcessing"></span>

@@ -64,7 +64,8 @@ export class NewAddCartButtonComponent implements OnInit {
     this.isHover = false;
   }
 
-  async onClick() {
+  async onClick(event: Event) {
+    event.stopPropagation();
     await this.cartService.add(
       {
         id: '',

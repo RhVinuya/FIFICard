@@ -31,7 +31,8 @@ export class NewWishIndicatorComponent implements OnInit {
     this.isMark = list.findIndex(x => x === this._id) >= 0;
   }
 
-  onClick(){
+  onClick(event: Event){
+    event.stopPropagation();
     this.isMark = !this.isMark;
     let list = this.wishlistService.get();
     if (this.isMark) list = [this._id, ...list.filter(x => x !== this._id)];

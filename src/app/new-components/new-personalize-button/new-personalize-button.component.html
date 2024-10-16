@@ -1,5 +1,5 @@
 
-<button type="button" class="btn personalize" (mouseenter)="mouserEnter()" (mouseleave)="mouseLeave()" (click)="onPersonalize()">
+<button type="button" class="btn personalize" (mouseenter)="mouserEnter()" (mouseleave)="mouseLeave()" (click)="onPersonalize($event)">
     <i class="fa fa-star" aria-hidden="true" *ngIf="isHover === false"></i>
     <i class="fa fa-pen" aria-hidden="true" *ngIf="isHover === true"></i>
     Personalize

@@ -1,5 +1,5 @@
-<div class="card">
-    <div class="img-div" (click)="onClick()">
+<div class="card" (click)="onClick()">
+    <div class="img-div">
         <img [src]="primary" alt="Default Image" class="card-img default-image" *ngIf="primary !== ''" onContextMenu="return false;">
         <img [src]="secondary" alt="Hover Image" class="card-img hover-image" *ngIf="secondary !== ''" onContextMenu="return false;">
     </div>
@@ -10,8 +10,8 @@
         </div>
     </div>
     <div class="card-body px-2 py-3">
-        <h4 class="card-title text-purple my-0" (click)="onClick()">{{_gift.name}}</h4>
-        <p class="text-gray my-1" (click)="onClick()">{{_gift.description}}</p>
+        <h4 class="card-title text-purple my-0">{{_gift.name}}</h4>
+        <p class="text-gray my-1">{{_gift.description}}</p>
         <div class="column">
             <label class="text-purple mb-2"><b class="mb-2">{{_gift.priceDisplay()}}</b></label>
             <app-new-add-cart-button type="gift" [item]="gift"></app-new-add-cart-button>

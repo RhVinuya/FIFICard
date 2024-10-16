@@ -1,5 +1,5 @@
-<div class="card">
-    <div class="img-div" (click)="onClick()">
+<div class="card" (click)="onClick()">
+    <div class="img-div">
         <img [src]="primary" alt="Default Image" class="card-img default-image" *ngIf="primary !== ''" onContextMenu="return false;">
         <img [src]="secondary" alt="Hover Image" class="card-img hover-image" *ngIf="secondary !== ''" onContextMenu="return false;">
     </div>
@@ -10,8 +10,8 @@
         </div>
     </div>
     <div class="card-body px-2 py-3">
-        <h4 class="card-title my-0" (click)="onClick()">{{_postcard.name}}</h4>
-        <p class="text-gray my-1" (click)="onClick()">{{_postcard.description}}</p>
+        <h4 class="card-title my-0">{{_postcard.name}}</h4>
+        <p class="text-gray my-1">{{_postcard.description}}</p>
         <label class="text-purple"><b class="mb-2" *ngIf="min && max" >{{min.priceDisplay()}} - {{max.priceDisplay()}}</b></label>
     </div>
 </div>

@@ -2,7 +2,6 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ToastController } from '@ionic/angular';
 import { NgbModal, NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';
 import { INewCard } from 'src/app/new-models/new-card';
-import { INewPersonalize } from 'src/app/new-models/new-personalize';
 import { NewPersonalizeComponent } from 'src/app/new-pages/new-personalize/new-personalize.component';
 import { NewPersonalizeService } from 'src/app/new-services/new-personalize.service';
 import { NewStorageService } from 'src/app/new-services/new-storage.service';
@@ -49,7 +48,8 @@ export class NewPersonalizeButtonComponent implements OnInit {
     this.isHover = false;
   }
 
-  async onPersonalize() {
+  async onPersonalize(event: Event) {
+    event.stopPropagation();
     let personalize = await this.personalizeService.getByCard(this.iCard.id)
     if (personalize === undefined) personalize = await this.personalizeService.create(this.iCard.id);
     const reference = this.modalService.open(NewPersonalizeComponent, { animation: true, fullscreen: true, keyboard: false, backdrop: true });
