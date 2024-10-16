@@ -13,7 +13,7 @@
             <label class="text-purple" *ngIf="cart.type === 'postcard'">{{bundle}}</label>
             <div>
                 <span class="badge text-bg-secondary" *ngIf="cart.type === 'card'">CARD</span>
-                <span class="badge text-bg-secondary" *ngIf="cart.type === 'card' && cart.personalize !== undefined">PERSONALIZE</span>
+                <span class="badge text-bg-secondary" *ngIf="cart.type === 'card' && cart.personalize !== null && cart.personalize !== undefined">PERSONALIZE</span>
                 <span class="badge text-bg-secondary" *ngIf="cardbundle">BUNDLE</span>
                 <span class="badge text-bg-secondary" *ngIf="cart.type === 'sticker'">STICKER</span>
                 <span class="badge text-bg-secondary" *ngIf="cart.type === 'postcard'">POSTCARD</span>
