@@ -51,7 +51,8 @@ export class NewCartItemComponent implements OnInit {
   model: ModelType | undefined = undefined;
   _cart: NewCart | undefined = undefined;
   primary: string = '';
-  bundleDetails: string = ''
+  bundleDetails: string = '';
+  cardbundle: boolean = false;
 
   ngOnInit() {
   }
@@ -63,6 +64,7 @@ export class NewCartItemComponent implements OnInit {
       this.model = new NewCard(iCard as INewCard);
       let images = await this.cardService.getImages(this._cart.itemId);
       if (images.length > 0) this.loadImage(images[0].url)
+      this.cardbundle = iCard.cardbundle;
     }
     else if (this._cart.type === 'sticker') {
       let iSticker = await this.stickerService.get(this._cart.itemId);

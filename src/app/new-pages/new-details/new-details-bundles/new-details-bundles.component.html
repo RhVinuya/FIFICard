@@ -1,5 +1,10 @@
 <h6 class="text-purple">What's in the bundle?</h6>
-<div class="images">
+
+<div class="loading text-center" *ngIf="loading">
+    <ion-spinner name="dots" class="my-5"></ion-spinner>
+</div>
+
+<div class="images" *ngIf="loading === false">
     <a *ngFor="let bundle of bunles" [routerLink]="['/new/details/card/' + bundle.id]" target="_blank">
         <img  [src]="bundle.url">
     </a>

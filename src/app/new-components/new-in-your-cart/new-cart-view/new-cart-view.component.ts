@@ -40,6 +40,7 @@ export class NewCartViewComponent implements OnInit {
   description: string = '';
   price: string = '';
   bundle: string = '';
+  cardbundle: boolean = false;
 
   async ngOnInit(): Promise<void> {
     if (this.cart.type === 'card') {
@@ -52,6 +53,7 @@ export class NewCartViewComponent implements OnInit {
         if (images.length > 0) {
           this.fileService.getImageURL(images[0].url).then(value => this.image = value)
         }
+        this.cardbundle = iCard.cardbundle;
       }
     }
     if (this.cart.type === 'sticker') {

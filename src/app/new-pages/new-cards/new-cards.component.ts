@@ -41,7 +41,7 @@ export class NewCardsComponent implements OnInit {
 
   cardevents = environment.cardevents;
   recipientoptions = ['FOR ALL', 'FOR HIM', 'FOR HER', 'FOR KIDS AND TEENS'];
-  filteroptions = ['POETRY', 'MESSAGE', 'PERSONALIZED', 'TALKING CARD'];
+  filteroptions = ['POETRY', 'MESSAGE', 'PERSONALIZED', 'TALKING CARD', 'BUNDLE'];
 
   activeevents: string[] = [];
   event: string;
@@ -152,6 +152,7 @@ export class NewCardsComponent implements OnInit {
             else if (filter === 'MESSAGE' && card.messagetype === 'regular') found = true;
             else if (filter === 'PERSONALIZED' && card.signAndSend === true) found = true;
             else if (filter === 'TALKING CARD' && card.talkingcard === true) found = true;
+            else if (filter === 'BUNDLE' && card.cardbundle === true) found = true;
           })
           if (found) this.display = [...this.display, card];
         })

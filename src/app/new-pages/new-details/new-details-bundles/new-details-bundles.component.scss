@@ -14,3 +14,17 @@
 .images img:hover{
     opacity: 1;
 }
+
+.loading {
+    height: 100px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+ion-spinner{
+    width: 100px;
+    height: 100px;
+    color: #cb6ce6;
+}

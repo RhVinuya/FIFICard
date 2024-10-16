@@ -14,6 +14,7 @@
             <div>
                 <span class="badge text-bg-secondary" *ngIf="cart.type === 'card'">CARD</span>
                 <span class="badge text-bg-secondary" *ngIf="cart.type === 'card' && cart.personalize !== undefined">PERSONALIZE</span>
+                <span class="badge text-bg-secondary" *ngIf="cardbundle">BUNDLE</span>
                 <span class="badge text-bg-secondary" *ngIf="cart.type === 'sticker'">STICKER</span>
                 <span class="badge text-bg-secondary" *ngIf="cart.type === 'postcard'">POSTCARD</span>
                 <span class="badge text-bg-secondary" *ngIf="cart.type === 'gift'">GIFT</span>

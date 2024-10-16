@@ -27,9 +27,11 @@ export class NewDetailsBundlesComponent implements OnInit {
     this.fileService = _fileService;
   }
 
+  loading: boolean = false;
   bunles: IBundle[] = [];
 
   async ngOnInit(): Promise<void> {
+    this.loading = true;
     for await (let id of this.ids) {
       let value = await this.cardService.get(id);
       if (value) {
@@ -44,5 +46,6 @@ export class NewDetailsBundlesComponent implements OnInit {
         }
       }
     }
+    this.loading = false;
   }
 }
