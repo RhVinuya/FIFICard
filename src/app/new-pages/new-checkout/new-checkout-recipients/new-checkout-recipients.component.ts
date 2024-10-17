@@ -82,7 +82,8 @@ export class NewCheckoutRecipientsComponent implements OnInit {
     })
   }
 
-  onClickEdit(address: NewAddress) {
+  onClickEdit(event: Event, address: NewAddress) {
+    event.stopPropagation();
     const reference = this.modalService.open(NewCreateAddressComponent, { animation: true, size: 'lg' });
     reference.componentInstance.title = "Edit Receiver and Shipping Address";
     reference.componentInstance.userid = this.id;
