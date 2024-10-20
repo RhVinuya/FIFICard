@@ -211,6 +211,7 @@ import { NewSignupComponent } from './new-pages/new-layout/new-signup/new-signup
 import { NewProductsComponent } from './new-components/new-products/new-products.component';
 import { NewReviewsComponent } from './new-components/new-reviews/new-reviews.component';
 import { NewDetailsBundlesComponent } from './new-pages/new-details/new-details-bundles/new-details-bundles.component';
+import { NewDataDeletionComponent } from './new-pages/new-links/new-data-deletion/new-data-deletion.component';
 
 
 @NgModule({
@@ -399,7 +400,8 @@ import { NewDetailsBundlesComponent } from './new-pages/new-details/new-details-
     NewSignupComponent,
     NewProductsComponent,
     NewReviewsComponent,
-    NewDetailsBundlesComponent
+    NewDetailsBundlesComponent,
+    NewDataDeletionComponent
   ],
   imports: [
     BrowserModule,

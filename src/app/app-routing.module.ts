@@ -75,6 +75,7 @@ import { NewRegistrationCompleteComponent } from './new-pages/new-registration-c
 import { NewCheckoutComponent } from './new-pages/new-checkout/new-checkout.component';
 import { NewPaymentComponent } from './new-pages/new-payment/new-payment.component';
 import { NewPersonalizesComponent } from './new-pages/new-personalizes/new-personalizes.component';
+import { NewDataDeletionComponent } from './new-pages/new-links/new-data-deletion/new-data-deletion.component';
 
 const routes: Routes = [
   {
@@ -406,6 +407,10 @@ const routes: Routes = [
           {
             path: 'privacy-policy',
             component: NewPrivacyPolicyComponent
+          },
+          {
+            path: 'data-deletion',
+            component: NewDataDeletionComponent
           }
         ]
       }
