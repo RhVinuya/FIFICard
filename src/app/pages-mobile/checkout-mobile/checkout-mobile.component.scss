@@ -41,18 +41,6 @@ table tr td {
   vertical-align: top;
 }
 
-table .image {
-  width: 5%;
-}
-
-table .details {
-  width: 5%;
-}
-
-table .amount {
-  width: auto;
-}
-
 .space-between {
   display: flex;
   flex-direction: row;
@@ -137,4 +125,20 @@ hr {
 
 .card-body > table > tr {
   font-size: 12px;
+}
+
+
+ion-list {
+  width: 100%;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.amount {
+  text-align: right;
+  font-size: 1rem;
+}
+
+.total {
+  padding: 10px;
 }

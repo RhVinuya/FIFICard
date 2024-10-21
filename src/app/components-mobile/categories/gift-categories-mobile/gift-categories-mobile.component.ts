@@ -16,6 +16,7 @@ export class GiftCategoriesMobileComponent implements OnInit {
 
   cardevents = environment.cardevents;
 
+  loading: boolean = false;
   activeevents: string[] = [];
   events: NewEvent[] = [];
 
@@ -28,8 +29,10 @@ export class GiftCategoriesMobileComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.loading = true;
     this.load().then(() => {
-      console.log("card categories loaded");
+      console.log("gifts categories loaded");
+      this.loading = false;
     });
   }
 

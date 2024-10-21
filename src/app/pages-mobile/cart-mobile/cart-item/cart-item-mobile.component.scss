@@ -159,3 +159,42 @@ h4 {
   font-size: 16px;
   border-left: 10px solid #871c2d;
 }
+
+ion-img {
+  height: 5rem;
+}
+
+.item-col {
+  flex: 1 1 auto;
+  padding: 5px;
+}
+
+.item-checkbox {
+  display: flex;
+  width: 20%;
+}
+
+.item-image {
+  width: 20%;
+}
+
+.item-details {
+  width: 60%;
+  overflow: hidden;
+  white-space: nowrap
+}
+
+ion-item {
+  --padding-start: 0px;
+}
+
+ion-item-options {
+  padding:5px;
+}
+
+ion-item-sliding {
+  margin-bottom: 5px;
+  padding: 5px;
+}
+
+

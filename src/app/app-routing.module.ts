@@ -98,6 +98,7 @@ import { NewInYourCartComponent } from "./new-components/new-in-your-cart/new-in
 import { InYourCartMobileComponent } from "./pages-mobile/in-your-cart-mobile/in-your-cart-mobile.component";
 import { CheckoutMobileComponent } from "./pages-mobile/checkout-mobile/checkout-mobile.component";
 import { BundlesMobileComponent } from "./pages-mobile/bundles-mobile/bundles-mobile.component";
+import { WishlistMobileComponent } from "./pages-mobile/wishlist-mobile/wishlist-mobile.component";
 
 const routes: Routes = [
   {
@@ -609,7 +610,7 @@ const mobileRoutes: Routes = [
   {
     path: "profile/details",
     component: ProfileDetailsMobileComponent,
-    //canActivate: [AuthGuard]
+    canActivate: [SecureInnerGuard]
   },
   {
     path: "register",
@@ -619,27 +620,27 @@ const mobileRoutes: Routes = [
   {
     path: ":type/:id/details",
     component: DetailsMobileComponent,
-    //canActivate: [AuthGuard]
+    canActivate: [SecureInnerGuard]
   },
   {
     path: ":type/:event",
     component: ProductMobileComponent,
-    //canActivate: [AuthGuard]
+    canActivate: [SecureInnerGuard]
   },
   {
     path: "order-summary",
     component: OrderSummaryMobileComponent,
-    //canActivate: [AuthGuard]
+    canActivate: [SecureInnerGuard]
   },
   {
     path: "transactions",
     component: TransactionsMobileComponent,
-    //canActivate: [AuthGuard]
+    canActivate: [SecureInnerGuard]
   },
   {
     path: "referrals",
     component: ReferralsMobileComponent,
-    //canActivate: [AuthGuard]
+    canActivate: [SecureInnerGuard]
   },
   {
     path: "add-cart",
@@ -648,15 +649,22 @@ const mobileRoutes: Routes = [
   {
     path: "cart",
     component: CartMobileComponent,
-    //canActivate: [AuthGuard]
+    canActivate: [SecureInnerGuard]
   },
   {
     path: "checkout",
     component: CheckoutMobileComponent,
+    canActivate: [SecureInnerGuard]
   },
   {
     path: "in-your-cart",
     component: InYourCartMobileComponent,
+    canActivate: [SecureInnerGuard]
+  },
+  {
+    path: "wishlist",
+    component: WishlistMobileComponent,
+    canActivate: [SecureInnerGuard]
   }
 
 ];

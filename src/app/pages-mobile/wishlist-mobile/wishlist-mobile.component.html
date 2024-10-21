@@ -1,0 +1,17 @@
+
+<ion-content [fullscreen]="true">
+    <div class="mxw-1920px mt-2">
+        <app-title-mobile title="Wishlist"></app-title-mobile>
+    </div>
+
+    
+    <app-loading-mobile [loading]="loading"></app-loading-mobile>
+
+    <ion-grid>
+        <ion-list>
+            <app-wishlist-tile-mobile *ngFor="let item of wishlist" [wishlist]="item" 
+                (onRemoveItem)="onRemove($event)">
+            </app-wishlist-tile-mobile>
+        </ion-list>
+    </ion-grid>
+</ion-content>

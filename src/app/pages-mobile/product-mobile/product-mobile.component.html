@@ -7,7 +7,7 @@
       <ion-col size="12" class="header-col">
         <h2>{{ currentEvent.name | uppercase }} CARDS</h2>
         <div>
-          <ion-icon name="heart"></ion-icon>
+          <ion-icon name="heart" (click)="goToWishlist()"></ion-icon>
           <ion-icon (click)="goToCart()" name="cart-outline"></ion-icon>
         </div>
       </ion-col>
@@ -19,10 +19,9 @@
       </div>
     </ion-row>
 
-    <ion-row>
-      <ion-col class="card-list" size="12" >
-        <app-product-list-mobile *ngIf="display" [products]="display" [type]="type!"></app-product-list-mobile>
-      </ion-col>
+    <ion-row class="ion-align-items-center ion-justify-content-center">
+        <app-loading-mobile [loading]="loading"></app-loading-mobile>
+        <app-product-list-mobile *ngIf="display && !loading" [products]="display" [type]="type!"></app-product-list-mobile>
     </ion-row>
   </ion-grid>
 

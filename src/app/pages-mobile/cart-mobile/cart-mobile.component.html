@@ -3,7 +3,7 @@
     <app-new-title title="Cart"></app-new-title>
   </div>
 
-  <div class="mxw-1920px no-item" *ngIf="carts.length === 0">
+  <div class="mxw-1920px no-item bg-light" *ngIf="carts.length === 0">
     <h3 class="text-purple my-0">No item on cart.</h3>
     <h6 class="text-gray my-0">Explore our Products</h6>
     <div class="mt-4">
@@ -12,33 +12,19 @@
   </div>
 
   <app-new-loading [loading]="loading"></app-new-loading>
-  <div *ngIf="loading == false">
+  <div class="bg-light" *ngIf="loading == false">
     <div class="mxw-1920px row" *ngIf="carts.length > 0">
       <div class="col-md-9 pe-1">
-        <div class="card bg-light border-light mb-2">
-          <div class="card-body">
-            <table>
-              <tr>
-                <td class="mark"></td>
-                <td class="image">
-                  <span>Image</span>
-                </td>
-                <td class="details">
-                  <span>Description</span>
-                </td>
-                <td class="amount">
-                  <span>Price</span>
-                </td>
-              </tr>
-            </table>
-          </div>
-        </div>
-        <app-cart-item-mobile
-          *ngFor="let iCart of carts"
-          [cart]="iCart"
-          (onChangeMark)="onChangeItemMark(iCart.id, $event)"
-          (onRemoveItem)="onRemove($event)"
-        ></app-cart-item-mobile>
+
+        <ion-list class="bg-light">
+          <app-cart-item-mobile
+            *ngFor="let iCart of carts"
+            [cart]="iCart"
+            (onChangeMark)="onChangeItemMark(iCart.id, $event)"
+            (onRemoveItem)="onRemove($event)"
+          ></app-cart-item-mobile>
+        </ion-list>
+
       </div>
 
       <div class="col-md-3 ps-1">

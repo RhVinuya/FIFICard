@@ -15,6 +15,14 @@ import { NewFileService } from 'src/app/new-services/new-file.service';
 import { NewGiftService } from 'src/app/new-services/new-gift.service';
 import { NewPostcardService } from 'src/app/new-services/new-postcard.service';
 import { NewStickerService } from 'src/app/new-services/new-sticker.service';
+import { Location } from '@angular/common';
+
+import { IonicSlides, ToastController } from '@ionic/angular';
+
+import { register } from 'swiper/element/bundle';
+
+register();
+
 
 @Component({
   selector: 'app-details-mobile',
@@ -22,6 +30,8 @@ import { NewStickerService } from 'src/app/new-services/new-sticker.service';
   styleUrls: ['./details-mobile.component.scss']
 })
 export class DetailsMobileComponent implements OnInit {
+  
+  swiperModules = [IonicSlides];
 
   activateRoute: ActivatedRoute;
   cardService: NewCardService;
@@ -30,6 +40,7 @@ export class DetailsMobileComponent implements OnInit {
   giftService: NewGiftService;
   fileService: NewFileService;
   cartService: NewCartService;
+  toastController: ToastController;
 
   form = new FormGroup({
     recipient: new FormControl<string>('', [Validators.required]),
@@ -48,7 +59,9 @@ export class DetailsMobileComponent implements OnInit {
     _giftService: NewGiftService,
     _fileService: NewFileService,
     _cartService: NewCartService,
-    public router: Router
+    _toastController: ToastController,
+    public router: Router,
+    private location: Location
   ) {
     this.activateRoute = _activateRoute;
     this.cardService = _cardService;
@@ -56,6 +69,8 @@ export class DetailsMobileComponent implements OnInit {
     this.postcardService = _postcardService;
     this.giftService = _giftService;
     this.fileService = _fileService;
+    this.cartService = _cartService;
+    this.toastController = _toastController;
   }
 
   loading: boolean = false;
@@ -92,6 +107,7 @@ export class DetailsMobileComponent implements OnInit {
           this.isAddToCart = true;
           let images = await this.cardService.getImages(this.id);
           this.model = new NewCard(value);
+          this.isPersonalize = this.model instanceof NewCard ? this.model.signAndSend : false;
           this.iModel = value;
           this.loadImages(images);
           let qrImage = images.find(x => x.title === 'QR');
@@ -153,6 +169,7 @@ export class DetailsMobileComponent implements OnInit {
       this.images = [];
       for await (let item of items) {
         let url = await this.fileService.getImageURL(item.url);
+        console.log(url);
         this.images = [...this.images, url]
       }
     }
@@ -196,6 +213,14 @@ export class DetailsMobileComponent implements OnInit {
       personalize: undefined,
       mark: true
     })
+
+    const toast = await this.toastController.create({
+      message: 'Postcard bundle is added on the Cart',
+      duration: 1500,
+      position: 'top',
+    });
+    await toast.present();
+    this.goToCart();
   }
 
 
@@ -207,8 +232,11 @@ export class DetailsMobileComponent implements OnInit {
   playInstruction() {
   }
 
-  getMessage() {
-    return this.model.details.split('\n\n', 2)[1];
+  getMessage(version: 'short' | 'long') {
+    if(version == 'short')
+      return this.model.details.split('\n\n', 2)[1];
+
+    return this.model.details;
   }
 
   addToCart() {
@@ -218,5 +246,9 @@ export class DetailsMobileComponent implements OnInit {
   
   goToCart() {
     this.router.navigateByUrl('/cart');
-}
+  }
+
+  goBack() {
+    this.location.back();
+  }
 }

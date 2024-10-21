@@ -8,32 +8,24 @@
     font-family: "Font Awesome 5 Free" !important;
 }
 
-.card:hover{
-    background: #f4ddff
+ion-item {
+    border-radius: 5px;
 }
 
-img {
-    font-size: 10px;
+ion-img {
+    height: 5rem;
 }
 
-table {
-    width: 100%;
+
+ion-item > .image {
+    width: 20%;
 }
 
-table tr td {
-    background-color: transparent;
-    padding-inline: 3px;
-    vertical-align: top;
+ion-item > .details {
+    width: 80%;
 }
 
-table .image {
-    width: 10%;
-}
-
-table .details {
-    width: auto;
-}
-
-table .amount {
-    width: 10%;
+div > .amount {
+    text-align: right;
+    font-size: .8rem;
 }

@@ -67,6 +67,7 @@ export class ProductMobileComponent implements OnInit {
 
   ngOnInit(): void {
     
+    this.loading = true;
     this.activateRoute.params.subscribe( params => {
       this.type = params['type'];
       this.event = params['event'];
@@ -81,8 +82,10 @@ export class ProductMobileComponent implements OnInit {
           this.currentEvent = event;
           this.loadCards().then(() => {
             console.log('cards loaded');
+            this.loading = false;
           });
         }
+        
       })
 
     });
@@ -138,5 +141,9 @@ export class ProductMobileComponent implements OnInit {
 
   goToCart() {
       this.router.navigateByUrl('/cart');
+  }
+
+  goToWishlist() {
+      this.router.navigateByUrl('/wishlist');
   }
 }

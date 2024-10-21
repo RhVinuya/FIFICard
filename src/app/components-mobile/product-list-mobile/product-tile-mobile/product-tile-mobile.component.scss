@@ -28,7 +28,7 @@
   }
   
   .three-columns > .img-container {
-    height: auto;
+    height: 120px;
     width: 100%;
     padding: 3px;
     display: flex;
@@ -48,22 +48,25 @@
     font-weight: bold;
     text-transform: uppercase;
   }
+
+    
+  .title > h2{
+    line-height: 1;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
   
   .card-info {
     margin: 12px auto 5px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
   }
   
   .card-info > h2 {
     margin-bottom: 5px;
     white-space: nowrap;
-  }
-  
-  .two-columns .card-info > h2 {
-    font-size: 11px;
-  }
-  
-  .two-columns .card-info > p {
-    font-size: 11px;
   }
   
   .three-columns .card-info > h2 {
@@ -78,6 +81,7 @@
   }
   
   .three-columns .card-info > p {
+    display: flex;
     font-size: 7px;
   }
   

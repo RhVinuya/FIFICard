@@ -248,6 +248,12 @@ import { CheckoutItemMobileComponent } from "./pages-mobile/checkout-mobile/chec
 import { CheckoutRecipientsMobileComponent } from "./pages-mobile/checkout-mobile/checkout-recipients-mobile/checkout-recipients-mobile.component";
 import { BundlesMobileComponent } from './pages-mobile/bundles-mobile/bundles-mobile.component';
 
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { WishIndicatorMobileComponent } from './components-mobile/wish-indicator-mobile/wish-indicator-mobile.component';
+import { WishlistMobileComponent } from './pages-mobile/wishlist-mobile/wishlist-mobile.component';
+import { TitleMobileComponent } from './components-mobile/title-mobile/title-mobile.component';
+import { WishlistTileMobileComponent } from './components-mobile/wishlist-tile-mobile/wishlist-tile-mobile.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -472,7 +478,11 @@ import { BundlesMobileComponent } from './pages-mobile/bundles-mobile/bundles-mo
     CheckoutGcashMobileComponent,
     CheckoutItemMobileComponent,
     CheckoutRecipientsMobileComponent,
-    BundlesMobileComponent
+    BundlesMobileComponent,
+    WishIndicatorMobileComponent,
+    WishlistMobileComponent,
+    TitleMobileComponent,
+    WishlistTileMobileComponent
   ],
   imports: [
     BrowserModule,
@@ -517,6 +527,9 @@ import { BundlesMobileComponent } from './pages-mobile/bundles-mobile/bundles-mo
     },
   ],
   bootstrap: [AppComponent],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA
+  ]
 })
 export class AppModule {}
 

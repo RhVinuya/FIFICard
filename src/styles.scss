@@ -1,5 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 @import "lightgallery/scss/lightgallery";
+@import "swiper/scss";
+@import "swiper/scss/navigation";
+@import "swiper/scss/pagination";
 
 @font-face {
   font-family: Constantia;

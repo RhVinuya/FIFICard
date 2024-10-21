@@ -18,6 +18,7 @@ export class StickerCategoriesMobileComponent implements OnInit {
 
   activeevents: string[] = [];
   events: NewEvent[] = [];
+  loading: boolean = false;
 
   constructor(
     _eventService: NewEventService,
@@ -28,8 +29,10 @@ export class StickerCategoriesMobileComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.loading = true;
     this.load().then(() => {
       console.log("card categories loaded");
+      this.loading = false;
     });
   }
 

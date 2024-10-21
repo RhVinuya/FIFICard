@@ -1,0 +1,29 @@
+<ion-item-sliding  *ngIf="product">
+    <ion-item lines="none">
+      <div class="item-col item-image">
+          <ion-img [src]="primary">
+          </ion-img>
+      </div>
+      <div class="item-col item-details">
+        <h6 
+          class="text-purple mt-1 mb-1 cursor"
+          [routerLink]="[wishlist.type + '/' + product.id + '/details']"
+        >
+          {{ product.name }}
+        </h6>
+        <ion-badge *ngIf="wishlist.type === 'card'">CARD</ion-badge>
+        <ion-badge *ngIf="wishlist.type === 'sticker'">STICKER</ion-badge>
+        <ion-badge *ngIf="wishlist.type === 'postcard'">POSTCARD</ion-badge>
+        <p class="text-purple mb-0" *ngIf="isBundle">
+            <p class="text-purple my-0"><b *ngIf="min && max">{{min.priceDisplay()}} - {{max.priceDisplay()}}</b>
+        </p>
+        <h6 class="text-purple my-0">{{ getPrice() }}</h6>
+      </div>
+    </ion-item>
+  
+    <ion-item-options>
+      <ion-item-option color="danger" (click)="onRemove()">
+        <ion-icon name="trash-outline"></ion-icon>
+      </ion-item-option>
+    </ion-item-options>
+  </ion-item-sliding>

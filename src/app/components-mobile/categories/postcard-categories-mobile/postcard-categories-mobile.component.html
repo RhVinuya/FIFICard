@@ -1,6 +1,6 @@
 
-<app-new-loading [loading]="!events"></app-new-loading>
-<ion-grid *ngIf="events">
+<app-new-loading [loading]="loading"></app-new-loading>
+<ion-grid *ngIf="!loading">
 
   <ion-row class="events-container">
     <ion-col [size]="getColumnSize()" *ngFor="let event of events">
