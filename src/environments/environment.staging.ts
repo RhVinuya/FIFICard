@@ -45,7 +45,7 @@ export const environment = {
     "First communion",
     "Parents day",
     "Teachers",
-    "Thanks giving",
+    "Thanksgiving",
     "Halloween",
     "Christmas",
     "New year",
