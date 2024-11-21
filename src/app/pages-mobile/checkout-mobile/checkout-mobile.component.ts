@@ -40,7 +40,6 @@ export class CheckoutMobileComponent implements OnInit, OnDestroy {
   modalService: NgbModal;
   offCanvas: NgbOffcanvas;
   router: Router;
-  ref: ChangeDetectorRef;
 
   constructor(
     _storageService: NewStorageService,
@@ -55,7 +54,6 @@ export class CheckoutMobileComponent implements OnInit, OnDestroy {
     _modalService: NgbModal,
     _offCanvas: NgbOffcanvas,
     _router: Router,
-    _ref: ChangeDetectorRef
   ) {
     this.storageService = _storageService;
     this.locationService = _locationService;
@@ -69,7 +67,6 @@ export class CheckoutMobileComponent implements OnInit, OnDestroy {
     this.modalService = _modalService;
     this.offCanvas = _offCanvas;
     this.router = _router;
-    this.ref = _ref;
   }
 
   breadcrumbs = [
@@ -118,16 +115,23 @@ export class CheckoutMobileComponent implements OnInit, OnDestroy {
   });
 
   async ngOnInit(): Promise<void> {
+   
+  }
+
+  async ionViewDidEnter(): Promise<void>  {
+    this.ids = [];
+    this.items = [];
     this.loading = true;
     this.location = this.locationService.getlocation();
 
     if (this.location == 'ph') this.payments = environment.payments.ph;
     else if (this.location == 'us') this.payments = environment.payments.us;
     else  this.payments = environment.payments.sg;
-
-    this.ref.detectChanges();
     
     this.addressConfig = await this.addressService.getConfig();
+
+    console.log('ionViewDidEnter');
+    console.log(this.addressConfig);
     this.fees = await this.addressService.getShippingFees();
     this.iUser = this.storageService.getUser();
     if (this.iUser) {
@@ -135,8 +139,7 @@ export class CheckoutMobileComponent implements OnInit, OnDestroy {
         firstname: this.iUser.firstname,
         lastname: this.iUser.lastname,
         email: this.iUser.email
-      })
-      this.ref.detectChanges();
+      });
       this.defaultAddressId = this.iUser.address;
       let adds = await this.addressService.getAll(this.iUser.id);
       adds.forEach(value => {
@@ -147,7 +150,6 @@ export class CheckoutMobileComponent implements OnInit, OnDestroy {
 
 
       if (this.iUser.address && this.iUser.address !== '') this.loadAddress(this.iUser.address);
-      this.ref.detectChanges();
     }
 
     this.ids = this.storageService.getCheckoutList();
@@ -181,7 +183,6 @@ export class CheckoutMobileComponent implements OnInit, OnDestroy {
     }
     this.calculateShipping();
     this.loading = false;
-    this.ref.detectChanges();
   }
 
   ngOnDestroy(): void {
@@ -243,7 +244,11 @@ export class CheckoutMobileComponent implements OnInit, OnDestroy {
   calculateShipping() {
     if (this.location === 'ph') {
       if (this.receiver && this.receiver.province !== '') {
-        let group = this.addressConfig.find(x => x.name === this.receiver.province)!.group;
+
+        let addressConfig = this.addressConfig!.find(x => x.name === this.receiver.province)!;
+        let group = addressConfig.group;
+        
+
         this.items.forEach(item => {
           if (item.type === 'card' || item.type === 'postcard') {
             let fee = this.fees.find(x => x.name === 'Card');
@@ -281,7 +286,6 @@ export class CheckoutMobileComponent implements OnInit, OnDestroy {
       this.items.map(x => this.subtotal = this.subtotal + x.price)
       this.items.map(x => this.shippingfee = this.shippingfee + x.shipping)
       this.items.map(x => this.total = this.total + x.total)
-      this.ref.detectChanges();
     }
     else {
       this.items.forEach(item => {
@@ -304,7 +308,6 @@ export class CheckoutMobileComponent implements OnInit, OnDestroy {
       this.items.map(x => this.subtotal = this.subtotal + x.price)
       this.items.map(x => this.shippingfee = this.shippingfee + x.shipping)
       this.items.map(x => this.total = this.total + x.total)
-      this.ref.detectChanges();
     }
   }
 
@@ -345,7 +348,6 @@ export class CheckoutMobileComponent implements OnInit, OnDestroy {
     this.verifySubmitted = true;
     if (this.form.invalid) return;
     this.isProcessingSpecialCode = true;
-    this.ref.detectChanges();
 
     this.form.controls.code.setErrors(null);
 
@@ -353,19 +355,16 @@ export class CheckoutMobileComponent implements OnInit, OnDestroy {
     if (codes.length === 0) {
       this.form.controls.code.setErrors({ 'not-found': true });
       this.isProcessingSpecialCode = false;
-      this.ref.detectChanges();
     }
 
     let code = codes.find(x => x.code.toLowerCase() === this.form.controls.code.value!.toLowerCase());
     if (code === undefined) {
       this.form.controls.code.setErrors({ 'not-found': true });
       this.isProcessingSpecialCode = false;
-      this.ref.detectChanges();
     }
     else if (code.active === false) {
       this.form.controls.code.setErrors({ 'not-active': true });
       this.isProcessingSpecialCode = false;
-      this.ref.detectChanges();
     }
     else {
       const reference = this.modalService.open(NewConfirmMessageComponent, { animation: true });
@@ -395,7 +394,6 @@ export class CheckoutMobileComponent implements OnInit, OnDestroy {
           this.form.markAsPristine();
           this.verifySubmitted = false;
           this.isProcessingSpecialCode = false;
-          this.ref.detectChanges();
 
           this.router.navigate(['/new/payment/specialcode'])
         }
@@ -408,7 +406,6 @@ export class CheckoutMobileComponent implements OnInit, OnDestroy {
 
   async onStripe() {
     this.isProcessingStripe = true;
-    this.ref.detectChanges();
 
     let payment: NewPayment = new NewPayment();
     payment.userId = this.iUser ? this.iUser.id : '';
@@ -431,7 +428,6 @@ export class CheckoutMobileComponent implements OnInit, OnDestroy {
 
   async onGCash() {
     this.isProcessingGCash = true;
-    this.ref.detectChanges();
 
     let payment: NewPayment = new NewPayment();
     payment.userId = this.iUser ? this.iUser.id : '';
@@ -453,7 +449,6 @@ export class CheckoutMobileComponent implements OnInit, OnDestroy {
 
   async onPaymaya() {
     this.isProcessingPayMaya = true;
-    this.ref.detectChanges();
 
     let payment: NewPayment = new NewPayment();
     payment.userId = this.iUser ? this.iUser.id : '';
@@ -495,7 +490,6 @@ export class CheckoutMobileComponent implements OnInit, OnDestroy {
   
         this.storageService.savePayment(payment as INewPayment);
         this.iSProcessingGCashUpload = false;
-        this.ref.detectChanges();
 
         this.router.navigate(['/new/payment/gcash-upload'])
       }

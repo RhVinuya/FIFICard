@@ -4,8 +4,8 @@
     </div>
   
     <ion-grid style="padding-left: 0px; padding-right: 0px;">
-      <ion-row> 
-          <ion-col size="4" class="col-event" *ngFor="let product of products">
+      <ion-row class="ion-align-items-center ion-justify-content-center"> 
+          <ion-col size="5" class="col-event" *ngFor="let product of products">
             <app-product-tile-mobile [iproduct]="product" [type]="type"></app-product-tile-mobile>
           </ion-col>
       </ion-row>

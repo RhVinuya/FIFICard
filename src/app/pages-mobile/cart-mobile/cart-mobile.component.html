@@ -1,9 +1,11 @@
 <ion-content [fullscreen]="true">
-  <div class="mxw-1920px mt-2">
-    <app-new-title title="Cart"></app-new-title>
+  <div class="my-4 ps-3">
+    <app-title-mobile title="Cart"></app-title-mobile>
   </div>
 
-  <div class="mxw-1920px no-item bg-light" *ngIf="carts.length === 0">
+  <app-loading-mobile [loading]="loading"></app-loading-mobile>
+
+  <div class="mxw-1920px no-item bg-light" *ngIf="loading == false && carts.length === 0">
     <h3 class="text-purple my-0">No item on cart.</h3>
     <h6 class="text-gray my-0">Explore our Products</h6>
     <div class="mt-4">
@@ -11,9 +13,8 @@
     </div>
   </div>
 
-  <app-new-loading [loading]="loading"></app-new-loading>
-  <div class="bg-light" *ngIf="loading == false">
-    <div class="mxw-1920px row" *ngIf="carts.length > 0">
+  <div class="bg-light" *ngIf="loading == false && carts.length > 0">
+    <div class="mxw-1920px row">
       <div class="col-md-9 pe-1">
 
         <ion-list class="bg-light">

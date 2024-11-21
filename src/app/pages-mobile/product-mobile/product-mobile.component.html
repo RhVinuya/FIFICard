@@ -22,9 +22,8 @@
     <ion-row class="ion-align-items-center ion-justify-content-center">
         <app-loading-mobile [loading]="loading"></app-loading-mobile>
         <app-product-list-mobile *ngIf="display && !loading" [products]="display" [type]="type!"></app-product-list-mobile>
+        <h5 *ngIf="!loading && display.length == 0">No {{event | titlecase}} {{type | titlecase}} available right now!</h5>
     </ion-row>
   </ion-grid>
-
-    <h5 *ngIf="!currentEvent"> No Cards available right now </h5>
   </ion-content>
   

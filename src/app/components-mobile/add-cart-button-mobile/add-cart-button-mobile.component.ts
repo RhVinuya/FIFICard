@@ -20,14 +20,16 @@ export class AddCartButtonMobileComponent implements OnInit {
 
   cartService: NewCartService;
   toastController: ToastController;
+  router: Router;
 
   constructor(
     _cartService: NewCartService,
     _toastController: ToastController,
-    public router: Router
+    _router: Router
   ) {
     this.cartService = _cartService;
     this.toastController = _toastController
+    this.router = _router;
   }
 
   isHover: boolean = false;
@@ -86,6 +88,7 @@ export class AddCartButtonMobileComponent implements OnInit {
       position: 'top',
     });
     await toast.present();
-    this.router.navigateByUrl('/cart');
+    //window.location.href = '/cart';
+    this.router.navigate(['/cart']);
   }
 }

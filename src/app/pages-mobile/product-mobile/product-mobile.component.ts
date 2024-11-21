@@ -87,7 +87,6 @@ export class ProductMobileComponent implements OnInit {
         }
         
       })
-
     });
 
   }
@@ -110,7 +109,7 @@ export class ProductMobileComponent implements OnInit {
     }
 
 
-
+    console.log("Products count: ", this.products.length);
     this.display = this.products;
 
     for(const card of this.products) {
@@ -121,6 +120,8 @@ export class ProductMobileComponent implements OnInit {
       }
       //console.log(card.name, " ----- ",  card.recipient);
     }
+
+    console.log(this.display);
   }
 
   onRecipientSelect(recipient: string) {

@@ -13,39 +13,14 @@
 
       <ion-col size="10">
         <h2>Transaction</h2>
-
-        <div class="transactions-container">
-          <p class="transaction-number">#100250</p>
-          <p class="transaction-amount">Total: 50.00</p>
-          <p class="payment-type">Payment: Gcash</p>
-          <p class="payment-date">Created: August 28, 2024 11:48AM</p>
-        </div>
       </ion-col>
 
-      <ion-col size="10">
+      <ion-col size="10" *ngFor="let transaction of transactions">
         <div class="transactions-container">
-          <p class="transaction-number">#100249</p>
-          <p class="transaction-amount">Total: 50.00</p>
-          <p class="payment-type">Payment: Gcash</p>
-          <p class="payment-date">Created: August 28, 2024 11:48AM</p>
-        </div>
-      </ion-col>
-
-      <ion-col size="10">
-        <div class="transactions-container">
-          <p class="transaction-number">#100248</p>
-          <p class="transaction-amount">Total: 50.00</p>
-          <p class="payment-type">Payment: Gcash</p>
-          <p class="payment-date">Created: August 28, 2024 11:48AM</p>
-        </div>
-      </ion-col>
-
-      <ion-col size="10">
-        <div class="transactions-container">
-          <p class="transaction-number">#100247</p>
-          <p class="transaction-amount">Total: 50.00</p>
-          <p class="payment-type">Payment: Gcash</p>
-          <p class="payment-date">Created: August 28, 2024 11:48AM</p>
+          <p class="transaction-number">#{{transaction.code}}</p>
+          <p class="transaction-amount">Total: {{ getPayment(transaction).totalDisplay() }}</p>
+          <p class="payment-type">Payment: {{ getPayment(transaction).getGateway() | titlecase }}</p>
+          <p class="payment-date">Created: {{ getPayment(transaction).createdDisplay() | date}}</p>
         </div>
       </ion-col>
     </ion-row>

@@ -3,10 +3,12 @@
   }
   
   .event-card {
-    background: white;
+    background: rgb(255, 255, 255);
     padding: 10px;
     border: 1px solid rgb(171, 171, 171);
     position: relative;
+    width: auto;
+    height: auto;
   }
   
   .two-columns {

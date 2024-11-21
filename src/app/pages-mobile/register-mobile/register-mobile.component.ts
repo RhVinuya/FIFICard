@@ -28,7 +28,7 @@ export class RegisterMobileComponent implements OnInit {
     lastname: new FormControl<string>('', [Validators.required]),
     password: new FormControl<string>('', [Validators.required, Validators.minLength(8)]),
     confirm: new FormControl<string>('', [Validators.required, Validators.minLength(8)]),
-    notification: new FormControl<boolean>(true),
+    notification: new FormControl<boolean>(false),
     terms: new FormControl<boolean>(false),
   });
 
@@ -157,8 +157,8 @@ export class RegisterMobileComponent implements OnInit {
       }
       else {
         this.storageService.createUser(user);
-        this.router.navigate(['/onboarding']);
         this.processing = false;
+        window.location.href = "/onboarding";
       }
     }).catch(err => {
       this.processing = false;

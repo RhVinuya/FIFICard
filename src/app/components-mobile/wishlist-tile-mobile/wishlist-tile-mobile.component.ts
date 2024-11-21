@@ -115,7 +115,7 @@ export class WishlistTileMobileComponent implements OnInit {
   }
 
   gotoDetails() {
-    this.router.navigateByUrl(this.type + "/" + "/details" )
+    this.router.navigateByUrl(this.type + "/" + this.product.id + "/details")
   }
 
   onRemove() {

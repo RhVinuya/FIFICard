@@ -129,7 +129,7 @@ export class ProfileDetailsMobileComponent implements OnInit {
         window.location.reload();
       }
       else {
-        this.passwordForm.controls['current'].setErrors({ 'error': true });
+        this.passwordForm.controls['current'].setErrors({ 'incorrect': true });
         this.processing = false;
         return;
       }
@@ -144,6 +144,11 @@ export class ProfileDetailsMobileComponent implements OnInit {
 
   changePasswordToggle() {
     this.showPasswordForm = !!!this.showPasswordForm;
+    if(this.showPasswordForm) {
+      this.passwordForm.controls['current'].setErrors(null);
+      this.passwordForm.controls['new'].setErrors(null);
+      this.passwordForm.controls['confirm'].setErrors(null);
+    }
   }
 
 }

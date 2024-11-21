@@ -23,6 +23,11 @@
       >
         <ion-item class="input" fill="solid">
           <ion-input formControlName="email" placeholder="Email"></ion-input>
+          <ion-note
+            *ngIf="form.controls.email.getError('notfound')"
+            slot="error"
+            >Email doesn't exist!</ion-note
+          >
         </ion-item>
       </ion-col>
       <ion-col
@@ -40,6 +45,11 @@
             slot="end"
             (click)="togglePasswordVisibility()"
           ></ion-icon>
+          <ion-note
+            *ngIf="form.controls.password.getError('failed')"
+            slot="error"
+            >Incorrect Password!</ion-note
+          >
         </ion-item>
       </ion-col>
     </form>
@@ -82,3 +92,36 @@
     </label>
   </div>
 </ion-grid>
+
+
+<ion-modal trigger="open-modal" (willDismiss)="close()">
+  <ng-template>
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-button (click)="cancel()">Cancel</ion-button>
+        </ion-buttons>
+        <ion-title>Welcome</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="confirm()" [strong]="true">Confirm</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+      <form [formGroup]="form" (submit)="submitReset()">
+        <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="email" formControlName="email" [disabled]="processingReset"
+                [ngClass]="{ 'is-invalid': submittedReset && formReset.controls.email.errors}">
+            <label for="email">Email Address</label>
+        </div>
+        <div class="text-start" *ngIf="error !== ''">
+            <span class="text-danger">{{error}}</span>
+        </div>
+        <button type="submit" class="login-btn mt-3" [disabled]="processingReset">
+            <span class="spinner-border spinner-border-sm me-1" aria-hidden="true" *ngIf="processingReset"></span>
+            {{processingReset ? 'SENDING ...' : 'SEND PASSWORD LINK'}}
+        </button>
+    </form>
+    </ion-content>
+  </ng-template>
+</ion-modal>

@@ -24,6 +24,16 @@ export class CartMobileComponent implements OnInit, OnDestroy {
   router: Router;
   ref: ChangeDetectorRef;
 
+  location: LocationType = 'ph';
+  subs: Subscription;
+  user: INewUser | undefined = undefined;
+  loading: boolean = true;
+  carts: INewCart[] = [];
+  count: number = 0;
+  total: number = 0;
+  totalDisplay: string = '';
+  saving: boolean = false;
+
   constructor(
     _cartService: NewCartService,
     _storageService: NewStorageService,
@@ -38,6 +48,7 @@ export class CartMobileComponent implements OnInit, OnDestroy {
     this.modalService = _modalService;
     this.router = _router;
     this.ref = _ref;
+    console.log('contructor:', this.loading);
   }
 
   breadcrumbs = [
@@ -53,29 +64,22 @@ export class CartMobileComponent implements OnInit, OnDestroy {
     }
   ];
 
-  location: LocationType = 'ph';
-  subs: Subscription;
-  user: INewUser | undefined = undefined;
-  loading: boolean = false;
-  carts: INewCart[] = [];
-  count: number = 0;
-  total: number = 0;
-  totalDisplay: string = '';
-  saving: boolean = false;
-
-  async ngOnInit(): Promise<void> {
+  async ionViewDidEnter() {
+    this.loading = true;
     this.location = this.locationService.getlocation();
 
     this.subs = timer(100, 500).subscribe(time => {
       this.user = this.storageService.getUser();
     });
 
-    this.loading = true;
-    this.ref.detectChanges();
-    this.carts = await this.cartService.getAll();
+    let carts = await this.cartService.getAll();
+    
+    this.carts = carts;
     this.calculate();
     this.loading = false;
-    this.ref.detectChanges();
+  }
+
+  ngOnInit(): void {
   }
 
   ngOnDestroy(): void {
@@ -134,7 +138,10 @@ export class CartMobileComponent implements OnInit, OnDestroy {
 
   onClickCheckout() {
     this.saving = true;
+
     this.storageService.saveCheckoutList(this.carts.filter(x => x.mark === true).map(x => x.id));
+    console.log('cart');
+    console.log(this.carts.filter(x => x.mark === true).map(x => x.id));
     this.router.navigate(['/checkout']);
     this.saving = false;
   }

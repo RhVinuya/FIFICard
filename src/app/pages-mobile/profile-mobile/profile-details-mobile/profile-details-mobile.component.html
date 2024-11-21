@@ -1,37 +1,50 @@
 <ion-content fullscreen="true">
   <ion-grid class="ion-justify-content-center ion-align-items-center">
-    <form [formGroup]="form" (submit)="submit()">
+    <ion-row 
+      class="slide-content-container ion-justify-content-center ion-align-items-center"
+    >
+      <ion-col size="11">
+        <ion-img
+          class="logo"
+          src="/assets/images/logo_fibeigreetings.png"
+          alt="Fibeigreetings"
+        ></ion-img>
+      </ion-col>
+    </ion-row>
+
+    <form class="basicform" [formGroup]="form" (submit)="submit()">
       <ion-row
         class="slide-content-container ion-justify-content-center ion-align-items-center"
       >
-        <ion-col size="11">
-          <ion-img
-            class="logo"
-            src="/assets/images/logo_fibeigreetings.png"
-            alt="Fibeigreetings"
-          ></ion-img>
-        </ion-col>
-
-        <ion-col size="11">
-          <h2>Basic Information</h2>
-
+        <h2>Basic Information</h2>
+      </ion-row>
+      <ion-row
+        class="slide-content-container ion-justify-content-center ion-align-items-center ion-padding-horizontal"
+      >
+        <ion-col size="6">
           <ion-item lines="none">
-            <div class="name-input">
-              <ion-input
-                id="firstname"
-                formControlName="firstname"
-                placeholder="First Name"
-                class="p12"
-              ></ion-input>
-              <ion-input
-                id="lastname"
-                formControlName="lastname"
-                placeholder="Last Name"
-              ></ion-input>
-            </div>
+            <ion-label position="stacked">Firstname</ion-label>
+            <ion-input
+              id="firstname"
+              formControlName="firstname"
+              placeholder="First Name"
+              class="p12"
+            ></ion-input>
           </ion-item>
-
+        </ion-col>
+        <ion-col size="6">
           <ion-item lines="none">
+            <ion-label position="stacked">Lastname</ion-label>
+            <ion-input
+              id="lastname"
+              formControlName="lastname"
+              placeholder="Last Name"
+            ></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="12">
+          <ion-item lines="none">
+            <ion-label position="stacked">Email</ion-label>
             <ion-input
               id="email"
               formControlName="email"
@@ -42,8 +55,10 @@
               >Invalid email</ion-note
             >
           </ion-item>
-
+        </ion-col>
+        <ion-col size="12">
           <ion-item lines="none">
+            <ion-label position="stacked">Birthday</ion-label>
             <ion-input
               type="date"
               id="birthday"
@@ -71,29 +86,34 @@
       </ion-row>
     </form>
 
+
+    
+    <ion-row
+    class="slide-content-container ion-justify-content-center ion-align-items-center ion-padding-horizontal"
+    >
+      <ion-toolbar>
+        <h2 slot="start">Change Password</h2>
+        <ion-buttons slot="end">
+          <ion-button size="small" (click)="changePasswordToggle()">
+            <ion-icon
+              [name]="
+                showPasswordForm
+                  ? 'chevron-up-outline'
+                  : 'chevron-down-outline'
+              "
+            ></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-row>
     <form [formGroup]="passwordForm" (submit)="changePasswordSubmit()">
       <ion-row
-        class="slide-content-container ion-justify-content-center ion-align-items-center"
+        class="slide-content-container ion-justify-content-center ion-align-items-center ion-padding-horizontal"
       >
-        <ion-col size="11">
-          <ion-toolbar>
-            <h2 slot="start">Change Password</h2>
-            <ion-buttons slot="end">
-              <ion-button size="small" (click)="changePasswordToggle()">
-                <ion-icon
-                  [name]="
-                    showPasswordForm
-                      ? 'chevron-up-outline'
-                      : 'chevron-down-outline'
-                  "
-                ></ion-icon>
-              </ion-button>
-            </ion-buttons>
-          </ion-toolbar>
-        </ion-col>
 
-        <ion-col size="11" [hidden]="!showPasswordForm">
+        <ion-col size="12" [hidden]="!showPasswordForm">
           <ion-item lines="none">
+            <ion-label position="stacked">Current Password</ion-label>
             <ion-input
               id="current"
               formControlName="current"
@@ -117,15 +137,17 @@
             <ion-note
               *ngIf="
                 passwordForm.controls.current.dirty &&
-                passwordForm.controls.current.errors
+                passwordForm.controls.current.getError('incorrect')
               "
               slot="error"
             >
               Incorrect Password
             </ion-note>
           </ion-item>
-
+        </ion-col>
+        <ion-col size="12" [hidden]="!showPasswordForm">
           <ion-item lines="none">
+            <ion-label position="stacked">New password</ion-label>
             <ion-input
               id="new"
               formControlName="new"
@@ -151,8 +173,10 @@
               Invalid password
             </ion-note>
           </ion-item>
-
+        </ion-col>
+        <ion-col size="12" [hidden]="!showPasswordForm">
           <ion-item lines="none">
+            <ion-label position="stacked">Confirm Password</ion-label>
             <ion-input
               id="confirm"
               formControlName="confirm"
@@ -167,7 +191,7 @@
             <ion-note
               *ngIf="
                 passwordForm.controls.confirm.dirty &&
-                passwordForm.controls.confirm.errors
+                passwordForm.controls.confirm.getError('mismatch')
               "
               slot="error"
             >

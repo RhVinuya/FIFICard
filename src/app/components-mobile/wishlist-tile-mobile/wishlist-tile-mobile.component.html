@@ -7,7 +7,7 @@
       <div class="item-col item-details">
         <h6 
           class="text-purple mt-1 mb-1 cursor"
-          [routerLink]="[wishlist.type + '/' + product.id + '/details']"
+          (click)="gotoDetails()"
         >
           {{ product.name }}
         </h6>

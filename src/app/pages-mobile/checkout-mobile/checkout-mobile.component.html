@@ -6,7 +6,7 @@
     
     <app-new-loading [loading]="loading"></app-new-loading>
     
-    <ion-grid class="bg-light"  *ngIf="loading == false">
+    <ion-grid class="bg-light" *ngIf="loading == false">
         <ion-row  class="card h-100 bg-light border-light drop" [ngClass]="isValidSender() ? '' : 'require'" (click)="openSender()">
             <ion-card>
                 <ion-card-header>

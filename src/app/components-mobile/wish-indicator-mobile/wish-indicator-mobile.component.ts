@@ -44,12 +44,11 @@ export class WishIndicatorMobileComponent implements OnInit {
     else list = [...list.filter(x => x !== this._id)];
     this.wishlistService.save(list);    
     const toast = await this.toastController.create({
-      message: 'Item added to wishlist',
+      message: this.isMark? 'Item is added to your wishlist.' : 'Item is removed to your wishlist.',
       duration: 1500,
       position: 'top',
     });
     await toast.present();
-    this.router.navigateByUrl('/wishlist');
   }
 
 }
