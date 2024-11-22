@@ -88,7 +88,9 @@ export class NewCardsComponent implements OnInit {
 
   async loadCards() {
     this.loading = true;
-    this.cards = await this.cardService.getAll();
+    let list = await this.cardService.getAll();
+
+    this.cards = [...list.filter(x => x.featured), ...list.filter(x => x.featured !== true)]
 
     this.cardevents.forEach(event => {
       let list = this.cards.filter(x => x.event.toLowerCase() === event.toLowerCase())

@@ -78,7 +78,9 @@ export class NewGiftsComponent implements OnInit {
 
   async loadGifts() {
     this.loading = true;
-    this.gifts = await this.giftService.getAll();
+    let list = await this.giftService.getAll();
+
+    this.gifts = [...list.filter(x => x.featured), ...list.filter(x => x.featured !== true)]
 
     this.giftevents.forEach(event => {
       let list = this.gifts.filter(x => x.events.filter(y => y.toLowerCase() === event.toLowerCase()) )

@@ -61,7 +61,9 @@ export class NewStickersComponent implements OnInit {
 
   async loadStickers() {
     this.loading = true;
-    this.stickers = await this.stickerService.getAll();
+    let list = await this.stickerService.getAll();
+
+    this.stickers = [...list.filter(x => x.featured), ...list.filter(x => x.featured !== true)]
 
     this.stickerevents.forEach(event => {
       let list = this.stickers.filter(x => x.events.filter(y => y.toLowerCase() === event.toLowerCase()) )

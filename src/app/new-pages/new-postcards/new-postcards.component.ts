@@ -61,7 +61,9 @@ export class NewPostcardsComponent implements OnInit {
 
   async loadPostcards() {
     this.loading = true;
-    this.postcards = await this.postcardService.getAll();
+    let list =  await this.postcardService.getAll();
+
+    this.postcards = [...list.filter(x => x.featured), ...list.filter(x => x.featured !== true)]
 
     this.postcardevents.forEach(event => {
       let list = this.postcards.filter(x => x.events.filter(y => y.toLowerCase() === event.toLowerCase()) )
