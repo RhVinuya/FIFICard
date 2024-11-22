@@ -19,6 +19,7 @@
             <div class="mt-0">
                 <app-new-rate [rate]="rate"></app-new-rate>
             </div>
+            <label class="text-purple" *ngIf="qr !== ''"><b>*Scan the Purple QR Code to activate the "Talking Card"*</b></label>
             <div class="mt -3 mb-3" *ngIf="type === 'card' && isCardBundle === false">
                 <label class="text-blue">Purchase this lovely and glittery greeting card today</label>
             </div>
