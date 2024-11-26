@@ -14,6 +14,7 @@ import { NewStorageService } from 'src/app/new-services/new-storage.service';
   styleUrls: ['./profile-details-mobile.component.scss']
 })
 export class ProfileDetailsMobileComponent implements OnInit {
+
   StrongPasswordRegx: RegExp = /^(?=[^A-Z]*[A-Z])(?=[^a-z]*[a-z])(?=\D*\d).{8,}$/;
   
   user: INewUser | undefined;
@@ -24,6 +25,8 @@ export class ProfileDetailsMobileComponent implements OnInit {
   showPassCurrent = false;
   showPassNew = false;
   showPassConfirm = false;
+  isBirthdayModalOpen = false;
+  myDate: any;
 
   
   form = new FormGroup({
@@ -63,10 +66,22 @@ export class ProfileDetailsMobileComponent implements OnInit {
       this.form.controls.firstname.setValue(this.user.firstname);
       this.form.controls.lastname.setValue(this.user.lastname);
       this.form.controls.email.setValue(this.user.email);
-      this.form.controls.birthday.setValue(this.user.birthday);
+      this.form.controls.birthday.setValue( this.user.birthday );
     }
 
     this.form.markAsPristine();
+  }
+
+  setBirthdayModalOpen(isOpen: boolean) {
+    console.log(isOpen);
+    this.isBirthdayModalOpen = isOpen;
+  }
+
+  confirmBday(date:any) {
+    let birthday = new Date(date);
+    this.form.controls.birthday.setValue( birthday.getFullYear() + "-" + (birthday.getMonth() +1) + "-" + birthday.getDate()  );
+    this.form.markAsDirty();
+    this.isBirthdayModalOpen = false;
   }
 
   async submit() {

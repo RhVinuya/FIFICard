@@ -57,17 +57,37 @@
           </ion-item>
         </ion-col>
         <ion-col size="12">
-          <ion-item lines="none">
+          <ion-item lines="none" (click)="setBirthdayModalOpen(true)">
             <ion-label position="stacked">Birthday</ion-label>
             <ion-input
-              type="date"
               id="birthday"
               formControlName="birthday"
-              placeholder="Birthday"
+              placeholder="birthday"
+              
             ></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>
+
+      <ion-modal id="example-modal" [isOpen]="isBirthdayModalOpen">
+        <ng-template>
+          <ion-content>
+            <ion-toolbar>
+              <ion-buttons slot="start">
+                <ion-button (click)="setBirthdayModalOpen(false)">Cancel</ion-button>
+              </ion-buttons>
+              <ion-title>Birthday</ion-title>
+              <ion-buttons slot="end">
+                <ion-button color="light" (click)="confirmBday(datetime.value)">confirm</ion-button>
+              </ion-buttons>
+            </ion-toolbar>
+            <div class="wrapper">
+              <ion-datetime #datetime display-format="DD/MM/YYYY" presentation="date" [preferWheel]="true"></ion-datetime>
+            </div>
+          </ion-content>
+        </ng-template>
+      </ion-modal>
+
 
       <ion-row class="btn-container">
         <ion-buttons [hidden]="!form.dirty">
