@@ -20,15 +20,28 @@
   }
   
   .two-columns > .img-container {
-    height: 160px;
+     height: 205px;
     width: 100%;
     padding: 5px;
-    display: flex;
+    vertical-align:middle;
+     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 20px;
+    // margin-bottom: 20px;
   }
   
+  .two-columns > .card-info > h5 {
+    margin:0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    height: 40px;
+
+  }
+  
+
   .three-columns > .img-container {
     height: 120px;
     width: 100%;
