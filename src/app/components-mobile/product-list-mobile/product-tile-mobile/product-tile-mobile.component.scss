@@ -54,7 +54,8 @@
   
   .img-container > img {
     width: 100%;
-    height: auto;
+    max-height: 100%;
+    // height: auto;
   }
   
   .card-info > h2,
