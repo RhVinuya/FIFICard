@@ -1,0 +1,19 @@
+<ion-content [fullscreen]="true">
+    <div class="mxw-1920px text-center" *ngIf="isProcessing === true">
+        <h4 class="text-purple mt-5 mb-0">Processing your Payment.</h4>
+        <h5 class="text-purple mt-0 mb-2">Please wait....</h5>
+        <ion-spinner name="dots"></ion-spinner>
+    </div>
+    
+    <div class="mxw-1920px text-center" *ngIf="isProcessing === false && isRefreshing === false">
+        <h4 class="text-purple mt-5 mb-5">Payment Saved.</h4>
+    </div>
+    
+    <div class="mxw-1080px mt-5" *ngIf="isProcessing === false && isRefreshing === false">
+        <app-order-mobile [iPayment]="iPayment" *ngIf="iPayment !== undefined"></app-order-mobile>
+    </div>
+
+    <div class="mxw-1080px mt-2" *ngIf="isProcessing === false && isRefreshing === false">
+        <ion-button [routerLink]="'/cards'">Back to home</ion-button>
+    </div>
+</ion-content>

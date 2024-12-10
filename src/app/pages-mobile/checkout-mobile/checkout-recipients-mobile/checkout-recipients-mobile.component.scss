@@ -1,0 +1,102 @@
+* {
+    font-family: Proxima Nova;
+}
+
+.fa,
+.far,
+.fas {
+    font-family: "Font Awesome 5 Free" !important;
+}
+
+.main {
+    position: relative;
+    min-height: 400px;
+}
+
+.main .btn-close {
+    position: absolute;
+    right: 1rem;
+    top: 1rem
+}
+
+.title {
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+.title img {
+    height: 50px;
+}
+
+.title h3 {
+    margin: 10px;
+}
+
+.card:hover {
+    border-color: #ab37c9 !important;
+}
+
+.details {
+    cursor: pointer;
+}
+
+.detail {
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 5px;
+}
+
+ion-icon {
+    color: #ab37c9;
+}
+
+.selected {
+    position: absolute;
+    color: #ab37c9;
+    right: 10px;
+    top: 10px
+}
+
+table {
+    width: 100%;
+}
+
+.auto {
+    width: auto;
+}
+
+.default {
+    width: 8%;
+}
+
+a {
+    font-size: 0.8rem;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+a:visited {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+a:active {
+    text-decoration: none;
+}
+
+.space-between{
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: space-between;
+}

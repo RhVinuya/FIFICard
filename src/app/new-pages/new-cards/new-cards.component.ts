@@ -139,7 +139,7 @@ export class NewCardsComponent implements OnInit {
           let found: boolean = false;
           this.recipients.forEach(recipient => {
             if (recipient === 'FOR ALL') found = true
-            else if (card.recipients.findIndex(x => x.toLowerCase() === recipient.toLowerCase()) >= 0) found = true
+            else if (card.recipients!.findIndex(x => x.toLowerCase() === recipient.toLowerCase()) >= 0) found = true
           })
           if (found) this.display = [...this.display, card];
         })

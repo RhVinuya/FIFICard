@@ -1,0 +1,144 @@
+* {
+  font-family: "Proxima Nova";
+}
+
+.fa,
+.far,
+.fas {
+  font-family: "Font Awesome 5 Free" !important;
+}
+
+.require {
+  border-color: #e9848e !important;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.detail {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 5px;
+}
+
+ion-icon {
+  color: #ab37c9;
+}
+
+table {
+  width: 100%;
+}
+
+table tr td {
+  background-color: transparent;
+  padding-inline: 3px;
+  vertical-align: top;
+}
+
+.space-between {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.drop {
+  cursor: pointer;
+}
+
+hr {
+  border-color: #550255;
+  border-width: 2px;
+}
+
+.card-payment {
+  border: 0.5px #5e17eb solid;
+  color: #fff;
+  font-size: 1rem;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-weight: bold;
+  background-color: #5e17eb;
+  display: block;
+  width: 100%;
+}
+
+.card-payment:hover {
+  color: #5e17eb;
+  background-color: #fff;
+}
+
+.card-payment:disabled {
+  background: lightgrey;
+  border: 0.5px solid lightgrey;
+  cursor: not-allowed;
+}
+
+.card-payment:disabled:hover {
+  background: lightgrey;
+  border: 0.5px solid lightgrey;
+  cursor: not-allowed;
+}
+
+.p-credit {
+  background-image: url("../../../assets/images/new/payment/w-atm-card.png");
+  height: 24px;
+  width: 24px;
+  display: inline-block;
+}
+
+.btn-creditcard:hover .p-credit {
+  background-image: url("../../../assets/images/new/payment/atm-card.png");
+}
+
+.p-gcash {
+  background-image: url("../../../assets/images/new/payment/w-gcash.png");
+  height: 24px;
+  width: 102px;
+  display: inline-block;
+}
+
+.btn-gcash:hover .p-gcash {
+  background-image: url("../../../assets/images/new/payment/gcash.png");
+}
+
+.p-paymaya {
+  background-image: url("../../../assets/images/new/payment/w-paymaya.png");
+  height: 24px;
+  width: 109px;
+  display: inline-block;
+}
+
+.btn-paymaya:hover .p-paymaya {
+  background-image: url("../../../assets/images/new/payment/paymaya.png");
+}
+
+.card-body {
+  padding: 10px;
+}
+
+.card-body > table > tr {
+  font-size: 12px;
+}
+
+
+ion-list {
+  width: 100%;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.amount {
+  text-align: right;
+  font-size: 1rem;
+}
+
+.total {
+  padding: 10px;
+}

@@ -9,6 +9,8 @@ export interface INewPostcard {
     description: string;
     details: string;
     events: string[];
+    recipient: string;
+    recipients?: string[];
     active: boolean;
     featured: boolean;
     type: 'card' | 'sticker' | 'postcard' | 'gift';
@@ -23,6 +25,8 @@ export class NewPostcard {
     description: string;
     details: string;
     events: string[];
+    recipient: string;
+    recipients?: string[];
     active: boolean;
     featured: boolean;
     created: Timestamp;
@@ -35,6 +39,7 @@ export class NewPostcard {
         this.description = value.description;
         this.details = value.details;
         this.events = value.events;
+        this.recipients = value.recipients? value.recipients : [];
         this.active = value.active;
         this.featured = value.featured;
         this.created = value.created;
