@@ -118,15 +118,27 @@
 
   <!--Start of Tawk.to Script-->
   <script type="text/javascript">
-    var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
-    (function () {
-      var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
-      s1.async = true;
-      s1.src = 'https://embed.tawk.to/670f62b94304e3196ad23ccf/1iaa1j9ok';
-      s1.charset = 'UTF-8';
-      s1.setAttribute('crossorigin', '*');
-      s0.parentNode.insertBefore(s1, s0);
-    })();
+
+    function getSize()
+    {
+        var w=window,d=document,e=d.documentElement,g=d.getElementsByTagName('body')[0];
+        var x=w.innerWidth||e.clientWidth||g.clientWidth;
+        var y=w.innerHeight||e.clientHeight||g.clientHeight;
+        return {width:x, height:y}
+    }
+    var size=getSize();
+
+    if(size.width > 480) {
+      var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+      (function () {
+        var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+        s1.async = true;
+        s1.src = 'https://embed.tawk.to/670f62b94304e3196ad23ccf/1iaa1j9ok';
+        s1.charset = 'UTF-8';
+        s1.setAttribute('crossorigin', '*');
+        s0.parentNode.insertBefore(s1, s0);
+      })();
+    }
   </script>
   <!--End of Tawk.to Script-->
 </body>

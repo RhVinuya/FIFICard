@@ -1,0 +1,20 @@
+.personalize {
+    font-family: "Proxima Nova";
+    border: 1px #5e17eb solid;
+    background: white;
+    color: #5e17eb;
+    cursor: pointer;
+    padding-block: 6px;
+    padding-inline: 10px;
+    border-radius: 20px;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.personalize:hover {
+    font-family: "Proxima Nova";
+    border: 1px #5e17eb solid;
+    color: #fff;
+    background: #5e17eb;
+    font-size: 1rem;
+}

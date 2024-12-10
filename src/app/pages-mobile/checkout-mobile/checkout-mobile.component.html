@@ -1,0 +1,122 @@
+<ion-content [fullscreen]="true">
+
+    <div class="mxw-1920px mt-2">
+        <app-new-title title="Checkout" ></app-new-title>
+    </div>
+    
+    <app-new-loading [loading]="loading"></app-new-loading>
+    
+    <ion-grid class="bg-light" *ngIf="loading == false">
+        <ion-row  class="card h-100 bg-light border-light drop" [ngClass]="isValidSender() ? '' : 'require'" (click)="openSender()">
+            <ion-card>
+                <ion-card-header>
+                    <ion-card-title>Sender Details
+                    <ion-icon name="pencil-outline"></ion-icon>
+                    </ion-card-title>
+                </ion-card-header>
+                <ion-card-content>
+                    <div class="details" *ngIf="sender">
+                        <div class="detail ms-2 mb-1">
+                            <ion-icon name="person-outline"></ion-icon>
+                            <h6 class="my-0">{{sender.getFullName()}}</h6>
+                        </div>
+                        <div class="detail ms-2">
+                            <ion-icon name="at-outline"></ion-icon>
+                            <h6 class="my-0">{{sender.email}}</h6>
+                        </div>
+                    </div>
+                </ion-card-content>
+            </ion-card>
+        </ion-row>
+
+        <ion-row  class="card h-100 bg-light border-light drop" [ngClass]="isValidSender() ? '' : 'require'" (click)="openRecipient()">
+            
+            <ion-card>
+                <ion-card-header>
+                    <ion-card-title>Receiver Details
+                    <ion-icon name="chevron-forward-outline"></ion-icon>
+                    </ion-card-title>
+                </ion-card-header>
+                <ion-card-content>
+                    <div class="details" *ngIf="receiver">
+                        <div class="detail ms-2 mb-1">
+                            <ion-icon name="person-outline"></ion-icon>
+                            <h6 class="my-0">{{receiver.getFullName()}}</h6>
+                        </div>
+                        <div class="detail ms-2 mb-1">
+                            <ion-icon name="at-outline"></ion-icon>
+                            <h6 class="my-0">{{receiver.email}}</h6>
+                        </div>
+                        <div class="detail ms-2">
+                            <ion-icon name="home-outline"></ion-icon>
+                            <h6 class="my-0">{{receiver.getFullAddress()}}</h6>
+                        </div>
+                    </div>
+                </ion-card-content>
+            </ion-card>
+        </ion-row>
+
+        <ion-row class="bg-light">
+            <ion-list class="bg-light">
+                <app-checkout-item-mobile *ngFor="let item of items" [iItem]="item"></app-checkout-item-mobile>
+            </ion-list>
+        </ion-row>
+
+        <ion-row>
+            <div class="total w-100 ion-float-right ion-text-wrap">
+                <h6 class="amount">Total Amount: {{convertNumberDisplay(total)}}</h6>
+            </div>
+        </ion-row>
+
+        <ion-row class="ion-align-items-end ion-justify-content-end">
+            <form [formGroup]="form" (submit)="onVerify()" *ngIf="payments && payments.specialcode === true">
+                <div class="input-group mt-4">
+                    <input type="text" class="form-control" placeholder="Enter Special Code" [readonly]="!isReady()" formControlName="code"
+                        [ngClass]="{ 'is-invalid': verifySubmitted && form.controls.code.errors}">
+                    <button class="btn btn-outline-primary" type="submit" id="button-addon2" [disabled]="accepted === false">
+                        <span class="spinner-border spinner-border-sm me-1" aria-hidden="true" *ngIf="isProcessingSpecialCode"></span>
+                        {{isProcessingSpecialCode ? '' : ' Verify'}}
+                    </button>
+                </div>
+            </form>
+            <div class="form-check mt-4">
+                <input class="form-check-input" type="checkbox" id="accepted" [defaultValue]="accepted" (click)="onChangeAccepted($event)">
+                <label class="form-check-label" for="accepted">
+                    I accept <a href="/mobile/terms-and-condition" target="_blank">License and Agreement</a>
+                </label>
+            </div>
+
+
+        </ion-row>
+        <ion-row>
+            <button class="btn-creditcard card-payment mt-4" [disabled]="!isReady()" (click)="onStripe()"
+            *ngIf="payments && payments.card === true">
+            <span class="spinner-border spinner-border-sm me-1" aria-hidden="true" *ngIf="isProcessingStripe"></span>
+            <span>{{isProcessingStripe ? 'Processing...' : ' Pay with Credit Card'}}</span>
+            <i class="p-credit mx-1"></i>
+            <span>by Stripe</span>
+            </button>
+
+            <!-- <button class="btn-gcash card-payment mt-2" [disabled]="!isReady()" (click)="onGCash()" *ngIf="false && payments && payments.gcash === true">
+                <span class="spinner-border spinner-border-sm me-1" aria-hidden="true" *ngIf="isProcessingGCash"></span>
+                <span>{{isProcessingStripe ? 'Processing...' : 'Pay with'}}</span>
+                <i class="p-gcash mx-1"></i>
+                <span>by PayMongo</span>
+            </button>
+
+            <button class="btn-paymaya card-payment mt-2" [disabled]="!isReady()" (click)="onPaymaya()"
+                *ngIf="payments && payments.paymaya === true">
+                <span class="spinner-border spinner-border-sm me-1" aria-hidden="true" *ngIf="isProcessingPayMaya"></span>
+                <span>{{isProcessingStripe ? 'Processing...' : ' Pay with '}}</span>
+                <i class="p-paymaya mx-1"></i>
+                <span>by PayMongo</span>
+            </button>
+
+            <button class="btn-gcash card-payment mt-2" [disabled]="!isReady()" (click)="onGCashUpload()"
+                *ngIf="payments && payments.gcashupload === true">
+                <span>Pay with</span>
+                <i class="p-gcash mx-1"></i>
+            </button> -->
+        </ion-row>
+    </ion-grid>
+</ion-content>

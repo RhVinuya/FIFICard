@@ -1,0 +1,19 @@
+<ion-item lines="none" class="card bg-light border-light mb-2" *ngIf="item && model">
+    <div class="image">
+        <ion-img [src]="primary">
+        </ion-img>
+    </div>
+    <div class="details px-3 ion-text-wrap">
+        <h5 class="text-purple mt-2 mb-1 ">{{model.name}}</h5>
+        <span class="badge text-bg-secondary ion-float-left" *ngIf="item.type === 'card'">CARD</span>
+        <span class="badge text-bg-secondary ion-float-left" *ngIf="item.type === 'card' && item.personalize !== undefined">PERSONALIZE</span>
+        <span class="badge text-bg-secondary ion-float-left" *ngIf="item.type === 'sticker'">STICKER</span>
+        <span class="badge text-bg-secondary ion-float-left" *ngIf="item.type === 'postcard'">POSTCARD</span>
+        <span class="badge text-bg-secondary ion-float-left" *ngIf="item.type === 'gift'">GIFT</span>
+
+        <p class="text-purple mb-0" *ngIf="bundleDetails !== ''">{{bundleDetails}}</p>
+        <p class="amount my-0">Amount: {{item.priceDisplay()}}</p>
+        <p class="amount my-0">Shipping: {{item.shipping > 0 ? item.shippingDisplay() : 'FREE'}}</p>
+        <p class="amount my-0">Total: {{item.totalDisplay()}}</p>
+    </div>
+</ion-item>

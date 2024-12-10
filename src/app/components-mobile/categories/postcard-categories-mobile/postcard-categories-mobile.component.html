@@ -1,0 +1,10 @@
+
+<app-new-loading [loading]="loading"></app-new-loading>
+<ion-grid *ngIf="!loading">
+
+  <ion-row class="events-container">
+    <ion-col [size]="getColumnSize()" *ngFor="let event of events">
+      <app-postcard-category-mobile [event]="event"></app-postcard-category-mobile>
+    </ion-col>
+  </ion-row>
+</ion-grid>

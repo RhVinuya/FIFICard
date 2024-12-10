@@ -1,0 +1,87 @@
+<ion-item lines="none" class="card bg-light border-light mb-2" *ngIf="item && model">
+    <div class="image">
+        <ion-img [src]="primary">
+        </ion-img>
+    </div>
+    <div class="details px-3 ion-text-wrap">
+        <h5 class="text-purple mt-2 mb-1 ">{{model.name}}</h5>
+        <span class="badge text-bg-secondary ion-float-left" *ngIf="item.type === 'card'">CARD</span>
+        <span class="badge text-bg-secondary ion-float-left" *ngIf="item.type === 'card' && item.personalize !== undefined">PERSONALIZE</span>
+        <span class="badge text-bg-secondary ion-float-left" *ngIf="item.type === 'sticker'">STICKER</span>
+        <span class="badge text-bg-secondary ion-float-left" *ngIf="item.type === 'postcard'">POSTCARD</span>
+        <span class="badge text-bg-secondary ion-float-left" *ngIf="item.type === 'gift'">GIFT</span>
+
+        <p class="text-purple mb-0" *ngIf="bundleDetails !== ''">{{bundleDetails}}</p>
+        <p class="amount my-0">Amount: {{item.priceDisplay()}}</p>
+        <p class="amount my-0">Shipping: {{item.shipping > 0 ? item.shippingDisplay() : 'FREE'}}</p>
+        <p class="amount my-0">Total: {{item.totalDisplay()}}</p>
+        <div class="amount my-0">
+            <button class="btn btn-prof-no " *ngIf="!reviewed" (click)="openNewReview()"> <i class="fa fa-star"></i> Rate </button>
+        </div>
+    </div>
+</ion-item>
+
+
+
+<ng-template #newRating>
+    <div class="modal-main">
+        <div class="header">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2 class="label-header text-purple">Rate</h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3 image">
+                            <img [src]="primary" [alt]="model!.name" onContextMenu="return false;">
+                        </div>
+                        <div class="col-md-9 details">
+                            <span class="badge text-bg-secondary" *ngIf="iItem.type === 'card'">CARD</span>
+                            <span class="badge text-bg-secondary"
+                                *ngIf="iItem.type === 'card' && iItem.personalize !== undefined">PERSONALIZE</span>
+                            <span class="badge text-bg-secondary" *ngIf="iItem.type === 'sticker'">STICKER</span>
+                            <span class="badge text-bg-secondary" *ngIf="iItem.type === 'postcard'">POSTCARD</span>
+                            <span class="badge text-bg-secondary" *ngIf="iItem.type === 'gift'">GIFT</span>
+
+                            <p class="text-purple my-0 cursor"
+                                [routerLink]="['/new/details/' + iItem.type + '/' + iItem.itemId]">{{model!.name}}</p>
+                            <p class="text-gray mb-0">{{model!.description}}</p>
+                            <p class="text-purple mb-0" *ngIf="bundleDetails !== ''">{{bundleDetails}}</p>
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="col-md-12">
+                        <form [formGroup]="reviewForm">
+                            <b> Add Title:</b>
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="title" placeholder="title"
+                                    formControlName="title"
+                                    [ngClass]="{ 'is-invalid': submitted && reviewForm.controls.title.errors}">
+                                <label for="title">Title</label>
+                            </div>
+                            <br/>
+                            <b> Select a rating:</b>
+                            <div [ngClass]="'rating-lg'">
+                                <ngb-rating [max]="5" [rate]="rate" id="rate" placeholder="rate" formControlName="rate"
+                                    [ngClass]="{ 'is-invalid': submitted && reviewForm.controls.rate.errors}"></ngb-rating>
+                            </div>
+                            <b> Add Review:</b>
+                            <div class="form-floating">
+                                <textarea class="form-control" placeholder="Review" rows="5" formControlName="review"
+                                    [ngClass]="{ 'is-invalid': submitted && reviewForm.controls.review.errors}"></textarea>
+                            </div>
+                        </form>
+                        <br />
+                        <button type="button" class="btn btn-prof" aria-label="Close"
+                            (click)="onClose()"><i class="fa fa-ban"></i> Cancel</button>
+                        <button type="button" class="btn btn-prof-no" aria-label="Submit" (click)="submit()"
+                            [disabled]="!(item && model)"> <i class="fa fa-check"></i> Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</ng-template>

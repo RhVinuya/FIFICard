@@ -62,6 +62,20 @@ export class NewAccountService {
     });
   }
 
+  // facebookAuthenticate(): Promise<INewGoogleUser> {
+  //   return new Promise((resolve, rejects) => {
+  //     const provider = new GoogleAuthProvider();
+  //     signInWithPopup(this.auth, provider).then(value => {
+  //       resolve({
+  //         id: value.user.uid,
+  //         email: value.user.email,
+  //         photoURL: value.user.photoURL,
+  //         providerId: value.providerId
+  //       } as INewGoogleUser)
+  //     }).catch(err => rejects(err));
+  //   });
+  // }
+
   passwordReset(email: string): Promise<void> {
     return sendPasswordResetEmail(this.auth, email)
   }
