@@ -564,11 +564,6 @@ const routes: Routes = [
 
 const mobileRoutes: Routes = [
   {
-    path: "new",
-    redirectTo: "/onboarding",
-    pathMatch: "full"
-  },
-  {
     path: "",
     redirectTo: "/onboarding",
     pathMatch: "full"
