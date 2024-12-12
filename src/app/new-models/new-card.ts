@@ -1,6 +1,6 @@
 import { Timestamp } from "@angular/fire/firestore";
 import { NewLocationService } from "../new-services/new-location.service";
-import { Allignment, LocationType } from "./new-enum";
+import { LocationType } from "./new-enum";
 
 export interface INewCard {
     id: string;

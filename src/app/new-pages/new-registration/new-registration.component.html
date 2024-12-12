@@ -5,10 +5,18 @@
     <div class="row">
         <div class="col-lg-4 offset-lg-4 col-md-6 offset-md-3 col-sm-6 offset-sm-3">
             <form [formGroup]="form" (submit)="submit()">
+                <div class="row mb-3" *ngIf="code !== ''">
+                    <div class="col-12">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" id="code" placeholder="Referral Code" formControlName="code" [readOnly]="code !== ''">
+                            <label for="code">Referral Code (opitional)</label>
+                        </div>
+                    </div>
+                </div>
                 <div class="row mb-3">
                     <div class="col-12">
                         <div class="form-floating">
-                            <input type="email" class="form-control" id="email" placeholder="name@example.com" formControlName="email"
+                            <input type="email" class="form-control" id="email" placeholder="name@example.com" formControlName="email" [readOnly]="code !== ''"
                                 [disabled]="processing" [ngClass]="{ 'is-invalid': submitted && form.controls.email.errors}">
                             <label for="email">Email address</label>
                         </div>
@@ -72,10 +80,10 @@
                     </label>
                     <a class="ms-1" (click)="onClickSignIn()">Sign in?</a>
                 </div>
-                <div class="text-center mt-4 mb-2">
+                <div class="text-center mt-4 mb-2" *ngIf="code === ''">
                     <label>OR</label>
                 </div>
-                <div class="external">
+                <div class="external" *ngIf="code === ''">
                     <img src="/assets/images/google.png" (click)="onGoogleClick()" onContextMenu="return false;">
                 </div>
                 <div class="mt-4 mb-2">

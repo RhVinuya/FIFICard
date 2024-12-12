@@ -212,6 +212,9 @@ import { NewProductsComponent } from './new-components/new-products/new-products
 import { NewReviewsComponent } from './new-components/new-reviews/new-reviews.component';
 import { NewDetailsBundlesComponent } from './new-pages/new-details/new-details-bundles/new-details-bundles.component';
 import { NewDataDeletionComponent } from './new-pages/new-links/new-data-deletion/new-data-deletion.component';
+import { NewReferAFriendComponent } from './new-pages/new-profile/new-refer-a-friend/new-refer-a-friend.component';
+import { NewReferAFriendModalComponent } from './new-pages/new-profile/new-refer-a-friend/new-refer-a-friend-modal/new-refer-a-friend-modal.component';
+import { NewErrorMessageComponent } from './new-components/new-error-message/new-error-message.component';
 
 
 @NgModule({
@@ -401,7 +404,10 @@ import { NewDataDeletionComponent } from './new-pages/new-links/new-data-deletio
     NewProductsComponent,
     NewReviewsComponent,
     NewDetailsBundlesComponent,
-    NewDataDeletionComponent
+    NewDataDeletionComponent,
+    NewReferAFriendComponent,
+    NewReferAFriendModalComponent,
+    NewErrorMessageComponent
   ],
   imports: [
     BrowserModule,

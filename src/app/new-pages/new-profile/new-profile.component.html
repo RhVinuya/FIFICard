@@ -25,6 +25,9 @@
             <button class="nav-link" [ngClass]="default === 'orders' ? 'active' : ''" id="orders-tab" data-bs-toggle="tab" data-bs-target="#orders-div" type="button" role="tab">
                 My Orders
             </button>
+            <button class="nav-link" [ngClass]="default === 'refer' ? 'active' : ''" id="refer-tab" data-bs-toggle="tab" data-bs-target="#refer-div" type="button" role="tab">
+                Refer a Friend
+            </button>
         </div>
     </nav>
     <div class="tab-content" id="nav-tabContent">
@@ -62,6 +65,10 @@
         
         <div class="tab-pane fade mb-2" [ngClass]="default === 'orders' ? 'show active' : ''" id="orders-div" role="tabpanel">
             <app-new-profile-orders [id]="user.id"></app-new-profile-orders>
+        </div>
+
+        <div class="tab-pane fade mb-2" [ngClass]="default === 'refer' ? 'show active' : ''" id="refer-div" role="tabpanel">
+            <app-new-refer-a-friend [id]="user.id"></app-new-refer-a-friend>
         </div>
     </div>
 </div>

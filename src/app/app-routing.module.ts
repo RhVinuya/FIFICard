@@ -364,9 +364,13 @@ const routes: Routes = [
             component: NewRegistrationComponent
           },
           {
+            path: 'referral/:code',
+            component: NewRegistrationComponent
+          },
+          {
             path: 'complete/:id',
             component: NewRegistrationCompleteComponent
-          }
+          },
         ]
       },
       {

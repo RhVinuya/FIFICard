@@ -162,3 +162,21 @@ h1{
 .text-purple{
     color: #806bc4;
 }
+
+.details{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.details .content{
+    width: 100%;
+}
+
+.details .content-qr{
+    width: calc(100% - 220px);
+}
+
+.details .qr-content{
+    width: 220px !important
+}
