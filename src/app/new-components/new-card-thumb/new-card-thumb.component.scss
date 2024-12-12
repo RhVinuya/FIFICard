@@ -27,6 +27,16 @@
     object-fit: contain;
 }
 
+.card .chip{
+    font-size: 0.9rem !important;
+    border: 0.5px solid white;
+    color: #2527a3 !important;
+    background: #c0e8ff;
+    padding-inline: 10px;
+    padding-block: 3px;
+    border-radius: 20px;
+}
+
 .default-image,
 .hover-image {
     position: absolute;

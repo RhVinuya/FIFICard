@@ -23,7 +23,9 @@
             <div class="mt -3 mb-3" *ngIf="type === 'card' && isCardBundle === false">
                 <label class="text-blue">Purchase this lovely and glittery greeting card today</label>
             </div>
-
+            <div class="mt-2 mb-3" *ngIf="type==='card'">
+                <span class="chip" *ngFor="let recipient of recipients">{{recipient}}</span>
+            </div>
             <div class="details">
                 <div [ngClass]="qr === ''? 'content' : 'content-qr'">
                     <div class="prices" *ngIf="isBundle === false">
@@ -41,7 +43,7 @@
                         <app-new-personalize-button *ngIf="isPersonalize" [iCard]="getICard()"></app-new-personalize-button>
                     </div>
                     <div class="details text-gray mb-3">{{model.details}}</div>
-        
+
                     <div class="mb-3" *ngIf="isCardBundle">
                         <app-new-details-bundles [ids]="getICard().cardbundleIds"></app-new-details-bundles>
                     </div>
@@ -60,8 +62,8 @@
                 <img src="/assets/images/standard-card.png" class="me-2" *ngIf="isRegular" onContextMenu="return false;">
                 <span class="badge text-bg-secondary i-featured me-2" *ngIf="isFeatured"><i class="fa fa-fire" aria-hidden="true"></i> Featured</span>
                 <img class="me-2" src="/assets/images/icon_free_shipping.png" onContextMenu="return false;">
-            </div>            
-            
+            </div>
+
         </div>
 
         <div class="mxw-1920px row mt-5">
@@ -74,5 +76,3 @@
 <div class="mxw-1920px row mt-5" *ngIf="iModel">
     <app-new-suggestions [type]="type" [model]="iModel"></app-new-suggestions>
 </div>
-
-

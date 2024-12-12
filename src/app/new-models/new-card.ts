@@ -1,6 +1,7 @@
 import { Timestamp } from "@angular/fire/firestore";
 import { NewLocationService } from "../new-services/new-location.service";
 import { LocationType } from "./new-enum";
+import { environment } from "src/environments/environment";
 
 export interface INewCard {
     id: string;
@@ -103,6 +104,30 @@ export class NewCard {
             else return '₱' + this.getPersonalizePHPrice().toLocaleString('en-US', { minimumFractionDigits: 2 })
         }
         else return '';
+    }
+
+    getRecipients(max: number | undefined = undefined) {
+        let allowedlist = environment.recipients;
+        let list: string[] = [];
+
+        if (this.recipients) {
+            allowedlist.forEach(x => {
+                if (x.main.toUpperCase() !== environment.recipientdefault.toUpperCase()) {
+                    if (this.recipients!.findIndex(i => i.toUpperCase() === x.main.toUpperCase()) >= 0) list.push(x.main);
+                    else {
+                        if (x.others) {
+                            x.others.forEach(y => {
+                                if (this.recipients!.findIndex(i => i.toUpperCase() === y.toUpperCase()) >= 0) list.push(y);
+                            })
+                        }
+                    }
+                }
+            })
+        }
+
+        if (list.length === 0) list.push(environment.recipientdefault);
+
+        return max ? list.slice(0, max) : list;
     }
 }
 

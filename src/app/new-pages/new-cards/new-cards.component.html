@@ -21,8 +21,8 @@
                     <div id="recipient" class="accordion-collapse collapse" [ngClass]="recipient ? 'show' : ''" data-bs-parent="#accordionFlushExample">
                         <div class="accordion-body">
                             <label class="mb-1" *ngFor="let option of recipientoptions">
-                                <input class="form-check-input me-2" type="checkbox" [value]="option" (change)="onClickRecipient($event)" [defaultChecked]="option === recipient">
-                                {{option}}
+                                <input class="form-check-input me-2" type="checkbox" [value]="option.main" (change)="onClickRecipient($event)" [defaultChecked]="option.main === recipient">
+                                {{option.main.toUpperCase()}}
                             </label>
                         </div>
                     </div>
