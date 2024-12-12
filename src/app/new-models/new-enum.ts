@@ -25,5 +25,6 @@ export enum StorageEnum {
     PayMongo = 'PAYMONGO',
     Personalize = 'PERSONALIZE-',
     Item = 'ITEM-',
-    Image = 'IMAGE-'
+    Image = 'IMAGE-',
+    Categories = 'CATEGORIES-'
 }

@@ -1,0 +1,21 @@
+<div class="event-card two-columns">
+    <div class="img-container" (click)="gotoDetails()">
+    <img
+        alt="Silhouette of mountains"
+        [src]="primary"
+    />
+    </div>
+
+    
+    <div class="card-info">
+        <h5>{{ product.name | uppercase }}</h5>    
+    </div>
+    <div class="card-info ion-justify-content-between" *ngIf="isBundle === false">
+        <p class="text-purple my-0"><b>{{getPrice()}}</b></p>
+        <p class="text-gray mx-2 my-0" *ngIf="isPersonalize">-</p>
+        <p class="text-blue my-0" *ngIf="isPersonalize"><b>{{getPersonalizePrice()}}</b></p>
+    </div>
+    <div class="card-info" *ngIf="isBundle">
+        <p class="text-purple my-0"><b *ngIf="min && max">{{min.priceDisplay()}} - {{max.priceDisplay()}}</b></p>
+    </div>
+</div>

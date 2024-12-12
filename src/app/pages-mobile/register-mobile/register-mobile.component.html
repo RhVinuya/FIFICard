@@ -1,0 +1,150 @@
+<div class="top-bar"></div>
+
+<ion-grid class="ion-justify-content-center ion-align-items-center">
+  <ion-row
+    class="slide-content-container ion-justify-content-center ion-align-items-center"
+  >
+    <ion-col size="8" class="slide-content ion-text-center logo-container">
+      <ion-img
+        src="/assets/images/logo_fibeigreetings.png"
+        alt="Fibeigreetings"
+      ></ion-img>
+    </ion-col>
+  </ion-row>
+
+  <form [formGroup]="form" (submit)="submit()">
+    <!-- Email Input -->
+    <ion-row class="ion-justify-content-center ion-align-items-center">
+      <ion-col size="12">
+        <ion-item class="input">
+          <ion-input formControlName="email" placeholder="Email"></ion-input>
+          <ion-note *ngIf="form.controls.email.getError('used')" slot="error"
+            >Email already exist!</ion-note
+          >
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <!-- Name Input -->
+    <ion-row clas>
+      <ion-col size="6">
+        <ion-item class="input" fill="solid">
+          <ion-input
+            formControlName="firstname"
+            placeholder="First Name"
+          ></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col size="6">
+        <ion-item class="input" fill="solid">
+          <ion-input
+            formControlName="lastname"
+            placeholder="Last Name"
+          ></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <!-- Password Input -->
+    <ion-row class="ion-justify-content-center ion-align-items-center">
+      <ion-col size="12">
+        <ion-item class="input" fill="solid">
+          <ion-input
+            id="password"
+            [type]="showPassword ? 'text' : 'password'"
+            formControlName="password"
+            placeholder="Password"
+          ></ion-input>
+          <ion-icon
+            name="{{ showPassword ? 'eye-off' : 'eye' }}"
+            slot="end"
+            (click)="togglePasswordVisibility()"
+          ></ion-icon>
+          <ion-note slot="helper"
+            >Requires at least 1 Uppercase, 1 Lowercase, a number or
+            symbol</ion-note
+          >
+          <ion-note
+            *ngIf="
+              form.controls.password.dirty &&
+              form.controls.password.errors
+            "
+            slot="error"
+          >
+            Invalid password.
+            Requires at least 1 Uppercase, 1 Lowercase, a number or
+            symbol
+          </ion-note>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="ion-justify-content-center ion-align-items-center">
+      <ion-col size="12">
+        <ion-item class="input" fill="solid">
+          <ion-input
+            [type]="showConfirmPassword ? 'text' : 'password'"
+            formControlName="confirm"
+            placeholder="Confirm Password"
+          ></ion-input>
+          <ion-icon
+            name="{{ showConfirmPassword ? 'eye-off' : 'eye' }}"
+            slot="end"
+            (click)="togglePasswordVisibility('confirm')"
+          ></ion-icon>
+          <ion-note
+            *ngIf="
+              form.controls.confirm.getError('mismatch')
+            "
+            slot="error"
+            >Password doesn't match!</ion-note
+          >
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <!-- Toggle -->
+    <ion-row class="ion-justify-content-center ion-align-items-center">
+      <ion-col size="12">
+        <div class="toggle-container">
+          <ion-toggle formControlName="notification"></ion-toggle>
+          <ion-label class="lbl-toggle"
+            >Sign up for email updates, notifications, special offers &
+            promotion emails</ion-label
+          >
+        </div>
+      </ion-col>
+
+      <ion-col size="12">
+        <div class="toggle-container">
+          <ion-toggle formControlName="terms"></ion-toggle>
+          <ion-label class="lbl-toggle"
+            >I Agree with the <span>Terms and Agreement</span></ion-label
+          >
+        </div>
+      </ion-col>
+
+      <ion-button expand="full" fill="solid" type="submit">
+        {{ processing ? "Processing..." : "Register" }}
+      </ion-button>
+    </ion-row>
+  </form>
+
+  <ion-row class="ion-justify-content-center external ion-align-items-center">
+    <ion-col size="12">
+      <ion-img
+        (click)="onGoogleClick()"
+        src="/assets/images/google.png"
+      ></ion-img>
+    </ion-col>
+  </ion-row>
+
+  <ion-row class="ion-justify-content-center external">
+    <div class="ion-text-center lbl-forgot">
+      <label>
+        Already have an account?
+        <a href="/login">Tap here to login</a>
+      </label>
+    </div>
+  </ion-row>
+</ion-grid>

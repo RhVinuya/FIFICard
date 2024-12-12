@@ -1,0 +1,47 @@
+<div>
+    <ion-grid>
+        <ion-row>
+            <ion-col>
+                <h2>Personalize</h2>
+            </ion-col>
+        </ion-row>
+
+        <ion-row>
+            <ion-col size="12" class="ion-text-center img-container">
+              <ion-slides pager="true"  [options]="{ slidesPerView: 1 }">
+                <ion-slide class="slider ion-justify-content-center ion-align-items-center" *ngFor="let image of personalizeData">        
+                    <ion-thumbnail>
+                        <img
+                            alt="Silhouette of mountains"
+                            [src]="image.url"
+                        />
+                        
+                        <div class="text-area p-1" *ngFor="let detail of image.details"
+                            [style.top.px]="detail.top/- 0.49" 
+                            [style.left.px]="detail.left/3.5" 
+                            [style.width.px]="150" 
+                            [style.height.px]="detail.height"
+                            [style.font-family]="font" 
+                            [style.color]="color" 
+                            [style.font-size.px]="size" 
+                            [style.text-align]="alignment" >
+                            
+                            <!-- (blur)="onBlur($event)" 
+                            (click)="onClick()" #editableDiv -->
+                            {{text !== '' ? text : placeholder}}
+                        </div>
+                    </ion-thumbnail>
+                </ion-slide>
+              </ion-slides>
+            </ion-col>
+        </ion-row>
+
+        <ion-row>
+            <form>
+
+            </form>
+        </ion-row>
+
+
+    </ion-grid>
+</div>

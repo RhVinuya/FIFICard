@@ -12,24 +12,26 @@ import { HttpClient } from '@angular/common/http';
 import { NewGiftService } from './new-gift.service';
 import { NewLocationService } from './new-location.service';
 import { Provider } from '../new-models/new-enum';
+import { Platform } from '@ionic/angular';
 
 @Injectable({
   providedIn: 'root'
 })
 export class NewPaymentService {
+  
   store: Firestore;
-
   cardService: NewCardService;
   stickerService: NewStickerService;
   postcardService: NewPostcardService;
   giftService: NewGiftService;
   fileService: NewFileService;
-
   http: HttpClient;
 
-  constructor(
-    _store: Firestore,
+  isMobile: boolean = false;
 
+  constructor(
+    platform: Platform,
+    _store: Firestore,
     _cardService: NewCardService,
     _stickerService: NewStickerService,
     _postcardService: NewPostcardService,
@@ -37,8 +39,10 @@ export class NewPaymentService {
     _fileService: NewFileService,
     _http: HttpClient
   ) {
-    this.store = _store;
 
+    this.isMobile =  platform.is("capacitor") || platform.is("mobileweb");
+
+    this.store = _store;
     this.cardService = _cardService;
     this.stickerService = _stickerService;
     this.postcardService = _postcardService;
@@ -184,14 +188,29 @@ export class NewPaymentService {
 
       console.log(lineitems)
 
-      const paymentcheckout = await stripe.checkout.sessions.create({
-        line_items: lineitems,
-        mode: 'payment',
-        success_url: window.location.origin + '/new/payment/card/{CHECKOUT_SESSION_ID}',
-        cancel_url: window.location.origin + '/new/cart',
-        client_reference_id: iUser.id,
-        customer_email: iUser.email
-      });
+      let stripeBody: any = null;
+
+      if (this.isMobile) {
+        stripeBody = {
+          line_items: lineitems,
+          mode: 'payment',
+          success_url: window.location.origin + '/payment/card/{CHECKOUT_SESSION_ID}',
+          cancel_url: window.location.origin + '/cart',
+          client_reference_id: iUser.id,
+          customer_email: iUser.email
+        };
+      } else {
+        stripeBody = {
+          line_items: lineitems,
+          mode: 'payment',
+          success_url: window.location.origin + '/new/payment/card/{CHECKOUT_SESSION_ID}',
+          cancel_url: window.location.origin + '/new/cart',
+          client_reference_id: iUser.id,
+          customer_email: iUser.email
+        };
+      }
+
+      const paymentcheckout = await stripe.checkout.sessions.create(stripeBody);
 
       resolve(paymentcheckout.url);
     });

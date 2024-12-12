@@ -1,0 +1,94 @@
+<ion-content fullscreen="true">
+  <ion-grid class="ion-justify-content-center ion-align-items-center">
+    <ion-row
+      class="slide-content-container ion-justify-content-center ion-align-items-center"
+    >
+      <ion-img
+        class="logo"
+        src="/assets/images/logo_fibeigreetings.png"
+        alt="Fibeigreetings"
+      ></ion-img>
+
+      <ion-col size="11" class="slide-content ion-text-center order-details">
+        <h2>Order Summary</h2>
+
+        <div class="details-header">
+          <p>QTY</p>
+          <p>Title of the card</p>
+          <p>Amount</p>
+        </div>
+
+        <div class="details-content">
+          <p>1</p>
+          <p>Another Year of Memories</p>
+          <p>₱99.00</p>
+        </div>
+
+        <div class="total-amount">Total Amount: <span>₱ 99.00</span></div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col class="code-container ion-justify-content-end" size="12">
+        <input class="special-code" placeholder="Enter Special Code" />
+        <button class="btn-verify">Verify</button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="btn-container">
+      <ion-col size="12">
+        <ion-button class="gpay" expand="full" fill="solid"
+          ><ion-img class="logo-gpay" src="/assets/images/gpay.png"></ion-img
+        ></ion-button>
+        <p>Or pay with Card</p>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="12" class="slide-content ion-text-center">
+        <ion-img
+          class="cc-image"
+          src="/assets/images/creditcard.png"
+          alt="cc-image"
+        ></ion-img>
+      </ion-col>
+    </ion-row>
+
+    <ion-list>
+      <ion-radio-group>
+        <ion-item class="payment-item">
+          <ion-img
+            class="payment-logo"
+            src="/assets/images/visa_mastercard.png"
+          ></ion-img>
+          <div class="payment-label">
+            <ion-label class="small-label">Credit and Debit Card</ion-label>
+            <ion-radio slot="end" value="visa"></ion-radio>
+          </div>
+        </ion-item>
+
+        <ion-item class="payment-item">
+          <ion-img
+            class="payment-logo"
+            src="/assets/images/payment_gcash.png"
+          ></ion-img>
+          <div class="payment-label">
+            <ion-label class="small-label">GCash</ion-label>
+            <ion-radio slot="end" value="gcash"></ion-radio>
+          </div>
+        </ion-item>
+
+        <ion-item class="payment-item">
+          <ion-img
+            class="payment-logo"
+            src="/assets/images/paymongo.png"
+          ></ion-img>
+          <div class="payment-label">
+            <ion-label class="small-label">GrabPay</ion-label>
+            <ion-radio slot="end" value="paymongo"></ion-radio>
+          </div>
+        </ion-item>
+      </ion-radio-group>
+    </ion-list>
+  </ion-grid>
+</ion-content>

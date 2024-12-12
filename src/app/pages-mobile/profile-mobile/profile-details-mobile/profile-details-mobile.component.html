@@ -1,0 +1,243 @@
+<ion-content fullscreen="true">
+  <ion-grid class="ion-justify-content-center ion-align-items-center">
+    <ion-row 
+      class="slide-content-container ion-justify-content-center ion-align-items-center"
+    >
+      <ion-col size="11">
+        <ion-img
+          class="logo"
+          src="/assets/images/logo_fibeigreetings.png"
+          alt="Fibeigreetings"
+        ></ion-img>
+      </ion-col>
+    </ion-row>
+
+    <form class="basicform" [formGroup]="form" (submit)="submit()">
+      <ion-row
+        class="slide-content-container ion-justify-content-center ion-align-items-center"
+      >
+        <h2>Basic Information</h2>
+      </ion-row>
+      <ion-row
+        class="slide-content-container ion-justify-content-center ion-align-items-center ion-padding-horizontal"
+      >
+        <ion-col size="6">
+          <ion-item lines="none">
+            <ion-label position="stacked">Firstname</ion-label>
+            <ion-input
+              id="firstname"
+              formControlName="firstname"
+              placeholder="First Name"
+              class="p12"
+            ></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="6">
+          <ion-item lines="none">
+            <ion-label position="stacked">Lastname</ion-label>
+            <ion-input
+              id="lastname"
+              formControlName="lastname"
+              placeholder="Last Name"
+            ></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="12">
+          <ion-item lines="none">
+            <ion-label position="stacked">Email</ion-label>
+            <ion-input
+              id="email"
+              formControlName="email"
+              placeholder="Email Address"
+              errorText="invalid email"
+            ></ion-input>
+            <ion-note *ngIf="form.controls.email.errors" slot="error"
+              >Invalid email</ion-note
+            >
+          </ion-item>
+        </ion-col>
+        <ion-col size="12">
+          <ion-item lines="none" (click)="setBirthdayModalOpen(true)">
+            <ion-label position="stacked">Birthday</ion-label>
+            <ion-input
+              id="birthday"
+              formControlName="birthday"
+              placeholder="birthday"
+              
+            ></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-modal id="example-modal" [isOpen]="isBirthdayModalOpen">
+        <ng-template>
+          <ion-content>
+            <ion-toolbar>
+              <ion-buttons slot="start">
+                <ion-button (click)="setBirthdayModalOpen(false)">Cancel</ion-button>
+              </ion-buttons>
+              <ion-title>Birthday</ion-title>
+              <ion-buttons slot="end">
+                <ion-button color="light" (click)="confirmBday(datetime.value)">confirm</ion-button>
+              </ion-buttons>
+            </ion-toolbar>
+            <div class="wrapper">
+              <ion-datetime #datetime display-format="DD/MM/YYYY" presentation="date" [preferWheel]="true"></ion-datetime>
+            </div>
+          </ion-content>
+        </ng-template>
+      </ion-modal>
+
+
+      <ion-row class="btn-container">
+        <ion-buttons [hidden]="!form.dirty">
+          <ion-button size="small" (click)="loadUserData()">Clear</ion-button>
+        </ion-buttons>
+        <ion-buttons [hidden]="!form.dirty">
+          <ion-button [type]="'submit'" size="small" [disabled]="processing">
+            <span
+              class="spinner-border spinner-border-sm me-1"
+              aria-hidden="true"
+              *ngIf="processing"
+            ></span>
+            {{ processing ? "Saving ..." : "Save" }}
+          </ion-button>
+        </ion-buttons>
+      </ion-row>
+    </form>
+
+
+    
+    <ion-row
+    class="slide-content-container ion-justify-content-center ion-align-items-center ion-padding-horizontal"
+    >
+      <ion-toolbar>
+        <h2 slot="start">Change Password</h2>
+        <ion-buttons slot="end">
+          <ion-button size="small" (click)="changePasswordToggle()">
+            <ion-icon
+              [name]="
+                showPasswordForm
+                  ? 'chevron-up-outline'
+                  : 'chevron-down-outline'
+              "
+            ></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-row>
+    <form [formGroup]="passwordForm" (submit)="changePasswordSubmit()">
+      <ion-row
+        class="slide-content-container ion-justify-content-center ion-align-items-center ion-padding-horizontal"
+      >
+
+        <ion-col size="12" [hidden]="!showPasswordForm">
+          <ion-item lines="none">
+            <ion-label position="stacked">Current Password</ion-label>
+            <ion-input
+              id="current"
+              formControlName="current"
+              placeholder="Password"
+              [type]="showPassCurrent ? 'text' : 'password'"
+            ></ion-input>
+            <ion-icon
+              (click)="showPassCurrent = !showPassCurrent"
+              [name]="!showPassCurrent ? 'eye-outline' : 'eye-off-outline'"
+              slot="end"
+            ></ion-icon>
+            <ion-note
+              *ngIf="
+                passwordForm.controls.current.dirty &&
+                passwordForm.controls.current.errors
+              "
+              slot="error"
+            >
+              Invalid Password
+            </ion-note>
+            <ion-note
+              *ngIf="
+                passwordForm.controls.current.dirty &&
+                passwordForm.controls.current.getError('incorrect')
+              "
+              slot="error"
+            >
+              Incorrect Password
+            </ion-note>
+          </ion-item>
+        </ion-col>
+        <ion-col size="12" [hidden]="!showPasswordForm">
+          <ion-item lines="none">
+            <ion-label position="stacked">New password</ion-label>
+            <ion-input
+              id="new"
+              formControlName="new"
+              placeholder="New Password"
+              [type]="showPassNew ? 'text' : 'password'"
+            ></ion-input>
+            <ion-icon
+              (click)="showPassNew = !showPassNew"
+              [name]="!showPassNew ? 'eye-outline' : 'eye-off-outline'"
+              slot="end"
+            ></ion-icon>
+            <ion-note slot="helper"
+              >Requires at least 1 Uppercase, 1 Lowercase, a number or
+              symbol</ion-note
+            >
+            <ion-note
+              *ngIf="
+                passwordForm.controls.new.dirty &&
+                passwordForm.controls.new.errors
+              "
+              slot="error"
+            >
+              Invalid password
+            </ion-note>
+          </ion-item>
+        </ion-col>
+        <ion-col size="12" [hidden]="!showPasswordForm">
+          <ion-item lines="none">
+            <ion-label position="stacked">Confirm Password</ion-label>
+            <ion-input
+              id="confirm"
+              formControlName="confirm"
+              placeholder="Confirm Password"
+              [type]="showPassConfirm ? 'text' : 'password'"
+            ></ion-input>
+            <ion-icon
+              (click)="showPassConfirm = !showPassConfirm"
+              [name]="!showPassConfirm ? 'eye-outline' : 'eye-off-outline'"
+              slot="end"
+            ></ion-icon>
+            <ion-note
+              *ngIf="
+                passwordForm.controls.confirm.dirty &&
+                passwordForm.controls.confirm.getError('mismatch')
+              "
+              slot="error"
+            >
+              Password doesn't match
+            </ion-note>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="btn-container" [hidden]="!showPasswordForm">
+        <ion-buttons [hidden]="!passwordForm.dirty">
+          <ion-button size="small" (click)="passwordForm.reset()"
+            >Cancel</ion-button
+          >
+        </ion-buttons>
+        <ion-buttons [hidden]="!passwordForm.dirty">
+          <ion-button [type]="'submit'" size="small" [disabled]="processing">
+            <span
+              class="spinner-border spinner-border-sm me-1"
+              aria-hidden="true"
+              *ngIf="processing"
+            ></span>
+            {{ processing ? "Updating ..." : "Update" }}
+          </ion-button>
+        </ion-buttons>
+      </ion-row>
+    </form>
+  </ion-grid>
+</ion-content>

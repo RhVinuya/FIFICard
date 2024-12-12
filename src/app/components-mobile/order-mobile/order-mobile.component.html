@@ -1,0 +1,73 @@
+
+<ion-grid>
+    <ion-row>
+        <ion-col>
+            <div class="card bg-light border-light">
+                <div class="card-body details py-2">
+                    <span class="text-purple">SENDER</span>
+                    <span>{{getSender(iPayment).getFullName()}}</span>
+                    <span class="text-gray">{{getSender(iPayment).email}}</span>
+                </div>
+            </div>
+        </ion-col>
+    </ion-row>
+    <ion-row>
+        <ion-col>
+            <div class="card bg-light border-light">
+                <div class="card-body details py-2">
+                    <span class="text-purple">RECEIVER</span>
+                    <span>{{getReceiver(iPayment).getFullName()}}</span>
+                    <span class="text-gray">{{getReceiver(iPayment).email}}</span>
+                    <span class="text-gray">{{getReceiver(iPayment).getFullAddress()}}</span>
+                </div>
+            </div>
+        </ion-col>
+    </ion-row>
+    <ion-row>
+        <ion-list class="bg-light">
+        <app-order-item-mobile *ngFor="let item of iPayment.items" [iItem]="item" [location]="iPayment.location"></app-order-item-mobile>
+        </ion-list>
+    </ion-row>
+    <ion-row>
+        <ion-col>
+            <div class="card bg-light border-light">
+                <div class="card-body details py-2">
+                    <span>{{getPayment(iPayment).getGateway()}}</span>
+                    <span class="text-gray" *ngIf="iPayment.gateway === 'specialcode'">{{getINewSpecialCodeDetails(iPayment).code}}</span>
+
+                    <span class="text-gray" *ngIf="iPayment.provider === 'stripe' && iPayment.gateway === 'card'">ID: {{getINewStripeDetails(iPayment).id}}</span>
+                    <span class="text-gray" *ngIf="iPayment.provider === 'stripe' && iPayment.gateway === 'card'">BRAND: {{getINewStripeDetails(iPayment).brand}}</span>
+                    <span class="text-gray" *ngIf="iPayment.provider === 'stripe' && iPayment.gateway === 'card'">LAST: {{getINewStripeDetails(iPayment).last4}}</span>
+
+                    <span class="text-gray" *ngIf="iPayment.provider === 'paymongo' && (iPayment.gateway === 'gcash' || iPayment.gateway === 'paymaya')">ID: {{getINewPaymongoDetails(iPayment).id}}</span>
+                    <span class="text-gray" *ngIf="iPayment.provider === 'paymongo' && (iPayment.gateway === 'gcash' || iPayment.gateway === 'paymaya')">Type: {{getINewPaymongoDetails(iPayment).type}}</span>
+
+                    <span class="text-gray fst-italic" *ngIf="iPayment.provider === undefined && iPayment.gateway === 'gcash'">Proof of payment is uploaded</span>
+
+                    <span class="text-gray">DATE: {{getPayment(iPayment).createdDisplay()}}</span>
+                </div>
+            </div>
+        </ion-col>
+    </ion-row>
+    <ion-row>
+        <ion-col>
+            <div class="card bg-light border-light">
+                <div class="card-body details py-2">
+                    <div class="space-between">
+                        <span class="text-gray">SUBTOTAL</span>
+                        <span>{{getPayment(iPayment).subTotalDisplay()}}</span>
+                    </div>
+                    <div class="space-between">
+                        <span class="text-gray">SHIPPING FEE</span>
+                        <span>{{getPayment(iPayment).shippingFeeDisplay()}}</span>
+                    </div>
+                    <hr class="my-1" />
+                    <div class="space-between">
+                        <span class="text-gray">TOTAL</span>
+                        <span>{{getPayment(iPayment).totalDisplay()}}</span>
+                    </div>
+                </div>
+            </div>
+        </ion-col>
+    </ion-row>
+</ion-grid>
