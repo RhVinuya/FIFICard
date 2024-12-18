@@ -52,6 +52,76 @@ export const environment = {
     "Valentines",
     "Easter",
   ],
+  recipients: [
+    {
+      main: 'All'
+    },
+    {
+      main: 'Mother',
+      others: ['Mom-to-Be']
+    },
+    {
+      main: 'Father',
+      others: ['Dad-to-Be']
+    },
+    {
+      main: 'Daughter'
+    },
+    {
+      main: 'Son'
+    },
+    {
+      main: 'Brother'
+    },
+    {
+      main: 'Sister'
+    },
+    {
+      main: 'Wife'
+    },
+    {
+      main: 'Husband'
+    },
+    {
+      main: 'Baby'
+    },
+    {
+      main: 'Grandparents'
+    },
+    {
+      main: 'Friend',
+      others: ['Best Friend']
+    },
+    {
+      main: 'Work',
+      others: ['Boss', 'Coach', 'Co-Worker', 'Colleague']
+    },
+    {
+      main: 'Girlfriend'
+    },
+    {
+      main: 'Boyfriend'
+    },
+    {
+      main: 'Graduates'
+    },
+    {
+      main: 'Teachers'
+    },
+    {
+      main: 'Aunt'
+    },
+    {
+      main: 'Uncle'
+    },
+    {
+      main: 'Nephew'
+    },
+    {
+      main: 'Niece'
+    }
+  ],
+  recipientdefault: 'All',
   stickerevents: [
     "Individual",
     "Occasions",

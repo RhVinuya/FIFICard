@@ -71,6 +71,7 @@ export class NewDetailsComponent implements OnInit {
   ratings: NewRating[] = [];
   rate: number = 0;
   qr: string = '';
+  recipients: string[] = [];
 
   isAddToCart: boolean = false;
   isBundle: boolean = false;
@@ -90,9 +91,10 @@ export class NewDetailsComponent implements OnInit {
 
       if (this.type === 'card') {
         this.cardService.get(this.id).then(async value => {
-          console.log(value)
           this.iModel = value;
-          this.model = new NewCard(value);
+          let card = new NewCard(value);
+          this.recipients = card.getRecipients();
+          this.model = card;
           this.isAddToCart = true;
           this.isPersonalize = this.model instanceof NewCard ?  this.model.signAndSend : false;
           this.isFeatured = this.model.featured;

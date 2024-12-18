@@ -4,8 +4,10 @@ export const environment = {
   paypalClientId: 'AQW1wB3h__RDiIOYHpk_1QLpcrPT5sH0GBWemRc3ycpVohV-dqzNwWtSDuvsaUcVH3Ipam9zwYlNy_nB',
   stripe: {
     enable: true,
-    publish: "pk_live_51O0OjMJ9Lk6Ni3t7gFC52OLkrXRVtzJnXnxNoIS9A9cld4N1yceb9HQaENZ5V5XZfr0l6RWU8EzqvOzoRyfj31Nk00ZInUVWbD",
-    pass: "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",
+    publish: "x", 
+    pass: "x", 
+    // publish: "pk_live_51O0OjMJ9Lk6Ni3t7gFC52OLkrXRVtzJnXnxNoIS9A9cld4N1yceb9HQaENZ5V5XZfr0l6RWU8EzqvOzoRyfj31Nk00ZInUVWbD",
+    // pass: "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",
     //publishKey: "pk_live_51O0OjMJ9Lk6Ni3t7gFC52OLkrXRVtzJnXnxNoIS9A9cld4N1yceb9HQaENZ5V5XZfr0l6RWU8EzqvOzoRyfj31Nk00ZInUVWbD",
     //secretKey: "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",
     live: true
@@ -54,6 +56,76 @@ export const environment = {
     "Valentines",
     "Easter",
   ],
+  recipients: [
+    {
+      main: 'All'
+    },
+    {
+      main: 'Mother',
+      others: ['Mom-to-Be']
+    },
+    {
+      main: 'Father',
+      others: ['Dad-to-Be']
+    },
+    {
+      main: 'Daughter'
+    },
+    {
+      main: 'Son'
+    },
+    {
+      main: 'Brother'
+    },
+    {
+      main: 'Sister'
+    },
+    {
+      main: 'Wife'
+    },
+    {
+      main: 'Husband'
+    },
+    {
+      main: 'Baby'
+    },
+    {
+      main: 'Grandparents'
+    },
+    {
+      main: 'Friend',
+      others: ['Best Friend']
+    },
+    {
+      main: 'Work',
+      others: ['Boss', 'Coach', 'Co-Worker', 'Colleague']
+    },
+    {
+      main: 'Girlfriend'
+    },
+    {
+      main: 'Boyfriend'
+    },
+    {
+      main: 'Graduates'
+    },
+    {
+      main: 'Teachers'
+    },
+    {
+      main: 'Aunt'
+    },
+    {
+      main: 'Uncle'
+    },
+    {
+      main: 'Nephew'
+    },
+    {
+      main: 'Niece'
+    }
+  ],
+  recipientdefault: 'All',
   stickerevents: [
     "Individual",
     "Occasions",

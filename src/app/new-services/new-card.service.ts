@@ -22,7 +22,7 @@ export class NewCardService {
   getAll(): Promise<INewCard[]> {
     return new Promise((resolve) => {
       const col = collection(this.store, 'cards');
-      const q = query(col, where('active', "==", true), where('type', "==", 'card'), where('cardbundle', "==", false))
+      const q = query(col, where('active', "==", true), where('type', "==", 'card'))
       getDocs(q).then(docs => {
         let cards: INewCard[] = [];
         docs.forEach(doc => {

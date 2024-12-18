@@ -1,0 +1,29 @@
+<div class="modal-body main">
+    <button type="button" class="btn-close" aria-label="Close" (click)="close()" [disabled]="processing"></button>
+    <div class="text-center title">
+        <h3 class="text-purple">Refer a Friend</h3>
+    </div>
+    <form [formGroup]="form" (submit)="submit()">
+        <div class="mt-5 px-5 mb-5">
+            <div class="form-floating">
+                <input type="email" class="form-control" id="email" placeholder="email" formControlName="email"
+                    [ngClass]="{ 'is-invalid': submitted && form.controls.email.errors}" [disabled]="processing">
+                <label for="email">Email Address</label>
+            </div>
+            <div *ngIf="submitted && form.controls.email.errors">
+                <label class="text-danger" *ngIf="form.controls.email.errors !== null && form.controls.email.errors!['used']">
+                    <i class="fa fa-exclamation-circle me-1"></i>Email address already registered.
+                </label>
+                <label class="text-danger" *ngIf="form.controls.email.errors !== null && form.controls.email.errors!['pending']">
+                    <i class="fa fa-exclamation-circle me-1"></i>You already have it added.
+                </label>
+            </div>
+            <div class="text-center mt-5">
+                <button type="submit" class="create-btn" [disabled]="processing">
+                    <span class="spinner-border spinner-border-sm me-1" aria-hidden="true" *ngIf="processing"></span>
+                    {{processing ? 'Processing ...' : 'Send Invitation'}}
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

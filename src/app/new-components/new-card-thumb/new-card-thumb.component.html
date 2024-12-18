@@ -11,7 +11,11 @@
     </div>
     <div class="card-body px-2 py-3">
         <h4 class="card-title text-purple my-0">{{_card.name}}</h4>
-        <div class="space-around h-30 mb-2">
+        <div class="recipients mt-1 mb-2">
+            <span *ngFor="let recipient of _card.getRecipients(4)" class="chip">{{recipient}}</span>
+        </div>
+        <h4 class="card-description text-gray my-1">{{_card.description}}</h4>
+        <div class="space-around h-30">
             <div>
                 <label class="text-purple"><b>{{_card.priceDisplay()}}</b></label>
                 <label class="text-gray mx-1" *ngIf="_card.signAndSend">-</label>

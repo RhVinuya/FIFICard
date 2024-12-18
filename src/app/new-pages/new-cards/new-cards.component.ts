@@ -40,19 +40,19 @@ export class NewCardsComponent implements OnInit {
   ];
 
   cardevents = environment.cardevents;
-  recipientoptions = ['FOR ALL', 'FOR HIM', 'FOR HER', 'FOR KIDS AND TEENS'];
+  recipientoptions = environment.recipients;;
   filteroptions = ['POETRY', 'MESSAGE', 'PERSONALIZED', 'TALKING CARD', 'BUNDLE'];
 
   activeevents: string[] = [];
   event: string;
-  recipient: string
+  recipient: string = environment.recipientdefault;
   filter: string;
   loading: boolean = false;
   cards: INewCard[] = [];
   display: INewCard[] = [];
   displayCount: number = 20;
   events: string[] = [];
-  recipients: string[] = [];
+  recipients: string[] = [environment.recipientdefault];
   filters: string[] = [];
 
   ngOnInit(): void {
@@ -70,7 +70,7 @@ export class NewCardsComponent implements OnInit {
           this.event = id;
           this.events.push(id);
         }
-        else if (this.recipientoptions.findIndex(x => x.toLowerCase() === id.toLowerCase()) >= 0) {
+        else if (this.recipientoptions.findIndex(x => x.main.toLowerCase() === id.toLowerCase()) >= 0) {
           this.recipient = id;
           this.recipients.push(id);
         }
@@ -138,11 +138,22 @@ export class NewCardsComponent implements OnInit {
         temp.forEach(card => {
           let found: boolean = false;
           this.recipients.forEach(recipient => {
-            if (recipient === 'FOR ALL') found = true
-            else if (card.recipients!.findIndex(x => x.toLowerCase() === recipient.toLowerCase()) >= 0) found = true
+            if (recipient.toUpperCase() === environment.recipientdefault.toUpperCase()) found = true
+            else {
+              if (card.recipients!.findIndex(x => x.toLowerCase() === recipient.toLowerCase()) >= 0) found = true;
+              else {
+                let item = environment.recipients.find(x => x.main.toUpperCase() === recipient.toUpperCase()) 
+                if (item && item.others) {
+                  item.others.forEach(other => {
+                    if (card.recipients!.findIndex(x => x.toLowerCase() === other.toLowerCase()) >= 0) found = true;
+                  })
+                }
+              }
+            }
           })
           if (found) this.display = [...this.display, card];
         })
+        
       }
 
       //filter

@@ -1,11 +1,13 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NewErrorMessageComponent } from 'src/app/new-components/new-error-message/new-error-message.component';
 import { NewInfoMessageComponent } from 'src/app/new-components/new-info-message/new-info-message.component';
 import { NewLoginComponent } from 'src/app/new-components/new-login/new-login.component';
 import { INewUser } from 'src/app/new-models/new-user';
 import { NewAccountService } from 'src/app/new-services/new-account.service';
+import { NewReferralService } from 'src/app/new-services/new-referral.service';
 import { NewStorageService } from 'src/app/new-services/new-storage.service';
 
 @Component({
@@ -15,27 +17,34 @@ import { NewStorageService } from 'src/app/new-services/new-storage.service';
 })
 export class NewRegistrationComponent implements OnInit {
 
+  activateRoute: ActivatedRoute;
   accountService: NewAccountService;
   storageService: NewStorageService;
+  referralService: NewReferralService;
   modalService: NgbModal;
   router: Router;
   ref: ChangeDetectorRef;
 
   constructor(
+    _activateRoute: ActivatedRoute,
     _accountService: NewAccountService,
     _storageService: NewStorageService,
+    _referralService: NewReferralService,
     _modalService: NgbModal,
     _router: Router,
     _ref: ChangeDetectorRef
   ) {
+    this.activateRoute = _activateRoute;
     this.accountService = _accountService;
     this.storageService = _storageService;
+    this.referralService = _referralService;
     this.modalService = _modalService;
     this.router = _router;
     this.ref = _ref;
   }
 
   form = new FormGroup({
+    code: new FormControl<string>(''),
     email: new FormControl<string>('', [Validators.required, Validators.email]),
     firstname: new FormControl<string>('', [Validators.required]),
     lastname: new FormControl<string>('', [Validators.required]),
@@ -46,6 +55,7 @@ export class NewRegistrationComponent implements OnInit {
     terms: new FormControl<boolean>(false),
   });
 
+  code: string = '';
   submitted: boolean = false;
   processing: boolean = false;
   showPassword: boolean = false;
@@ -53,6 +63,38 @@ export class NewRegistrationComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.activateRoute.params.subscribe(async params => {
+      if (params['code']) {
+        this.code = params['code'];
+        this.ref.detectChanges();
+        this.referralService.get(this.code).then(value => {
+          if (value) {
+            if (value.status === 'Signin') {
+              const reference = this.modalService.open(NewErrorMessageComponent, { animation: true });
+              reference.componentInstance.title = "REFERRAL";
+              reference.componentInstance.message = "User already sign in.";
+              reference.componentInstance.button = "OK";
+              reference.componentInstance.onContinue.subscribe((value: any) => {
+                reference.close();
+              })
+            }
+            else {
+              this.form.controls.code.setValue(this.code);
+              this.form.controls.email.setValue(value.email);
+            }
+          }
+          else {
+            const reference = this.modalService.open(NewErrorMessageComponent, { animation: true });
+            reference.componentInstance.title = "REFERRAL";
+            reference.componentInstance.message = `Referral Code ${this.code} not found`;
+            reference.componentInstance.button = "OK";
+            reference.componentInstance.onContinue.subscribe((value: any) => {
+              reference.close();
+            })
+          }
+        })
+      }
+    });
   }
 
   onChangeShowPassword() {

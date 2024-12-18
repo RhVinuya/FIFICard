@@ -5,8 +5,7 @@ import { ToastController } from '@ionic/angular';
 import { INewUser } from 'src/app/new-models/new-user';
 import { NewAccountService } from 'src/app/new-services/new-account.service';
 import { NewStorageService } from 'src/app/new-services/new-storage.service';
-
-
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-profile-details-mobile',
@@ -46,6 +45,7 @@ export class ProfileDetailsMobileComponent implements OnInit {
   storageService: NewStorageService;
 
   constructor(
+    private location: Location,
     public router: Router,
     _accountService: NewAccountService,
     _storageService: NewStorageService,
@@ -164,6 +164,10 @@ export class ProfileDetailsMobileComponent implements OnInit {
       this.passwordForm.controls['new'].setErrors(null);
       this.passwordForm.controls['confirm'].setErrors(null);
     }
+  }
+
+  goBack() {
+      this.location.back();
   }
 
 }

@@ -1,0 +1,32 @@
+* {
+    font-family: Proxima Nova;
+}
+
+.fa,
+.far,
+.fas {
+    font-family: "Font Awesome 5 Free" !important;
+}
+
+.logo{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding-block: 1rem;
+}
+
+.logo i{
+    font-size: 4rem;
+}
+
+.button{
+    color: #fff;
+    background: #dc3545;
+    font-size: 1rem;
+    padding-block: 10px;
+    padding-inline: 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    text-transform: uppercase;
+}

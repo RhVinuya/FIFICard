@@ -508,10 +508,14 @@ const routes: Routes = [
             component: NewRegistrationComponent,
           },
           {
-            path: "complete/:id",
-            component: NewRegistrationCompleteComponent,
+            path: 'referral/:code',
+            component: NewRegistrationComponent
           },
-        ],
+          {
+            path: 'complete/:id',
+            component: NewRegistrationCompleteComponent
+          },
+        ]
       },
       {
         path: "link",
@@ -563,6 +567,11 @@ const routes: Routes = [
 ];
 
 const mobileRoutes: Routes = [
+  {
+    path: "new",
+    redirectTo: "/onboarding",
+    pathMatch: "full"
+  },
   {
     path: "",
     redirectTo: "/onboarding",

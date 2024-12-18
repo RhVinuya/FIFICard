@@ -3,18 +3,29 @@
     <ion-row
       class="slide-content-container ion-justify-content-center ion-align-items-center"
     >
-      <ion-col size="8">
-        <ion-img
-          class="logo"
-          src="/assets/images/logo_fibeigreetings.png"
-          alt="Fibeigreetings"
-        ></ion-img>
+      <ion-col size="2" class="back-btn">
+        <ion-icon name="chevron-back-outline" (click)="goBack()"></ion-icon>
       </ion-col>
+        <ion-col size="8">
+          <ion-img
+            class="logo"
+            src="/assets/images/logo_fibeigreetings.png"
+            alt="Fibeigreetings"
+          ></ion-img>
+        </ion-col>      
+        <ion-col size="2">
+        </ion-col>
 
+
+
+
+    </ion-row>
+    <ion-row>
       <ion-col size="10">
         <h2>Transaction</h2>
       </ion-col>
-
+    </ion-row>
+    <ion-row>
       <ion-col size="10" *ngFor="let transaction of transactions">
         <div class="transactions-container">
           <p class="transaction-number">#{{transaction.code}}</p>

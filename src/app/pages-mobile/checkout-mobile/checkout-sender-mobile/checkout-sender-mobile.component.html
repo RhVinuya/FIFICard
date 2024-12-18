@@ -8,14 +8,14 @@
     <form [formGroup]="form" (submit)="submit()">
         <div class="px-5 my-5">
             <div class="row mb-3">
-                <div class="col-md-6 pe-1">
+                <div class="col-md-6">
                     <div class="form-floating">
                         <input type="text" class="form-control" id="firstname" placeholder="firstname" formControlName="firstname"
                             [ngClass]="{ 'is-invalid': submitted && form.controls.firstname.errors}">
                         <label for="firstname">First Name</label>
                     </div>
                 </div>
-                <div class="col-md-6 ps-1">
+                <div class="col-md-6">
                     <div class="form-floating">
                         <input type="text" class="form-control" id="lastname" placeholder="lastname" formControlName="lastname"
                             [ngClass]="{ 'is-invalid': submitted && form.controls.lastname.errors}">

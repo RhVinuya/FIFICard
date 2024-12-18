@@ -115,7 +115,8 @@ export class LoginMobileComponent implements OnInit {
     })
   }
 
-  onGoogleClick() {    this.processing = true;
+  onGoogleClick() {    
+    this.processing = true;
     this.accountService.googleAuthenticate().then(async value => {
       let user = await this.accountService.get(value.id);
       if (user === undefined) {

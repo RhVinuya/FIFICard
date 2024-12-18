@@ -24,6 +24,16 @@ h1{
     color: #5e17eb;
 }
 
+.chip{
+    font-size: 1rem !important;
+    border: 0.5px solid white;
+    color: #2527a3 !important;
+    background: #c0e8ff;
+    padding-inline: 13px;
+    padding-block: 3px;
+    border-radius: 20px;
+}
+
 .space-around{
     display: flex;
     flex-direction: row;
@@ -161,4 +171,22 @@ h1{
 
 .text-purple{
     color: #806bc4;
+}
+
+.details{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.details .content{
+    width: 100%;
+}
+
+.details .content-qr{
+    width: calc(100% - 220px);
+}
+
+.details .qr-content{
+    width: 220px !important
 }

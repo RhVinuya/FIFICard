@@ -12,6 +12,7 @@ import { NewPostcardService } from 'src/app/new-services/new-postcard.service';
 import { NewRecipientService } from 'src/app/new-services/new-recipients.service';
 import { NewStickerService } from 'src/app/new-services/new-sticker.service';
 import { NewStorageService } from 'src/app/new-services/new-storage.service';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-product-mobile',
@@ -30,6 +31,8 @@ export class ProductMobileComponent implements OnInit {
   recipientService: NewRecipientService;
 
   constructor(
+    private location: Location,
+    public router: Router,
     _activateRoute: ActivatedRoute,
     _cardService: NewCardService,
     _stickerService: NewStickerService,
@@ -37,8 +40,7 @@ export class ProductMobileComponent implements OnInit {
     _giftService: NewGiftService,
     _eventService: NewEventService,
     _storageService: NewStorageService,
-    _recipientService: NewRecipientService,
-    public router: Router
+    _recipientService: NewRecipientService
   ) {
     this.activateRoute = _activateRoute;
     this.cardService = _cardService;
@@ -156,5 +158,9 @@ export class ProductMobileComponent implements OnInit {
 
   goToWishlist() {
       this.router.navigateByUrl('/wishlist');
+  }
+
+  goBack() {
+      this.location.back();
   }
 }

@@ -3,6 +3,7 @@ import { INewPayment, NewPayment } from 'src/app/new-models/new-payment';
 import { INewUser } from 'src/app/new-models/new-user';
 import { NewPaymentService } from 'src/app/new-services/new-payment.service';
 import { NewStorageService } from 'src/app/new-services/new-storage.service';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-transactions-mobile',
@@ -17,6 +18,7 @@ export class TransactionsMobileComponent implements OnInit {
   transactions: INewPayment[] = [];
 
   constructor(
+    private location: Location,
     _paymentService: NewPaymentService,
     _storageService: NewStorageService
 
@@ -40,5 +42,9 @@ export class TransactionsMobileComponent implements OnInit {
     let payment = new NewPayment()
     payment.load(iPayment)
     return payment;
+  }
+
+  goBack() {
+      this.location.back();
   }
 }
