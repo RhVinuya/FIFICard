@@ -5,13 +5,13 @@
   <ion-grid *ngIf="currentEvent">
     <ion-row>
       <ion-col size="12" class="header-col">
-          <div style="width: 20%;">
+          <div style="width: 12%;">
             <ion-icon name="chevron-back-outline" (click)="goBack()"></ion-icon>
           </div>
           <div style="width: 60%">
             <h3>{{ currentEvent.name | uppercase }}{{this.bundle? ' BUNDLE' : ''}} CARDS</h3>
           </div>
-          <div style="width: 20%;">
+          <div style="width: 23%;">
             <ion-icon name="heart" (click)="goToWishlist()"></ion-icon>
             <ion-icon (click)="goToCart()" name="cart-outline"></ion-icon>
           </div>
@@ -19,7 +19,7 @@
     </ion-row>
 
     <ion-row class="badge-row" *ngIf="display.length > 1  && !loading">
-      <ion-list>
+      <ion-list class="my-filter">
         <ion-item [lines]="'none'">
           <ion-icon name="funnel-outline"></ion-icon>
           <ion-select label="Filter" placeholder="Filter" interface="alert" (ionChange)="onRecipientSelect($event)">

@@ -7,6 +7,12 @@
     margin: 0;
 }
 
-ion-icon {
-    padding-top: 5px;
-}
+// ion-icon {
+//     padding-top: 5px;
+// }
+
+.back-btn ion-icon{
+    font-size: 24px;
+    border: 1px solid #ccc;
+    padding: 10px;
+  }

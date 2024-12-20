@@ -147,7 +147,10 @@ ion-modal ion-toolbar {
   --color: white;
 }
 
-.back-btn {
-  padding-left: 25px;
-  padding-top: 25px;
+.back-btn ion-icon{
+  font-size: 24px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-left: 10px;
+  margin-top: 40px;
 }
