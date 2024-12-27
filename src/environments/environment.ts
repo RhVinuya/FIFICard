@@ -194,7 +194,7 @@ export const environment = {
   sg: ['sg.fibeigreetings.com', 'fibeigreetings.sg'],
   eventpriorities: [
     {
-      title: 'Christmas', url: '/new/cards/Christmas'
+      title: 'New Year', url: '/new/cards/New year'
     },
     {
       title: 'Birthday', url: '/new/cards/Birthday'
