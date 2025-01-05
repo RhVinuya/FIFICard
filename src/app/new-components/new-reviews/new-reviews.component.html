@@ -1,27 +1,77 @@
-<div>
-    <h3 class="text-purple mb-4" *ngIf="displayRatings.length != 0">Reviews</h3>
-    <div class="row" *ngFor="let rating of displayRatings">
-        <div class="card">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-md-9">
-                        <header class="">
-                            <h6 class="section-title" style="font-weight: bold;margin:0">{{rating.title}}</h6>
-                        </header>
+<div *ngIf="ratings.length != 0" class="px-3">
+    <h3 class="text-purple mb-4">Reviews</h3>
+    <div class="main">
+        <div class="action text-start">
+            <button [disabled]="batches.length <= 1" (click)="previous()">
+                <ion-icon name="chevron-back-outline"></ion-icon>
+            </button>
+        </div>
+
+        <div class="content">
+            <ngb-carousel #carousel>
+                <ng-template ngbSlide *ngFor="let batch of batches">
+                    <div class="row">
+                        <div class="col-3" *ngFor="let rating of batch.items">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-9">
+                                            <header class="">
+                                                <h6 class="section-title" style="font-weight: bold;margin:0">{{rating.title}}</h6>
+                                            </header>
+                                        </div>
+                                        <div class="col-md-3 text-right" style="float:right">
+                                            <section style="float:right">
+                                                <app-new-rate [rate]="rating.rate"></app-new-rate>
+                                            </section>
+                                        </div>
+                                    </div>
+                                    <section>
+                                        <h6><i>“{{rating?.review}}”</i></h6>
+                                    </section>
+                                    <section style="text-align:right">
+                                        <h6 class="section-title">{{rating?.username}} | {{rating?.created?.toDate()?.toLocaleDateString()}}
+                                        </h6>
+                                    </section>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-md-3 text-right" style="float:right">
-                        <section style="float:right">
-                            <app-new-rate [rate]="rating.rate"></app-new-rate>
-                        </section>
+                </ng-template>
+            </ngb-carousel>
+        </div>
+
+        <div class="action text-end">
+            <button [disabled]="batches.length <= 1" (click)="next()">
+                <ion-icon name="chevron-forward-outline"></ion-icon>
+            </button>
+        </div>
+    </div>
+    <!--
+    <div class="row">
+        <div class="col-3" *ngFor="let rating of displayRatings">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-9">
+                            <header class="">
+                                <h6 class="section-title" style="font-weight: bold;margin:0">{{rating.title}}</h6>
+                            </header>
+                        </div>
+                        <div class="col-md-3 text-right" style="float:right">
+                            <section style="float:right">
+                                <app-new-rate [rate]="rating.rate"></app-new-rate>
+                            </section>
+                        </div>
                     </div>
+                    <section>
+                        <h6><i>“{{rating?.review}}”</i></h6>
+                    </section>
+                    <section style="text-align:right">
+                        <h6 class="section-title">{{rating?.username}} | {{rating?.created?.toDate()?.toLocaleDateString()}}
+                        </h6>
+                    </section>
                 </div>
-                <section>
-                    <h6><i>“{{rating?.review}}”</i></h6>
-                </section>
-                <section style="text-align:right">
-                    <h6 class="section-title">{{rating?.username}} | {{rating?.created?.toDate()?.toLocaleDateString()}}
-                    </h6>
-                </section>
             </div>
         </div>
     </div>
@@ -29,4 +79,5 @@
         <button type="button" class="btn btn-outline-secondary btn-lg" *ngIf="displayRatings.length != recordCount"
             (click)="loadmore()">{{'card.loadmore'|translate}}</button>
     </div>
+    -->
 </div>
