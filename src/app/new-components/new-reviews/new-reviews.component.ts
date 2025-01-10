@@ -1,6 +1,16 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { NgbCarousel, NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 import { NewRating } from 'src/app/new-models/new-card';
 import { NewCardService } from 'src/app/new-services/new-card.service';
+
+class Batch {
+  public items: NewRating[];
+
+  constructor(_item: NewRating[]) {
+    this.items = _item;
+  }
+}
+
 
 @Component({
   selector: 'app-new-reviews',
@@ -8,21 +18,29 @@ import { NewCardService } from 'src/app/new-services/new-card.service';
   styleUrls: ['./new-reviews.component.scss']
 })
 export class NewReviewsComponent implements OnInit {
+  @ViewChild('carousel', { static: false }) carousel: NgbCarousel;
 
   @Input() id?: string;
 
-  displayRatings: NewRating[] = [];
+  batches: Batch[] = [];
   ratings: NewRating[] = [];
   recordCount: number = 0;
-  limit: number = 3;
+  limit: number = 4;
   norecords: boolean;
   newCardService: NewCardService;
 
-
   constructor(
-    private _newCardService: NewCardService
+    _newCardService: NewCardService,
+    config: NgbCarouselConfig
   ) {
     this.newCardService = _newCardService;
+
+    config.interval = 10000;
+    config.wrap = true;
+    config.pauseOnHover = false;
+    config.showNavigationArrows = false;
+    config.showNavigationIndicators = false;
+    config.animation = true;
   }
 
   ngOnInit(): void {
@@ -43,11 +61,18 @@ export class NewReviewsComponent implements OnInit {
             if(a.created.toDate() > b.created.toDate()) return -1;
             return 0;
           });
-          this.displayRatings = this.ratings.slice(0, this.limit);
+          //this.displayRatings = this.ratings.slice(0, this.limit);
+          let slides = Math.floor(this.ratings.length / this.limit) + (this.ratings.length % this.limit !== 0 ? 1 : 0);
+
+          let x: number;
+          for (x = 1; x <= slides; x++) {
+            let end: number = x * this.limit;
+            let batch: Batch = new Batch(this.ratings.slice(end - this.limit, end));
+            this.batches.push(batch);
+          }
+
           this.norecords = false;
         }
-
-        
 
         else{
           this.norecords = true;
@@ -58,8 +83,11 @@ export class NewReviewsComponent implements OnInit {
     });
   }
 
-  loadmore() {
-    let count: number = this.displayRatings.length + this.limit;
-    this.displayRatings = this.ratings.slice(0, count);
+  previous() {
+    this.carousel.prev();
+  }
+
+  next() {
+    this.carousel.next();
   }
 }

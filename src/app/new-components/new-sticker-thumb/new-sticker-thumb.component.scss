@@ -26,6 +26,10 @@
 
 .card .img-div img {
     object-fit: contain;
+    border-top-left-radius: 0.375rem;
+    border-top-right-radius: 0.375rem;
+    border-bottom-left-radius: 0rem;
+    border-bottom-right-radius: 0rem;
 }
 
 .default-image,

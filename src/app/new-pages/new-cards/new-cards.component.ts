@@ -41,7 +41,8 @@ export class NewCardsComponent implements OnInit {
 
   cardevents = environment.cardevents;
   recipientoptions = environment.recipients;;
-  filteroptions = ['POETRY', 'MESSAGE', 'PERSONALIZED', 'TALKING CARD', 'BUNDLE'];
+  //filteroptions = ['POETRY', 'MESSAGE', 'PERSONALIZED', 'TALKING CARD', 'BUNDLE'];
+  filteroptions = ['POETRY', 'MESSAGE', 'PERSONALIZED', 'TALKING CARD'];
 
   activeevents: string[] = [];
   event: string;
@@ -54,6 +55,8 @@ export class NewCardsComponent implements OnInit {
   events: string[] = [];
   recipients: string[] = [environment.recipientdefault];
   filters: string[] = [];
+
+  priorityId: string = '3E4Ng5wsPpxXEWNh35lC';
 
   ngOnInit(): void {
     this.activateRoute.params.subscribe(params => {
@@ -88,7 +91,8 @@ export class NewCardsComponent implements OnInit {
 
   async loadCards() {
     this.loading = true;
-    let list = await this.cardService.getAll();
+    let temp = await this.cardService.getAll();
+    let list = temp.filter(x => x.cardbundle !== true)
 
     this.cards = [...list.filter(x => x.featured), ...list.filter(x => x.featured !== true)]
 
@@ -110,6 +114,13 @@ export class NewCardsComponent implements OnInit {
     if (this.cards.length > 0) {
 
       this.display = [];
+
+      if (this.priorityId !== '') {
+        if (this.cards.findIndex(x => x.id === this.priorityId) >= 0) {
+          let temp = [...this.cards]
+          this.cards = [...temp.filter(x => x.id === this.priorityId), ...temp.filter(x => x.id !== this.priorityId)]
+        }
+      }
 
       //filter events
       if (this.events.length === 0) {

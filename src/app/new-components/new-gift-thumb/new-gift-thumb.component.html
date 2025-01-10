@@ -1,7 +1,7 @@
 <div class="card cursor" (click)="onClick()">
     <div class="img-div">
-        <img [src]="primary" alt="Default Image" class="card-img default-image" *ngIf="primary !== ''" onContextMenu="return false;">
-        <img [src]="secondary" alt="Hover Image" class="card-img hover-image" *ngIf="secondary !== ''" onContextMenu="return false;">
+        <img [src]="primary" [alt]="_gift.name" class="card-img default-image" *ngIf="primary !== ''" onContextMenu="return false;">
+        <img [src]="secondary" [alt]="_gift.name" class="card-img hover-image" *ngIf="secondary !== ''" onContextMenu="return false;">
     </div>
     <div class="c-heart">
         <app-new-wish-indicator [id]="_gift.id"></app-new-wish-indicator>

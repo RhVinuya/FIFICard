@@ -1,3 +1,34 @@
+h6 {
+    margin-top: 10px;
+}
+
+.main{
+    width: 100%;
+    min-height: 100px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.main .action {
+    width: 40px;
+}
+
+.main .action button{
+    font-size: 30px;
+    color: #bb5ed3;
+    background: none;
+}
+
+.main .action button:disabled {
+    opacity: 0.5;
+}
+
+.main .content{
+    width: calc(100% - 40px - 40px);
+}
+
 .card {
     margin-bottom: 5px !important;
 }
@@ -8,17 +39,4 @@
 
 .full-width {
     width: 100% !important;
-}
-
-.main {
-    padding-bottom: 15px;
-}
-
-button {
-    padding-top: 5px;
-    padding-bottom: 5px;
-}
-
-h6 {
-    margin-top: 10px;
 }
