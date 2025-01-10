@@ -13,6 +13,7 @@ import { NewLocationService } from 'src/app/new-services/new-location.service';
   styleUrls: ['./create-address-mobile.component.scss']
 })
 export class CreateAddressMobileComponent implements OnInit, OnDestroy {
+  
   @Input() title: string;
   @Input() userid: string;
   @Input() data: INewAddress;

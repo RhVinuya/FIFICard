@@ -1,9 +1,10 @@
 import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { NgbActiveOffcanvas, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbActiveOffcanvas, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CreateAddressMobileComponent } from 'src/app/components-mobile/create-address-mobile/create-address-mobile.component';
 import { NewCreateAddressComponent } from 'src/app/new-components/new-create-address/new-create-address.component';
 import { INewAddress, NewAddress } from 'src/app/new-models/new-address';
 import { NewAccountService } from 'src/app/new-services/new-account.service';
+import { modalController } from '@ionic/core';
 
 @Component({
   selector: 'app-checkout-recipients-mobile',
@@ -23,15 +24,16 @@ export class CheckoutRecipientsMobileComponent implements OnInit {
   activeOffcanvas: NgbActiveOffcanvas;
   modalService: NgbModal;
   ref: ChangeDetectorRef;
+  activeModal: NgbActiveModal;
 
   constructor(
     _accountService: NewAccountService,
-    _activeOffcanvas: NgbActiveOffcanvas,
+    _activeModal: NgbActiveModal,
     _modalService: NgbModal,
     _ref: ChangeDetectorRef 
   ) { 
+    this.activeModal = _activeModal;
     this.accountService = _accountService;
-    this.activeOffcanvas = _activeOffcanvas;
     this.modalService = _modalService;
     this.ref = _ref;
   }
@@ -47,7 +49,7 @@ export class CheckoutRecipientsMobileComponent implements OnInit {
   }
 
   close(){
-    this.activeOffcanvas.close()
+    this.activeModal.close()
   }
 
   onClick(id: string) {
@@ -55,7 +57,7 @@ export class CheckoutRecipientsMobileComponent implements OnInit {
   }
 
   onClickCreate() {
-    const reference = this.modalService.open(CreateAddressMobileComponent, { animation: true, size: 'lg' });
+    const reference = this.modalService.open(CreateAddressMobileComponent, { animation: true, size: 'sm', fullscreen: false });
     reference.componentInstance.title = "Create Receiver and Shipping Address";
     reference.componentInstance.userid = this.id;
 
@@ -84,7 +86,7 @@ export class CheckoutRecipientsMobileComponent implements OnInit {
   }
 
   onClickEdit(address: NewAddress) {
-    const reference = this.modalService.open(CreateAddressMobileComponent, { animation: true, size: 'lg' });
+    const reference = this.modalService.open(CreateAddressMobileComponent, { animation: true, size: 'sm', fullscreen: false });
     reference.componentInstance.title = "Edit Receiver and Shipping Address";
     reference.componentInstance.userid = this.id;
     reference.componentInstance.data = address as INewAddress;
@@ -99,7 +101,7 @@ export class CheckoutRecipientsMobileComponent implements OnInit {
       reference.close();
     })
 
-    const defaultReference = reference.componentInstance.onDefault.subscribe(async (value: string) => {
+    const defaultReference = reference.componentInstance.onDefault.subscribe(async (value: string) => {``
       this.onChangeDefault.emit(value);
       await this.accountService.updateDefaultAddress(this.id, value);
       this.defaultAddress = value;

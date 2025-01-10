@@ -1,3 +1,4 @@
+
 import { Component, EventEmitter, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AuthProcessService } from 'ngx-auth-firebaseui';
@@ -10,6 +11,7 @@ import { Platform } from '@ionic/angular';
 import { NavigationEnd, Router } from '@angular/router';
 import { LoginComponent } from './pages/login/login.component';
 import { NewStorageService } from './new-services/new-storage.service';
+
 
 @Component({
   selector: 'app-root',
@@ -43,7 +45,7 @@ export class AppComponent {
     this.storageService = _storageService;
   }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
 
     if(!this.isMobile) {
       this.platform.ready().then(() => {

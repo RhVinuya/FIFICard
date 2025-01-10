@@ -196,7 +196,7 @@ export class CheckoutMobileComponent implements OnInit, OnDestroy {
   }
 
   openSender() {
-    const reference: NgbModalRef = this.modalService.open(CheckoutSenderMobileComponent, { animation: true, size: 'lg' })
+    const reference: NgbModalRef = this.modalService.open(CheckoutSenderMobileComponent, { animation: true, size: 'sm' })
     reference.componentInstance.sender = this.sender;
     const onChargeRef = reference.componentInstance.onChange.subscribe((value: INewSender) => {
       this.sender = new NewSender(value);
@@ -208,7 +208,9 @@ export class CheckoutMobileComponent implements OnInit, OnDestroy {
   }
 
   openRecipient() {
-    const reference: NgbOffcanvasRef = this.offCanvas.open(CheckoutRecipientsMobileComponent, { position: 'end', panelClass: 'large-offcanvas' });
+    const reference: NgbModalRef = this.modalService.open(CheckoutRecipientsMobileComponent, { 
+       animation: true, size: 'sm'
+    }); //position: 'end', panelClass: 'large-offcanvas'
     reference.componentInstance.id = this.iUser!.id
     reference.componentInstance.iAddresses = this.addresses;
     reference.componentInstance.defaultAddressId = this.defaultAddressId;
