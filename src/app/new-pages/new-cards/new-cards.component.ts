@@ -41,7 +41,8 @@ export class NewCardsComponent implements OnInit {
 
   cardevents = environment.cardevents;
   recipientoptions = environment.recipients;;
-  filteroptions = ['POETRY', 'MESSAGE', 'PERSONALIZED', 'TALKING CARD', 'BUNDLE'];
+  //filteroptions = ['POETRY', 'MESSAGE', 'PERSONALIZED', 'TALKING CARD', 'BUNDLE'];
+  filteroptions = ['POETRY', 'MESSAGE', 'PERSONALIZED', 'TALKING CARD'];
 
   activeevents: string[] = [];
   event: string;
@@ -88,7 +89,8 @@ export class NewCardsComponent implements OnInit {
 
   async loadCards() {
     this.loading = true;
-    let list = await this.cardService.getAll();
+    let temp = await this.cardService.getAll();
+    let list = temp.filter(x => x.cardbundle !== true)
 
     this.cards = [...list.filter(x => x.featured), ...list.filter(x => x.featured !== true)]
 
