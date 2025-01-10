@@ -56,7 +56,7 @@
                 <ion-col size="6">
                     <ion-item lines="none">
                         <ion-label position="stacked">Province/Region</ion-label>
-                        <ion-select label="Province/Region" placeholder="Enter Province" formControlName="province" interface="action-sheet">
+                        <ion-select label="Province/Region" placeholder="Enter Province" formControlName="province" interface="alert">
                             <ion-select-option value="">Enter Province</ion-select-option>
                             <ion-select-option *ngFor="let x of provinces" [value]="x">{{x}}</ion-select-option>
                         </ion-select>
@@ -65,7 +65,7 @@
                 <ion-col size="6">
                     <ion-item lines="none">
                         <ion-label position="stacked">City/Municipality</ion-label>
-                        <ion-select label="City/Municipality" placeholder="Enter City" formControlName="city" interface="action-sheet">
+                        <ion-select label="City/Municipality" placeholder="Enter City" formControlName="city" interface="alert">
                             <ion-select-option value="">Enter City</ion-select-option>
                             <ion-select-option *ngFor="let x of city" [value]="x">{{x}}</ion-select-option>
                         </ion-select>

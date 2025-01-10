@@ -58,3 +58,8 @@
 .create-btn:disabled:hover {
     color: #fff;
 }
+
+.alert-wrapper {
+    overflow: visible;
+    z-index: 20100 !important;
+}
