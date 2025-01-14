@@ -123,6 +123,9 @@ export const environment = {
     },
     {
       main: 'Niece'
+    },
+    {
+      main: 'Cousin'
     }
   ],
   recipientdefault: 'All',
