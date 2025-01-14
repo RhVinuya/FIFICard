@@ -1,12 +1,14 @@
 import { Component, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { NgbOffcanvas, NgbOffcanvasRef } from '@ng-bootstrap/ng-bootstrap';
 import { NewInYourCartComponent } from '../new-in-your-cart/new-in-your-cart.component';
-import { INewCard } from 'src/app/new-models/new-card';
+import { INewCard, NewCard } from 'src/app/new-models/new-card';
 import { INewSticker } from 'src/app/new-models/new-sticker';
 import { NewCartService } from 'src/app/new-services/new-cart.service';
 import { ToastController } from '@ionic/angular';
 import { INewGift } from 'src/app/new-models/new-gift';
 import { IModelType, ItemType } from 'src/app/new-models/new-enum';
+import { INewDiscount } from 'src/app/new-models/new-discount';
+import { environment } from "src/environments/environment";
 
 @Component({
   selector: 'app-new-add-cart-button',
@@ -39,12 +41,27 @@ export class NewAddCartButtonComponent implements OnInit {
   price: number = 0;
   sgprice: number = 0;
   usprice: number = 0;
+  isDiscounted: boolean = false;
+  discount: INewDiscount | undefined;
+  discountedPrice: number = 0;
 
   ngOnInit(): void {
     if (this.type === 'card') {
+      let item = new NewCard(this.item as INewCard);
+
       this.price = (this.item as INewCard).price;
       this.sgprice = (this.item as INewCard).sgprice;
       this.usprice = (this.item as INewCard).usprice;
+
+      if( item.isDiscounted() ) {
+        let discounts: INewDiscount[] = [];
+        environment.discounts.forEach(value => discounts.push(value as INewDiscount));
+        discounts = discounts.filter(x => x.active === true &&  x.event === item.event);
+        this.discount = discounts[0];
+        this.isDiscounted = item.isDiscounted();
+        this.discountedPrice = new NewCard(this.item as INewCard).getDiscountedPrice();
+      }
+
     }
     else if (this.type === 'sticker'){
       this.price = (this.item as INewSticker).price;
@@ -77,7 +94,10 @@ export class NewAddCartButtonComponent implements OnInit {
         type: this.type,
         bundle: undefined,
         personalize: undefined,
-        mark: true
+        mark: true,
+        discount: this.discount,
+        discountPrice: this.discountedPrice,
+        isDiscounted: this.isDiscounted
       }
     );
     let message: string = '';

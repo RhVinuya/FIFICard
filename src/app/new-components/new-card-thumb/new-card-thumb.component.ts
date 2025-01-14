@@ -34,6 +34,7 @@ export class NewCardThumbComponent implements OnInit {
   primary: string = '';
   secondary: string = '';
   rate: number = 0;
+  isFree: boolean = false;
 
   async ngOnInit(): Promise<void> {
     this.storageService.saveItemDetails(this.card);
@@ -50,6 +51,8 @@ export class NewCardThumbComponent implements OnInit {
     else {
       this.secondary = this.primary;
     }
+
+    this.isFree = this._card.isFree();
 
     this.loadRatings(await this.cardService.getRatings(this._card.id))
   }

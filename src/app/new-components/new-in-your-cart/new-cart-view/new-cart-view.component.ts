@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { NewCard } from 'src/app/new-models/new-card';
 import { NewCart } from 'src/app/new-models/new-cart';
 import { NewCardService } from 'src/app/new-services/new-card.service';
 import { NewFileService } from 'src/app/new-services/new-file.service';
@@ -42,13 +43,26 @@ export class NewCartViewComponent implements OnInit {
   bundle: string = '';
   cardbundle: boolean = false;
 
+  isDiscounted: boolean = false;
+  discountPrice: string = '';
+
   async ngOnInit(): Promise<void> {
     if (this.cart.type === 'card') {
       let iCard = await this.cardService.get(this.cart.itemId);
+
       if (iCard) {
+        let model = new NewCard(iCard);
+        this.isDiscounted = model.isDiscounted() ?? false;
+
         this.name = iCard.name;
         this.description = iCard.description;
-        this.price = this.cart.priceDisplay()
+
+        if (this.isDiscounted) {
+          this.discountPrice = (this.cart.personalize) ? model.getPersonalizePriceDisplay(this.isDiscounted) : model.priceDisplay()
+        }
+
+        this.price =  this.cart.priceDisplay()
+
         let images = await this.cardService.getImages(this.cart.itemId);
         if (images.length > 0) {
           this.fileService.getImageURL(images[0].url).then(value => this.image = value)

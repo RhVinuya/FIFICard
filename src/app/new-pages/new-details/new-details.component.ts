@@ -80,6 +80,7 @@ export class NewDetailsComponent implements OnInit {
   isPoetry: boolean = false;
   isRegular: boolean = false;
   isCardBundle: boolean = false;
+  isDiscounted: boolean = false;
 
   stickerimage: string = '';
 
@@ -93,6 +94,7 @@ export class NewDetailsComponent implements OnInit {
         this.cardService.get(this.id).then(async value => {
           this.iModel = value;
           let card = new NewCard(value);
+          this.isDiscounted = card.isDiscounted() ?? false;
           this.recipients = card.getRecipients();
           this.model = card;
           this.isAddToCart = true;
@@ -190,8 +192,16 @@ export class NewDetailsComponent implements OnInit {
     else return '';
   }
 
-  getPersonalizePrice(){
-    if (this.type === 'card' && this.isPersonalize) return (this.model as NewCard).getPersonalizePriceDisplay();
+  getOriginalPrice() {
+    if (this.type === 'card'){
+       return (this.model as NewCard).originalPriceDisplay()
+    };
+
+    return 0;
+  }
+
+  getPersonalizePrice(discounted: boolean = false){
+    if (this.type === 'card' && this.isPersonalize) return (this.model as NewCard).getPersonalizePriceDisplay(discounted);
     else return ''
   }
 

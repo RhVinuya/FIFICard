@@ -53,6 +53,7 @@ export class NewCartItemComponent implements OnInit {
   primary: string = '';
   bundleDetails: string = '';
   cardbundle: boolean = false;
+  isDiscounted: boolean = false;
 
   ngOnInit() {
   }
@@ -62,6 +63,8 @@ export class NewCartItemComponent implements OnInit {
     if (this._cart.type === 'card') {
       let iCard = await this.cardService.get(this._cart.itemId);
       this.model = new NewCard(iCard as INewCard);
+
+      this.isDiscounted = (this.model as NewCard).isDiscounted() ?? false;
       let images = await this.cardService.getImages(this._cart.itemId);
       if (images.length > 0) this.loadImage(images[0].url)
       this.cardbundle = iCard.cardbundle;
@@ -100,6 +103,17 @@ export class NewCartItemComponent implements OnInit {
         else return this._cart.priceDisplay();
       }
       else return this._cart.priceDisplay();
+    }
+    return '';
+  }
+
+  getDiscountedAmount() {
+    if (this.model && this._cart) {
+      if (this._cart.type === 'postcard') {
+        if (this._cart.bundle) return this._cart.bundle.priceDisplay()
+        else return this._cart.priceDisplay();
+      }
+      else return this._cart.personalize ? (this.model as NewCard).getPersonalizePriceDisplay(true) : (this.model as NewCard).priceDisplay();
     }
     return '';
   }

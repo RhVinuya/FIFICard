@@ -253,10 +253,21 @@ export const environment = {
       gcashupload: false
     }
   },
-
-
-
-
+  discounts: [
+    {
+      code: 'VAL10',
+      value: 10,
+      disctype: "percent",
+      active: true,
+      event: "Valentines",
+      type: "card"
+    }
+  ],
+  currencies: [
+    { code: 'PHP', currency: 'Peso', sign: '₱', countrycode: 'PH' },
+    { code: 'USD', currency: 'Dollar', sign: '$', countrycode: 'US' },
+    { code: 'SGD', currency: 'Singapore Dollar', sign: 'S$', countrycode: 'SG' }
+  ],
   imageSize: {
     small: "_74x100",
     medium: "_278x220",

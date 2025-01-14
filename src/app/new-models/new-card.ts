@@ -2,6 +2,7 @@ import { Timestamp } from "@angular/fire/firestore";
 import { NewLocationService } from "../new-services/new-location.service";
 import { LocationType } from "./new-enum";
 import { environment } from "src/environments/environment";
+import { INewDiscount } from "./new-discount";
 
 export interface INewCard {
     id: string;
@@ -51,6 +52,10 @@ export class NewCard {
     created: Timestamp;
     modified: Timestamp;
 
+    locationService: NewLocationService;
+    location: LocationType;
+    currencySymbol: string;
+    
     constructor(value: INewCard) {
         this.id = value.id;
         this.code = value.code;
@@ -73,37 +78,182 @@ export class NewCard {
         this.cardBundleIds = value.cardbundleIds;
         this.created = value.created;
         this.modified = value.modified;
+
+        
+        this.locationService = new NewLocationService();
+        this.location = this.locationService.getlocation();
+        this.currencySymbol = this.locationService.getCurrencySymbol(this.location);
+
+    }
+
+    isFree() {
+        let currency = environment.currencies.find(x => x.code === this.currencySymbol);
+        if (currency) {
+            if (currency.code === 'USD') return this.usprice === 0;
+            else if (currency.code === 'SGD') return this.sgprice === 0;
+            else return this.price === 0;
+        }
+        else return false;
+    }
+    
+    getDiscount(): INewDiscount | undefined {
+        let disc: INewDiscount | undefined = undefined;
+
+        let discounts: INewDiscount[] = [];
+        environment.discounts.forEach(value => discounts.push(value as INewDiscount));
+        discounts = discounts.filter(x => x.active === true);
+
+        discounts.forEach(value => {
+            if (value.event.toUpperCase() === this.event.toUpperCase()) disc = value
+        })
+
+        return disc;
+    }
+
+    isDiscounted() {
+        if (this.isFree()) return false;
+        else return this.getDiscount() !== undefined;
+    }
+
+    originalPriceDisplay() {
+        let currency = environment.currencies.find(x => x.code === this.currencySymbol);
+        if (currency) {
+            if (currency.code === 'USD') return currency.sign + this.usprice.toLocaleString('en-US', { minimumFractionDigits: 2 })
+            else if (currency.code === 'SGD') return currency.sign + this.sgprice.toLocaleString('en-US', { minimumFractionDigits: 2 })
+            else return currency.sign + this.price.toLocaleString('en-US', { minimumFractionDigits: 2 })
+        }
+        else return '0.00';
     }
 
     priceDisplay() {
-        let locationService: NewLocationService = new NewLocationService();
-        let location: LocationType = locationService.getlocation();
-        if (location === 'us') return '$' + this.usprice.toLocaleString('en-US', { minimumFractionDigits: 2 })
-        else if (location === 'sg') return 'S$' + this.sgprice.toLocaleString('en-US', { minimumFractionDigits: 2 })
-        else return '₱' + this.price.toLocaleString('en-US', { minimumFractionDigits: 2 })
+        if (this.isDiscounted() === false) {
+            if (this.location === 'us') return '$' + this.usprice.toLocaleString('en-US', { minimumFractionDigits: 2 })
+            else if (this.location === 'sg') return 'S$' + this.sgprice.toLocaleString('en-US', { minimumFractionDigits: 2 })
+            else return '₱' + this.price.toLocaleString('en-US', { minimumFractionDigits: 2 });
+        } else {
+            let currency = environment.currencies.find(x => x.code === this.currencySymbol);
+            if (currency) {
+                if (currency.code === 'USD') {
+                    return currency.sign + this.getDiscountedPrice().toLocaleString('en-US', { minimumFractionDigits: 2 })
+                }
+                else if (currency.code === 'SGD') {
+                    return currency.sign + this.getDiscountedPrice().toLocaleString('en-US', { minimumFractionDigits: 2 })
+                }
+                else {
+                    return currency.sign + this.getDiscountedPrice().toLocaleString('en-US', { minimumFractionDigits: 2 })
+                }
+            }
+            else return '';
+        }
     }
 
-    getPersonalizePHPrice() {
-        return this.price + 50;
+    getDiscountedPrice() {
+        if (this.isDiscounted()) {
+            let discounted: number = 0;
+            let price: number = 0;
+
+            let currency = environment.currencies.find(x => x.code === this.currencySymbol);
+            if (currency) {
+                if (currency.code === 'USD') price = this.usprice;
+                else if (currency.code === 'SGD') price = this.sgprice;
+                else price = this.price;
+            }
+            else price = this.price;
+
+            let disc = this.getDiscount()
+            if (disc) {
+                if (disc.disctype === 'percent') {
+                    discounted = price - (price * (disc.value / 100))
+                }
+            }
+
+            return discounted
+
+
+        }
+        return 0
     }
 
-    getPersonalizeUSPrice() {
-        return this.usprice + 1;
+    discountValueDisplay() {
+        if (this.isDiscounted()) {
+            let disc = this.getDiscount();
+            if (disc) {
+                if (disc.disctype === 'percent') return disc.value.toString() + '%'
+                else return disc.value.toLocaleString('en-US', { minimumFractionDigits: 2 })
+            }
+            else return '';
+        }
+        else return '';
     }
 
-    getPersonalizeSGPrice() {
-        return this.usprice + 1;
+    getPersonalizePHPrice(discounted: boolean = false) {
+        let price = this.price + 50;
+        
+        if(discounted) {
+
+            let disc = this.getDiscount()
+            if (disc) {
+                if (disc.disctype === 'percent') {
+                    price = price - (price * (disc.value / 100))
+                }
+            }
+        }
+
+        return price;
     }
 
-    getPersonalizePriceDisplay() {
+    getPersonalizeUSPrice(discounted: boolean = false) {
+        let price = this.usprice + 1;
+
+        if(discounted) {
+
+            let disc = this.getDiscount()
+            if (disc) {
+                if (disc.disctype === 'percent') {
+                    price = price - (price * (disc.value / 100))
+                }
+            }
+        }
+
+        return price;
+    }
+
+    getPersonalizeSGPrice(discounted: boolean = false) {
+        let price = this.sgprice + 1;
+
+        if(discounted) {
+
+            let disc = this.getDiscount()
+            if (disc) {
+                if (disc.disctype === 'percent') {
+                    price = price - (price * (disc.value / 100))
+                }
+            }
+        }
+
+        return price + 1;
+    }
+
+    getPersonalizePriceDisplay(discounted: boolean = false) {
         if (this.signAndSend) {
             let locationService: NewLocationService = new NewLocationService();
             let location: LocationType = locationService.getlocation();
-            if (location === 'us') return '$' + this.getPersonalizeUSPrice().toLocaleString('en-US', { minimumFractionDigits: 2 })
-            else if (location === 'sg') return 'S$' + this.getPersonalizeSGPrice().toLocaleString('en-US', { minimumFractionDigits: 2 })
-            else return '₱' + this.getPersonalizePHPrice().toLocaleString('en-US', { minimumFractionDigits: 2 })
+            if (location === 'us') return '$' + this.getPersonalizeUSPrice(discounted).toLocaleString('en-US', { minimumFractionDigits: 2 })
+            else if (location === 'sg') return 'S$' + this.getPersonalizeSGPrice(discounted).toLocaleString('en-US', { minimumFractionDigits: 2 })
+            else return '₱' + this.getPersonalizePHPrice(discounted).toLocaleString('en-US', { minimumFractionDigits: 2 })
         }
         else return '';
+    }
+
+    getPersonalizePrice(discounted: boolean = false) {
+        if (this.signAndSend) {
+            let locationService: NewLocationService = new NewLocationService();
+            let location: LocationType = locationService.getlocation();
+            if (location === 'us') return this.getPersonalizeUSPrice(discounted)
+            else if (location === 'sg') return this.getPersonalizeSGPrice(discounted)
+            else return this.getPersonalizePHPrice(discounted)
+        }
+        else return 0;
     }
 
     getRecipients(max: number | undefined = undefined) {

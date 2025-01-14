@@ -3,9 +3,11 @@ import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription, timer } from 'rxjs';
 import { NewLoginComponent } from 'src/app/new-components/new-login/new-login.component';
+import { INewCard, NewCard } from 'src/app/new-models/new-card';
 import { INewCart } from 'src/app/new-models/new-cart';
 import { LocationType, StorageEnum } from 'src/app/new-models/new-enum';
 import { INewUser } from 'src/app/new-models/new-user';
+import { NewCardService } from 'src/app/new-services/new-card.service';
 import { NewCartService } from 'src/app/new-services/new-cart.service';
 import { NewLocationService } from 'src/app/new-services/new-location.service';
 import { NewStorageService } from 'src/app/new-services/new-storage.service';
@@ -23,8 +25,10 @@ export class NewCartComponent implements OnInit, OnDestroy {
   modalService: NgbModal;
   router: Router;
   ref: ChangeDetectorRef;
+  cardService: NewCardService;
 
   constructor(
+    _cardService: NewCardService,
     _cartService: NewCartService,
     _storageService: NewStorageService,
     _locationService: NewLocationService,
@@ -32,6 +36,7 @@ export class NewCartComponent implements OnInit, OnDestroy {
     _router: Router,
     _ref: ChangeDetectorRef
   ) {
+    this.cardService = _cardService;
     this.cartService = _cartService;
     this.storageService = _storageService;
     this.locationService = _locationService;
@@ -62,6 +67,7 @@ export class NewCartComponent implements OnInit, OnDestroy {
   total: number = 0;
   totalDisplay: string = '';
   saving: boolean = false;
+  model: NewCard;
 
   async ngOnInit(): Promise<void> {
     this.location = this.locationService.getlocation();
@@ -84,16 +90,29 @@ export class NewCartComponent implements OnInit, OnDestroy {
   }
 
 
-  calculate() {
+  async calculate() {
     let location: LocationType = this.locationService.getlocation()
     let symbol: string = this.locationService.getPriceSymbol();
     this.total = 0;
-    this.carts.forEach(cart => {
+
+    for await (let cart of this.carts) {
       if (cart.mark === true) {
         if (cart.type === 'card') {
-          if (location === 'ph') this.total = this.total + cart.price;
-          else if (location === 'us') this.total = this.total + cart.usprice;
-          else this.total = this.total + cart.sgprice;
+          let iCard = await this.cardService.get(cart.itemId);
+          this.model = new NewCard(iCard as INewCard);
+          
+          let isDiscounted = (this.model as NewCard).isDiscounted();
+          let discountedPrice = 0;
+          if (isDiscounted) {
+            discountedPrice = this.model.getDiscountedPrice()
+            if (cart.personalize) {
+              discountedPrice = this.model.getPersonalizePrice(isDiscounted);
+            }
+          }
+
+          if (location === 'ph') this.total = this.total + (isDiscounted ? discountedPrice : cart.price);
+          else if (location === 'us') this.total = this.total + (isDiscounted ? discountedPrice :  cart.usprice);
+          else this.total = this.total + (isDiscounted ? discountedPrice : cart.sgprice);
         }
         else if (cart.type === 'sticker') {
           if (location === 'ph') this.total = this.total + cart.price;
@@ -113,7 +132,8 @@ export class NewCartComponent implements OnInit, OnDestroy {
           else this.total = this.total + cart.sgprice;
         }
       }
-    })
+    }
+    
     this.count = this.carts.filter(x => x.mark === true).length;
     this.totalDisplay = symbol + this.total.toLocaleString('en-US', { minimumFractionDigits: 2 })
   }

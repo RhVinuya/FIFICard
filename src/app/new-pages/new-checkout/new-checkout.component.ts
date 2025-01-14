@@ -21,6 +21,7 @@ import { LocationType } from 'src/app/new-models/new-enum';
 import { NewCheckoutGcashComponent } from './new-checkout-gcash/new-checkout-gcash.component';
 import { url } from 'inspector';
 import { environment } from 'src/environments/environment';
+import { INewCard, NewCard } from 'src/app/new-models/new-card';
 
 @Component({
   selector: 'app-new-checkout',
@@ -157,9 +158,29 @@ export class NewCheckoutComponent implements OnInit, OnDestroy {
       let iCart = await this.cartService.get(id);
       if (iCart) {
         let price: number = 0;
-        if (this.location === 'ph') price = iCart.bundle ? iCart.bundle.price : iCart.price;
-        else if (this.location === 'sg') price = iCart.bundle ? iCart.bundle.sgprice : iCart.sgprice;
-        else if (this.location === 'us') price = iCart.bundle ? iCart.bundle.usprice : iCart.usprice;
+
+        if( iCart.type == 'card' ) {
+    
+          let iCard = await this.cardService.get(iCart.itemId);
+          let model = new NewCard(iCard as INewCard);
+          if(model.isDiscounted()) {
+            price = model.getDiscountedPrice();
+            if(iCart.personalize) {
+              price = model.getPersonalizePrice(true);
+            }
+
+          } else {
+            if (this.location === 'ph') price = iCart.bundle ? iCart.bundle.price : iCart.price;
+            else if (this.location === 'sg') price = iCart.bundle ? iCart.bundle.sgprice : iCart.sgprice;
+            else if (this.location === 'us') price = iCart.bundle ? iCart.bundle.usprice : iCart.usprice;
+          }
+
+        } else {
+          if (this.location === 'ph') price = iCart.bundle ? iCart.bundle.price : iCart.price;
+          else if (this.location === 'sg') price = iCart.bundle ? iCart.bundle.sgprice : iCart.sgprice;
+          else if (this.location === 'us') price = iCart.bundle ? iCart.bundle.usprice : iCart.usprice;
+        }
+
 
         let bundle: INewPaymentItemBundle | undefined = undefined;
         if (iCart.bundle) {

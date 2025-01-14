@@ -9,7 +9,9 @@
                 <i aria-hidden="true" class="fa fa-trash trash" (click)="onDelete()"></i>
             </div>
             <p class="text-gray mb-2">{{description}}</p>
-            <label class="text-purple" *ngIf="cart.type !== 'postcard'">{{price}}</label>
+            <label class="text-purple" *ngIf="cart.type !== 'postcard' && isDiscounted">{{discountPrice}}</label>
+            <label class="text-purple slanted-strike" *ngIf="cart.type !== 'postcard' && isDiscounted"><s>{{price}}</s></label>
+            <label class="text-purple" *ngIf="cart.type !== 'postcard' && !isDiscounted">{{price}}</label>
             <label class="text-purple" *ngIf="cart.type === 'postcard'">{{bundle}}</label>
             <div>
                 <span class="badge text-bg-secondary" *ngIf="cart.type === 'card'">CARD</span>
