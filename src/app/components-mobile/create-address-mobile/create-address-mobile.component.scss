@@ -63,3 +63,20 @@
     overflow: visible;
     z-index: 20100 !important;
 }
+
+.cuz-input ion-label
+{
+    margin-bottom: 10px;
+    font-family: lato;
+    font-size: 20px;
+}
+.cuz-input select,
+.cuz-input ion-input
+{
+    border: 1px solid #ccc !important;
+    padding: 0 10px !important;
+    border-radius: 6px;
+    width:100% !important;
+    height: 40px;
+    
+}
