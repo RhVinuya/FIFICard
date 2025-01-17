@@ -30,7 +30,6 @@
         </ion-row>
 
         <ion-row  class="card h-100 bg-light border-light drop" [ngClass]="isValidSender() ? '' : 'require'" (click)="openRecipient()">
-            
             <ion-card>
                 <ion-card-header>
                     <ion-card-title>Receiver Details
@@ -82,12 +81,11 @@
             <div class="form-check mt-4">
                 <input class="form-check-input" type="checkbox" id="accepted" [defaultValue]="accepted" (click)="onChangeAccepted($event)">
                 <label class="form-check-label" for="accepted">
-                    I accept <a href="/new/link/terms-and-condition">License and Agreement</a>
+                    I accept <a (click)="setOpen()">License and Agreement</a>
                 </label>
             </div>
-
-
         </ion-row>
+
         <ion-row>
             <button class="btn-creditcard card-payment mt-4" [disabled]="!isReady()" (click)="onStripe()"
             *ngIf="payments && payments.card === true">
@@ -96,27 +94,32 @@
             <i class="p-credit mx-1"></i>
             <span>by Stripe</span>
             </button>
-
-            <!-- <button class="btn-gcash card-payment mt-2" [disabled]="!isReady()" (click)="onGCash()" *ngIf="false && payments && payments.gcash === true">
-                <span class="spinner-border spinner-border-sm me-1" aria-hidden="true" *ngIf="isProcessingGCash"></span>
-                <span>{{isProcessingStripe ? 'Processing...' : 'Pay with'}}</span>
-                <i class="p-gcash mx-1"></i>
-                <span>by PayMongo</span>
-            </button>
-
-            <button class="btn-paymaya card-payment mt-2" [disabled]="!isReady()" (click)="onPaymaya()"
-                *ngIf="payments && payments.paymaya === true">
-                <span class="spinner-border spinner-border-sm me-1" aria-hidden="true" *ngIf="isProcessingPayMaya"></span>
-                <span>{{isProcessingStripe ? 'Processing...' : ' Pay with '}}</span>
-                <i class="p-paymaya mx-1"></i>
-                <span>by PayMongo</span>
-            </button>
-
-            <button class="btn-gcash card-payment mt-2" [disabled]="!isReady()" (click)="onGCashUpload()"
-                *ngIf="payments && payments.gcashupload === true">
-                <span>Pay with</span>
-                <i class="p-gcash mx-1"></i>
-            </button> -->
         </ion-row>
     </ion-grid>
+
+    <ion-modal id="termscondition" [isOpen]="isModalOpen" (willDismiss)="onWillDismiss($event)">
+        <ng-template>
+
+            <ion-header>
+                <ion-toolbar>
+                  <ion-title>License and Agreement</ion-title>
+                </ion-toolbar>
+            </ion-header>
+    
+            <ion-content class="ion-padding">
+
+            </ion-content>
+
+            <ion-footer>
+                <ion-buttons slot="end">
+                    <ion-button (click)="confirm()" [strong]="true">Confirm</ion-button>
+                </ion-buttons>
+                <ion-buttons slot="start">
+                    <ion-button (click)="cancel()">Cancel</ion-button>
+                </ion-buttons>
+            </ion-footer>
+        </ng-template>
+        
+        
+      </ion-modal>
 </ion-content>

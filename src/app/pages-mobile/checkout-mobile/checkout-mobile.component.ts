@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { INewAddress, INewAddressConfig, INewShippingFee, NewAddress } from 'src/app/new-models/new-address';
 import { INewGCashUploadDetails, INewPayment, INewPaymentItem, INewPaymentItemBundle, INewSender, NewPayment, NewSender } from 'src/app/new-models/new-payment';
 import { NewAddressService } from 'src/app/new-services/new-address.service';
@@ -20,6 +20,9 @@ import { NewLocationService } from 'src/app/new-services/new-location.service';
 import { LocationType } from 'src/app/new-models/new-enum';
 import { CheckoutGcashMobileComponent } from './checkout-gcash-mobile/checkout-gcash-mobile.component';
 import { environment } from 'src/environments/environment';
+import { IonModal } from '@ionic/angular';
+import { OverlayEventDetail } from '@ionic/core/components';
+
 
 @Component({
   selector: 'app-checkout-mobile',
@@ -27,6 +30,10 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./checkout-mobile.component.scss']
 })
 export class CheckoutMobileComponent implements OnInit, OnDestroy {
+  
+  @ViewChild(IonModal) modal!: IonModal;
+  
+  isModalOpen: boolean = false;
 
   storageService: NewStorageService;
   locationService: NewLocationService;
@@ -501,4 +508,24 @@ export class CheckoutMobileComponent implements OnInit, OnDestroy {
       fileReceivedRef.unsubscribe();
     });
   }
+
+  cancel() {
+    this.modal.dismiss(null, 'cancel');
+  }
+
+  confirm() {
+    this.modal.dismiss(null, 'confirm');
+  }
+
+  onWillDismiss(event: Event) {
+    const ev = event as CustomEvent<OverlayEventDetail<string>>;
+    if (ev.detail.role === 'confirm') {
+      //this.message = `Hello, ${event.detail.data}!`;
+    }
+  }
+
+  setOpen() {
+    this.isModalOpen = !!!this.isModalOpen;
+  }
+
 }
