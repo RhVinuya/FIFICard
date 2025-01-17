@@ -26,12 +26,13 @@
         {{ bundleDetails }}
       </p>
       <h6 class="text-purple my-0">{{ getAmount() }}</h6>
+     
     </div>
   </ion-item>
-
-  <ion-item-options>
+  <ion-icon (click)="onRemove()" name="trash-outline" class="cuz-delete"></ion-icon>
+  <!-- <ion-item-options >
     <ion-item-option color="danger" (click)="onRemove()">
       <ion-icon name="trash-outline"></ion-icon>
     </ion-item-option>
-  </ion-item-options>
+  </ion-item-options> -->
 </ion-item-sliding>
