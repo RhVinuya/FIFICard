@@ -56,19 +56,26 @@
                 <ion-col size="12">
                     <ion-item lines="none">
                         <ion-label position="stacked">Province/Region</ion-label>
-                        <ion-select label="Province/Region" placeholder="Enter Province" formControlName="province" interface="alert">
+
+                        <select  label="Province/Region" placeholder="Enter Province"  formControlName="province">
+                            <option value="">Enter Province</option>
+                            <option *ngFor="let x of provinces" [value]="x" value="">{{x}}</option>
+                        </select>
+
+
+                        <!-- <ion-select label="Province/Region" placeholder="Enter Province" formControlName="province" interface="popover" [interfaceOptions]="customPopoverOptions">
                             <ion-select-option value="">Enter Province</ion-select-option>
                             <ion-select-option *ngFor="let x of provinces" [value]="x">{{x}}</ion-select-option>
-                        </ion-select>
+                        </ion-select> -->
                     </ion-item>
                 </ion-col>
                 <ion-col size="12">
                     <ion-item lines="none">
                         <ion-label position="stacked">City/Municipality</ion-label>
-                        <ion-select label="City/Municipality" placeholder="Enter City" formControlName="city" interface="alert">
-                            <ion-select-option value="">Enter City</ion-select-option>
-                            <ion-select-option *ngFor="let x of city" [value]="x">{{x}}</ion-select-option>
-                        </ion-select>
+                        <select  label="City/Municipality" placeholder="Enter City"  formControlName="city">
+                            <option value="">Enter Province</option>
+                            <option *ngFor="let x of city" [value]="x" value="">{{x}}</option>
+                        </select>
                     </ion-item>
                 </ion-col>
             </ion-row>
