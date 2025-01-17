@@ -13,7 +13,6 @@ export class NewLocationService {
 
   getlocation(): LocationType {
 
-    return 'us';
     if (environment.us.findIndex(x => x == window.location.hostname.toLowerCase()) >= 0) {
       return 'us'
     }
