@@ -49,7 +49,8 @@ ion-tab-button {
 }
 
 ion-tab-button span {
-  font-size: 9px;
+  font-size: 75%;
+  margin-top:6px;
   text-overflow: ellipsis;         
   overflow: hidden; 
   white-space: nowrap;
@@ -62,3 +63,4 @@ ion-tab-button.tab-selected {
 img {
   color: white;
 }
+
