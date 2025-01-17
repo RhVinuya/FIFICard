@@ -4,12 +4,16 @@ import { NavigationEnd, Router } from '@angular/router';
 import { IonContent } from '@ionic/angular';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { timer } from 'rxjs';
+import { NewAdsModalComponent } from 'src/app/new-components/new-ads-modal/new-ads-modal.component';
 import { NewLoginComponent } from 'src/app/new-components/new-login/new-login.component';
 import { INewUser } from 'src/app/new-models/new-user';
+import { NewAdsService } from 'src/app/new-services/new-ads.service';
 import { NewCartService } from 'src/app/new-services/new-cart.service';
 import { NewLocationService } from 'src/app/new-services/new-location.service';
 import { NewStorageService } from 'src/app/new-services/new-storage.service';
 import { NewWishlistService } from 'src/app/new-services/new-wishlist.service';
+import { environment } from 'src/environments/environment';
+
 
 @Component({
   selector: 'app-new-layout',
@@ -26,6 +30,7 @@ export class NewLayoutComponent implements OnInit {
   cartService: NewCartService;
   wishlistService: NewWishlistService;
   modalService: NgbModal;
+  adsService: NewAdsService;
 
   constructor(
     _router: Router,
@@ -34,7 +39,8 @@ export class NewLayoutComponent implements OnInit {
     _locationService: NewLocationService,
     _cartService: NewCartService,
     _wishlistService: NewWishlistService,
-    _modalService: NgbModal
+    _modalService: NgbModal,
+    _adsService: NewAdsService
   ) {
     this.router = _router;
     this.viewportScroller = _viewportScroller;
@@ -42,7 +48,8 @@ export class NewLayoutComponent implements OnInit {
     this.locationService = _locationService;
     this.cartService = _cartService;
     this.wishlistService = _wishlistService;
-    this.modalService = _modalService
+    this.modalService = _modalService;
+    this.adsService = _adsService;
   }
 
   showHeader: boolean = false;
@@ -73,6 +80,13 @@ export class NewLayoutComponent implements OnInit {
 
       this.user = value === undefined ? undefined : value;
     });
+
+    if (this.adsService.showSubject.getValue() === false && environment.ads.flash) {
+      let reference = this.modalService.open(NewAdsModalComponent, { animation: true, size: 'xl', centered: true });
+      reference.result.then(_ => {
+        this.adsService.showSubject.next(true);
+      })
+    }
   }
 
   synchronizeCart(user: INewUser) {

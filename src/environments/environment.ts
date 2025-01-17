@@ -220,6 +220,15 @@ export const environment = {
     'Smooch',
     'Zen Loop'
   ],
+  ads: {
+    thumb: true,
+    flash: true,
+    sticky: {
+      enable: true,
+      initial: 1,
+      minutes: 5
+    }
+  },
   fontcolors: [
     { name: "Black", hex: '#000000' },
     { name: "Red", hex: '#800000' },

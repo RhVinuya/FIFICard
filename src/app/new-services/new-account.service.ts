@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { addDoc, collection, doc, Firestore, getDocFromServer, getDocsFromServer, query, serverTimestamp, setDoc, updateDoc, where } from '@angular/fire/firestore';
-import { Auth, createUserWithEmailAndPassword, GoogleAuthProvider, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup } from '@angular/fire/auth';
+import { Auth, createUserWithEmailAndPassword, sendPasswordResetEmail, signInWithEmailAndPassword } from '@angular/fire/auth';
+import { FacebookAuthProvider, GoogleAuthProvider, getAuth, signInWithPopup } from 'firebase/auth';
 import { INewGoogleUser, INewUser } from '../new-models/new-user';
 
 export class UpdateResponse {

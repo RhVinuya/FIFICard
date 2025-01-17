@@ -265,6 +265,7 @@ import { PersonalizeButtonMobileComponent } from './components-mobile/personaliz
 import { PaymentCardMobileComponent } from './pages-mobile/payment-card-mobile/payment-card-mobile.component';
 import { OrderMobileComponent } from './components-mobile/order-mobile/order-mobile.component';
 import { OrderItemMobileComponent } from './components-mobile/order-mobile/order-item-mobile/order-item-mobile.component';
+import { NewAdsModalComponent } from './new-components/new-ads-modal/new-ads-modal.component';
 
 @NgModule({
   declarations: [
@@ -457,6 +458,7 @@ import { OrderItemMobileComponent } from './components-mobile/order-mobile/order
     NewReferAFriendComponent,
     NewReferAFriendModalComponent,
     NewErrorMessageComponent,
+    NewAdsModalComponent,
     LayoutMobileComponent,
     LoginMobileComponent,
     OnboardingMobileComponent,
@@ -506,7 +508,7 @@ import { OrderItemMobileComponent } from './components-mobile/order-mobile/order
     PersonalizeButtonMobileComponent,
     PaymentCardMobileComponent,
     OrderMobileComponent,
-    OrderItemMobileComponent
+    OrderItemMobileComponent,
   ],
   imports: [
     BrowserModule,
