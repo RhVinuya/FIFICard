@@ -37,6 +37,8 @@
     "@ngx-translate/core": "^14.0.0",
     "@ngx-translate/http-loader": "^7.0.0",
     "@popperjs/core": "^2.11.4",
+    "bootstrap": "^5.3.0",
+    "bootstrap-icons": "^1.10.5",
     "fast-xml-parser": "^4.0.9",
     "firebase": "9.9.1",
     "html2canvas": "^1.4.1",
