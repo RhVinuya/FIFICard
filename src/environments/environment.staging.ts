@@ -232,6 +232,16 @@ export const environment = {
       minutes: 5
     }
   },
+  discounts: [
+    {
+      code: 'VAL10',
+      value: 10,
+      disctype: "percent",
+      active: true,
+      event: "Valentine's Day",
+      type: "card"
+    }
+  ],
   fontcolors: [
     { name: "Black", hex: '#000000' },
     { name: "Red", hex: '#800000' },
