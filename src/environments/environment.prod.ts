@@ -275,7 +275,7 @@ export const environment = {
       value: 10,
       disctype: "percent",
       active: true,
-      event: "Valentine's Day",
+      event: "Valentines",
       type: "card"
     }
   ],
