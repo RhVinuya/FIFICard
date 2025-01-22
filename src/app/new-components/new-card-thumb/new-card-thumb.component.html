@@ -10,9 +10,11 @@
         </div>
     </div>
     <div class="card-body px-2 py-3">
-        <h4 class="card-title text-purple my-0">{{_card.name}}</h4>
+       
+        <h4 class="card-title text-purple my-0">
+            {{_card.name}}</h4>
         <div class="recipients mt-1 mb-2">
-            <span *ngFor="let recipient of _card.getRecipients(4)" class="chip">{{recipient}}</span>
+            <span *ngIf="_card.isDiscounted() === true" class="cus-discount">10% Off</span> <span *ngFor="let recipient of _card.getRecipients(4)" class="chip">{{recipient}}</span>
         </div>
         <h4 class="card-description text-gray my-1">{{_card.description}}</h4>
         <div class="space-around h-30">
@@ -23,10 +25,10 @@
             </div>
             <div *ngIf="_card.isDiscounted() === true" style="flex-grow: 2; display: flex; flex-direction: row; align-items: center; justify-content: flex-start;">
                 <h5 class="my-0 text-purple" [ngClass]="isFree === false ? 'card-title' : 'card-title-red'">{{_card.priceDisplay()}}</h5>
-                <h5 class="my-0 ms-1 slanted-strike me-2" [ngClass]="isFree === false ? 'card-title' : 'card-title-red'"><s>{{_card.originalPriceDisplay()}}</s></h5>
+                <h5 class="my-0 ms-1 slanted-strike me-2" style="font-size: 10px;" [ngClass]="isFree === false ? 'card-title' : 'card-title-red'"><s>{{_card.originalPriceDisplay()}}</s></h5>
                 <label class="text-gray mx-1" *ngIf="_card.signAndSend">-</label>
                 <h5 class="my-0 text-blue" [ngClass]="isFree === false ? 'card-title' : 'card-title-red'">{{_card.getPersonalizePriceDisplay(true)}}</h5>
-                <h5 class="my-0 ms-1 slanted-strike me-2" [ngClass]="isFree === false ? 'card-title' : 'card-title-red'"><s>{{_card.getPersonalizePriceDisplay()}}</s></h5>
+                <h5 class="my-0 ms-1 slanted-strike me-2" style="font-size: 10px;" [ngClass]="isFree === false ? 'card-title' : 'card-title-red'"><s>{{_card.getPersonalizePriceDisplay()}}</s></h5>
             </div>
             <app-new-rate size="sm" [rate]="rate"></app-new-rate>
         </div>

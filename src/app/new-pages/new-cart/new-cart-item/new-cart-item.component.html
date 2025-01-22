@@ -22,7 +22,7 @@
                 </td>
                 <td class="amount">
                     <h5 *ngIf="isDiscounted" class="text-purple my-0">{{getDiscountedAmount()}}</h5>
-                    <h5 *ngIf="isDiscounted" class="slanted-strike my-0"><s>{{getAmount()}}</s></h5>
+                    <h5 *ngIf="isDiscounted" class="slanted-strike my-0" style="font-size: 10px;"><s>{{getAmount()}}</s></h5>
                     <h5 *ngIf="!isDiscounted" class="text-purple my-0">{{getAmount()}}</h5>
                 </td>
                 <td class="delete text-end">
