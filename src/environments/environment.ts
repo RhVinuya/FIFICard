@@ -122,6 +122,9 @@ export const environment = {
     },
     {
       main: 'Cousin'
+    },
+    {
+      main: 'Couple'
     }
   ],
   recipientdefault: 'All',

@@ -40,7 +40,7 @@ export class NewCardsComponent implements OnInit {
   ];
 
   cardevents = environment.cardevents;
-  recipientoptions = environment.recipients;;
+  recipientoptions = environment.recipients;
   //filteroptions = ['POETRY', 'MESSAGE', 'PERSONALIZED', 'TALKING CARD', 'BUNDLE'];
   filteroptions = ['POETRY', 'MESSAGE', 'PERSONALIZED', 'TALKING CARD'];
 
@@ -142,6 +142,8 @@ export class NewCardsComponent implements OnInit {
         })
       }
 
+      this.validateRecipientOptions(this.display.map(object => ({ ...object })));
+
       //filter recipients
       if (this.recipients.length > 0 && this.display.length > 0) {
         const temp = this.display.map(object => ({ ...object }))
@@ -187,6 +189,38 @@ export class NewCardsComponent implements OnInit {
       this.ref.detectChanges();
       this.updateCount(this.display.length);
     }
+  }
+
+  validateRecipientOptions(items: INewCard[]) {
+    this.recipientoptions = [];
+    environment.recipients.forEach(recipient => {
+      if (recipient.main !== 'All') {
+        if (items.some(item => {
+          if (item.recipients!.findIndex(x => x.toUpperCase() === recipient.main.toUpperCase()) >= 0) return true;
+          return false;
+        })) {
+          this.recipientoptions.push(recipient)
+        }
+        else {
+          if(recipient.others) {
+            if (recipient.others.some(other => {
+              return items.some(item => {
+                if (item.recipients!.findIndex(x => x.toUpperCase() === other.toUpperCase()) >= 0) return true;
+                return false;
+              });
+            })){
+              this.recipientoptions.push(recipient)
+            }
+          }
+        }
+      }
+      else this.recipientoptions.push(recipient)
+    })
+    let temp: string[] = [];
+    this.recipients.forEach(recipient => {
+      if (this.recipientoptions.findIndex(x => x.main === recipient) >= 0) temp.push(recipient);
+    })
+    this.recipients = [...temp];
   }
 
   onClickEvent(event: string) {
