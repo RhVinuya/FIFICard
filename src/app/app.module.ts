@@ -266,6 +266,7 @@ import { PaymentCardMobileComponent } from './pages-mobile/payment-card-mobile/p
 import { OrderMobileComponent } from './components-mobile/order-mobile/order-mobile.component';
 import { OrderItemMobileComponent } from './components-mobile/order-mobile/order-item-mobile/order-item-mobile.component';
 import { NewAdsModalComponent } from './new-components/new-ads-modal/new-ads-modal.component';
+import { PersonalizeTextareaMobileComponent } from './components-mobile/personalize-textarea-mobile/personalize-textarea-mobile.component';
 
 @NgModule({
   declarations: [
@@ -509,6 +510,7 @@ import { NewAdsModalComponent } from './new-components/new-ads-modal/new-ads-mod
     PaymentCardMobileComponent,
     OrderMobileComponent,
     OrderItemMobileComponent,
+    PersonalizeTextareaMobileComponent
   ],
   imports: [
     BrowserModule,

@@ -1,25 +1,26 @@
+import { Location } from '@angular/common';
+import { register } from 'swiper/element/bundle';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NewInYourCartComponent } from 'src/app/new-components/new-in-your-cart/new-in-your-cart.component';
-import { NewVideoPlayerComponent } from 'src/app/new-components/new-video-player/new-video-player.component';
-import { INewCard, INewCardImage, INewRating, NewCard } from 'src/app/new-models/new-card';
+import { environment } from 'src/environments/environment';
 import { INewCartBundle } from 'src/app/new-models/new-cart';
-import { IModelType, ItemType, ModelType } from 'src/app/new-models/new-enum';
+import { IonicSlides, ToastController } from '@ionic/angular';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { INewGiftImage, NewGift } from 'src/app/new-models/new-gift';
-import { INewPostcardBundle, NewPostcard, NewPostcardBundle } from 'src/app/new-models/new-postcard';
-import { INewStickerImage, NewSticker } from 'src/app/new-models/new-sticker';
 import { NewCardService } from 'src/app/new-services/new-card.service';
 import { NewCartService } from 'src/app/new-services/new-cart.service';
 import { NewFileService } from 'src/app/new-services/new-file.service';
 import { NewGiftService } from 'src/app/new-services/new-gift.service';
-import { NewPostcardService } from 'src/app/new-services/new-postcard.service';
 import { NewStickerService } from 'src/app/new-services/new-sticker.service';
-import { Location } from '@angular/common';
-
-import { IonicSlides, ToastController } from '@ionic/angular';
-
-import { register } from 'swiper/element/bundle';
+import { IModelType, ItemType, ModelType } from 'src/app/new-models/new-enum';
+import { INewStickerImage, NewSticker } from 'src/app/new-models/new-sticker';
+import { NewPostcardService } from 'src/app/new-services/new-postcard.service';
+import { NewPersonalizeService } from 'src/app/new-services/new-personalize.service';
+import { INewPersonalize, INewPersonalizeData, INewPersonalizeDetail } from 'src/app/new-models/new-personalize';
+import { INewCard, INewCardImage, INewRating, NewCard } from 'src/app/new-models/new-card';
+import { INewPostcardBundle, NewPostcard, NewPostcardBundle } from 'src/app/new-models/new-postcard';
+import { NewInYourCartComponent } from 'src/app/new-components/new-in-your-cart/new-in-your-cart.component';
+import { NewVideoPlayerComponent } from 'src/app/new-components/new-video-player/new-video-player.component';
 
 register();
 
@@ -34,6 +35,8 @@ export class DetailsMobileComponent implements OnInit {
   swiperModules = [IonicSlides];
 
   showPersonalize = false;
+  personalize: INewPersonalize | undefined = undefined;
+  personalizeData: INewPersonalizeData[] = [];
 
   activateRoute: ActivatedRoute;
   cardService: NewCardService;
@@ -43,6 +46,7 @@ export class DetailsMobileComponent implements OnInit {
   fileService: NewFileService;
   cartService: NewCartService;
   toastController: ToastController;
+  personalizeService: NewPersonalizeService;
 
   form = new FormGroup({
     recipient: new FormControl<string>('', [Validators.required]),
@@ -54,6 +58,7 @@ export class DetailsMobileComponent implements OnInit {
 
 
   constructor(
+    _personalizeService: NewPersonalizeService,
     _activateRoute: ActivatedRoute,
     _cardService: NewCardService,
     _stickerService: NewStickerService,
@@ -63,7 +68,7 @@ export class DetailsMobileComponent implements OnInit {
     _cartService: NewCartService,
     _toastController: ToastController,
     public router: Router,
-    private location: Location
+    private location: Location,
   ) {
     this.activateRoute = _activateRoute;
     this.cardService = _cardService;
@@ -73,6 +78,7 @@ export class DetailsMobileComponent implements OnInit {
     this.fileService = _fileService;
     this.cartService = _cartService;
     this.toastController = _toastController;
+    this.personalizeService = _personalizeService;
   }
 
   loading: boolean = false;
@@ -225,8 +231,6 @@ export class DetailsMobileComponent implements OnInit {
     this.goToCart();
   }
 
-
-
   getICard() {
     return this.iModel as INewCard;
   }
@@ -241,16 +245,106 @@ export class DetailsMobileComponent implements OnInit {
     return this.model.details;
   }
 
-  addToCart() {
-    this.router.navigateByUrl('/add-cart');
+  async addToCart() {
+      let card: NewCard = (this.model as NewCard);
+      let isDiscounted = card.isDiscounted();
+
+      this.cartService.add({
+        id: '',
+        itemId: card!.id,
+        userId: '',
+        price: card.getPersonalizePHPrice(isDiscounted),
+        sgprice: card.getPersonalizeSGPrice(isDiscounted),
+        usprice: card.getPersonalizeUSPrice(isDiscounted),
+        type: 'card',
+        bundle: undefined,
+        personalize: this.personalize,
+        mark: true
+      });
+
+      const toast = await this.toastController.create({
+        message: 'Personalized card is added on the Cart',
+        duration: 1500,
+        position: 'top',
+      });
+      await toast.present();
+      this.router.navigate(['/cart']);
+
   }
 
-  
   goToCart() {
     this.router.navigateByUrl('/cart');
   }
 
   goBack() {
     this.location.back();
+  }
+
+  async addPersonalize() {
+    this.showPersonalize = !!!this.showPersonalize;
+
+    if (this.showPersonalize && this.personalize === undefined) {
+
+      this.personalize = await this.personalizeService.getByCard(this.model.id)
+      if (this.personalize === undefined) this.personalize = await this.personalizeService.create(this.model.id);
+
+      if (this.personalize.data.length === 0) {
+        let signAndSends = await this.cardService.getSignAndSend(this.personalize.itemId);
+        for await (let signAndSend of signAndSends) {
+          let idx = this.personalizeData.findIndex(x => x.image === signAndSend.image);
+          if (idx < 0) {
+            let url = await this.fileService.getImageURL(signAndSend.image);
+            this.personalizeData.push({
+              image: signAndSend.image,
+              url: url,
+              details: [{
+                id: signAndSend.id,
+                code: signAndSend.code,
+                height: signAndSend.height,
+                width: signAndSend.width,
+                top: signAndSend.top,
+                left: signAndSend.left,
+                text: '',
+                font: 'Open Sans',
+                color: '#000000',
+                size: 18,
+                alignment: 'center'
+              }]
+            })
+          }
+          else {
+            this.personalizeData[idx].details.push({
+              id: signAndSend.id,
+              code: signAndSend.code,
+              height: signAndSend.height,
+              width: signAndSend.width,
+              top: signAndSend.top,
+              left: signAndSend.left,
+              text: '',
+              font: 'Open Sans',
+              color: '#000000',
+              size: 18,
+              alignment: 'center'
+            })
+          }
+        }
+        this.personalize.data = this.personalizeData;
+        this.personalizeService.save(this.personalize);
+      } else {
+        this.personalizeData = this.personalize.data;
+      }
+
+    }
+  }
+
+  changeTextarea(detail: INewPersonalizeDetail) {
+    this.personalizeData.forEach(data => {
+      let idx = data.details.findIndex(x => x.id === detail.id);
+      data.details[idx] = detail;
+    })
+    this.personalize!.data = this.personalizeData
+    this.personalizeService.save(this.personalize!);
+
+
   }
 }

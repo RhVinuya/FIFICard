@@ -74,7 +74,32 @@
       </p>
     </ion-row>
 
-    <form [formGroup]="form" *ngIf="type=='cards' && showPersonalize">
+    <div *ngIf="type=='cards' && showPersonalize">
+      <ion-row>
+        <ion-col size="12">
+          <div *ngFor="let data of personalize!.data">
+            <div *ngFor="let detail of data.details" 
+              class="text-area"
+            >
+              <app-personalize-textarea-mobile
+                [detail]="detail"
+                (onChange)="changeTextarea($event)"
+              ></app-personalize-textarea-mobile>
+            </div>
+          </div>
+        </ion-col>
+      </ion-row>
+    </div>
+
+    <!-- {{text !== '' ? text : placeholder}} -->
+    
+    <!-- [style.top.px]="detail.top" 
+    [style.left.px]="detail.left" 
+    [style.width.px]="detail.width" 
+    [style.height.px]="detail.height"
+    (blur)="onBlur($event)"
+    (click)="onClick()"  -->
+    <!-- <form [formGroup]="form" >
       <ion-row>
         <ion-col
           size="12"
@@ -159,7 +184,7 @@
           ></ion-input>
         </ion-col>
       </ion-row>
-    </form>
+    </form> -->
 
     <ion-row>
       <ion-col size="12" class="btn-container ion-align-items-center">
@@ -168,8 +193,9 @@
               Bundle of <b>{{bundle.countDisplay()}} pcs</b> for <b>{{bundle.priceDisplay()}}</b>
           </ion-button>
         </div>
-        <app-add-cart-button-mobile class="me-2" [type]="itemType" [item]="iModel" *ngIf="isAddToCart"></app-add-cart-button-mobile>
-        <!-- <app-personalize-button-mobile *ngIf="isPersonalize" [iCard]="getICard()"></app-personalize-button-mobile> -->
+        <app-add-cart-button-mobile class="me-2" [type]="itemType" [item]="iModel" *ngIf="isAddToCart && !showPersonalize"></app-add-cart-button-mobile>
+        <ion-button *ngIf="showPersonalize" (click)="addToCart()">Add To Cart</ion-button>
+        <ion-button *ngIf="isPersonalize" (click)="addPersonalize()" >{{ !showPersonalize ? "Personalize" : "Cancel"}}</ion-button>
       </ion-col>
     </ion-row>
   </ion-grid>
