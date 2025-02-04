@@ -1,39 +1,50 @@
 <div>
-    <div class="text-area p-1 m-2" 
-        [style.height.px]="detail.height"
-        [style.font-family]="font" 
-        [style.color]="color" 
-        [style.font-size.px]="detail.size" 
-        [style.text-align]="alignment"
-        contenteditable="true" 
-        #editableDiv
-        (blur)="onBlur($event)"
-    >
+    <div class="text-area p-1 m-2" [style.height.px]="detail.height" [style.font-family]="font" [style.color]="color"
+        [style.font-size.px]="detail.size" [style.text-align]="alignment" contenteditable="true" #editableDiv
+        (blur)="onBlur($event)">
     </div>
 
     <div>
-        <label for="font-select" class="mb-3">Font Option:  &nbsp;</label>
-        <select id="font-select " class="i-style" (change)="changeFont($event)" [(ngModel)]="font">
-            <option *ngFor="let font of fonts" [value]="font">{{font}}</option>
-        </select>
-        <br/>
-        <label for="color-input" class="mb-3">Font Size:  &nbsp;</label>
-        <span class="font-size ">
-            <ion-icon class="mx-2 f-adjust" name="remove-circle-outline" (click)="onFontMinus()"></ion-icon>
-            <input type="text" class="text-center f-size-value" [value]="size" [disabled]="true">
-            <ion-icon class="mx-2 f-adjust" name="add-circle-outline" (click)="onFontAdd()"></ion-icon>
-        </span>
-        <br/>
-        <label for="color-input" class="mb-3">Color:  &nbsp;</label>
-        <select id="color-select" class="i-style" (change)="changeColor($event)" [(ngModel)]="color">
-            <option *ngFor="let color of colors" [value]="color.hex">{{color.name}}</option>
-        </select>
-        <br/>
-        <label for="color-input" class="mb-3">Text Alignment: &nbsp; </label>
-        <span class="allignment">
-            <i class="fas fa-align-left i-style" [ngClass]="alignment === 'left' ? 'selected' : ''" (click)="changeAllignment('left')"></i>
-            <i class="fas fa-align-center i-style" [ngClass]="alignment === 'center' ? 'selected' : ''" (click)="changeAllignment('center')"></i>
-            <i class="fas fa-align-right i-style" [ngClass]="alignment === 'right' ? 'selected' : ''" (click)="changeAllignment('right')"></i>
-        </span>
+        <div class="row">
+            <div class="col-6">
+                <label for="font-select">Font Option: &nbsp;</label><br />
+                <select id="font-select " class="i-style" (change)="changeFont($event)" [(ngModel)]="font">
+                    <option *ngFor="let font of fonts" [value]="font">{{font}}</option>
+                </select>
+            </div>
+            <div class="col-6">
+                <label for="color-input">Font Size: &nbsp;</label>
+                <div style="margin-top: -10px;
+    padding-bottom: 18px;">
+                    <span class="font-size ">
+                        <ion-icon class="mx-2 f-adjust" style="margin-left:0 !important" name="remove-circle-outline" (click)="onFontMinus()"></ion-icon>
+                        <input type="text" class="text-center f-size-value" [value]="size" [disabled]="true">
+                        <ion-icon class="mx-2 f-adjust" name="add-circle-outline" (click)="onFontAdd()"></ion-icon>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <label for="color-input">Color: &nbsp;</label><br />
+                <select id="color-select" class="i-style" (change)="changeColor($event)" [(ngModel)]="color">
+                    <option *ngFor="let color of colors" [value]="color.hex">{{color.name}}</option>
+                </select>
+            </div>
+            <div class="col-6">
+                <label for="color-input">Text Alignment: &nbsp; </label><br />
+                <span class="allignment">
+                    <i class="fas fa-align-left i-style" [ngClass]="alignment === 'left' ? 'selected' : ''"
+                        (click)="changeAllignment('left')"></i>
+                    <i class="fas fa-align-center i-style" [ngClass]="alignment === 'center' ? 'selected' : ''"
+                        (click)="changeAllignment('center')"></i>
+                    <i class="fas fa-align-right i-style" [ngClass]="alignment === 'right' ? 'selected' : ''"
+                        (click)="changeAllignment('right')"></i>
+                </span>
+            </div>
+        </div>
+
+
     </div>
+    <hr style="border-bottom: 2px solid;" />
 </div>
