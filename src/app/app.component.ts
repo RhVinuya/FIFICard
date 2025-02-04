@@ -11,7 +11,9 @@ import { Platform } from '@ionic/angular';
 import { NavigationEnd, Router } from '@angular/router';
 import { LoginComponent } from './pages/login/login.component';
 import { NewStorageService } from './new-services/new-storage.service';
+import { register } from 'swiper/element/bundle';
 
+register();
 
 @Component({
   selector: 'app-root',

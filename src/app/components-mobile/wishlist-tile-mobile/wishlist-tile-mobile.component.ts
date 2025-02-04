@@ -124,9 +124,18 @@ export class WishlistTileMobileComponent implements OnInit {
     reference.componentInstance.message = "Are you sure to remove?";
     reference.componentInstance.yes = 'YES';
     reference.componentInstance.no = 'NO';
-     let resultSubs = reference.componentInstance.result.subscribe((value: any) => {
-        this.onRemoveItem.emit(this.product.id)
-      resultSubs.unsubscribe();
+    let resultSubs = reference.componentInstance.result.subscribe( async (value: any) => {
+        if(value) {
+          this.onRemoveItem.emit(this.product.id)
+        }
+        
+        reference.close();
     })
+
+    reference.result.then(_ => {
+      resultSubs.unsubscribe();
+    });
   }
+
+
 }

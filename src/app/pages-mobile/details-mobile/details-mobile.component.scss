@@ -28,7 +28,7 @@ ion-grid {
 }
 
 ion-thumbnail {
-  --size: 100%;
+  --size: 40%;
   height: 100%;
 }
 
@@ -99,7 +99,7 @@ ion-thumbnail {
 
 .terms_conditions {
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
   align-items: center;
 }
 
@@ -136,9 +136,9 @@ ion-textarea {
   margin-right: 5px;
 }
 
-.slider {
-  display: flex;
-}
+// .slider {
+//   display: flex;
+// }
 
 .prices {
   display: flex;
@@ -169,6 +169,38 @@ ion-textarea {
 }
 
 .text-area {
-  
   display: block;
+}
+
+swiper-container {
+  --swiper-pagination-bullet-inactive-color: var(--ion-color-step-200, #cccccc);
+  --swiper-pagination-color: var(--ion-color-primary, #3880ff);
+  --swiper-pagination-progressbar-bg-color: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.25);
+  --swiper-scrollbar-bg-color: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.1);
+  --swiper-scrollbar-drag-bg-color: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.5);
+}
+
+swiper-slide {
+  display: flex;
+  position: relative;
+
+  flex-direction: column;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+
+  width: 100% !important;
+  height: 100%;
+
+  font-size: 18px;
+
+  text-align: center;
+  box-sizing: border-box;
+}
+
+swiper-slide img {
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 100%;
 }

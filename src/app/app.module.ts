@@ -162,7 +162,8 @@ import { NewDetailsComponent } from './new-pages/new-details/new-details.compone
 import { NewDetailsImagesComponent } from './new-pages/new-details/new-details-images/new-details-images.component';
 import { NewContactUsComponent } from './new-pages/new-links/new-contact-us/new-contact-us.component';
 import { NewTermsAndConditionComponent } from './new-pages/new-links/new-terms-and-condition/new-terms-and-condition.component';
-import { getAuth, provideAuth } from '@angular/fire/auth';
+import { provideAuth } from '@angular/fire/auth';
+import { getAuth } from 'firebase/auth';
 import { NewInfoMessageComponent } from './new-components/new-info-message/new-info-message.component';
 import { NewLoginComponent } from './new-components/new-login/new-login.component';
 import { NewLayoutFooterComponent } from './new-pages/new-layout/new-layout-footer/new-layout-footer.component';
@@ -534,7 +535,6 @@ import { PersonalizeTextareaMobileComponent } from './components-mobile/personal
     IonicModule.forRoot(),
     NgxAuthFirebaseUIModule.forRoot(environment.firebase),
     NgxPayPalModule,
-    NgxFeedbackModule,
     NgbModule,
     NgxImageZoomModule,
     AppRoutingModule,

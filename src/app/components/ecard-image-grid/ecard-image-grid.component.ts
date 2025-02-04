@@ -3,7 +3,6 @@ import { ImageService } from 'src/app/services/image.service';
 import { CardService } from 'src/app/services/card.service';
 import { Component, OnInit, Input, ChangeDetectorRef, OnDestroy, ViewChild, ElementRef, HostListener } from '@angular/core';
 import { ECardImage } from 'src/app/models/ecard-image';
-import { Page } from '@ionic/core';
 
 @Component({
   selector: 'app-ecard-image-grid',

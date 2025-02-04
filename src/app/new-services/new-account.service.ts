@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { addDoc, collection, doc, Firestore, getDocFromServer, getDocsFromServer, query, serverTimestamp, setDoc, updateDoc, where } from '@angular/fire/firestore';
-import { Auth, createUserWithEmailAndPassword, sendPasswordResetEmail, signInWithEmailAndPassword } from '@angular/fire/auth';
-import { FacebookAuthProvider, GoogleAuthProvider, getAuth, signInWithPopup } from 'firebase/auth';
+import { Auth, createUserWithEmailAndPassword, sendPasswordResetEmail, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from '@angular/fire/auth';
 import { INewGoogleUser, INewUser } from '../new-models/new-user';
 
 export class UpdateResponse {
@@ -59,7 +58,9 @@ export class NewAccountService {
           photoURL: value.user.photoURL,
           providerId: value.providerId
         } as INewGoogleUser)
-      }).catch(err => rejects(err));
+      }).catch( (err) => {
+        rejects(err)
+      });
     });
   }
 

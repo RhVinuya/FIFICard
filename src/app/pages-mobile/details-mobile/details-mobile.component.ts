@@ -106,12 +106,11 @@ export class DetailsMobileComponent implements OnInit {
       this.type = params['type'];
       console.log('details');
       console.log(this.type);
+      this.bundles = [];
 
       if (this.type === 'cards') {
         this.itemType = "card";
         this.cardService.get(this.id).then(async value => {
-          console.log('data');
-          console.log(value);
           this.isAddToCart = true;
           let images = await this.cardService.getImages(this.id);
           this.model = new NewCard(value);

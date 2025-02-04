@@ -1,7 +1,6 @@
 import { PriceService } from '../../services/price.service';
 
 import { Component, EventEmitter, HostListener, Input, OnInit, Output } from '@angular/core';
-import { configFromSession } from '@ionic/core';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 import { Card } from 'src/app/models/card';
 import { CardService } from 'src/app/services/card.service';

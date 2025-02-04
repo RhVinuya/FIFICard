@@ -33,16 +33,14 @@
 
     <ion-row>
       <ion-col size="12" class="ion-text-center img-container">
-        <ion-slides pager="true"  [options]="{ slidesPerView: 1, loop: true }">
-          <ion-slide class="slider ion-justify-content-center ion-align-items-center" *ngFor="let image of images">        
-            <ion-thumbnail>
+        <swiper-container [pager]="true" [slidesPerView]="1" [loop]="true">
+          <swiper-slide *ngFor="let image of images"> <!-- class="slider ion-justify-content-center ion-align-items-center"  -->
             <img
               alt="Silhouette of mountains"
               [src]="image"
             />
-          </ion-thumbnail>
-        </ion-slide>
-        </ion-slides>
+        </swiper-slide>
+        </swiper-container>
         <!-- <ion-thumbnail>
           <img
             alt="Silhouette of mountains"
