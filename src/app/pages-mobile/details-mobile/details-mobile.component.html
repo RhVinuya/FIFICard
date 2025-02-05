@@ -26,7 +26,7 @@
             <p class="text-purple my-0"><b> {{getPrice()}}</b></p>
             <p class="text-gray mx-2 my-0" *ngIf="isPersonalize">-</p>
             <p class="text-blue my-0" *ngIf="isPersonalize"><b>{{getPersonalizePrice()}}</b></p>
-        </div>
+          </div>
         </div>
       </ion-col>
     </ion-row>
@@ -34,12 +34,10 @@
     <ion-row>
       <ion-col size="12" class="ion-text-center img-container">
         <swiper-container [pager]="true" [slidesPerView]="1" [loop]="true">
-          <swiper-slide *ngFor="let image of images"> <!-- class="slider ion-justify-content-center ion-align-items-center"  -->
-            <img
-              alt="Silhouette of mountains"
-              [src]="image"
-            />
-        </swiper-slide>
+          <swiper-slide *ngFor="let image of images">
+            <!-- class="slider ion-justify-content-center ion-align-items-center"  -->
+            <img alt="Silhouette of mountains" [src]="image" />
+          </swiper-slide>
         </swiper-container>
         <!-- <ion-thumbnail>
           <img
@@ -49,21 +47,22 @@
         </ion-thumbnail> -->
       </ion-col>
     </ion-row>
+    <br/>
+    <ion-row class="card-message">
+     
+      <ion-col class="p-0">
+        <span class="my-rec">Recipient:</span>
+        <span class="recipients ion-justify-content-center ion-align-items-center"
+          *ngFor="let recipient of model.recipients">
+          <ion-badge>{{recipient}}</ion-badge>
+        </span>
+      </ion-col>
+    </ion-row>
 
     <ion-row class="card-message">
-      <ion-item lines="none">
-        <h5 slot="start">Recipient:</h5>  
-        <div class="recipients ion-justify-content-center ion-align-items-center" *ngFor="let recipient of model.recipients">
-          <ion-badge>{{recipient}}</ion-badge>
-        </div>
-      </ion-item>
-      
-    </ion-row>
-
-    <ion-row class="card-message" >
       <h5>Details: </h5>
     </ion-row>
-    <ion-row class="card-message" >
+    <ion-row class="card-message">
       <p *ngIf="type == 'cards'">
         {{ getMessage('short') }}
       </p>
@@ -75,22 +74,20 @@
     <div *ngIf="type=='cards' && showPersonalize">
       <ion-row>
         <ion-col size="12">
+          
           <div *ngFor="let data of personalize!.data">
-            <div *ngFor="let detail of data.details" 
-              class="text-area"
-            >
-              <app-personalize-textarea-mobile
-                [detail]="detail"
-                (onChange)="changeTextarea($event)"
-              ></app-personalize-textarea-mobile>
+            <div *ngFor="let detail of data.details" class="text-area">
+              <app-personalize-textarea-mobile [detail]="detail"
+                (onChange)="changeTextarea($event)"></app-personalize-textarea-mobile>
             </div>
           </div>
+     
         </ion-col>
       </ion-row>
     </div>
 
     <!-- {{text !== '' ? text : placeholder}} -->
-    
+
     <!-- [style.top.px]="detail.top" 
     [style.left.px]="detail.left" 
     [style.width.px]="detail.width" 
@@ -187,13 +184,16 @@
     <ion-row>
       <ion-col size="12" class="btn-container ion-align-items-center">
         <div *ngIf="isBundle">
-          <ion-button  fill="outline" size="small" class="me-1 mb-2" *ngFor="let bundle of bundles" (click)="onClickBundle(bundle)">
-              Bundle of <b>{{bundle.countDisplay()}} pcs</b> for <b>{{bundle.priceDisplay()}}</b>
+          <ion-button fill="outline" size="small" class="me-1 mb-2" *ngFor="let bundle of bundles"
+            (click)="onClickBundle(bundle)">
+            Bundle of <b>{{bundle.countDisplay()}} pcs</b> for <b>{{bundle.priceDisplay()}}</b>
           </ion-button>
         </div>
-        <app-add-cart-button-mobile class="me-2" [type]="itemType" [item]="iModel" *ngIf="isAddToCart && !showPersonalize"></app-add-cart-button-mobile>
-        <ion-button *ngIf="showPersonalize" (click)="addToCart()">Add To Cart</ion-button>
-        <ion-button *ngIf="isPersonalize" (click)="addPersonalize()" >{{ !showPersonalize ? "Personalize" : "Cancel"}}</ion-button>
+        <app-add-cart-button-mobile class="me-2" [type]="itemType" [item]="iModel"
+          *ngIf="isAddToCart && !showPersonalize"></app-add-cart-button-mobile>
+        <ion-button *ngIf="showPersonalize" class="cuz-button-personalize" (click)="addToCart()"> Add To Cart</ion-button>
+        <ion-button *ngIf="isPersonalize" class="cuz-button-personalize" (click)="addPersonalize()">{{ !showPersonalize ? "Personalize" :
+          "Cancel"}}</ion-button>
       </ion-col>
     </ion-row>
   </ion-grid>
