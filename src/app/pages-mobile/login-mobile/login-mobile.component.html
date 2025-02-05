@@ -71,12 +71,12 @@
       {{ processing ? "LOGGING IN..." : "LOG IN" }}
     </ion-button>
   </ion-row>
-
+  <br/>
   <ion-row class="ion-justify-content-center">
     <div class="ion-text-center lbl-forgot">
       <label>
         Doesn't have an account yet?
-        <a href="/register">Tap here to register</a>
+        <a href="/register"><u>Tap here to register</u></a>
       </label>
     </div>
   </ion-row>
@@ -87,12 +87,12 @@
       (click)="onGoogleClick()"
     ></ion-img>
   </ion-row>
-
+<br/>
     <!-- <ion-img src="/assets/images/facebook_logo.png"></ion-img> -->
   <div class="ion-text-center lbl-forgot">
     <label>
       Forgot password?
-      <a (click)="onResetPassword()">Tap here to reset.</a>
+      <a (click)="onResetPassword()"><u>Tap here to reset</u></a>
     </label>
   </div>
 </ion-grid>
