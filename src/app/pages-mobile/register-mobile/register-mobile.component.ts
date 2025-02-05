@@ -5,6 +5,7 @@ import { ToastController } from '@ionic/angular';
 import { INewUser } from 'src/app/new-models/new-user';
 import { NewAccountService } from 'src/app/new-services/new-account.service';
 import { NewStorageService } from 'src/app/new-services/new-storage.service';
+import { OverlayEventDetail } from '@ionic/core/components';
 
 @Component({
   selector: 'app-register-mobile',
@@ -20,6 +21,7 @@ export class RegisterMobileComponent implements OnInit {
   processing: boolean = false;
   showPassword:boolean = false;
   showConfirmPassword: boolean = false;
+  isModalOpen: boolean = false;
 
   accountService: NewAccountService;
   storageService: NewStorageService;
@@ -211,6 +213,21 @@ export class RegisterMobileComponent implements OnInit {
     }).catch(err => {
       this.processing = false;
     })
+  }
+
+  onWillDismiss(event: Event) {
+    const ev = event as CustomEvent<OverlayEventDetail<string>>;
+    if (ev.detail.role === 'confirm') {
+      //this.message = `Hello, ${event.detail.data}!`;
+    }
+  }
+
+  setOpen() {
+    this.isModalOpen = !!!this.isModalOpen;
+  }
+  
+  cancel() {
+    this.isModalOpen = !!!this.isModalOpen;
   }
 
 }

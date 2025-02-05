@@ -24,8 +24,11 @@
         <ion-item class="input" fill="solid">
           <ion-input formControlName="email" placeholder="Email"></ion-input>
           <ion-note
-            *ngIf="form.controls.email.getError('notfound')"
-            slot="error"
+            *ngIf="
+              form.controls.password.dirty &&
+              form.controls.email.getError('notfound')"
+            color="danger"
+            slot="helper"
             >Email doesn't exist!</ion-note
           >
         </ion-item>
@@ -45,12 +48,13 @@
             slot="end"
             (click)="togglePasswordVisibility()"
           ></ion-icon>
-          <ion-note
-            *ngIf="form.controls.password.getError('failed')"
-            slot="error"
-            >Incorrect Password!</ion-note
-          >
-        </ion-item>
+          <ion-note *ngIf="
+                    form.controls.password.dirty &&
+                    form.controls.password.getError('failed')"
+            color="danger"
+            slot="helper"
+            >Incorrect Password!</ion-note>
+        </ion-item><!--  -->
       </ion-col>
     </form>
   </ion-row>
