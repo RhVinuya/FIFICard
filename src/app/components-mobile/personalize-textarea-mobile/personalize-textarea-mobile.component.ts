@@ -11,6 +11,7 @@ import { environment } from 'src/environments/environment';
 export class PersonalizeTextareaMobileComponent implements OnInit {
 
   @Input() detail : INewPersonalizeDetail;
+  @Input() fieldNumber : number;
   @Output() onChange: EventEmitter<INewPersonalizeDetail> = new EventEmitter();
 
   text: string;
@@ -27,12 +28,12 @@ export class PersonalizeTextareaMobileComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.placeholder = 'Field #' + this.fieldNumber + ': Add your greetings/message';
     this.text = this.detail.text;
-    this.font = this.detail.font;
-    this.color = this.detail.color
-    this.size = this.detail.size;
+    this.font = 'Playball';
+    this.color = '#800000';
+    this.size = 16;
     this.alignment = this.detail.alignment;
-    console.log(this.detail);
   }
 
   onBlur(event: FocusEvent): void {

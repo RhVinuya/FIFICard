@@ -76,8 +76,8 @@
         <ion-col size="12">
           
           <div *ngFor="let data of personalize!.data">
-            <div *ngFor="let detail of data.details" class="text-area">
-              <app-personalize-textarea-mobile [detail]="detail"
+            <div *ngFor="let detail of data.details; let i = index" class="text-area">
+              <app-personalize-textarea-mobile [detail]="detail" [fieldNumber]="i + 1"
                 (onChange)="changeTextarea($event)"></app-personalize-textarea-mobile>
             </div>
           </div>
