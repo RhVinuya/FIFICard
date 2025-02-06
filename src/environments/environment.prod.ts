@@ -55,6 +55,7 @@ export const environment = {
     "New year",
     "Valentines",
     "Easter",
+    "Funeral Thank You"
   ],
   recipients: [
     {
