@@ -1,21 +1,31 @@
 export const environment = {
   production: true,
+  paymentkeys: {
+    paymongo: {
+      publicKey: "greetings_paymongo_publickey_production",
+      secretKey: "greetings_paymongo_secretkey_production"
+    },
+    stripe: {
+      publicKey: "greetings_stripe_publickey_production",
+      secretKey: "greetings_stripe_secretkey_production"
+    }
+  },
   paypalCurrency: 'PHP',
   paypalClientId: 'AQW1wB3h__RDiIOYHpk_1QLpcrPT5sH0GBWemRc3ycpVohV-dqzNwWtSDuvsaUcVH3Ipam9zwYlNy_nB',
   stripe: {
     enable: true,
     // publish: "x", 
     // pass: "x", 
-    publish: "pk_live_51O0OjMJ9Lk6Ni3t7gFC52OLkrXRVtzJnXnxNoIS9A9cld4N1yceb9HQaENZ5V5XZfr0l6RWU8EzqvOzoRyfj31Nk00ZInUVWbD",
-    pass: "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",
+    //publish: "pk_live_51O0OjMJ9Lk6Ni3t7gFC52OLkrXRVtzJnXnxNoIS9A9cld4N1yceb9HQaENZ5V5XZfr0l6RWU8EzqvOzoRyfj31Nk00ZInUVWbD",
+    //pass: "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",
     //publishKey: "pk_live_51O0OjMJ9Lk6Ni3t7gFC52OLkrXRVtzJnXnxNoIS9A9cld4N1yceb9HQaENZ5V5XZfr0l6RWU8EzqvOzoRyfj31Nk00ZInUVWbD",
     //secretKey: "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",
     live: true
   },
   paymongo: {
     enable: false,
-    publicKey: "pk_test_mn35mjjh1a15atCp4pLBdoDD",
-    secretKey: "sk_test_EZAHKnEJPJucTkS4V5geZeMM",
+    //publicKey: "pk_test_mn35mjjh1a15atCp4pLBdoDD",
+    //secretKey: "sk_test_EZAHKnEJPJucTkS4V5geZeMM",
     live: true
   },
   firebase: {

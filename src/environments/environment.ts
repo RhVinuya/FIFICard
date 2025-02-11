@@ -1,17 +1,27 @@
 export const environment = {
   production: false,
+  paymentkeys: {
+    paymongo: {
+      publicKey: "greetings_paymongo_publickey_development",
+      secretKey: "greetings_paymongo_secretkey_development"
+    },
+    stripe: {
+      publicKey: "greetings_stripe_publickey_development",
+      secretKey: "greetings_stripe_secretkey_development"
+    }
+  },
   paypalCurrency: 'PHP',
   paypalClientId: 'AQW1wB3h__RDiIOYHpk_1QLpcrPT5sH0GBWemRc3ycpVohV-dqzNwWtSDuvsaUcVH3Ipam9zwYlNy_nB',
   stripe: {
     enable: true,
-    publish: "pk_test_04NqaZryqxUuqCsGYdsSAXgT00Ro4Gy5kx",
-    pass: "sk_test_51FPpNZCwtCGHnjTln7DmBVNvoaZOEVW1VexB4NIt9C0rYqT2SthuqbSjbUM8RYgYnyhatDEJZcVzKAyF4Kz6FFCy00WCZLSbOz",
+    //publish: "pk_test_04NqaZryqxUuqCsGYdsSAXgT00Ro4Gy5kx",
+    //pass: "sk_test_51FPpNZCwtCGHnjTln7DmBVNvoaZOEVW1VexB4NIt9C0rYqT2SthuqbSjbUM8RYgYnyhatDEJZcVzKAyF4Kz6FFCy00WCZLSbOz",
     live: false
   },
   paymongo: {
     enable: false,
-    publicKey: "pk_test_mn35mjjh1a15atCp4pLBdoDD",
-    secretKey: "sk_test_EZAHKnEJPJucTkS4V5geZeMM",
+    //publicKey: "pk_test_mn35mjjh1a15atCp4pLBdoDD",
+    //secretKey: "sk_test_EZAHKnEJPJucTkS4V5geZeMM",
     live: false
   },
   firebase: {
