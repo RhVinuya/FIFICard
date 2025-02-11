@@ -18,6 +18,7 @@ import { PriceService } from 'src/app/services/price.service';
 import { EmailService } from 'src/app/services/email.service';
 import { environment } from 'src/environments/environment';
 import { OrderECard } from 'src/app/models/order-ecard';
+import { IPaymentKeys, NewConfigService } from 'src/app/new-services/new-config.service';
 
 
 @Component({
@@ -45,6 +46,7 @@ export class CartTotalComponent implements OnInit {
   specialCodeService: SpecialCodeService;
   modalService: NgbModal;
   alertController: AlertController;
+  configService: NewConfigService;
 
   constructor(
     _priceService: PriceService,
@@ -57,7 +59,8 @@ export class CartTotalComponent implements OnInit {
     _storageService: StorageService,
     _specialCodeService: SpecialCodeService,
     _modalService: NgbModal,
-    _alertController: AlertController
+    _alertController: AlertController,
+    _configService: NewConfigService
   ) {
     this.priceService = _priceService;
     this.cardService = _cardService;
@@ -70,6 +73,7 @@ export class CartTotalComponent implements OnInit {
     this.specialCodeService = _specialCodeService;
     this.modalService = _modalService;
     this.alertController = _alertController;
+    this.configService = _configService;
   }
 
   allOrders: any[] = [];
@@ -331,8 +335,8 @@ export class CartTotalComponent implements OnInit {
     this.stripeProcess = true;
 
     this.storageService.saveItems(this.selected);
-
-    const stripe = require('stripe')(environment.stripe.pass);
+    let keys: IPaymentKeys = await this.configService.getStripeKeys();
+    const stripe = require('stripe')(keys.secretKey);
     let lineitems: any[] = [];
 
     for await (const item of this.selected) {
