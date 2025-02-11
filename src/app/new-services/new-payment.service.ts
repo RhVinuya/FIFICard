@@ -339,11 +339,12 @@ export class NewPaymentService {
   }
 
   payMongoConfirm(id: string): Promise<INewPaymongoDetails | undefined> {
-    return new Promise((resolve) => {
+    return new Promise(async (resolve) => {
+      let keys: IPaymentKeys = await this.configService.getPaymongoKeys();
       const headers = {
         accept: 'application/json',
         'content-type': 'application/json',
-        authorization: 'Basic =' + window.btoa(environment.paymongo.secretKey + ":" + environment.paymongo.publicKey)
+        authorization: 'Basic =' +  window.btoa(keys.secretKey + ":" + keys.publicKey)
       }
 
       let response = this.http.get('https://api.paymongo.com/v1/checkout_sessions/' + id, { 'headers': headers });
