@@ -66,13 +66,13 @@ ion-thumbnail {
 }
 
 .card-message h5 {
-  font-size: 16px;
+  font-size: 2rem;
   font-weight: bold;
   line-height: 0;
 }
 
 .card-message p {
-  font-size: 16px;
+  font-size: 1.5rem;
   margin-bottom: 10px;
   white-space: pre-line;
   line-height: 1;
@@ -208,6 +208,7 @@ swiper-slide img {
 }
 
 .my-rec {
+  font-size: 2rem;
   position: relative;
   top: -6px;
   padding-right: 10px;
