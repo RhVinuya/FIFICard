@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppTheme.NoActionBarLaunch" parent="AppTheme.NoActionBar">
+        <item name="android:background">@drawable/splash</item>
+        <item name="android:icon">@drawable/ic_launcher</item>
+        <item name="android:roundIcon">@drawable/ic_launcher_round</item>
+        <item name="android:windowBackground">@drawable/splash</item>
+    </style>
+</resources>

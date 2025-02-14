@@ -59,23 +59,21 @@ export class RegisterMobileComponent implements OnInit {
     if (this.form.invalid) return;
     this.processing = true;
 
+    console.log(this.form.controls.password);
     this.form.controls.password.setErrors(null);
     this.form.controls.confirm.setErrors(null);
     this.form.controls.terms.setErrors(null);
     this.form.controls.email.setErrors(null);
 
     if (this.form.controls.password.value !== this.form.controls.confirm.value) {
-      this.form.controls.password.setErrors({ 'mismatch': true });
       this.form.controls.confirm.setErrors({ 'mismatch': true });
       this.processing = false;
-
       return;
     }
 
     if (Boolean(this.form.controls.terms.value) !== true) {
       this.form.controls.terms.setErrors({ 'on': true });
       this.processing = false;
-
       return;
     }
 
@@ -105,8 +103,6 @@ export class RegisterMobileComponent implements OnInit {
     await this.accountService.setUser(user);
     this.form.reset();
     this.form.markAsPristine();
-    this.submitted = false;
-    this.processing = false;
     this.storageService.createUser(user);
 
     const toast = await this.toastController.create({
@@ -115,6 +111,8 @@ export class RegisterMobileComponent implements OnInit {
       position: 'top',
     });
     await toast.present();
+    this.submitted = false;
+    this.processing = false;
     window.location.href = "/profile/details";
   }
 

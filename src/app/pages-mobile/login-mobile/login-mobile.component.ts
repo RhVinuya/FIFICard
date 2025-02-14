@@ -99,13 +99,19 @@ export class LoginMobileComponent implements OnInit {
       if (this.form.controls.remember.value === true) this.storageService.createRemember(email, password)
       else this.storageService.clearRemember();
 
-      this.form.reset();
-      this.form.markAsPristine();
-      this.submitted = false;
-      this.processing = false;
 
       if (user) {
         this.storageService.createUser(user);
+        const toast = await this.toastController.create({
+          message: 'Welcome ' + (user.firstname ? user.firstname : user.email),
+          duration: 1500,
+          position: 'top',
+        });
+        await toast.present();
+        this.submitted = false;
+        this.processing = false;
+        this.form.reset();
+        this.form.markAsPristine();
         window.location.href = "/cards";
       }
     }).catch(err => {
