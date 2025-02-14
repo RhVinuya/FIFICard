@@ -4,6 +4,7 @@ import { LoadingController } from '@ionic/angular';
 import { error } from 'console';
 import { OrderECard } from 'src/app/models/order-ecard';
 import { Payment, StripeDetails } from 'src/app/models/payment';
+import { IPaymentKeys, NewConfigService } from 'src/app/new-services/new-config.service';
 import { CardService } from 'src/app/services/card.service';
 import { EmailService } from 'src/app/services/email.service';
 import { OrderService } from 'src/app/services/order.service';
@@ -27,6 +28,7 @@ export class CartConfirmComponent implements OnInit {
   cardService: CardService;
   orderService: OrderService;
   emailService: EmailService;
+  configService: NewConfigService;
 
   constructor(
     _loadingController: LoadingController,
@@ -36,7 +38,8 @@ export class CartConfirmComponent implements OnInit {
     _userService: UserService,
     _cardService: CardService,
     _orderService: OrderService,
-    _emailService: EmailService
+    _emailService: EmailService,
+    _configService: NewConfigService
   ) { 
     this.loadingController = _loadingController;
     this.activateRoute = _activateRoute;
@@ -46,6 +49,7 @@ export class CartConfirmComponent implements OnInit {
     this.cardService = _cardService;
     this.orderService = _orderService;
     this.emailService = _emailService;
+    this.configService = _configService;
   }
 
   loading: HTMLIonLoadingElement;
@@ -77,7 +81,10 @@ export class CartConfirmComponent implements OnInit {
       let selected: any[] = this.storageService.getItems();
       let status = await this.paymentService.getInitial();
 
-      const stripe = require('stripe')(environment.stripe.pass);
+
+      let keys: IPaymentKeys = await this.configService.getStripeKeys();
+
+      const stripe = require('stripe')(keys.secretKey);
       const session = await stripe.checkout.sessions.retrieve(id);
       const paymentIntent = await stripe.paymentIntents.retrieve(session.payment_intent);
       const paymentMethod = await stripe.paymentMethods.retrieve(paymentIntent.payment_method);

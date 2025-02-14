@@ -254,6 +254,8 @@ import { CheckoutGcashMobileComponent } from "./pages-mobile/checkout-mobile/che
 import { CheckoutItemMobileComponent } from "./pages-mobile/checkout-mobile/checkout-item-mobile/checkout-item-mobile.component";
 import { CheckoutRecipientsMobileComponent } from "./pages-mobile/checkout-mobile/checkout-recipients-mobile/checkout-recipients-mobile.component";
 import { BundlesMobileComponent } from './pages-mobile/bundles-mobile/bundles-mobile.component';
+import { getRemoteConfig, provideRemoteConfig } from '@angular/fire/remote-config';
+import { fetchAndActivate } from 'firebase/remote-config';
 
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { WishIndicatorMobileComponent } from './components-mobile/wish-indicator-mobile/wish-indicator-mobile.component';
@@ -520,6 +522,12 @@ import { PersonalizeTextareaMobileComponent } from './components-mobile/personal
     provideFirestore(() => getFirestore()),
     provideStorage(() => getStorage()),
     provideAuth(() => getAuth()),
+    provideRemoteConfig(() => {
+      const remoteConfig = getRemoteConfig();
+      remoteConfig.settings.minimumFetchIntervalMillis = 1000;
+      fetchAndActivate(remoteConfig);
+      return remoteConfig;
+    }),
     BrowserAnimationsModule,
     MatCardModule,
     MatIconModule,

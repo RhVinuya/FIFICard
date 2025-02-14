@@ -2,7 +2,7 @@ h6 {
     margin-top: 10px;
 }
 
-.main{
+.main {
     width: 100%;
     min-height: 100px;
     display: flex;
@@ -15,7 +15,7 @@ h6 {
     width: 40px;
 }
 
-.main .action button{
+.main .action button {
     font-size: 30px;
     color: #bb5ed3;
     background: none;
@@ -25,7 +25,7 @@ h6 {
     opacity: 0.5;
 }
 
-.main .content{
+.main .content {
     width: calc(100% - 40px - 40px);
 }
 
@@ -39,4 +39,8 @@ h6 {
 
 .full-width {
     width: 100% !important;
+}
+
+.description {
+    height: 35px;
 }

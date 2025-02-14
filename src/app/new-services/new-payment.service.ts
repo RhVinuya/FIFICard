@@ -13,6 +13,7 @@ import { NewGiftService } from './new-gift.service';
 import { NewLocationService } from './new-location.service';
 import { Provider } from '../new-models/new-enum';
 import { Platform } from '@ionic/angular';
+import { IPaymentKeys, NewConfigService } from './new-config.service';
 
 @Injectable({
   providedIn: 'root'
@@ -26,6 +27,7 @@ export class NewPaymentService {
   giftService: NewGiftService;
   fileService: NewFileService;
   http: HttpClient;
+  configService: NewConfigService;
 
   isMobile: boolean = false;
 
@@ -37,7 +39,8 @@ export class NewPaymentService {
     _postcardService: NewPostcardService,
     _giftService: NewGiftService,
     _fileService: NewFileService,
-    _http: HttpClient
+    _http: HttpClient,
+    _configService: NewConfigService
   ) {
 
     this.isMobile =  platform.is("capacitor") || platform.is("mobileweb");
@@ -49,6 +52,8 @@ export class NewPaymentService {
     this.giftService = _giftService;
     this.fileService = _fileService;
     this.http = _http;
+
+    this.configService = _configService;
   }
 
   getSpecialCodes(): Promise<INewSpecialCode[]> {
@@ -119,8 +124,9 @@ export class NewPaymentService {
 
   stripeCheckout(payment: INewPayment, iUser: INewUser): Promise<string> {
     return new Promise(async (resolve) => {
+      let keys: IPaymentKeys = await this.configService.getStripeKeys();
       let locationService: NewLocationService = new NewLocationService();
-      const stripe = require('stripe')(environment.stripe.pass);
+      const stripe = require('stripe')(keys.secretKey);
       let lineitems: any[] = [];
 
       for await (const item of payment.items) {
@@ -218,7 +224,8 @@ export class NewPaymentService {
 
   stripeConfirm(id: string): Promise<INewStripeDetails> {
     return new Promise(async (resolve) => {
-      const stripe = require('stripe')(environment.stripe.pass);
+      let keys: IPaymentKeys = await this.configService.getStripeKeys();
+      const stripe = require('stripe')(keys.secretKey);
       const session = await stripe.checkout.sessions.retrieve(id);
       const paymentIntent = await stripe.paymentIntents.retrieve(session.payment_intent);
       const paymentMethod = await stripe.paymentMethods.retrieve(paymentIntent.payment_method);
@@ -237,7 +244,7 @@ export class NewPaymentService {
   payMongoCheckout(type: 'gcash' | 'paymaya', payment: INewPayment): Promise<any> {
     return new Promise(async (resolve) => {
       let locationService: NewLocationService = new NewLocationService();
-
+      let keys: IPaymentKeys = await this.configService.getPaymongoKeys();
       let lineitems: any[] = [];
 
       for await (const item of payment.items) {
@@ -303,7 +310,7 @@ export class NewPaymentService {
       const headers = {
         accept: 'application/json',
         'content-type': 'application/json',
-        authorization: 'Basic =' + window.btoa(environment.paymongo.secretKey + ":" + environment.paymongo.publicKey)
+        authorization: 'Basic =' + window.btoa(keys.secretKey + ":" + keys.publicKey)
       }
 
       const body = JSON.stringify({
@@ -332,11 +339,12 @@ export class NewPaymentService {
   }
 
   payMongoConfirm(id: string): Promise<INewPaymongoDetails | undefined> {
-    return new Promise((resolve) => {
+    return new Promise(async (resolve) => {
+      let keys: IPaymentKeys = await this.configService.getPaymongoKeys();
       const headers = {
         accept: 'application/json',
         'content-type': 'application/json',
-        authorization: 'Basic =' + window.btoa(environment.paymongo.secretKey + ":" + environment.paymongo.publicKey)
+        authorization: 'Basic =' +  window.btoa(keys.secretKey + ":" + keys.publicKey)
       }
 
       let response = this.http.get('https://api.paymongo.com/v1/checkout_sessions/' + id, { 'headers': headers });
