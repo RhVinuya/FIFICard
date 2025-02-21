@@ -9,6 +9,8 @@ import { INewGift } from 'src/app/new-models/new-gift';
 import { IModelType, ItemType } from 'src/app/new-models/new-enum';
 import { INewDiscount } from 'src/app/new-models/new-discount';
 import { environment } from "src/environments/environment";
+import { NewConfigService } from 'src/app/new-services/new-config.service';
+import { IConfig } from 'src/app/new-models/new-config';
 
 @Component({
   selector: 'app-new-add-cart-button',
@@ -24,12 +26,16 @@ export class NewAddCartButtonComponent implements OnInit {
   offCanvas: NgbOffcanvas;
   cartService: NewCartService;
   toastController: ToastController;
+  configService: NewConfigService;
+  config: IConfig;
 
   constructor(
     _offCanvas: NgbOffcanvas,
     _cartService: NewCartService,
-    _toastController: ToastController
-  ) {
+    _toastController: ToastController,
+    _configService: NewConfigService,
+  ) { 
+    this.configService = _configService;
     this.offCanvas = _offCanvas;
     this.cartService = _cartService;
     this.toastController = _toastController
@@ -45,9 +51,11 @@ export class NewAddCartButtonComponent implements OnInit {
   discount: INewDiscount | undefined;
   discountedPrice: number = 0;
 
-  ngOnInit(): void {
+  async ngOnInit() {
+    this.config = await this.configService.get();
+
     if (this.type === 'card') {
-      let item = new NewCard(this.item as INewCard);
+      let item = new NewCard(this.item as INewCard, this.config);
 
       this.price = (this.item as INewCard).price;
       this.sgprice = (this.item as INewCard).sgprice;
@@ -59,7 +67,7 @@ export class NewAddCartButtonComponent implements OnInit {
         discounts = discounts.filter(x => x.active === true &&  x.event === item.event);
         this.discount = discounts[0];
         this.isDiscounted = item.isDiscounted();
-        this.discountedPrice = new NewCard(this.item as INewCard).getDiscountedPrice();
+        this.discountedPrice = new NewCard(this.item as INewCard,this.config).getDiscountedPrice();
       }
 
     }

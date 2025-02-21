@@ -21,6 +21,8 @@ import { INewCard, INewCardImage, INewRating, NewCard } from 'src/app/new-models
 import { INewPostcardBundle, NewPostcard, NewPostcardBundle } from 'src/app/new-models/new-postcard';
 import { NewInYourCartComponent } from 'src/app/new-components/new-in-your-cart/new-in-your-cart.component';
 import { NewVideoPlayerComponent } from 'src/app/new-components/new-video-player/new-video-player.component';
+import { IConfig } from 'src/app/new-models/new-config';
+import { NewConfigService } from 'src/app/new-services/new-config.service';
 
 register();
 
@@ -34,6 +36,7 @@ export class DetailsMobileComponent implements OnInit {
   
   swiperModules = [IonicSlides];
 
+  isDiscounted = false;
   showPersonalize = false;
   personalize: INewPersonalize | undefined = undefined;
   personalizeData: INewPersonalizeData[] = [];
@@ -47,6 +50,8 @@ export class DetailsMobileComponent implements OnInit {
   cartService: NewCartService;
   toastController: ToastController;
   personalizeService: NewPersonalizeService;
+  configService: NewConfigService;
+  config: IConfig;
 
   form = new FormGroup({
     recipient: new FormControl<string>('', [Validators.required]),
@@ -69,7 +74,9 @@ export class DetailsMobileComponent implements OnInit {
     _toastController: ToastController,
     public router: Router,
     private location: Location,
-  ) {
+    _configService: NewConfigService,
+  ) { 
+    this.configService = _configService;
     this.activateRoute = _activateRoute;
     this.cardService = _cardService;
     this.stickerService = _stickerService;
@@ -99,7 +106,9 @@ export class DetailsMobileComponent implements OnInit {
   isPoetry: boolean = false;
   isRegular: boolean = false;
 
-  ngOnInit(): void {
+  async ngOnInit() {
+    this.config = await this.configService.get();
+
     this.activateRoute.params.subscribe(params => {
       this.loading = true;
       this.id = params['id'];
@@ -107,13 +116,15 @@ export class DetailsMobileComponent implements OnInit {
       console.log('details');
       console.log(this.type);
       this.bundles = [];
+      this.personalizeData = [];
 
       if (this.type === 'cards') {
         this.itemType = "card";
         this.cardService.get(this.id).then(async value => {
           this.isAddToCart = true;
           let images = await this.cardService.getImages(this.id);
-          this.model = new NewCard(value);
+          this.model = new NewCard(value, this.config);
+          this.isDiscounted = (this.model as NewCard).isDiscounted();
           this.isPersonalize = this.model instanceof NewCard ? this.model.signAndSend : false;
           this.iModel = value;
           this.loadImages(images);
@@ -197,10 +208,18 @@ export class DetailsMobileComponent implements OnInit {
     else return '';
   }
 
-  getPersonalizePrice(){
-    if (this.type === 'cards' && this.isPersonalize) return (this.model as NewCard).getPersonalizePriceDisplay();
+  getPersonalizePrice(discounted: boolean = false){
+    if (this.type === 'cards' && this.isPersonalize) return (this.model as NewCard).getPersonalizePriceDisplay(discounted);
     else return ''
   }
+
+  getOriginalPrice() {
+    if (this.type === 'cards') return (this.model as NewCard).originalPriceDisplay();
+    else if (this.type === 'stickers') return (this.model as NewSticker);
+    else if (this.type === 'gifts') return (this.model as NewGift);
+    else return '';
+  }
+
 
   async onClickBundle(bundle: INewPostcardBundle) {
     this.cartService.add({

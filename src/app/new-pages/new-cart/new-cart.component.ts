@@ -5,10 +5,12 @@ import { Subscription, timer } from 'rxjs';
 import { NewLoginComponent } from 'src/app/new-components/new-login/new-login.component';
 import { INewCard, NewCard } from 'src/app/new-models/new-card';
 import { INewCart } from 'src/app/new-models/new-cart';
+import { IConfig } from 'src/app/new-models/new-config';
 import { LocationType, StorageEnum } from 'src/app/new-models/new-enum';
 import { INewUser } from 'src/app/new-models/new-user';
 import { NewCardService } from 'src/app/new-services/new-card.service';
 import { NewCartService } from 'src/app/new-services/new-cart.service';
+import { NewConfigService } from 'src/app/new-services/new-config.service';
 import { NewLocationService } from 'src/app/new-services/new-location.service';
 import { NewStorageService } from 'src/app/new-services/new-storage.service';
 
@@ -26,6 +28,8 @@ export class NewCartComponent implements OnInit, OnDestroy {
   router: Router;
   ref: ChangeDetectorRef;
   cardService: NewCardService;
+  configService: NewConfigService;
+  config: IConfig;
 
   constructor(
     _cardService: NewCardService,
@@ -34,8 +38,10 @@ export class NewCartComponent implements OnInit, OnDestroy {
     _locationService: NewLocationService,
     _modalService: NgbModal,
     _router: Router,
-    _ref: ChangeDetectorRef
-  ) {
+    _ref: ChangeDetectorRef,
+    _configService: NewConfigService,
+  ) { 
+    this.configService = _configService;
     this.cardService = _cardService;
     this.cartService = _cartService;
     this.storageService = _storageService;
@@ -70,6 +76,7 @@ export class NewCartComponent implements OnInit, OnDestroy {
   model: NewCard;
 
   async ngOnInit(): Promise<void> {
+    this.config = await this.configService.get();
     this.location = this.locationService.getlocation();
 
     this.subs = timer(100, 500).subscribe(time => {
@@ -99,7 +106,7 @@ export class NewCartComponent implements OnInit, OnDestroy {
       if (cart.mark === true) {
         if (cart.type === 'card') {
           let iCard = await this.cardService.get(cart.itemId);
-          this.model = new NewCard(iCard as INewCard);
+          this.model = new NewCard(iCard as INewCard, this.config);
           
           let isDiscounted = (this.model as NewCard).isDiscounted();
           let discountedPrice = 0;

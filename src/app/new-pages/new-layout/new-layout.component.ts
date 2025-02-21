@@ -48,7 +48,6 @@ export class NewLayoutComponent implements OnInit {
     this.locationService = _locationService;
     this.cartService = _cartService;
     this.wishlistService = _wishlistService;
-    this.modalService = _modalService;
     this.adsService = _adsService;
   }
 
@@ -81,12 +80,6 @@ export class NewLayoutComponent implements OnInit {
       this.user = value === undefined ? undefined : value;
     });
 
-    if (this.adsService.showSubject.getValue() === false && environment.ads.flash) {
-      let reference = this.modalService.open(NewAdsModalComponent, { animation: true, size: 'xl', centered: true });
-      reference.result.then(_ => {
-        this.adsService.showSubject.next(true);
-      })
-    }
   }
 
   synchronizeCart(user: INewUser) {

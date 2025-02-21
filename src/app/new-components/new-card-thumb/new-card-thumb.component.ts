@@ -1,7 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { INewCard, INewRating, NewCard } from 'src/app/new-models/new-card';
+import { IConfig } from 'src/app/new-models/new-config';
 import { NewCardService } from 'src/app/new-services/new-card.service';
+import { NewConfigService } from 'src/app/new-services/new-config.service';
 import { NewFileService } from 'src/app/new-services/new-file.service';
 import { NewStorageService } from 'src/app/new-services/new-storage.service';
 
@@ -17,13 +19,17 @@ export class NewCardThumbComponent implements OnInit {
   cardService: NewCardService;
   fileService: NewFileService;
   router: Router;
+  configService: NewConfigService;
+  config: IConfig;
 
   constructor(
     _storageService: NewStorageService,
     _cardService: NewCardService,
     _fileService: NewFileService,
-    _router: Router
+    _router: Router,
+    _configService: NewConfigService,
   ) { 
+    this.configService = _configService;
     this.storageService = _storageService;
     this.cardService = _cardService;
     this.fileService = _fileService;
@@ -37,9 +43,10 @@ export class NewCardThumbComponent implements OnInit {
   isFree: boolean = false;
 
   async ngOnInit(): Promise<void> {
+    this.config = await this.configService.get();
     this.storageService.saveItemDetails(this.card);
     
-    this._card = new NewCard(this.card);
+    this._card = new NewCard(this.card, this.config);
     
     let cardImages = await this.cardService.getImages(this._card.id);
     if (cardImages.length > 0) {

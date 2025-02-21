@@ -700,8 +700,9 @@ const mobileRoutes: Routes = [
 })
 export class AppRoutingModule {
   constructor(platform: Platform, router: Router) {
-    let isMobile: boolean =
-      platform.is("capacitor") || platform.is("mobileweb");
+
+    let isMobile: boolean = platform.is("capacitor") || platform.is("mobileweb");
+
     if (isMobile) {
       router.resetConfig(mobileRoutes)
     };

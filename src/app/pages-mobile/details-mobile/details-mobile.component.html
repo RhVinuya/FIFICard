@@ -25,7 +25,12 @@
             <p class="text-black me-1 ms-0 my-0"><b>Price </b></p>
             <p class="text-purple my-0"><b> {{getPrice()}}</b></p>
             <p class="text-gray mx-2 my-0" *ngIf="isPersonalize">-</p>
-            <p class="text-blue my-0" *ngIf="isPersonalize"><b>{{getPersonalizePrice()}}</b></p>
+            <p class="text-blue my-0" *ngIf="isPersonalize"><b>{{getPersonalizePrice(isDiscounted)}}</b></p>
+          </div>
+          <div class="prices" *ngIf="isBundle === false || isDiscounted">
+            <p class="text-purple slanted-strike my-0"><b><s>{{getOriginalPrice()}}</s></b></p>
+            <p class="text-gray mx-2 my-0" *ngIf="isPersonalize">-</p>
+            <p class="text-blue slanted-strike my-0" *ngIf="isPersonalize"><b><s>{{getPersonalizePrice()}}</s></b></p>
           </div>
         </div>
       </ion-col>

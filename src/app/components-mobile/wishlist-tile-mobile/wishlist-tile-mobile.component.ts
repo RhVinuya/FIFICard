@@ -3,11 +3,13 @@ import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NewConfirmMessageComponent } from 'src/app/new-components/new-confirm-message/new-confirm-message.component';
 import { INewCard, NewCard } from 'src/app/new-models/new-card';
+import { IConfig } from 'src/app/new-models/new-config';
 import { INewGift, NewGift } from 'src/app/new-models/new-gift';
 import { INewPostcard, NewPostcard, NewPostcardBundle } from 'src/app/new-models/new-postcard';
 import { INewSticker, NewSticker } from 'src/app/new-models/new-sticker';
 import { IWishlist } from 'src/app/new-pages/new-wishlist/new-wishlist.component';
 import { NewCardService } from 'src/app/new-services/new-card.service';
+import { NewConfigService } from 'src/app/new-services/new-config.service';
 import { NewFileService } from 'src/app/new-services/new-file.service';
 import { NewPostcardService } from 'src/app/new-services/new-postcard.service';
 import { NewStorageService } from 'src/app/new-services/new-storage.service';
@@ -27,6 +29,7 @@ export class WishlistTileMobileComponent implements OnInit {
   postcardService: NewPostcardService;
   storageService: NewStorageService;
   modalService: NgbModal;
+  configService: NewConfigService;
 
   product: NewCard | NewSticker | NewPostcard | NewGift;
   type: string;
@@ -38,16 +41,18 @@ export class WishlistTileMobileComponent implements OnInit {
 
   min: NewPostcardBundle;
   max: NewPostcardBundle;
+  config: IConfig;
   
-
   constructor(
     public router: Router,
     _postcardService: NewPostcardService,
     _storageService: NewStorageService,
     _cardService: NewCardService,
     _fileService: NewFileService,
-    _modalService: NgbModal
+    _modalService: NgbModal,
+    _configService: NewConfigService,
   ) { 
+    this.configService = _configService;
     this.storageService = _storageService;
     this.cardService = _cardService;
     this.postcardService = _postcardService;
@@ -56,6 +61,7 @@ export class WishlistTileMobileComponent implements OnInit {
   }
 
   async ngOnInit():  Promise<void> {
+    this.config = await this.configService.get();
     this.product = this.wishlist.model;
     let type = this.wishlist.type;
 
@@ -63,7 +69,7 @@ export class WishlistTileMobileComponent implements OnInit {
     switch(type) {
       case 'card':   
           this.type = "cards";
-          this.product = new NewCard(this.product as INewCard);
+          this.product = new NewCard(this.product as INewCard, this.config);
           this.isPersonalize = this.product instanceof NewCard ?  this.product.signAndSend : false;
         break;
       case 'sticker':  

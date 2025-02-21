@@ -1,4 +1,4 @@
-<div class="event-card two-columns">
+<div class="event-card two-columns" *ngIf="product">
     <div class="img-container" (click)="gotoDetails()">
     <img
         alt="Silhouette of mountains"
@@ -10,10 +10,16 @@
     <div class="card-info">
         <h5>{{ product.name | uppercase }}</h5>    
     </div>
+
     <div class="card-info ion-justify-content-between" *ngIf="isBundle === false">
         <p class="text-purple my-0"><b>{{getPrice()}}</b></p>
         <p class="text-gray mx-2 my-0" *ngIf="isPersonalize">-</p>
-        <p class="text-blue my-0" *ngIf="isPersonalize"><b>{{getPersonalizePrice()}}</b></p>
+        <p class="text-blue my-0" *ngIf="isPersonalize"><b>{{getPersonalizePrice(isDiscounted)}}</b></p>
+    </div>    
+    <div class="card-info ion-justify-content-between" *ngIf="isBundle === false && isDiscounted">
+        <p class="text-purple my-0 slanted-strike me-2"><b><s>{{getOriginalPrice()}}</s></b></p>
+        <p class="text-gray mx-2 my-0" *ngIf="isPersonalize">-</p>
+        <p class="text-blue my-0 slanted-strike me-2" *ngIf="isPersonalize"><b><s>{{getPersonalizePrice()}}</s></b></p>
     </div>
     <div class="card-info" *ngIf="isBundle">
         <p class="text-purple my-0"><b *ngIf="min && max">{{min.priceDisplay()}} - {{max.priceDisplay()}}</b></p>

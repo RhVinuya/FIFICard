@@ -1,10 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { INewCard, NewCard } from 'src/app/new-models/new-card';
+import { IConfig } from 'src/app/new-models/new-config';
 import { INewGift, NewGift } from 'src/app/new-models/new-gift';
 import { INewPostcard, NewPostcard, NewPostcardBundle } from 'src/app/new-models/new-postcard';
 import { INewSticker, NewSticker } from 'src/app/new-models/new-sticker';
 import { NewCardService } from 'src/app/new-services/new-card.service';
+import { NewConfigService } from 'src/app/new-services/new-config.service';
 import { NewFileService } from 'src/app/new-services/new-file.service';
 import { NewPostcardService } from 'src/app/new-services/new-postcard.service';
 import { NewStorageService } from 'src/app/new-services/new-storage.service';
@@ -20,7 +22,9 @@ export class ProductTileMobileComponent implements OnInit {
   @Input() type: string;
 
   router: Router;
+  isDiscounted = false;
 
+  configService: NewConfigService;
   fileService: NewFileService;
   cardService: NewCardService;
   postcardService: NewPostcardService;
@@ -36,13 +40,17 @@ export class ProductTileMobileComponent implements OnInit {
   primary: string = 'https://ionicframework.com/docs/img/demos/card-media.png';
   secondary: string = 'https://ionicframework.com/docs/img/demos/card-media.png';
 
+  config: IConfig;
+  
   constructor(
+    _configService: NewConfigService,
     _storageService: NewStorageService,
     _cardService: NewCardService,
     _fileService: NewFileService,
     _postcardService: NewPostcardService,
     _router: Router
   ) { 
+    this.configService = _configService;
     this.storageService = _storageService;
     this.cardService = _cardService;
     this.postcardService = _postcardService;
@@ -52,10 +60,13 @@ export class ProductTileMobileComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
 
+    this.config = await this.configService.get();
+
     switch(this.type) {
       case 'cards':  
-          this.product = new NewCard(this.iproduct as INewCard);
+          this.product = new NewCard(this.iproduct as INewCard, this.config);
           this.isPersonalize = this.product instanceof NewCard ?  this.product.signAndSend : false;
+          this.isDiscounted = (this.product as NewCard).isDiscounted();
         break;
       case 'stickers':  
           this.product = new NewSticker(this.iproduct  as INewSticker);
@@ -101,9 +112,16 @@ export class ProductTileMobileComponent implements OnInit {
     else return '';
   }
 
-  getPersonalizePrice(){
-    if (this.type === 'cards' && this.isPersonalize) return (this.product as NewCard).getPersonalizePriceDisplay();
+  getPersonalizePrice(discounted: boolean = false){
+    if (this.type === 'cards' && this.isPersonalize) return (this.product as NewCard).getPersonalizePriceDisplay(discounted);
     else return ''
+  }
+
+  getOriginalPrice() {
+    if (this.type === 'cards') return (this.product as NewCard).originalPriceDisplay();
+    else if (this.type === 'stickers') return (this.product as NewSticker);
+    else if (this.type === 'gifts') return (this.product as NewGift);
+    else return '';
   }
 
   

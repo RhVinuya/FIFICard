@@ -4,9 +4,11 @@ import { ToastController } from '@ionic/angular';
 import { NgbActiveOffcanvas, NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';
 import { INewCard, NewCard } from 'src/app/new-models/new-card';
 import { NewCart } from 'src/app/new-models/new-cart';
+import { IConfig } from 'src/app/new-models/new-config';
 import { LocationType } from 'src/app/new-models/new-enum';
 import { NewCardService } from 'src/app/new-services/new-card.service';
 import { NewCartService } from 'src/app/new-services/new-cart.service';
+import { NewConfigService } from 'src/app/new-services/new-config.service';
 import { NewLocationService } from 'src/app/new-services/new-location.service';
 
 @Component({
@@ -22,6 +24,8 @@ export class NewInYourCartComponent implements OnInit {
   router: Router;
   toastController: ToastController;
   cardService: NewCardService;
+  configService: NewConfigService;
+  config: IConfig;
 
   constructor(
     _cardService: NewCardService,
@@ -29,8 +33,10 @@ export class NewInYourCartComponent implements OnInit {
     _cartService: NewCartService,
     _locationService: NewLocationService,
     _router: Router,
-    _toastController: ToastController
-  ) {
+    _toastController: ToastController,
+    _configService: NewConfigService,
+  ) { 
+    this.configService = _configService;
     this.cardService = _cardService;
     this.activeOffCanvas = _activeOffCanvas;
     this.cartService = _cartService;
@@ -43,6 +49,7 @@ export class NewInYourCartComponent implements OnInit {
   total: string = '';
 
   async ngOnInit(): Promise<void> {
+    this.config = await this.configService.get();
     let iCarts = await this.cartService.getAll();
     iCarts.reverse();
     for await (let iCart of iCarts) {
@@ -89,7 +96,7 @@ export class NewInYourCartComponent implements OnInit {
 
       if( x.type == 'card' ) {
         let iCard = await this.cardService.get(x.itemId);
-        let model = new NewCard(iCard as INewCard);
+        let model = new NewCard(iCard as INewCard, this.config);
         
         isDiscounted = model.isDiscounted() ?? false;
         if(isDiscounted) {

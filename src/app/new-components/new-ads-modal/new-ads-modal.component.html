@@ -1,7 +1,13 @@
 <div class="main">
-  <ion-icon name="close-outline" color="danger" size="large" (click)="onClose($event)"></ion-icon>
-  <div class="content" (click)="onOpen($event)">
-    <!-- <img src="../../../assets/images/ads/valentines-banner-greetings.gif" alt="Valentine's Discount"> -->
-    <img src="../../../assets/images/ads/birthday-banner-greetings.gif" alt="Birthday Card Discount">
+  
+  <div class="h-100" *ngIf="images.length > 1">
+    <ngb-carousel [interval]="5000" [pauseOnHover]="false" [wrap]="true" [keyboard]="false" [animation]="true" [showNavigationArrows]="false" [showNavigationIndicators]="false">
+      <ng-template ngbSlide *ngFor="let image of images">
+        <app-new-static-image [image]="image" (click)="onClick()"></app-new-static-image>
+      </ng-template>
+    </ngb-carousel>
   </div>
+
+  <app-new-static-image [image]="images[0]" (click)="onClick()" *ngIf="images.length === 1"></app-new-static-image>
+  <i class="bi bi-x-lg text-danger" (click)="onClose($event)"></i>
 </div>

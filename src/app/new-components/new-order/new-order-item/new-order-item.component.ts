@@ -16,6 +16,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { NewStorageService } from 'src/app/new-services/new-storage.service';
 import { NewInfoMessageComponent } from '../../new-info-message/new-info-message.component';
 import { INewUser } from 'src/app/new-models/new-user';
+import { IConfig } from 'src/app/new-models/new-config';
+import { NewConfigService } from 'src/app/new-services/new-config.service';
 
 @Component({
   selector: 'app-new-order-item',
@@ -51,6 +53,8 @@ export class NewOrderItemComponent implements OnInit {
   storageService: NewStorageService;
   modalService: NgbModal;
   modalRef: NgbModalRef;
+  configService: NewConfigService;
+  config: IConfig;
 
   constructor(
     _cardService: NewCardService,
@@ -60,7 +64,9 @@ export class NewOrderItemComponent implements OnInit {
     _fileService: NewFileService,
     _modalService: NgbModal,
     _storageService: NewStorageService,
+    _configService: NewConfigService,
   ) { 
+    this.configService = _configService;
     this.cardService = _cardService;
     this.stickerService = _stickerService;
     this.postcardService = _postcardService;
@@ -80,13 +86,14 @@ export class NewOrderItemComponent implements OnInit {
   }
 
   async loadDetails() {
+    this.config = await this.configService.get();
 
     this.user = this.storageService.getUser();
 
     this.item = new NewPaymentItem(this.iItem, this.location);
     if (this.iItem.type === 'card') {
       let iCard = await this.cardService.get(this.iItem.itemId);
-      this.model = new NewCard(iCard as INewCard);
+      this.model = new NewCard(iCard as INewCard, this.config);
       this.ratings = await this.cardService.getUserRating(this.iItem.itemId, this.user!.id);
       let images = await this.cardService.getImages(this.iItem.itemId);
       if (images.length > 0) this.loadImage(images[0].url)

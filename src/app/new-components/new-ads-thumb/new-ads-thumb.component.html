@@ -1,0 +1,13 @@
+<div class="card p-3">
+    <div class="h-100" *ngIf="images.length > 1">
+        <ngb-carousel [interval]="5000" [pauseOnHover]="false" [wrap]="true" [keyboard]="false" [animation]="true" [showNavigationArrows]="true"
+            [showNavigationIndicators]="false">
+            <ng-template ngbSlide *ngFor="let image of images">
+                <app-static-image [image]="image"></app-static-image>
+            </ng-template>
+        </ngb-carousel>
+    </div>
+    <div class="h-100" *ngIf="images.length === 1">
+        <app-static-image [image]="images[0]"></app-static-image>
+    </div>
+</div>

@@ -1,0 +1,7 @@
+<div class="image-slider" *ngIf="images.length > 0">
+  <div class="image-slide" *ngFor="let image of images">
+    <i class="bi bi-x-circle text-danger close" (click)="onClose()"></i>
+    <app-new-static-image [image]="image" [disable]="true"> </app-new-static-image>
+    <button class="floating-btn" (click)="onClick(image)">Discover</button>
+  </div>
+</div>

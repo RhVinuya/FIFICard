@@ -54,6 +54,7 @@ export class NewGift {
 }
 
 export interface INewGiftImage {
+    id: string;
     title: string;
     url: string;
     active: boolean;

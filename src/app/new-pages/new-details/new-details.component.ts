@@ -6,12 +6,14 @@ import { NewInYourCartComponent } from 'src/app/new-components/new-in-your-cart/
 import { NewVideoPlayerComponent } from 'src/app/new-components/new-video-player/new-video-player.component';
 import { INewCard, INewCardImage, INewRating, NewCard, NewRating } from 'src/app/new-models/new-card';
 import { INewCartBundle } from 'src/app/new-models/new-cart';
+import { IConfig } from 'src/app/new-models/new-config';
 import { IModelType, ModelType } from 'src/app/new-models/new-enum';
 import { INewGift, INewGiftImage, NewGift } from 'src/app/new-models/new-gift';
 import { INewPostcard, INewPostcardBundle, NewPostcard, NewPostcardBundle } from 'src/app/new-models/new-postcard';
 import { INewSticker, INewStickerImage, NewSticker } from 'src/app/new-models/new-sticker';
 import { NewCardService } from 'src/app/new-services/new-card.service';
 import { NewCartService } from 'src/app/new-services/new-cart.service';
+import { NewConfigService } from 'src/app/new-services/new-config.service';
 import { NewFileService } from 'src/app/new-services/new-file.service';
 import { NewGiftService } from 'src/app/new-services/new-gift.service';
 import { NewPostcardService } from 'src/app/new-services/new-postcard.service';
@@ -34,6 +36,8 @@ export class NewDetailsComponent implements OnInit {
   offCanvas: NgbOffcanvas;
   modalService: NgbModal;
   ref: ChangeDetectorRef;
+  configService: NewConfigService;
+  config: IConfig;
 
   constructor(
     _activateRoute: ActivatedRoute,
@@ -46,8 +50,10 @@ export class NewDetailsComponent implements OnInit {
     _toastController: ToastController,
     _offCanvas: NgbOffcanvas,
     _modalService: NgbModal,
-    _ref: ChangeDetectorRef
-  ) {
+    _ref: ChangeDetectorRef,
+    _configService: NewConfigService,
+  ) { 
+    this.configService = _configService;
     this.activateRoute = _activateRoute;
     this.cardService = _cardService;
     this.stickerService = _stickerService;
@@ -93,7 +99,7 @@ export class NewDetailsComponent implements OnInit {
       if (this.type === 'card') {
         this.cardService.get(this.id).then(async value => {
           this.iModel = value;
-          let card = new NewCard(value);
+          let card = new NewCard(value, this.config);
           this.isDiscounted = card.isDiscounted() ?? false;
           this.recipients = card.getRecipients();
           this.model = card;

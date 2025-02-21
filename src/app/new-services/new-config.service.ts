@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { getStringChanges, RemoteConfig } from '@angular/fire/remote-config';
 import { environment } from 'src/environments/environment';
+import { IConfig } from '../new-models/new-config';
 
 export interface IPaymentKeys {
   publicKey: string;
@@ -18,6 +19,15 @@ export class NewConfigService {
     _remoteConfig: RemoteConfig
   ) {
     this.remoteConfig = _remoteConfig;
+  }
+
+  get(): Promise<IConfig> {
+    return new Promise((resolve) => {
+      const subs = getStringChanges(this.remoteConfig, environment.remoteConfig).subscribe(value => {
+        resolve(JSON.parse(value) as IConfig);
+        subs.unsubscribe();
+      })
+    });
   }
 
   getValue(key: string): Promise<string> {

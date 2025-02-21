@@ -15,6 +15,9 @@ import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { NewStorageService } from 'src/app/new-services/new-storage.service';
 import { INewUser } from 'src/app/new-models/new-user';
+import { NewLocationService } from 'src/app/new-services/new-location.service';
+import { IConfig } from 'src/app/new-models/new-config';
+import { NewConfigService } from 'src/app/new-services/new-config.service';
 
 @Component({
   selector: 'app-order-item-mobile',
@@ -50,6 +53,9 @@ export class OrderItemMobileComponent implements OnInit {
   storageService: NewStorageService;
   modalService: NgbModal;
   modalRef: NgbModalRef;
+  locationService: NewLocationService;
+  configService: NewConfigService;
+  config: IConfig;
 
   constructor(
     _cardService: NewCardService,
@@ -59,7 +65,10 @@ export class OrderItemMobileComponent implements OnInit {
     _fileService: NewFileService,
     _modalService: NgbModal,
     _storageService: NewStorageService,
+    _locationService: NewLocationService,
+    _configService: NewConfigService,
   ) { 
+    this.configService = _configService;
     this.cardService = _cardService;
     this.stickerService = _stickerService;
     this.postcardService = _postcardService;
@@ -67,6 +76,7 @@ export class OrderItemMobileComponent implements OnInit {
     this.fileService = _fileService;
     this.modalService = _modalService;
     this.storageService = _storageService;
+    this.locationService = _locationService;
   }
 
   item: NewPaymentItem;
@@ -79,13 +89,14 @@ export class OrderItemMobileComponent implements OnInit {
   }
 
   async loadDetails() {
+    this.config = await this.configService.get();
 
     this.user = this.storageService.getUser();
 
     this.item = new NewPaymentItem(this.iItem, this.location);
     if (this.iItem.type === 'card') {
       let iCard = await this.cardService.get(this.iItem.itemId);
-      this.model = new NewCard(iCard as INewCard);
+      this.model = new NewCard(iCard as INewCard, this.config);
       this.ratings = await this.cardService.getUserRating(this.iItem.itemId, this.user!.id);
       let images = await this.cardService.getImages(this.iItem.itemId);
       if (images.length > 0) this.loadImage(images[0].url)

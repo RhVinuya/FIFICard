@@ -22,6 +22,8 @@ import { NewCheckoutGcashComponent } from './new-checkout-gcash/new-checkout-gca
 import { url } from 'inspector';
 import { environment } from 'src/environments/environment';
 import { INewCard, NewCard } from 'src/app/new-models/new-card';
+import { IConfig } from 'src/app/new-models/new-config';
+import { NewConfigService } from 'src/app/new-services/new-config.service';
 
 @Component({
   selector: 'app-new-checkout',
@@ -43,6 +45,8 @@ export class NewCheckoutComponent implements OnInit, OnDestroy {
   offCanvas: NgbOffcanvas;
   router: Router;
   ref: ChangeDetectorRef;
+  configService: NewConfigService;
+  config: IConfig;
 
   constructor(
     _storageService: NewStorageService,
@@ -57,8 +61,10 @@ export class NewCheckoutComponent implements OnInit, OnDestroy {
     _modalService: NgbModal,
     _offCanvas: NgbOffcanvas,
     _router: Router,
-    _ref: ChangeDetectorRef
-  ) {
+    _ref: ChangeDetectorRef,
+    _configService: NewConfigService,
+  ) { 
+    this.configService = _configService;
     this.storageService = _storageService;
     this.locationService = _locationService;
     this.cartService = _cartService;
@@ -122,6 +128,7 @@ export class NewCheckoutComponent implements OnInit, OnDestroy {
   async ngOnInit(): Promise<void> {
     this.loading = true;
     this.location = this.locationService.getlocation();
+    this.config = await this.configService.get();
 
     if (this.location == 'ph') this.payments = environment.payments.ph;
     else if (this.location == 'us') this.payments = environment.payments.us;
@@ -162,7 +169,7 @@ export class NewCheckoutComponent implements OnInit, OnDestroy {
         if( iCart.type == 'card' ) {
     
           let iCard = await this.cardService.get(iCart.itemId);
-          let model = new NewCard(iCard as INewCard);
+          let model = new NewCard(iCard as INewCard,  this.config);
           if(model.isDiscounted()) {
             price = model.getDiscountedPrice();
             if(iCart.personalize) {

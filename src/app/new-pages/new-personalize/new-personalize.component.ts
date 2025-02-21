@@ -2,9 +2,11 @@ import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output, View
 import { PopoverController } from '@ionic/angular';
 import { NgbActiveModal, NgbPopover } from '@ng-bootstrap/ng-bootstrap';
 import { INewCard, NewCard } from 'src/app/new-models/new-card';
+import { IConfig } from 'src/app/new-models/new-config';
 import { INewPersonalize, INewPersonalizeData, INewPersonalizeDetail } from 'src/app/new-models/new-personalize';
 import { NewCardService } from 'src/app/new-services/new-card.service';
 import { NewCartService } from 'src/app/new-services/new-cart.service';
+import { NewConfigService } from 'src/app/new-services/new-config.service';
 import { NewFileService } from 'src/app/new-services/new-file.service';
 import { NewPersonalizeService } from 'src/app/new-services/new-personalize.service';
 import { NewStorageService } from 'src/app/new-services/new-storage.service';
@@ -34,6 +36,8 @@ export class NewPersonalizeComponent implements OnInit {
   cartService: NewCartService;
   fileService: NewFileService;
   ref: ChangeDetectorRef;
+  configService: NewConfigService;
+  config: IConfig;
 
   constructor(
     _activeModal: NgbActiveModal,
@@ -43,8 +47,10 @@ export class NewPersonalizeComponent implements OnInit {
     _cartService: NewCartService,
     _fileService: NewFileService,
     _ref: ChangeDetectorRef,
-    _popoverController: PopoverController
-  ) {
+    _popoverController: PopoverController,
+    _configService: NewConfigService,
+  ) { 
+    this.configService = _configService;
     this.activeModal = _activeModal;
     this.personalizeService = _personalizeService;
     this.cardService = _cardService;
@@ -185,7 +191,7 @@ export class NewPersonalizeComponent implements OnInit {
   }
 
   onAddToCart() {
-    let card: NewCard = new NewCard(this.iCard);
+    let card: NewCard = new NewCard(this.iCard, this.config);
     this.isProcessing = true;
     this.cartService.add({
       id: '',

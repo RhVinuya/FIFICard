@@ -270,6 +270,10 @@ import { OrderMobileComponent } from './components-mobile/order-mobile/order-mob
 import { OrderItemMobileComponent } from './components-mobile/order-mobile/order-item-mobile/order-item-mobile.component';
 import { NewAdsModalComponent } from './new-components/new-ads-modal/new-ads-modal.component';
 import { PersonalizeTextareaMobileComponent } from './components-mobile/personalize-textarea-mobile/personalize-textarea-mobile.component';
+import { NewStaticImageComponent } from './new-components/new-static-image/new-static-image.component';
+import { AdsModalMobileComponent } from './components-mobile/ads-modal-mobile/ads-modal-mobile.component';
+import { NewAdsThumbComponent } from './new-components/new-ads-thumb/new-ads-thumb.component';
+
 
 @NgModule({
   declarations: [
@@ -463,6 +467,7 @@ import { PersonalizeTextareaMobileComponent } from './components-mobile/personal
     NewReferAFriendModalComponent,
     NewErrorMessageComponent,
     NewAdsModalComponent,
+    NewStaticImageComponent,
     LayoutMobileComponent,
     LoginMobileComponent,
     OnboardingMobileComponent,
@@ -513,7 +518,9 @@ import { PersonalizeTextareaMobileComponent } from './components-mobile/personal
     PaymentCardMobileComponent,
     OrderMobileComponent,
     OrderItemMobileComponent,
-    PersonalizeTextareaMobileComponent
+    PersonalizeTextareaMobileComponent,
+    AdsModalMobileComponent,
+    NewAdsThumbComponent
   ],
   imports: [
     BrowserModule,

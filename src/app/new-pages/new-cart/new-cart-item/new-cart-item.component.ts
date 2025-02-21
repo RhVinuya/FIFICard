@@ -3,11 +3,13 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NewConfirmMessageComponent } from 'src/app/new-components/new-confirm-message/new-confirm-message.component';
 import { INewCard, NewCard } from 'src/app/new-models/new-card';
 import { INewCart, NewCart } from 'src/app/new-models/new-cart';
+import { IConfig } from 'src/app/new-models/new-config';
 import { ModelType } from 'src/app/new-models/new-enum';
 import { INewGift, NewGift } from 'src/app/new-models/new-gift';
 import { INewPostcard, NewPostcard } from 'src/app/new-models/new-postcard';
 import { INewSticker, NewSticker } from 'src/app/new-models/new-sticker';
 import { NewCardService } from 'src/app/new-services/new-card.service';
+import { NewConfigService } from 'src/app/new-services/new-config.service';
 import { NewFileService } from 'src/app/new-services/new-file.service';
 import { NewGiftService } from 'src/app/new-services/new-gift.service';
 import { NewPostcardService } from 'src/app/new-services/new-postcard.service';
@@ -31,6 +33,8 @@ export class NewCartItemComponent implements OnInit {
   giftService: NewGiftService;
   fileService: NewFileService;
   modalService: NgbModal;
+  configService: NewConfigService;
+  config: IConfig;
 
   constructor(
     _cardService: NewCardService,
@@ -38,8 +42,10 @@ export class NewCartItemComponent implements OnInit {
     _postcardService: NewPostcardService,
     _giftService: NewGiftService,
     _fileService: NewFileService,
-    _modalService: NgbModal
-  ) {
+    _modalService: NgbModal,
+    _configService: NewConfigService,
+  ) { 
+    this.configService = _configService;
     this.cardService = _cardService;
     this.stickerService = _stickerService;
     this.postcardService = _postcardService;
@@ -59,10 +65,12 @@ export class NewCartItemComponent implements OnInit {
   }
 
   async loadDetails(cart: INewCart) {
+    this.config = await this.configService.get();
+
     this._cart = new NewCart(cart);
     if (this._cart.type === 'card') {
       let iCard = await this.cardService.get(this._cart.itemId);
-      this.model = new NewCard(iCard as INewCard);
+      this.model = new NewCard(iCard as INewCard, this.config);
 
       this.isDiscounted = (this.model as NewCard).isDiscounted() ?? false;
       let images = await this.cardService.getImages(this._cart.itemId);

@@ -24,6 +24,7 @@ export const environment = {
     //secretKey: "sk_test_EZAHKnEJPJucTkS4V5geZeMM",
     live: false
   },
+  remoteConfig: "greetings_development",
   firebase: {
     projectId: 'fifi-greetings',
     appId: '1:592228815811:web:ae07898d9c86884e7d2376',

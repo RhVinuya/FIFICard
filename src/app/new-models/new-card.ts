@@ -3,6 +3,7 @@ import { NewLocationService } from "../new-services/new-location.service";
 import { LocationType } from "./new-enum";
 import { environment } from "src/environments/environment";
 import { INewDiscount } from "./new-discount";
+import { IConfig } from "./new-config";
 
 export interface INewCard {
     id: string;
@@ -55,8 +56,10 @@ export class NewCard {
     locationService: NewLocationService;
     location: LocationType;
     currencySymbol: string;
+
+    config: IConfig;
     
-    constructor(value: INewCard) {
+    constructor(value: INewCard, _config: IConfig) {
         this.id = value.id;
         this.code = value.code;
         this.name = value.name;
@@ -84,6 +87,7 @@ export class NewCard {
         this.location = this.locationService.getlocation();
         this.currencySymbol = this.locationService.getCurrencySymbol(this.location);
 
+        this.config = _config;
     }
 
     isFree() {
@@ -100,9 +104,8 @@ export class NewCard {
         let disc: INewDiscount | undefined = undefined;
 
         let discounts: INewDiscount[] = [];
-        environment.discounts.forEach(value => discounts.push(value as INewDiscount));
+        this.config.discounts.forEach(value => discounts.push(value as INewDiscount));
         discounts = discounts.filter(x => x.active === true);
-
         discounts.forEach(value => {
             if (value.event.toUpperCase() === this.event.toUpperCase()) disc = value
         })
@@ -282,6 +285,7 @@ export class NewCard {
 }
 
 export interface INewCardImage {
+    id: string;
     title: string;
     url: string;
     active: boolean;

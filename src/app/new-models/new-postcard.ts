@@ -48,6 +48,7 @@ export class NewPostcard {
 }
 
 export interface INewPostcardImage {
+    id: string;
     title: string;
     url: string;
     active: boolean;

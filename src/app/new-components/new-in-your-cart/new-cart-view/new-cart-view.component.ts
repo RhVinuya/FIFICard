@@ -1,7 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NewCard } from 'src/app/new-models/new-card';
 import { NewCart } from 'src/app/new-models/new-cart';
+import { IConfig } from 'src/app/new-models/new-config';
 import { NewCardService } from 'src/app/new-services/new-card.service';
+import { NewConfigService } from 'src/app/new-services/new-config.service';
 import { NewFileService } from 'src/app/new-services/new-file.service';
 import { NewGiftService } from 'src/app/new-services/new-gift.service';
 import { NewPostcardService } from 'src/app/new-services/new-postcard.service';
@@ -21,14 +23,18 @@ export class NewCartViewComponent implements OnInit {
   postcardService: NewPostcardService;
   giftService: NewGiftService;
   fileService: NewFileService;
+  configService: NewConfigService;
+  config: IConfig;
 
   constructor(
     _cardService: NewCardService,
     _stickerService: NewStickerService,
     _postcardService: NewPostcardService,
     _giftService: NewGiftService,
-    _fileService: NewFileService
+    _fileService: NewFileService,
+    _configService: NewConfigService,
   ) { 
+    this.configService = _configService;
     this.cardService = _cardService;
     this.stickerService = _stickerService;
     this.postcardService = _postcardService;
@@ -47,11 +53,13 @@ export class NewCartViewComponent implements OnInit {
   discountPrice: string = '';
 
   async ngOnInit(): Promise<void> {
+    this.config = await this.configService.get();
+
     if (this.cart.type === 'card') {
       let iCard = await this.cardService.get(this.cart.itemId);
 
       if (iCard) {
-        let model = new NewCard(iCard);
+        let model = new NewCard(iCard, this.config);
         this.isDiscounted = model.isDiscounted() ?? false;
 
         this.name = iCard.name;

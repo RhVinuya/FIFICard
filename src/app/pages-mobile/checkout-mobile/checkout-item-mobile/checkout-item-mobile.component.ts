@@ -1,10 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { INewCard, NewCard } from 'src/app/new-models/new-card';
+import { IConfig } from 'src/app/new-models/new-config';
 import { INewGift, NewGift } from 'src/app/new-models/new-gift';
 import { INewPaymentItem, NewPaymentItem } from 'src/app/new-models/new-payment';
 import { INewPostcard, NewPostcard } from 'src/app/new-models/new-postcard';
 import { INewSticker, NewSticker } from 'src/app/new-models/new-sticker';
 import { NewCardService } from 'src/app/new-services/new-card.service';
+import { NewConfigService } from 'src/app/new-services/new-config.service';
 import { NewFileService } from 'src/app/new-services/new-file.service';
 import { NewGiftService } from 'src/app/new-services/new-gift.service';
 import { NewLocationService } from 'src/app/new-services/new-location.service';
@@ -27,6 +29,8 @@ export class CheckoutItemMobileComponent implements OnInit {
   postcardService: NewPostcardService;
   giftService: NewGiftService;
   fileService: NewFileService;
+  configService: NewConfigService;
+  config: IConfig;
 
   constructor(
     _locationService: NewLocationService,
@@ -34,8 +38,10 @@ export class CheckoutItemMobileComponent implements OnInit {
     _stickerService: NewStickerService,
     _postcardService: NewPostcardService,
     _giftService: NewGiftService,
-    _fileService: NewFileService
+    _fileService: NewFileService,
+    _configService: NewConfigService,
   ) { 
+    this.configService = _configService;
     this.locationService = _locationService;
     this.cardService = _cardService;
     this.stickerService = _stickerService;
@@ -50,9 +56,11 @@ export class CheckoutItemMobileComponent implements OnInit {
   bundleDetails: string = ''
 
   async ngOnInit(): Promise<void> {
+    this.config = await this.configService.get();
+
     if (this.item.type === 'card') {
       let iCard = await this.cardService.get(this.item.itemId);
-      this.model = new NewCard(iCard as INewCard);
+      this.model = new NewCard(iCard as INewCard, this.config);
       let images = await this.cardService.getImages(this.item.itemId);
       if (images.length > 0) this.loadImage(images[0].url)
     }
