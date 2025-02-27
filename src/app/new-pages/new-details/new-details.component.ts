@@ -90,7 +90,9 @@ export class NewDetailsComponent implements OnInit {
 
   stickerimage: string = '';
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+    this.config = await this.configService.get();
+    
     this.activateRoute.params.subscribe(params => {
       this.loading = true;
       this.id = params['id'];
