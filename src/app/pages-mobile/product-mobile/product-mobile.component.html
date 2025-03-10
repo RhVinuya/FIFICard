@@ -1,6 +1,23 @@
-<ion-content fullscreen="true">
+<ion-content
+  [scrollEvents]="true"
+  (ionScroll)="logScrolling($event)"
+  (ionScrollStart)="logScrollStart($event)"
+  (ionScrollEnd)="logScrollEnd($event)"
+  fullscreen="true">
 
   <app-new-loading [loading]="!currentEvent"></app-new-loading>
+
+  <ion-fab
+    *ngIf="currentEvent"
+    slot="fixed"
+    vertical="bottom"
+    horizontal="end"
+  > 
+    <ion-fab-button (click)="scrollEvent()" size="small">
+      <ion-icon *ngIf="canScrollUp" name="arrow-up"></ion-icon>
+      <ion-icon *ngIf="canScrollDown" name="arrow-down"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 
   <ion-grid *ngIf="currentEvent">
     <ion-row>

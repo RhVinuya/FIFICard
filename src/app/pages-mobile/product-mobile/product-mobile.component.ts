@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { INewCard } from 'src/app/new-models/new-card';
 import { NewEvent } from 'src/app/new-models/new-event';
@@ -13,6 +13,7 @@ import { NewRecipientService } from 'src/app/new-services/new-recipients.service
 import { NewStickerService } from 'src/app/new-services/new-sticker.service';
 import { NewStorageService } from 'src/app/new-services/new-storage.service';
 import {Location} from '@angular/common';
+import { IonContent } from '@ionic/angular';
 
 @Component({
   selector: 'app-product-mobile',
@@ -20,6 +21,9 @@ import {Location} from '@angular/common';
   styleUrls: ['./product-mobile.component.scss']
 })
 export class ProductMobileComponent implements OnInit {
+
+
+  @ViewChild(IonContent, {static : false}) content: IonContent;
 
   activateRoute: ActivatedRoute;
   cardService: NewCardService;
@@ -63,6 +67,8 @@ export class ProductMobileComponent implements OnInit {
   displayCount: number = 20;
   recipients: string[] = [];
   filters: string[] = [];
+  canScrollUp: boolean = false;
+  canScrollDown: boolean = true;
   
   bundle: boolean = false;
 
@@ -162,5 +168,35 @@ export class ProductMobileComponent implements OnInit {
 
   goBack() {
       this.location.back();
+  }
+
+  logScrolling(event: any) {
+
+    console.log(event.detail);
+    if(event && event.detail.currentY >= 300) {
+      this.canScrollUp = true;
+      this.canScrollDown = false;
+    } else {
+      this.canScrollUp = false;
+      this.canScrollDown = true;
+    }
+
+  }
+  logScrollStart(event: any) {
+    
+  }
+  logScrollEnd(event: any) {
+    
+  }
+
+  scrollEvent() {
+    if(this.canScrollUp) {
+      this.content.scrollToTop(1500);
+    }
+
+    if(this.canScrollDown) {
+      this.content.scrollToBottom(1500);
+    }
+
   }
 }

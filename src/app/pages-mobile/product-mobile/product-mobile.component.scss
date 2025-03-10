@@ -66,3 +66,23 @@
     --inner-padding-start: 0;
     padding: 0;
   }
+
+  ion-fab {
+    border: 0px;
+    --border-radius: 50%;
+  }
+
+  ion-fab > ion-fab-button {
+    --border-color: gray;
+    --border-radius: 50%;
+    --background: white;
+    --color: #ab37c9;
+  }
+  
+  ion-fab > ion-fab-button > ion-icon {
+    margin-right: 0px !important;
+    border: 0px !important;
+    --border-color: rgba(255, 255, 255, 0)  !important;
+    --color: #ab37c9  !important;
+  }
+
