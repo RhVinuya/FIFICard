@@ -52,11 +52,12 @@
 
   <ion-grid *ngIf="currentEvent">
 
-    <ion-row class="badge-row" *ngIf="display.length > 1  && !loading">
+    <ion-row class="badge-row" *ngIf="display.length > 1  && !loading" (ionChange)="onRecipientSelect($event)">
       <ion-list class="my-filter">
         <ion-item [lines]="'none'">
           <ion-icon name="funnel-outline"></ion-icon>
-          <ion-select label="Filter" placeholder="Filter" interface="alert" (ionChange)="onRecipientSelect($event)">
+          <!-- placeholder="Filter" -->
+          <ion-select label="Filter"  interface="alert" >
               <ion-select-option *ngFor="let recipient of recipients" [value]="recipient"
               >{{recipient}}</ion-select-option>
             </ion-select>

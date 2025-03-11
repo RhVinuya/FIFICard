@@ -4,25 +4,25 @@
   
   .event-card {
     background: rgb(255, 255, 255);
-    padding: 10px;
+    // padding: 10px;
     border: 1px solid rgb(171, 171, 171);
     position: relative;
     width: auto;
     height: auto;
   }
   
-  .two-columns {
-    border-radius: 15px;
-  }
+  // .two-columns {
+  //   border-radius: 15px;
+  // }
   
-  .three-columns {
-    padding: 5px;
-  }
+  // .three-columns {
+  //   padding: 5px;
+  // }
   
   .two-columns > .img-container {
-    height: 205px;
+    // height: 205px;
     width: 100%;
-    padding: 5px;
+    // padding: 5px;
     vertical-align:middle;
     display: flex;
     justify-content: center;
@@ -73,11 +73,15 @@
   }
   
   .card-info {
-    margin: 12px auto 5px;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
+    line-height: 18px;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    height: 30px;
+    text-overflow: ellipsis;
   }
   
   .card-info > h2 {
