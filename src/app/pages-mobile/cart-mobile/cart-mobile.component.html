@@ -17,6 +17,15 @@
     <div class="mxw-1920px row">
       <div class="col-md-9">
 
+        <div class="item-col item-checkbox ion-align-items-center ion-justify-content-center">
+            <ion-checkbox      
+                *ngIf="carts"
+                [indeterminate]="isIndeterminateCheckAll"
+                [checked]="isCheckAll"
+                (ionChange)="onCheckAllChange($event)"
+            ></ion-checkbox>
+        </div>
+
         <ion-list class="bg-light">
           <app-cart-item-mobile
             *ngFor="let iCart of carts"

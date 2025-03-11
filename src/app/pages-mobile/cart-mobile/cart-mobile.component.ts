@@ -33,6 +33,9 @@ export class CartMobileComponent implements OnInit, OnDestroy {
   total: number = 0;
   totalDisplay: string = '';
   saving: boolean = false;
+  isCheckAll: boolean = false;
+  isIndeterminateCheckAll: boolean = false;
+  checkedItemCount = 0;
 
   constructor(
     _cartService: NewCartService,
@@ -48,7 +51,6 @@ export class CartMobileComponent implements OnInit, OnDestroy {
     this.modalService = _modalService;
     this.router = _router;
     this.ref = _ref;
-    console.log('contructor:', this.loading);
   }
 
   breadcrumbs = [
@@ -73,8 +75,11 @@ export class CartMobileComponent implements OnInit, OnDestroy {
     });
 
     let carts = await this.cartService.getAll();
-    
+    this.checkedItemCount = carts.filter(o => o.mark).length;
+
+
     this.carts = carts;
+    this.checkMarkStatus();
     this.calculate();
     this.loading = false;
   }
@@ -86,6 +91,23 @@ export class CartMobileComponent implements OnInit, OnDestroy {
     this.subs.unsubscribe();
   }
 
+  onCheckAllChange(event: any): void {
+    this.isCheckAll = !!!this.isCheckAll;
+  }
+
+  checkMarkStatus() {
+    this.checkedItemCount = this.carts.filter(o => o.mark).length;
+    if(this.carts.length == this.checkedItemCount) {
+      this.isCheckAll = true;
+      this.isIndeterminateCheckAll = false;
+    } else if (this.checkedItemCount == 0) {
+      this.isCheckAll = false;
+      this.isIndeterminateCheckAll = false;
+    } else {
+      this.isIndeterminateCheckAll = true;
+      this.isCheckAll = false;
+    }
+  }
 
   calculate() {
     let location: LocationType = this.locationService.getlocation()
@@ -124,6 +146,7 @@ export class CartMobileComponent implements OnInit, OnDestroy {
   async onChangeItemMark(id: string, mark: boolean) {
     let idx = this.carts.findIndex(x => x.id === id);
     this.carts[idx].mark = mark;
+    this.checkMarkStatus();
     await this.cartService.update(this.carts[idx]);
     this.calculate();
     this.ref.detectChanges();
@@ -132,6 +155,7 @@ export class CartMobileComponent implements OnInit, OnDestroy {
   async onRemove(id: string) {
     await this.cartService.delete(id);
     this.carts = [...this.carts.filter(x => x.id !== id)];
+    this.checkMarkStatus();
     this.calculate();
     this.ref.detectChanges();
   }
@@ -140,8 +164,6 @@ export class CartMobileComponent implements OnInit, OnDestroy {
     this.saving = true;
 
     this.storageService.saveCheckoutList(this.carts.filter(x => x.mark === true).map(x => x.id));
-    console.log('cart');
-    console.log(this.carts.filter(x => x.mark === true).map(x => x.id));
     this.router.navigate(['/checkout']);
     this.saving = false;
   }
