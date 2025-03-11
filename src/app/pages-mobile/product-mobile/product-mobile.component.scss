@@ -26,19 +26,26 @@
     width: 100%;
     margin: auto 0;
     padding: 0;
+    justify-items: center;
+    align-items: center;
   }
   
+  ion-header > ion-toolbar > ion-title {
+    height: 100px;
+  }
+
   ion-icon {
     font-size: 24px;
     color: #545454;
     margin-right: 5px;
     padding: 5px;
-    border: 1px solid #ccc;
+    //border: 1px solid #ccc;
   }
   .my-filter
   {
-    border: 1px solid #ccc;
+    //border: 1px solid #ccc;
   }
+  
   .my-filter ion-icon
   {
     border: none;
