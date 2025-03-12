@@ -14,6 +14,8 @@ import { NewStickerService } from 'src/app/new-services/new-sticker.service';
 import { NewStorageService } from 'src/app/new-services/new-storage.service';
 import {Location} from '@angular/common';
 import { IonContent } from '@ionic/angular';
+import { NewCartService } from 'src/app/new-services/new-cart.service';
+import { INewCart, NewCart } from 'src/app/new-models/new-cart';
 
 @Component({
   selector: 'app-product-mobile',
@@ -33,6 +35,7 @@ export class ProductMobileComponent implements OnInit {
   eventService: NewEventService;
   storageService: NewStorageService
   recipientService: NewRecipientService;
+  cartService: NewCartService;
 
   constructor(
     private location: Location,
@@ -44,7 +47,9 @@ export class ProductMobileComponent implements OnInit {
     _giftService: NewGiftService,
     _eventService: NewEventService,
     _storageService: NewStorageService,
-    _recipientService: NewRecipientService
+    _recipientService: NewRecipientService,
+    _cartService: NewCartService,
+    
   ) {
     this.activateRoute = _activateRoute;
     this.cardService = _cardService;
@@ -54,6 +59,7 @@ export class ProductMobileComponent implements OnInit {
     this.eventService = _eventService;
     this.storageService = _storageService;
     this.recipientService = _recipientService;
+    this.cartService = _cartService;
   }
 
   activeevents: string[] = [];
@@ -69,17 +75,18 @@ export class ProductMobileComponent implements OnInit {
   filters: string[] = [];
   canScrollUp: boolean = false;
   canScrollDown: boolean = true;
+  cart: INewCart[] = [];
   
   bundle: boolean = false;
 
   events: NewEvent[] | null = [];
   currentEvent: NewEvent;
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     
     this.loading = true;
     this.activateRoute.params.subscribe( params => {
-      console.log(params);
+      
       this.type = params['type'];
       this.event = params['event'];
 
@@ -87,10 +94,6 @@ export class ProductMobileComponent implements OnInit {
         this.bundle = typeof queueParams['bundle'] != undefined ? queueParams['bundle'] == "true" : false;
       })
 
-
-      console.log('Product Mobile');
-      console.log(this.type);
-      console.log(params);
       this.events = this.storageService.getCategories(this.type!);
 
       this.events?.forEach( (event) => {

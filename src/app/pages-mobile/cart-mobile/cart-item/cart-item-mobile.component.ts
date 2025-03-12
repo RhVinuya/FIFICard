@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NewConfirmMessageComponent } from 'src/app/new-components/new-confirm-message/new-confirm-message.component';
 import { INewCard, NewCard } from 'src/app/new-models/new-card';
@@ -20,10 +20,21 @@ import { NewStickerService } from 'src/app/new-services/new-sticker.service';
   templateUrl: './cart-item-mobile.component.html',
   styleUrls: ['./cart-item-mobile.component.scss']
 })
-export class CartItemMobileComponent implements OnInit {
+export class CartItemMobileComponent implements OnInit, OnChanges  {
   @Input() set cart(value: INewCart) {
     this.loadDetails(value);
   }
+
+  @Input() status: boolean = false;
+
+  @Input() set forceMark(_forceMark: boolean) {
+    if (_forceMark !== this.mark){
+      this.mark = _forceMark;
+    }
+  }
+
+  @Input() onCartUpdate: EventEmitter<INewCart> = new EventEmitter()
+
   @Output() onChangeMark: EventEmitter<boolean> = new EventEmitter()
   @Output() onRemoveItem: EventEmitter<string> = new EventEmitter()
 
@@ -54,18 +65,30 @@ export class CartItemMobileComponent implements OnInit {
     this.modalService = _modalService;
   }
 
+
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log(changes);
+  }
+
   model: ModelType | undefined = undefined;
   _cart: NewCart | undefined = undefined;
   primary: string = '';
   bundleDetails: string = ''
+  mark: boolean = false;
 
   ngOnInit() {
+    this.mark = this.status;
+
   }
 
   async loadDetails(cart: INewCart) {
+    
     this.config = await this.configService.get();
 
     this._cart = new NewCart(cart);
+    this.mark = this._cart.mark;
+
+    console.log(this._cart);
     if (this._cart.type === 'card') {
       let iCard = await this.cardService.get(this._cart.itemId);
       this.model = new NewCard(iCard as INewCard, this.config);

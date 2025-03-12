@@ -1,67 +1,81 @@
-* {
-    font-family: "Proxima Nova";
-  }
-  
-  .fa,
-  .far,
-  .fas {
-    font-family: "Font Awesome 5 Free" !important;
-  }
-  
-  .fa-trash {
-    cursor: pointer;
-  }
-  
 
-  ion-img {
-    height: 5rem;
-  }
-  
-  .item-col {
-    flex: 1 1 auto;
-    // padding: 5px;
-  }
-  
-  .item-checkbox {
-    display: flex;
-    width: 10%;
-  }
-  
-  .item-image {
-    width: 20%;
-    padding: 5px;
-  }
-  
-  .item-details {
-    width: 70%;
-    overflow: hidden;
-    white-space: nowrap
-  }
-  
-  ion-item {
-    --padding-start: 0px;
-    background-color: rgb(218, 218, 218);
-  }
-  
-  ion-item-options {
-    padding:5px;
-    background-color: rgb(218, 218, 218);
-  }
-  
-  ion-item-sliding {
-    margin-bottom: 5px;
-    padding: 5px;
-    width: 100%;
-    background-color: rgb(218, 218, 218);
-  }
-  
-  .cuz-delete
-{
-  position: absolute;
-  right: 12px;
-  top: 12px;
-  z-index: 10;
-  font-size: 22px;
-  background: white;
+
+/*********************************************************************************************************/
+
+.item {
+  padding-block: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center; 
+  height: 100px;
+  padding-left: 5px;
 }
-  
+
+.item img {
+  height: 90px;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.item .details {
+  padding-inline: 5px;
+  flex-grow: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.item .details .name {
+  font-size: 1rem;
+  margin-bottom: 3px;
+}
+
+.item .details .description{
+  font-size: 10px;
+  color: gray;
+  margin-bottom: 3px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.item .price{
+  flex-grow: 2;
+  font-size: 12px;
+  position: absolute;
+  right: 10px;
+}
+
+.item .delete{
+flex-grow: 2;
+font-size: 12px;
+position: absolute;
+top: 15px;
+right: 25px;
+}
+
+.chip {
+  font-size: 8px;
+  padding-inline: 5px;
+  border-radius: 20px;
+}
+
+.chip.primary{
+  background-color: #eff5ff;
+  color: #709cea;
+}
+
+.chip.success{
+  background-color: #eefcf4;
+  color: #98dfb4;
+}
+
+.chip.warning{
+  background-color: #fffbeb;
+  color: #ecca60;
+}
+

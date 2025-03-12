@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription, timer } from 'rxjs';
@@ -9,13 +9,19 @@ import { INewUser } from 'src/app/new-models/new-user';
 import { NewCartService } from 'src/app/new-services/new-cart.service';
 import { NewLocationService } from 'src/app/new-services/new-location.service';
 import { NewStorageService } from 'src/app/new-services/new-storage.service';
+import { CartItemMobileComponent } from './cart-item/cart-item-mobile.component';
+import { AlertController } from '@ionic/angular';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-cart-mobile',
   templateUrl: './cart-mobile.component.html',
   styleUrls: ['./cart-mobile.component.scss']
 })
+
 export class CartMobileComponent implements OnInit, OnDestroy {
+  
+  @ViewChild('child') child: CartItemMobileComponent;
 
   cartService: NewCartService;
   storageService: NewStorageService;
@@ -43,7 +49,9 @@ export class CartMobileComponent implements OnInit, OnDestroy {
     _locationService: NewLocationService,
     _modalService: NgbModal,
     _router: Router,
-    _ref: ChangeDetectorRef
+    _ref: ChangeDetectorRef,
+    private _location: Location,
+    public alertController: AlertController
   ) {
     this.cartService = _cartService;
     this.storageService = _storageService;
@@ -91,8 +99,26 @@ export class CartMobileComponent implements OnInit, OnDestroy {
     this.subs.unsubscribe();
   }
 
-  onCheckAllChange(event: any): void {
-    this.isCheckAll = !!!this.isCheckAll;
+  async onCheckAllChange(event: any): Promise<void> {
+    this.isCheckAll = event.detail.checked;
+    
+    let _carts: INewCart[] = [];
+    console.log(event.detail.checked);
+    for await (let cart of this.carts) {
+      cart.mark = event.detail.checked;
+      _carts.push(cart);
+
+      await this.cartService.update(cart);
+
+
+    }
+
+    this.carts = _carts;
+    this.calculate();
+  }
+
+  getMarkCount(): number {
+    return this.carts.filter(x => x.mark === true).length;
   }
 
   checkMarkStatus() {
@@ -108,6 +134,36 @@ export class CartMobileComponent implements OnInit, OnDestroy {
       this.isCheckAll = false;
     }
   }
+  
+
+  async deleteAll() {
+    const alertDelete = await this.alertController.create({
+      header: 'Delete All',
+      message: 'Confirm Deletion',
+      buttons: [
+        {
+          text: "No",
+          role: "no",
+        },
+        {
+          text: "Yes",
+          role: "Yes",
+          handler: async () => {
+            let list = this.carts.filter(x => x.mark === true).map(x => x.id);
+            list.forEach( async (id) => {
+              this.carts = this.carts.filter(x => x.id !== id);
+              let cart = this.carts.find(x => x.id == id);
+              await this.cartService.update(cart!);
+            });
+            this.isCheckAll = this.carts.length > 0 ? this.carts.filter(x => x.mark === false).length === 0 : false;
+            this.calculate();
+          }
+        }
+      ],
+    });
+    await alertDelete.present();
+  }
+
 
   calculate() {
     let location: LocationType = this.locationService.getlocation()
@@ -171,4 +227,9 @@ export class CartMobileComponent implements OnInit, OnDestroy {
   onClickSignIn() {
     this.modalService.open(NewLoginComponent, { animation: true });
   }
+
+  goBack() {
+    this._location.back();
+  }
+
 }

@@ -1,7 +1,5 @@
 <ion-content [fullscreen]="true">
-  <div class="my-4 ps-3">
-    <app-title-mobile title="Cart"></app-title-mobile>
-  </div>
+  <app-title-mobile title="Cart" [wishlist]="true"></app-title-mobile>
 
   <app-loading-mobile [loading]="loading"></app-loading-mobile>
 
@@ -13,28 +11,46 @@
     </div>
   </div>
 
+
+  <div class="item-col item-checkbox ion-align-items-center ion-justify-content-center">
+    <div class="select-all">
+      <ion-item lines="none">
+        <ion-checkbox  slot="start"   
+          *ngIf="carts"
+          [indeterminate]="isIndeterminateCheckAll"
+          [checked]="isCheckAll"
+          (ionChange)="onCheckAllChange($event)"
+          [disabled]="carts.length == 0"
+        ></ion-checkbox>
+        <ion-label> ALL ({{carts.length}})</ion-label>
+        <ion-buttons slot="end">
+          <ion-button size="small" color="danger" [disabled]="getMarkCount() === 0" (click)="deleteAll()">
+            <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-item>
+    </div>
+  </div>
+
   <div class="bg-light" *ngIf="loading == false && carts.length > 0">
     <div class="mxw-1920px row">
       <div class="col-md-9">
-
-        <div class="item-col item-checkbox ion-align-items-center ion-justify-content-center">
-            <ion-checkbox      
-                *ngIf="carts"
-                [indeterminate]="isIndeterminateCheckAll"
-                [checked]="isCheckAll"
-                (ionChange)="onCheckAllChange($event)"
-            ></ion-checkbox>
-        </div>
-
         <ion-list class="bg-light">
-          <app-cart-item-mobile
-            *ngFor="let iCart of carts"
-            [cart]="iCart"
-            (onChangeMark)="onChangeItemMark(iCart.id, $event)"
-            (onRemoveItem)="onRemove($event)"
-          ></app-cart-item-mobile>
-        </ion-list>
 
+          <ion-item-sliding *ngFor="let cart of carts" #slideoptions>
+            <ion-item [button]="true" lines="none">   <!-- (click)="onClick(cart.id)" -->
+              <app-cart-item-mobile 
+                #child
+                [cart]="cart"
+                [status]="cart.mark"
+                [forceMark]="cart.mark"
+                (onChangeMark)="onChangeItemMark(cart.id, $event)"
+              >
+              </app-cart-item-mobile>
+            </ion-item>
+          </ion-item-sliding>
+
+        </ion-list>
       </div>
 
       <div class="col-md-3 ps-1">

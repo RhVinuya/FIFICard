@@ -7,9 +7,14 @@
     margin: 0;
 }
 
-// ion-icon {
-//     padding-top: 5px;
-// }
+* {
+    --background:  rgb(255, 255, 255);
+}
+
+ion-icon {
+    size: 1rem;
+    color:rgb(0, 0, 0);
+}
 
 .back-btn ion-icon{
     font-size: 24px;

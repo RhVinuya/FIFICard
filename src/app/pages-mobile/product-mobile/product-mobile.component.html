@@ -1,33 +1,22 @@
-<ion-header class="ion-no-border">
+<!-- <ion-header class="ion-no-border">
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-button (click)="goBack()">
-        <ion-icon slot="icon-only" name="arrow-back-circle-outline"></ion-icon>
+        <ion-icon slot="icon-only" size="large" name="arrow-back-circle-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
     <ion-buttons slot="secondary">
       <ion-button (click)="goToWishlist()">
-        <ion-icon slot="icon-only" name="heart"></ion-icon>
+        <ion-icon slot="icon-only" size="large" name="heart"></ion-icon>
       </ion-button>
-      <ion-button (click)="goToCart()" >
-        <ion-icon slot="icon-only" name="cart-outline"></ion-icon>
+      <ion-button id="cart-button" (click)="goToCart()" >
+        <ion-icon slot="icon-only" size="large" name="cart-outline">
+        </ion-icon>
       </ion-button>
     </ion-buttons>
     <ion-title>{{ currentEvent.name | uppercase }}{{this.bundle? ' BUNDLE' : ''}}</ion-title>
-
-
-    <!-- <div style="width: 12%;">
-      <ion-icon name="arrow-back-circle-outline" (click)="goBack()"></ion-icon>
-    </div>
-    <div style="width: 60%">
-      <p>{{ currentEvent.name | uppercase }}{{this.bundle? ' BUNDLE' : ''}} CARDS</p>
-    </div>
-    <div style="width: 23%;">
-      <ion-icon name="heart" (click)="goToWishlist()"></ion-icon>
-      <ion-icon (click)="goToCart()" name="cart-outline"></ion-icon>
-    </div> -->
   </ion-toolbar>
-</ion-header>
+</ion-header> -->
 
 <ion-content
   [scrollEvents]="true"
@@ -37,6 +26,9 @@
   fullscreen="true">
 
   <app-new-loading [loading]="!currentEvent"></app-new-loading>
+
+  <app-title-mobile  *ngIf="currentEvent" title="{{ currentEvent.name | uppercase }}{{this.bundle? ' BUNDLE' : ''}}" [wishlist]="true" [cart]="true"></app-title-mobile>
+
 
   <ion-fab
     *ngIf="currentEvent"

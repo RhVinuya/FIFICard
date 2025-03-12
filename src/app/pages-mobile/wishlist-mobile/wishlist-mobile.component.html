@@ -1,16 +1,19 @@
 
 <ion-content [fullscreen]="true">
-    <div class="my-4 ps-3">
-        <app-title-mobile title="Wishlist"></app-title-mobile>
-    </div>
     
     <app-loading-mobile [loading]="loading"></app-loading-mobile>
 
+    <app-title-mobile *ngIf="!loading" title="Wishlist" [wishlist]="false" [cart]="true"></app-title-mobile>
+
     <ion-grid>
         <ion-list>
-            <app-wishlist-tile-mobile *ngFor="let item of wishlist" [wishlist]="item" 
-                (onRemoveItem)="onRemove($event)">
-            </app-wishlist-tile-mobile>
+            <ion-item-sliding *ngFor="let item of wishlist" #slideoptions>
+                <ion-item [button]="true" lines="none">
+                    <app-wishlist-tile-mobile [wishlist]="item" 
+                        (onRemoveItem)="onRemove($event)">
+                    </app-wishlist-tile-mobile>
+                </ion-item>
+            </ion-item-sliding>
         </ion-list>
     </ion-grid>
 </ion-content>

@@ -1,38 +1,70 @@
-<ion-item-sliding  *ngIf="_cart && model">
-  <ion-item lines="none">
+<!-- <ion-item-sliding  *ngIf="_cart && model">
+  <ion-item lines="none" >
+    <ion-checkbox  slot="start"   
+    [checked]="mark"
+    (ionChange)="onChange($event)"
+    ></ion-checkbox>
+
+    
     <div class="item-col item-checkbox ion-align-items-center ion-justify-content-center">
       <ion-checkbox      
-      [checked]="_cart.mark"
+      [checked]="mark"
       (ionChange)="onChange($event)"
       ></ion-checkbox>
-    </div>
-    <div class="item-col item-image">
+    </div> 
+
+    <div>
+      <div class="item-col item-image">
         <ion-img [src]="primary">
         </ion-img>
     </div>
-    <div class="item-col item-details">
-      <h6 
-        class="text-purple mt-1 mb-1 cursor"
-        [routerLink]="['/new/details/' + _cart.type + '/' + _cart.itemId]"
-      >
-        {{ model.name }}
-      </h6>
-      <ion-badge *ngIf="_cart.type === 'card'">CARD</ion-badge>
-      <ion-badge *ngIf="_cart.type === 'card' && _cart.personalize !== undefined">PERSONALIZE</ion-badge>
-      <ion-badge *ngIf="_cart.type === 'sticker'">STICKER</ion-badge>
-      <ion-badge *ngIf="_cart.type === 'postcard'">POSTCARD</ion-badge>
-      <p class="text-gray mb-0">{{ model.description }}</p>
-      <p class="text-purple mb-0" *ngIf="bundleDetails !== ''">
-        {{ bundleDetails }}
-      </p>
-      <h6 class="text-purple my-0">{{ getAmount() }}</h6>
-     
+      <div class="item-col item-details">
+        <h6 
+          class="text-purple mt-1 mb-1 cursor"
+          [routerLink]="['/new/details/' + _cart.type + '/' + _cart.itemId]"
+        >
+          {{ model.name }}
+        </h6>
+        <ion-badge *ngIf="_cart.type === 'card'">CARD</ion-badge>
+        <ion-badge *ngIf="_cart.type === 'card' && _cart.personalize !== undefined">PERSONALIZE</ion-badge>
+        <ion-badge *ngIf="_cart.type === 'sticker'">STICKER</ion-badge>
+        <ion-badge *ngIf="_cart.type === 'postcard'">POSTCARD</ion-badge>
+        <p class="text-gray mb-0">{{ model.description }}</p>
+        <p class="text-purple mb-0" *ngIf="bundleDetails !== ''">
+          {{ bundleDetails }}
+        </p>
+        <h6 class="text-purple my-0">{{ getAmount() }}</h6>
+      
+      </div>
     </div>
+    
+    <ion-icon slot="end" (click)="onRemove()" name="trash-outline" class="cuz-delete"></ion-icon>
   </ion-item>
-  <ion-icon (click)="onRemove()" name="trash-outline" class="cuz-delete"></ion-icon>
-  <!-- <ion-item-options >
+
+ <ion-item-options >
     <ion-item-option color="danger" (click)="onRemove()">
       <ion-icon name="trash-outline"></ion-icon>
     </ion-item-option>
-  </ion-item-options> -->
-</ion-item-sliding>
+  </ion-item-options>
+</ion-item-sliding> -->
+
+<div class="item" *ngIf="_cart && model">
+  <div class="form-check">
+    <ion-checkbox class="form-check-input" type="checkbox" (ionChange)="onChange($event)" [checked]="mark"></ion-checkbox>
+  </div>
+  <img [src]="primary" *ngIf="primary !== ''">
+  <div class="details">
+    <ion-text class="name">{{model ? model.name : ''}}</ion-text>
+    <!-- <ion-text class="description">{{model ? model.description : ''}}</ion-text> -->
+    <span class="chip primary" *ngIf="_cart.type === 'card'">CARD</span>
+    <span class="chip primary" *ngIf="_cart.type === 'card' && _cart.personalize !== undefined">PERSONALIZE</span>
+    <span class="chip primary" *ngIf="_cart.type === 'sticker'">STICKER</span>
+    <span class="chip primary" *ngIf="_cart.type === 'gift'">GIFT</span>
+    <span class="chip primary" *ngIf="_cart.type === 'postcard'">POSTCARD</span>
+    <p class="text-purple mb-0" *ngIf="bundleDetails !== ''">
+      {{ bundleDetails }}
+    </p>
+  </div>
+  <ion-text class="price">{{ getAmount() }}</ion-text>
+  <ion-icon class="delete" slot="end" (click)="onRemove()" name="trash-outline"></ion-icon>
+</div>

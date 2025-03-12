@@ -1,9 +1,10 @@
 * {
-  font-family: Proxima Nova;
+  font-family: 'Source Sans Pro', sans-serif !important;
 }
 
 ion-grid {
-  padding: 25px;
+  padding-left: 25px;
+  padding-right: 25px;
 }
 
 .icon-heart,
@@ -32,9 +33,9 @@ ion-thumbnail {
   height: 100%;
 }
 
-.card-header-container>h2 {
+.card-header-container> h2 {
   line-height: 20px;
-  font-size: 20px;
+  font-size: 1.2rem;
   font-weight: bold;
   color: #ab62c2;
 }
@@ -43,11 +44,10 @@ ion-thumbnail {
   display: flex;
 }
 
-.card-header>p {
+.card-header > p {
   line-height: 1.2;
   margin-top: 0;
-  font-weight: bold;
-  font-size: 16px;
+  font-size: .8rem;
 }
 
 .card-header>.prices {
@@ -66,13 +66,14 @@ ion-thumbnail {
 }
 
 .card-message h5 {
-  font-size: 2rem;
+  font-size: 1.2rem;
   font-weight: bold;
   line-height: 0;
+  margin-bottom: 20px;
 }
 
 .card-message p {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   margin-bottom: 10px;
   white-space: pre-line;
   line-height: 1;
@@ -208,7 +209,7 @@ swiper-slide img {
 }
 
 .my-rec {
-  font-size: 2rem;
+  font-size: 1.5rem;
   position: relative;
   top: -6px;
   padding-right: 10px;
@@ -225,3 +226,10 @@ swiper-slide img {
     display: inline-block;
     opacity: 0.5;
 } 
+
+app-wish-indicator-mobile {
+  position: absolute;
+  top: 5px; 
+  z-index: 999;
+  right: 5px;
+}

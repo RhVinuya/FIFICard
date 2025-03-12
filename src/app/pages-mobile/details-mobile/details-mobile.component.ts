@@ -258,7 +258,7 @@ export class DetailsMobileComponent implements OnInit {
 
   getMessage(version: 'short' | 'long') {
     if(version == 'short')
-      return this.model.details.split('\n\n', 2)[1];
+      return this.model.details.split('\n\n', 3)[1];
 
     return this.model.details;
   }
@@ -362,7 +362,9 @@ export class DetailsMobileComponent implements OnInit {
     })
     this.personalize!.data = this.personalizeData
     this.personalizeService.save(this.personalize!);
+  }
 
-
+  getRecipients() {
+    return this.model.recipients?.join(', ');
   }
 }

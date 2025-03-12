@@ -1,209 +1,81 @@
-* {
-  font-family: "Proxima Nova";
+
+
+/*********************************************************************************************************/
+
+.item {
+    padding-block: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center; 
+    height: 100px;
+    padding-left: 5px;
 }
 
-.fa,
-.far,
-.fas {
-  font-family: "Font Awesome 5 Free" !important;
+.item img {
+    height: 90px;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    border-radius: 5px;
 }
 
-.is-cart-selected {
-  background: #f4ddff;
+.item .details {
+    padding-inline: 5px;
+    flex-grow: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
-.card:hover {
-  background: #f4ddff;
+.item .details .name {
+    font-size: 1rem;
+    margin-bottom: 3px;
 }
 
-img {
-  font-size: 10px;
+.item .details .description{
+    font-size: 10px;
+    color: gray;
+    margin-bottom: 3px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-table {
-  width: 100%;
+.item .price{
+    flex-grow: 2;
+    font-size: 12px;
+    position: absolute;
+    right: 10px;
 }
 
-table tr td {
-  background-color: transparent;
-  padding-inline: 3px;
-  vertical-align: center;
-}
-
-table .mark {
-  width: 3%;
-}
-
-table .image {
-  width: 20%;
-}
-
-table .details {
-  width: auto;
-}
-
-table .amount {
-  width: 10%;
-}
-
-table .delete {
-  width: 3%;
-}
-
-h4 {
-  margin-bottom: 0px;
-  font-size: 16px;
-}
-
-.fa-trash {
-  cursor: pointer;
-}
-
-.fibei-checkout {
-  font-family: "Proxima Nova";
-  border: 2px #5e17eb solid;
-  color: #fff;
-  font-size: 1rem;
-  padding: 10px 20px;
-  border-radius: 20px;
-  font-weight: bold;
-  background-color: #5e17eb;
-  display: block;
-  margin-bottom: 20px;
-  width: 100%;
-}
-
-.cart-paypal {
-  font-size: 1rem;
-  padding: 10px 20px;
-  border-radius: 20px;
-  font-weight: bold;
-  background-color: #e6f44e;
-  display: block;
-  margin-bottom: 20px;
-  width: 100%;
-}
-
-.fibei-btn {
-  font-family: "Proxima Nova";
-  border: 2px #5e17eb solid;
-  color: #5e17eb;
-  font-size: 1rem;
-  padding: 10px;
-  border-radius: 20px;
-  font-weight: bold;
-  margin-right: 8px;
-  display: inline-block;
-  cursor: pointer;
-}
-
-.fibei-btn:hover {
-  font-family: "Proxima Nova";
-  border: 2px #5e17eb solid;
-  color: #fff;
-  background: #5e17eb;
-}
-
-.fibei-btn-o {
-  font-family: "Proxima Nova";
-  color: #fff;
-  background: #5e17eb;
-  cursor: pointer;
-  padding-inline: 10px;
-  padding-block: 5px;
-  border-radius: 20px;
-  margin-right: 8px;
-  display: inline-block;
-  border: none;
-}
-
-.fibei-btn-o:hover {
-  font-family: "Proxima Nova";
-  background: #fff;
-  color: #5e17eb;
-  font-size: 1rem;
-}
-
-.fa-star {
-  font-size: 13px;
-}
-
-.i-poetry {
-  border: 2px solid purple;
-  background: white !important;
-  color: purple !important;
-  font-size: 16px;
-  border-left: 10px solid;
-}
-
-.i-poetry:hover {
-  border: 2px solid #550255;
-  background: purple !important;
-  color: #fff !important;
-  font-size: 16px;
-  border-left: 10px solid #550255;
-}
-
-.i-featured {
-  border: 2px solid #bd283e;
-  background: white !important;
-  color: #bd283e !important;
-  font-size: 16px;
-  border-left: 10px solid;
-}
-
-.i-featured:hover {
-  border: 2px solid #871c2d;
-  background: #bd283e !important;
-  color: #fff !important;
-  font-size: 16px;
-  border-left: 10px solid #871c2d;
-}
-
-ion-img {
-  height: 5rem;
-}
-
-.item-col {
-  flex: 1 1 auto;
-  // padding: 5px;
-}
-
-.item-checkbox {
-  display: flex;
-  width: 10%;
-}
-
-.item-image {
-  width: 20%;
-  padding: 5px;
-}
-
-.item-details {
-  width: 70%;
-  overflow: hidden;
-  white-space: nowrap
-}
-
-ion-item {
-  --padding-start: 0px;
-}
-
-ion-item-options {
-  padding:5px;
-}
-
-ion-item-sliding {
-  margin-bottom: 5px;
-  padding: 5px;
-}
-
-.cuz-delete
-{
+.item .delete{
+  flex-grow: 2;
+  font-size: 12px;
   position: absolute;
-  right: 12px;
-  top: 12px;
-  z-index: 10;
-  font-size: 22px;
-  background: white;
+  top: 15px;
+  right: 25px;
 }
+
+.chip {
+    font-size: 8px;
+    padding-inline: 5px;
+    border-radius: 20px;
+}
+
+.chip.primary{
+    background-color: #eff5ff;
+    color: #709cea;
+}
+
+.chip.success{
+    background-color: #eefcf4;
+    color: #98dfb4;
+}
+
+.chip.warning{
+    background-color: #fffbeb;
+    color: #ecca60;
+}
+

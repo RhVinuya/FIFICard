@@ -1,8 +1,30 @@
+
+<!-- <ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+        <ion-icon slot="icon-only" size="large" name="arrow-back-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="secondary">
+      <app-wish-indicator-mobile slot="end" [id]="model.id"></app-wish-indicator-mobile>
+      <ion-button size="large" id="cart-button" (click)="goToCart()" >
+        <ion-icon slot="icon-only" size="large" name="cart-outline">
+        </ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>{{model.name}}</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+
 <ion-content fullscreen="true">
   <app-new-loading [loading]="!model"></app-new-loading>
 
+  <app-title-mobile *ngIf="model" title="" [wishlist]="true" [cart]="true"></app-title-mobile>
+
   <ion-grid *ngIf="model">
-    <ion-row class="ion-align-items-center ion-justify-content-between">
+    <!-- <ion-row class="ion-align-items-center ion-justify-content-between">
       <ion-col size="6">
         <ion-icon name="chevron-back-outline" (click)="goBack()"></ion-icon>
       </ion-col>
@@ -12,32 +34,11 @@
           <ion-icon (click)="goToCart()" slot="end" name="cart-outline" class="icon-cart"></ion-icon>
         </ion-item>
       </ion-col>
-    </ion-row>
-
-    <ion-row>
-      <ion-col size="12">
-        <div class="card-header-container">
-          <h2> {{model.name}} </h2>
-          <div class="card-header">
-            <p> {{model.description ? model.description : " "}} </p>
-          </div>
-          <div class="prices" *ngIf="isBundle === false">
-            <p class="text-black me-1 ms-0 my-0"><b>Price </b></p>
-            <p class="text-purple my-0"><b> {{getPrice()}}</b></p>
-            <p class="text-gray mx-2 my-0" *ngIf="isPersonalize">-</p>
-            <p class="text-blue my-0" *ngIf="isPersonalize"><b>{{getPersonalizePrice(isDiscounted)}}</b></p>
-          </div>
-          <div class="prices" *ngIf="isBundle === false || isDiscounted">
-            <p class="text-purple slanted-strike my-0"><b><s>{{getOriginalPrice()}}</s></b></p>
-            <p class="text-gray mx-2 my-0" *ngIf="isPersonalize">-</p>
-            <p class="text-blue slanted-strike my-0" *ngIf="isPersonalize"><b><s>{{getPersonalizePrice()}}</s></b></p>
-          </div>
-        </div>
-      </ion-col>
-    </ion-row>
-
+    </ion-row> -->
+    
     <ion-row>
       <ion-col size="12" class="ion-text-center img-container">
+        <app-wish-indicator-mobile [id]="model.id"></app-wish-indicator-mobile>        
         <swiper-container [pager]="true" [slidesPerView]="1" [loop]="true">
           <swiper-slide *ngFor="let image of images">
             <!-- class="slider ion-justify-content-center ion-align-items-center"  -->
@@ -52,28 +53,58 @@
         </ion-thumbnail> -->
       </ion-col>
     </ion-row>
-    <br/>
-    <ion-row class="card-message">
-     
-      <ion-col class="p-0">
-        <span class="my-rec">Recipient:</span>
-        <span class="recipients ion-justify-content-center ion-align-items-center"
-          *ngFor="let recipient of model.recipients">
-          <ion-badge>{{recipient}}</ion-badge>
-        </span>
+
+    <ion-row>
+      <ion-col size="12">
+        <div class="card-header-container">
+          <h2> {{model.name}} </h2>
+          <div class="card-header">
+            <p> {{model.description ? model.description : " "}} </p>
+          </div>
+        </div>
       </ion-col>
     </ion-row>
 
+    <ion-row>
+      <ion-col size="12">
+        <ion-item lines="none">
+          <div class="prices" *ngIf="isBundle === false">
+            <p class="text-purple my-0 me-2"><b>Price: </b></p>
+            <p class="text-purple my-0 me-2"><b> {{getPrice()}}</b></p>
+            <p class="text-purple slanted-strike my-0" *ngIf="isDiscounted"><b><s>{{getOriginalPrice()}}</s></b></p>
+          </div>
+        </ion-item>
+        <ion-item lines="none" *ngIf="isPersonalize">
+          <div class="prices" *ngIf="isBundle === false">
+              <p class="text-blue my-0 me-2"><b>Personalize: </b></p>
+              <p class="text-blue my-0  me-2"><b>{{getPersonalizePrice(isDiscounted)}}</b></p>
+              <p class="text-blue slanted-strike my-0" *ngIf="isDiscounted"><b><s>{{getPersonalizePrice()}}</s></b></p>
+          </div>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <br/>
+
     <ion-row class="card-message">
-      <h5>Details: </h5>
+      <h5>Product Description: </h5>
     </ion-row>
     <ion-row class="card-message">
-      <p *ngIf="type == 'cards'">
-        {{ getMessage('short') }}
-      </p>
-      <p *ngIf="type !=='cards'">
-        {{ getMessage('long') }}
-      </p>
+      <ion-item lines="none">
+        <p>Recipient: {{getRecipients()}}</p>
+        <!-- <span class="recipients ion-justify-content-center ion-align-items-center"
+          *ngFor="let recipient of model.recipients">
+          <ion-badge>{{recipient}}</ion-badge>
+        </span> -->
+      </ion-item>
+      <ion-item lines="none">
+        <p *ngIf="type == 'cards'">
+          {{ getMessage('short') }}
+        </p>
+        <p *ngIf="type !=='cards'">
+          {{ getMessage('long') }}
+        </p>
+      </ion-item>
     </ion-row>
 
     <div *ngIf="type=='cards' && showPersonalize">

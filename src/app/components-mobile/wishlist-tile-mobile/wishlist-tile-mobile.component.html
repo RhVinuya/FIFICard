@@ -1,4 +1,4 @@
-<ion-item-sliding  *ngIf="product">
+<!-- <ion-item-sliding  *ngIf="product">
     <ion-item lines="none">
       <div class="item-col item-image">
           <ion-img [src]="primary">
@@ -20,11 +20,29 @@
         <h6 class="text-purple my-0">{{ getPrice() }}</h6>
       </div>
     </ion-item>
-  
-    <ion-icon (click)="onRemove()" name="trash-outline" class="cuz-delete"></ion-icon>
-  <!-- <ion-item-options >
+   <ion-item-options >
     <ion-item-option color="danger" (click)="onRemove()">
       <ion-icon name="trash-outline"></ion-icon>
     </ion-item-option>
-  </ion-item-options> -->
-</ion-item-sliding>
+  </ion-item-options>
+</ion-item-sliding> -->
+
+<div class="item" *ngIf="product && wishlist">
+  <div class="form-check">
+    <!-- <ion-checkbox class="form-check-input" type="checkbox" (ionChange)="onChange($event)" [checked]="mark"></ion-checkbox> -->
+  </div>
+  <img [src]="primary" *ngIf="primary !== ''">
+  <div class="details">
+    <ion-text class="name">{{product ? product.name : ''}}</ion-text>
+    <!-- <ion-text class="description">{{model ? model.description : ''}}</ion-text> -->
+    <span class="chip primary" *ngIf="wishlist.type === 'card'">CARD</span>
+    <span class="chip primary" *ngIf="wishlist.type === 'sticker'">STICKER</span>
+    <span class="chip primary" *ngIf="wishlist.type === 'gift'">GIFT</span>
+    <span class="chip primary" *ngIf="wishlist.type === 'postcard'">POSTCARD</span>
+    <p class="text-purple mb-0" *ngIf="isBundle">
+      <p class="text-purple my-0"><b *ngIf="min && max">{{min.priceDisplay()}} - {{max.priceDisplay()}}</b>
+    </p>
+  </div>
+  <ion-text class="price">{{ getPrice() }}</ion-text>
+  <ion-icon class="delete" slot="end" (click)="onRemove()" name="trash-outline"></ion-icon>
+</div>
