@@ -77,11 +77,12 @@
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
-    line-height: 18px;
+    line-height: 14px;
     -webkit-line-clamp: 2;
     overflow: hidden;
     height: 30px;
     text-overflow: ellipsis;
+    font-size: 14px;
   }
   
   .card-info > h2 {
