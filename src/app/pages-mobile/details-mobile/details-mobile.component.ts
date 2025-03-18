@@ -1,10 +1,10 @@
 import { Location } from '@angular/common';
 import { register } from 'swiper/element/bundle';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { INewCartBundle } from 'src/app/new-models/new-cart';
-import { IonicSlides, ToastController } from '@ionic/angular';
+import { IonicSlides, IonImg, Platform, ToastController } from '@ionic/angular';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { INewGiftImage, NewGift } from 'src/app/new-models/new-gift';
 import { NewCardService } from 'src/app/new-services/new-card.service';
@@ -41,6 +41,8 @@ export class DetailsMobileComponent implements OnInit {
   personalize: INewPersonalize | undefined = undefined;
   personalizeData: INewPersonalizeData[] = [];
 
+  imageDimensions: { width: number; height: number }[] = [];
+
   activateRoute: ActivatedRoute;
   cardService: NewCardService;
   stickerService: NewStickerService;
@@ -75,6 +77,7 @@ export class DetailsMobileComponent implements OnInit {
     public router: Router,
     private location: Location,
     _configService: NewConfigService,
+    public platform: Platform
   ) { 
     this.configService = _configService;
     this.activateRoute = _activateRoute;
@@ -86,6 +89,7 @@ export class DetailsMobileComponent implements OnInit {
     this.cartService = _cartService;
     this.toastController = _toastController;
     this.personalizeService = _personalizeService;
+    
   }
 
   loading: boolean = false;
@@ -113,8 +117,6 @@ export class DetailsMobileComponent implements OnInit {
       this.loading = true;
       this.id = params['id'];
       this.type = params['type'];
-      console.log('details');
-      console.log(this.type);
       this.bundles = [];
       this.personalizeData = [];
 
@@ -177,8 +179,6 @@ export class DetailsMobileComponent implements OnInit {
         })
       }
 
-
-      console.log(this.model);
     });
   }
 
@@ -187,7 +187,6 @@ export class DetailsMobileComponent implements OnInit {
       this.images = [];
       for await (let item of items) {
         let url = await this.fileService.getImageURL(item.url);
-        console.log(url);
         this.images = [...this.images, url]
       }
     }
@@ -306,8 +305,11 @@ export class DetailsMobileComponent implements OnInit {
       this.personalize = await this.personalizeService.getByCard(this.model.id)
       if (this.personalize === undefined) this.personalize = await this.personalizeService.create(this.model.id);
 
+      this.personalize.data = this.personalize.data.filter( (v, i) => { return this.personalize?.data.indexOf(v) == i });
+
       if (this.personalize.data.length === 0) {
         let signAndSends = await this.cardService.getSignAndSend(this.personalize.itemId);
+        
         for await (let signAndSend of signAndSends) {
           let idx = this.personalizeData.findIndex(x => x.image === signAndSend.image);
           if (idx < 0) {
@@ -366,5 +368,43 @@ export class DetailsMobileComponent implements OnInit {
 
   getRecipients() {
     return this.model.recipients?.join(', ');
+  }
+
+  getHeight(height: number, index: number) {
+    const imgHeight = this.imageDimensions[index]?.height || 1;
+    const imgWidth = this.imageDimensions[index]?.width || 1; 
+    const clampedHeight = 1400 * (imgHeight / imgWidth);
+    const heightPercentage = (( height * ( imgHeight/clampedHeight ) ) / imgHeight) * 100;
+    return `${heightPercentage}%`;
+  }
+
+  getWidth(width: number, index: number) {
+
+    const widthPercentage = (( width * ( this.platform.width()/1400 ) ) / this.platform.width()) * 100; // Convert pixels to percentage
+    return `${widthPercentage}%`;
+  }
+
+  getTop(topInPx: number, index: number) {
+    const imgHeight = this.imageDimensions[index]?.height || 1;
+    const imgWidth = this.imageDimensions[index]?.width || 1; 
+    const clampedTop = 1400 * (imgHeight / imgWidth);
+    const topPercentage = (( topInPx * ( imgHeight/clampedTop ) ) / imgHeight) * 100; // Convert pixels to percentage
+    return `${topPercentage}%`;
+  }
+
+  getLeft(leftInPx: number, index: number) {
+    const imgWidth: number = this.imageDimensions[index]?.width || 1; // Use a default of 1 to avoid division by zero
+    const leftPercentage = (( leftInPx * ( imgWidth/1400 ) ) / imgWidth) * 100; // Convert pixels to percentage
+    
+    return `${leftPercentage}%`;
+  }
+
+  getBackground(url: string) {
+    return "url("+url+")";
+  }
+
+  imageLoaded(index:number, event:any) {
+    const img = event.target as HTMLImageElement;
+    this.imageDimensions[index] = { width: img.clientWidth, height: img.clientHeight };
   }
 }

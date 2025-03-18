@@ -21,7 +21,7 @@
 <ion-content fullscreen="true">
   <app-new-loading [loading]="!model"></app-new-loading>
 
-  <app-title-mobile *ngIf="model" title="" [wishlist]="true" [cart]="true"></app-title-mobile>
+  <app-title-mobile *ngIf="model" title="" [size]="1" [wishlist]="true" [cart]="true"></app-title-mobile>
 
   <ion-grid *ngIf="model">
     <!-- <ion-row class="ion-align-items-center ion-justify-content-between">
@@ -107,7 +107,50 @@
       </ion-item>
     </ion-row>
 
-    <div *ngIf="type=='cards' && showPersonalize">
+    <ion-row  *ngIf="type=='cards' && showPersonalize">
+      <ion-col size="12">
+        <ion-list #personalizeImage *ngFor="let data of personalize!.data; let i = index">
+          <div class="image-container">
+            <div class="textbox" *ngFor="let detail of data.details; let j = index"
+              [style.height]="getHeight(detail.height, i)" 
+              [style.width]="getWidth(detail.width, i)"
+              [style.text-align]="detail.alignment"
+              [style.font-family]="detail.font + '!important'" 
+              [style.color]="detail.color"
+              [style.font-size.px]="detail.size/4"
+              [style.left]="getLeft(detail.left, i)"
+              [style.top]="getTop(detail.top, i)"
+              >
+              {{detail.text}}
+            </div>
+          
+            <!-- [style.transform]="getTransform3d(detail.top, detail.left)" -->
+            <ion-img 
+              class="responsive-image"
+              [src]="data.url"
+            
+              (ionImgDidLoad)="imageLoaded(i, $event)"
+            >
+            </ion-img>
+          </div>
+
+
+              <!-- <div 
+                [style.background]="getBackground(data.url)"
+                alt="The Wisconsin State Capitol building in Madison, WI at night"
+              ></div> -->
+              <ion-item  *ngFor="let detail of data.details; let j = index">
+              <!-- [style.top]="getTop(detail.top)"
+              [style.left]="getLeft(detail.left)" -->
+
+              <app-personalize-textarea-mobile [detail]="detail" [fieldNumber]="j + 1"
+                (onChange)="changeTextarea($event)"></app-personalize-textarea-mobile>
+            </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+
+    <!-- <div *ngIf="type=='cards' && showPersonalize">
       <ion-row>
         <ion-col size="12">
           
@@ -120,7 +163,7 @@
      
         </ion-col>
       </ion-row>
-    </div>
+    </div> -->
 
     <!-- {{text !== '' ? text : placeholder}} -->
 
@@ -226,10 +269,17 @@
           </ion-button>
         </div>
         <app-add-cart-button-mobile class="me-2" [type]="itemType" [item]="iModel"
-          *ngIf="isAddToCart && !showPersonalize"></app-add-cart-button-mobile>
-        <ion-button *ngIf="showPersonalize" class="cuz-button-personalize" (click)="addToCart()"> Add To Cart</ion-button>
-        <ion-button *ngIf="isPersonalize" class="cuz-button-personalize" (click)="addPersonalize()">{{ !showPersonalize ? "Personalize" :
-          "Cancel"}}</ion-button>
+          *ngIf="isAddToCart && !showPersonalize">
+        </app-add-cart-button-mobile>
+
+        <button *ngIf="showPersonalize" class="cuz-button-personalize" (click)="addToCart()"> 
+          Add To Cart
+        </button>
+        <button *ngIf="isPersonalize" class="cuz-button-personalize" (click)="addPersonalize()">
+          <ion-icon name="pencil-sharp"></ion-icon>
+          {{ !showPersonalize ? "Personalize" :
+          "Cancel"}}
+        </button>
       </ion-col>
     </ion-row>
   </ion-grid>

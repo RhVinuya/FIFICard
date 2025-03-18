@@ -233,3 +233,33 @@ app-wish-indicator-mobile {
   z-index: 999;
   right: 5px;
 }
+
+.cuz-button-personalize {
+  font-family: "Proxima Nova";
+  border: 1px #5e17eb solid;
+  background: white;
+  color: #5e17eb;
+  cursor: pointer;
+  padding-block: 6px;
+  padding-inline: 10px;
+  border-radius: 20px;
+  font-weight: bold;
+  display: inline-block;
+}
+
+.textbox {
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent background */
+  border: 1px solid red;
+  box-sizing: border-box; /* Include padding in width/height */
+}
+
+.image-container {
+  position: relative;
+  display: inline-block; /* Ensure the container wraps the image */
+}
+
+.responsive-image {
+  width: 100%; /* Make the image responsive */
+  height: auto; /* Maintain aspect ratio */
+}

@@ -1,6 +1,12 @@
 <div>
-    <div class="text-area p-1 m-2" [style.height.px]="detail.height" [style.font-family]="font" [style.color]="color"
-        [style.font-size.px]="detail.size" [style.text-align]="alignment" contenteditable="true" #editableDiv
+    <div class="text-area m-2" 
+        [style.height.px]="detail.height" 
+        [style.font-family]="font" 
+        [style.color]="color"
+        [style.font-size.px]="detail.size"
+        [style.text-align]="alignment"
+         contenteditable="true"
+         #editableDiv
         (blur)="onBlur($event)">
         {{text !== '' ? text : placeholder}}
     </div>

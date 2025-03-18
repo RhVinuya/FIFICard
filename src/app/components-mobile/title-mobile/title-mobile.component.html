@@ -34,13 +34,20 @@
 
 <div>
     <ion-toolbar class="py-2 px-3">
-        <ion-buttons slot="start">
-            <ion-button (click)="goBack()">
+      <ion-img slot="start" (click)="goBack()"
+        src="assets/images/ion-title/previous.png"
+      ></ion-img>
+        <!-- <ion-buttons slot="start">
+            <icon></icon>
+            <ion-button size="large" (click)="goBack()">
             <ion-icon slot="icon-only" size="large" name="arrow-back-circle-outline"></ion-icon>
-            </ion-button>
-        </ion-buttons>
-        <ion-title class="label-header">{{_title | titlecase}}</ion-title>
-        <ion-buttons slot="secondary" >
+            </ion-button> 
+        </ion-buttons> -->
+        <ion-title class="label-header"
+        [style.font-size.rem]="_size">
+          {{_title | titlecase}}
+        </ion-title>
+        <!-- <ion-buttons slot="secondary" >
             <ion-buttons slot="secondary">
                 <ion-button *ngIf="_wishlist" size="large" (click)="goToWishlist()">
                     <ion-icon color="danger" slot="icon-only" size="large" name="heart-circle-outline"></ion-icon>
@@ -49,6 +56,13 @@
                   <ion-icon slot="icon-only" size="large" name="cart-outline"></ion-icon>
                 </ion-button>
               </ion-buttons>
-        </ion-buttons>
+        </ion-buttons> -->
+        
+      <ion-img slot="secondary" *ngIf="_wishlist" (click)="goToWishlist()"
+        [src]="wishlistItems.length > 0? 'assets/images/ion-title/heart-red.png' : 'assets/images/ion-title/heart.png'"
+      ></ion-img>
+      <ion-img slot="secondary" *ngIf="_cart" (click)="goToCart()"
+        [src]="cartItems.length > 0? 'assets/images/ion-title/shopping-cart-purple.png' : 'assets/images/ion-title/shopping-cart.png'"
+      ></ion-img>
     </ion-toolbar>
 </div>

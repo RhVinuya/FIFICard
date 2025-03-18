@@ -11,13 +11,14 @@
     --background:  rgb(255, 255, 255);
 }
 
-ion-icon {
-    size: 1rem;
+ion-img {
+    size: 30px;
     color:rgb(0, 0, 0);
+    padding: 5px;
 }
 
 .back-btn ion-icon{
     font-size: 24px;
     border: 1px solid #ccc;
     padding: 10px;
-  }
+}
