@@ -15,9 +15,12 @@
         <div class="row">
             <div class="col-6">
                 <label for="font-select">Font Option: &nbsp;</label><br />
-                <select id="font-select " class="i-style" (change)="changeFont($event)" [(ngModel)]="font">
+                <ion-select id="font-select" class="i-style"  (change)="changeFont($event)" [(ngModel)]="font">
+                    <ion-select-option *ngFor="let font of fonts" [value]="font">{{font}}</ion-select-option>
+                  </ion-select>
+                <!-- <select id="font-select " class="i-style" (change)="changeFont($event)" [(ngModel)]="font">
                     <option *ngFor="let font of fonts" [value]="font">{{font}}</option>
-                </select>
+                </select> -->
             </div>
             <div class="col-6">
                 <label for="color-input">Font Size: &nbsp;</label>
@@ -34,9 +37,12 @@
         <div class="row">
             <div class="col-6">
                 <label for="color-input">Color: &nbsp;</label><br />
-                <select id="color-select" class="i-style" (change)="changeColor($event)" [(ngModel)]="color">
+                <ion-select id="color-select" class="i-style" (change)="changeColor($event)" [(ngModel)]="color">
+                    <ion-select-option *ngFor="let color of colors" [value]="color.hex">{{color.name}}</ion-select-option>
+                  </ion-select>
+                <!-- <select id="color-select" class="i-style" (change)="changeColor($event)" [(ngModel)]="color">
                     <option *ngFor="let color of colors" [value]="color.hex">{{color.name}}</option>
-                </select>
+                </select> -->
             </div>
             <div class="col-6">
                 <label for="color-input">Text Alignment: &nbsp; </label><br />

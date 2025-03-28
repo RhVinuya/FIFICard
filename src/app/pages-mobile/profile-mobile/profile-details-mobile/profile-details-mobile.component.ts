@@ -121,6 +121,13 @@ export class ProfileDetailsMobileComponent implements OnInit {
     this.passwordForm.controls.new.setErrors(null);
     this.passwordForm.controls.confirm.setErrors(null);
 
+    if(this.passwordForm.value.current == this.passwordForm.value.new) {
+        this.passwordForm.controls['new'].setErrors({ 'unique': true });
+        this.processing = false;
+        this.submitted = false;
+        return;
+    }
+
     if (this.passwordForm.value.new == this.passwordForm.value.confirm) {
       this.passwordForm.controls['new'].setErrors(null);
       this.passwordForm.controls['confirm'].setErrors(null);
@@ -150,7 +157,6 @@ export class ProfileDetailsMobileComponent implements OnInit {
       }
     }
     else {
-      this.passwordForm.controls['new'].setErrors({ 'mismatch': true });
       this.passwordForm.controls['confirm'].setErrors({ 'mismatch': true });
       this.processing = false;
       return;
