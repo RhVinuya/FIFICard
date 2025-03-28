@@ -13,17 +13,18 @@
                     <span class="badge text-bg-secondary" *ngIf="item.type === 'gift'">GIFT</span>
 
                     <h4 class="text-purple mt-2 mb-1">{{model.name}}</h4>
+                    <p class="text-purple mt-1 mb-0">{{model.events.join(", ")}}</p>
                     <p class="text-gray mb-0">{{model.description}}</p>
                     <p class="text-purple mb-0" *ngIf="bundleDetails !== ''">{{bundleDetails}}</p>
                 </td>
                 <td class="amount">
-                    <h6 class="my-0">{{item.priceDisplay()}}</h6>
+                    <h6 class="text-purple my-0">{{item.priceDisplay()}}</h6>
                 </td>
                 <td class="amount">
-                    <h6 class="my-0">{{item.shipping > 0 ? item.shippingDisplay() : 'FREE'}}</h6>
+                    <h6 class="text-purple my-0">{{item.shipping > 0 ? item.shippingDisplay() : 'FREE'}}</h6>
                 </td>
                 <td class="amount">
-                    <h6 class=" my-0">{{item.totalDisplay()}}</h6>
+                    <h6 class="text-purple my-0">{{item.totalDisplay()}}</h6>
                 </td>
             </tr>
         </table>

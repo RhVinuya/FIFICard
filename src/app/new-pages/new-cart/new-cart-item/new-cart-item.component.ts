@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NewConfirmMessageComponent } from 'src/app/new-components/new-confirm-message/new-confirm-message.component';
 import { INewCard, NewCard } from 'src/app/new-models/new-card';
-import { INewCart, NewCart } from 'src/app/new-models/new-cart';
+import { NewCart } from 'src/app/new-models/new-cart';
 import { IConfig } from 'src/app/new-models/new-config';
 import { ModelType } from 'src/app/new-models/new-enum';
 import { INewGift, NewGift } from 'src/app/new-models/new-gift';
@@ -21,7 +21,7 @@ import { NewStickerService } from 'src/app/new-services/new-sticker.service';
   styleUrls: ['./new-cart-item.component.scss']
 })
 export class NewCartItemComponent implements OnInit {
-  @Input() set cart(value: INewCart) {
+  @Input() set cart(value: NewCart) {
     this.loadDetails(value);
   }
   @Output() onChangeMark: EventEmitter<boolean> = new EventEmitter()
@@ -64,10 +64,10 @@ export class NewCartItemComponent implements OnInit {
   ngOnInit() {
   }
 
-  async loadDetails(cart: INewCart) {
+  async loadDetails(cart: NewCart) {
+    this._cart = cart; 
     this.config = await this.configService.get();
 
-    this._cart = new NewCart(cart);
     if (this._cart.type === 'card') {
       let iCard = await this.cardService.get(this._cart.itemId);
       this.model = new NewCard(iCard as INewCard, this.config);

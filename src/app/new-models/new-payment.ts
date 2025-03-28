@@ -1,8 +1,10 @@
 import { NewLocationService } from "../new-services/new-location.service";
-import { INewAddress } from "./new-address";
+import { INewAddress, INewAddressConfig, INewShippingFee, NewAddress } from "./new-address";
 import { Timestamp } from "@angular/fire/firestore";
 import { Gateway, ItemType, LocationType, PaymentDetails, Provider } from "./new-enum";
 import { INewPersonalize } from "./new-personalize";
+import { NewCart } from "./new-cart";
+import { environment } from "src/environments/environment";
 
 export interface INewPayment {
     id: string;
@@ -128,7 +130,6 @@ export class NewPaymentItem {
     price: number;
     shipping: number;
     total: number;
-
     location: LocationType;
 
     constructor(value: INewPaymentItem, location: LocationType) {
@@ -161,6 +162,158 @@ export class NewPaymentItem {
     totalDisplay() {
         let locationService: NewLocationService = new NewLocationService();
         return locationService.getSymbol(this.location) + this.total.toLocaleString('en-US', { minimumFractionDigits: 2 })
+    }
+}
+
+export class TotalPayment {
+    locationService: NewLocationService;
+    fees: INewShippingFee[] = [];
+    addressConfig: INewAddressConfig[] = [];
+    defaultAddressId: string;
+    addresses: INewAddress[] = [];
+    payments: any | undefined = undefined;
+    items: NewPaymentItem[] = [];
+    sender: NewSender;
+    receiver: NewAddress;
+
+    constructor(
+        _locationService: NewLocationService,
+        _fees: INewShippingFee[],
+        _carts: NewCart[]
+    ) {
+        this.locationService = _locationService;
+
+        if (this.locationService.getlocation() == 'ph') this.payments = environment.payments.ph;
+        else if (this.locationService.getlocation() == 'us') this.payments = environment.payments.us;
+        else this.payments = environment.payments.sg;
+
+        this.fees = _fees;
+
+        _carts.forEach(cart => {
+            let item: INewPaymentItem = {
+                id: cart.id,
+                itemId: cart.itemId,
+                type: cart.type,
+                bundle: cart.bundle,
+                personalize: cart.personalize,
+                price: cart.getPrice(),
+                shipping: 0,
+                total: cart.getPrice()
+            }
+            this.items.push(new NewPaymentItem(item, this.locationService.getlocation()))
+        })
+    }
+
+    setAddressConfig(value: INewAddressConfig[]) {
+        this.addressConfig = [...value];
+    }
+
+    setDefaultAddress(id: string) {
+        this.defaultAddressId = id;
+    }
+
+    setAddresses(value: INewAddress[]) {
+        this.addresses = [...value];
+    }
+
+    setReceiver(address: INewAddress) {
+        this.receiver = new NewAddress(address)
+    }
+
+    setAddress(id: string) {
+        let iAddress = this.addresses.find(x => x.id === id);
+        if (iAddress) {
+            this.setReceiver(iAddress);
+            this.calculate();
+        }
+    }
+
+    setSender(value: INewSender) {
+        this.sender = new NewSender(value);
+    }
+
+    isValidSender() {
+        return this.sender && this.sender.firstname && this.sender.firstname !== '' && this.sender.lastname && this.sender.lastname !== '' && this.sender.email && this.sender.email !== ''
+    }
+
+    calculate() {
+        if (this.locationService.getlocation() === 'ph') {
+            if (this.receiver && this.receiver.province !== '') {
+                let group = this.addressConfig.find(x => x.name === this.receiver.province)!.group;
+                if (group) {
+                    this.items.forEach(item => {
+                        if (item.type === 'card' || item.type === 'postcard') {
+                            let fee = this.fees.find(x => x.name === 'Card');
+                            if (fee) {
+                                if (group === 'NCR') item.shipping = fee.metromanila;
+                                else if (group === 'Luzon') item.shipping = fee.luzon;
+                                else if (group === 'Visayas') item.shipping = fee.visayas;
+                                else if (group === 'Mindanao') item.shipping = fee.mindanao;
+                            }
+                        }
+                        if (item.type === 'sticker') {
+                            let fee = this.fees.find(x => x.name === 'Sticker');
+                            if (fee) {
+                                if (group === 'NCR') item.shipping = fee.metromanila;
+                                else if (group === 'Luzon') item.shipping = fee.luzon;
+                                else if (group === 'Visayas') item.shipping = fee.visayas;
+                                else if (group === 'Mindanao') item.shipping = fee.mindanao;
+                            }
+                        }
+                        if (item.type === 'gift') {
+                            let fee = this.fees.find(x => x.name === 'Gift');
+                            if (fee) {
+                                if (group === 'NCR') item.shipping = fee.metromanila;
+                                else if (group === 'Luzon') item.shipping = fee.luzon;
+                                else if (group === 'Visayas') item.shipping = fee.visayas;
+                                else if (group === 'Mindanao') item.shipping = fee.mindanao;
+                            }
+                        }
+                        item.total = item.price + item.shipping;
+                    })
+                }
+            }
+        }
+        else {
+            this.items.forEach(item => {
+                if (item.type === 'card' || item.type === 'postcard') {
+                    let fee = this.fees.find(x => x.name === 'Card');
+                    if (fee) item.shipping = this.locationService.getlocation() === 'us' ? fee.us : fee.singapore;
+                }
+                if (item.type === 'sticker') {
+                    let fee = this.fees.find(x => x.name === 'Sticker');
+                    if (fee) item.shipping = this.locationService.getlocation() === 'us' ? fee.us : fee.singapore;
+                }
+                if (item.type === 'gift') {
+                    let fee = this.fees.find(x => x.name === 'Gift');
+                    if (fee) item.shipping = this.locationService.getlocation() === 'us' ? fee.us : fee.singapore;
+                }
+            });
+        }
+    }
+
+    subtotal() {
+        return this.items.reduce((sum, item) => sum + (item.price || 0), 0);
+    }
+
+    subtotalDisplay() {
+        return this.locationService.getPriceSymbol() + this.subtotal().toLocaleString('en-US', { minimumFractionDigits: 2 })
+    }
+
+    shippingFee() {
+        return this.items.reduce((sum, item) => sum + (item.shipping || 0), 0);
+    }
+
+    shippingFeeDisplay() {
+        return this.locationService.getPriceSymbol() + this.shippingFee().toLocaleString('en-US', { minimumFractionDigits: 2 })
+    }
+
+    total() {
+        return this.items.reduce((sum, item) => sum + (item.price || 0) + (item.shipping || 0), 0);
+    }
+
+    totalDisplay() {
+        return this.locationService.getPriceSymbol() + this.total().toLocaleString('en-US', { minimumFractionDigits: 2 })
     }
 }
 

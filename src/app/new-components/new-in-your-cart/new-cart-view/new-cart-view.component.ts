@@ -16,7 +16,7 @@ import { NewStickerService } from 'src/app/new-services/new-sticker.service';
 })
 export class NewCartViewComponent implements OnInit {
   @Input() cart: NewCart;
-  @Output() delete: EventEmitter<string> = new EventEmitter();
+  @Output() delete: EventEmitter<NewCart> = new EventEmitter();
 
   cardService: NewCardService;
   stickerService: NewStickerService;
@@ -117,7 +117,7 @@ export class NewCartViewComponent implements OnInit {
   }
 
   onDelete() {
-    this.delete.emit(this.cart.id)
+    this.delete.emit(this.cart)
   }
 
 }

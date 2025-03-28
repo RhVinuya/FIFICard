@@ -2,7 +2,7 @@
     <app-new-title title="Cart" [breadcrumbs]="breadcrumbs"></app-new-title>
 </div>
 
-<div class="mxw-1920px no-item" *ngIf="carts.length === 0">
+<div class="mxw-1920px no-item" *ngIf="totalCart && totalCart.count() === 0">
     <h3 class="text-purple my-0">No item on cart.</h3>
     <h6 class="text-gray my-0">Explore our Products</h6>
     <div class="mt-4">
@@ -11,14 +11,16 @@
 </div>
 
 <app-new-loading [loading]="loading"></app-new-loading>
-<div *ngIf="loading == false">
-    <div class="mxw-1920px row" *ngIf="carts.length > 0">
+
+<div *ngIf="totalCart && loading == false">
+    <div class="mxw-1920px row" *ngIf="totalCart.count() > 0">
         <div class="col-md-9 pe-1">
             <div class="card bg-light border-light mb-2">
                 <div class="card-body">
                     <table>
                         <tr>
                             <td class="mark">
+                                <input class="form-check-input" type="checkbox" [checked]="totalCart.isMarkAll()" (change)="onChangeItemMarkAll($event)">
                             </td>
                             <td class="image">
                                 <span>Image</span>
@@ -33,7 +35,7 @@
                     </table>
                 </div>
             </div>
-            <app-new-cart-item *ngFor="let iCart of carts" [cart]="iCart" (onChangeMark)="onChangeItemMark(iCart.id, $event)"
+            <app-new-cart-item *ngFor="let cart of totalCart.carts" [cart]="cart" (onChangeMark)="onChangeItemMark(cart.id, $event)"
                 (onRemoveItem)="onRemove($event)"></app-new-cart-item>
         </div>
         <div class="col-md-3 ps-1">
@@ -43,15 +45,15 @@
 
                     <div class="space-between">
                         <h5 class="my-0">Subtotal</h5>
-                        <h5 class="my-0 text-purple">{{totalDisplay}}</h5>
+                        <h5 class="my-0 text-purple">{{totalCart.totalDisplay()}}</h5>
                     </div>
                     <hr />
                     <div class="space-between mb-4">
                         <h5 class="my-0">Estimated Total</h5>
-                        <h5 class="my-0 text-purple">{{totalDisplay}}</h5>
+                        <h5 class="my-0 text-purple">{{totalCart.totalDisplay()}}</h5>
                     </div>
                     <div class="text-center" *ngIf="user !== undefined">
-                        <button class="checkout" [disabled]="count === 0 || saving === true" (click)="onClickCheckout()">Proceed to checkout</button>
+                        <button class="checkout" [disabled]="!totalCart.isForCheckout() || saving" (click)="onClickCheckout()">Proceed to checkout</button>
                     </div>
                     <div *ngIf="user === undefined">
                         <label>No user sign in!</label>

@@ -1,0 +1,223 @@
+{
+    "payment": {
+      "live": false,
+      "gcash": true,
+      "paymongo": false,
+      "stripe": true
+    },
+    "gateway": [
+      {
+        "currency": "PHP",
+        "payments": [
+          "PAYMONGO",
+          "STRIPE",
+          "GCASH-MANUAL"
+        ]
+      },
+      {
+        "currency": "USD",
+        "payments": [
+          "STRIPE"
+        ]
+      },
+      {
+        "currency": "SGD",
+        "payments": [
+          "STRIPE"
+        ]
+      }
+    ],
+    "recipients": [
+      {
+        "main": "All"
+      },
+      {
+        "main": "Mother",
+        "others": [
+          "Mom-to-Be"
+        ]
+      },
+      {
+        "main": "Father",
+        "others": [
+          "Dad-to-Be"
+        ]
+      },
+      {
+        "main": "Daughter"
+      },
+      {
+        "main": "Son"
+      },
+      {
+        "main": "Brother"
+      },
+      {
+        "main": "Sister"
+      },
+      {
+        "main": "Wife"
+      },
+      {
+        "main": "Husband"
+      },
+      {
+        "main": "Baby"
+      },
+      {
+        "main": "Grandparents"
+      },
+      {
+        "main": "Friend",
+        "others": [
+          "Best Friend"
+        ]
+      },
+      {
+        "main": "Work",
+        "others": [
+          "Boss",
+          "Coach",
+          "Co-Worker",
+          "Colleague"
+        ]
+      },
+      {
+        "main": "Girlfriend"
+      },
+      {
+        "main": "Boyfriend"
+      },
+      {
+        "main": "Graduates"
+      },
+      {
+        "main": "Teachers"
+      },
+      {
+        "main": "Aunt"
+      },
+      {
+        "main": "Uncle"
+      },
+      {
+        "main": "Nephew"
+      },
+      {
+        "main": "Niece"
+      },
+      {
+        "main": "Cousin"
+      },
+      {
+        "main": "Couple"
+      }
+    ],
+    "recipientdefault": "All",
+    "ads": {
+      "thumb": {
+        "enable": true,
+        "images": [
+          {
+            "storage": "Digicards_Images/ads_thumb/videogen1.png",
+            "title": "VideoGen",
+            "linktype": "external",
+            "url": "https://videogen.io/?fpr=egetinnz54"
+          },
+          {
+            "storage": "Digicards_Images/ads_thumb/videogen2.png",
+            "title": "VideoGen",
+            "linktype": "external",
+            "url": "https://videogen.io/?fpr=egetinnz54"
+          }
+        ]
+      },
+      "flash": {
+        "enable": true,
+        "images": [
+          {
+            "storage": "Greetings_Images/ads_flash/birthday-banner.gif",
+            "title": "Happy Birthday",
+            "linktype": "internal",
+            "url": "/new/cards/Birthday"
+          },
+          {
+            "storage": "Greetings_Images/ads_flash/promo_discount2.gif",
+            "title": "Discount Promo 50%",
+            "linktype": "internal",
+            "url": "/new/cards/all"
+          }
+        ]
+      },
+      "flashmobile": {
+        "enable": true,
+        "images": [
+          {
+            "storage": "Greetings_Images/ads_flash/birthday-mobile-banner.gif",
+            "title": "Happy Birthday",
+            "linktype": "internal",
+            "url": "/cards/Birthday"
+          }
+        ]
+      },
+      "sticky": {
+        "enable": true,
+        "initial": 1,
+        "minutes": 5,
+        "images": [
+          {
+            "storage": "Digicards_Images/ads_footer/egetinnz-banner.png",
+            "title": "eGetinnz",
+            "linktype": "external",
+            "url": "https://www.egetinnz.com"
+          },
+          {
+            "storage": "Digicards_Images/ads_footer/fibeigreetings-banner.png",
+            "title": "Fibei Greetings",
+            "linktype": "external",
+            "url": "https://fibeigreetings.com"
+          },
+          {
+            "storage": "Digicards_Images/ads_footer/fibeidigicards-banner.png",
+            "title": "Fibei Digicards",
+            "linktype": "external",
+            "url": "https://fibeidigicards.com"
+          },
+          {
+            "storage": "Digicards_Images/ads_footer/fsm-banner.png",
+            "title": "Frontier Semiconductor",
+            "linktype": "external",
+            "url": "http://frontiersemi.com/center/home.php"
+          }
+        ]
+      }
+    },
+    "discounts": [
+      {
+        "code": "VAL10",
+        "value": 10,
+        "disctype": "percent",
+        "active": false,
+        "event": "Valentine's Day",
+        "type": "ecard"
+      },
+      {
+        "code": "BIRTH10",
+        "value": 10,
+        "disctype": "percent",
+        "active": true,
+        "event": "Birthday",
+        "type": "card"
+      }
+    ],
+    "promos": [
+      {
+        "type": "discount on 2nd item",
+        "title": "Buy One and Get a Second Card at 50% off",
+        "start": "2025-03-26",
+        "end": "2025-06-30",
+        "discount": 50,
+        "itemtype": "card"
+      }
+    ]
+  }

@@ -8,44 +8,44 @@
     <div class="col-md-9 pe-1">
         <div class="row mb-2">
             <div class="col-5 pe-1">
-                <div class="card h-100 bg-light border-light drop" [ngClass]="isValidSender() ? '' : 'require'" (click)="openSender()">
+                <div class="card h-100 bg-light border-light drop" [ngClass]="totalPayment.isValidSender() ? '' : 'require'" (click)="openSender()">
                     <div class="card-body">
                         <div class="space-between mb-2 ">
                             <h5 class="card-title text-purple my-0">Sender Details</h5>
                             <ion-icon name="pencil-outline"></ion-icon>
                         </div>
-                        <div class="details" *ngIf="sender">
+                        <div class="details" *ngIf="totalPayment.sender">
                             <div class="detail ms-2 mb-1">
                                 <ion-icon name="person-outline"></ion-icon>
-                                <h6 class="my-0">{{sender.getFullName()}}</h6>
+                                <h6 class="my-0">{{totalPayment.sender.getFullName()}}</h6>
                             </div>
                             <div class="detail ms-2">
                                 <ion-icon name="at-outline"></ion-icon>
-                                <h6 class="my-0">{{sender.email}}</h6>
+                                <h6 class="my-0">{{totalPayment.sender.email}}</h6>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-7 ps-1">
-                <div class="card h-100 bg-light border-light  drop" [ngClass]="receiver === undefined ? 'require' : ''" (click)="openRecipient()">
+                <div class="card h-100 bg-light border-light  drop" [ngClass]="totalPayment.receiver === undefined ? 'require' : ''" (click)="openRecipient()">
                     <div class="card-body">
                         <div class="space-between mb-2">
                             <h5 class="card-title text-purple my-0">Receiver Details</h5>
                             <ion-icon name="chevron-forward-outline"></ion-icon>
                         </div>
-                        <div class="details" *ngIf="receiver">
+                        <div class="details" *ngIf="totalPayment.receiver">
                             <div class="detail ms-2 mb-1">
                                 <ion-icon name="person-outline"></ion-icon>
-                                <h6 class="my-0">{{receiver.getFullName()}}</h6>
+                                <h6 class="my-0">{{totalPayment.receiver.getFullName()}}</h6>
                             </div>
                             <div class="detail ms-2 mb-1">
                                 <ion-icon name="at-outline"></ion-icon>
-                                <h6 class="my-0">{{receiver.email}}</h6>
+                                <h6 class="my-0">{{totalPayment.receiver.email}}</h6>
                             </div>
                             <div class="detail ms-2">
                                 <ion-icon name="home-outline"></ion-icon>
-                                <h6 class="my-0">{{receiver.getFullAddress()}}</h6>
+                                <h6 class="my-0">{{totalPayment.receiver.getFullAddress()}}</h6>
                             </div>
                         </div>
                     </div>
@@ -76,7 +76,7 @@
                 </table>
             </div>
         </div>
-        <app-new-checkout-item *ngFor="let item of items" [iItem]="item"></app-new-checkout-item>
+        <app-new-checkout-item *ngFor="let item of totalPayment.items" [iItem]="item"></app-new-checkout-item>
     </div>
     <div class="col-md-3 ps-1">
         <div class="card bg-light border-light pb-2">
@@ -84,16 +84,16 @@
                 <h3 class="text-purple mt-0 mb-4">Order Summary</h3>
                 <div class="space-between">
                     <span>Subtotal</span>
-                    <h6 class="my-0">{{convertNumberDisplay(subtotal)}}</h6>
+                    <h6 class="my-0">{{totalPayment.subtotalDisplay()}}</h6>
                 </div>
                 <div class="space-between">
                     <span>Shipping Fee</span>
-                    <h6 class="my-0">{{convertNumberDisplay(shippingfee)}}</h6>
+                    <h6 class="my-0">{{totalPayment.shippingFeeDisplay()}}</h6>
                 </div>
                 <hr />
                 <div class="space-between mb-2">
                     <span>Estimated Total</span>
-                    <h6 class="my-0">{{convertNumberDisplay(total)}}</h6>
+                    <h6 class="my-0">{{totalPayment.totalDisplay()}}</h6>
                 </div>
 
                 <div class="form-check mt-4">
@@ -103,7 +103,7 @@
                     </label>
                 </div>
 
-                <form [formGroup]="form" (submit)="onVerify()" *ngIf="payments && payments.specialcode === true">
+                <form [formGroup]="form" (submit)="onVerify()" *ngIf="totalPayment.payments && totalPayment.payments.specialcode === true">
                     <div class="input-group mt-4">
                         <input type="text" class="form-control" placeholder="Enter Special Code" [readonly]="!isReady()" formControlName="code"
                             [ngClass]="{ 'is-invalid': verifySubmitted && form.controls.code.errors}">
@@ -115,14 +115,14 @@
                 </form>
 
                 <button class="btn-creditcard card-payment mt-4" [disabled]="!isReady()" (click)="onStripe()"
-                    *ngIf="payments && payments.card === true">
+                    *ngIf="totalPayment.payments && totalPayment.payments.card === true">
                     <span class="spinner-border spinner-border-sm me-1" aria-hidden="true" *ngIf="isProcessingStripe"></span>
                     <span>{{isProcessingStripe ? 'Processing...' : ' Pay with Credit Card'}}</span>
                     <i class="p-credit mx-1"></i>
                     <span>by Stripe</span>
                 </button>
 
-                <button class="btn-gcash card-payment mt-2" [disabled]="!isReady()" (click)="onGCash()" *ngIf="payments && payments.gcash === true">
+                <button class="btn-gcash card-payment mt-2" [disabled]="!isReady()" (click)="onGCash()" *ngIf="totalPayment.payments && totalPayment.payments.gcash === true">
                     <span class="spinner-border spinner-border-sm me-1" aria-hidden="true" *ngIf="isProcessingGCash"></span>
                     <span>{{isProcessingStripe ? 'Processing...' : 'Pay with'}}</span>
                     <i class="p-gcash mx-1"></i>
@@ -130,7 +130,7 @@
                 </button>
 
                 <button class="btn-paymaya card-payment mt-2" [disabled]="!isReady()" (click)="onPaymaya()"
-                    *ngIf="payments && payments.paymaya === true">
+                    *ngIf="totalPayment.payments && totalPayment.payments.paymaya === true">
                     <span class="spinner-border spinner-border-sm me-1" aria-hidden="true" *ngIf="isProcessingPayMaya"></span>
                     <span>{{isProcessingStripe ? 'Processing...' : ' Pay with '}}</span>
                     <i class="p-paymaya mx-1"></i>
@@ -138,7 +138,7 @@
                 </button>
 
                 <button class="btn-gcash card-payment mt-2" [disabled]="!isReady()" (click)="onGCashUpload()"
-                    *ngIf="payments && payments.gcashupload === true">
+                    *ngIf="totalPayment.payments && totalPayment.payments.gcashupload === true">
                     <span>Pay with</span>
                     <i class="p-gcash mx-1"></i>
                 </button>

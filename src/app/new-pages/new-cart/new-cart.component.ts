@@ -4,7 +4,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription, timer } from 'rxjs';
 import { NewLoginComponent } from 'src/app/new-components/new-login/new-login.component';
 import { INewCard, NewCard } from 'src/app/new-models/new-card';
-import { INewCart } from 'src/app/new-models/new-cart';
+import { INewCart, TotalCart } from 'src/app/new-models/new-cart';
 import { IConfig } from 'src/app/new-models/new-config';
 import { LocationType, StorageEnum } from 'src/app/new-models/new-enum';
 import { INewUser } from 'src/app/new-models/new-user';
@@ -68,10 +68,7 @@ export class NewCartComponent implements OnInit, OnDestroy {
   subs: Subscription;
   user: INewUser | undefined = undefined;
   loading: boolean = false;
-  carts: INewCart[] = [];
-  count: number = 0;
-  total: number = 0;
-  totalDisplay: string = '';
+  totalCart: TotalCart;
   saving: boolean = false;
   model: NewCard;
 
@@ -85,9 +82,8 @@ export class NewCartComponent implements OnInit, OnDestroy {
 
     this.loading = true;
     this.ref.detectChanges();
-    this.carts = await this.cartService.getAll();
-    console.log(this.carts);
-    this.calculate();
+    let items: INewCart[] = await this.cartService.getAll();
+    this.totalCart = new TotalCart(this.cartService, this.cardService, items.reverse(), this.config);
     this.loading = false;
     this.ref.detectChanges();
   }
@@ -96,73 +92,24 @@ export class NewCartComponent implements OnInit, OnDestroy {
     this.subs.unsubscribe();
   }
 
-
-  async calculate() {
-    let location: LocationType = this.locationService.getlocation()
-    let symbol: string = this.locationService.getPriceSymbol();
-    this.total = 0;
-
-    for await (let cart of this.carts) {
-      if (cart.mark === true) {
-        if (cart.type === 'card') {
-          let iCard = await this.cardService.get(cart.itemId);
-          this.model = new NewCard(iCard as INewCard, this.config);
-          
-          let isDiscounted = (this.model as NewCard).isDiscounted();
-          let discountedPrice = 0;
-          if (isDiscounted) {
-            discountedPrice = this.model.getDiscountedPrice()
-            if (cart.personalize) {
-              discountedPrice = this.model.getPersonalizePrice(isDiscounted);
-            }
-          }
-
-          if (location === 'ph') this.total = this.total + (isDiscounted ? discountedPrice : cart.price);
-          else if (location === 'us') this.total = this.total + (isDiscounted ? discountedPrice :  cart.usprice);
-          else this.total = this.total + (isDiscounted ? discountedPrice : cart.sgprice);
-        }
-        else if (cart.type === 'sticker') {
-          if (location === 'ph') this.total = this.total + cart.price;
-          else if (location === 'us') this.total = this.total + cart.usprice;
-          else this.total = this.total + cart.sgprice;
-        }
-        else if (cart.type === 'postcard') {
-          if (cart.bundle) {
-            if (location === 'ph') this.total = this.total + cart.bundle.price
-            else if (location === 'us') this.total = this.total + cart.bundle.usprice
-            else this.total = this.total + cart.bundle.sgprice
-          }
-        }
-        else if (cart.type === 'gift') {
-          if (location === 'ph') this.total = this.total + cart.price;
-          else if (location === 'us') this.total = this.total + cart.usprice;
-          else this.total = this.total + cart.sgprice;
-        }
-      }
-    }
-    
-    this.count = this.carts.filter(x => x.mark === true).length;
-    this.totalDisplay = symbol + this.total.toLocaleString('en-US', { minimumFractionDigits: 2 })
+  async onChangeItemMark(id: string, mark: boolean) {
+    await this.totalCart.changeMark(id, mark);
+    this.ref.detectChanges();
   }
 
-  async onChangeItemMark(id: string, mark: boolean) {
-    let idx = this.carts.findIndex(x => x.id === id);
-    this.carts[idx].mark = mark;
-    await this.cartService.update(this.carts[idx]);
-    this.calculate();
+  async onChangeItemMarkAll(e: any) {
+    await this.totalCart.changeMarkAll(e.target.checked);
     this.ref.detectChanges();
   }
 
   async onRemove(id: string) {
-    await this.cartService.delete(id);
-    this.carts = [...this.carts.filter(x => x.id !== id)];
-    this.calculate();
+    await this.totalCart.remove(id);
     this.ref.detectChanges();
   }
 
   onClickCheckout() {
     this.saving = true;
-    this.storageService.saveCheckoutList(this.carts.filter(x => x.mark === true).map(x => x.id));
+    this.storageService.saveCheckoutList(this.totalCart.carts.filter(x => x.mark === true).map(x => x.id));
     this.router.navigate(['/new/checkout']);
     this.saving = false;
   }

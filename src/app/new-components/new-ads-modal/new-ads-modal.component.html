@@ -1,13 +1,23 @@
 <div class="main">
-  
-  <div class="h-100" *ngIf="images.length > 1">
-    <ngb-carousel [interval]="5000" [pauseOnHover]="false" [wrap]="true" [keyboard]="false" [animation]="true" [showNavigationArrows]="false" [showNavigationIndicators]="false">
+  <div class="h-100 content" *ngIf="images.length > 1">
+    <ngb-carousel #carousel [interval]="5000" [pauseOnHover]="false" [wrap]="true" [keyboard]="false" [animation]="true" [showNavigationArrows]="false" [showNavigationIndicators]="false">
       <ng-template ngbSlide *ngFor="let image of images">
         <app-new-static-image [image]="image" (click)="onClick()"></app-new-static-image>
       </ng-template>
     </ngb-carousel>
   </div>
 
-  <app-new-static-image [image]="images[0]" (click)="onClick()" *ngIf="images.length === 1"></app-new-static-image>
-  <i class="bi bi-x-lg text-danger" (click)="onClose($event)"></i>
+ <app-new-static-image [image]="images[0]" (click)="onClick()" *ngIf="images.length === 1"></app-new-static-image>
+
+
+  <button class="close" (click)="onClose($event)">
+    <ion-icon name="close-outline" size="large" color="danger"></ion-icon>
+  </button>
+
+  <button class="back" (click)="onPrev($event)" *ngIf="images.length > 1">
+    <ion-icon name="chevron-back-outline" size="large"></ion-icon>
+  </button>
+  <button class="next" (click)="onNext($event)" *ngIf="images.length > 1">
+    <ion-icon name="chevron-forward-outline" size="large"></ion-icon>
+  </button>
 </div>

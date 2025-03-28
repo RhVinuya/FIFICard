@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { INewAddress, INewAddressConfig, INewShippingFee, NewAddress } from 'src/app/new-models/new-address';
-import { INewGCashUploadDetails, INewPayment, INewPaymentItem, INewPaymentItemBundle, INewSender, NewPayment, NewSender } from 'src/app/new-models/new-payment';
+import { INewGCashUploadDetails, INewPayment, INewPaymentItem, INewPaymentItemBundle, INewSender, NewPayment, NewSender, TotalPayment } from 'src/app/new-models/new-payment';
 import { NewAddressService } from 'src/app/new-services/new-address.service';
 import { NewStorageService } from 'src/app/new-services/new-storage.service';
 import { NewCheckoutRecipientsComponent } from './new-checkout-recipients/new-checkout-recipients.component';
@@ -24,6 +24,7 @@ import { environment } from 'src/environments/environment';
 import { INewCard, NewCard } from 'src/app/new-models/new-card';
 import { IConfig } from 'src/app/new-models/new-config';
 import { NewConfigService } from 'src/app/new-services/new-config.service';
+import { INewCart, TotalCart } from 'src/app/new-models/new-cart';
 
 @Component({
   selector: 'app-new-checkout',
@@ -63,7 +64,7 @@ export class NewCheckoutComponent implements OnInit, OnDestroy {
     _router: Router,
     _ref: ChangeDetectorRef,
     _configService: NewConfigService,
-  ) { 
+  ) {
     this.configService = _configService;
     this.storageService = _storageService;
     this.locationService = _locationService;
@@ -99,19 +100,10 @@ export class NewCheckoutComponent implements OnInit, OnDestroy {
   ];
 
   loading: boolean = false;
-  location: LocationType;
+  totalPayment: TotalPayment;
   iUser: INewUser | undefined;
   addressConfig: INewAddressConfig[] = [];
-  fees: INewShippingFee[] = [];
-  sender: NewSender;
-  receiver: NewAddress;
-  defaultAddressId: string;
-  addresses: INewAddress[] = [];
-  ids: string[] = [];
-  items: INewPaymentItem[] = [];
-  subtotal: number = 0;
-  shippingfee: number = 0;
-  total: number = 0;
+    
   accepted: boolean = false;
   verifySubmitted: boolean = false;
   isProcessingSpecialCode: boolean = false;
@@ -119,7 +111,6 @@ export class NewCheckoutComponent implements OnInit, OnDestroy {
   isProcessingGCash: boolean = false;
   isProcessingPayMaya: boolean = false;
   iSProcessingGCashUpload: boolean = false;
-  payments: any | undefined = undefined;
 
   form = new FormGroup({
     code: new FormControl<string>('', [Validators.required, Validators.maxLength(5)]),
@@ -127,88 +118,39 @@ export class NewCheckoutComponent implements OnInit, OnDestroy {
 
   async ngOnInit(): Promise<void> {
     this.loading = true;
-    this.location = this.locationService.getlocation();
+
     this.config = await this.configService.get();
-
-    if (this.location == 'ph') this.payments = environment.payments.ph;
-    else if (this.location == 'us') this.payments = environment.payments.us;
-    else  this.payments = environment.payments.sg;
-
-    this.ref.detectChanges();
-    
+    let ids = this.storageService.getCheckoutList();
+    let fees = await this.addressService.getShippingFees();
     this.addressConfig = await this.addressService.getConfig();
-    this.fees = await this.addressService.getShippingFees();
+    let temp: INewCart[] = []
+    for await (let id of ids) {
+      let iCart = await this.cartService.get(id);
+      if (iCart) temp.push(iCart);
+    }
+    let totalCart: TotalCart = new TotalCart(this.cartService, this.cardService, temp, this.config, false);
+    await totalCart.initializeDiscount();
+    this.totalPayment = new TotalPayment(this.locationService, fees, totalCart.carts);
+    this.totalPayment.setAddressConfig(this.addressConfig);
+    this.totalPayment.calculate();
     this.iUser = this.storageService.getUser();
+
     if (this.iUser) {
-      this.sender = new NewSender({
+      this.totalPayment.setSender({
         firstname: this.iUser.firstname,
         lastname: this.iUser.lastname,
         email: this.iUser.email
       })
-      this.ref.detectChanges();
-      this.defaultAddressId = this.iUser.address;
+      this.totalPayment.setDefaultAddress(this.iUser.address)
       let adds = await this.addressService.getAll(this.iUser.id);
-      adds.forEach(value => {
-        if (this.location === 'ph' && value.country === 'Philippines') this.addresses.push(value);
-        else if (this.location === 'sg' && value.country === 'Singapore') this.addresses.push(value);
-        else if (this.location === 'us' && value.country === 'United States') this.addresses.push(value);
-      })
-
-
-      if (this.iUser.address && this.iUser.address !== '') this.loadAddress(this.iUser.address);
-      this.ref.detectChanges();
-    }
-
-    this.ids = this.storageService.getCheckoutList();
-
-    for await (let id of this.ids) {
-      let iCart = await this.cartService.get(id);
-      if (iCart) {
-        let price: number = 0;
-
-        if( iCart.type == 'card' ) {
-    
-          let iCard = await this.cardService.get(iCart.itemId);
-          let model = new NewCard(iCard as INewCard,  this.config);
-          if(model.isDiscounted()) {
-            price = model.getDiscountedPrice();
-            if(iCart.personalize) {
-              price = model.getPersonalizePrice(true);
-            }
-
-          } else {
-            if (this.location === 'ph') price = iCart.bundle ? iCart.bundle.price : iCart.price;
-            else if (this.location === 'sg') price = iCart.bundle ? iCart.bundle.sgprice : iCart.sgprice;
-            else if (this.location === 'us') price = iCart.bundle ? iCart.bundle.usprice : iCart.usprice;
-          }
-
-        } else {
-          if (this.location === 'ph') price = iCart.bundle ? iCart.bundle.price : iCart.price;
-          else if (this.location === 'sg') price = iCart.bundle ? iCart.bundle.sgprice : iCart.sgprice;
-          else if (this.location === 'us') price = iCart.bundle ? iCart.bundle.usprice : iCart.usprice;
-        }
-
-
-        let bundle: INewPaymentItemBundle | undefined = undefined;
-        if (iCart.bundle) {
-          bundle = {
-            count: iCart.bundle.count,
-            price: price
-          }
-        }
-        this.items.push({
-          id: iCart.id,
-          itemId: iCart.itemId,
-          type: iCart.type,
-          bundle: bundle,
-          personalize: iCart.personalize ? iCart.personalize : undefined,
-          price: price,
-          shipping: 0,
-          total: price
-        })
+      if (this.locationService.getlocation() === 'ph') this.totalPayment.setAddresses(adds.filter(x => x.country === 'Philippines'));
+      if (this.locationService.getlocation() === 'sg') this.totalPayment.setAddresses(adds.filter(x => x.country === 'Singapore'));
+      if (this.locationService.getlocation() === 'us') this.totalPayment.setAddresses(adds.filter(x => x.country === 'United States'));
+      if (this.iUser.address && this.iUser.address !== '') {
+        this.totalPayment.setAddress(this.iUser.address);
       }
     }
-    this.calculateShipping();
+
     this.loading = false;
     this.ref.detectChanges();
   }
@@ -217,17 +159,11 @@ export class NewCheckoutComponent implements OnInit, OnDestroy {
     this.storageService.clearCheckoutList();
   }
 
-  loadAddress(id: string) {
-    let iAddress = this.addresses.find(x => x.id === id);
-    if (iAddress) this.receiver = new NewAddress(iAddress);
-    this.calculateShipping();
-  }
-
   openSender() {
     const reference: NgbModalRef = this.modalService.open(NewCheckoutSenderComponent, { animation: true, size: 'lg' })
-    reference.componentInstance.sender = this.sender;
+    reference.componentInstance.sender = this.totalPayment.sender;
     const onChargeRef = reference.componentInstance.onChange.subscribe((value: INewSender) => {
-      this.sender = new NewSender(value);
+      this.totalPayment.setSender(value);
       reference.close();
     })
     reference.result.then(_ => {
@@ -238,28 +174,28 @@ export class NewCheckoutComponent implements OnInit, OnDestroy {
   openRecipient() {
     const reference: NgbOffcanvasRef = this.offCanvas.open(NewCheckoutRecipientsComponent, { position: 'end', panelClass: 'large-offcanvas' });
     reference.componentInstance.id = this.iUser!.id
-    reference.componentInstance.iAddresses = this.addresses;
-    reference.componentInstance.defaultAddressId = this.defaultAddressId;
-    reference.componentInstance.selected = this.receiver ? this.receiver.id : '';
+    reference.componentInstance.iAddresses = this.totalPayment.addresses;
+    reference.componentInstance.defaultAddressId = this.totalPayment.defaultAddressId;
+    reference.componentInstance.selected = this.totalPayment.receiver ? this.totalPayment.receiver.id : '';
 
     const clickRef = reference.componentInstance.onChange.subscribe((value: string) => {
-      if (value) this.loadAddress(value)
+      if (value) this.totalPayment.setAddress(value);
       reference.close();
     })
 
     const addressDefault = reference.componentInstance.onChangeDefault.subscribe((value: string) => {
       let iUser = this.storageService.getUser();
       if (iUser) {
-        this.defaultAddressId = value;
+        this.totalPayment.setDefaultAddress(value);
         iUser.address = value;
         this.storageService.createUser(iUser);
       }
     })
 
     const addressChange = reference.componentInstance.onAddressChange.subscribe((value: INewAddress) => {
-      let idx = this.addresses.findIndex(x => x.id === value.id)
-      if (idx < 0) this.addresses = [...this.addresses, value]
-      else this.addresses[idx] = value
+      let idx = this.totalPayment.addresses.findIndex(x => x.id === value.id)
+      if (idx < 0) this.totalPayment.addresses = [...this.totalPayment.addresses, value]
+      else this.totalPayment.addresses[idx] = value
     })
 
     reference.result.then(_ => {
@@ -267,82 +203,6 @@ export class NewCheckoutComponent implements OnInit, OnDestroy {
       addressDefault.unsubscribe();
       addressChange.unsubscribe();
     })
-  }
-
-  calculateShipping() {
-    if (this.location === 'ph') {
-      if (this.receiver && this.receiver.province !== '') {
-        let group = this.addressConfig.find(x => x.name === this.receiver.province)!.group;
-        this.items.forEach(item => {
-          if (item.type === 'card' || item.type === 'postcard') {
-            let fee = this.fees.find(x => x.name === 'Card');
-            if (fee) {
-              if (group === 'NCR') item.shipping = fee.metromanila;
-              else if (group === 'Luzon') item.shipping = fee.luzon;
-              else if (group === 'Visayas') item.shipping = fee.visayas;
-              else if (group === 'Mindanao') item.shipping = fee.mindanao;
-            }
-          }
-          if (item.type === 'sticker') {
-            let fee = this.fees.find(x => x.name === 'Sticker');
-            if (fee) {
-              if (group === 'NCR') item.shipping = fee.metromanila;
-              else if (group === 'Luzon') item.shipping = fee.luzon;
-              else if (group === 'Visayas') item.shipping = fee.visayas;
-              else if (group === 'Mindanao') item.shipping = fee.mindanao;
-            }
-          }
-          if (item.type === 'gift') {
-            let fee = this.fees.find(x => x.name === 'Gift');
-            if (fee) {
-              if (group === 'NCR') item.shipping = fee.metromanila;
-              else if (group === 'Luzon') item.shipping = fee.luzon;
-              else if (group === 'Visayas') item.shipping = fee.visayas;
-              else if (group === 'Mindanao') item.shipping = fee.mindanao;
-            }
-          }
-          item.total = item.price + item.shipping;
-        })
-      }
-      this.subtotal = 0;
-      this.shippingfee = 0;
-      this.total = 0;
-      this.items.map(x => this.subtotal = this.subtotal + x.price)
-      this.items.map(x => this.shippingfee = this.shippingfee + x.shipping)
-      this.items.map(x => this.total = this.total + x.total)
-      this.ref.detectChanges();
-    }
-    else {
-      this.items.forEach(item => {
-        if (item.type === 'card' || item.type === 'postcard') {
-          let fee = this.fees.find(x => x.name === 'Card');
-          if (fee) item.shipping = this.location === 'us' ? fee.us : fee.singapore;
-        }
-        if (item.type === 'sticker') {
-          let fee = this.fees.find(x => x.name === 'Sticker');
-          if (fee) item.shipping = this.location === 'us' ? fee.us : fee.singapore;
-        }
-        if (item.type === 'gift') {
-          let fee = this.fees.find(x => x.name === 'Gift');
-          if (fee) item.shipping = this.location === 'us' ? fee.us : fee.singapore;
-        }
-      });
-      this.subtotal = 0;
-      this.shippingfee = 0;
-      this.total = 0;
-      this.items.map(x => this.subtotal = this.subtotal + x.price)
-      this.items.map(x => this.shippingfee = this.shippingfee + x.shipping)
-      this.items.map(x => this.total = this.total + x.total)
-      this.ref.detectChanges();
-    }
-  }
-
-  convertNumberDisplay(value: number) {
-    return this.locationService.getPriceSymbol() + value.toLocaleString('en-US', { minimumFractionDigits: 2 })
-  }
-
-  isValidSender() {
-    return this.sender && this.sender.firstname && this.sender.firstname !== '' && this.sender.lastname && this.sender.lastname !== '' && this.sender.email && this.sender.email !== ''
   }
 
   onChangeAccepted(e: any) {
@@ -356,18 +216,18 @@ export class NewCheckoutComponent implements OnInit, OnDestroy {
       this.isProcessingGCash === false &&
       this.isProcessingPayMaya === false &&
       this.iSProcessingGCashUpload == false &&
-      this.sender &&
-      this.sender.email !== '' &&
-      this.sender.firstname !== '' &&
-      this.sender.lastname !== '' &&
-      this.receiver &&
-      this.receiver.firstname !== '' &&
-      this.receiver.lastname !== '' &&
-      this.receiver.email !== '' &&
-      this.receiver.address !== '' &&
-      this.receiver.country !== '' &&
-      this.receiver.postcode !== '' &&
-      this.items.length > 0;
+      this.totalPayment.sender &&
+      this.totalPayment.sender.email !== '' &&
+      this.totalPayment.sender.firstname !== '' &&
+      this.totalPayment.sender.lastname !== '' &&
+      this.totalPayment.receiver &&
+      this.totalPayment.receiver.firstname !== '' &&
+      this.totalPayment.receiver.lastname !== '' &&
+      this.totalPayment.receiver.email !== '' &&
+      this.totalPayment.receiver.address !== '' &&
+      this.totalPayment.receiver.country !== '' &&
+      this.totalPayment.receiver.postcode !== '' &&
+      this.totalPayment.items.length > 0;
   }
 
   async onVerify() {
@@ -406,12 +266,12 @@ export class NewCheckoutComponent implements OnInit, OnDestroy {
         if (value) {
           let payment: NewPayment = new NewPayment();
           payment.userId = this.iUser ? this.iUser.id : '';
-          payment.sender = this.sender as INewSender;
-          payment.receiver = this.receiver as INewAddress;
-          payment.subtotal = this.subtotal;
-          payment.shippingFee = this.shippingfee;
-          payment.total = this.total;
-          payment.items = this.items;
+          payment.sender = this.totalPayment.sender as INewSender;
+          payment.receiver = this.totalPayment.receiver as INewAddress;
+          payment.subtotal = this.totalPayment.subtotal();
+          payment.shippingFee = this.totalPayment.shippingFee();
+          payment.total = this.totalPayment.total();
+          payment.items = this.totalPayment.items;
           payment.location = this.locationService.getlocation();
           payment.gateway = 'specialcode';
           payment.details = {
@@ -441,12 +301,12 @@ export class NewCheckoutComponent implements OnInit, OnDestroy {
 
     let payment: NewPayment = new NewPayment();
     payment.userId = this.iUser ? this.iUser.id : '';
-    payment.sender = this.sender as INewSender;
-    payment.receiver = this.receiver as INewAddress;
-    payment.subtotal = this.subtotal;
-    payment.shippingFee = this.shippingfee;
-    payment.total = this.total;
-    payment.items = this.items;
+    payment.sender = this.totalPayment.sender as INewSender;
+    payment.receiver = this.totalPayment.receiver as INewAddress;
+    payment.subtotal = this.totalPayment.subtotal();
+    payment.shippingFee = this.totalPayment.shippingFee();
+    payment.total = this.totalPayment.total();
+    payment.items = this.totalPayment.items;
     payment.location = this.locationService.getlocation();
     payment.gateway = 'card';
     payment.provider = 'stripe';
@@ -464,12 +324,12 @@ export class NewCheckoutComponent implements OnInit, OnDestroy {
 
     let payment: NewPayment = new NewPayment();
     payment.userId = this.iUser ? this.iUser.id : '';
-    payment.sender = this.sender as INewSender;
-    payment.receiver = this.receiver as INewAddress;
-    payment.subtotal = this.subtotal;
-    payment.shippingFee = this.shippingfee;
-    payment.total = this.total;
-    payment.items = this.items;
+    payment.sender = this.totalPayment.sender as INewSender;
+    payment.receiver = this.totalPayment.receiver as INewAddress;
+    payment.subtotal = this.totalPayment.subtotal();
+    payment.shippingFee = this.totalPayment.shippingFee();
+    payment.total = this.totalPayment.total();
+    payment.items = this.totalPayment.items;
     payment.location = this.locationService.getlocation();
     payment.gateway = 'gcash';
     payment.provider = 'paymongo';
@@ -486,12 +346,12 @@ export class NewCheckoutComponent implements OnInit, OnDestroy {
 
     let payment: NewPayment = new NewPayment();
     payment.userId = this.iUser ? this.iUser.id : '';
-    payment.sender = this.sender as INewSender;
-    payment.receiver = this.receiver as INewAddress;
-    payment.subtotal = this.subtotal;
-    payment.shippingFee = this.shippingfee;
-    payment.total = this.total;
-    payment.items = this.items;
+    payment.sender = this.totalPayment.sender as INewSender;
+    payment.receiver = this.totalPayment.receiver as INewAddress;
+    payment.subtotal = this.totalPayment.subtotal();
+    payment.shippingFee = this.totalPayment.shippingFee();
+    payment.total = this.totalPayment.total();
+    payment.items = this.totalPayment.items;
     payment.location = this.locationService.getlocation();
     payment.gateway = 'paymaya';
     payment.provider = 'paymongo';
@@ -510,25 +370,25 @@ export class NewCheckoutComponent implements OnInit, OnDestroy {
         this.iSProcessingGCashUpload = true;
         let payment: NewPayment = new NewPayment();
         payment.userId = this.iUser ? this.iUser.id : '';
-        payment.sender = this.sender as INewSender;
-        payment.receiver = this.receiver as INewAddress;
-        payment.subtotal = this.subtotal;
-        payment.shippingFee = this.shippingfee;
-        payment.total = this.total;
-        payment.items = this.items;
+        payment.sender = this.totalPayment.sender as INewSender;
+        payment.receiver = this.totalPayment.receiver as INewAddress;
+        payment.subtotal = this.totalPayment.subtotal();
+        payment.shippingFee = this.totalPayment.shippingFee();
+        payment.total = this.totalPayment.total();
+        payment.items = this.totalPayment.items;
         payment.location = this.locationService.getlocation();
         payment.gateway = 'gcash';
         payment.details = {
           url: value ? value : ''
         } as INewGCashUploadDetails;
-  
+
         this.storageService.savePayment(payment as INewPayment);
         this.iSProcessingGCashUpload = false;
         this.ref.detectChanges();
 
         this.router.navigate(['/new/payment/gcash-upload'])
       }
-      
+
     })
     reference.result.then(_ => {
       fileReceivedRef.unsubscribe();

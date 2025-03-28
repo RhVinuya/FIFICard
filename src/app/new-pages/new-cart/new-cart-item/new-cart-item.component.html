@@ -16,14 +16,28 @@
                     <span class="badge text-bg-secondary" *ngIf="_cart.type === 'postcard'">POSTCARD</span>
                     <span class="badge text-bg-secondary" *ngIf="_cart.type === 'gift'">GIFT</span>
 
-                    <h4 class="text-purple mt-2 mb-1 cursor" [routerLink]="['/new/details/' + _cart.type + '/' + _cart.itemId]">{{model.name}}</h4>
+                    <h4 class="text-purple mt-1 mb-0 cursor" [routerLink]="['/new/details/' + _cart.type + '/' + _cart.itemId]">{{model.name}}</h4>
+                    <p class="text-purple mb-0">{{model.events.join(', ')}}</p>
                     <p class="text-gray mb-0">{{model.description}}</p>
                     <p class="text-purple mb-0" *ngIf="bundleDetails !== ''">{{bundleDetails}}</p>
                 </td>
                 <td class="amount">
-                    <h5 *ngIf="isDiscounted" class="text-purple my-0">{{getDiscountedAmount()}}</h5>
-                    <h5 *ngIf="isDiscounted" class="slanted-strike my-0" style="font-size: 10px;"><s>{{getAmount()}}</s></h5>
-                    <h5 *ngIf="!isDiscounted" class="text-purple my-0">{{getAmount()}}</h5>
+                    <h5 *ngIf="!_cart.isDiscounted && !_cart.isPromo" class="text-purple my-0">{{_cart.priceDisplay()}}</h5>
+
+                    <h5 *ngIf="_cart.isDiscounted && !_cart.isPromo" class="text-purple my-0">
+                        <span class="slanted-strike"><s>{{_cart.originalPriceDisplay()}}</s></span>
+                        {{_cart.priceDisplay()}}
+                    </h5>
+                    <h5 *ngIf="_cart.isDiscounted && !_cart.isPromo" class="slanted-strike my-0" style="font-size: 12px;">{{_cart.discount!.code}} {{_cart.discountDisplay()}}</h5>
+
+                    <h5 *ngIf="_cart.isPromo && _cart.isPromoAdjusted === false" class="text-purple my-0">
+                        {{_cart.priceDisplay()}}
+                    </h5>
+                    <h5 *ngIf="_cart.isPromo && _cart.isPromoAdjusted" class="text-purple my-0">
+                        <span class="slanted-strike"><s>{{_cart.originalPriceDisplay()}}</s></span>
+                        {{_cart.priceDisplay()}}
+                    </h5>
+                    <h5 *ngIf="_cart.isPromo" class="slanted-strike my-0" style="font-size: 12px;">{{_cart.promo!.title}}</h5>
                 </td>
                 <td class="delete text-end">
                     <i class="fa fa-trash text-danger" (click)="onRemove()"></i>

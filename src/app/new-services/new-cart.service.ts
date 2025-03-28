@@ -112,12 +112,15 @@ export class NewCartService {
 
       if (carts.length == 0) {
         let iUser = this.storageService.getUser();
-        this.getAllDB(iUser!.id).then( (carts) => {
-          carts.forEach( (cart) => {
-            this.saveStorage(cart);
+        if (iUser) {
+          this.getAllDB(iUser!.id).then( (carts) => {
+            carts.forEach( (cart) => {
+              this.saveStorage(cart);
+            });
+            resolve(carts);
           });
-          resolve(carts);
-        });
+        }
+        resolve(carts);
       }
       resolve(carts)
     })

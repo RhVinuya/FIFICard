@@ -12,6 +12,7 @@ export interface IConfig {
     links: ILink[];
     ads: IAds;
     discounts: IDiscount[];
+    promos: IPromo[];
 }
 
 export interface IPaymentConfig{
@@ -79,4 +80,13 @@ export interface IDiscount {
 export interface IPaymentKeys {
     publicKey: string;
     secretKey: string;
+}
+
+export interface IPromo {
+    type: 'discount on 2nd item';
+    title: string;
+    start: string;
+    end: string;
+    discount: number;
+    itemtype: 'card' | 'sticker' | 'postcard' | 'gift';
 }

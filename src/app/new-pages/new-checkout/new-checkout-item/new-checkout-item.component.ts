@@ -19,8 +19,8 @@ import { NewStickerService } from 'src/app/new-services/new-sticker.service';
   styleUrls: ['./new-checkout-item.component.scss']
 })
 export class NewCheckoutItemComponent implements OnInit {
-  @Input() set iItem(value: INewPaymentItem){
-    this.item = new NewPaymentItem(value, this.locationService.getlocation());
+  @Input() set iItem(value: NewPaymentItem){
+    this.item = value
   }
 
   locationService: NewLocationService;

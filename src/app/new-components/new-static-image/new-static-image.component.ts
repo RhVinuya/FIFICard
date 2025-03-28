@@ -27,8 +27,6 @@ export class NewStaticImageComponent implements OnInit {
   file: string = '';
 
   ngOnInit() {
-
-    console.log(this.image.storage);
     this.imageService.getImageURL(this.image.storage).then(value => this.file = value)
   }
 

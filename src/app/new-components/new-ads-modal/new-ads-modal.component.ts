@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbCarousel } from '@ng-bootstrap/ng-bootstrap';
 import { IConfig, IAdsImage } from 'src/app/new-models/new-config';
 import { NewConfigService } from 'src/app/new-services/new-config.service';
 
@@ -10,6 +10,7 @@ import { NewConfigService } from 'src/app/new-services/new-config.service';
   styleUrls: ['./new-ads-modal.component.scss'],
 })
 export class NewAdsModalComponent  implements OnInit {
+  @ViewChild('carousel', { static: false }) carousel: NgbCarousel;
 
   configService: NewConfigService;
   activeModal: NgbActiveModal;
@@ -32,7 +33,6 @@ export class NewAdsModalComponent  implements OnInit {
   async ngOnInit() {
     this.config = await this.configService.get();
     this.images = this.config.ads.flash.images;
-    console.log(this.images);
   }
   
   onClose(event: Event) {
@@ -42,5 +42,15 @@ export class NewAdsModalComponent  implements OnInit {
 
   onClick() {
     this.activeModal.close();
+  }
+
+  onPrev(event: Event) {
+    event.stopPropagation();
+    this.carousel.prev()
+  }
+
+  onNext(event: Event) {
+    event.stopPropagation();
+    this.carousel.next()
   }
 }
