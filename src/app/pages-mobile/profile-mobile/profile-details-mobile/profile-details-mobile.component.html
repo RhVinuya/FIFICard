@@ -199,12 +199,22 @@
             <ion-note
               *ngIf="
                 passwordForm.controls.new.dirty &&
-                passwordForm.controls.new.errors
+                passwordForm.controls.new.errors&&
+                !passwordForm.controls.new.getError('unique')
               "
               slot="error"
             >
               Invalid password
-            </ion-note>
+            </ion-note>            
+            <ion-note
+              *ngIf="
+                passwordForm.controls.new.dirty &&
+                passwordForm.controls.new.getError('unique')
+              "
+              slot="error"
+            >
+              New password can not be the same as your current password.
+          </ion-note>
           </ion-item>
         </ion-col>
         <ion-col size="12" [hidden]="!showPasswordForm">
@@ -224,11 +234,21 @@
             <ion-note
               *ngIf="
                 passwordForm.controls.confirm.dirty &&
+                passwordForm.controls.confirm.errors &&
+                !passwordForm.controls.confirm.getError('mismatch')
+              "
+              slot="error"
+            >
+              Invalid password!
+            </ion-note>
+            <ion-note
+              *ngIf="
+                passwordForm.controls.confirm.dirty &&
                 passwordForm.controls.confirm.getError('mismatch')
               "
               slot="error"
             >
-              Password doesn't match
+              Password doesn't match.
             </ion-note>
           </ion-item>
         </ion-col>
