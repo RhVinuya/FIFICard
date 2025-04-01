@@ -6,7 +6,7 @@
         <div class="w-100" [style.font-family]="comment.fontstyle" [style.font-size.px]="comment.fontsize" [style.color]="comment.fontcolor">
             <p class="1-100" [innerText]="comment.message"></p>
         </div>
-        <p class="text-muted fst-italic text-end"> {{comment.user}} @ {{comment.created.toDate() | date: 'MMM dd, yyyy h:mm:ss a'}}</p>
+        <p class="text-muted fst-italic text-end">{{ comment.user }} {{'&#64;'}} {{ comment.created.toDate() | date: 'MMM dd, yyyy h:mm:ss a' }}</p>
     </div>
     <div class="col-md-8 col-sm-12 mt-2 mb-4">
         <app-comment placeholder="Message" (save)="save($event)"></app-comment>

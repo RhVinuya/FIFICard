@@ -38,6 +38,7 @@ export class NewRecentsComponent {
 
   itemIds: string[] = [];
   items: IModelType[] = [];
+  filtered: IModelType[] = [];
   location: LocationType = 'ph';
   limit: number = 10;
 
@@ -48,16 +49,16 @@ export class NewRecentsComponent {
   }
 
   getItems() {
-    let filtered = this.items.filter(x => this.itemIds.includes(x.id) === false);
-    if (this.location !== 'ph') filtered = filtered.filter(x => x.type !== 'gift')
+    this.filtered = this.items.filter(x => this.itemIds.includes(x.id) === false);
+    if (this.location !== 'ph') this.filtered = this.filtered.filter(x => x.type !== 'gift')
 
-    let slides = Math.floor(filtered.length / 10) + (filtered.length % 10 !== 0 ? 1 : 0);
+    let slides = Math.floor(this.filtered.length / 10) + (this.filtered.length % 10 !== 0 ? 1 : 0);
 
     let batches: Batch[] = [];
     let x: number;
     for (x = 1; x <= slides; x++) {
       let end: number = x * this.limit;
-      let batch: Batch = new Batch(filtered.slice(end - this.limit, end));
+      let batch: Batch = new Batch(this.filtered.slice(end - this.limit, end));
       batches.push(batch);
     }
 

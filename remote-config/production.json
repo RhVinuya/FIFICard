@@ -128,12 +128,6 @@
             "title": "VideoGen",
             "linktype": "external",
             "url": "https://videogen.io/?fpr=egetinnz54"
-          },
-          {
-            "storage": "Greetings_Images/ads_flash/promo_discount2.gif",
-            "title": "Discount Promo 50%",
-            "linktype": "internal",
-            "url": "/new/cards/all"
           }
         ]
       },
@@ -145,6 +139,12 @@
             "title": "Happy Birthday",
             "linktype": "internal",
             "url": "/new/cards/Birthday"
+          },
+          {
+            "storage": "Greetings_Images/ads_flash/promo_discount2.gif",
+            "title": "Discount Promo 50%",
+            "linktype": "internal",
+            "url": "/new/cards/all"
           }
         ]
       },
