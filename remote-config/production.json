@@ -128,6 +128,12 @@
             "title": "VideoGen",
             "linktype": "external",
             "url": "https://videogen.io/?fpr=egetinnz54"
+          },
+          {
+            "storage": "Greetings_Images/ads_flash/promo_discount2.gif",
+            "title": "Discount Promo 50%",
+            "linktype": "internal",
+            "url": "/new/cards/all"
           }
         ]
       },
@@ -201,6 +207,16 @@
         "active": true,
         "event": "Birthday",
         "type": "card"
+      }
+    ],
+    "promos": [
+      {
+        "type": "discount on 2nd item",
+        "title": "Buy One and Get a Second Card at 50% off",
+        "start": "2025-04-01",
+        "end": "2025-06-30",
+        "discount": 50,
+        "itemtype": "card"
       }
     ]
   }
