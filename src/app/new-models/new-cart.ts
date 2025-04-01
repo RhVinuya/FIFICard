@@ -25,6 +25,7 @@ export interface INewCart {
     isPromoAdjusted?: boolean | undefined;
     promo?: IPromo | undefined;
     promoPrice?: number | undefined;
+    datetime: number;
 }
 
 export class NewCart {
@@ -45,6 +46,7 @@ export class NewCart {
     isPromoAdjusted: boolean | undefined;
     promo: IPromo | undefined;
     promoPrice: number;
+    datetime: number;
 
     constructor(value: INewCart) {
         this.id = value.id;
@@ -60,6 +62,7 @@ export class NewCart {
         if (value.bundle) this.bundle = new NewCartBundle(value.bundle as INewCartBundle)
         this.personalize = value.personalize;
         this.mark = value.mark;
+        this.datetime = value.datetime;
     }
 
     getOriginalPrice() {
@@ -122,6 +125,11 @@ export class TotalCart {
     location: LocationType;
     symbol: string
     total: number = 0;
+    promocart: NewCart[][] = [];
+
+    isMissingAPromo: boolean | undefined = undefined;
+    missingPromoText: string = '';
+    missingPromoType: ItemType;
 
     constructor(_cartService: NewCartService, _cardService: NewCardService, _iNewCarts: INewCart[], _config: IConfig, initialize: boolean = true) {
         this.cartService = _cartService;
@@ -140,6 +148,11 @@ export class TotalCart {
             items.push(cart);
         })
         this.carts = [...items];
+    }
+
+    setCarts(values: INewCart[]) {
+        this.initializeCarts(values);
+        this.initializeDiscount();
     }
 
     async initializeDiscount() {
@@ -190,12 +203,12 @@ export class TotalCart {
 
             promos.forEach(promo => {
                 if (promo.type === 'discount on 2nd item') {
-                    let items = this.carts.filter(x => x.mark === true).filter(x => x.type === promo.itemtype).reduce((result: NewCart[][], item, index) => {
+                    this.promocart = this.carts.filter(x => x.mark === true).filter(x => x.type === promo.itemtype).reduce((result: NewCart[][], item, index) => {
                         if (index % 2 === 0) result.push([item]);
                         else result[result.length - 1].push(item);
                         return result;
                     }, []);
-                    items.forEach(item => {
+                    this.promocart.forEach(item => {
                         if (item.length === 2) {
                             let primaryCart = item[0];
                             primaryCart.isPromo = true;
@@ -207,10 +220,15 @@ export class TotalCart {
                             secondaryCart.isPromo = true
                             secondaryCart.isPromoAdjusted = true;
                             secondaryCart.promo = promo;
-                            secondaryCart.promoPrice = secondaryCart.getOriginalPrice() - (secondaryCart.getOriginalPrice() * (promo.discount / 100))
+                            secondaryCart.promoPrice = secondaryCart.getOriginalPrice() - (secondaryCart.getOriginalPrice() * (promo.discount / 100));
+                        }
+
+                        this.isMissingAPromo = item.length === 1;
+                        if (this.isMissingAPromo) {
+                            this.missingPromoText = 'Add one more ' + promo.itemtype + ' to avail a promo of ' + promo.discount + '%';
+                            this.missingPromoType = promo.itemtype;
                         }
                     })
-                    console.log(this.carts)
                 }
             })
         }
@@ -232,7 +250,7 @@ export class TotalCart {
 
     isMarkAll() {
         return this.carts.filter(x => x.mark === false).length === 0;
-    }
+    }    
 
     async changeMark(id: string, mark: boolean) {
         let idx = this.carts.findIndex(x => x.id === id);

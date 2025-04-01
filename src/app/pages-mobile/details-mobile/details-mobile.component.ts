@@ -236,7 +236,8 @@ export class DetailsMobileComponent implements OnInit {
         usprice: bundle.usprice,
       } as INewCartBundle,
       personalize: undefined,
-      mark: true
+      mark: true,
+      datetime: (new Date()).getTime()
     })
 
     const toast = await this.toastController.create({
@@ -276,7 +277,8 @@ export class DetailsMobileComponent implements OnInit {
         type: 'card',
         bundle: undefined,
         personalize: this.personalize,
-        mark: true
+        mark: true,
+        datetime: (new Date()).getTime()
       });
 
       const toast = await this.toastController.create({

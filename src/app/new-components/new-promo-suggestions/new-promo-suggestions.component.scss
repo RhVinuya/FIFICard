@@ -1,0 +1,36 @@
+div.slider {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: stretch;
+    gap: 4px;
+    width: 100%;
+}
+
+div.content {
+    width: calc(100% - 40px);
+}
+
+div.slider div.actions {
+    color: #ab37c9;
+    width: 20px;
+    height: 100%;
+}
+
+div.main{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: stretch;
+    flex-wrap: nowrap;
+    gap: 8px;
+    overflow-x: auto; 
+    overflow-y: hidden;
+}
+
+div.item{
+    width: calc(10% - 8px);
+    flex-shrink: 0;
+    scroll-snap-align: center;
+}

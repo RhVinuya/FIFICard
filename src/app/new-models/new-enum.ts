@@ -26,5 +26,6 @@ export enum StorageEnum {
     Personalize = 'PERSONALIZE-',
     Item = 'ITEM-',
     Image = 'IMAGE-',
-    Categories = 'CATEGORIES-'
+    Categories = 'CATEGORIES-',
+    Recents = 'RECENTS-'
 }

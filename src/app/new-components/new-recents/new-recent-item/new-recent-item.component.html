@@ -1,0 +1,19 @@
+<div class="main">
+    <img [src]="image" *ngIf="image !== ''">
+    <span class="badge text-bg-secondary" *ngIf="itemValue.type === 'card'">CARD</span>
+    <span class="badge text-bg-secondary" *ngIf="itemValue.type === 'sticker'">STICKER</span>
+    <span class="badge text-bg-secondary" *ngIf="itemValue.type === 'postcard'">POSTCARD</span>
+    <span class="badge text-bg-secondary" *ngIf="itemValue.type === 'gift'">GIFT</span>
+    <label class="text-purple px-1 name" [routerLink]="['/new/details/' + type + '/'+ itemValue.id ]">{{itemValue.name}}</label>
+
+    <label class="text-primary px-1">
+        <span class="strike" *ngIf="isDiscounted">{{originalDisplay}}</span>
+        {{priceDisplay}}
+    </label>
+    
+    <div class="px-1 w-100">
+        <button (click)="onAddToCart()" [disabled]="loading">
+            {{loading ? 'Adding...' : 'Add to Cart'}}
+        </button>
+    </div>
+</div>

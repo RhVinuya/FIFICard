@@ -273,6 +273,10 @@ import { PersonalizeTextareaMobileComponent } from './components-mobile/personal
 import { NewStaticImageComponent } from './new-components/new-static-image/new-static-image.component';
 import { AdsModalMobileComponent } from './components-mobile/ads-modal-mobile/ads-modal-mobile.component';
 import { NewAdsThumbComponent } from './new-components/new-ads-thumb/new-ads-thumb.component';
+import { NewRecentsComponent } from './new-components/new-recents/new-recents.component';
+import { NewRecentItemComponent } from './new-components/new-recents/new-recent-item/new-recent-item.component';
+import { NewPromoSuggestionsComponent } from './new-components/new-promo-suggestions/new-promo-suggestions.component';
+import { NewPromoSuggestionsItemComponent } from './new-components/new-promo-suggestions/new-promo-suggestions-item/new-promo-suggestions-item.component';
 
 
 @NgModule({
@@ -520,7 +524,12 @@ import { NewAdsThumbComponent } from './new-components/new-ads-thumb/new-ads-thu
     OrderItemMobileComponent,
     PersonalizeTextareaMobileComponent,
     AdsModalMobileComponent,
-    NewAdsThumbComponent
+    NewAdsThumbComponent,
+    NewRecentsComponent,
+    NewRecentItemComponent,
+    NewPromoSuggestionsComponent,
+    NewPromoSuggestionsComponent,
+    NewPromoSuggestionsItemComponent
   ],
   imports: [
     BrowserModule,

@@ -65,4 +65,13 @@
             </div>
         </div>
     </div>
+
+    <div class="mxw-1920px">
+        <app-new-promo-suggestions [visible]="totalCart.isMissingAPromo === true" [title]="totalCart.missingPromoText" [ids]="getItemIds()" [type]="totalCart.missingPromoType" (refresh)="onRefresh()"></app-new-promo-suggestions>
+    </div>
+
+    <div class="mxw-1920px mt-3" *ngIf="totalCart.isMissingAPromo === false">
+        <app-new-recents [ids]="getItemIds()" (refresh)="onRefresh()"></app-new-recents>
+    </div>
+
 </div>

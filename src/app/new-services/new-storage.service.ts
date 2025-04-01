@@ -72,7 +72,7 @@ export class NewStorageService {
     let key: string = '';
     if (id.includes(environment.storage + StorageEnum.Cart)) key = id;
     else key = environment.storage + StorageEnum.Cart + id;
-    
+
     let value: string | null = localStorage.getItem(key)
     if (value !== null) return JSON.parse(value);
     else return undefined;
@@ -189,7 +189,7 @@ export class NewStorageService {
     else return '';
   }
 
-  
+
 
   getCategories(type: 'cards' | 'stickers' | 'postcards' | 'gifts'): NewEvent[] | null {
     let data: string | null = localStorage.getItem(environment.storage + type.toUpperCase() + "-" + StorageEnum.Categories)
@@ -197,9 +197,20 @@ export class NewStorageService {
     else return null;
   }
 
-  saveCategories(type: 'cards' | 'stickers' | 'postcards' | 'gifts' , items: NewEvent[]) {
+  saveCategories(type: 'cards' | 'stickers' | 'postcards' | 'gifts', items: NewEvent[]) {
     localStorage.setItem(environment.storage + type.toUpperCase() + "-" + StorageEnum.Categories, JSON.stringify(items));
   }
 
+  //-------------------
+
+  saveRecents(items: IModelType[]) {
+    localStorage.setItem(environment.storage + StorageEnum.Recents, JSON.stringify(items));
+  }
+
+  getRecents(): IModelType[] {
+    let data: string | null = localStorage.getItem(environment.storage + StorageEnum.Recents)
+    if (data !== null) return JSON.parse(data);
+    else return [];
+  }
 
 }

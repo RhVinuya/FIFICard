@@ -62,6 +62,7 @@ export class NewCartService {
         },
         personalize: cart.personalize ? cart.personalize : null,
         mark: cart.mark,
+        datetime: cart.datetime
       }).then(user => resolve());
     });
   }
@@ -109,7 +110,7 @@ export class NewCartService {
         let cart = this.storageService.getCart(id);
         if (cart) carts.push(cart);
       })
-
+  
       if (carts.length == 0) {
         let iUser = this.storageService.getUser();
         if (iUser) {
@@ -117,12 +118,13 @@ export class NewCartService {
             carts.forEach( (cart) => {
               this.saveStorage(cart);
             });
-            resolve(carts);
           });
         }
-        resolve(carts);
       }
-      resolve(carts)
+
+      let order = [...carts.filter(x => x.datetime === undefined), ...carts.filter(x => x.datetime !== undefined).sort((a, b) => a.datetime - b.datetime)]
+
+      resolve(order)
     })
   }
 

@@ -105,7 +105,8 @@ export class NewAddCartButtonComponent implements OnInit {
         mark: true,
         discount: this.discount,
         discountPrice: this.discountedPrice,
-        isDiscounted: this.isDiscounted
+        isDiscounted: this.isDiscounted,
+        datetime: (new Date()).getTime()
       }
     );
     let message: string = '';

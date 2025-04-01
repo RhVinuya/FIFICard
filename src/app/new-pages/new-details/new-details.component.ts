@@ -18,6 +18,8 @@ import { NewFileService } from 'src/app/new-services/new-file.service';
 import { NewGiftService } from 'src/app/new-services/new-gift.service';
 import { NewPostcardService } from 'src/app/new-services/new-postcard.service';
 import { NewStickerService } from 'src/app/new-services/new-sticker.service';
+import { NewStorageService } from 'src/app/new-services/new-storage.service';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'app-new-details',
@@ -32,6 +34,7 @@ export class NewDetailsComponent implements OnInit {
   giftService: NewGiftService;
   fileService: NewFileService;
   cartService: NewCartService;
+  storageService: NewStorageService;
   toastController: ToastController;
   offCanvas: NgbOffcanvas;
   modalService: NgbModal;
@@ -47,6 +50,7 @@ export class NewDetailsComponent implements OnInit {
     _giftService: NewGiftService,
     _fileService: NewFileService,
     _cartService: NewCartService,
+    _storageService: NewStorageService,
     _toastController: ToastController,
     _offCanvas: NgbOffcanvas,
     _modalService: NgbModal,
@@ -61,6 +65,7 @@ export class NewDetailsComponent implements OnInit {
     this.giftService = _giftService;
     this.fileService = _fileService;
     this.cartService = _cartService;
+    this.storageService = _storageService;
     this.toastController = _toastController;
     this.offCanvas = _offCanvas;
     this.modalService = _modalService;
@@ -90,16 +95,23 @@ export class NewDetailsComponent implements OnInit {
 
   stickerimage: string = '';
 
+  recents: IModelType[] = [];
+
   async ngOnInit(): Promise<void> {
     this.config = await this.configService.get();
     
     this.activateRoute.params.subscribe(params => {
+      this.recents = this.storageService.getRecents();
+
       this.loading = true;
       this.id = params['id'];
       this.type = params['type'];
 
       if (this.type === 'card') {
         this.cardService.get(this.id).then(async value => {
+          this.recents = [value, ...this.recents.filter(x => x.id !== this.id)];
+          this.storageService.saveRecents(this.recents)
+
           this.iModel = value;
           let card = new NewCard(value, this.config);
           this.isDiscounted = card.isDiscounted() ?? false;
@@ -122,6 +134,9 @@ export class NewDetailsComponent implements OnInit {
       }
       else if (this.type === 'sticker') {
         this.stickerService.get(this.id).then(async value => {
+          this.recents = [value, ...this.recents.filter(x => x.id !== this.id)];
+          this.storageService.saveRecents(this.recents)
+
           this.iModel = value;
           this.model = new NewSticker(value);
           this.isAddToCart = true;
@@ -134,6 +149,9 @@ export class NewDetailsComponent implements OnInit {
       }
       else if (this.type === 'postcard') {
         this.postcardService.get(this.id).then(async value => {
+          this.recents = [value, ...this.recents.filter(x => x.id !== this.id)];
+          this.storageService.saveRecents(this.recents)
+
           this.iModel = value;
           this.model = new NewPostcard(value);
           this.isBundle = true;
@@ -153,6 +171,9 @@ export class NewDetailsComponent implements OnInit {
       }
       else if (this.type === 'gift') {
         this.giftService.get(this.id).then(async value => {
+          this.recents = [value, ...this.recents.filter(x => x.id !== this.id)];
+          this.storageService.saveRecents(this.recents)
+
           this.iModel = value;
           this.model = new NewGift(value);
           this.isAddToCart = true;
@@ -229,7 +250,8 @@ export class NewDetailsComponent implements OnInit {
         usprice: bundle.usprice,
       } as INewCartBundle,
       personalize: undefined,
-      mark: true
+      mark: true,
+      datetime: (new Date()).getTime()
     })
     const toast = await this.toastController.create({
       message: 'Postcard bundle is added on the Cart',

@@ -203,7 +203,8 @@ export class NewPersonalizeComponent implements OnInit {
       type: 'card',
       bundle: undefined,
       personalize: this.iPersonalize,
-      mark: true
+      mark: true,
+      datetime: (new Date()).getTime()
     });
     this.isProcessing = false;
     this.added.emit(true);

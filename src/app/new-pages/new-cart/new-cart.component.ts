@@ -83,7 +83,7 @@ export class NewCartComponent implements OnInit, OnDestroy {
     this.loading = true;
     this.ref.detectChanges();
     let items: INewCart[] = await this.cartService.getAll();
-    this.totalCart = new TotalCart(this.cartService, this.cardService, items.reverse(), this.config);
+    this.totalCart = new TotalCart(this.cartService, this.cardService, items, this.config);
     this.loading = false;
     this.ref.detectChanges();
   }
@@ -116,5 +116,14 @@ export class NewCartComponent implements OnInit, OnDestroy {
 
   onClickSignIn() {
     this.modalService.open(NewLoginComponent, { animation: true });
+  }
+
+  getItemIds() {
+    return this.totalCart.carts.map(x => x.itemId)
+  }
+
+  async onRefresh() {
+    let items: INewCart[] = await this.cartService.getAll();
+    this.totalCart.setCarts(items)
   }
 }
