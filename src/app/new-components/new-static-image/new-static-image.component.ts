@@ -13,21 +13,15 @@ export class NewStaticImageComponent implements OnInit {
   @Input() disable: boolean = false
   @Output() click: EventEmitter<void> = new EventEmitter();
 
-  imageService: ImageService;
   router: Router;
 
   constructor(
-    _imageService: ImageService,
     _router: Router
   ) {
-    this.imageService = _imageService;
     this.router = _router;
   }
 
-  file: string = '';
-
   ngOnInit() {
-    this.imageService.getImageURL(this.image.storage).then(value => this.file = value)
   }
 
   onClick() {

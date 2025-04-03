@@ -119,13 +119,13 @@
         "enable": true,
         "images": [
           {
-            "storage": "Digicards_Images/ads_thumb/videogen1.png",
+            "image": "https://firebasestorage.googleapis.com/v0/b/fifi-greetings.appspot.com/o/Digicards_Images%2Fads_thumb%2Fvideogen1.png?alt=media&token=ee6c7da9-fda2-4524-b494-64fdf5084fea",
             "title": "VideoGen",
             "linktype": "external",
             "url": "https://videogen.io/?fpr=egetinnz54"
           },
           {
-            "storage": "Digicards_Images/ads_thumb/videogen2.png",
+            "image": "https://firebasestorage.googleapis.com/v0/b/fifi-greetings.appspot.com/o/Digicards_Images%2Fads_thumb%2Fvideogen2.png?alt=media&token=64626a28-fc2e-4a2c-b1ba-1f5f5d29fb64",
             "title": "VideoGen",
             "linktype": "external",
             "url": "https://videogen.io/?fpr=egetinnz54"
@@ -136,13 +136,7 @@
         "enable": true,
         "images": [
           {
-            "storage": "Greetings_Images/ads_flash/birthday-banner.gif",
-            "title": "Happy Birthday",
-            "linktype": "internal",
-            "url": "/new/cards/Birthday"
-          },
-          {
-            "storage": "Greetings_Images/ads_flash/promo_discount2.gif",
+            "image": "https://firebasestorage.googleapis.com/v0/b/fifi-greetings.appspot.com/o/Greetings_Images%2Fads_flash%2Fpromo_discount2.gif?alt=media&token=913b4832-5482-4a77-ad9d-8551db1a0b9a",
             "title": "Discount Promo 50%",
             "linktype": "internal",
             "url": "/new/cards/all"
@@ -150,10 +144,10 @@
         ]
       },
       "flashmobile": {
-        "enable": true,
+        "enable": false,
         "images": [
           {
-            "storage": "Greetings_Images/ads_flash/birthday-mobile-banner.gif",
+            "image": "https://firebasestorage.googleapis.com/v0/b/fifi-greetings.appspot.com/o/Digicards_Images%2Fads_flash%2Fbirthday-mobile-banner-1.gif?alt=media&token=ef89d9f7-474b-40fa-8f57-cec58bd2c75f",
             "title": "Happy Birthday",
             "linktype": "internal",
             "url": "/cards/Birthday"
@@ -166,25 +160,25 @@
         "minutes": 5,
         "images": [
           {
-            "storage": "Digicards_Images/ads_footer/egetinnz-banner.png",
+            "image": "https://firebasestorage.googleapis.com/v0/b/fifi-greetings.appspot.com/o/Digicards_Images%2Fads_footer%2Fegetinnz-banner.png?alt=media&token=a2da7480-4da4-44ea-9977-41147c25c9a7",
             "title": "eGetinnz",
             "linktype": "external",
             "url": "https://www.egetinnz.com"
           },
           {
-            "storage": "Digicards_Images/ads_footer/fibeigreetings-banner.png",
+            "image": "https://firebasestorage.googleapis.com/v0/b/fifi-greetings.appspot.com/o/Digicards_Images%2Fads_footer%2Ffibeigreetings-banner.png?alt=media&token=e29b6d8f-e052-4cec-b5fd-bedfae8a5dac",
             "title": "Fibei Greetings",
             "linktype": "external",
             "url": "https://fibeigreetings.com"
           },
           {
-            "storage": "Digicards_Images/ads_footer/fibeidigicards-banner.png",
+            "image": "https://firebasestorage.googleapis.com/v0/b/fifi-greetings.appspot.com/o/Digicards_Images%2Fads_footer%2Ffibeidigicards-banner.png?alt=media&token=63c057ce-4738-4ffa-82d4-6cec2c4563eb",
             "title": "Fibei Digicards",
             "linktype": "external",
             "url": "https://fibeidigicards.com"
           },
           {
-            "storage": "Digicards_Images/ads_footer/fsm-banner.png",
+            "image": "https://firebasestorage.googleapis.com/v0/b/fifi-greetings.appspot.com/o/Digicards_Images%2Fads_footer%2Ffsm-banner.png?alt=media&token=0d13ca68-c32a-4b17-8a40-c2ae9a36b466",
             "title": "Frontier Semiconductor",
             "linktype": "external",
             "url": "http://frontiersemi.com/center/home.php"
@@ -205,7 +199,7 @@
         "code": "BIRTH10",
         "value": 10,
         "disctype": "percent",
-        "active": true,
+        "active": false,
         "event": "Birthday",
         "type": "card"
       }

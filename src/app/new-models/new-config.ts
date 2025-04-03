@@ -62,6 +62,7 @@ export interface IAdsSticky {
 }
 
 export interface IAdsImage {
+    image: string;
     storage: string;
     title: string;
     linktype: LinkType;
