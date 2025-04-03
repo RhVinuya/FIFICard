@@ -92,6 +92,9 @@ export class NewDetailsComponent implements OnInit {
   isRegular: boolean = false;
   isCardBundle: boolean = false;
   isDiscounted: boolean = false;
+  discountDisplay: string = '';
+  isPromo: boolean = false;
+  promoTitle: string = '';
 
   stickerimage: string = '';
 
@@ -115,6 +118,9 @@ export class NewDetailsComponent implements OnInit {
           this.iModel = value;
           let card = new NewCard(value, this.config);
           this.isDiscounted = card.isDiscounted() ?? false;
+          this.discountDisplay = card.discountValueDisplay();
+          this.isPromo = card.isPromo() ?? false;
+          this.promoTitle = card.getPromo().length > 0 ? card.getPromo()[0].title : '';
           this.recipients = card.getRecipients();
           this.model = card;
           this.isAddToCart = true;
@@ -138,7 +144,9 @@ export class NewDetailsComponent implements OnInit {
           this.storageService.saveRecents(this.recents)
 
           this.iModel = value;
-          this.model = new NewSticker(value);
+          this.model = new NewSticker(value, this.config);
+          this.isPromo = this.model.isPromo() ?? false;
+          this.promoTitle = this.model.getPromo().length > 0 ? this.model.getPromo()[0].title : '';
           this.isAddToCart = true;
           this.isFeatured = this.model.featured;
           this.loading = false;
@@ -153,7 +161,9 @@ export class NewDetailsComponent implements OnInit {
           this.storageService.saveRecents(this.recents)
 
           this.iModel = value;
-          this.model = new NewPostcard(value);
+          this.model = new NewPostcard(value, this.config);
+          this.isPromo = this.model.isPromo() ?? false;
+          this.promoTitle = this.model.getPromo().length > 0 ? this.model.getPromo()[0].title : '';
           this.isBundle = true;
           this.isFeatured = this.model.featured;
           this.loading = false;
@@ -175,7 +185,9 @@ export class NewDetailsComponent implements OnInit {
           this.storageService.saveRecents(this.recents)
 
           this.iModel = value;
-          this.model = new NewGift(value);
+          this.model = new NewGift(value, this.config);
+          this.isPromo = this.model.isPromo() ?? false;
+          this.promoTitle = this.model.getPromo().length > 0 ? this.model.getPromo()[0].title : '';
           this.isAddToCart = true;
           this.isFeatured = this.model.featured;
           this.loading = false;

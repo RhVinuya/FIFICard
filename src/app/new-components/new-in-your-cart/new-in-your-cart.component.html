@@ -8,6 +8,7 @@
     <div class="content">
         <div class="details">
             <app-new-cart-view *ngFor="let cart of totalCart.carts" [cart]="cart" (delete)="onDelete($event)"></app-new-cart-view>
+            <label class="my-2 text-purple" *ngIf="totalCart.isMissingAPromo">{{totalCart.missingPromoText}}</label>
         </div>
         <div class="totals">
             <label class="my-2 text-purple"><b>SUBTOTAL: {{totalCart.totalDisplay()}}</b></label>

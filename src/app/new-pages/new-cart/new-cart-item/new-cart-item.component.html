@@ -28,7 +28,7 @@
                         <span class="slanted-strike"><s>{{_cart.originalPriceDisplay()}}</s></span>
                         {{_cart.priceDisplay()}}
                     </h5>
-                    <h5 *ngIf="_cart.isDiscounted && !_cart.isPromo" class="slanted-strike my-0" style="font-size: 12px;">{{_cart.discount!.code}} {{_cart.discountDisplay()}}</h5>
+                    <span class="text-purple my-0" *ngIf="_cart.isDiscounted && !_cart.isPromo" class="cus-discount">{{_cart.discount!.code}} {{_cart.discountDisplay()}}</span> 
 
                     <h5 *ngIf="_cart.isPromo && _cart.isPromoAdjusted === false" class="text-purple my-0">
                         {{_cart.priceDisplay()}}
@@ -37,7 +37,7 @@
                         <span class="slanted-strike"><s>{{_cart.originalPriceDisplay()}}</s></span>
                         {{_cart.priceDisplay()}}
                     </h5>
-                    <h5 *ngIf="_cart.isPromo" class="slanted-strike my-0" style="font-size: 12px;">{{_cart.promo!.title}}</h5>
+                    <span class="text-purple my-0" *ngIf="_cart.isPromo" class="cus-discount">{{_cart.promo!.title}}</span> 
                 </td>
                 <td class="delete text-end">
                     <i class="fa fa-trash text-danger" (click)="onRemove()"></i>

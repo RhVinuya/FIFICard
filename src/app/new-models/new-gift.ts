@@ -1,4 +1,5 @@
 import { Timestamp } from "@angular/fire/firestore";
+import { IConfig, IPromo } from "./new-config";
 
 export interface INewGift {
     id: string;
@@ -32,7 +33,9 @@ export class NewGift {
     created: Timestamp;
     modified: Timestamp;
 
-    constructor(value: INewGift){
+    config: IConfig;
+
+    constructor(value: INewGift, _config: IConfig) {
         this.id = value.id;
         this.code = value.code;
         this.name = value.name;
@@ -40,16 +43,37 @@ export class NewGift {
         this.details = value.details;
         this.events = value.events;
         this.recipient = value.recipient;
-        this.recipients = value.recipients? value.recipients : [];
+        this.recipients = value.recipients ? value.recipients : [];
         this.price = value.price;
         this.active = value.active;
         this.featured = value.featured;
         this.created = value.created;
         this.modified = value.modified;
+
+        this.config = _config;
     }
 
-    priceDisplay(){
+    priceDisplay() {
         return '₱' + this.price.toLocaleString('en-US', { minimumFractionDigits: 2 })
+    }
+
+    getPromo() {
+        let promos: IPromo[] = [];
+
+        this.config.promos.forEach(value => {
+            if (value.itemtype === 'gift') {
+                const start: Date = new Date(value.start);
+                const end: Date = new Date(value.end);
+                const today = new Date();
+                if (today.getTime() >= start.getTime() && today.getTime() <= end.getTime()) promos.push(value);
+            }
+        });
+
+        return promos
+    }
+
+    isPromo() {
+        return this.getPromo() !== undefined;
     }
 }
 

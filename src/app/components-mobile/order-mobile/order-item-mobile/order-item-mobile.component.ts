@@ -103,14 +103,14 @@ export class OrderItemMobileComponent implements OnInit {
     }
     else if (this.iItem.type === 'sticker') {
       let iSticker = await this.stickerService.get(this.iItem.itemId);
-      this.model = new NewSticker(iSticker as INewSticker);
+      this.model = new NewSticker(iSticker as INewSticker, this.config);
       this.ratings = await this.cardService.getUserRating(this.iItem.itemId, this.user!.id);
       let images = await this.stickerService.getImages(this.iItem.itemId);
       if (images.length > 0) this.loadImage(images[0].url)
     }
     else if (this.iItem.type === 'postcard') {
       let iPostcard = await this.postcardService.get(this.iItem.itemId);
-      this.model = new NewPostcard(iPostcard as INewPostcard);
+      this.model = new NewPostcard(iPostcard as INewPostcard, this.config);
       this.ratings = await this.cardService.getUserRating(this.iItem.itemId, this.user!.id);
       if (this.iItem.bundle){
         this.bundleDetails = 'Bundle of ' + this.iItem.bundle.count.toLocaleString() + ' pcs'
@@ -120,7 +120,7 @@ export class OrderItemMobileComponent implements OnInit {
     }
     else if (this.iItem.type === 'gift') {
       let iGift = await this.giftService.get(this.iItem.itemId);
-      this.model = new NewGift(iGift as INewGift);
+      this.model = new NewGift(iGift as INewGift, this.config);
       this.ratings = await this.cardService.getUserRating(this.iItem.itemId, this.user!.id);
       let images = await this.giftService.getImages(this.iItem.itemId);
       if (images.length > 0) this.loadImage(images[0].url)

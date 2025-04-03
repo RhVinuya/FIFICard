@@ -22,8 +22,8 @@
                 <label class="text-purple slanted-strike me-2" *ngIf="cart.isPromo && cart.isPromoAdjusted"><s>{{cart.originalPriceDisplay()}}</s></label>
                 <label class="text-purple">{{cart.priceDisplay()}}</label>
             </div>
-            <label class="text-gray" *ngIf="cart.isDiscounted && !cart.isPromo">{{cart.discountDisplay()}}</label>
-            <p class="text-gray" *ngIf="cart.isPromo">{{cart.promo!.title}}</p>
+            <span *ngIf="cart.isDiscounted && !cart.isPromo" class="cus-discount my-0">{{cart.discountDisplay()}}</span> 
+            <span *ngIf="cart.isPromo" class="cus-discount my-0">{{cart.promo!.title}}</span> 
         </div>
     </div>
 </div>

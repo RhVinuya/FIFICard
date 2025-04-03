@@ -141,7 +141,7 @@ export class DetailsMobileComponent implements OnInit {
         this.itemType = "sticker";
         this.stickerService.get(this.id).then(async value => {
           this.iModel = value;
-          this.model = new NewSticker(value);
+          this.model = new NewSticker(value, this.config);
           this.isAddToCart = true;
           this.isFeatured = this.model.featured;
           this.loading = false;
@@ -153,7 +153,7 @@ export class DetailsMobileComponent implements OnInit {
         this.itemType = "postcard";
         this.postcardService.get(this.id).then(async value => {
           this.iModel = value;
-          this.model = new NewPostcard(value);
+          this.model = new NewPostcard(value, this.config);
           this.isBundle = true;
           this.isFeatured = this.model.featured;
           this.loading = false;
@@ -170,7 +170,7 @@ export class DetailsMobileComponent implements OnInit {
         this.itemType = "gift";
         this.giftService.get(this.id).then(async value => {
           this.iModel = value;
-          this.model = new NewGift(value);
+          this.model = new NewGift(value, this.config);
           this.isAddToCart = true;
           this.isFeatured = this.model.featured;
           this.loading = false;

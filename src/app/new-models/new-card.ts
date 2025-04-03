@@ -3,7 +3,7 @@ import { NewLocationService } from "../new-services/new-location.service";
 import { LocationType } from "./new-enum";
 import { environment } from "src/environments/environment";
 import { INewDiscount } from "./new-discount";
-import { IConfig } from "./new-config";
+import { IConfig, IPromo } from "./new-config";
 
 export interface INewCard {
     id: string;
@@ -58,7 +58,7 @@ export class NewCard {
     currencySymbol: string;
 
     config: IConfig;
-    
+
     constructor(value: INewCard, _config: IConfig) {
         this.id = value.id;
         this.code = value.code;
@@ -68,7 +68,7 @@ export class NewCard {
         this.event = value.event;
         this.events = value.events;
         this.recipient = value.recipient
-        this.recipients = value.recipients? value.recipients : [];
+        this.recipients = value.recipients ? value.recipients : [];
         this.price = value.price;
         this.sgprice = value.sgprice;
         this.usprice = value.usprice;
@@ -82,7 +82,6 @@ export class NewCard {
         this.created = value.created;
         this.modified = value.modified;
 
-        
         this.locationService = new NewLocationService();
         this.location = this.locationService.getlocation();
         this.currencySymbol = this.locationService.getCurrencySymbol(this.location);
@@ -99,7 +98,7 @@ export class NewCard {
         }
         else return false;
     }
-    
+
     getDiscount(): INewDiscount | undefined {
         let disc: INewDiscount | undefined = undefined;
 
@@ -116,6 +115,26 @@ export class NewCard {
     isDiscounted() {
         if (this.isFree()) return false;
         else return this.getDiscount() !== undefined;
+    }
+
+    getPromo() {
+        let promos: IPromo[] = [];
+
+        this.config.promos.forEach(value => {
+            if (value.itemtype === 'card') {
+                const start: Date = new Date(value.start);
+                const end: Date = new Date(value.end);
+                const today = new Date();
+                if (today.getTime() >= start.getTime() && today.getTime() <= end.getTime()) promos.push(value);
+            }
+        });
+
+        return promos
+    }
+
+    isPromo() {
+        if (this.isFree()) return false;
+        else return this.getPromo() !== undefined;
     }
 
     originalPriceDisplay() {
@@ -191,8 +210,8 @@ export class NewCard {
 
     getPersonalizePHPrice(discounted: boolean = false) {
         let price = this.price + 50;
-        
-        if(discounted) {
+
+        if (discounted) {
 
             let disc = this.getDiscount()
             if (disc) {
@@ -208,7 +227,7 @@ export class NewCard {
     getPersonalizeUSPrice(discounted: boolean = false) {
         let price = this.usprice + 1;
 
-        if(discounted) {
+        if (discounted) {
 
             let disc = this.getDiscount()
             if (disc) {
@@ -224,7 +243,7 @@ export class NewCard {
     getPersonalizeSGPrice(discounted: boolean = false) {
         let price = this.sgprice + 1;
 
-        if(discounted) {
+        if (discounted) {
 
             let disc = this.getDiscount()
             if (disc) {
@@ -326,7 +345,7 @@ export class NewRating {
     created: Timestamp;
     modified: Timestamp;
 
-    constructor(value: INewRating){
+    constructor(value: INewRating) {
         this.id = value.id;
         this.title = value.title;
         this.review = value.review;

@@ -1,12 +1,12 @@
-<h5 class="text-primary" *ngIf="filtered.length > 0">View Recently</h5>
-<div class="slider" *ngIf="filtered.length > 0">
+<h5 class="text-primary" *ngIf="batches.length > 0">View Recently</h5>
+<div class="slider" *ngIf="batches.length > 0">
     <div class="actions" (click)="onPrev()">
         <i class="fa fa-2 fa-chevron-left"></i>
     </div>
 
     <div class="content">
         <ngb-carousel #carousel [animation]="true" [showNavigationArrows]="false" [showNavigationIndicators]="false" [interval]="0">
-            <ng-template ngbSlide *ngFor="let batch of getItems()">
+            <ng-template ngbSlide *ngFor="let batch of batches">
                 <div class="main">
                     <div class="item" *ngFor="let item of batch.items">
                         <app-new-recent-item [item]="item" (click)="onAdd(item)"></app-new-recent-item>

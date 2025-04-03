@@ -1,6 +1,7 @@
 import { Timestamp } from "@angular/fire/firestore";
 import { NewLocationService } from "../new-services/new-location.service";
 import { LocationType } from "./new-enum";
+import { IConfig, IPromo } from "./new-config";
 
 export interface INewPostcard {
     id: string;
@@ -31,19 +32,42 @@ export class NewPostcard {
     featured: boolean;
     created: Timestamp;
     modified: Timestamp;
+    
+    config: IConfig;
 
-    constructor(value: INewPostcard) {
+    constructor(value: INewPostcard, _config: IConfig) {
         this.id = value.id;
         this.code = value.code;
         this.name = value.name;
         this.description = value.description;
         this.details = value.details;
         this.events = value.events;
-        this.recipients = value.recipients? value.recipients : [];
+        this.recipients = value.recipients ? value.recipients : [];
         this.active = value.active;
         this.featured = value.featured;
         this.created = value.created;
         this.modified = value.modified;
+
+        this.config = _config;
+    }
+
+    getPromo() {
+        let promos: IPromo[] = [];
+
+        this.config.promos.forEach(value => {
+            if (value.itemtype === 'postcard') {
+                const start: Date = new Date(value.start);
+                const end: Date = new Date(value.end);
+                const today = new Date();
+                if (today.getTime() >= start.getTime() && today.getTime() <= end.getTime()) promos.push(value);
+            }
+        });
+
+        return promos
+    }
+
+    isPromo() {
+        return this.getPromo() !== undefined;
     }
 }
 
@@ -77,11 +101,11 @@ export class NewPostcardBundle {
         this.active = value.active;
     }
 
-    countDisplay(){
+    countDisplay() {
         return this.count.toLocaleString();
     }
 
-    priceDisplay(){
+    priceDisplay() {
         let locationService: NewLocationService = new NewLocationService();
         let location: LocationType = locationService.getlocation();
         if (location === 'us') return '$' + this.usprice.toLocaleString('en-US', { minimumFractionDigits: 2 })

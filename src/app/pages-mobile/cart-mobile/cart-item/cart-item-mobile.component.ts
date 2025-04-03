@@ -97,13 +97,13 @@ export class CartItemMobileComponent implements OnInit, OnChanges  {
     }
     else if (this._cart.type === 'sticker') {
       let iSticker = await this.stickerService.get(this._cart.itemId);
-      this.model = new NewSticker(iSticker as INewSticker);
+      this.model = new NewSticker(iSticker as INewSticker, this.config);
       let images = await this.stickerService.getImages(this._cart.itemId);
       if (images.length > 0) this.loadImage(images[0].url)
     }
     else if (this._cart.type === 'postcard') {
       let iPostcard = await this.postcardService.get(this._cart.itemId);
-      this.model = new NewPostcard(iPostcard as INewPostcard);
+      this.model = new NewPostcard(iPostcard as INewPostcard, this.config);
       if (this._cart.bundle){
         this.bundleDetails = 'Bundle of ' + this._cart.bundle.countDisplay()+ ' pcs'
       }
@@ -112,7 +112,7 @@ export class CartItemMobileComponent implements OnInit, OnChanges  {
     }
     else if (this._cart.type === 'gift') {
       let iGift = await this.giftService.get(this._cart.itemId);
-      this.model = new NewGift(iGift as INewGift);
+      this.model = new NewGift(iGift as INewGift, this.config);
       let images = await this.giftService.getImages(this._cart.itemId);
       if (images.length > 0) this.loadImage(images[0].url)
     }

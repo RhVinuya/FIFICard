@@ -192,6 +192,12 @@ export class TotalCart {
     }
 
     calculatePromo() {
+        if (this.carts.length === 0) {
+            this.isMissingAPromo = false;
+            this.missingPromoText = '';
+            return;
+        } 
+
         let promos = this.getActivePromos();
         if (promos.length > 0) {
             this.carts.forEach(cart => {

@@ -70,7 +70,7 @@
         <app-new-promo-suggestions [visible]="totalCart.isMissingAPromo === true" [title]="totalCart.missingPromoText" [ids]="getItemIds()" [type]="totalCart.missingPromoType" (refresh)="onRefresh()"></app-new-promo-suggestions>
     </div>
 
-    <div class="mxw-1920px mt-3" *ngIf="totalCart.isMissingAPromo === false">
+    <div class="mxw-1920px mt-3" *ngIf="totalCart.isMissingAPromo === false && totalCart.carts.length > 0">
         <app-new-recents [ids]="getItemIds()" (refresh)="onRefresh()"></app-new-recents>
     </div>
 

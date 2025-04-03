@@ -69,10 +69,10 @@ export class ProductTileMobileComponent implements OnInit {
           this.isDiscounted = (this.product as NewCard).isDiscounted();
         break;
       case 'stickers':  
-          this.product = new NewSticker(this.iproduct  as INewSticker);
+          this.product = new NewSticker(this.iproduct  as INewSticker, this.config);
         break;
       case 'postcards':  
-          this.product = new NewPostcard(this.iproduct as INewPostcard);
+          this.product = new NewPostcard(this.iproduct as INewPostcard, this.config);
           this.isBundle = true;
 
           let bundles = await this.postcardService.getBundles(this.product.id);
@@ -84,7 +84,7 @@ export class ProductTileMobileComponent implements OnInit {
           }
         break;
       case 'gifts':  
-          this.product = new NewGift(this.iproduct as INewGift);
+          this.product = new NewGift(this.iproduct as INewGift, this.config);
         break;
     }
 

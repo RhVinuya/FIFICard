@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { IConfig } from 'src/app/new-models/new-config';
 import { INewPostcard, INewPostcardBundle, NewPostcard, NewPostcardBundle } from 'src/app/new-models/new-postcard';
+import { NewConfigService } from 'src/app/new-services/new-config.service';
 import { NewFileService } from 'src/app/new-services/new-file.service';
 import { NewPostcardService } from 'src/app/new-services/new-postcard.service';
 import { NewStorageService } from 'src/app/new-services/new-storage.service';
@@ -13,23 +15,27 @@ import { NewStorageService } from 'src/app/new-services/new-storage.service';
 export class NewPostcardThumbComponent implements OnInit {
   @Input() postcard: INewPostcard;
 
+  configService: NewConfigService;
   storageService: NewStorageService;
   postcardService: NewPostcardService;
   fileService: NewFileService;
   router: Router;
 
   constructor(
+    _configService: NewConfigService,
     _storageService: NewStorageService,
     _postcardService: NewPostcardService,
     _fileService: NewFileService,
     _router: Router
   ) {
+    this.configService = _configService;
     this.storageService = _storageService;
     this.postcardService = _postcardService;
     this.fileService = _fileService;
     this.router = _router;
   }
 
+  config: IConfig;
   _postcard: NewPostcard;
   bundles: INewPostcardBundle[] = []
   primary: string = '';
@@ -39,9 +45,10 @@ export class NewPostcardThumbComponent implements OnInit {
   max: NewPostcardBundle;
 
   async ngOnInit(): Promise<void> {
+    this.config = await this.configService.get();
     this.storageService.saveItemDetails(this.postcard);
 
-    this._postcard = new NewPostcard(this.postcard);
+    this._postcard = new NewPostcard(this.postcard, this.config);
 
     let postcardImages = await this.postcardService.getImages(this._postcard.id);
     if (postcardImages.length > 0) {

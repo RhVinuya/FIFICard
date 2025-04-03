@@ -22,7 +22,7 @@ import { NewStickerService } from 'src/app/new-services/new-sticker.service';
 })
 export class NewRecentItemComponent {
   @Input() set item(value: IModelType) {
-    this.itemValue = value;
+    if (this.itemValue !== value) this.itemValue = value;
   }
   @Output() click: EventEmitter<string> = new EventEmitter();
 
@@ -89,7 +89,7 @@ export class NewRecentItemComponent {
       if (images.length > 0) {
         this.image = await this.fileService.getImageURL(images[0].url);
       }
-      let sticker: NewSticker = new NewSticker(this.itemValue as INewSticker)
+      let sticker: NewSticker = new NewSticker(this.itemValue as INewSticker, this.config)
       this.price = sticker.price;
       this.usprice = sticker.usprice;
       this.sgprice = sticker.sgprice;
@@ -121,7 +121,7 @@ export class NewRecentItemComponent {
       if (images.length > 0) {
         this.image = await this.fileService.getImageURL(images[0].url);
       }
-      let gift: NewGift = new NewGift(this.itemValue as INewGift);
+      let gift: NewGift = new NewGift(this.itemValue as INewGift, this.config);
       this.price = gift.price;
       this.priceDisplay = gift.priceDisplay()
     }

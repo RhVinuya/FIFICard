@@ -21,7 +21,10 @@ export class NewRecentsComponent {
   @ViewChild('carousel', { static: false }) carousel: NgbCarousel;
 
   @Input() set ids(value: string[]) {
-    this.itemIds = value;
+    if (this.itemIds.join('') !== value.join('')) {
+      this.itemIds = value;
+      this.batches = this.loadItems();
+    }
   }
   @Output() refresh: EventEmitter<void> = new EventEmitter();
 
@@ -38,7 +41,7 @@ export class NewRecentsComponent {
 
   itemIds: string[] = [];
   items: IModelType[] = [];
-  filtered: IModelType[] = [];
+  batches: Batch[] = [];
   location: LocationType = 'ph';
   limit: number = 10;
 
@@ -46,19 +49,20 @@ export class NewRecentsComponent {
   ngOnInit() {
     this.location = this.locationService.getlocation()
     this.items = this.storageService.getRecents();
+    this.batches = this.loadItems();
   }
 
-  getItems() {
-    this.filtered = this.items.filter(x => this.itemIds.includes(x.id) === false);
-    if (this.location !== 'ph') this.filtered = this.filtered.filter(x => x.type !== 'gift')
+  loadItems() {
+    let filtered = this.items.filter(x => this.itemIds.includes(x.id) === false);
+    if (this.location !== 'ph') filtered = filtered.filter(x => x.type !== 'gift')
 
-    let slides = Math.floor(this.filtered.length / 10) + (this.filtered.length % 10 !== 0 ? 1 : 0);
+    let slides = Math.floor(filtered.length / 10) + (filtered.length % 10 !== 0 ? 1 : 0);
 
     let batches: Batch[] = [];
     let x: number;
     for (x = 1; x <= slides; x++) {
       let end: number = x * this.limit;
-      let batch: Batch = new Batch(this.filtered.slice(end - this.limit, end));
+      let batch: Batch = new Batch(filtered.slice(end - this.limit, end));
       batches.push(batch);
     }
 

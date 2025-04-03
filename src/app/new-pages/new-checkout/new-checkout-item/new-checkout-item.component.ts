@@ -51,7 +51,7 @@ export class NewCheckoutItemComponent implements OnInit {
   }
 
   item: NewPaymentItem;
-  model: NewCard | NewSticker | NewPostcard | undefined = undefined;
+  model: NewCard | NewSticker | NewPostcard | NewGift | undefined = undefined;
   primary: string = '';
   bundleDetails: string = ''
 
@@ -66,13 +66,13 @@ export class NewCheckoutItemComponent implements OnInit {
     }
     else if (this.item.type === 'sticker') {
       let iSticker = await this.stickerService.get(this.item.itemId);
-      this.model = new NewSticker(iSticker as INewSticker);
+      this.model = new NewSticker(iSticker as INewSticker, this.config);
       let images = await this.stickerService.getImages(this.item.itemId);
       if (images.length > 0) this.loadImage(images[0].url)
     }
     else if (this.item.type === 'postcard') {
       let iPostcard = await this.postcardService.get(this.item.itemId);
-      this.model = new NewPostcard(iPostcard as INewPostcard);
+      this.model = new NewPostcard(iPostcard as INewPostcard, this.config);
       if (this.item.bundle){
         this.bundleDetails = 'Bundle of ' + this.item.bundle.countDisplay() + ' pcs'
       }
@@ -81,7 +81,7 @@ export class NewCheckoutItemComponent implements OnInit {
     }
     else if (this.item.type === 'gift') {
       let iGift = await this.giftService.get(this.item.itemId);
-      this.model = new NewGift(iGift as INewGift);
+      this.model = new NewGift(iGift as INewGift, this.config);
       let images = await this.giftService.getImages(this.item.itemId);
       if (images.length > 0) this.loadImage(images[0].url)
     }

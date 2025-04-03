@@ -62,23 +62,21 @@ export class WishlistTileMobileComponent implements OnInit {
 
   async ngOnInit():  Promise<void> {
     this.config = await this.configService.get();
-    this.product = this.wishlist.model;
     let type = this.wishlist.type;
 
-    console.log(type);
     switch(type) {
       case 'card':   
           this.type = "cards";
-          this.product = new NewCard(this.product as INewCard, this.config);
+          this.product = new NewCard(this.wishlist.model as INewCard, this.config);
           this.isPersonalize = this.product instanceof NewCard ?  this.product.signAndSend : false;
         break;
       case 'sticker':  
         this.type = "stickers";
-          this.product = new NewSticker(this.product  as INewSticker);
+          this.product = new NewSticker(this.wishlist.model  as INewSticker, this.config);
         break;
       case 'postcard':  
           this.type = "postcards";
-          this.product = new NewPostcard(this.product as INewPostcard);
+          this.product = new NewPostcard(this.wishlist.model as INewPostcard, this.config);
           this.isBundle = true;
 
           let bundles = await this.postcardService.getBundles(this.product.id);
@@ -91,7 +89,7 @@ export class WishlistTileMobileComponent implements OnInit {
         break;
       case 'gift':  
           this.type = "gifts";
-          this.product = new NewGift(this.product as INewGift);
+          this.product = new NewGift(this.wishlist.model as INewGift, this.config);
         break;
     }
 

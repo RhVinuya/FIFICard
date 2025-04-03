@@ -53,7 +53,7 @@ export class NewInYourCartComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     this.config = await this.configService.get();
     let iCarts = await this.cartService.getAll();
-    this.totalCart = new TotalCart(this.cartService, this.cardService, iCarts.reverse(), this.config);
+    this.totalCart = new TotalCart(this.cartService, this.cardService, iCarts, this.config);
   }
 
   async onDelete(cart: NewCart) {
