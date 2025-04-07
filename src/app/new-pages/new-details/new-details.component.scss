@@ -25,13 +25,23 @@ h1{
 }
 
 .chip{
-    font-size: 1rem !important;
+    font-size: 15px !important;
     border: 0.5px solid white;
     color: #2527a3 !important;
     background: #c0e8ff;
-    padding-inline: 13px;
-    padding-block: 3px;
-    border-radius: 20px;
+    padding: 0px 10px;
+    border-radius: 14px;
+}
+
+.cus-discount
+{
+    font-size: 15px;
+    color: red;
+    padding: 0px 10px;
+    display: inline-block;
+    border-radius: 14px;
+    background: #ffcccc;
+    font-weight: normal;
 }
 
 .space-around{
@@ -195,15 +205,4 @@ h1{
     position: relative;
     display: inline-block;
     opacity: 0.5;
-}
-
-.cus-discount
-{
-    font-size: 15px;
-    color: red;
-    padding: 0px 10px;
-    display: inline-block;
-    border-radius: 14px;
-    background: #ffcccc;
-    font-weight: normal;
 }

@@ -90,11 +90,14 @@ export class NewCart {
     }
 
     originalPriceDisplay() {
-        let locationService: NewLocationService = new NewLocationService();
-        let location: LocationType = locationService.getlocation();
-        if (location === 'us') return '$' + this.getOriginalPrice().toLocaleString('en-US', { minimumFractionDigits: 2 })
-        else if (location === 'sg') return 'S$' + this.getOriginalPrice().toLocaleString('en-US', { minimumFractionDigits: 2 })
-        else return '₱' + this.getOriginalPrice().toLocaleString('en-US', { minimumFractionDigits: 2 })
+        if (this.getOriginalPrice() > 0) {
+            let locationService: NewLocationService = new NewLocationService();
+            let location: LocationType = locationService.getlocation();
+            if (location === 'us') return '$' + this.getOriginalPrice().toLocaleString('en-US', { minimumFractionDigits: 2 })
+            else if (location === 'sg') return 'S$' + this.getOriginalPrice().toLocaleString('en-US', { minimumFractionDigits: 2 })
+            else return '₱' + this.getOriginalPrice().toLocaleString('en-US', { minimumFractionDigits: 2 })
+        }
+        else return 'Free'
     }
 
     getPrice() {
@@ -104,11 +107,14 @@ export class NewCart {
     }
 
     priceDisplay() {
-        let locationService: NewLocationService = new NewLocationService();
-        let location: LocationType = locationService.getlocation();
-        if (location === 'us') return '$' + this.getPrice().toLocaleString('en-US', { minimumFractionDigits: 2 })
-        else if (location === 'sg') return 'S$' + this.getPrice().toLocaleString('en-US', { minimumFractionDigits: 2 })
-        else return '₱' + this.getPrice().toLocaleString('en-US', { minimumFractionDigits: 2 })
+        if (this.getPrice() > 0) {
+            let locationService: NewLocationService = new NewLocationService();
+            let location: LocationType = locationService.getlocation();
+            if (location === 'us') return '$' + this.getPrice().toLocaleString('en-US', { minimumFractionDigits: 2 })
+            else if (location === 'sg') return 'S$' + this.getPrice().toLocaleString('en-US', { minimumFractionDigits: 2 })
+            else return '₱' + this.getPrice().toLocaleString('en-US', { minimumFractionDigits: 2 })
+        }
+        else return 'Free'
     }
 
     discountDisplay() {
@@ -125,11 +131,10 @@ export class TotalCart {
     location: LocationType;
     symbol: string
     total: number = 0;
-    promocart: NewCart[][] = [];
 
     isMissingAPromo: boolean | undefined = undefined;
     missingPromoText: string = '';
-    missingPromoType: ItemType;
+    missingPromoType: ItemType | undefined = undefined;
 
     constructor(_cartService: NewCartService, _cardService: NewCardService, _iNewCarts: INewCart[], _config: IConfig, initialize: boolean = true) {
         this.cartService = _cartService;
@@ -196,7 +201,7 @@ export class TotalCart {
             this.isMissingAPromo = false;
             this.missingPromoText = '';
             return;
-        } 
+        }
 
         let promos = this.getActivePromos();
         if (promos.length > 0) {
@@ -209,12 +214,12 @@ export class TotalCart {
 
             promos.forEach(promo => {
                 if (promo.type === 'discount on 2nd item') {
-                    this.promocart = this.carts.filter(x => x.mark === true).filter(x => x.type === promo.itemtype).reduce((result: NewCart[][], item, index) => {
+                    let promocart: NewCart[][] = this.carts.filter(x => x.mark === true).filter(x => x.isPromo !== true).filter(x => x.type === promo.itemtype).reduce((result: NewCart[][], item, index) => {
                         if (index % 2 === 0) result.push([item]);
                         else result[result.length - 1].push(item);
                         return result;
                     }, []);
-                    this.promocart.forEach(item => {
+                    promocart.forEach(item => {
                         if (item.length === 2) {
                             let primaryCart = item[0];
                             primaryCart.isPromo = true;
@@ -234,7 +239,46 @@ export class TotalCart {
                             this.missingPromoText = 'Add one more ' + promo.itemtype + ' to avail a promo of ' + promo.discount + '%';
                             this.missingPromoType = promo.itemtype;
                         }
+                        else {
+                            this.isMissingAPromo = false;
+                            this.missingPromoText = '';
+                            this.missingPromoType = undefined;
+                        }
                     })
+                }
+                else if (promo.type === 'free on 2nd item') {
+                    let initialIds: string[] = [...this.carts.filter(x => x.mark === true).filter(x => x.isPromo !== true).filter(x => x.type === promo.itemtype).map(x => x.id)];
+                    let freeIds: string[] = [...this.carts.filter(x => x.mark === true).filter(x => x.isPromo !== true).filter(x => x.type === promo.discountedtype).map(x => x.id)];
+                    initialIds.forEach((id, index) => {
+                        if (index < freeIds.length) {
+                            let initial = this.carts.find(x => x.id === id);
+                            if (initial) {
+                                initial.isPromo = true;
+                                initial.isPromoAdjusted = false;
+                                initial.promo = promo;
+                                initial.promoPrice = initial.getOriginalPrice();
+                            }
+
+                            let free = this.carts.find(x => x.id === freeIds[index]);
+                            if (free) {
+                                free.isPromo = true;
+                                free.isPromoAdjusted = true;
+                                free.promo = promo;
+                                free.promoPrice = 0;
+
+                                this.isMissingAPromo = false;
+                                this.missingPromoText = '';
+                                this.missingPromoType = undefined;
+                            }
+                        }
+                        else {
+                            this.isMissingAPromo = true;
+                            if (this.isMissingAPromo) {
+                                this.missingPromoText = 'Get a ' + promo.discountedtype + ' for free when you purchase a ' + promo.itemtype;
+                                this.missingPromoType = promo.discountedtype;
+                            }
+                        }
+                    });
                 }
             })
         }
@@ -256,7 +300,7 @@ export class TotalCart {
 
     isMarkAll() {
         return this.carts.filter(x => x.mark === false).length === 0;
-    }    
+    }
 
     async changeMark(id: string, mark: boolean) {
         let idx = this.carts.findIndex(x => x.id === id);

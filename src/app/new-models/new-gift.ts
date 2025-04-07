@@ -33,6 +33,8 @@ export class NewGift {
     created: Timestamp;
     modified: Timestamp;
 
+    promotag: string[] = []
+
     config: IConfig;
 
     constructor(value: INewGift, _config: IConfig) {
@@ -61,14 +63,28 @@ export class NewGift {
         let promos: IPromo[] = [];
 
         this.config.promos.forEach(value => {
-            if (value.itemtype === 'gift') {
-                const start: Date = new Date(value.start);
-                const end: Date = new Date(value.end);
-                const today = new Date();
-                if (today.getTime() >= start.getTime() && today.getTime() <= end.getTime()) promos.push(value);
+            const start: Date = new Date(value.start);
+            const end: Date = new Date(value.end);
+            const today = new Date();
+            if (today.getTime() >= start.getTime() && today.getTime() <= end.getTime()) {
+                if (value.type === "discount on 2nd item") {
+                    if (value.itemtype === 'gift') {
+                        promos.push(value);
+                        this.promotag.push(value.title);
+                    }
+                }
+                else if (value.type === "free on 2nd item") {
+                    if (value.itemtype === 'gift') {
+                        promos.push(value);
+                        this.promotag.push(value.itemtypetag);
+                    }
+                    if (value.discountedtype === 'gift') {
+                        promos.push(value);
+                        this.promotag.push(value.discountedtypetag);
+                    }
+                }
             }
         });
-
         return promos
     }
 

@@ -84,10 +84,13 @@ export interface IPaymentKeys {
 }
 
 export interface IPromo {
-    type: 'discount on 2nd item';
+    type: 'discount on 2nd item' | 'free on 2nd item';
     title: string;
     start: string;
     end: string;
     discount: number;
-    itemtype: 'card' | 'sticker' | 'postcard' | 'gift';
+    itemtype: Type;
+    itemtypetag: string;
+    discountedtype: Type;
+    discountedtypetag: string;
 }

@@ -20,6 +20,8 @@ export interface INewSticker {
     type: 'card' | 'sticker' | 'postcard' | 'gift';
     created: Timestamp;
     modified: Timestamp;
+
+    promotag: string[];
 }
 
 export class NewSticker {
@@ -38,6 +40,8 @@ export class NewSticker {
     featured: boolean;
     created: Timestamp;
     modified: Timestamp;
+
+    promotag: string[] = []
 
     config: IConfig;
 
@@ -72,11 +76,26 @@ export class NewSticker {
         let promos: IPromo[] = [];
 
         this.config.promos.forEach(value => {
-            if (value.itemtype === 'sticker') {
-                const start: Date = new Date(value.start);
-                const end: Date = new Date(value.end);
-                const today = new Date();
-                if (today.getTime() >= start.getTime() && today.getTime() <= end.getTime()) promos.push(value);
+            const start: Date = new Date(value.start);
+            const end: Date = new Date(value.end);
+            const today = new Date();
+            if (today.getTime() >= start.getTime() && today.getTime() <= end.getTime()) {
+                if (value.type === "discount on 2nd item") {
+                    if (value.itemtype === 'sticker') {
+                        promos.push(value);
+                        this.promotag.push(value.title);
+                    }
+                }
+                else if (value.type === "free on 2nd item") {
+                    if (value.itemtype === 'sticker') {
+                        promos.push(value);
+                        this.promotag.push(value.itemtypetag);
+                    }
+                    if (value.discountedtype === 'sticker') {
+                        promos.push(value);
+                        this.promotag.push(value.discountedtypetag);
+                    }
+                }
             }
         });
 

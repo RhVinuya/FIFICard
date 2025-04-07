@@ -94,7 +94,7 @@ export class NewDetailsComponent implements OnInit {
   isDiscounted: boolean = false;
   discountDisplay: string = '';
   isPromo: boolean = false;
-  promoTitle: string = '';
+  promotag: string[] = [];
 
   stickerimage: string = '';
 
@@ -120,7 +120,7 @@ export class NewDetailsComponent implements OnInit {
           this.isDiscounted = card.isDiscounted() ?? false;
           this.discountDisplay = card.discountValueDisplay();
           this.isPromo = card.isPromo() ?? false;
-          this.promoTitle = card.getPromo().length > 0 ? card.getPromo()[0].title : '';
+          this.promotag = card.promotag;
           this.recipients = card.getRecipients();
           this.model = card;
           this.isAddToCart = true;
@@ -146,7 +146,7 @@ export class NewDetailsComponent implements OnInit {
           this.iModel = value;
           this.model = new NewSticker(value, this.config);
           this.isPromo = this.model.isPromo() ?? false;
-          this.promoTitle = this.model.getPromo().length > 0 ? this.model.getPromo()[0].title : '';
+          this.promotag = this.model.promotag;
           this.isAddToCart = true;
           this.isFeatured = this.model.featured;
           this.loading = false;
@@ -163,7 +163,7 @@ export class NewDetailsComponent implements OnInit {
           this.iModel = value;
           this.model = new NewPostcard(value, this.config);
           this.isPromo = this.model.isPromo() ?? false;
-          this.promoTitle = this.model.getPromo().length > 0 ? this.model.getPromo()[0].title : '';
+          this.promotag = this.model.promotag;
           this.isBundle = true;
           this.isFeatured = this.model.featured;
           this.loading = false;
@@ -187,7 +187,7 @@ export class NewDetailsComponent implements OnInit {
           this.iModel = value;
           this.model = new NewGift(value, this.config);
           this.isPromo = this.model.isPromo() ?? false;
-          this.promoTitle = this.model.getPromo().length > 0 ? this.model.getPromo()[0].title : '';
+          this.promotag = this.model.promotag;
           this.isAddToCart = true;
           this.isFeatured = this.model.featured;
           this.loading = false;

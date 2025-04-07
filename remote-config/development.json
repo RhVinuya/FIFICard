@@ -212,6 +212,16 @@
         "end": "2025-06-30",
         "discount": 50,
         "itemtype": "card"
+      },
+      {
+        "type": "free on 2nd item",
+        "title": "Buy Gift for a Free Card",
+        "start": "2025-04-01",
+        "end": "2025-06-30",
+        "itemtype": "gift",
+        "itemtypetag": "Buy Gift for a Free Card",
+        "discountedtype": "card",
+        "discountedtypetag": "Get this card for free when you purchase a gift from FiBei Products"
       }
     ]
   }

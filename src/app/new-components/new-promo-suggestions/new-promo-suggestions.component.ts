@@ -33,7 +33,7 @@ export class NewPromoSuggestionsComponent {
   @Input() set ids(value: string[]) {
     this.itemIds = value;
   }
-  @Input() set type(value: ItemType) {
+  @Input() set type(value: ItemType | undefined) {
     this.selectedType = value;
     this.load();
   }

@@ -53,6 +53,8 @@ export class NewCard {
     created: Timestamp;
     modified: Timestamp;
 
+    promotag: string[] = []
+
     locationService: NewLocationService;
     location: LocationType;
     currencySymbol: string;
@@ -81,6 +83,8 @@ export class NewCard {
         this.cardBundleIds = value.cardbundleIds;
         this.created = value.created;
         this.modified = value.modified;
+
+        this.promotag = [];
 
         this.locationService = new NewLocationService();
         this.location = this.locationService.getlocation();
@@ -121,11 +125,26 @@ export class NewCard {
         let promos: IPromo[] = [];
 
         this.config.promos.forEach(value => {
-            if (value.itemtype === 'card') {
-                const start: Date = new Date(value.start);
-                const end: Date = new Date(value.end);
-                const today = new Date();
-                if (today.getTime() >= start.getTime() && today.getTime() <= end.getTime()) promos.push(value);
+            const start: Date = new Date(value.start);
+            const end: Date = new Date(value.end);
+            const today = new Date();
+            if (today.getTime() >= start.getTime() && today.getTime() <= end.getTime()) {
+                if (value.type === "discount on 2nd item") {
+                    if (value.itemtype === 'card') {
+                        promos.push(value);
+                        this.promotag.push(value.title);
+                    }
+                }
+                else if (value.type === "free on 2nd item") {
+                    if (value.itemtype === 'card') {
+                        promos.push(value);
+                        this.promotag.push(value.itemtypetag);
+                    }
+                    if (value.discountedtype === 'card') {
+                        promos.push(value);
+                        this.promotag.push(value.discountedtypetag);
+                    }
+                }
             }
         });
 
