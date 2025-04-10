@@ -1,4 +1,4 @@
-{
+export const development ={
     "payment": {
       "live": false,
       "gcash": true,

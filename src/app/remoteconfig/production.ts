@@ -1,4 +1,4 @@
-{
+export const production = {
     "payment": {
       "live": true,
       "gcash": true,
@@ -132,7 +132,7 @@
         ]
       },
       "flash": {
-        "enable": true,
+        "enable": false,
         "images": [
           {
             "image": "https://firebasestorage.googleapis.com/v0/b/fifi-greetings.appspot.com/o/Greetings_Images%2Fads_flash%2Fpromo_discount2.gif?alt=media&token=913b4832-5482-4a77-ad9d-8551db1a0b9a",
