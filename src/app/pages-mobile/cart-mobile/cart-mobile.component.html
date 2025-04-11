@@ -45,6 +45,7 @@
                 [status]="cart.mark"
                 [forceMark]="cart.mark"
                 (onChangeMark)="onChangeItemMark(cart.id, $event)"
+                (onRemoveItem)="onRemove(cart.id)"
               >
               </app-cart-item-mobile>
             </ion-item>

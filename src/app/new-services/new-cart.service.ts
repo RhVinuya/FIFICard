@@ -72,6 +72,7 @@ export class NewCartService {
   }
 
   removeStorage(id: string) {
+    console.log('new-cart.removeStorage');
     this.storageService.removeCart(id);
   }
 

@@ -67,7 +67,7 @@ export class CartItemMobileComponent implements OnInit, OnChanges  {
 
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes);
+    
   }
 
   model: ModelType | undefined = undefined;
@@ -88,7 +88,6 @@ export class CartItemMobileComponent implements OnInit, OnChanges  {
     this._cart = new NewCart(cart);
     this.mark = this._cart.mark;
 
-    console.log(this._cart);
     if (this._cart.type === 'card') {
       let iCard = await this.cardService.get(this._cart.itemId);
       this.model = new NewCard(iCard as INewCard, this.config);

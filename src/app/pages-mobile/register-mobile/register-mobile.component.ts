@@ -59,7 +59,6 @@ export class RegisterMobileComponent implements OnInit {
     if (this.form.invalid) return;
     this.processing = true;
 
-    console.log(this.form.controls.password);
     this.form.controls.password.setErrors(null);
     this.form.controls.confirm.setErrors(null);
     this.form.controls.terms.setErrors(null);
@@ -67,22 +66,27 @@ export class RegisterMobileComponent implements OnInit {
 
     if (this.form.controls.password.value !== this.form.controls.confirm.value) {
       this.form.controls.confirm.setErrors({ 'mismatch': true });
+      this.submitted = false;
       this.processing = false;
       return;
     }
 
     if (Boolean(this.form.controls.terms.value) !== true) {
       this.form.controls.terms.setErrors({ 'on': true });
+      this.submitted = false;
       this.processing = false;
       return;
     }
 
     let email = this.form.controls.email.value!;
     let users = await this.accountService.getByEmail(email);
+
+    console.log('here');
     if (users.length > 0) {
       this.form.controls.email.setErrors({ 'used': true });
+      this.submitted = false;
       this.processing = false;
-
+      console.log(this.form.controls.email);
       return;
     }
 

@@ -16,9 +16,13 @@
     <!-- Email Input -->
     <ion-row class="ion-justify-content-center ion-align-items-center">
       <ion-col size="12">
-        <ion-item class="input">
+        <ion-item class="input" fill="solid">
           <ion-input formControlName="email" placeholder="Email"></ion-input>
-          <ion-note *ngIf="form.controls.email.getError('used')" slot="error"
+          <ion-note *ngIf="
+            form.controls.email.errors &&
+            form.controls.email.getError('used')" 
+            color="danger"
+            slot="helper"
             >Email already exist!</ion-note
           >
         </ion-item>

@@ -151,9 +151,8 @@ export class CartMobileComponent implements OnInit, OnDestroy {
           handler: async () => {
             let list = this.carts.filter(x => x.mark === true).map(x => x.id);
             list.forEach( async (id) => {
+              await this.cartService.delete(id);
               this.carts = this.carts.filter(x => x.id !== id);
-              let cart = this.carts.find(x => x.id == id);
-              await this.cartService.update(cart!);
             });
             this.isCheckAll = this.carts.length > 0 ? this.carts.filter(x => x.mark === false).length === 0 : false;
             this.calculate();
