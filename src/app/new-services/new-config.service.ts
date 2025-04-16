@@ -30,9 +30,7 @@ export class NewConfigService {
   get(): Promise<IConfig> {
     return new Promise((resolve) => {
       const subs = getStringChanges(this.remoteConfig, environment.remoteConfig).subscribe(value => {
-        if (value !== '') {
-          resolve(JSON.parse(value) as IConfig);
-        }
+        if (value !== '') resolve(JSON.parse(value) as IConfig);
         else {
           if (environment.production) resolve(production as unknown as IConfig)
           else resolve(development as unknown as IConfig)
