@@ -2,6 +2,13 @@
     font-family: Proxima Nova;
 }
 
+div.div-title{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
 .label-header {
     font-family: Proxima Nova;
     font-size: 2.5rem;

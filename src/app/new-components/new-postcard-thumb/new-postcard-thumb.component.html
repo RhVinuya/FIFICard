@@ -1,4 +1,4 @@
-<div class="card cursor" (click)="onClick()">
+<div class="card cursor" (click)="onClick()" *ngIf="_postcard">
     <div class="img-div">
         <img [src]="primary" [alt]="_postcard.name" class="card-img default-image" *ngIf="primary !== ''" onContextMenu="return false;">
         <img [src]="secondary" [alt]="_postcard.name" class="card-img hover-image" *ngIf="secondary !== ''" onContextMenu="return false;">

@@ -31,7 +31,8 @@ export class NewPostcardsComponent implements OnInit {
   postcards: INewPostcard[] = [];
   display: INewPostcard[] = [];
   displayCount: number = 20;
-  events: string[] = []
+  events: string[] = [];
+  searchstring: string = '';
 
   breadcrumbs = [
     {
@@ -104,9 +105,23 @@ export class NewPostcardsComponent implements OnInit {
           if (found) this.display = [...this.display, postcard];
         })
       }
+      if (this.searchstring !== '') {
+        let searches = this.searchstring.split(' ');
+        this.display = this.display.filter(postcard => {
+          if (postcard.name.toLowerCase().includes(this.searchstring.toLowerCase())) return true;
+          if (searches.some(search => postcard.name.toLowerCase().includes(search.toLowerCase()))) return true;
+  
+          if (postcard.events.some(event => event.toLowerCase().includes(this.searchstring.toLowerCase()))) return true;
+          if (searches.some(search => postcard.events.some(event => event.toLowerCase().includes(search.toLowerCase())))) return true;
+  
+          if (postcard.code === this.searchstring) return true;
+  
+          return false
+        })
+      }
+      this.ref.detectChanges();
+       this.updateCount(this.display.length);
     }
-    this.ref.detectChanges();
-    this.updateCount(this.display.length);
   }
 
   onClickEvent(event: string) {
@@ -138,6 +153,21 @@ export class NewPostcardsComponent implements OnInit {
       }
     ];
     this.ref.detectChanges();
+  }
+
+  onSearch(search: string) {
+    if (search !== '' && search !== 'all') {
+      let event = this.postcardevents.find(x => x.toLowerCase() === search.toLowerCase())
+      if (event) this.events = [event];
+
+      if (this.events.length === 0) this.searchstring = search;
+    }
+    else {
+      this.events = [];
+      this.searchstring = '';
+    }
+    this.ref.detectChanges();
+    this.loadDisplay();
   }
 
 }

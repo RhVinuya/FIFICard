@@ -2,6 +2,13 @@
     font-family: Proxima Nova;
 }
 
+div.div-title{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
 .card .img-div{
     overflow: hidden;
 }

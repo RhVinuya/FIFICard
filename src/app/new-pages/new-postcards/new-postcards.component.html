@@ -1,5 +1,6 @@
-<div class="mxw-1920px mt-2">
+<div class="mxw-1920px mt-2 div-title">
     <app-new-title title="Postcards" [breadcrumbs]="breadcrumbs"></app-new-title>
+    <app-new-search placeholder="Search for Postcards" [enable]="!loading" (onsearch)="onSearch($event)"></app-new-search>
 </div>
 <div class="py-3 bg-light">
     <div class="mxw-1920px">
@@ -7,14 +8,7 @@
     </div>
 </div>
 <div class="mxw-1920px row mt-4">
-    <!--
-    <div class="mb-4" *ngIf="events.length > 0">
-        <ion-chip [outline]="true" color="tertiary" *ngFor="let event of events">
-            <ion-icon name="close-circle" (click)="onRemoveEvent(event)"></ion-icon>
-            <ion-label>{{event}}</ion-label>
-        </ion-chip>
-    </div>
-    -->
+
     <app-new-loading [loading]="loading"></app-new-loading>
 
     <div class="max-5" *ngIf="loading === false">

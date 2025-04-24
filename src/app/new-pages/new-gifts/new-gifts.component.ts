@@ -36,6 +36,7 @@ export class NewGiftsComponent implements OnInit {
   event: string
   recipients: string[] = [];
   recipient: string;
+  searchstring: string = '';
 
   breadcrumbs = [
     {
@@ -136,9 +137,27 @@ export class NewGiftsComponent implements OnInit {
           if (found) this.display = [...this.display, gift];
         })
       }
+
+      if (this.searchstring !== '') {
+        let searches = this.searchstring.split(' ');
+
+        const temp = this.display.map(object => ({ ...object }));
+        this.display = temp.filter(gift => {
+          if (gift.name.toLowerCase().includes(this.searchstring.toLowerCase())) return true;
+          if (searches.some(search => gift.name.toLowerCase().includes(search.toLowerCase()))) return true;
+
+          if (gift.recipients) {
+            if (gift.recipients.some(recipient => recipient.toLowerCase().includes(this.searchstring.toLowerCase()))) return true;
+            if (searches.some(search => gift.recipients!.some(recipient => recipient.toLowerCase().includes(search.toLowerCase())))) return true;
+          }
+
+          if (gift.code === this.searchstring) return true;
+          return false;
+        });
+      }
+      this.ref.detectChanges();
+      this.updateCount(this.display.length);
     }
-    this.ref.detectChanges();
-    this.updateCount(this.display.length);
   }
 
   onClickEvent(event: string) {
@@ -179,6 +198,43 @@ export class NewGiftsComponent implements OnInit {
     else {
       if (idx >= 0) this.recipients = this.recipients.filter(x => x !== e.target.value)
     }
+    this.loadDisplay();
+  }
+
+  onSearch(search: string) {
+    if (search !== '' && search !== 'all') {
+      let event = this.giftevents.find(x => x.toLowerCase() === search.toLowerCase())
+      if (event) {
+        this.event = event;
+        this.events.push(event);
+      }
+      else {
+        this.event = '';
+        this.events = [];
+      }
+
+      let recipient = this.recipientoptions.find(x => x.toLowerCase() === search.toLowerCase())
+      if (recipient) {
+        this.recipient = recipient.toUpperCase();
+        this.recipients.push(recipient.toUpperCase());
+      }
+      else {
+        this.recipient = '';
+        this.recipients = [];
+      }
+
+      if (this.event === '' && this.recipient === '') {
+        this.searchstring = search;
+      }
+    }
+    else {
+      this.event = '';
+      this.events = [];
+      this.recipient = '';
+      this.recipients = [];
+      this.searchstring = '';
+    }
+    this.ref.detectChanges();
     this.loadDisplay();
   }
 }

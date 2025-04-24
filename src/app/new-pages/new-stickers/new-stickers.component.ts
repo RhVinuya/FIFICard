@@ -31,7 +31,8 @@ export class NewStickersComponent implements OnInit {
   stickers: INewSticker[] = [];
   display: INewSticker[] = [];
   displayCount: number = 20;
-  events: string[] = []
+  events: string[] = [];
+  searchstring: string = '';
 
   breadcrumbs = [
     {
@@ -104,9 +105,25 @@ export class NewStickersComponent implements OnInit {
           if (found) this.display = [...this.display, sticker];
         })
       }
+
+      if (this.searchstring !== '') {
+        let searches = this.searchstring.split(' ');
+        this.display = this.display.filter(sticker => {
+          if (sticker.name.toLowerCase().includes(this.searchstring.toLowerCase())) return true;
+          if (searches.some(search => sticker.name.toLowerCase().includes(search.toLowerCase()))) return true;
+
+          if (sticker.events.some(event => event.toLowerCase().includes(this.searchstring.toLowerCase()))) return true;
+          if (searches.some(search => sticker.events.some(event => event.toLowerCase().includes(search.toLowerCase())))) return true;
+
+          if (sticker.code === this.searchstring) return true;
+
+          return false
+        })
+      }
+
+      this.ref.detectChanges();
+      this.updateCount(this.display.length);
     }
-    this.ref.detectChanges();
-    this.updateCount(this.display.length);
   }
 
   onClickEvent(event: string) {
@@ -138,5 +155,20 @@ export class NewStickersComponent implements OnInit {
       }
     ];
     this.ref.detectChanges();
+  }
+
+  onSearch(search: string) {
+    if (search !== '' && search !== 'all') {
+      let event = this.stickerevents.find(x => x.toLowerCase() === search.toLowerCase())
+      if (event) this.events = [event];
+
+      if (this.events.length === 0) this.searchstring = search;
+    }
+    else {
+      this.events = [];
+      this.searchstring = '';
+    }
+    this.ref.detectChanges();
+    this.loadDisplay();
   }
 }

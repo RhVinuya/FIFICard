@@ -1,0 +1,3 @@
+<form [formGroup]="form" (submit)="onSubmit()">
+    <ion-searchbar animated="true" [placeholder]="placeholder" formControlName="search" [disabled]="!available" (ionClear)="onClear()"></ion-searchbar>
+</form>

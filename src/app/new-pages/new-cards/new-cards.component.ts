@@ -41,7 +41,6 @@ export class NewCardsComponent implements OnInit {
 
   cardevents = environment.cardevents;
   recipientoptions = environment.recipients;
-  //filteroptions = ['POETRY', 'MESSAGE', 'PERSONALIZED', 'TALKING CARD', 'BUNDLE'];
   filteroptions = ['POETRY', 'MESSAGE', 'PERSONALIZED', 'TALKING CARD'];
 
   activeevents: string[] = [];
@@ -55,6 +54,7 @@ export class NewCardsComponent implements OnInit {
   events: string[] = [];
   recipients: string[] = [environment.recipientdefault];
   filters: string[] = [];
+  searchstring: string = '';
 
   priorityId: string = '3E4Ng5wsPpxXEWNh35lC';
 
@@ -82,7 +82,7 @@ export class NewCardsComponent implements OnInit {
           this.filters.push(id);
         }
       }
-      
+
       this.ref.detectChanges();
       this.loadDisplay();
     });
@@ -100,7 +100,7 @@ export class NewCardsComponent implements OnInit {
       let list = this.cards.filter(x => x.event.toLowerCase() === event.toLowerCase())
       if (list.length > 0) this.activeevents.push(event)
     })
-  
+
     this.loadDisplay();
     this.loading = false;
   }
@@ -155,7 +155,7 @@ export class NewCardsComponent implements OnInit {
             else {
               if (card.recipients!.findIndex(x => x.toLowerCase() === recipient.toLowerCase()) >= 0) found = true;
               else {
-                let item = environment.recipients.find(x => x.main.toUpperCase() === recipient.toUpperCase()) 
+                let item = environment.recipients.find(x => x.main.toUpperCase() === recipient.toUpperCase())
                 if (item && item.others) {
                   item.others.forEach(other => {
                     if (card.recipients!.findIndex(x => x.toLowerCase() === other.toLowerCase()) >= 0) found = true;
@@ -166,7 +166,7 @@ export class NewCardsComponent implements OnInit {
           })
           if (found) this.display = [...this.display, card];
         })
-        
+
       }
 
       //filter
@@ -186,6 +186,33 @@ export class NewCardsComponent implements OnInit {
         })
       }
 
+      if (this.searchstring !== '') {
+
+        let searches = this.searchstring.split(' ');
+
+        const temp = this.display.map(object => ({ ...object }))
+        this.display = temp.filter(card => {
+                    
+          if (card.name.toLowerCase().includes(this.searchstring.toLowerCase())) return true;
+          if (searches.some(search => card.name.toLowerCase().includes(search.toLowerCase()))) return true;
+
+          if (card.event.toLowerCase().includes(this.searchstring.toLowerCase())) return true;
+          if (searches.some(search => card.event.toLowerCase().includes(search.toLowerCase()))) return true;
+
+          if (card.events.some(event => event.toLowerCase().includes(this.searchstring.toLowerCase()))) return true;
+          if (searches.some(search => card.events.some(event => event.toLowerCase().includes(search.toLowerCase())))) return true;
+
+          if (card.recipients) {
+            if (card.recipients.some(recipient => recipient.toLowerCase().includes(this.searchstring.toLowerCase()))) return true;
+            if (searches.some(search => card.recipients!.some(recipient => recipient.toLowerCase().includes(search.toLowerCase())))) return true;
+          }
+
+          if (card.code === this.searchstring) return true;
+          
+          return false
+        })
+      }
+
       this.ref.detectChanges();
       this.updateCount(this.display.length);
     }
@@ -202,13 +229,13 @@ export class NewCardsComponent implements OnInit {
           this.recipientoptions.push(recipient)
         }
         else {
-          if(recipient.others) {
+          if (recipient.others) {
             if (recipient.others.some(other => {
               return items.some(item => {
                 if (item.recipients!.findIndex(x => x.toUpperCase() === other.toUpperCase()) >= 0) return true;
                 return false;
               });
-            })){
+            })) {
               this.recipientoptions.push(recipient)
             }
           }
@@ -273,5 +300,61 @@ export class NewCardsComponent implements OnInit {
       }
     ];
     this.ref.detectChanges();
+  }
+
+  onSearch(search: string) {
+    if (search !== '' && search !== 'all') {
+
+      let event = this.cardevents.find(x => x.toLowerCase() === search.toLowerCase())
+      if (event) {
+        this.event = event;
+        this.events.push(event);
+      }
+      else {
+        this.event = '';
+        this.events = [];
+      }
+
+      let recipient: string = '';
+      this.recipientoptions.forEach(x => {
+        if (x.main.toLowerCase() === search.toLowerCase()) recipient = x.main
+        else {
+          if (x.others) {
+            if (x.others.find(other => other.toLowerCase() === search.toLowerCase())) recipient = x.main;
+          }
+        }
+      });
+
+      if (recipient !== '') {
+        this.recipient = recipient;
+        this.recipients.push(recipient);
+      }
+      else {
+        this.recipient = '';
+        this.recipients = [];
+      }
+
+      let filter = this.filteroptions.find(x => x.toLowerCase() === search.toLowerCase());
+      if (filter) {
+        this.filter = filter;
+        this.filters.push(filter);
+      } else {
+        this.filter = '';
+        this.filters = [];
+      }
+
+      if (this.event === '' && this.recipient === '' && this.filter === '') this.searchstring = search;
+    }
+    else {
+      this.event = '';
+      this.events = [];
+      this.recipient = '';
+      this.recipients = [];
+      this.filter = '';
+      this.filters = [];
+      this.searchstring = '';
+    }
+    this.ref.detectChanges();
+    this.loadDisplay();
   }
 }
