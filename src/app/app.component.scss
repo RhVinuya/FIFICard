@@ -1,41 +1,45 @@
-.main{
-    min-height: 700px;
+.main {
+  min-height: 700px;
+}
+
+.content {
+  margin-top: 50px;
+}
+
+ion-router-outlet {
+  zoom: 80%;
+}
+
+@media(min-width: 768px) {
+  ion-header {
+    display: block;
+  }
+
+  app-footer {
+    display: block;
+  }
+
+  // .hydrated{
+  //   visibility: hidden!important;
+  // }
+
+}
+
+@media(max-width: 768px) {
+  ion-header {
+    display: none;
+  }
+
+  app-footer {
+    display: none;
+  }
+
+  // .hydrated{
+  //   visibility: inherit!important;
+  // }
 }
 
 
-  
-  .content{
-        margin-top: 50px;
-  }
-
-  @media(min-width: 768px) {
-    ion-header {
-        display: block;
-    }
-    app-footer {
-        display: block;
-    }
-
-    // .hydrated{
-    //   visibility: hidden!important;
-    // }
-  
-  }
-   
-  @media(max-width: 768px) {
-    ion-header {
-       display: none;
-    }
-    app-footer {
-        display: none;
-    }
-
-    // .hydrated{
-    //   visibility: inherit!important;
-    // }
-  }
-
-  
 .bk-white {
   background: white
 }
@@ -51,9 +55,9 @@ ion-tab-button {
 
 ion-tab-button span {
   font-size: 75%;
-  margin-top:6px;
-  text-overflow: ellipsis;         
-  overflow: hidden; 
+  margin-top: 6px;
+  text-overflow: ellipsis;
+  overflow: hidden;
   white-space: nowrap;
 }
 
@@ -64,4 +68,3 @@ ion-tab-button.tab-selected {
 img {
   color: white;
 }
-
