@@ -16,7 +16,7 @@
         <div class="recipients mt-1 mb-2">
             <span *ngIf="_card.isDiscounted() === true" class="cus-discount">10% Off</span> <span *ngFor="let recipient of _card.getRecipients(4)" class="chip">{{recipient}}</span>
         </div>
-        <h4 class="card-description text-gray my-1">{{_card.description}}</h4>
+        <h4 class="card-description text-gray my-1">{{_card.description !== '' ? _card.description : _card.details}}</h4>
         <div class="space-around h-30">
             <div *ngIf="_card.isDiscounted() === false">
                 <label class="text-purple"><b>{{_card.priceDisplay()}}</b></label>
