@@ -1,2 +1,2 @@
 <h3 class="label-header lh-h3">What are you shopping for?</h3>
-<span [ngClass]="select === event ? 'fibei-badge-select' : 'fibei-badge'" *ngFor="let event of events" (click)="click(event)">{{event}}</span>
+<span [ngClass]="select.toLowerCase() === event.toLowerCase() ? 'fibei-badge-select' : 'fibei-badge'" *ngFor="let event of events" (click)="click(event)">{{event}}</span>

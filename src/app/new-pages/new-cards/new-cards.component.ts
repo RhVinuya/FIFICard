@@ -69,7 +69,6 @@ export class NewCardsComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     this.config = await this.configService.get();
 
-
     this.activateRoute.params.subscribe(params => {
       let id = params['id'];
       this.event = '';
@@ -83,8 +82,7 @@ export class NewCardsComponent implements OnInit {
         if (this.cardevents.findIndex(x => x.toLowerCase() === id.toLowerCase()) >= 0) {
           this.event = id;
           this.events.push(id);
-
-          if (id === this.featuredEvent) this.priorities = this.config.priorities.filter(x => x.type === 'card').filter(x => x.event === this.featuredEvent);
+          if (id.toLowerCase() === this.featuredEvent.toLowerCase()) this.priorities = this.config.priorities.filter(x => x.type === 'card').filter(x => x.event === this.featuredEvent);   
         }
         else if (this.recipientoptions.findIndex(x => x.main.toLowerCase() === id.toLowerCase()) >= 0) {
           this.recipient = id;
