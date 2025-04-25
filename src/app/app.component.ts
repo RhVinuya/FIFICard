@@ -39,7 +39,7 @@ export class AppComponent {
   adsService: NewAdsService;
   modalCtrl: ModalController;
   configService: NewConfigService;
-    modalService: NgbModal;
+  modalService: NgbModal;
 
   url: string = '';
   config: IConfig;
@@ -71,7 +71,7 @@ export class AppComponent {
 
     this.config = await this.configService.get();
 
-    if(!this.isMobile) {
+    if (!this.isMobile) {
       this.platform.ready().then(() => {
         this.router.events.subscribe((event) => {
           if (event instanceof NavigationEnd) {
@@ -79,7 +79,7 @@ export class AppComponent {
           }
         });
       });
-  
+
       const userDetails = JSON.parse(localStorage.getItem('user')!);
       this.userDetails = userDetails;
       this.isLogIn = userDetails == null || userDetails.length < 0 ? true : false;

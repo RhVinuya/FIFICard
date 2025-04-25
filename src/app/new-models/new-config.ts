@@ -13,6 +13,7 @@ export interface IConfig {
     ads: IAds;
     discounts: IDiscount[];
     promos: IPromo[];
+    priorities: IPriority[];
 }
 
 export interface IPaymentConfig{
@@ -93,4 +94,10 @@ export interface IPromo {
     itemtypetag: string;
     discountedtype: Type;
     discountedtypetag: string;
+}
+
+export interface IPriority {
+    type: Type;
+    event: string;
+    ids: string[];
 }

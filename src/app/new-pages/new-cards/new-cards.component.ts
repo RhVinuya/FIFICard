@@ -2,7 +2,9 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { INewCard } from 'src/app/new-models/new-card';
+import { IConfig, IPriority } from 'src/app/new-models/new-config';
 import { NewCardService } from 'src/app/new-services/new-card.service';
+import { NewConfigService } from 'src/app/new-services/new-config.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -14,15 +16,18 @@ export class NewCardsComponent implements OnInit {
 
   activateRoute: ActivatedRoute;
   cardService: NewCardService;
+  configService: NewConfigService;
   ref: ChangeDetectorRef;
 
   constructor(
     _activateRoute: ActivatedRoute,
     _cardService: NewCardService,
+    _configService: NewConfigService,
     _ref: ChangeDetectorRef
   ) {
     this.activateRoute = _activateRoute;
     this.cardService = _cardService;
+    this.configService = _configService;
     this.ref = _ref;
   }
 
@@ -42,6 +47,7 @@ export class NewCardsComponent implements OnInit {
   cardevents = environment.cardevents;
   recipientoptions = environment.recipients;
   filteroptions = ['POETRY', 'MESSAGE', 'PERSONALIZED', 'TALKING CARD'];
+  featuredEvent = "Mother's day";
 
   activeevents: string[] = [];
   event: string;
@@ -57,8 +63,13 @@ export class NewCardsComponent implements OnInit {
   searchstring: string = '';
 
   priorityId: string = '3E4Ng5wsPpxXEWNh35lC';
+  priorities: IPriority[] = [];
+  config: IConfig;
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+    this.config = await this.configService.get();
+
+
     this.activateRoute.params.subscribe(params => {
       let id = params['id'];
       this.event = '';
@@ -72,6 +83,8 @@ export class NewCardsComponent implements OnInit {
         if (this.cardevents.findIndex(x => x.toLowerCase() === id.toLowerCase()) >= 0) {
           this.event = id;
           this.events.push(id);
+
+          if (id === this.featuredEvent) this.priorities = this.config.priorities.filter(x => x.type === 'card').filter(x => x.event === this.featuredEvent);
         }
         else if (this.recipientoptions.findIndex(x => x.main.toLowerCase() === id.toLowerCase()) >= 0) {
           this.recipient = id;
@@ -81,6 +94,9 @@ export class NewCardsComponent implements OnInit {
           this.filter = id;
           this.filters.push(id);
         }
+      }
+      else {
+        this.priorities = this.config.priorities.filter(x => x.type === 'card').filter(x => x.event === this.featuredEvent);
       }
 
       this.ref.detectChanges();
@@ -115,11 +131,26 @@ export class NewCardsComponent implements OnInit {
 
       this.display = [];
 
-      if (this.priorityId !== '') {
-        if (this.cards.findIndex(x => x.id === this.priorityId) >= 0) {
-          let temp = [...this.cards]
-          this.cards = [...temp.filter(x => x.id === this.priorityId), ...temp.filter(x => x.id !== this.priorityId)]
-        }
+      //if (this.priorityId !== '') {
+      //  if (this.cards.findIndex(x => x.id === this.priorityId) >= 0) {
+      //    let temp = [...this.cards]
+      //    this.cards = [...temp.filter(x => x.id === this.priorityId), ...temp.filter(x => x.id !== this.priorityId)]
+      //  }
+      //}
+
+      if (this.priorities.length > 0) {
+        let ids: string[] = [];
+        let temp: INewCard[] = [];
+        this.priorities.forEach(priority => {
+          ids = [...ids, ...priority.ids];
+        })
+
+        ids.forEach(id => {
+          let card = this.cards.find(x => x.id === id);
+          if (card) temp.push(card);
+        });
+
+        this.cards = [...temp, ...this.cards.filter(x => !ids.includes(x.id))];
       }
 
       //filter events
@@ -192,7 +223,7 @@ export class NewCardsComponent implements OnInit {
 
         const temp = this.display.map(object => ({ ...object }))
         this.display = temp.filter(card => {
-                    
+
           if (card.name.toLowerCase().includes(this.searchstring.toLowerCase())) return true;
           if (searches.some(search => card.name.toLowerCase().includes(search.toLowerCase()))) return true;
 
@@ -208,7 +239,7 @@ export class NewCardsComponent implements OnInit {
           }
 
           if (card.code === this.searchstring) return true;
-          
+
           return false
         })
       }

@@ -223,5 +223,21 @@ export const development = {
         "discountedtype": "card",
         "discountedtypetag": "Get this card for free when you purchase a gift from FiBei Products"
       }
+    ],
+    "priorities": [
+      {
+        "type": "card",
+        "event": "Mother's day",
+        "ids": [
+          "5jfUZJGkqvYOeCKFyUWo",
+          "hPi4eFEo4VcWzAw6Rq9g",
+          "BpmEna17XhWoOfdOteWQ",
+          "HD54rXnPCC07GZOcF01k",
+          "LcAXP6v9cXQJ1it42Wwa",
+          "We78UAXCMd7BuffSQ15e",
+          "X1UIGf6fbemTfo1lmu1h",
+          "n0mc6EjbcBvDOVx1YAoN"
+        ]
+      }
     ]
   }
