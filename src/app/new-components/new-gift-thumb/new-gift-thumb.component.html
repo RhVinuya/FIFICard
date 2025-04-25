@@ -1,4 +1,4 @@
-<div class="card cursor" (click)="onClick()">
+<div class="card cursor" (click)="onClick()" *ngIf="_gift">
     <div class="img-div">
         <img [src]="primary" [alt]="_gift.name" class="card-img default-image" *ngIf="primary !== ''" onContextMenu="return false;">
         <img [src]="secondary" [alt]="_gift.name" class="card-img hover-image" *ngIf="secondary !== ''" onContextMenu="return false;">
@@ -12,9 +12,7 @@
     <div class="card-body px-2 py-3">
         <h4 class="card-title text-purple my-0">{{_gift.name}}</h4>
         <h4 class="card-description text-gray my-1">{{_gift.description !== '' ? _gift.description : _gift.details}}</h4>
-        <div class="column">
-            <label class="text-purple mb-2"><b class="mb-2">{{_gift.priceDisplay()}}</b></label>
-            <app-new-add-cart-button type="gift" [item]="gift"></app-new-add-cart-button>
-        </div>
+        <label class="text-purple mb-2"><b class="mb-2">{{_gift.priceDisplay()}}</b></label>
+        <app-new-add-cart-button type="gift" [item]="gift" [fullwidth]="true"></app-new-add-cart-button>
     </div>
 </div>

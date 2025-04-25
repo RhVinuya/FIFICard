@@ -14,6 +14,7 @@ import { NewInYourCartComponent } from '../new-in-your-cart/new-in-your-cart.com
 })
 export class NewPersonalizeButtonComponent implements OnInit {
   @Input() iCard: INewCard;
+  @Input() fullwidth: boolean = false;
 
   modalService: NgbModal;
   storageService: NewStorageService;

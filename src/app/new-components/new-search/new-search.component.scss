@@ -2,17 +2,16 @@
     font-family: Proxima Nova;
 }
 
-ion-searchbar{
+ion-searchbar {
     width: 100%;
-    --color: #cb6ce6;
+    --color: #5e17eb;
     --box-shadow: none;
-    --border-radius: 20px;
-    --icon-color: #cb6ce6;
-    --placeholder-color: #cb6ce6;
+    --icon-color: #5e17eb;
+    --placeholder-color: #5e17eb;
     --placeholder-opacity: 0.5;
 }
 
 ::ng-deep ion-searchbar .searchbar-input-container input {
-    border: 0.5px solid #cb6ce6 !important;
-    border-radius: 30px !important;
+    border: 0.5px solid #5e17eb !important;
+    border-radius: 50px !important;
 }

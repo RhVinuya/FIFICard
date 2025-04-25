@@ -12,9 +12,7 @@
     <div class="card-body px-2 py-3">
         <h4 class="card-title text-purple my-0">{{_sticker.name}}</h4>
         <h4 class="card-description text-gray my-1">{{_sticker.description !== '' ? _sticker.description : _sticker.details}}</h4>
-        <div class="column">
-            <label class="text-purple mb-2"><b class="mb-2">{{_sticker.priceDisplay()}}</b></label>
-            <app-new-add-cart-button type="sticker" [item]="sticker"></app-new-add-cart-button>
-        </div>
+        <label class="text-purple mb-2"><b class="mb-2">{{_sticker.priceDisplay()}}</b></label>
+        <app-new-add-cart-button type="sticker" [item]="sticker" [fullwidth]="true"></app-new-add-cart-button>
     </div>
 </div>

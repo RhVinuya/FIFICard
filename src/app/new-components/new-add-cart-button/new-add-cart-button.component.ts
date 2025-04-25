@@ -22,6 +22,7 @@ export class NewAddCartButtonComponent implements OnInit {
 
   @Input() type: ItemType;
   @Input() item: IModelType;
+  @Input() fullwidth: boolean = false;
 
   offCanvas: NgbOffcanvas;
   cartService: NewCartService;
