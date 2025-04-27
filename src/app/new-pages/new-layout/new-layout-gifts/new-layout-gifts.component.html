@@ -8,18 +8,26 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-2 d-none d-lg-block d-xl-block d-xxl-block">
+    <div class="col-2">
         <img src="/assets/images/new/s-gifts.png" class="img-fluid" (click)="onClick('/new/gifts/all')" onContextMenu="return false;">
     </div>
-    <div class="col-3 offset-1">
-        <h5>SHOP BY CATEGORIES</h5>
-        <h5 *ngFor="let event of eventcategories.slice(0, 5)"><a (click)="onClick('/new/gifts/' + event)">{{event}}</a></h5>
-    </div>
-    <div class="col-3 ">
-        <h5 *ngFor="let event of eventcategories.slice(5, 10)"><a (click)="onClick('/new/gifts/' + event)">{{event}}</a></h5>
-    </div>
-    <div class="col-3">
-        <h5>SHOP BY RECIPIENTS</h5>
-        <h5 *ngFor="let event of eventrecipient.slice(0, 4)"><a (click)="onClick('/new/gifts/' + event.toUpperCase())">{{event}}</a></h5>
+    <div class="col-9 offset-1">
+        <div class="row">
+            <div class="col-8">
+                <h5 class="mb-0">SHOP BY CATEGORIES</h5>
+            </div>
+            <div class="col-4">
+                <h5 class="mb-0">SHOP BY RECIPIENTS</h5>
+            </div>
+            <div class="col-4">
+                <h5 *ngFor="let event of eventcategories.slice(0, 5)"><a (click)="onClick('/new/gifts/' + event)">{{event}}</a></h5>
+            </div>
+            <div class="col-4 ">
+                <h5 *ngFor="let event of eventcategories.slice(5, 10)"><a (click)="onClick('/new/gifts/' + event)">{{event}}</a></h5>
+            </div>
+            <div class="col-4">
+                <h5 *ngFor="let event of eventrecipient.slice(0, 4)"><a (click)="onClick('/new/gifts/' + event.toUpperCase())">{{event}}</a></h5>
+            </div>
+        </div>
     </div>
 </div>

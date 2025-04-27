@@ -67,10 +67,10 @@ export class NewStickersComponent implements OnInit {
     this.stickers = [...list.filter(x => x.featured), ...list.filter(x => x.featured !== true)]
 
     this.stickerevents.forEach(event => {
-      let list = this.stickers.filter(x => x.events.filter(y => y.toLowerCase() === event.toLowerCase()) )
+      let list = this.stickers.filter(x => x.events.filter(y => y.toLowerCase() === event.toLowerCase()))
       if (list.length > 0) this.activeevents.push(event)
     })
-    
+
     this.loadDisplay();
     this.loading = false;
   }
@@ -80,47 +80,39 @@ export class NewStickersComponent implements OnInit {
     if (this.display.length < this.displayCount) this.displayCount = this.display.length
   }
 
+  filterEvents(events: string[], items: INewSticker[]): INewSticker[] {
+    if (events.length === 0) return [...items];
+    else return [...items].filter(item => {
+      return events.some(event => {
+        return item.events.some(x => x.toLowerCase() === event.toLowerCase())
+      })
+    })
+  }
+
+  filterBySearch(search: string, items: INewSticker[]): INewSticker[] {
+    if (search === '') return [...items];
+    else {
+      let searches = search.split(' ');
+      return [...items].filter(sticker => {
+        if (sticker.name.toLowerCase().includes(search.toLowerCase())) return true;
+        if (searches.some(search => sticker.name.toLowerCase().includes(search.toLowerCase()))) return true;
+
+        if (sticker.events.some(event => event.toLowerCase().includes(this.searchstring.toLowerCase()))) return true;
+        if (searches.some(search => sticker.events.some(event => event.toLowerCase().includes(search.toLowerCase())))) return true;
+
+        if (sticker.code === search) return true;
+
+        return false
+      })
+    }
+  }
+
   loadDisplay() {
     if (this.stickers.length > 0) {
       this.display = [];
-      if (this.events.length === 0) {
-        this.stickers.forEach(sticker => {
-          let found: boolean = false;
-          environment.stickerevents.forEach(event => {
-            if (sticker.events.findIndex(x => x.toLowerCase() === event.toLowerCase()) >= 0) {
-              found = true
-            }
-          })
-          if (found) this.display = [...this.display, sticker];
-        });
-      }
-      else {
-        this.stickers.forEach(sticker => {
-          let found: boolean = false;
-          this.events.forEach(event => {
-            if (sticker.events.findIndex(x => x.toLowerCase() === event.toLowerCase()) >= 0) {
-              found = true
-            }
-          })
-          if (found) this.display = [...this.display, sticker];
-        })
-      }
-
-      if (this.searchstring !== '') {
-        let searches = this.searchstring.split(' ');
-        this.display = this.display.filter(sticker => {
-          if (sticker.name.toLowerCase().includes(this.searchstring.toLowerCase())) return true;
-          if (searches.some(search => sticker.name.toLowerCase().includes(search.toLowerCase()))) return true;
-
-          if (sticker.events.some(event => event.toLowerCase().includes(this.searchstring.toLowerCase()))) return true;
-          if (searches.some(search => sticker.events.some(event => event.toLowerCase().includes(search.toLowerCase())))) return true;
-
-          if (sticker.code === this.searchstring) return true;
-
-          return false
-        })
-      }
-
+      let filterByEvents = this.filterEvents(this.events, this.stickers);
+      let filterBySearch = this.filterBySearch(this.searchstring, filterByEvents);
+      this.display = [...filterBySearch];
       this.ref.detectChanges();
       this.updateCount(this.display.length);
     }
@@ -141,7 +133,7 @@ export class NewStickersComponent implements OnInit {
   }
 
 
-  updateCount(count: number){
+  updateCount(count: number) {
     this.breadcrumbs = [
       {
         title: "Home",
@@ -161,8 +153,9 @@ export class NewStickersComponent implements OnInit {
     if (search !== '' && search !== 'all') {
       let event = this.stickerevents.find(x => x.toLowerCase() === search.toLowerCase())
       if (event) this.events = [event];
-
-      if (this.events.length === 0) this.searchstring = search;
+      
+      if (event === undefined) this.searchstring = search;
+      else this.searchstring = '';
     }
     else {
       this.events = [];

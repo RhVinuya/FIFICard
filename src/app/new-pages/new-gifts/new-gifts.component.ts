@@ -19,7 +19,7 @@ export class NewGiftsComponent implements OnInit {
     _activateRoute: ActivatedRoute,
     _giftService: NewGiftService,
     _ref: ChangeDetectorRef
-  ) { 
+  ) {
     this.activateRoute = _activateRoute;
     this.giftService = _giftService;
     this.ref = _ref;
@@ -58,7 +58,7 @@ export class NewGiftsComponent implements OnInit {
       this.events = [];
       this.recipient = '';
       this.recipients = [];
-      
+
       if (id !== 'all') {
         if (this.giftevents.findIndex(x => x.toLowerCase() === id.toLowerCase()) >= 0) {
           this.event = id;
@@ -84,7 +84,7 @@ export class NewGiftsComponent implements OnInit {
     this.gifts = [...list.filter(x => x.featured), ...list.filter(x => x.featured !== true)]
 
     this.giftevents.forEach(event => {
-      let list = this.gifts.filter(x => x.events.filter(y => y.toLowerCase() === event.toLowerCase()) )
+      let list = this.gifts.filter(x => x.events.filter(y => y.toLowerCase() === event.toLowerCase()))
       if (list.length > 0) this.activeevents.push(event)
     })
 
@@ -97,64 +97,68 @@ export class NewGiftsComponent implements OnInit {
     if (this.display.length < this.displayCount) this.displayCount = this.display.length
   }
 
+  filterEvents(events: string[], items: INewGift[]): INewGift[] {
+    if (events.length === 0) return [...items];
+    else return [...items].filter(item => {
+      return events.some(event => {
+        return item.events.some(x => x.toLowerCase() === event.toLowerCase())
+      })
+    })
+  }
+
+  filterRecipients(recipients: string[], items: INewGift[]): INewGift[] {
+    if (recipients.length === 0) return [...items];
+    else if (recipients.map(x => x.toLowerCase()).includes('FOR ALL'.toLowerCase())) return [...items]
+    else return [...items].filter(item => {
+      return recipients.some(recipient => {
+        if (item.recipients) {
+          return item.recipients.some(x => {
+            if (x.toLowerCase() === recipient.toLowerCase()) return true;
+            else {
+              let recep = environment.recipients.find(x => x.main.toLowerCase() === recipient.toLowerCase());
+              if (recep && recep.others) {
+                return recep.others.map(x => x.toLowerCase()).includes(recipient.toLowerCase())
+              }
+              else return false;
+            }
+          })
+        }
+        else return false;
+      });
+    });
+  }
+
+  filterBySearch(search: string, items: INewGift[]): INewGift[] {
+    if (search === '') return [...items];
+    else {
+      let searches = search.split(' ');
+      return [...items].filter(gift => {
+        if (gift.name.toLowerCase().includes(search.toLowerCase())) return true;
+        if (searches.some(search => gift.name.toLowerCase().includes(search.toLowerCase()))) return true;
+
+        if (gift.events.some(event => event.toLowerCase().includes(this.searchstring.toLowerCase()))) return true;
+        if (searches.some(search => gift.events.some(event => event.toLowerCase().includes(search.toLowerCase())))) return true;
+
+        if (gift.recipients) {
+          if (gift.recipients.some(recipient => recipient.toLowerCase().includes(search.toLowerCase()))) return true;
+          if (searches.some(search => gift.recipients!.some(recipient => recipient.toLowerCase().includes(search.toLowerCase())))) return true;
+        }
+
+        if (gift.code === search) return true;
+
+        return false
+      })
+    }
+  }
+
   loadDisplay() {
     if (this.gifts.length > 0) {
+      console.log(this.events, this.recipients, this.searchstring)
       this.display = [];
-      //filter events
-      if (this.events.length === 0) {
-        this.gifts.forEach(gift => {
-          let found: boolean = false;
-          this.giftevents.forEach(event => {
-            if (gift.events.findIndex(x => x.toLowerCase() === event.toLowerCase()) >= 0) {
-              found = true
-            }
-          })
-          if (found) this.display = [...this.display, gift];
-        });
-      }
-      else {
-        this.gifts.forEach(gift => {
-          let found: boolean = false;
-          this.events.forEach(event => {
-            if (gift.events.findIndex(x => x.toLowerCase() === event.toLowerCase()) >= 0) {
-              found = true
-            }
-          })
-          if (found) this.display = [...this.display, gift];
-        })
-      }
-
-      //filter recipients
-      if (this.recipients.length > 0 && this.display.length > 0) {
-        const temp = this.display.map(object => ({ ...object }))
-        this.display = [];
-        temp.forEach(gift => {
-          let found: boolean = false;
-          this.recipients.forEach(recipient => {
-            if (recipient === 'FOR ALL') found = true
-            else if (gift.recipients!.findIndex(x => x.toLowerCase() === recipient.toLowerCase()) >= 0) found = true
-          })
-          if (found) this.display = [...this.display, gift];
-        })
-      }
-
-      if (this.searchstring !== '') {
-        let searches = this.searchstring.split(' ');
-
-        const temp = this.display.map(object => ({ ...object }));
-        this.display = temp.filter(gift => {
-          if (gift.name.toLowerCase().includes(this.searchstring.toLowerCase())) return true;
-          if (searches.some(search => gift.name.toLowerCase().includes(search.toLowerCase()))) return true;
-
-          if (gift.recipients) {
-            if (gift.recipients.some(recipient => recipient.toLowerCase().includes(this.searchstring.toLowerCase()))) return true;
-            if (searches.some(search => gift.recipients!.some(recipient => recipient.toLowerCase().includes(search.toLowerCase())))) return true;
-          }
-
-          if (gift.code === this.searchstring) return true;
-          return false;
-        });
-      }
+      let filterByEvents = this.filterEvents(this.events, this.gifts);
+      let filterByRecipients = this.filterRecipients(this.recipients, filterByEvents);
+      let filterBySearch = this.filterBySearch(this.searchstring, filterByRecipients);
+      this.display = [...filterBySearch];
       this.ref.detectChanges();
       this.updateCount(this.display.length);
     }
@@ -174,7 +178,7 @@ export class NewGiftsComponent implements OnInit {
     this.loadDisplay();
   }
 
-  updateCount(count: number){
+  updateCount(count: number) {
     this.breadcrumbs = [
       {
         title: "Home",
@@ -206,26 +210,17 @@ export class NewGiftsComponent implements OnInit {
       let event = this.giftevents.find(x => x.toLowerCase() === search.toLowerCase())
       if (event) {
         this.event = event;
-        this.events.push(event);
-      }
-      else {
-        this.event = '';
-        this.events = [];
+        this.events = [event]
       }
 
       let recipient = this.recipientoptions.find(x => x.toLowerCase() === search.toLowerCase())
       if (recipient) {
         this.recipient = recipient.toUpperCase();
-        this.recipients.push(recipient.toUpperCase());
-      }
-      else {
-        this.recipient = '';
-        this.recipients = [];
+        this.recipients = [recipient.toUpperCase()]
       }
 
-      if (this.event === '' && this.recipient === '') {
-        this.searchstring = search;
-      }
+      if (event === undefined && recipient === undefined) this.searchstring = search;
+      else this.searchstring = '';
     }
     else {
       this.event = '';

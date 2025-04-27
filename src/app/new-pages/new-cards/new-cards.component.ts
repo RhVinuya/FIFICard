@@ -82,7 +82,7 @@ export class NewCardsComponent implements OnInit {
         if (this.cardevents.findIndex(x => x.toLowerCase() === id.toLowerCase()) >= 0) {
           this.event = id;
           this.events.push(id);
-          if (id.toLowerCase() === this.featuredEvent.toLowerCase()) this.priorities = this.config.priorities.filter(x => x.type === 'card').filter(x => x.event === this.featuredEvent);   
+          if (id.toLowerCase() === this.featuredEvent.toLowerCase()) this.priorities = this.config.priorities.filter(x => x.type === 'card').filter(x => x.event === this.featuredEvent);
         }
         else if (this.recipientoptions.findIndex(x => x.main.toLowerCase() === id.toLowerCase()) >= 0) {
           this.recipient = id;
@@ -110,6 +110,21 @@ export class NewCardsComponent implements OnInit {
 
     this.cards = [...list.filter(x => x.featured), ...list.filter(x => x.featured !== true)]
 
+    if (this.priorities.length > 0) {
+      let ids: string[] = [];
+      let temp: INewCard[] = [];
+      this.priorities.forEach(priority => {
+        ids = [...ids, ...priority.ids];
+      })
+
+      ids.forEach(id => {
+        let card = this.cards.find(x => x.id === id);
+        if (card) temp.push(card);
+      });
+
+      this.cards = [...temp, ...this.cards.filter(x => !ids.includes(x.id))];
+    }
+
     this.cardevents.forEach(event => {
       let list = this.cards.filter(x => x.event.toLowerCase() === event.toLowerCase())
       if (list.length > 0) this.activeevents.push(event)
@@ -124,159 +139,87 @@ export class NewCardsComponent implements OnInit {
     if (this.display.length < this.displayCount) this.displayCount = this.display.length;
   }
 
-  loadDisplay() {
-    if (this.cards.length > 0) {
+  filterEvents(events: string[], items: INewCard[]): INewCard[] {
+    if (events.length === 0) return [...items];
+    else return [...items].filter(item => {
+      if (events.find(event => event.toLowerCase() === item.event.toLowerCase())) return true;
+      return false;
+    })
+  }
 
-      this.display = [];
-
-      //if (this.priorityId !== '') {
-      //  if (this.cards.findIndex(x => x.id === this.priorityId) >= 0) {
-      //    let temp = [...this.cards]
-      //    this.cards = [...temp.filter(x => x.id === this.priorityId), ...temp.filter(x => x.id !== this.priorityId)]
-      //  }
-      //}
-
-      if (this.priorities.length > 0) {
-        let ids: string[] = [];
-        let temp: INewCard[] = [];
-        this.priorities.forEach(priority => {
-          ids = [...ids, ...priority.ids];
-        })
-
-        ids.forEach(id => {
-          let card = this.cards.find(x => x.id === id);
-          if (card) temp.push(card);
-        });
-
-        this.cards = [...temp, ...this.cards.filter(x => !ids.includes(x.id))];
-      }
-
-      //filter events
-      if (this.events.length === 0) {
-        this.cards.forEach(card => {
-          let found: boolean = false;
-          environment.cardevents.forEach(event => {
-            if (card.event.toLowerCase() === event.toLowerCase()) found = true
-          })
-          if (found) this.display = [...this.display, card];
-        });
-      }
-      else {
-        this.cards.forEach(card => {
-          let found: boolean = false;
-          this.events.forEach(event => {
-            if (card.event.toLowerCase() === event.toLowerCase()) found = true
-          })
-          if (found) this.display = [...this.display, card];
-        })
-      }
-
-      this.validateRecipientOptions(this.display.map(object => ({ ...object })));
-
-      //filter recipients
-      if (this.recipients.length > 0 && this.display.length > 0) {
-        const temp = this.display.map(object => ({ ...object }))
-        this.display = [];
-        temp.forEach(card => {
-          let found: boolean = false;
-          this.recipients.forEach(recipient => {
-            if (recipient.toUpperCase() === environment.recipientdefault.toUpperCase()) found = true
+  filterRecipients(recipients: string[], items: INewCard[]): INewCard[] {
+    if (recipients.length === 0) return [...items];
+    else if (recipients.map(x => x.toLowerCase()).includes(environment.recipientdefault.toLowerCase())) return [...items]
+    else return [...items].filter(item => {
+      return recipients.some(recipient => {
+        if (item.recipients) {
+          return item.recipients.some(x => {
+            if (x.toLowerCase() === recipient.toLowerCase()) return true;
             else {
-              if (card.recipients!.findIndex(x => x.toLowerCase() === recipient.toLowerCase()) >= 0) found = true;
-              else {
-                let item = environment.recipients.find(x => x.main.toUpperCase() === recipient.toUpperCase())
-                if (item && item.others) {
-                  item.others.forEach(other => {
-                    if (card.recipients!.findIndex(x => x.toLowerCase() === other.toLowerCase()) >= 0) found = true;
-                  })
-                }
+              let recep = environment.recipients.find(x => x.main.toLowerCase() === recipient.toLowerCase());
+              if (recep && recep.others) {
+                return recep.others.map(x => x.toLowerCase()).includes(recipient.toLowerCase())
               }
+              else return false;
             }
           })
-          if (found) this.display = [...this.display, card];
-        })
+        }
+        else return false;
+      });
+    });
+  }
 
-      }
+  filterTags(filters: string[], items: INewCard[]): INewCard[] {
+    if (filters.length === 0) return [...items];
+    else return [...items].filter(item => {
+      return filters.some(filter => {
+        if (filter === 'POETRY' && item.messagetype === 'poetry') return true;
+        else if (filter === 'MESSAGE' && item.messagetype === 'regular') return true;
+        else if (filter === 'PERSONALIZED' && item.signAndSend === true) return true;
+        else if (filter === 'TALKING CARD' && item.talkingcard === true) return true;
+        else if (filter === 'BUNDLE' && item.cardbundle === true) return true;
+        return false;
+      });
+    });
+  }
 
-      //filter
-      if (this.filters.length > 0 && this.display.length > 0) {
-        const temp = this.display.map(object => ({ ...object }))
-        this.display = [];
-        temp.forEach(card => {
-          let found: boolean = false;
-          this.filters.forEach(filter => {
-            if (filter === 'POETRY' && card.messagetype === 'poetry') found = true;
-            else if (filter === 'MESSAGE' && card.messagetype === 'regular') found = true;
-            else if (filter === 'PERSONALIZED' && card.signAndSend === true) found = true;
-            else if (filter === 'TALKING CARD' && card.talkingcard === true) found = true;
-            else if (filter === 'BUNDLE' && card.cardbundle === true) found = true;
-          })
-          if (found) this.display = [...this.display, card];
-        })
-      }
+  filterBySearch(search: string, items: INewCard[]): INewCard[] {
+    if (search === '') return [...items];
+    else {
+      let searches = search.split(' ');
+      return [...items].filter(card => {
+        if (card.name.toLowerCase().includes(search.toLowerCase())) return true;
+        if (searches.some(search => card.name.toLowerCase().includes(search.toLowerCase()))) return true;
 
-      if (this.searchstring !== '') {
+        if (card.event.toLowerCase().includes(search.toLowerCase())) return true;
+        if (searches.some(search => card.event.toLowerCase().includes(search.toLowerCase()))) return true;
 
-        let searches = this.searchstring.split(' ');
+        if (card.events.some(event => event.toLowerCase().includes(search.toLowerCase()))) return true;
+        if (searches.some(search => card.events.some(event => event.toLowerCase().includes(search.toLowerCase())))) return true;
 
-        const temp = this.display.map(object => ({ ...object }))
-        this.display = temp.filter(card => {
+        if (card.recipients) {
+          if (card.recipients.some(recipient => recipient.toLowerCase().includes(search.toLowerCase()))) return true;
+          if (searches.some(search => card.recipients!.some(recipient => recipient.toLowerCase().includes(search.toLowerCase())))) return true;
+        }
 
-          if (card.name.toLowerCase().includes(this.searchstring.toLowerCase())) return true;
-          if (searches.some(search => card.name.toLowerCase().includes(search.toLowerCase()))) return true;
+        if (card.code === search) return true;
 
-          if (card.event.toLowerCase().includes(this.searchstring.toLowerCase())) return true;
-          if (searches.some(search => card.event.toLowerCase().includes(search.toLowerCase()))) return true;
-
-          if (card.events.some(event => event.toLowerCase().includes(this.searchstring.toLowerCase()))) return true;
-          if (searches.some(search => card.events.some(event => event.toLowerCase().includes(search.toLowerCase())))) return true;
-
-          if (card.recipients) {
-            if (card.recipients.some(recipient => recipient.toLowerCase().includes(this.searchstring.toLowerCase()))) return true;
-            if (searches.some(search => card.recipients!.some(recipient => recipient.toLowerCase().includes(search.toLowerCase())))) return true;
-          }
-
-          if (card.code === this.searchstring) return true;
-
-          return false
-        })
-      }
-
-      this.ref.detectChanges();
-      this.updateCount(this.display.length);
+        return false
+      }) 
     }
   }
 
-  validateRecipientOptions(items: INewCard[]) {
-    this.recipientoptions = [];
-    environment.recipients.forEach(recipient => {
-      if (recipient.main !== 'All') {
-        if (items.some(item => {
-          if (item.recipients!.findIndex(x => x.toUpperCase() === recipient.main.toUpperCase()) >= 0) return true;
-          return false;
-        })) {
-          this.recipientoptions.push(recipient)
-        }
-        else {
-          if (recipient.others) {
-            if (recipient.others.some(other => {
-              return items.some(item => {
-                if (item.recipients!.findIndex(x => x.toUpperCase() === other.toUpperCase()) >= 0) return true;
-                return false;
-              });
-            })) {
-              this.recipientoptions.push(recipient)
-            }
-          }
-        }
-      }
-      else this.recipientoptions.push(recipient)
-    })
-    let temp: string[] = [];
-    this.recipients.forEach(recipient => {
-      if (this.recipientoptions.findIndex(x => x.main === recipient) >= 0) temp.push(recipient);
-    })
-    this.recipients = [...temp];
+  loadDisplay() {
+    if (this.cards.length > 0) {
+      this.display = [];
+      let filterByEvents = this.filterEvents(this.events, this.cards);
+      let filterByRecipients = this.filterRecipients(this.recipients, filterByEvents);
+      let fileterByTags = this.filterTags(this.filters, filterByRecipients);
+      let filterBySearch = this.filterBySearch(this.searchstring, fileterByTags);
+      this.display = [...filterBySearch];
+      this.ref.detectChanges();
+      this.updateCount(this.display.length);
+    }
   }
 
   onClickEvent(event: string) {
@@ -337,42 +280,29 @@ export class NewCardsComponent implements OnInit {
       let event = this.cardevents.find(x => x.toLowerCase() === search.toLowerCase())
       if (event) {
         this.event = event;
-        this.events.push(event);
-      }
-      else {
-        this.event = '';
-        this.events = [];
+        this.events = [event]
       }
 
       let recipient: string = '';
       this.recipientoptions.forEach(x => {
         if (x.main.toLowerCase() === search.toLowerCase()) recipient = x.main
-        else {
-          if (x.others) {
-            if (x.others.find(other => other.toLowerCase() === search.toLowerCase())) recipient = x.main;
-          }
-        }
+        else if (x.others) if (x.others.find(other => other.toLowerCase() === search.toLowerCase())) recipient = x.main;
       });
 
       if (recipient !== '') {
         this.recipient = recipient;
-        this.recipients.push(recipient);
-      }
-      else {
-        this.recipient = '';
-        this.recipients = [];
+        this.recipients = [recipient]
       }
 
       let filter = this.filteroptions.find(x => x.toLowerCase() === search.toLowerCase());
       if (filter) {
         this.filter = filter;
-        this.filters.push(filter);
-      } else {
-        this.filter = '';
-        this.filters = [];
-      }
+        this.filters = [filter]
+      } 
 
-      if (this.event === '' && this.recipient === '' && this.filter === '') this.searchstring = search;
+
+      if (event === undefined && recipient === '' && filter === undefined) this.searchstring = search;
+      else this.searchstring = '';
     }
     else {
       this.event = '';

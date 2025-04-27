@@ -1,5 +1,5 @@
 import { ViewportScroller } from '@angular/common';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { IonContent } from '@ionic/angular';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -18,8 +18,10 @@ import { NewWishlistService } from 'src/app/new-services/new-wishlist.service';
   templateUrl: './new-layout.component.html',
   styleUrls: ['./new-layout.component.scss']
 })
-export class NewLayoutComponent implements OnInit {
+export class NewLayoutComponent implements OnInit, AfterViewInit {
   @ViewChild(IonContent, { static: false }) content: IonContent;
+
+  @ViewChild('header') header: ElementRef<HTMLDivElement>;
 
   router: Router;
   viewportScroller: ViewportScroller;
@@ -79,6 +81,16 @@ export class NewLayoutComponent implements OnInit {
       this.user = value === undefined ? undefined : value;
     });
 
+  }
+
+  ngAfterViewInit(): void {
+    this.calculateHeight();
+  }
+
+  calculateHeight() {
+    if (this.header === undefined) return;
+    let headerHeight = this.header.nativeElement.offsetHeight;
+    console.log('Element height:', headerHeight);
   }
 
   synchronizeCart(user: INewUser) {

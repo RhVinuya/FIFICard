@@ -62,15 +62,15 @@ export class NewPostcardsComponent implements OnInit {
 
   async loadPostcards() {
     this.loading = true;
-    let list =  await this.postcardService.getAll();
+    let list = await this.postcardService.getAll();
 
     this.postcards = [...list.filter(x => x.featured), ...list.filter(x => x.featured !== true)]
 
     this.postcardevents.forEach(event => {
-      let list = this.postcards.filter(x => x.events.filter(y => y.toLowerCase() === event.toLowerCase()) )
+      let list = this.postcards.filter(x => x.events.filter(y => y.toLowerCase() === event.toLowerCase()))
       if (list.length > 0) this.activeevents.push(event)
     })
-  
+
     this.loadDisplay();
     this.loading = false;
   }
@@ -80,47 +80,41 @@ export class NewPostcardsComponent implements OnInit {
     if (this.display.length < this.displayCount) this.displayCount = this.display.length
   }
 
-  loadDisplay() {
-    if (this.postcards.length > 0) {
-      this.display = [];
-      if (this.events.length === 0) {
-        this.postcards.forEach(postcard => {
-          let found: boolean = false;
-          environment.postcardevents.forEach(event => {
-            if (postcard.events.findIndex(x => x.toLowerCase() === event.toLowerCase()) >= 0) {
-              found = true
-            }
-          })
-          if (found) this.display = [...this.display, postcard];
-        });
-      }
+  filterEvents(events: string[], items: INewPostcard[]): INewPostcard[] {
+    if (events.length === 0) return [...items];
+    else return [...items].filter(item => {
+      return events.some(event => {
+        return item.events.some(x => x.toLowerCase() === event.toLowerCase())
+      })
+    })
+  }
+
+  filterBySearch(search: string, items: INewPostcard[]): INewPostcard[] {
+      if (search === '') return [...items];
       else {
-        this.postcards.forEach(postcard => {
-          let found: boolean = false;
-          this.events.forEach(event => {
-            if (postcard.events.findIndex(x => x.toLowerCase() === event.toLowerCase()) >= 0) {
-              found = true
-            }
-          })
-          if (found) this.display = [...this.display, postcard];
-        })
-      }
-      if (this.searchstring !== '') {
-        let searches = this.searchstring.split(' ');
-        this.display = this.display.filter(postcard => {
-          if (postcard.name.toLowerCase().includes(this.searchstring.toLowerCase())) return true;
+        let searches = search.split(' ');
+        return [...items].filter(postcard => {
+          if (postcard.name.toLowerCase().includes(search.toLowerCase())) return true;
           if (searches.some(search => postcard.name.toLowerCase().includes(search.toLowerCase()))) return true;
   
           if (postcard.events.some(event => event.toLowerCase().includes(this.searchstring.toLowerCase()))) return true;
           if (searches.some(search => postcard.events.some(event => event.toLowerCase().includes(search.toLowerCase())))) return true;
   
-          if (postcard.code === this.searchstring) return true;
+          if (postcard.code === search) return true;
   
           return false
         })
       }
+    }
+
+  loadDisplay() {
+    if (this.postcards.length > 0) {
+      this.display = [];
+      let filterByEvents = this.filterEvents(this.events, this.postcards);
+      let filterBySearch = this.filterBySearch(this.searchstring, filterByEvents);
+      this.display = [...filterBySearch];
       this.ref.detectChanges();
-       this.updateCount(this.display.length);
+      this.updateCount(this.display.length);
     }
   }
 
@@ -139,7 +133,7 @@ export class NewPostcardsComponent implements OnInit {
   }
 
 
-  updateCount(count: number){
+  updateCount(count: number) {
     this.breadcrumbs = [
       {
         title: "Home",
@@ -160,7 +154,8 @@ export class NewPostcardsComponent implements OnInit {
       let event = this.postcardevents.find(x => x.toLowerCase() === search.toLowerCase())
       if (event) this.events = [event];
 
-      if (this.events.length === 0) this.searchstring = search;
+      if (event === undefined) this.searchstring = search;
+      else this.searchstring = '';
     }
     else {
       this.events = [];
