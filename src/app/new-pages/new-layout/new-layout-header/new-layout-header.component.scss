@@ -6,7 +6,7 @@
     height: 60px;
 }
 
-.v3{
+.v3 {
     position: relative;
 }
 
@@ -47,70 +47,93 @@
     font-size: 1.5rem;
 }
 
-.menu{
-    height: 450px;
+.menu {
+    height: 375px;
     width: 100%;
-    position: absolute;  
+    position: absolute;
     z-index: 50;
     background: white;
     font-family: Proxima Nova;
     border-bottom: 0.25px solid #a3a3a3;
 }
 
-.nav-link{
-  cursor: pointer;
+.nav-link {
+    cursor: pointer;
 }
 
-.profile{
+.profile {
     width: 30px;
     aspect-ratio: 1/1;
     border-radius: 50%;
 }
-.my-menu-links a
-{
-color:#5e17eb;
-font-size: 18px;
-   
+
+.my-menu-links a {
+    color: #5e17eb;
+    font-size: 18px;
+
 }
-.my-menu-links a:hover
-{
+
+.my-menu-links a:hover {
     background: #5e17eb20;
 }
-.fa-star.gelatine
-{
+
+.fa-star.gelatine {
     text-shadow: 0px 3px #7b00cf;
     margin-top: -4px;
 }
+
 .gelatine {
     animation: gelatine 0.5s infinite;
-  }
-  @keyframes gelatine {
-    from, to { transform: scale(1, 1); }
-    25% { transform: scale(0.9, 1.1); }
-    50% { transform: scale(1.1, 0.9); }
-    75% { transform: scale(0.95, 1.05); }
-  }
-  
+}
+
+@keyframes gelatine {
+
+    from,
+    to {
+        transform: scale(1, 1);
+    }
+
+    25% {
+        transform: scale(0.9, 1.1);
+    }
+
+    50% {
+        transform: scale(1.1, 0.9);
+    }
+
+    75% {
+        transform: scale(0.95, 1.05);
+    }
+}
+
 
 .bounce-in {
     animation: bounce-in 2s ease infinite;
-  }
-  @keyframes bounce-in {
+}
+
+@keyframes bounce-in {
     0% {
-      opacity: 0;
-      transform: scale(.3);
+        opacity: 0;
+        transform: scale(.3);
     }
+
     50% {
-      opacity: 1;
-      transform: scale(1.05);
+        opacity: 1;
+        transform: scale(1.05);
     }
-    70% { transform: scale(.9); }
-    100% { transform: scale(1); }
-  }
-  .personalize-count,
-  .cart-count,
-  .wishlist-count
-  {
+
+    70% {
+        transform: scale(.9);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.personalize-count,
+.cart-count,
+.wishlist-count {
     background: #de22c1;
     color: white;
     height: 25px;
@@ -125,4 +148,28 @@ font-size: 18px;
     margin-top: 10px;
     border: 2px solid white;
     position: absolute;
+}
+
+.action-flag {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-inline: 8px;
+}
+
+.action-flag div {
+    background: #de22c1;
+    height: 32px;
+    aspect-ratio: 1/1;
+    overflow: hidden;
+    border-radius: 50%;
+    border: 0.1px solid #de22c1;
+}
+
+.action-flag div img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: left center;
 }

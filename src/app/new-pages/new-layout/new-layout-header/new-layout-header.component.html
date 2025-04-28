@@ -23,18 +23,21 @@
                         </li>
                         -->
                         <li class="nav-item">
-                            <a class="nav-link" (mouseenter)="onHover('stickers')" (mouseleave)="onHoverOut()">Stickers</a>
+                            <a class="nav-link" (mouseenter)="onHover('stickers')" (mouseleave)="onHoverOut()" (click)="onOpen('/new/stickers/all')">Stickers</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" (mouseenter)="onHover('postcards')" (mouseleave)="onHoverOut()">Postcards</a>
+                            <a class="nav-link" (mouseenter)="onHover('postcards')" (mouseleave)="onHoverOut()" (click)="onOpen('/new/postcards/all')">Postcards</a>
                         </li>
                         <li class="nav-item" *ngIf="location === 'ph'">
-                            <a class="nav-link" (mouseenter)="onHover('gifts')" (mouseleave)="onHoverOut()">Gifts </a>
+                            <a class="nav-link" (mouseenter)="onHover('gifts')" (mouseleave)="onHoverOut()" (click)="onOpen('/new/gifts/all')">Gifts </a>
                         </li>
                     </ul>
                 </div>
-                <div class="col-2" size="auto">
+                <div class="col-2" size="auto"> 
                     <ul class="nav justify-content-end">
+                        <li class="nav-item action-flag">
+                            <img [src]="flag" class="flag">
+                        </li>
                         <li class="nav-item action">
                             <a class="nav-link active" aria-current="page" [routerLink]="['/new/projects']">
                                 <i class="fa fa-2x fa-star text-purple gelatine" aria-hidden="true" title="Personalize"></i>
@@ -84,6 +87,11 @@
                 </div>
                 <div class="col-6 pe-0" size="auto">
                     <ul class="nav justify-content-end">
+                        <li class="nav-item action-flag">
+                            <div>
+                                <img [src]="flag">
+                            </div>
+                        </li>
                         <li class="nav-item action">
                             <a class="nav-link active" aria-current="page"  [routerLink]="['/new/projects']">
                                 <i class="fa fa-2x fa-star text-purple gelatine" aria-hidden="true" title="Personalize"></i>
@@ -129,13 +137,13 @@
                         </li>
                         -->
                         <li class="nav-item">
-                            <a class="nav-link" (mouseenter)="onHover('stickers')" (mouseleave)="onHoverOut()">Stickers</a>
+                            <a class="nav-link" (mouseenter)="onHover('stickers')" (mouseleave)="onHoverOut()" (click)="onOpen('/new/stickers/all')">Stickers</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" (mouseenter)="onHover('postcards')" (mouseleave)="onHoverOut()">Postcards</a>
+                            <a class="nav-link" (mouseenter)="onHover('postcards')" (mouseleave)="onHoverOut()" (click)="onOpen('/new/postcards/all')">Postcards</a>
                         </li>
                         <li class="nav-item" *ngIf="location === 'ph'">
-                            <a class="nav-link" (mouseenter)="onHover('gifts')" (mouseleave)="onHoverOut()">Gifts </a>
+                            <a class="nav-link" (mouseenter)="onHover('gifts')" (mouseleave)="onHoverOut()" (click)="onOpen('/new/gifts/all')">Gifts </a>
                         </li>
                     </ul>
                 </div>

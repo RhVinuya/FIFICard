@@ -12,7 +12,6 @@ export class NewLocationService {
   }
 
   getlocation(): LocationType {
-
     if (environment.us.findIndex(x => x == window.location.hostname.toLowerCase()) >= 0) {
       return 'us'
     }
@@ -51,5 +50,9 @@ export class NewLocationService {
   getCurrency(): string {
     let location = this.getlocation();
     return this.getCurrencySymbol(location)
+  }
+
+  getFlagURL() {
+    return 'https://flagcdn.com/w2560/' + this.getlocation() + '.png'
   }
 }
