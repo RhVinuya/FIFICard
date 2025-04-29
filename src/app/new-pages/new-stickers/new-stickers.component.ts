@@ -93,17 +93,30 @@ export class NewStickersComponent implements OnInit {
     if (search === '') return [...items];
     else {
       let searches = search.split(' ');
-      return [...items].filter(sticker => {
-        if (sticker.name.toLowerCase().includes(search.toLowerCase())) return true;
-        if (searches.some(search => sticker.name.toLowerCase().includes(search.toLowerCase()))) return true;
-
-        if (sticker.events.some(event => event.toLowerCase().includes(this.searchstring.toLowerCase()))) return true;
-        if (searches.some(search => sticker.events.some(event => event.toLowerCase().includes(search.toLowerCase())))) return true;
-
-        if (sticker.code === search) return true;
-
-        return false
+      let results: INewSticker[] = [];
+      [...items].forEach(sticker => {
+        if (sticker.code === search) {
+          results = [...results, sticker];
+          return;
+        }
+        if (sticker.name.toLowerCase().includes(search.toLowerCase())) {
+          results = [...results, sticker];
+          return;
+        }
+        if (searches.some(search => sticker.name.toLowerCase().includes(search.toLowerCase()))) {
+          results = [...results, sticker];
+          return;
+        }
+        if (sticker.events.some(event => event.toLowerCase().includes(this.searchstring.toLowerCase()))) {
+          results = [...results, sticker];
+          return;
+        }
+        if (searches.some(search => sticker.events.some(event => event.toLowerCase().includes(search.toLowerCase())))) {
+          results = [...results, sticker];
+          return;
+        }
       })
+      return results;
     }
   }
 
@@ -153,6 +166,7 @@ export class NewStickersComponent implements OnInit {
     if (search !== '' && search !== 'all') {
       let event = this.stickerevents.find(x => x.toLowerCase() === search.toLowerCase())
       if (event) this.events = [event];
+      else this.events = [];
       
       if (event === undefined) this.searchstring = search;
       else this.searchstring = '';

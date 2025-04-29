@@ -187,25 +187,52 @@ export class NewCardsComponent implements OnInit {
     if (search === '') return [...items];
     else {
       let searches = search.split(' ');
-      return [...items].filter(card => {
-        if (card.name.toLowerCase().includes(search.toLowerCase())) return true;
-        if (searches.some(search => card.name.toLowerCase().includes(search.toLowerCase()))) return true;
-
-        if (card.event.toLowerCase().includes(search.toLowerCase())) return true;
-        if (searches.some(search => card.event.toLowerCase().includes(search.toLowerCase()))) return true;
-
-        if (card.events.some(event => event.toLowerCase().includes(search.toLowerCase()))) return true;
-        if (searches.some(search => card.events.some(event => event.toLowerCase().includes(search.toLowerCase())))) return true;
-
-        if (card.recipients) {
-          if (card.recipients.some(recipient => recipient.toLowerCase().includes(search.toLowerCase()))) return true;
-          if (searches.some(search => card.recipients!.some(recipient => recipient.toLowerCase().includes(search.toLowerCase())))) return true;
+      let results: INewCard[] = [];
+      [...items].forEach(card => {
+        if (card.code === search) {
+          results = [...results, card];
+          return;
         }
 
-        if (card.code === search) return true;
+        if (card.name.toLowerCase().includes(search.toLowerCase())) {
+          results = [...results, card];
+          return;
+        }
+        if (searches.some(search => card.name.toLowerCase().includes(search.toLowerCase()))) {
+          results = [...results, card];
+          return;
+        }
 
-        return false
+        if (card.event.toLowerCase().includes(search.toLowerCase())) {
+          results = [...results, card];
+          return;
+        }
+        if (searches.some(search => card.event.toLowerCase().includes(search.toLowerCase()))) {
+          results = [...results, card];
+          return;
+        }
+
+        if (card.events.some(event => event.toLowerCase().includes(search.toLowerCase()))) {
+          results = [...results, card];
+          return;
+        }
+        if (searches.some(search => card.events.some(event => event.toLowerCase().includes(search.toLowerCase())))) {
+          results = [...results, card];
+          return;
+        }
+
+        if (card.recipients) {
+          if (card.recipients.some(recipient => recipient.toLowerCase().includes(search.toLowerCase()))) {
+            results = [...results, card];
+            return;
+          }
+          if (searches.some(search => card.recipients!.some(recipient => recipient.toLowerCase().includes(search.toLowerCase())))) {
+            results = [...results, card];
+            return;
+          }
+        }        
       }) 
+      return results;
     }
   }
 
@@ -282,6 +309,10 @@ export class NewCardsComponent implements OnInit {
         this.event = event;
         this.events = [event]
       }
+      else {
+        this.event = '';
+        this.events = [];
+      }
 
       let recipient: string = '';
       this.recipientoptions.forEach(x => {
@@ -293,13 +324,20 @@ export class NewCardsComponent implements OnInit {
         this.recipient = recipient;
         this.recipients = [recipient]
       }
+      else {
+        this.recipient = '';
+      this.recipients = [];
+      }
 
       let filter = this.filteroptions.find(x => x.toLowerCase() === search.toLowerCase());
       if (filter) {
         this.filter = filter;
         this.filters = [filter]
-      } 
-
+      }
+      else {
+        this.filter = '';
+        this.filters = [];
+      }
 
       if (event === undefined && recipient === '' && filter === undefined) this.searchstring = search;
       else this.searchstring = '';

@@ -132,22 +132,40 @@ export class NewGiftsComponent implements OnInit {
     if (search === '') return [...items];
     else {
       let searches = search.split(' ');
-      return [...items].filter(gift => {
-        if (gift.name.toLowerCase().includes(search.toLowerCase())) return true;
-        if (searches.some(search => gift.name.toLowerCase().includes(search.toLowerCase()))) return true;
-
-        if (gift.events.some(event => event.toLowerCase().includes(this.searchstring.toLowerCase()))) return true;
-        if (searches.some(search => gift.events.some(event => event.toLowerCase().includes(search.toLowerCase())))) return true;
-
-        if (gift.recipients) {
-          if (gift.recipients.some(recipient => recipient.toLowerCase().includes(search.toLowerCase()))) return true;
-          if (searches.some(search => gift.recipients!.some(recipient => recipient.toLowerCase().includes(search.toLowerCase())))) return true;
+      let results: INewGift[] = [];
+      [...items].forEach(gift => {
+        if (gift.code === search) {
+          results = [...results, gift];
+          return;
         }
-
-        if (gift.code === search) return true;
-
-        return false
+        if (gift.name.toLowerCase().includes(search.toLowerCase()))  {
+          results = [...results, gift];
+          return;
+        }
+        if (searches.some(search => gift.name.toLowerCase().includes(search.toLowerCase())))  {
+          results = [...results, gift];
+          return;
+        }
+        if (gift.events.some(event => event.toLowerCase().includes(this.searchstring.toLowerCase())))  {
+          results = [...results, gift];
+          return;
+        }
+        if (searches.some(search => gift.events.some(event => event.toLowerCase().includes(search.toLowerCase()))))  {
+          results = [...results, gift];
+          return;
+        }
+        if (gift.recipients) {
+          if (gift.recipients.some(recipient => recipient.toLowerCase().includes(search.toLowerCase())))  {
+            results = [...results, gift];
+            return;
+          }
+          if (searches.some(search => gift.recipients!.some(recipient => recipient.toLowerCase().includes(search.toLowerCase()))))  {
+            results = [...results, gift];
+            return;
+          }
+        }
       })
+      return results;
     }
   }
 
@@ -212,11 +230,19 @@ export class NewGiftsComponent implements OnInit {
         this.event = event;
         this.events = [event]
       }
+      else {
+        this.event = '';
+        this.events = [];
+      }
 
       let recipient = this.recipientoptions.find(x => x.toLowerCase() === search.toLowerCase())
       if (recipient) {
         this.recipient = recipient.toUpperCase();
         this.recipients = [recipient.toUpperCase()]
+      }
+      else {
+        this.recipient = '';
+        this.recipients = [];
       }
 
       if (event === undefined && recipient === undefined) this.searchstring = search;

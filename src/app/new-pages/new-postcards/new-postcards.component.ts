@@ -93,17 +93,30 @@ export class NewPostcardsComponent implements OnInit {
       if (search === '') return [...items];
       else {
         let searches = search.split(' ');
-        return [...items].filter(postcard => {
-          if (postcard.name.toLowerCase().includes(search.toLowerCase())) return true;
-          if (searches.some(search => postcard.name.toLowerCase().includes(search.toLowerCase()))) return true;
-  
-          if (postcard.events.some(event => event.toLowerCase().includes(this.searchstring.toLowerCase()))) return true;
-          if (searches.some(search => postcard.events.some(event => event.toLowerCase().includes(search.toLowerCase())))) return true;
-  
-          if (postcard.code === search) return true;
-  
-          return false
+        let results: INewPostcard[] = [];
+        [...items].forEach(postcard => {
+          if (postcard.code === search) {
+            results = [...results, postcard];
+            return;
+          }
+          if (postcard.name.toLowerCase().includes(search.toLowerCase())) {
+            results = [...results, postcard];
+            return;
+          }
+          if (searches.some(search => postcard.name.toLowerCase().includes(search.toLowerCase()))) {
+            results = [...results, postcard];
+            return;
+          }  
+          if (postcard.events.some(event => event.toLowerCase().includes(this.searchstring.toLowerCase()))) {
+            results = [...results, postcard];
+            return;
+          }
+          if (searches.some(search => postcard.events.some(event => event.toLowerCase().includes(search.toLowerCase())))) {
+            results = [...results, postcard];
+            return;
+          }
         })
+        return results;
       }
     }
 
@@ -153,6 +166,7 @@ export class NewPostcardsComponent implements OnInit {
     if (search !== '' && search !== 'all') {
       let event = this.postcardevents.find(x => x.toLowerCase() === search.toLowerCase())
       if (event) this.events = [event];
+      else this.events = [];
 
       if (event === undefined) this.searchstring = search;
       else this.searchstring = '';
