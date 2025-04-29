@@ -29,7 +29,6 @@
 
   <app-title-mobile  *ngIf="currentEvent" title="{{ currentEvent.name | uppercase }}{{this.bundle? ' BUNDLE' : ''}}" [wishlist]="true" [cart]="true"></app-title-mobile>
 
-
   <ion-fab
     *ngIf="currentEvent"
     slot="fixed"

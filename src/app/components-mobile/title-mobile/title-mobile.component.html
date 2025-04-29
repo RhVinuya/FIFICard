@@ -1,68 +1,19 @@
-<!-- <ion-grid>
-    <ion-row>
-        <ion-col size="2">
-            <div class="back-btn">
-                <ion-icon name="chevron-back-outline" (click)="goBack()"></ion-icon>
-            </div>
-        </ion-col>
-        <ion-col size="8">
-            <h2 class="label-header">{{_title | titlecase}}</h2>
-        </ion-col>
-        <ion-col size="2">
-
-        </ion-col>
-    </ion-row>
-</ion-grid> -->
-
-<!-- <ion-header class="ion-no-border">
-    <ion-toolbar>
-      <ion-buttons slot="start">
-        <ion-button (click)="goBack()">
-          <ion-icon slot="icon-only" size="large" name="arrow-back-circle-outline"></ion-icon>
-        </ion-button>
-      </ion-buttons>
-      <ion-buttons slot="secondary">
-        <app-wish-indicator-mobile slot="end" [id]="model.id"></app-wish-indicator-mobile>
-        <ion-button size="large" id="cart-button" (click)="goToCart()" >
-          <ion-icon slot="icon-only" size="large" name="cart-outline">
-          </ion-icon>
-        </ion-button>
-      </ion-buttons>
-      <ion-title>{{model.name}}</ion-title>
-    </ion-toolbar>
-  </ion-header> -->
-
-<div>
-    <ion-toolbar class="py-2 px-3">
-      <ion-img slot="start" (click)="goBack()"
-        src="assets/images/ion-title/previous.png"
-      ></ion-img>
-        <!-- <ion-buttons slot="start">
-            <icon></icon>
-            <ion-button size="large" (click)="goBack()">
-            <ion-icon slot="icon-only" size="large" name="arrow-back-circle-outline"></ion-icon>
-            </ion-button> 
-        </ion-buttons> -->
-        <ion-title class="label-header"
-        [style.font-size.rem]="_size">
-          {{_title | titlecase}}
-        </ion-title>
-        <!-- <ion-buttons slot="secondary" >
-            <ion-buttons slot="secondary">
-                <ion-button *ngIf="_wishlist" size="large" (click)="goToWishlist()">
-                    <ion-icon color="danger" slot="icon-only" size="large" name="heart-circle-outline"></ion-icon>
-                </ion-button>
-                <ion-button *ngIf="_cart" size="large" id="cart-button" (click)="goToCart()" >
-                  <ion-icon slot="icon-only" size="large" name="cart-outline"></ion-icon>
-                </ion-button>
-              </ion-buttons>
-        </ion-buttons> -->
-        
-      <ion-img slot="secondary" *ngIf="_wishlist" (click)="goToWishlist()"
-        [src]="wishlistItems.length > 0? 'assets/images/ion-title/heart-red.png' : 'assets/images/ion-title/heart.png'"
-      ></ion-img>
-      <ion-img slot="secondary" *ngIf="_cart" (click)="goToCart()"
-        [src]="cartItems.length > 0? 'assets/images/ion-title/shopping-cart-purple.png' : 'assets/images/ion-title/shopping-cart.png'"
-      ></ion-img>
-    </ion-toolbar>
-</div>
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()" >
+        <ion-icon slot="icon-only" color="medium" name="chevron-back-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>    
+    <ion-title>{{_title | titlecase}}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button *ngIf="_wishlist" (click)="goToWishlist()">
+        <ion-icon slot="icon-only" name="heart-outline" color="danger" *ngIf="wishlistItems.length > 0"></ion-icon>
+        <ion-icon slot="icon-only" name="heart" color="danger" *ngIf="wishlistItems.length === 0"></ion-icon>
+      </ion-button>
+      <ion-button  (click)="goToCart()">
+        <ion-icon slot="icon-only" name="cart-outline" class="purple"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
