@@ -567,126 +567,131 @@ const routes: Routes = [
 ];
 
 const mobileRoutes: Routes = [
-  {
-    path: "new",
-    redirectTo: "/onboarding",
-    pathMatch: "full"
-  },
+
   {
     path: "",
-    redirectTo: "/onboarding",
+    redirectTo: "/new",
     pathMatch: "full"
   },
   {
-    path: "onboarding",
-    component: OnboardingMobileComponent,
-    canActivate:[AuthGuard]
-  },
-  {
-    path: "login",
-    component: LoginMobileComponent,
-    canActivate:[AuthGuard]
-  },
-  {
-    path: "home",
-    component: HomeMobileComponent,
-    canActivate: [SecureInnerGuard]
-  },
-  {
-    path: "cards",
-    component: HomeMobileComponent,
-    canActivate: [SecureInnerGuard]
-  },
-  {
-    path: "bundles",
-    component: BundlesMobileComponent,
-    canActivate: [SecureInnerGuard]
-  },
-  {
-    path: "stickers",
-    component: StickersMobileComponent,
-    canActivate: [SecureInnerGuard]
-  },
-  {
-    path: "gifts",
-    component: GiftsMobileComponent,
-    canActivate: [SecureInnerGuard]
-  },
-  {
-    path: "postcards",
-    component: PostcardsMobileComponent,
-    canActivate: [SecureInnerGuard]
-  },
-  {
-    path: "profile",
-    component: ProfileMobileComponent,
-    canActivate: [SecureInnerGuard]
-  },
-  {
-    path: "profile/details",
-    component: ProfileDetailsMobileComponent,
-    canActivate: [SecureInnerGuard]
-  },
-  {
-    path: "register",
-    component: RegisterMobileComponent,
-    canActivate:[AuthGuard]
-  },
-  {
-    path: ":type/:id/details",
-    component: DetailsMobileComponent,
-    canActivate: [SecureInnerGuard]
-  },
-  {
-    path: ":type/:event",
-    component: ProductMobileComponent,
-    canActivate: [SecureInnerGuard]
-  },
-  {
-    path: "order-summary",
-    component: OrderSummaryMobileComponent,
-    canActivate: [SecureInnerGuard]
-  },
-  {
-    path: "transactions",
-    component: TransactionsMobileComponent,
-    canActivate: [SecureInnerGuard]
-  },
-  {
-    path: "referrals",
-    component: ReferralsMobileComponent,
-    canActivate: [SecureInnerGuard]
-  },
-  {
-    path: "add-cart",
-    component: NewInYourCartComponent,
-  },
-  {
-    path: "cart",
-    component: CartMobileComponent,
-    canActivate: [SecureInnerGuard]
-  },
-  {
-    path: "checkout",
-    component: CheckoutMobileComponent,
-    canActivate: [SecureInnerGuard]
-  },
-  {
-    path: "in-your-cart",
-    component: InYourCartMobileComponent,
-    canActivate: [SecureInnerGuard]
-  },
-  {
-    path: "wishlist",
-    component: WishlistMobileComponent,
-    canActivate: [SecureInnerGuard]
-  },
-  {
-    path: "payment/:gateway/:id",
-    component: PaymentCardMobileComponent,
-    canActivate: [SecureInnerGuard]
+    path: "new",
+    children:[
+      {
+        path: "",
+        component: OnboardingMobileComponent,
+        canActivate:[AuthGuard]
+      },
+      {
+        path: "onboarding",
+        component: OnboardingMobileComponent,
+        canActivate:[AuthGuard]
+      },
+      {
+        path: "login",
+        component: LoginMobileComponent,
+        canActivate:[AuthGuard]
+      },
+      {
+        path: "home",
+        component: HomeMobileComponent,
+        canActivate: [SecureInnerGuard]
+      },
+      {
+        path: "cards",
+        component: HomeMobileComponent,
+        canActivate: [SecureInnerGuard]
+      },
+      {
+        path: "bundles",
+        component: BundlesMobileComponent,
+        canActivate: [SecureInnerGuard]
+      },
+      {
+        path: "stickers",
+        component: StickersMobileComponent,
+        canActivate: [SecureInnerGuard]
+      },
+      {
+        path: "gifts",
+        component: GiftsMobileComponent,
+        canActivate: [SecureInnerGuard]
+      },
+      {
+        path: "postcards",
+        component: PostcardsMobileComponent,
+        canActivate: [SecureInnerGuard]
+      },
+      {
+        path: "profile",
+        component: ProfileMobileComponent,
+        canActivate: [SecureInnerGuard]
+      },
+      {
+        path: "profile/details",
+        component: ProfileDetailsMobileComponent,
+        canActivate: [SecureInnerGuard]
+      },
+      {
+        path: "register",
+        component: RegisterMobileComponent,
+        canActivate:[AuthGuard]
+      },
+      {
+        path: "details/:type/:id",
+        component: DetailsMobileComponent,
+        canActivate: [SecureInnerGuard]
+      },
+      {
+        path: ":type/:event",
+        component: ProductMobileComponent,
+        canActivate: [SecureInnerGuard]
+      },
+      {
+        path: "order-summary",
+        component: OrderSummaryMobileComponent,
+        canActivate: [SecureInnerGuard]
+      },
+      {
+        path: "transactions",
+        component: TransactionsMobileComponent,
+        canActivate: [SecureInnerGuard]
+      },
+      {
+        path: "referrals",
+        component: ReferralsMobileComponent,
+        canActivate: [SecureInnerGuard]
+      },
+      {
+        path: "add-cart",
+        component: NewInYourCartComponent,
+      },
+      {
+        path: "cart",
+        component: CartMobileComponent,
+        canActivate: [SecureInnerGuard]
+      },
+      {
+        path: "checkout",
+        component: CheckoutMobileComponent,
+        canActivate: [SecureInnerGuard]
+      },
+      {
+        path: "in-your-cart",
+        component: InYourCartMobileComponent,
+        canActivate: [SecureInnerGuard]
+      },
+      {
+        path: "wishlist",
+        component: WishlistMobileComponent,
+        canActivate: [SecureInnerGuard]
+      },
+      {
+        path: "payment/:gateway/:id",
+        component: PaymentCardMobileComponent,
+        canActivate: [SecureInnerGuard]
+      }
+    ]
   }
-
 ];
 
 @NgModule({

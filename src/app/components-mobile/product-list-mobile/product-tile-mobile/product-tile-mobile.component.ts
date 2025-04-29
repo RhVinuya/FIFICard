@@ -101,7 +101,7 @@ export class ProductTileMobileComponent implements OnInit {
   }
 
   gotoDetails(){
-    this.router.navigateByUrl(`/${this.type}/${this.product.id}/details`);
+    this.router.navigate([`/new/details/${this.type}/${this.product.id}`]);
   }
 
 

@@ -30,9 +30,9 @@ export class CardCategoryMobileComponent implements OnInit {
 
   onClick() {
     if (this.bundle) {
-      this.router.navigate(['/cards/' + this.event.name], { queryParams: {bundle: true}});
+      this.router.navigate(['/new/cards/' + this.event.name], { queryParams: {bundle: true}});
     } else {
-      this.router.navigate(['/cards/' + this.event.name]);
+      this.router.navigate(['/new/cards/' + this.event.name]);
     }
   }
 }

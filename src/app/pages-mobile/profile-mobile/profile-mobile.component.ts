@@ -26,13 +26,12 @@ export class ProfileMobileComponent implements OnInit {
 
 
   goto(page: string) {
-      this.router.navigateByUrl(page);
+      this.router.navigate([page])
   }
 
   onSignout() {
-    
     this.storageService.clearUser();
-    window.location.href = "/onboarding";
+    window.location.href = "/new/onboarding";
   }
 
 }

@@ -116,7 +116,13 @@ export class DetailsMobileComponent implements OnInit {
     this.activateRoute.params.subscribe(params => {
       this.loading = true;
       this.id = params['id'];
-      this.type = params['type'];
+      
+      if (params['type'] === 'card') this.type = 'cards'
+      else if (params['type'] === 'sticker') this.type = 'stickers'
+      else if (params['type'] === 'postcard') this.type = 'postcards'
+      else if (params['type'] === 'gift') this.type = 'gifts'
+
+      else this.type = params['type'];
       this.bundles = [];
       this.personalizeData = [];
 
@@ -287,12 +293,12 @@ export class DetailsMobileComponent implements OnInit {
         position: 'top',
       });
       await toast.present();
-      this.router.navigate(['/cart']);
+      this.router.navigate(['/new/cart']);
 
   }
 
   goToCart() {
-    this.router.navigateByUrl('/cart');
+    this.router.navigate(['/new/cart']);
   }
 
   goBack() {

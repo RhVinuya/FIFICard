@@ -19,18 +19,20 @@ export class LoginMobileComponent implements OnInit {
   storageService: NewStorageService;
   modalService: NgbModal;
   toastController: ToastController;
+  router: Router;
 
   constructor(
     _accountService: NewAccountService,
     _storageService: NewStorageService,
     _modalService: NgbModal,
-    public router: Router,
-    _toastController: ToastController
+    _toastController: ToastController,
+    _router: Router
   ) {
     this.accountService = _accountService;
     this.storageService = _storageService;
     this.modalService = _modalService;
     this.toastController = _toastController;
+    this.router = _router;
   }
 
   form = new FormGroup({
@@ -112,7 +114,7 @@ export class LoginMobileComponent implements OnInit {
         this.processing = false;
         this.form.reset();
         this.form.markAsPristine();
-        window.location.href = "/cards";
+        this.router.navigate(["/new/cards"]);
       }
     }).catch(err => {
       console.log(err);

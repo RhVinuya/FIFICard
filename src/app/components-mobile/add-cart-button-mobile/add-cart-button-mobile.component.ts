@@ -89,7 +89,6 @@ export class AddCartButtonMobileComponent implements OnInit {
       position: 'top',
     });
     await toast.present();
-    //window.location.href = '/cart';
-    this.router.navigate(['/cart']);
+    this.router.navigate(['/new/cart']);
   }
 }

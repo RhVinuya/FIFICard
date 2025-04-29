@@ -26,7 +26,7 @@ export class SecureInnerGuard implements CanActivate {
       if(hasUser) {
         resolve(true);
       } else {
-        this.router.navigateByUrl('/onboarding');
+        this.router.navigate(['/new/onboarding']);
         resolve(false);
       }
     })
