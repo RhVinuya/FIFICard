@@ -56,10 +56,10 @@ export class TitleMobileComponent implements OnInit {
   }
 
   goToCart() {
-    this.router.navigate(['/new/cart']);
+    this.router.navigate(['/new/cart'])
   }
 
   goToWishlist() {
-    this.router.navigate(['/new/wishlist']);
+    this.router.navigate(['/new/wishlist'])
   }
 }

@@ -26,7 +26,6 @@ export class AuthGuard implements CanActivate {
           this.router.navigate(['/new/cards'])
           resolve(false);
         } else {
-          //this.router.navigateByUrl('/onboarding');
           resolve(true);
         }
       })
