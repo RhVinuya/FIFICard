@@ -29,7 +29,7 @@ export class PostcardCategoryMobileComponent implements OnInit {
   }
 
   onClick() {
-    this.router.navigate(['/postcards/' + this.event.name]);
+    this.router.navigate(['/new/postcards/' + this.event.name]);
   }
 
 }

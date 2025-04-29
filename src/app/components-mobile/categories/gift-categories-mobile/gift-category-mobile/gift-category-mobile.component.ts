@@ -29,6 +29,6 @@ export class GiftCategoryMobileComponent implements OnInit {
   }
 
   onClick() {
-    this.router.navigate(['/gifts/' + this.event.name]);
+    this.router.navigate(['/new/gifts/' + this.event.name]);
   }
 }

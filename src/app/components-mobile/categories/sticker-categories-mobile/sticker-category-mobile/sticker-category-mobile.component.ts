@@ -28,6 +28,6 @@ export class StickerCategoryMobileComponent implements OnInit {
   }
 
   onClick() {
-    this.router.navigate(['/stickers/' + this.event.name]);
+    this.router.navigate(['/new/stickers/' + this.event.name]);
   }
 }

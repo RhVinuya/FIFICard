@@ -209,7 +209,7 @@ export class RegisterMobileComponent implements OnInit {
       }
       else {
         this.storageService.createUser(user);
-        this.router.navigate(['/onboarding']);
+        this.router.navigate(['/new/onboarding']);
         this.processing = false;
       }
     }).catch(err => {

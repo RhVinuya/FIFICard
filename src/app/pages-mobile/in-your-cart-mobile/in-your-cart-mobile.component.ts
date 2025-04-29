@@ -92,7 +92,7 @@ export class InYourCartMobileComponent implements OnInit {
   }
 
   openCart() {
-    this.router.navigate(['/cart']);
+    this.router.navigate(['/new/cart']);
   }
 
   close(){

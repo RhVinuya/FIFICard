@@ -219,7 +219,7 @@ export class CartMobileComponent implements OnInit, OnDestroy {
     this.saving = true;
 
     this.storageService.saveCheckoutList(this.carts.filter(x => x.mark === true).map(x => x.id));
-    this.router.navigate(['/checkout']);
+    this.router.navigate(['/new/checkout']);
     this.saving = false;
   }
 

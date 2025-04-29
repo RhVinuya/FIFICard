@@ -162,11 +162,11 @@ export class ProductMobileComponent implements OnInit {
   }
 
   goToCart() {
-      this.router.navigate(['/cart']);
+      this.router.navigate(['/new/cart']);
   }
 
   goToWishlist() {
-      this.router.navigate(['/wishlist']);
+      this.router.navigate(['/new/wishlist']);
   }
 
   goBack() {
