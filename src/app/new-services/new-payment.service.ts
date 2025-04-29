@@ -200,8 +200,8 @@ export class NewPaymentService {
         stripeBody = {
           line_items: lineitems,
           mode: 'payment',
-          success_url: window.location.origin + '/payment/card/{CHECKOUT_SESSION_ID}',
-          cancel_url: window.location.origin + '/cart',
+          success_url: window.location.origin + '/new/payment/card/{CHECKOUT_SESSION_ID}',
+          cancel_url: window.location.origin + '/new/cart',
           client_reference_id: iUser.id,
           customer_email: iUser.email
         };
