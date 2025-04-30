@@ -99,6 +99,7 @@ export class DetailsMobileComponent implements OnInit {
   model: ModelType;
   iModel: IModelType;
   bundles: NewPostcardBundle[] = [];
+  cardImages: INewCardImage[] = [];
   images: string[] = [];
   rate: number = 0;
   qr: string = '';
@@ -130,13 +131,13 @@ export class DetailsMobileComponent implements OnInit {
         this.itemType = "card";
         this.cardService.get(this.id).then(async value => {
           this.isAddToCart = true;
-          let images = await this.cardService.getImages(this.id);
+          this.cardImages = await this.cardService.getImages(this.id);
           this.model = new NewCard(value, this.config);
           this.isDiscounted = (this.model as NewCard).isDiscounted();
           this.isPersonalize = this.model instanceof NewCard ? this.model.signAndSend : false;
           this.iModel = value;
-          this.loadImages(images);
-          let qrImage = images.find(x => x.title === 'QR');
+          this.loadImages(this.cardImages);
+          let qrImage = this.cardImages.find(x => x.title === 'QR');
           if (qrImage) {
             this.qr = await this.fileService.getImageURL(qrImage.url);
           }
@@ -362,6 +363,14 @@ export class DetailsMobileComponent implements OnInit {
         this.personalizeData = this.personalize.data;
       }
 
+      this.personalize.data = this.personalize.data.filter(x => {
+        return (this.cardImages.find(image => image.url === x.image)) !== undefined;
+      })
+      this.personalize.data.forEach(item => {
+        item.details.forEach(detail => {
+          console.log(detail)
+        })
+      })
     }
   }
 

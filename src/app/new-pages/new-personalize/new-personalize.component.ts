@@ -128,10 +128,12 @@ export class NewPersonalizeComponent implements OnInit {
     }
 
     this.personalizeData.forEach(data => {
-      this.iImages.push({
-        title: 'Sign and Send',
-        url: data.url
-      })
+      if (images.find(x => x.url === data.image)) {
+        this.iImages.push({
+          title: 'Sign and Send',
+          url: data.url
+        })
+      }
     })
 
     if (this.iImages.length > 0) this.selected = this.iImages[0];
