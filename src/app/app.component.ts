@@ -1,5 +1,5 @@
 
-import { Component, EventEmitter, Output } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AuthProcessService } from 'ngx-auth-firebaseui';
 import { map, take, timer } from 'rxjs';
@@ -18,6 +18,7 @@ import { NewConfigService } from './new-services/new-config.service';
 import { IConfig } from './new-models/new-config';
 import { NewAdsModalComponent } from './new-components/new-ads-modal/new-ads-modal.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ref } from 'firebase/storage';
 
 register();
 
@@ -31,7 +32,7 @@ export class AppComponent {
   isAuthenticated: boolean;
   user: any;
   userDetails: any;
-  isLogIn = true;
+  isLogIn: boolean = true;
   @Output() onSignOut: EventEmitter<void> = new EventEmitter();
 
   isMobile: boolean = false;
@@ -40,6 +41,7 @@ export class AppComponent {
   modalCtrl: ModalController;
   configService: NewConfigService;
   modalService: NgbModal;
+  ref: ChangeDetectorRef;
 
   url: string = '';
   config: IConfig;
@@ -56,7 +58,8 @@ export class AppComponent {
     _adsService: NewAdsService,
     _configService: NewConfigService,
     _modalService: NgbModal,
-    _modalCtrl: ModalController
+    _modalCtrl: ModalController,
+    _ref: ChangeDetectorRef
   ) {
     this.setlanguage();
     this.isMobile = platform.is('capacitor') || platform.is('mobileweb');
@@ -65,6 +68,7 @@ export class AppComponent {
     this.configService = _configService;
     this.modalCtrl = _modalCtrl;
     this.modalService = _modalService;
+    this.ref = _ref;
   }
 
   async ngOnInit(): Promise<void> {
@@ -92,8 +96,11 @@ export class AppComponent {
       }
 
     } else {
-      const userDetails = this.storageService.getUser();
-      this.isLogIn = userDetails !== undefined ? true : false;
+      timer(100, 500).subscribe(time => {
+        const userDetails = this.storageService.getUser();
+        this.isLogIn = userDetails !== undefined ? true : false;
+        this.ref.detectChanges();
+      });
 
 
       this.router.events.subscribe((event) => {
