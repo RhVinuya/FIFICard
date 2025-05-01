@@ -18,6 +18,8 @@ import { NewConfigService } from './new-services/new-config.service';
 import { IConfig } from './new-models/new-config';
 import { NewAdsModalComponent } from './new-components/new-ads-modal/new-ads-modal.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { LocationType } from './new-models/type';
+import { NewLocationService } from './new-services/new-location.service';
 
 register();
 
@@ -41,9 +43,12 @@ export class AppComponent {
   configService: NewConfigService;
   modalService: NgbModal;
   ref: ChangeDetectorRef;
+  locationService: NewLocationService;
 
   url: string = '';
   config: IConfig;
+
+  location: LocationType;
 
   constructor(
     private translate: TranslateService,
@@ -58,7 +63,8 @@ export class AppComponent {
     _configService: NewConfigService,
     _modalService: NgbModal,
     _modalCtrl: ModalController,
-    _ref: ChangeDetectorRef
+    _ref: ChangeDetectorRef,
+    _locationService: NewLocationService
   ) {
     this.setlanguage();
     this.isMobile = platform.is('capacitor') || platform.is('mobileweb');
@@ -68,9 +74,11 @@ export class AppComponent {
     this.modalCtrl = _modalCtrl;
     this.modalService = _modalService;
     this.ref = _ref;
+    this.locationService = _locationService;
   }
 
   async ngOnInit(): Promise<void> {
+    this.location = this.locationService.getlocation();
 
     this.config = await this.configService.get();
 
