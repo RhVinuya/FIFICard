@@ -18,7 +18,6 @@ import { NewConfigService } from './new-services/new-config.service';
 import { IConfig } from './new-models/new-config';
 import { NewAdsModalComponent } from './new-components/new-ads-modal/new-ads-modal.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { ref } from 'firebase/storage';
 
 register();
 
