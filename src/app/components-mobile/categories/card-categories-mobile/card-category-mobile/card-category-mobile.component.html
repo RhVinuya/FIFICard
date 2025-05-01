@@ -1,9 +1,10 @@
 <ion-card (click)="onClick()">
+  <ion-chip *ngIf="event.id === feature!.id" class="m-0 py-0">
+    <ion-label>Feature</ion-label>
+  </ion-chip>
+
   <ion-img
     alt="Silhouette of mountains"
     [src]="iconUrl"
   ></ion-img>
-  <!-- <ion-card-header>
-    <ion-card-title>{{ event.name }}</ion-card-title>
-  </ion-card-header> -->
 </ion-card>

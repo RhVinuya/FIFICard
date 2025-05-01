@@ -1,11 +1,8 @@
 
 import { Component, Input, OnInit } from "@angular/core";
 import { environment } from "src/environments/environment";
-import { INewCard } from "src/app/new-models/new-card";
 import { NewEventService } from "src/app/new-services/new-event.service";
 import { NewEvent } from "src/app/new-models/new-event";
-import { EventService } from './../../../services/event.service';
-import { NewCardService } from 'src/app/new-services/new-card.service';
 import { NewStorageService } from 'src/app/new-services/new-storage.service';
 
 @Component({
@@ -18,7 +15,7 @@ export class CardCategoriesMobileComponent implements OnInit {
   eventService: NewEventService;
   columns: number = 2;
   storageService: NewStorageService;
-  
+
   loading: boolean = false;
 
 
@@ -26,6 +23,8 @@ export class CardCategoriesMobileComponent implements OnInit {
 
   activeevents: string[] = [];
   events: NewEvent[] = [];
+
+  feature: NewEvent | undefined;
 
   constructor(
     _eventService: NewEventService,
@@ -46,9 +45,12 @@ export class CardCategoriesMobileComponent implements OnInit {
   async load() {
     let events = await this.eventService.getEventByType('card');
 
-    this.events = events.filter( o => o.icon);
+    events = events.filter(o => o.icon);
+    this.feature = events.find(x => x.name === "Mother's Day")
+    if (this.feature) this.events = [this.feature, ...events.filter(x => x.id !== this.feature!.id)];
+    else this.events = [...events];
     this.storageService.saveCategories('cards', this.events);
-    
+
   }
 
   getColumnSize() {

@@ -11,6 +11,7 @@ import { NewFileService } from "src/app/new-services/new-file.service";
 export class CardCategoryMobileComponent implements OnInit {
   @Input() event: NewEvent;
   @Input() bundle: boolean = false;
+  @Input() feature: NewEvent | undefined = undefined;
   
   fileService: NewFileService;
   iconUrl: string = 'https://ionicframework.com/docs/img/demos/card-media.png';
