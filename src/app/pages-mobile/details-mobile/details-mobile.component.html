@@ -1,4 +1,3 @@
-
 <!-- <ion-header class="ion-no-border">
   <ion-toolbar>
     <ion-buttons slot="start">
@@ -35,10 +34,10 @@
         </ion-item>
       </ion-col>
     </ion-row> -->
-    
+
     <ion-row>
       <ion-col size="12" class="ion-text-center img-container">
-        <app-wish-indicator-mobile [id]="model.id"></app-wish-indicator-mobile>        
+        <app-wish-indicator-mobile [id]="model.id"></app-wish-indicator-mobile>
         <swiper-container [pager]="true" [slidesPerView]="1" [loop]="true">
           <swiper-slide *ngFor="let image of images">
             <!-- class="slider ion-justify-content-center ion-align-items-center"  -->
@@ -64,20 +63,20 @@
         </div>
       </ion-col>
       <ion-col size="12" style="font-size: 1.2rem;">
-          <div class="prices" *ngIf="isBundle === false">
-            <p class="text-purple my-0 me-2"><b>Price: </b></p>
-            <p class="text-purple my-0 me-2"><b> {{getPrice()}}</b></p>
-            <p class="text-purple slanted-strike my-0" *ngIf="isDiscounted"><b><s>{{getOriginalPrice()}}</s></b></p>
-          </div>
+        <div class="prices" *ngIf="isBundle === false">
+          <p class="text-purple my-0 me-2"><b>Price: </b></p>
+          <p class="text-purple my-0 me-2"><b> {{getPrice()}}</b></p>
+          <p class="text-purple slanted-strike my-0" *ngIf="isDiscounted"><b><s>{{getOriginalPrice()}}</s></b></p>
+        </div>
         <div *ngIf="isPersonalize">
           <div class="prices" *ngIf="isBundle === false">
-              <p class="text-blue my-0 me-2"><b>Personalize: </b></p>
-              <p class="text-blue my-0  me-2"><b>{{getPersonalizePrice(isDiscounted)}}</b></p>
-              <p class="text-blue slanted-strike my-0" *ngIf="isDiscounted"><b><s>{{getPersonalizePrice()}}</s></b></p>
+            <p class="text-blue my-0 me-2"><b>Personalize: </b></p>
+            <p class="text-blue my-0  me-2"><b>{{getPersonalizePrice(isDiscounted)}}</b></p>
+            <p class="text-blue slanted-strike my-0" *ngIf="isDiscounted"><b><s>{{getPersonalizePrice()}}</s></b></p>
           </div>
         </div>
       </ion-col>
-      <ion-col size="12"  style="font-size: 1.2rem;line-height: 1.2rem;">
+      <ion-col size="12" style="font-size: 1.2rem;line-height: 1.2rem;">
         <h4 class="mt-0"><u>Product Description: </u></h4>
 
         <p>Recipient: {{getRecipients()}}</p>
@@ -94,47 +93,36 @@
       </ion-col>
     </ion-row>
 
-   
-    <ion-row  *ngIf="type=='cards' && showPersonalize">
+
+    <ion-row *ngIf="type=='cards' && showPersonalize">
       <ion-col size="12">
         <div #personalizeImage *ngFor="let data of personalize!.data; let i = index">
           <div class="image-container">
-            <div class="textbox" *ngFor="let detail of data.details; let j = index"
-              [style.height]="getHeight(detail.height, i)" 
-              [style.width]="getWidth(detail.width, i)"
-              [style.text-align]="detail.alignment"
-              [style.font-family]="detail.font + '!important'" 
-              [style.color]="detail.color"
-              [style.font-size.px]="detail.size/4"
-              [style.left]="getLeft(detail.left, i)"
-              [style.top]="getTop(detail.top, i)"
-              >
+            <div class="textbox" *ngFor="let detail of data.details; let j = index" [style.height]="getHeight(detail.height, i)"
+              [style.width]="getWidth(detail.width, i)" [style.text-align]="detail.alignment" [style.font-family]="detail.font + '!important'"
+              [style.color]="detail.color" [style.font-size.px]="detail.size/4" [style.left]="getLeft(detail.left, i)"
+              [style.top]="getTop(detail.top, i)">
               {{detail.text}}
             </div>
-          
+
             <!-- [style.transform]="getTransform3d(detail.top, detail.left)" -->
-            <ion-img 
-              class="responsive-image"
-              [src]="data.url"
-            
-              (ionImgDidLoad)="imageLoaded(i, $event)"
-            >
+            <ion-img class="responsive-image" [src]="data.url" (ionImgDidLoad)="imageLoaded(i, $event)">
             </ion-img>
           </div>
 
 
-              <!-- <div 
+          <!-- <div 
                 [style.background]="getBackground(data.url)"
                 alt="The Wisconsin State Capitol building in Madison, WI at night"
               ></div> -->
-              <div  *ngFor="let detail of data.details; let j = index">
-              <!-- [style.top]="getTop(detail.top)"
+          <div *ngFor="let detail of data.details; let j = index">
+            <!-- [style.top]="getTop(detail.top)"
               [style.left]="getLeft(detail.left)" -->
 
-              <app-personalize-textarea-mobile [detail]="detail" [fieldNumber]="j + 1"
-                (onChange)="changeTextarea($event)"></app-personalize-textarea-mobile>
-              </div>
+            <app-personalize-textarea-mobile [detail]="detail" [fieldNumber]="j + 1"
+              (onChange)="changeTextarea($event)"></app-personalize-textarea-mobile>
           </div>
+        </div>
       </ion-col>
     </ion-row>
 
@@ -248,19 +236,17 @@
       </ion-row>
     </form> -->
 
-    <ion-row>
+    <ion-row *ngIf="user !== undefined">
       <ion-col size="12" class="btn-container ion-align-items-center">
         <div *ngIf="isBundle">
-          <ion-button fill="outline" size="small" class="me-1 mb-2" *ngFor="let bundle of bundles"
-            (click)="onClickBundle(bundle)">
+          <ion-button fill="outline" size="small" class="me-1 mb-2" *ngFor="let bundle of bundles" (click)="onClickBundle(bundle)">
             Bundle of <b>{{bundle.countDisplay()}} pcs</b> for <b>{{bundle.priceDisplay()}}</b>
           </ion-button>
         </div>
-        <app-add-cart-button-mobile class="me-2" [type]="itemType" [item]="iModel"
-          *ngIf="isAddToCart && !showPersonalize">
+        <app-add-cart-button-mobile class="me-2" [type]="itemType" [item]="iModel" *ngIf="isAddToCart && !showPersonalize">
         </app-add-cart-button-mobile>
 
-        <button *ngIf="showPersonalize" class="cuz-button-personalize" (click)="addToCart()"> 
+        <button *ngIf="showPersonalize" class="cuz-button-personalize" (click)="addToCart()">
           Add To Cart
         </button>
         <button *ngIf="isPersonalize" class="cuz-button-personalize" (click)="addPersonalize()">
@@ -270,5 +256,30 @@
         </button>
       </ion-col>
     </ion-row>
+
+    <ion-row *ngIf="user === undefined">
+      <ion-col size="6">
+        <ion-button href="/new/register" expand="full" fill="solid">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+            <path fill-rule="evenodd"
+              d="M18.685 19.097A9.723 9.723 0 0 0 21.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 0 0 3.065 7.097A9.716 9.716 0 0 0 12 21.75a9.716 9.716 0 0 0 6.685-2.653Zm-12.54-1.285A7.486 7.486 0 0 1 12 15a7.486 7.486 0 0 1 5.855 2.812A8.224 8.224 0 0 1 12 20.25a8.224 8.224 0 0 1-5.855-2.438ZM15.75 9a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"
+              clip-rule="evenodd" />
+          </svg>
+          REGISTER
+        </ion-button>
+      </ion-col>
+      <ion-col size="6">
+        <ion-button href="/new/login" expand="full" fill="solid">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+            <path fill-rule="evenodd"
+              d="M16.5 3.75a1.5 1.5 0 0 1 1.5 1.5v13.5a1.5 1.5 0 0 1-1.5 1.5h-6a1.5 1.5 0 0 1-1.5-1.5V15a.75.75 0 0 0-1.5 0v3.75a3 3 0 0 0 3 3h6a3 3 0 0 0 3-3V5.25a3 3 0 0 0-3-3h-6a3 3 0 0 0-3 3V9A.75.75 0 1 0 9 9V5.25a1.5 1.5 0 0 1 1.5-1.5h6Zm-5.03 4.72a.75.75 0 0 0 0 1.06l1.72 1.72H2.25a.75.75 0 0 0 0 1.5h10.94l-1.72 1.72a.75.75 0 1 0 1.06 1.06l3-3a.75.75 0 0 0 0-1.06l-3-3a.75.75 0 0 0-1.06 0Z"
+              clip-rule="evenodd" />
+          </svg>
+  
+          LOG IN
+        </ion-button>
+      </ion-col>
+    </ion-row>
+
   </ion-grid>
 </ion-content>

@@ -263,3 +263,26 @@ app-wish-indicator-mobile {
   width: 100%; /* Make the image responsive */
   height: auto; /* Maintain aspect ratio */
 }
+
+ion-button {
+  --background: #8cc0c2;
+  font-weight: bold;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+}
+
+ion-button::part(native) {
+  border-radius: 6px;
+  height: 40px;
+}
+
+ion-button > svg {
+  width: 25px;
+  height: 25px;
+  margin-right: 5px;
+}
+
+.hero-image {
+  margin-top: 30px;
+  width: 100%;
+}

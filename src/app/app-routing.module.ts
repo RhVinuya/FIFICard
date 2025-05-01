@@ -575,51 +575,44 @@ const mobileRoutes: Routes = [
   },
   {
     path: "new",
-    children:[
+    children: [
       {
         path: "",
-        component: OnboardingMobileComponent,
-        canActivate:[AuthGuard]
+        component: HomeMobileComponent
       },
       {
         path: "onboarding",
         component: OnboardingMobileComponent,
-        canActivate:[AuthGuard]
+        canActivate: [AuthGuard]
       },
       {
         path: "login",
         component: LoginMobileComponent,
-        canActivate:[AuthGuard]
+        canActivate: [AuthGuard]
       },
       {
         path: "home",
-        component: HomeMobileComponent,
-        canActivate: [SecureInnerGuard]
+        component: HomeMobileComponent
       },
       {
         path: "cards",
-        component: HomeMobileComponent,
-        canActivate: [SecureInnerGuard]
+        component: HomeMobileComponent
       },
       {
         path: "bundles",
-        component: BundlesMobileComponent,
-        canActivate: [SecureInnerGuard]
+        component: BundlesMobileComponent
       },
       {
         path: "stickers",
-        component: StickersMobileComponent,
-        canActivate: [SecureInnerGuard]
+        component: StickersMobileComponent
       },
       {
         path: "gifts",
-        component: GiftsMobileComponent,
-        canActivate: [SecureInnerGuard]
+        component: GiftsMobileComponent
       },
       {
         path: "postcards",
-        component: PostcardsMobileComponent,
-        canActivate: [SecureInnerGuard]
+        component: PostcardsMobileComponent
       },
       {
         path: "profile",
@@ -634,17 +627,15 @@ const mobileRoutes: Routes = [
       {
         path: "register",
         component: RegisterMobileComponent,
-        canActivate:[AuthGuard]
+        canActivate: [AuthGuard]
       },
       {
         path: "details/:type/:id",
         component: DetailsMobileComponent,
-        canActivate: [SecureInnerGuard]
       },
       {
         path: ":type/:event",
         component: ProductMobileComponent,
-        canActivate: [SecureInnerGuard]
       },
       {
         path: "order-summary",

@@ -19,7 +19,6 @@ import { NewGiftService } from 'src/app/new-services/new-gift.service';
 import { NewPostcardService } from 'src/app/new-services/new-postcard.service';
 import { NewStickerService } from 'src/app/new-services/new-sticker.service';
 import { NewStorageService } from 'src/app/new-services/new-storage.service';
-import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'app-new-details',

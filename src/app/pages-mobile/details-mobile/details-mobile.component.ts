@@ -2,7 +2,6 @@ import { Location } from '@angular/common';
 import { register } from 'swiper/element/bundle';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { environment } from 'src/environments/environment';
 import { INewCartBundle } from 'src/app/new-models/new-cart';
 import { IonicSlides, IonImg, Platform, ToastController } from '@ionic/angular';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -23,6 +22,9 @@ import { NewInYourCartComponent } from 'src/app/new-components/new-in-your-cart/
 import { NewVideoPlayerComponent } from 'src/app/new-components/new-video-player/new-video-player.component';
 import { IConfig } from 'src/app/new-models/new-config';
 import { NewConfigService } from 'src/app/new-services/new-config.service';
+import { timer } from 'rxjs';
+import { INewUser } from 'src/app/new-models/new-user';
+import { NewStorageService } from 'src/app/new-services/new-storage.service';
 
 register();
 
@@ -54,6 +56,7 @@ export class DetailsMobileComponent implements OnInit {
   personalizeService: NewPersonalizeService;
   configService: NewConfigService;
   config: IConfig;
+  storageService: NewStorageService;
 
   form = new FormGroup({
     recipient: new FormControl<string>('', [Validators.required]),
@@ -77,7 +80,8 @@ export class DetailsMobileComponent implements OnInit {
     public router: Router,
     private location: Location,
     _configService: NewConfigService,
-    public platform: Platform
+    public platform: Platform,
+    _storageService: NewStorageService
   ) { 
     this.configService = _configService;
     this.activateRoute = _activateRoute;
@@ -89,7 +93,7 @@ export class DetailsMobileComponent implements OnInit {
     this.cartService = _cartService;
     this.toastController = _toastController;
     this.personalizeService = _personalizeService;
-    
+    this.storageService = _storageService;    
   }
 
   loading: boolean = false;
@@ -111,8 +115,14 @@ export class DetailsMobileComponent implements OnInit {
   isPoetry: boolean = false;
   isRegular: boolean = false;
 
+  user: INewUser | undefined;
+
   async ngOnInit() {
     this.config = await this.configService.get();
+
+    timer(100, 500).subscribe(time => {
+      this.user = this.storageService.getUser();
+    });
 
     this.activateRoute.params.subscribe(params => {
       this.loading = true;
