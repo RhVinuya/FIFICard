@@ -13,10 +13,11 @@
 }
 
 .item img {
-    height: 90px;
+    height: 60px;
     aspect-ratio: 1/1;
     object-fit: cover;
     border-radius: 5px;
+    margin-left: 6px;
 }
 
 .item .details {
@@ -79,3 +80,8 @@
     color: #ecca60;
 }
 
+
+ion-checkbox
+{
+   border:none !important;
+}
