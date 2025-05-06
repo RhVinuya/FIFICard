@@ -19,29 +19,15 @@
             </div>
         </div>
         -->
-        <div class="mb-2" style="position: relative;">
-            <ngb-carousel #carousel [interval]="10000" [wrap]="true" [keyboard]="true" [pauseOnHover]="true" [showNavigationArrows0]="false"
-                [showNavigationIndicators]="false" [animation]="true">
-                <!-- <ng-template ngbSlide>
-                    <div class="row">
-                        <div class="col-md-12 relative">
-                            <img src="/assets/images/2025/Easter.gif" onContextMenu="return false;" style="width: 100%;" [routerLink]="['/new/details/card/3E4Ng5wsPpxXEWNh35lC']">
-                            <div class="action" style="top: 0; left: 0; width: 62%; height: 100%;" [routerLink]="['/new/details/card/HZvYoxBfTAjLrW5ZZTpZ']"></div>
-                            <div class="action" style="top: 86.2%;left: 61%; width: 18.4%;height: 7.3%;" [routerLink]="['/new/cards/Easter']"></div>
-                            <div class="action" style="top: 15%; left: 58.5%; width: 11.1%; height: 54%;" [routerLink]="['/new/details/card/7wOtth5CkRuDEy27Jc2l']"></div>
-                            <div class="action" style="top: 15%; left: 73%; width: 11.2%; height: 53.9%;" [routerLink]="['/new/details/card/XzOteMlSTCo5zNTXmBJF']"></div>
-                        </div>
-                    </div>
-                </ng-template> -->
-
-
+        <div class="mb-3" style="position: relative;">
+            <ngb-carousel #carousel [interval]="10000" [wrap]="true" [keyboard]="true" [pauseOnHover]="true" [showNavigationArrows0]="false" [showNavigationIndicators]="false" [animation]="true">
                 <ng-template ngbSlide>
                     <div class="row">
                         <div class="col-md-12 relative">
+                            <img src="/assets/images/2025/mothersday_banner.png" onContextMenu="return false;" style="width: 100%;"  [routerLink]="['/new/cards/Mother\'s Day']">
                             <!--
                             <img src="/assets/images/2025/mothersdaybanner.gif" onContextMenu="return false;" style="width: 100%;"
                                 [routerLink]="['/new/details/card/Xv0l6QcL84jXiPwkUXat']">
-                            -->
                             <video autoplay loop muted playsinline class="cursor" [src]="'/assets/images/2025/mothersdaybanner.mp4'" style="width: 100%;" [routerLink]="['/new/details/card/Xv0l6QcL84jXiPwkUXat']">
                             </video>
                             <div class="action" style="top: 90%; left: 74%; width: 18.4%; height: 7%;" [routerLink]="['/new/cards/Mother\'s day']">
@@ -50,10 +36,12 @@
                                 [routerLink]="['/new/details/card/arMtDZXbI0lcK06h2BHD']"></div>
                             <div class="action" style="top: 22%; left: 72.5%; width: 11.2%; height: 53.9%;"
                                 [routerLink]="['/new/details/card/4JkzAt50w6cTXlMzmbbh']"></div>
+                            -->
                         </div>
                     </div>
                 </ng-template>
             </ngb-carousel>
+            <!--
             <div class="arrow-left" (click)="onPrev()">
                 <button>
                     <ion-icon name="chevron-back-outline"></ion-icon>
@@ -64,9 +52,18 @@
                     <ion-icon name="chevron-forward-outline"></ion-icon>
                 </button>
             </div>
+            -->
         </div>
 
         <div class="image-panel">
+            <div class="col-md-12 relative">
+                <img src="/assets/images/2025/mothersday_feature.png" onContextMenu="return false;">
+                <div class="action" style="top: 17%; left: 8.9%; width: 18.2%; height: 68%;" [routerLink]="['/new/details/card/5jfUZJGkqvYOeCKFyUWo']"></div>
+                <div class="action" style="top: 16.5%; left: 28.8%; width: 18.5%; height: 68.5%;" [routerLink]="['/new/details/card/BpmEna17XhWoOfdOteWQr']"></div>
+                
+                <div class="action" style="top: 16%; left: 54%; width: 18.5%; height: 68.2%;" [routerLink]="['/new/details/card/Cy737yLhZH1J2yECzN01']"></div>                
+                <div class="action" style="top: 16%; left: 74.7%; width: 18.5%; height: 68.2%;" [routerLink]="['/new/details/card/arMtDZXbI0lcK06h2BHD']"></div>
+            </div>
             <!--
             <div class="col-md-12 relative" *ngIf="location === 'us'">
                 <img src="/assets/images/new/homepage/thanksgiving.gif" onContextMenu="return false;">

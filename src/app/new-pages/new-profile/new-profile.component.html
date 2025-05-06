@@ -2,14 +2,14 @@
     <h2 class="label-header text-purple">Account Profile</h2>
 </div>
 
-<div class="mxw-1320px text-center sign" *ngIf="user === undefined">
+<div class="mxw-1320px text-center sign min-content" *ngIf="user === undefined">
     <label>No user sign in!</label>
     <a class="mx-1" (click)="onClickSignIn()">Sign in</a>
     <label class="mx-1">or</label>
     <a [routerLink]="['/new/registration']">Join us now!</a>
 </div>
 
-<div class="mxw-1080px" *ngIf="user !== undefined">
+<div class="mxw-1080px min-content" *ngIf="user !== undefined">
     <nav>
         <div class="nav nav-tabs" id="nav-tab" role="tablist">
             <button class="nav-link" [ngClass]="default === 'info' ? 'active' : ''" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-div" type="button" role="tab">

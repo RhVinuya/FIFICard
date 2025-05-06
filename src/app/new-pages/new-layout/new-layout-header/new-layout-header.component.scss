@@ -173,3 +173,58 @@
     object-fit: cover;
     object-position: left center;
 }
+
+.account-div {
+    display: flex;
+    flex-direction: column;
+    padding-block: 4px;
+    padding-inline: 6px;
+    border-radius: 4px;
+}
+
+.account-div .hello {
+    color: #5e17eb !important;
+    font-size: 0.8rem !important;
+    line-height: 0.8rem !important;
+}
+
+.account-div .nav-link {
+    color: #ab37c9 !important;
+    font-size: 1.1rem !important;
+    line-height: 1.1rem !important;
+}
+
+.account-div:hover {
+    background: #ab37c9;
+}
+
+.account-div:hover .hello,
+.account-div:hover .nav-link {
+    color: white !important;
+}
+
+.header-detail {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+}
+
+.header-menu {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.float {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+}
+
+.float ul{
+    flex-wrap: nowrap;
+}

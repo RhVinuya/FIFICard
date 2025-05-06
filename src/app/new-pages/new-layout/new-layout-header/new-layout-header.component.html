@@ -1,12 +1,10 @@
 <ion-header *ngIf="_showHeader === true" class="bg-white" style="position:fixed;top:0;">
     <div class="v3" *ngIf="type===0">
         <div class="mxw-1920px">
-            <div class="row my-2">
-                <div class="col-2 ps-0" size="auto">
-                    <img [src]="logo" title="FibeiGreetings.com" routerlink="/" class="img-title img-fluid"
-                        style="cursor: pointer;" tabindex="0" [routerLink]="['/new']" onContextMenu="return false;">
-                </div>
-                <div class="col-8 ps-0 my-auto" size="auto">
+            <div class="header-detail mt-2">
+                <img [src]="logo" title="FibeiGreetings.com" routerlink="/" class="img-title img-fluid flex1" style="cursor: pointer;" tabindex="0"
+                    [routerLink]="['/new']" onContextMenu="return false;">
+                <div class="float">
                     <ul class="nav justify-content-center my-menu-links">
                         <li class="nav-item">
                             <a class="nav-link" [routerLink]="['/new']">Home</a>
@@ -17,58 +15,59 @@
                         <li class="nav-item">
                             <a class="nav-link" [routerLink]="['/new/cards/all']">Browse All Cards</a>
                         </li>
-                        <!--
                         <li class="nav-item">
-                            <a class="nav-link" [routerLink]="['/new/cards/BUNDLE']">Bundle Cards</a>
-                        </li>
-                        -->
-                        <li class="nav-item">
-                            <a class="nav-link" (mouseenter)="onHover('stickers')" (mouseleave)="onHoverOut()" (click)="onOpen('/new/stickers/all')">Stickers</a>
+                            <a class="nav-link" (mouseenter)="onHover('stickers')" (mouseleave)="onHoverOut()"
+                                (click)="onOpen('/new/stickers/all')">Stickers</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" (mouseenter)="onHover('postcards')" (mouseleave)="onHoverOut()" (click)="onOpen('/new/postcards/all')">Postcards</a>
+                            <a class="nav-link" (mouseenter)="onHover('postcards')" (mouseleave)="onHoverOut()"
+                                (click)="onOpen('/new/postcards/all')">Postcards</a>
                         </li>
                         <li class="nav-item" *ngIf="location === 'ph'">
-                            <a class="nav-link" (mouseenter)="onHover('gifts')" (mouseleave)="onHoverOut()" (click)="onOpen('/new/gifts/all')">Gifts </a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-2" size="auto"> 
-                    <ul class="nav justify-content-end">
-                        <li class="nav-item action-flag">
-                            <div>
-                                <img [src]="flag">
-                            </div>
-                        </li>
-                        <li class="nav-item action">
-                            <a class="nav-link active" aria-current="page" [routerLink]="['/new/projects']">
-                                <i class="fa fa-2x fa-star text-purple gelatine" aria-hidden="true" title="Personalize"></i>
-                                <span class="personalize-count" *ngIf="projectCountDisplay !== ''">{{projectCountDisplay}}</span>
-                            </a>
-                        </li>
-                        <li class="nav-item action">
-                            <a class="nav-link active" aria-current="page" [routerLink]="['/new/cart']">
-                                <i class="fa fa-2x fa-shopping-cart text-purple" aria-hidden="true" title="Cart"></i>
-                                <span class="cart-count" *ngIf="cartCountDisplay !== ''">{{cartCountDisplay}}</span>
-                            </a>
-                        </li>
-                        <li class="nav-item action">
-                            <a class="nav-link" [routerLink]="['/new/wishlist']">
-                                <i class="fa fa-2x fa-heart text-purple" aria-hidden="true" title="Wishlist"></i>
-                                <span class="wishlist-count" *ngIf="wishlistCountDisplay !== ''">{{wishlistCountDisplay}}</span>
-                            </a>
-                        </li>
-                        <li class="nav-item action">
-                            <a class="nav-link" [routerLink]="['/new/profile/info']" title="Profile">
-                                <i class="fa fa-2x fa-user-circle text-purple" aria-hidden="true"
-                                    *ngIf="_user === undefined || (_user !== undefined && (_user.photoURL === '' || _user.photoURL === null))"></i>
-                                <img class="profile" [src]="_user.photoURL"
-                                    *ngIf="_user !== undefined && _user.photoURL !== '' && _user.photoURL !== null" onContextMenu="return false;">
+                            <a class="nav-link" (mouseenter)="onHover('gifts')" (mouseleave)="onHoverOut()" (click)="onOpen('/new/gifts/all')">Gifts
                             </a>
                         </li>
                     </ul>
                 </div>
+                <ul class="nav justify-content-end">
+                    <li class="nav-item action-flag">
+                        <div>
+                            <img [src]="flag">
+                        </div>
+                    </li>
+                    <li class="nav-item action">
+                        <a class="nav-link active" aria-current="page" [routerLink]="['/new/projects']">
+                            <i class="fa fa-2x fa-star text-purple gelatine" aria-hidden="true" title="Personalize"></i>
+                            <span class="personalize-count" *ngIf="projectCountDisplay !== ''">{{projectCountDisplay}}</span>
+                        </a>
+                    </li>
+                    <li class="nav-item action">
+                        <a class="nav-link active" aria-current="page" [routerLink]="['/new/cart']">
+                            <i class="fa fa-2x fa-shopping-cart text-purple" aria-hidden="true" title="Cart"></i>
+                            <span class="cart-count" *ngIf="cartCountDisplay !== ''">{{cartCountDisplay}}</span>
+                        </a>
+                    </li>
+                    <li class="nav-item action">
+                        <a class="nav-link" [routerLink]="['/new/wishlist']">
+                            <i class="fa fa-2x fa-heart text-purple" aria-hidden="true" title="Wishlist"></i>
+                            <span class="wishlist-count" *ngIf="wishlistCountDisplay !== ''">{{wishlistCountDisplay}}</span>
+                        </a>
+                    </li>
+                    <li class="nav-item action my-auto">
+                        <a class="nav-link" [routerLink]="['/new/profile/info']" title="Profile" *ngIf="_user === undefined">
+                            <i class="fa fa-2x fa-user-circle text-purple" aria-hidden="true"></i>
+                        </a>
+                        <div class="account-div ms-3" [routerLink]="['/new/profile/info']" *ngIf="_user !== undefined">
+                            <label class="hello">Hello,</label>
+                            <a class="nav-link p-0" [routerLink]="['/new/profile/info']" title="Profile">
+                                {{_user.firstname}} {{_user.lastname}}
+                                <!--<i class="fa fa-chevron-down"></i>-->
+                            </a>
+                        </div>
+                    </li>
+                </ul>
             </div>
+
         </div>
         <div class="menu border-top" *ngIf="showMenu" (mouseenter)="onHover(undefined)" (mouseleave)="onHoverOut()">
             <div class="mxw-1320px row">
@@ -82,73 +81,75 @@
 <div class="v3" *ngIf="type===1">
     <div class="header-border">
         <div class="mxw-1920px">
-            <div class="row mt-2">
-                <div class="col-6" size="auto">
-                    <img [src]="logo" title="FibeiGreetings.com" routerlink="/" class="img-title img-fluid"
-                        style="cursor: pointer;" tabindex="0" [routerLink]="['/new']" onContextMenu="return false;">
-                </div>
-                <div class="col-6 pe-0" size="auto">
-                    <ul class="nav justify-content-end">
-                        <li class="nav-item action-flag">
-                            <div>
-                                <img [src]="flag">
-                            </div>
-                        </li>
-                        <li class="nav-item action">
-                            <a class="nav-link active" aria-current="page"  [routerLink]="['/new/projects']">
-                                <i class="fa fa-2x fa-star text-purple gelatine" aria-hidden="true" title="Personalize"></i>
-                                <span class="personalize-count" *ngIf="projectCountDisplay !== ''">{{projectCountDisplay}}</span>
+            <div class="header-detail mt-2">
+                <img [src]="logo" title="FibeiGreetings.com" routerlink="/" class="img-title img-fluid" style="cursor: pointer;" tabindex="0"
+                    [routerLink]="['/new']" onContextMenu="return false;">
+
+                <ul class="nav justify-content-end">
+                    <li class="nav-item my-auto me-4">
+                        <app-new-search></app-new-search>
+                    </li>
+                    <li class="nav-item action-flag">
+                        <div>
+                            <img [src]="flag">
+                        </div>
+                    </li>
+                    <li class="nav-item action">
+                        <a class="nav-link active" aria-current="page" [routerLink]="['/new/projects']">
+                            <i class="fa fa-2x fa-star text-purple gelatine" aria-hidden="true" title="Personalize"></i>
+                            <span class="personalize-count" *ngIf="projectCountDisplay !== ''">{{projectCountDisplay}}</span>
+                        </a>
+                    </li>
+                    <li class="nav-item action">
+                        <a class="nav-link active" aria-current="page" [routerLink]="['/new/cart']">
+                            <i class="fa fa-2x fa-shopping-cart text-purple" aria-hidden="true" title="Cart"></i>
+                            <span class="wishlist-count" *ngIf="cartCountDisplay !== ''">{{cartCountDisplay}}</span>
+                        </a>
+                    </li>
+                    <li class="nav-item action">
+                        <a class="nav-link" [routerLink]="['/new/wishlist']">
+                            <i class="fa fa-2x fa-heart text-purple" aria-hidden="true" title="Wishlist"></i>
+                            <span class="wishlist-count" *ngIf="wishlistCountDisplay !== ''">{{wishlistCountDisplay}}</span>
+                        </a>
+                    </li>
+                    <li class="nav-item action my-auto">
+                        <a class="nav-link" [routerLink]="['/new/profile/info']" title="Profile" *ngIf="_user === undefined">
+                            <i class="fa fa-2x fa-user-circle text-purple" aria-hidden="true"></i>
+                        </a>
+                        <div class="account-div ms-3" [routerLink]="['/new/profile/info']" *ngIf="_user !== undefined">
+                            <label class="hello">Hello,</label>
+                            <a class="nav-link p-0" [routerLink]="['/new/profile/info']" title="Profile">
+                                {{_user.firstname}} {{_user.lastname}}
+                                <!--<i class="fa fa-chevron-down"></i>-->
                             </a>
-                        </li>
-                        <li class="nav-item action">
-                            <a class="nav-link active" aria-current="page" [routerLink]="['/new/cart']">
-                                <i class="fa fa-2x fa-shopping-cart text-purple" aria-hidden="true" title="Cart"></i>
-                                <span class="wishlist-count" *ngIf="cartCountDisplay !== ''">{{cartCountDisplay}}</span>
-                            </a>
-                        </li>
-                        <li class="nav-item action">
-                            <a class="nav-link" [routerLink]="['/new/wishlist']">
-                                <i class="fa fa-2x fa-heart text-purple" aria-hidden="true" title="Wishlist"></i>
-                                <span class="wishlist-count" *ngIf="wishlistCountDisplay !== ''">{{wishlistCountDisplay}}</span>
-                            </a>
-                        </li>
-                        <li class="nav-item action">
-                            <a class="nav-link" [routerLink]="['/new/profile/info']" title="Profile">
-                                <i class="fa fa-2x fa-user-circle text-purple" aria-hidden="true"
-                                    *ngIf="_user === undefined || (_user !== undefined && (_user.photoURL === '' || _user.photoURL === null))"></i>
-                                <img class="profile" [src]="_user.photoURL"
-                                    *ngIf="_user !== undefined && _user.photoURL !== '' && _user.photoURL !== null" onContextMenu="return false;">
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-12 my-auto" size="auto">
-                    <ul class="nav justify-content-center my-menu-links">
-                        <li class="nav-item">
-                            <a class="nav-link" [routerLink]="['/new']">Home</a>
-                        </li>
-                        <li class="nav-item" *ngFor="let event of eventpriorities">
-                            <a class="nav-link" [routerLink]="[event.url]">{{event.title}}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" [routerLink]="['/new/cards/all']">Browse All Cards</a>
-                        </li>
-                        <!--
-                        <li class="nav-item">
-                            <a class="nav-link" [routerLink]="['/new/cards/BUNDLE']">Bundle Cards</a>
-                        </li>
-                        -->
-                        <li class="nav-item">
-                            <a class="nav-link" (mouseenter)="onHover('stickers')" (mouseleave)="onHoverOut()" (click)="onOpen('/new/stickers/all')">Stickers</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" (mouseenter)="onHover('postcards')" (mouseleave)="onHoverOut()" (click)="onOpen('/new/postcards/all')">Postcards</a>
-                        </li>
-                        <li class="nav-item" *ngIf="location === 'ph'">
-                            <a class="nav-link" (mouseenter)="onHover('gifts')" (mouseleave)="onHoverOut()" (click)="onOpen('/new/gifts/all')">Gifts </a>
-                        </li>
-                    </ul>
-                </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="header-menu">
+                <ul class="nav justify-content-center my-menu-links">
+                    <li class="nav-item">
+                        <a class="nav-link" [routerLink]="['/new']">Home</a>
+                    </li>
+                    <li class="nav-item" *ngFor="let event of eventpriorities">
+                        <a class="nav-link" [routerLink]="[event.url]">{{event.title}}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" [routerLink]="['/new/cards/all']">Browse All Cards</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" (mouseenter)="onHover('stickers')" (mouseleave)="onHoverOut()"
+                            (click)="onOpen('/new/stickers/all')">Stickers</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" (mouseenter)="onHover('postcards')" (mouseleave)="onHoverOut()"
+                            (click)="onOpen('/new/postcards/all')">Postcards</a>
+                    </li>
+                    <li class="nav-item" *ngIf="location === 'ph'">
+                        <a class="nav-link" (mouseenter)="onHover('gifts')" (mouseleave)="onHoverOut()" (click)="onOpen('/new/gifts/all')">Gifts
+                        </a>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>

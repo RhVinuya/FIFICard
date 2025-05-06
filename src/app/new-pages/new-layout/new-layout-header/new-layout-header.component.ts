@@ -69,7 +69,6 @@ export class NewLayoutHeaderComponent implements OnInit {
     this.location = this.locationService.getlocation();
     this.logo = this.locationService.getLogo();
     this.flag = this.locationService.getFlagURL();
-    console.log(this.flag)
 
     timer(100, 500).subscribe(async time => {
 
