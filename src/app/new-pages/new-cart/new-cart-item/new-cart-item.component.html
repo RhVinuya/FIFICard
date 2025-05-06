@@ -3,7 +3,7 @@
         <table>
             <tr>
                 <td class="mark">
-                    <input class="form-check-input" type="checkbox" [checked]="_cart.mark" (change)="onChange($event)">
+                    <input class="form-check-input" type="checkbox" [checked]="_cart.mark" (change)="onChange($event)" *ngIf="_cart.isActive && _cart.isAvailable">
                 </td>
                 <td class="image">
                     <img [src]="primary" [alt]="model.name" onContextMenu="return false;">
@@ -16,28 +16,31 @@
                     <span class="badge text-bg-secondary" *ngIf="_cart.type === 'postcard'">POSTCARD</span>
                     <span class="badge text-bg-secondary" *ngIf="_cart.type === 'gift'">GIFT</span>
 
-                    <h4 class="text-purple mt-1 mb-0 cursor" [routerLink]="['/new/details/' + _cart.type + '/' + _cart.itemId]">{{model.name}}</h4>
+                    <h4 class="text-purple mt-1 mb-0 cursor" (click)="onOpen()">{{model.name}}</h4>
                     <p class="text-purple mb-0">{{model.events.join(', ')}}</p>
-                    <p class="text-gray mb-0">{{model.description}}</p>
+                    <p class="text-gray twolines mb-0" *ngIf="_cart.isActive && _cart.isAvailable">{{model.description}}</p>
                     <p class="text-purple mb-0" *ngIf="bundleDetails !== ''">{{bundleDetails}}</p>
+                    <p class="text-danger mb-0" *ngIf="_cart.isActive === false">This item is not longer active</p>
+                    <p class="text-danger mb-0" *ngIf="_cart.isAvailable === false">This item is not available on this location</p>
                 </td>
                 <td class="amount">
-                    <h5 *ngIf="!_cart.isDiscounted && !_cart.isPromo" class="text-purple my-0">{{_cart.priceDisplay()}}</h5>
-
-                    <h5 *ngIf="_cart.isDiscounted && !_cart.isPromo" class="text-purple my-0">
-                        <span class="slanted-strike"><s>{{_cart.originalPriceDisplay()}}</s></span>
-                        {{_cart.priceDisplay()}}
-                    </h5>
-                    <span class="text-purple my-0" *ngIf="_cart.isDiscounted && !_cart.isPromo" class="cus-discount">{{_cart.discount!.code}} {{_cart.discountDisplay()}}</span> 
-
-                    <h5 *ngIf="_cart.isPromo && _cart.isPromoAdjusted === false" class="text-purple my-0">
-                        {{_cart.priceDisplay()}}
-                    </h5>
-                    <h5 *ngIf="_cart.isPromo && _cart.isPromoAdjusted" class="text-purple my-0">
-                        <span class="slanted-strike"><s>{{_cart.originalPriceDisplay()}}</s></span>
-                        {{_cart.priceDisplay()}}
-                    </h5>
-                    <span class="text-purple my-0" *ngIf="_cart.isPromo" class="cus-discount">{{_cart.promo!.title}}</span> 
+                    <div *ngIf="_cart.isActive && _cart.isAvailable">
+                        <h5 *ngIf="!_cart.isDiscounted && !_cart.isPromo" class="text-purple my-0">{{_cart.priceDisplay()}}</h5>
+                        <h5 *ngIf="_cart.isDiscounted && !_cart.isPromo" class="text-purple my-0">
+                            <span class="slanted-strike"><s>{{_cart.originalPriceDisplay()}}</s></span>
+                            {{_cart.priceDisplay()}}
+                        </h5>
+                        <span class="text-purple my-0" *ngIf="_cart.isDiscounted && !_cart.isPromo" class="cus-discount">{{_cart.discount!.code}} {{_cart.discountDisplay()}}</span> 
+    
+                        <h5 *ngIf="_cart.isPromo && _cart.isPromoAdjusted === false" class="text-purple my-0">
+                            {{_cart.priceDisplay()}}
+                        </h5>
+                        <h5 *ngIf="_cart.isPromo && _cart.isPromoAdjusted" class="text-purple my-0">
+                            <span class="slanted-strike"><s>{{_cart.originalPriceDisplay()}}</s></span>
+                            {{_cart.priceDisplay()}}
+                        </h5>
+                        <span class="text-purple my-0" *ngIf="_cart.isPromo" class="cus-discount">{{_cart.promo!.title}}</span> 
+                    </div>
                 </td>
                 <td class="delete text-end">
                     <i class="fa fa-trash text-danger" (click)="onRemove()"></i>

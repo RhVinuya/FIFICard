@@ -2,35 +2,85 @@
     <app-new-title title="Wishlist" [breadcrumbs]="breadcrumbs"></app-new-title>
 </div>
 
-<app-new-loading [loading]="loading"></app-new-loading>
+<div class="mxw-1920px min-content">
+    <app-new-loading [loading]="loading"></app-new-loading>
 
-<div class="mxw-1920px no-item" *ngIf="wishlist && wishlist.length === 0 && loading === false">
-    <h3 class="text-purple my-0">No item on the wishlist.</h3>
-    <h6 class="text-gray my-0">Explore our Products</h6>
-    <div class="mt-4">
-        <app-new-products></app-new-products>
+    <div class="mxw-1920px no-item " *ngIf="wishlist && wishlist.length === 0 && loading === false">
+        <h3 class="text-purple my-0">No item on the wishlist.</h3>
+        <h6 class="text-gray my-0">Explore our Products</h6>
+        <div class="mt-4">
+            <app-new-products></app-new-products>
+        </div>
     </div>
-</div>
 
-<div class="mxw-1920px row" *ngIf="wishlist && wishlist.length > 0 && loading === false">
-    <div class="max-5 mb-2" *ngIf="getList('card').length > 0 && loading === false">
-        <div *ngFor="let card of getList('card')">
-            <app-new-card-thumb [card]="getICard(card.model)"></app-new-card-thumb>
+    <div class="row" *ngIf="wishlist && wishlist.length > 0 && loading === false">
+        <div class="col-md-2 col-sm-12 px-0">
+            <div style="position: sticky; top:99px">
+                <div class="accordion accordion-flush">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button show" type="button" data-bs-toggle="collapse" data-bs-target="#type" aria-expanded="false"
+                                aria-controls="flush-collapseOne">
+                                TYPE
+                            </button>
+                        </h2>
+                        <div id="type" class="accordion-collapse collapse show" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">
+                                <label class="mb-2">
+                                    <input class="form-check-input me-2" type="radio" name="type" value="card" [checked]="type === 'card'"
+                                        (change)="onChangeType('card')">CARDS
+                                    ({{getList('card').length}})
+                                </label>
+                                <label class="mb-2">
+                                    <input class="form-check-input me-2" type="radio" name="type" value="sticker" [checked]="type === 'sticker'"
+                                        (change)="onChangeType('sticker')">STICKERS
+                                    ({{getList('sticker').length}})
+                                </label>
+                                <label class="mb-2">
+                                    <input class="form-check-input me-2" type="radio" name="type" value="postcard" [checked]="type === 'postcard'"
+                                        (change)="onChangeType('postcard')">POSTCARDS
+                                    ({{getList('postcard').length}})
+                                </label>
+                                <label class="mb-2">
+                                    <input class="form-check-input me-2" type="radio" name="type" value="gift" [checked]="type === 'gift'"
+                                        (change)="onChangeType('gift')">GIFTS
+                                    ({{getList('gift').length}})
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-    <div class="max-5 mb-2" *ngIf="getList('sticker').length > 0 && loading === false">
-        <div *ngFor="let card of getList('sticker')">
-            <app-new-sticker-thumb [sticker]="getISticker(card.model)"></app-new-sticker-thumb>
-        </div>
-    </div>
-    <div class="max-5 mb-2" *ngIf="getList('postcard').length > 0 && loading === false">
-        <div *ngFor="let card of getList('postcard')">
-            <app-new-postcard-thumb [postcard]="getIPostcard(card.model)"></app-new-postcard-thumb>
-        </div>
-    </div>
-    <div class="max-5 mb-2" *ngIf="getList('gift').length > 0 && loading === false">
-        <div *ngFor="let card of getList('gift')">
-            <app-new-gift-thumb [gift]="getGift(card.model)"></app-new-gift-thumb>
+        <div class="col-md-10 col-sm-12">
+            <div *ngIf="type === 'card'">
+                <div class="max-5 mb-2" *ngIf="getList('card').length > 0 && loading === false">
+                    <div *ngFor="let card of getList('card')">
+                        <app-new-card-thumb [card]="getICard(card.model)"></app-new-card-thumb>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="type === 'sticker'">
+                <div class="max-5 mb-2" *ngIf="getList('sticker').length > 0 && loading === false">
+                    <div *ngFor="let card of getList('sticker')">
+                        <app-new-sticker-thumb [sticker]="getISticker(card.model)"></app-new-sticker-thumb>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="type === 'postcard'">
+                <div class="max-5 mb-2" *ngIf="getList('postcard').length > 0 && loading === false">
+                    <div *ngFor="let card of getList('postcard')">
+                        <app-new-postcard-thumb [postcard]="getIPostcard(card.model)"></app-new-postcard-thumb>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="type === 'gift'">
+                <div class="max-5 mb-2" *ngIf="getList('gift').length > 0 && loading === false">
+                    <div *ngFor="let card of getList('gift')">
+                        <app-new-gift-thumb [gift]="getGift(card.model)"></app-new-gift-thumb>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

@@ -8,7 +8,9 @@
                 <label><b class="text-purple ellipsis-1">{{name}}</b></label>
                 <i aria-hidden="true" class="fa fa-trash trash" (click)="onDelete()"></i>
             </div>
-            <p class="text-gray mb-2">{{description}}</p>
+            <p class="text-gray twolines mb-2" *ngIf="cart.isActive && cart.isAvailable">{{description}}</p>
+            <p class="text-danger mb-0" *ngIf="cart.isActive === false">This item is not longer active</p>
+            <p class="text-danger mb-0" *ngIf="cart.isAvailable === false">This item is not available on this location</p>
             <div>
                 <span class="badge text-bg-secondary" *ngIf="cart.type === 'card'">CARD</span>
                 <span class="badge text-bg-secondary" *ngIf="cart.type === 'card' && cart.personalize !== null && cart.personalize !== undefined">PERSONALIZE</span>
@@ -17,13 +19,13 @@
                 <span class="badge text-bg-secondary" *ngIf="cart.type === 'postcard'">POSTCARD</span>
                 <span class="badge text-bg-secondary" *ngIf="cart.type === 'gift'">GIFT</span>
             </div>
-            <div>
+            <div *ngIf="cart.isActive && cart.isAvailable">
                 <label class="text-purple slanted-strike me-2" *ngIf="cart.isDiscounted && !cart.isPromo"><s>{{cart.originalPriceDisplay()}}</s></label>
                 <label class="text-purple slanted-strike me-2" *ngIf="cart.isPromo && cart.isPromoAdjusted"><s>{{cart.originalPriceDisplay()}}</s></label>
                 <label class="text-purple">{{cart.priceDisplay()}}</label>
             </div>
-            <span *ngIf="cart.isDiscounted && !cart.isPromo" class="cus-discount my-0">{{cart.discountDisplay()}}</span> 
-            <span *ngIf="cart.isPromo" class="cus-discount my-0">{{cart.promo!.title}}</span> 
+            <span *ngIf="cart.isDiscounted && !cart.isPromo && cart.isActive && cart.isAvailable" class="cus-discount my-0">{{cart.discountDisplay()}}</span> 
+            <span *ngIf="cart.isPromo && cart.isActive && cart.isAvailable" class="cus-discount my-0">{{cart.promo!.title}}</span> 
         </div>
     </div>
 </div>

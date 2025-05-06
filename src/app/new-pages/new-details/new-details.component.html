@@ -6,13 +6,15 @@
             <app-new-details-images [images]="images" [stickerimage]="stickerimage"></app-new-details-images>
         </div>
         <div class="col-6 ps-2 pe-1 pt-4">
+            <h1 class="text-danger mb-3" *ngIf="model.active === false"><b>This item is not longer active</b></h1>
+            <h1 class="text-danger mb-3" *ngIf="isAvailable === false"><b>This item is not available on this location</b></h1>
             <div class="mb-2">
                 <h5 class="text-blue my-0">{{getEvents()}}</h5>
             </div>
             <div class="space-around-top mb-1">
                 <div>
                     <h1 class="text-purple"><b>{{model.name}}</b></h1>
-                     <label class="text-gray">CODE: {{model.code}}</label>
+                    <label class="text-gray">CODE: {{model.code}}</label>
                 </div>
                 <app-new-wish-indicator [id]="model.id"></app-new-wish-indicator>
             </div>
@@ -23,31 +25,31 @@
             <div class="mt-3 mb-2" *ngIf="type === 'card' && isCardBundle === false">
                 <label class="text-blue">Purchase this lovely and glittery greeting card today</label>
             </div>
-            
-            <div class="mt-1 mb-1" >
+
+            <div class="mt-1 mb-1">
                 <span class="chip mt-0 mb-1" *ngFor="let recipient of recipients">{{recipient}}</span>
-                <span class="cus-discount mt-0 mb-1 " *ngIf="isDiscounted && !isPromo">{{discountDisplay}} off</span> 
-                <span class="cus-discount mt-0 mb-1" *ngFor="let tag of promotag">{{tag}}</span> 
+                <span class="cus-discount mt-0 mb-1 " *ngIf="isDiscounted && !isPromo">{{discountDisplay}} off</span>
+                <span class="cus-discount mt-0 mb-1" *ngFor="let tag of promotag">{{tag}}</span>
             </div>
 
             <div class="details">
                 <div [ngClass]="qr === ''? 'content' : 'content-qr'">
-                    <div class="prices" *ngIf="isBundle === false">
-                     
+                    <div class="prices" *ngIf="isBundle === false && model.active && isAvailable">
                         <h3 class="text-purple my-0" *ngIf="!isDiscounted"><b>{{getPrice()}} </b></h3>
                         <h3 class="text-purple my-0" *ngIf="isDiscounted"><b>{{getPrice()}} </b></h3>
                         <h3 class="slanted-strike my-0" *ngIf="isDiscounted" style="font-size: 10px;"><s><b>{{getOriginalPrice()}}</b></s></h3>
                         <h3 class="text-gray mx-2 my-0" *ngIf="isPersonalize">-</h3>
                         <h3 class="text-blue my-0" *ngIf="isPersonalize && !isDiscounted"><b>{{getPersonalizePrice()}}</b></h3>
                         <h3 class="text-blue my-0" *ngIf="isPersonalize && isDiscounted"><b>{{getPersonalizePrice(true)}}</b></h3>
-                        <h3 class="slanted-strike my-0" *ngIf="isPersonalize && isDiscounted" style="font-size: 10px;"><s><b>{{getPersonalizePrice()}}</b></s></h3>
+                        <h3 class="slanted-strike my-0" *ngIf="isPersonalize && isDiscounted" style="font-size: 10px;">
+                            <s><b>{{getPersonalizePrice()}}</b></s></h3>
                     </div>
-                    <div class="mt-2 mb-3" *ngIf="isBundle">
+                    <div class="mt-2 mb-3" *ngIf="isBundle && model.active && isAvailable">
                         <button type="button" class="btn bundle me-1 mb-2" *ngFor="let bundle of bundles" (click)="onClickBundle(bundle)">
                             Bundle of <b>{{bundle.countDisplay()}} pcs</b> for <b>{{bundle.priceDisplay()}}</b>
                         </button>
                     </div>
-                    <div class="mt-2 mb-4">
+                    <div class="mt-2 mb-4" *ngIf="model.active && isAvailable">
                         <app-new-add-cart-button class="me-2" [type]="type" [item]="iModel" *ngIf="isAddToCart"></app-new-add-cart-button>
                         <app-new-personalize-button *ngIf="isPersonalize" [iCard]="getICard()"></app-new-personalize-button>
                     </div>
@@ -75,7 +77,7 @@
 
         </div>
 
-        
+
     </div>
 </div>
 

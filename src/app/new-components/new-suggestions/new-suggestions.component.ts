@@ -5,9 +5,11 @@ import { IModelType } from 'src/app/new-models/new-enum';
 import { INewGift, NewGift } from 'src/app/new-models/new-gift';
 import { INewPostcard, NewPostcard } from 'src/app/new-models/new-postcard';
 import { INewSticker, NewSticker } from 'src/app/new-models/new-sticker';
+import { LocationType } from 'src/app/new-models/type';
 import { NewCardService } from 'src/app/new-services/new-card.service';
 import { NewCartService } from 'src/app/new-services/new-cart.service';
 import { NewGiftService } from 'src/app/new-services/new-gift.service';
+import { NewLocationService } from 'src/app/new-services/new-location.service';
 import { NewPostcardService } from 'src/app/new-services/new-postcard.service';
 import { NewStickerService } from 'src/app/new-services/new-sticker.service';
 import { environment } from 'src/environments/environment';
@@ -39,6 +41,7 @@ export class NewSuggestionsComponent implements OnInit {
   postcardService: NewPostcardService;
   giftService: NewGiftService;
   cartService: NewCartService;
+  locationService: NewLocationService;
 
   constructor(
     _cardService: NewCardService,
@@ -46,6 +49,7 @@ export class NewSuggestionsComponent implements OnInit {
     _postcardService: NewPostcardService,
     _giftService: NewGiftService,
     _cartService: NewCartService,
+    _locationService: NewLocationService,
     config: NgbCarouselConfig
   ) {
     this.cardService = _cardService;
@@ -53,6 +57,7 @@ export class NewSuggestionsComponent implements OnInit {
     this.postcardService = _postcardService;
     this.giftService = _giftService;
     this.cartService = _cartService;
+    this.locationService = _locationService;
 
     config.interval = 10000;
     config.wrap = true;
@@ -62,6 +67,7 @@ export class NewSuggestionsComponent implements OnInit {
     config.animation = true;
   }
 
+  location: LocationType;
   loading: boolean = false;
   iModel: IModelType;
   startIndex: number = 0;
@@ -104,11 +110,11 @@ export class NewSuggestionsComponent implements OnInit {
     else if (this.type === 'gift') {
       let iGift = this.iModel as INewGift;
       let event = this.getAValidEvent([...environment.giftscategories, ...environment.giftsrecipients], iGift.events);
-      let items  = await this.giftService.getByEvent(event);
-      let values = items.filter(x => x.id !== iGift.id).slice(0, 30)
+      let items = await this.giftService.getByEvent(event);
+      let values = items.filter(x => x.locations.includes(this.location)).filter(x => x.id !== iGift.id).slice(0, 30)
       this.items = values.slice(0, 30);
     }
-    
+
     let slides = Math.floor(this.items.length / this.limit) + (this.items.length % this.limit !== 0 ? 1 : 0);
 
     let x: number;

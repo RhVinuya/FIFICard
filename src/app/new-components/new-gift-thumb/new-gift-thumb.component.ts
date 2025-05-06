@@ -59,6 +59,6 @@ export class NewGiftThumbComponent implements OnInit {
   }
 
   onClick(){
-    this.router.navigate(['/new/details/gift/' + this._gift.id])
+    if (this._gift.isAvailable)  this.router.navigate(['/new/details/gift/' + this._gift.id])
   }
 }

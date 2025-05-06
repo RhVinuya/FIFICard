@@ -32,7 +32,7 @@
                                         (change)="onChangeType('postcard')">POSTCARDS
                                     ({{postcards.length}})
                                 </label>
-                                <label class="mb-2" *ngIf="location === 'ph'">
+                                <label class="mb-2">
                                     <input class="form-check-input me-2" type="radio" name="type" value="gift" [checked]="type === 'gift'"
                                         (change)="onChangeType('gift')">GIFTS
                                     ({{gifts.length}})

@@ -17,7 +17,7 @@ export class NewProductsComponent implements OnInit {
   constructor(
     _platform: Platform,
     _locationService: NewLocationService
-  ) { 
+  ) {
     this.platform = _platform;
     this.locationService = _locationService;
   }
@@ -25,10 +25,7 @@ export class NewProductsComponent implements OnInit {
   location: LocationType = 'ph';
 
   ngOnInit(): void {
-    this.isMobile =
-      this.platform.is("capacitor") || this.platform.is("mobileweb");
-
-    console.log(this.isMobile);
+    this.isMobile = this.platform.is("capacitor") || this.platform.is("mobileweb");
     this.location = this.locationService.getlocation();
   }
 

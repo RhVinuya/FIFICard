@@ -1,5 +1,8 @@
 import { Timestamp } from "@angular/fire/firestore";
 import { IConfig, IPromo } from "./new-config";
+import { LocationType } from "./type";
+import { NewLocationService } from "../new-services/new-location.service";
+import { environment } from "src/environments/environment";
 
 export interface INewGift {
     id: string;
@@ -11,9 +14,12 @@ export interface INewGift {
     recipient: string;
     recipients?: string[];
     price: number;
+    sgprice: number;
+    usprice: number;
     active: boolean;
     featured: boolean;
     type: 'card' | 'sticker' | 'postcard' | 'gift';
+    locations: LocationType[];
     created: Timestamp;
     modified: Timestamp;
 }
@@ -28,13 +34,19 @@ export class NewGift {
     recipient: string;
     recipients?: string[];
     price: number;
+    sgprice: number;
+    usprice: number;
     active: boolean;
     featured: boolean;
+    locations: LocationType[];
     created: Timestamp;
     modified: Timestamp;
+    promotag: string[] = [];
+    isAvailable: boolean = true;
 
-    promotag: string[] = []
-
+    locationService: NewLocationService;
+    location: LocationType;
+    currencySymbol: string;
     config: IConfig;
 
     constructor(value: INewGift, _config: IConfig) {
@@ -47,16 +59,28 @@ export class NewGift {
         this.recipient = value.recipient;
         this.recipients = value.recipients ? value.recipients : [];
         this.price = value.price;
+        this.sgprice = value.sgprice;
+        this.usprice = value.usprice;
         this.active = value.active;
         this.featured = value.featured;
+        this.locations = value.locations;
         this.created = value.created;
         this.modified = value.modified;
-
+        this.locationService = new NewLocationService();
+        this.location = this.locationService.getlocation();
+        this.isAvailable = this.locations.includes(this.location);
+        this.currencySymbol = this.locationService.getCurrencySymbol(this.location);
         this.config = _config;
     }
 
     priceDisplay() {
-        return '₱' + this.price.toLocaleString('en-US', { minimumFractionDigits: 2 })
+        let currency = environment.currencies.find(x => x.code === this.currencySymbol);
+        if (currency) {
+            if (currency.code === 'USD') return currency.sign + this.usprice.toLocaleString('en-US', { minimumFractionDigits: 2 })
+            else if (currency.code === 'SGD') return currency.sign + this.sgprice.toLocaleString('en-US', { minimumFractionDigits: 2 })
+            else return currency.sign + this.price.toLocaleString('en-US', { minimumFractionDigits: 2 })
+        }
+        else return '0.00';
     }
 
     getPromo() {

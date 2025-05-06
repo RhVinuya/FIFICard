@@ -11,11 +11,13 @@ import { IModelType, ModelType } from 'src/app/new-models/new-enum';
 import { INewGift, INewGiftImage, NewGift } from 'src/app/new-models/new-gift';
 import { INewPostcard, INewPostcardBundle, NewPostcard, NewPostcardBundle } from 'src/app/new-models/new-postcard';
 import { INewSticker, INewStickerImage, NewSticker } from 'src/app/new-models/new-sticker';
+import { LocationType } from 'src/app/new-models/type';
 import { NewCardService } from 'src/app/new-services/new-card.service';
 import { NewCartService } from 'src/app/new-services/new-cart.service';
 import { NewConfigService } from 'src/app/new-services/new-config.service';
 import { NewFileService } from 'src/app/new-services/new-file.service';
 import { NewGiftService } from 'src/app/new-services/new-gift.service';
+import { NewLocationService } from 'src/app/new-services/new-location.service';
 import { NewPostcardService } from 'src/app/new-services/new-postcard.service';
 import { NewStickerService } from 'src/app/new-services/new-sticker.service';
 import { NewStorageService } from 'src/app/new-services/new-storage.service';
@@ -39,6 +41,7 @@ export class NewDetailsComponent implements OnInit {
   modalService: NgbModal;
   ref: ChangeDetectorRef;
   configService: NewConfigService;
+  locationService: NewLocationService;
   config: IConfig;
 
   constructor(
@@ -55,6 +58,7 @@ export class NewDetailsComponent implements OnInit {
     _modalService: NgbModal,
     _ref: ChangeDetectorRef,
     _configService: NewConfigService,
+    _locationService: NewLocationService
   ) { 
     this.configService = _configService;
     this.activateRoute = _activateRoute;
@@ -68,9 +72,11 @@ export class NewDetailsComponent implements OnInit {
     this.toastController = _toastController;
     this.offCanvas = _offCanvas;
     this.modalService = _modalService;
+    this.locationService = _locationService;
     this.ref = _ref
   }
 
+  location: LocationType;
   loading: boolean = false;
   id: string;
   type: 'card' | 'sticker' | 'postcard' | 'gift';
@@ -94,12 +100,15 @@ export class NewDetailsComponent implements OnInit {
   discountDisplay: string = '';
   isPromo: boolean = false;
   promotag: string[] = [];
+  isAvailable: boolean = true;
 
   stickerimage: string = '';
 
   recents: IModelType[] = [];
 
   async ngOnInit(): Promise<void> {
+    this.location = this.locationService.getlocation();
+
     this.config = await this.configService.get();
     
     this.activateRoute.params.subscribe(params => {
@@ -189,6 +198,7 @@ export class NewDetailsComponent implements OnInit {
           this.promotag = this.model.promotag;
           this.isAddToCart = true;
           this.isFeatured = this.model.featured;
+          this.isAvailable = (this.model as NewGift).locations.includes(this.location)
           this.loading = false;
           this.ref.detectChanges();
           this.loadImages(await this.giftService.getImages(this.id, true));

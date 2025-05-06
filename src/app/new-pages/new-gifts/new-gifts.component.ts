@@ -1,7 +1,9 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { INewGift } from 'src/app/new-models/new-gift';
+import { LocationType } from 'src/app/new-models/type';
 import { NewGiftService } from 'src/app/new-services/new-gift.service';
+import { NewLocationService } from 'src/app/new-services/new-location.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -13,18 +15,22 @@ export class NewGiftsComponent implements OnInit {
 
   activateRoute: ActivatedRoute;
   giftService: NewGiftService;
+  locationService: NewLocationService;
   ref: ChangeDetectorRef;
 
   constructor(
     _activateRoute: ActivatedRoute,
     _giftService: NewGiftService,
+    _locationService: NewLocationService,
     _ref: ChangeDetectorRef
   ) {
     this.activateRoute = _activateRoute;
     this.giftService = _giftService;
+    this.locationService = _locationService;
     this.ref = _ref;
   }
 
+  location: LocationType;
   giftevents = environment.giftscategories;
   recipientoptions = environment.giftsrecipients;
   activeevents: string[] = [];
@@ -52,6 +58,8 @@ export class NewGiftsComponent implements OnInit {
   ];
 
   ngOnInit(): void {
+    this.location = this.locationService.getlocation();
+
     this.activateRoute.params.subscribe(params => {
       let id = params['id'];
       this.event = '';
@@ -79,7 +87,7 @@ export class NewGiftsComponent implements OnInit {
 
   async loadGifts() {
     this.loading = true;
-    let list = await this.giftService.getAll();
+    let list = (await this.giftService.getAll()).filter(x => x.locations.includes(this.location));
 
     this.gifts = [...list.filter(x => x.featured), ...list.filter(x => x.featured !== true)]
 

@@ -52,6 +52,8 @@ export class AddCartButtonMobileComponent implements OnInit {
     }
     else if (this.type === 'gift'){
       this.price = (this.item as INewGift).price;
+      this.sgprice = (this.item as INewSticker).sgprice;
+      this.usprice = (this.item as INewSticker).usprice;
     }
   }
 

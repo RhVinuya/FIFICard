@@ -1,7 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { NewCard } from 'src/app/new-models/new-card';
+import { INewCard, NewCard } from 'src/app/new-models/new-card';
 import { NewCart } from 'src/app/new-models/new-cart';
 import { IConfig } from 'src/app/new-models/new-config';
+import { INewGift } from 'src/app/new-models/new-gift';
+import { INewPostcard } from 'src/app/new-models/new-postcard';
+import { INewSticker } from 'src/app/new-models/new-sticker';
 import { NewCardService } from 'src/app/new-services/new-card.service';
 import { NewConfigService } from 'src/app/new-services/new-config.service';
 import { NewFileService } from 'src/app/new-services/new-file.service';
@@ -56,8 +59,7 @@ export class NewCartViewComponent implements OnInit {
     this.config = await this.configService.get();
 
     if (this.cart.type === 'card') {
-      let iCard = await this.cardService.get(this.cart.itemId);
-
+      let iCard = this.cart.item as INewCard;
       if (iCard) {
         let model = new NewCard(iCard, this.config);
         this.isDiscounted = model.isDiscounted() ?? false;
@@ -79,7 +81,7 @@ export class NewCartViewComponent implements OnInit {
       }
     }
     if (this.cart.type === 'sticker') {
-      let iSticker = await this.stickerService.get(this.cart.itemId);
+      let iSticker = this.cart.item as INewSticker;
       if (iSticker) {
         this.name = iSticker.name;
         this.description = iSticker.description;
@@ -91,7 +93,7 @@ export class NewCartViewComponent implements OnInit {
       }
     }
     if (this.cart.type === 'postcard') {
-      let iPostcard = await this.postcardService.get(this.cart.itemId);
+      let iPostcard = this.cart.item as INewPostcard;
       if (iPostcard) {
         this.name = iPostcard.name;
         this.description = iPostcard.description;
@@ -103,7 +105,7 @@ export class NewCartViewComponent implements OnInit {
       }
     }
     if (this.cart.type === 'gift') {
-      let iGift = await this.giftService.get(this.cart.itemId);
+      let iGift = this.cart.item as INewGift;
       if (iGift) {
         this.name = iGift.name;
         this.description = iGift.description;

@@ -5,8 +5,10 @@ import { IModelType, LocationType } from 'src/app/new-models/new-enum';
 import { INewGift } from 'src/app/new-models/new-gift';
 import { INewPostcard } from 'src/app/new-models/new-postcard';
 import { INewSticker } from 'src/app/new-models/new-sticker';
+import { Type } from 'src/app/new-models/type';
 import { NewCardService } from 'src/app/new-services/new-card.service';
 import { NewGiftService } from 'src/app/new-services/new-gift.service';
+import { NewLocationService } from 'src/app/new-services/new-location.service';
 import { NewPostcardService } from 'src/app/new-services/new-postcard.service';
 import { NewStickerService } from 'src/app/new-services/new-sticker.service';
 import { NewUtilService } from 'src/app/new-services/new-util.service';
@@ -31,6 +33,7 @@ export class NewWishlistComponent implements OnInit, OnDestroy {
   stickerService: NewStickerService;
   postcardService: NewPostcardService;
   giftService: NewGiftService;
+  locationService: NewLocationService;
 
   constructor(
     _wishlistService: NewWishlistService,
@@ -39,6 +42,7 @@ export class NewWishlistComponent implements OnInit, OnDestroy {
     _stickerService: NewStickerService,
     _postcardService: NewPostcardService,
     _giftService: NewGiftService,
+    _locationService: NewLocationService
   ) {
     this.wishlistService = _wishlistService;
     this.utilService = _utilService;
@@ -46,6 +50,7 @@ export class NewWishlistComponent implements OnInit, OnDestroy {
     this.stickerService = _stickerService;
     this.postcardService = _postcardService;
     this.giftService = _giftService;
+    this.locationService = _locationService;
   }
 
   breadcrumbs = [
@@ -62,12 +67,14 @@ export class NewWishlistComponent implements OnInit, OnDestroy {
   ];
 
   location: LocationType = 'ph';
+  type: Type = 'card';
   subs: Subscription;
   ids: string[] = []
   wishlist: IWishlist[] = [];
   loading: boolean = false;
 
   async ngOnInit(): Promise<void> {    
+    this.location = this.locationService.getlocation();
     this.subs = timer(100, 500).subscribe(time => {
       let ids = this.wishlistService.get();
       if (ids.length !== this.ids.length) {
@@ -138,7 +145,7 @@ export class NewWishlistComponent implements OnInit, OnDestroy {
       }
     }
     this.wishlist = [...list];
-    this.loading = false;
+    this.loading = false;    
   }
 
   getList(type: 'card' | 'sticker' | 'postcard' | 'gift') {
@@ -159,6 +166,10 @@ export class NewWishlistComponent implements OnInit, OnDestroy {
 
   getGift(model: IModelType) {
     return model as INewGift
+  }
+
+  onChangeType(value: Type) {
+    this.type = value;
   }
 
 }

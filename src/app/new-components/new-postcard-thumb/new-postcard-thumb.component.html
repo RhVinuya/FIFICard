@@ -4,14 +4,15 @@
         <img [src]="secondary" [alt]="_postcard.name" class="card-img hover-image" *ngIf="secondary !== ''" onContextMenu="return false;">
     </div>
     <div class="c-heart">
-        <app-new-wish-indicator [id]="_postcard.id"></app-new-wish-indicator>
-        <div class="c-featured" *ngIf="_postcard.featured === true" title="Featured Sticker">
+        <app-new-wish-indicator [id]="_postcard.id" *ngIf="_postcard.active"></app-new-wish-indicator>
+        <div class="c-featured" *ngIf="_postcard.featured === true && _postcard.active" title="Featured Sticker">
             <i class="fa fa-fire" aria-hidden="true"></i>
         </div>
     </div>
     <div class="card-body px-2 py-3">
         <h4 class="card-title my-0">{{_postcard.name}}</h4>
         <h4 class="card-description text-gray my-1">{{_postcard.description !== '' ? _postcard.description : _postcard.details}}</h4>
-        <label class="text-purple"><b class="mb-2" *ngIf="min && max" >{{min.priceDisplay()}} - {{max.priceDisplay()}}</b></label>
+        <label class="text-purple"><b class="mb-2" *ngIf="min && max && _postcard.active">{{min.priceDisplay()}} - {{max.priceDisplay()}}</b></label>
+        <label class="text-danger mb-2" *ngIf="_postcard.active === false"><b class="mb-2">This item is not longer active</b></label>
     </div>
 </div>

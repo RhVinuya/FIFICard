@@ -177,7 +177,10 @@ export const environment = {
     "Fruit Baskets",
     "Gift Sets",
     "Candies and Chocolates",
-    "Candles"
+    "Candles",
+    "Jewelry",
+    "Pillows",
+    "Bags"
   ],
   giftsrecipients: [
     "For All",

@@ -210,28 +210,28 @@ export class NewSearchResultsComponent implements OnInit, OnDestroy {
           results = [...results, gift];
           return;
         }
-        if (gift.name.toLowerCase().includes(search.toLowerCase()))  {
+        if (gift.name.toLowerCase().includes(search.toLowerCase())) {
           results = [...results, gift];
           return;
         }
-        if (searches.some(search => gift.name.toLowerCase().includes(search.toLowerCase())))  {
+        if (searches.some(search => gift.name.toLowerCase().includes(search.toLowerCase()))) {
           results = [...results, gift];
           return;
         }
-        if (gift.events.some(event => event.toLowerCase().includes(this.search.toLowerCase())))  {
+        if (gift.events.some(event => event.toLowerCase().includes(this.search.toLowerCase()))) {
           results = [...results, gift];
           return;
         }
-        if (searches.some(search => gift.events.some(event => event.toLowerCase().includes(search.toLowerCase()))))  {
+        if (searches.some(search => gift.events.some(event => event.toLowerCase().includes(search.toLowerCase())))) {
           results = [...results, gift];
           return;
         }
         if (gift.recipients) {
-          if (gift.recipients.some(recipient => recipient.toLowerCase().includes(search.toLowerCase())))  {
+          if (gift.recipients.some(recipient => recipient.toLowerCase().includes(search.toLowerCase()))) {
             results = [...results, gift];
             return;
           }
-          if (searches.some(search => gift.recipients!.some(recipient => recipient.toLowerCase().includes(search.toLowerCase()))))  {
+          if (searches.some(search => gift.recipients!.some(recipient => recipient.toLowerCase().includes(search.toLowerCase())))) {
             results = [...results, gift];
             return;
           }
@@ -257,16 +257,11 @@ export class NewSearchResultsComponent implements OnInit, OnDestroy {
       this.postcardloaded = true;
       this.check();
     });
-    if (this.location === 'ph') {
-      this.giftService.getAll().then(items => {
-        this.gifts = this.giftSearch(this.search, items)
-        this.giftloaded = true;
-        this.check();
-      });
-    }
-    else {
-      this.giftloaded = true
-    }
+    this.giftService.getAll().then(items => {
+      this.gifts = this.giftSearch(this.search, items.filter(x => x.locations.includes(this.location)))
+      this.giftloaded = true;
+      this.check();
+    });
   }
 
   check() {

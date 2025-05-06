@@ -25,6 +25,7 @@ import { INewCard, NewCard } from 'src/app/new-models/new-card';
 import { IConfig } from 'src/app/new-models/new-config';
 import { NewConfigService } from 'src/app/new-services/new-config.service';
 import { INewCart, TotalCart } from 'src/app/new-models/new-cart';
+import { NewGiftService } from 'src/app/new-services/new-gift.service';
 
 @Component({
   selector: 'app-new-checkout',
@@ -41,6 +42,7 @@ export class NewCheckoutComponent implements OnInit, OnDestroy {
   cardService: NewCardService;
   stickerService: NewStickerService;
   postcardService: NewPostcardService;
+  giftService: NewGiftService;
   fileService: NewFileService;
   modalService: NgbModal;
   offCanvas: NgbOffcanvas;
@@ -58,6 +60,7 @@ export class NewCheckoutComponent implements OnInit, OnDestroy {
     _cardService: NewCardService,
     _stickerService: NewStickerService,
     _postcardService: NewPostcardService,
+    _giftService: NewGiftService,
     _fileService: NewFileService,
     _modalService: NgbModal,
     _offCanvas: NgbOffcanvas,
@@ -74,6 +77,7 @@ export class NewCheckoutComponent implements OnInit, OnDestroy {
     this.cardService = _cardService;
     this.stickerService = _stickerService;
     this.postcardService = _postcardService;
+    this.giftService = _giftService;
     this.fileService = _fileService;
     this.modalService = _modalService;
     this.offCanvas = _offCanvas;
@@ -103,7 +107,7 @@ export class NewCheckoutComponent implements OnInit, OnDestroy {
   totalPayment: TotalPayment;
   iUser: INewUser | undefined;
   addressConfig: INewAddressConfig[] = [];
-    
+
   accepted: boolean = false;
   verifySubmitted: boolean = false;
   isProcessingSpecialCode: boolean = false;
@@ -128,7 +132,7 @@ export class NewCheckoutComponent implements OnInit, OnDestroy {
       let iCart = await this.cartService.get(id);
       if (iCart) temp.push(iCart);
     }
-    let totalCart: TotalCart = new TotalCart(this.cartService, this.cardService, temp, this.config, false);
+    let totalCart: TotalCart = new TotalCart(this.cartService, this.cardService, this.stickerService, this.postcardService, this.giftService, temp, this.config, false);
     await totalCart.initializeDiscount();
     this.totalPayment = new TotalPayment(this.locationService, fees, totalCart.carts);
     this.totalPayment.setAddressConfig(this.addressConfig);

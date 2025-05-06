@@ -3,8 +3,12 @@ import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { NewCart } from 'src/app/new-models/new-cart';
 import { LocationType } from 'src/app/new-models/new-enum';
+import { NewCardService } from 'src/app/new-services/new-card.service';
 import { NewCartService } from 'src/app/new-services/new-cart.service';
+import { NewGiftService } from 'src/app/new-services/new-gift.service';
 import { NewLocationService } from 'src/app/new-services/new-location.service';
+import { NewPostcardService } from 'src/app/new-services/new-postcard.service';
+import { NewStickerService } from 'src/app/new-services/new-sticker.service';
 
 @Component({
   selector: 'app-in-your-cart-mobile',
@@ -14,17 +18,29 @@ import { NewLocationService } from 'src/app/new-services/new-location.service';
 export class InYourCartMobileComponent implements OnInit {
 
   cartService: NewCartService;
+  cardService: NewCardService;
+  stickerService: NewStickerService;
+  postcardService: NewPostcardService;
+  giftService: NewGiftService;
   locationService: NewLocationService;
   router: Router;
   toastController: ToastController;
 
   constructor(
     _cartService: NewCartService,
+    _cardService: NewCardService,
+    _stickerService: NewStickerService,
+    _postcardService: NewPostcardService,
+    _giftService: NewGiftService,
     _locationService: NewLocationService,
     _router: Router,
     _toastController: ToastController
   ) {
     this.cartService = _cartService;
+    this.cardService = _cardService;
+    this.stickerService = _stickerService;
+    this.postcardService = _postcardService;
+    this.giftService = _giftService;
     this.locationService = _locationService;
     this.router = _router;
     this.toastController = _toastController
@@ -38,7 +54,10 @@ export class InYourCartMobileComponent implements OnInit {
     let iCarts = await this.cartService.getAll();
     iCarts.reverse();
     for await (let iCart of iCarts) {
-      this.carts.push(new NewCart(iCart));
+      let cart = new NewCart(iCart, this.cardService, this.stickerService, this.postcardService, this.giftService)
+      await cart.loadItem();
+      this.carts.push(cart);
+
     }
     this.computeTotal();
   }
@@ -47,7 +66,7 @@ export class InYourCartMobileComponent implements OnInit {
     let type = this.carts.find(x => x.id === id)!.type;
     this.carts = this.carts.filter(x => x.id !== id);
     await this.cartService.delete(id);
-    this.computeTotal();    
+    this.computeTotal();
 
     let message: string = '';
 
@@ -95,7 +114,7 @@ export class InYourCartMobileComponent implements OnInit {
     this.router.navigate(['/new/cart']);
   }
 
-  close(){
+  close() {
   }
 
 }

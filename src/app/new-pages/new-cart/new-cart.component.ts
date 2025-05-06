@@ -11,7 +11,10 @@ import { INewUser } from 'src/app/new-models/new-user';
 import { NewCardService } from 'src/app/new-services/new-card.service';
 import { NewCartService } from 'src/app/new-services/new-cart.service';
 import { NewConfigService } from 'src/app/new-services/new-config.service';
+import { NewGiftService } from 'src/app/new-services/new-gift.service';
 import { NewLocationService } from 'src/app/new-services/new-location.service';
+import { NewPostcardService } from 'src/app/new-services/new-postcard.service';
+import { NewStickerService } from 'src/app/new-services/new-sticker.service';
 import { NewStorageService } from 'src/app/new-services/new-storage.service';
 
 @Component({
@@ -28,11 +31,17 @@ export class NewCartComponent implements OnInit, OnDestroy {
   router: Router;
   ref: ChangeDetectorRef;
   cardService: NewCardService;
+  stickerService: NewStickerService;
+  postcardService: NewPostcardService;
+  giftService: NewGiftService;
   configService: NewConfigService;
   config: IConfig;
 
   constructor(
     _cardService: NewCardService,
+    _stickerService: NewStickerService,
+    _postcardService: NewPostcardService,
+    _giftService: NewGiftService,
     _cartService: NewCartService,
     _storageService: NewStorageService,
     _locationService: NewLocationService,
@@ -40,9 +49,12 @@ export class NewCartComponent implements OnInit, OnDestroy {
     _router: Router,
     _ref: ChangeDetectorRef,
     _configService: NewConfigService,
-  ) { 
+  ) {
     this.configService = _configService;
     this.cardService = _cardService;
+    this.stickerService = _stickerService;
+    this.postcardService = _postcardService;
+    this.giftService = _giftService;
     this.cartService = _cartService;
     this.storageService = _storageService;
     this.locationService = _locationService;
@@ -83,7 +95,7 @@ export class NewCartComponent implements OnInit, OnDestroy {
     this.loading = true;
     this.ref.detectChanges();
     let items: INewCart[] = await this.cartService.getAll();
-    this.totalCart = new TotalCart(this.cartService, this.cardService, items, this.config);
+    this.totalCart = new TotalCart(this.cartService, this.cardService, this.stickerService, this.postcardService, this.giftService, items, this.config);
     this.loading = false;
     this.ref.detectChanges();
   }

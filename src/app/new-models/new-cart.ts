@@ -1,11 +1,15 @@
 import { INewDiscount } from './new-discount';
 import { NewLocationService } from "../new-services/new-location.service";
-import { ItemType, LocationType } from "./new-enum";
+import { IModelType, ItemType, LocationType } from "./new-enum";
 import { INewPersonalize } from "./new-personalize";
 import { IConfig, IPromo } from './new-config';
 import { NewCardService } from '../new-services/new-card.service';
 import { INewCard, NewCard } from './new-card';
 import { NewCartService } from '../new-services/new-cart.service';
+import { NewStickerService } from '../new-services/new-sticker.service';
+import { NewPostcardService } from '../new-services/new-postcard.service';
+import { NewGiftService } from '../new-services/new-gift.service';
+import { INewGift } from './new-gift';
 
 export interface INewCart {
     id: string;
@@ -29,6 +33,11 @@ export interface INewCart {
 }
 
 export class NewCart {
+    cardService: NewCardService;
+    stickerService: NewStickerService;
+    postcardService: NewPostcardService;
+    giftService: NewGiftService;
+
     id: string;
     itemId: string;
     userId: string;
@@ -48,7 +57,25 @@ export class NewCart {
     promoPrice: number;
     datetime: number;
 
-    constructor(value: INewCart) {
+    item: IModelType;
+    isActive: boolean = true;
+    isAvailable: boolean = true;
+
+    locationService: NewLocationService;
+    location: LocationType;
+
+    constructor(
+        value: INewCart,
+        _cardService: NewCardService,
+        _stickerService: NewStickerService,
+        _postcardService: NewPostcardService,
+        _giftService: NewGiftService
+    ) {
+        this.cardService = _cardService;
+        this.stickerService = _stickerService;
+        this.postcardService = _postcardService;
+        this.giftService = _giftService;
+
         this.id = value.id;
         this.itemId = value.itemId;
         this.userId = value.userId;
@@ -63,6 +90,29 @@ export class NewCart {
         this.personalize = value.personalize;
         this.mark = value.mark;
         this.datetime = value.datetime;
+
+        this.locationService = new NewLocationService();
+        this.location = this.locationService.getlocation();
+    }
+
+    async loadItem() {
+        if (this.type === 'card') {
+            this.item = await this.cardService.get(this.itemId);
+            this.isActive = this.item.active;
+        }
+        else if (this.type === 'sticker') {
+            this.item = await this.stickerService.get(this.itemId);
+            this.isActive = this.item.active;
+        }
+        else if (this.type === 'postcard') {
+            this.item = await this.postcardService.get(this.itemId);
+            this.isActive = this.item.active;
+        }
+        else if (this.type === 'gift') {
+            this.item = await this.giftService.get(this.itemId);
+            this.isActive = this.item.active;
+            this.isAvailable = (this.item as INewGift).locations.includes(this.location)
+        }
     }
 
     getOriginalPrice() {
@@ -126,6 +176,9 @@ export class NewCart {
 export class TotalCart {
     cartService: NewCartService;
     cardService: NewCardService;
+    stickerService: NewStickerService;
+    postcardService: NewPostcardService;
+    giftService: NewGiftService;
     carts: NewCart[] = [];
     config: IConfig;
     location: LocationType;
@@ -136,9 +189,21 @@ export class TotalCart {
     missingPromoText: string = '';
     missingPromoType: ItemType | undefined = undefined;
 
-    constructor(_cartService: NewCartService, _cardService: NewCardService, _iNewCarts: INewCart[], _config: IConfig, initialize: boolean = true) {
+    constructor(
+        _cartService: NewCartService, 
+        _cardService: NewCardService, 
+        _stickerService: NewStickerService,
+        _postcardService: NewPostcardService,
+        _giftService: NewGiftService,
+        _iNewCarts: INewCart[], 
+        _config: IConfig, 
+        initialize: boolean = true
+    ) {
         this.cartService = _cartService;
         this.cardService = _cardService;
+        this.stickerService = _stickerService;
+        this.postcardService = _postcardService;
+        this.giftService = _giftService;
         this.config = _config;
         this.initializeCarts(_iNewCarts);
         if (initialize) {
@@ -146,13 +211,18 @@ export class TotalCart {
         }
     }
 
-    initializeCarts(values: INewCart[]) {
+    async initializeCarts(values: INewCart[]) {
         let items: NewCart[] = [];
-        values.forEach(value => {
-            let cart: NewCart = new NewCart(value);
+        for await (let value of values) {
+            let cart: NewCart = new NewCart(value, this.cardService, this.stickerService, this.postcardService, this.giftService);
+            await cart.loadItem();
+            if (cart.isActive === false || cart.isAvailable === false) {
+                if (cart.mark) this.changeMark(cart.id, false)
+            }
             items.push(cart);
-        })
+        }
         this.carts = [...items];
+        this.calculate()
     }
 
     setCarts(values: INewCart[]) {
@@ -193,11 +263,11 @@ export class TotalCart {
     async calculate() {
         this.total = 0;
         this.calculatePromo();
-        this.carts.filter(x => x.mark === true).forEach(cart => this.total = this.total + cart.getPrice());
+        this.carts.filter(x => x.isActive === true).filter(x => x.isAvailable === true).filter(x => x.mark === true).forEach(cart => this.total = this.total + cart.getPrice());
     }
 
     calculatePromo() {
-        if (this.carts.length === 0) {
+        if (this.carts.filter(x => x.isActive === true).filter(x => x.isAvailable === true).length === 0) {
             this.isMissingAPromo = false;
             this.missingPromoText = '';
             return;
@@ -205,7 +275,7 @@ export class TotalCart {
 
         let promos = this.getActivePromos();
         if (promos.length > 0) {
-            this.carts.forEach(cart => {
+            this.carts.filter(x => x.isActive === true).filter(x => x.isAvailable === true).forEach(cart => {
                 cart.isPromo = false;
                 cart.isPromoAdjusted = false;
                 cart.promo = undefined;
@@ -214,7 +284,7 @@ export class TotalCart {
 
             promos.forEach(promo => {
                 if (promo.type === 'discount on 2nd item') {
-                    let promocart: NewCart[][] = this.carts.filter(x => x.mark === true).filter(x => x.isPromo !== true).filter(x => x.type === promo.itemtype).reduce((result: NewCart[][], item, index) => {
+                    let promocart: NewCart[][] = this.carts.filter(x => x.isActive === true).filter(x => x.isAvailable === true).filter(x => x.mark === true).filter(x => x.isPromo !== true).filter(x => x.type === promo.itemtype).reduce((result: NewCart[][], item, index) => {
                         if (index % 2 === 0) result.push([item]);
                         else result[result.length - 1].push(item);
                         return result;
@@ -247,8 +317,8 @@ export class TotalCart {
                     })
                 }
                 else if (promo.type === 'free on 2nd item') {
-                    let initialIds: string[] = [...this.carts.filter(x => x.mark === true).filter(x => x.isPromo !== true).filter(x => x.type === promo.itemtype).map(x => x.id)];
-                    let freeIds: string[] = [...this.carts.filter(x => x.mark === true).filter(x => x.isPromo !== true).filter(x => x.type === promo.discountedtype).map(x => x.id)];
+                    let initialIds: string[] = [...this.carts.filter(x => x.isActive === true).filter(x => x.isAvailable === true).filter(x => x.mark === true).filter(x => x.isPromo !== true).filter(x => x.type === promo.itemtype).map(x => x.id)];
+                    let freeIds: string[] = [...this.carts.filter(x => x.isActive === true).filter(x => x.isAvailable === true).filter(x => x.mark === true).filter(x => x.isPromo !== true).filter(x => x.type === promo.discountedtype).map(x => x.id)];
                     initialIds.forEach((id, index) => {
                         if (index < freeIds.length) {
                             let initial = this.carts.find(x => x.id === id);
@@ -299,7 +369,7 @@ export class TotalCart {
     }
 
     isMarkAll() {
-        return this.carts.filter(x => x.mark === false).length === 0;
+        return this.carts.filter(x => x.isActive === true).filter(x => x.isAvailable === true).filter(x => x.mark === false).length === 0;
     }
 
     async changeMark(id: string, mark: boolean) {
@@ -310,7 +380,7 @@ export class TotalCart {
     }
 
     async changeMarkAll(mark: boolean) {
-        for await (let cart of this.carts) {
+        for await (let cart of this.carts.filter(x => x.isActive === true).filter(x => x.isAvailable === true)) {
             cart.mark = mark;
             await this.cartService.update(cart as INewCart);
         }

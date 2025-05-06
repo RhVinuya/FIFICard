@@ -4,8 +4,8 @@
         <img [src]="secondary" [alt]="_card.name" class="card-img hover-image" *ngIf="secondary !== ''" onContextMenu="return false;">
     </div>
     <div class="c-heart">
-        <app-new-wish-indicator [id]="_card.id"></app-new-wish-indicator>
-        <div class="c-featured" *ngIf="_card.featured === true" title="Featured Card">
+        <app-new-wish-indicator [id]="_card.id" *ngIf="_card.active"></app-new-wish-indicator>
+        <div class="c-featured" *ngIf="_card.featured === true && _card.active" title="Featured Card">
             <i class="fa fa-fire" aria-hidden="true"></i>
         </div>
     </div>
@@ -18,12 +18,12 @@
         </div>
         <h4 class="card-description text-gray my-1">{{_card.description !== '' ? _card.description : _card.details}}</h4>
         <div class="space-around h-30">
-            <div *ngIf="_card.isDiscounted() === false">
+            <div *ngIf="_card.isDiscounted() === false && _card.active">
                 <label class="text-purple"><b>{{_card.priceDisplay()}}</b></label>
                 <label class="text-gray mx-1" *ngIf="_card.signAndSend">-</label>
                 <label class="text-blue" *ngIf="_card.signAndSend"><b>{{_card.getPersonalizePriceDisplay()}}</b></label>
             </div>
-            <div *ngIf="_card.isDiscounted() === true" style="flex-grow: 2; display: flex; flex-direction: row; align-items: center; justify-content: flex-start;">
+            <div *ngIf="_card.isDiscounted() === true && _card.active" style="flex-grow: 2; display: flex; flex-direction: row; align-items: center; justify-content: flex-start;">
                 <h5 class="my-0 text-purple" [ngClass]="isFree === false ? 'card-title' : 'card-title-red'">{{_card.priceDisplay()}}</h5>
                 <h5 class="my-0 ms-1 slanted-strike me-2" style="font-size: 10px;" [ngClass]="isFree === false ? 'card-title' : 'card-title-red'"><s>{{_card.originalPriceDisplay()}}</s></h5>
                 <label class="text-gray mx-1" *ngIf="_card.signAndSend">-</label>
@@ -33,12 +33,13 @@
             <app-new-rate size="sm" [rate]="rate"></app-new-rate>
         </div>
         <div class="row">
-            <div [ngClass]="card.signAndSend ? 'col-6 pe-1' : 'col-12'">
+            <div [ngClass]="card.signAndSend ? 'col-6 pe-1' : 'col-12'" *ngIf="_card.active">
                 <app-new-add-cart-button class="me-1" type="card" [item]="card" [fullwidth]="true"></app-new-add-cart-button>
             </div>
-            <div class="col-6 ps-1" *ngIf="card.signAndSend">
+            <div class="col-6 ps-1" *ngIf="card.signAndSend && _card.active">
                 <app-new-personalize-button [iCard]="card" [fullwidth]="true"></app-new-personalize-button>
             </div>
+            <label class="text-danger mb-2" *ngIf="_card.active === false"><b class="mb-2">This item is not longer active</b></label>
         </div>
     </div>
 </div>

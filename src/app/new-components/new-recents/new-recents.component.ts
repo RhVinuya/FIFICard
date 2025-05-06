@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { NgbCarousel } from '@ng-bootstrap/ng-bootstrap';
 import { IModelType, LocationType } from 'src/app/new-models/new-enum';
+import { INewGift } from 'src/app/new-models/new-gift';
 import { NewLocationService } from 'src/app/new-services/new-location.service';
 import { NewStorageService } from 'src/app/new-services/new-storage.service';
 
@@ -47,8 +48,16 @@ export class NewRecentsComponent {
 
 
   ngOnInit() {
-    this.location = this.locationService.getlocation()
-    this.items = this.storageService.getRecents();
+    this.location = this.locationService.getlocation();
+    let recents = this.storageService.getRecents();
+    recents.forEach(recent => {
+      let isActive: boolean = recent.active;
+      let isAvailable: boolean = true
+      if (recent.type === 'gift' && (recent as INewGift).locations !== undefined) {
+        isAvailable = (recent as INewGift).locations.includes(this.location)
+      }
+      if (isActive && isAvailable) this.items = [...this.items, recent];
+    })
     this.batches = this.loadItems();
   }
 

@@ -85,7 +85,8 @@ export class CartItemMobileComponent implements OnInit, OnChanges  {
     
     this.config = await this.configService.get();
 
-    this._cart = new NewCart(cart);
+    this._cart = new NewCart(cart, this.cardService, this.stickerService, this.postcardService, this.giftService);
+    await this._cart.loadItem();
     this.mark = this._cart.mark;
 
     if (this._cart.type === 'card') {
