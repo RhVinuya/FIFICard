@@ -291,3 +291,11 @@ body {
 ion-content {
   z-index: 999;
 }
+
+.min-content {
+  min-height: 500px !important;
+}
+
+.cursor{
+  cursor: pointer !important;
+}

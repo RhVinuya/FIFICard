@@ -1,0 +1,94 @@
+<div class="h-100 content">
+    <div class="mxw-1920px mt-2 div-title">
+        <app-new-title title='{{cards.length + stickers.length + postcards.length + gifts.length}} results for "{{search}}"'
+            [breadcrumbs]="breadcrumbs"></app-new-title>
+    </div>
+
+    <div class="mxw-1920px row mt-4">
+        <div class="col-md-2 col-sm-12 px-0">
+            <div style="position: sticky; top:99px">
+                <div class="accordion accordion-flush">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button show" type="button" data-bs-toggle="collapse" data-bs-target="#type" aria-expanded="false"
+                                aria-controls="flush-collapseOne">
+                                TYPE
+                            </button>
+                        </h2>
+                        <div id="type" class="accordion-collapse collapse show" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">
+                                <label class="mb-2">
+                                    <input class="form-check-input me-2" type="radio" name="type" value="card" [checked]="type === 'card'"
+                                        (change)="onChangeType('card')">CARDS
+                                    ({{cards.length}})
+                                </label>
+                                <label class="mb-2">
+                                    <input class="form-check-input me-2" type="radio" name="type" value="sticker" [checked]="type === 'sticker'"
+                                        (change)="onChangeType('sticker')">STICKERS
+                                    ({{stickers.length}})
+                                </label>
+                                <label class="mb-2">
+                                    <input class="form-check-input me-2" type="radio" name="type" value="postcard" [checked]="type === 'postcard'"
+                                        (change)="onChangeType('postcard')">POSTCARDS
+                                    ({{postcards.length}})
+                                </label>
+                                <label class="mb-2" *ngIf="location === 'ph'">
+                                    <input class="form-check-input me-2" type="radio" name="type" value="gift" [checked]="type === 'gift'"
+                                        (change)="onChangeType('gift')">GIFTS
+                                    ({{gifts.length}})
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-10 col-sm-12">
+            <app-new-loading [loading]="loading"></app-new-loading>
+            <div *ngIf="type === 'card'">
+                <div class="row px-2">
+                    <div class="col-md-3 col-sm-4 col-xs-6 mb-4" *ngFor="let item of cards.slice(0, displayCount)">
+                        <app-new-card-thumb [card]="item"></app-new-card-thumb>
+                    </div>
+                </div>
+                <div class="load py-3" *ngIf="cards.length > 12 && displayCount <= cards.length">
+                    <label class="mb-3">{{displayCount.toLocaleString()}} of {{cards.length.toLocaleString()}}</label>
+                    <button type="button" class="btn loadmore" (click)="loadmore()">SHOW MORE</button>
+                </div>
+            </div>
+            <div *ngIf="type === 'sticker'">
+                <div class="row px-2">
+                    <div class="col-md-3 col-sm-4 col-xs-6 mb-4" *ngFor="let item of stickers.slice(0, displayCount)">
+                        <app-new-sticker-thumb [sticker]="item"></app-new-sticker-thumb>
+                    </div>
+                </div>
+                <div class="load py-3" *ngIf="stickers.length > 12 && displayCount <= stickers.length">
+                    <label class="mb-3">{{displayCount.toLocaleString()}} of {{stickers.length.toLocaleString()}}</label>
+                    <button type="button" class="btn loadmore" (click)="loadmore()">SHOW MORE</button>
+                </div>
+            </div>
+            <div *ngIf="type === 'postcard'">
+                <div class="row px-2">
+                    <div class="col-md-3 col-sm-4 col-xs-6 mb-4" *ngFor="let item of postcards.slice(0, displayCount)">
+                        <app-new-postcard-thumb [postcard]="item"></app-new-postcard-thumb>
+                    </div>
+                </div>
+                <div class="load py-3" *ngIf="postcards.length > 12 && displayCount <= postcards.length">
+                    <label class="mb-3">{{displayCount.toLocaleString()}} of {{postcards.length.toLocaleString()}}</label>
+                    <button type="button" class="btn loadmore" (click)="loadmore()">SHOW MORE</button>
+                </div>
+            </div>
+            <div *ngIf="type === 'gift'">
+                <div class="row px-2">
+                    <div class="col-md-3 col-sm-4 col-xs-6 mb-4" *ngFor="let item of gifts.slice(0, displayCount)">
+                        <app-new-gift-thumb [gift]="item"></app-new-gift-thumb>
+                    </div>
+                </div>
+                <div class="load py-3" *ngIf="gifts.length > 12 && displayCount <= gifts.length">
+                    <label class="mb-3">{{displayCount.toLocaleString()}} of {{gifts.length.toLocaleString()}}</label>
+                    <button type="button" class="btn loadmore" (click)="loadmore()">SHOW MORE</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 
 export interface IBreadcrumb {
   title: string;
@@ -14,13 +14,11 @@ export interface IBreadcrumb {
 export class NewTitleComponent implements OnInit {
 
   @Input() set title(_value: string) {
-    this._title = _value
+    this._title = _value;
   }
   @Input() set breadcrumbs(_value: IBreadcrumb[]) {
     this._breadcrumbs = _value;
   }
-
-  constructor() { }
 
   _title: string = '';
   _breadcrumbs: IBreadcrumb[] = []

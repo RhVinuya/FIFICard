@@ -90,35 +90,35 @@ export class NewPostcardsComponent implements OnInit {
   }
 
   filterBySearch(search: string, items: INewPostcard[]): INewPostcard[] {
-      if (search === '') return [...items];
-      else {
-        let searches = search.split(' ');
-        let results: INewPostcard[] = [];
-        [...items].forEach(postcard => {
-          if (postcard.code === search) {
-            results = [...results, postcard];
-            return;
-          }
-          if (postcard.name.toLowerCase().includes(search.toLowerCase())) {
-            results = [...results, postcard];
-            return;
-          }
-          if (searches.some(search => postcard.name.toLowerCase().includes(search.toLowerCase()))) {
-            results = [...results, postcard];
-            return;
-          }  
-          if (postcard.events.some(event => event.toLowerCase().includes(this.searchstring.toLowerCase()))) {
-            results = [...results, postcard];
-            return;
-          }
-          if (searches.some(search => postcard.events.some(event => event.toLowerCase().includes(search.toLowerCase())))) {
-            results = [...results, postcard];
-            return;
-          }
-        })
-        return results;
-      }
+    if (search === '') return [...items];
+    else {
+      let searches = search.split(' ');
+      let results: INewPostcard[] = [];
+      [...items].forEach(postcard => {
+        if (postcard.code === search) {
+          results = [...results, postcard];
+          return;
+        }
+        if (postcard.name.toLowerCase().includes(search.toLowerCase())) {
+          results = [...results, postcard];
+          return;
+        }
+        if (searches.some(search => postcard.name.toLowerCase().includes(search.toLowerCase()))) {
+          results = [...results, postcard];
+          return;
+        }
+        if (postcard.events.some(event => event.toLowerCase().includes(this.searchstring.toLowerCase()))) {
+          results = [...results, postcard];
+          return;
+        }
+        if (searches.some(search => postcard.events.some(event => event.toLowerCase().includes(search.toLowerCase())))) {
+          results = [...results, postcard];
+          return;
+        }
+      })
+      return results;
     }
+  }
 
   loadDisplay() {
     if (this.postcards.length > 0) {

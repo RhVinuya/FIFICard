@@ -1,51 +1,57 @@
 <div class="h-100">
     <div class="mxw-1920px mt-2 div-title">
         <app-new-title title="Cards" [breadcrumbs]="breadcrumbs"></app-new-title>
-        <app-new-search placeholder="Search for Cards" [enable]="!loading" (onsearch)="onSearch($event)"></app-new-search>
     </div>
     <div class="py-3 bg-light">
         <div class="mxw-1920px">
-            <app-new-events-options [events]="activeevents" [selected]="events.length > 0 ? events[0] : ''" (onClick)="onClickEvent($event)"></app-new-events-options>
+            <app-new-events-options [events]="activeevents" [selected]="events.length > 0 ? events[0] : ''"
+                (onClick)="onClickEvent($event)"></app-new-events-options>
         </div>
     </div>
     <div class="mxw-1920px row mt-4">
         <div class="col-md-2 col-sm-12 px-0">
             <div style="position: sticky; top:99px">
-            <h3 class="label-header lh-h3" style="margin-bottom: 10px;">Filter</h3>
-            <div class="accordion accordion-flush">
-                <div class="accordion-item">
-                    <h2 class="accordion-header">
-                        <button class="accordion-button show" [ngClass]="recipient ? '' : 'collapsed'" type="button" data-bs-toggle="collapse" data-bs-target="#recipient" aria-expanded="false" aria-controls="flush-collapseOne">
-                            RECIPIENT
-                        </button>
-                    </h2>
-                    <div id="recipient" class="accordion-collapse collapse" [ngClass]="recipient ? 'show' : ''" data-bs-parent="#accordionFlushExample">
-                        <div class="accordion-body">
-                            <label class="mb-1" *ngFor="let option of recipientoptions">
-                                <input class="form-check-input me-2" type="checkbox" [value]="option.main" (change)="onClickRecipient($event)" [defaultChecked]="option.main === recipient">
-                                {{option.main.toUpperCase()}}
-                            </label>
+                <h3 class="label-header lh-h3" style="margin-bottom: 10px;">Filter</h3>
+                <div class="accordion accordion-flush">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button show" [ngClass]="recipient ? '' : 'collapsed'" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#recipient" aria-expanded="false" aria-controls="flush-collapseOne">
+                                RECIPIENT
+                            </button>
+                        </h2>
+                        <div id="recipient" class="accordion-collapse collapse" [ngClass]="recipient ? 'show' : ''"
+                            data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">
+                                <label class="mb-1" *ngFor="let option of recipientoptions">
+                                    <input class="form-check-input me-2" type="checkbox" [value]="option.main" (change)="onClickRecipient($event)"
+                                        [defaultChecked]="option.main === recipient">
+                                    {{option.main.toUpperCase()}}
+                                </label>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="accordion-item">
-                    <h2 class="accordion-header">
-                        <button class="accordion-button show" [ngClass]="filter ? '' : 'collapsed'" data-bs-toggle="collapse" data-bs-target="#cardtype" aria-expanded="false" aria-controls="flush-collapseOne">
-                            CARD TYPE
-                        </button>
-                    </h2>
-                    <div id="cardtype" class="accordion-collapse collapse" [ngClass]="filter ? 'show' : ''"data-bs-parent="#accordionFlushExample">
-                        <div class="accordion-body">
-                            <label class="mb-1" *ngFor="let option of filteroptions">
-                                <input class="form-check-input me-2" type="checkbox" [value]="option" (change)="onClickFilter($event)" [defaultChecked]="option === filter">
-                                {{option}}
-                            </label>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button show" [ngClass]="filter ? '' : 'collapsed'" data-bs-toggle="collapse"
+                                data-bs-target="#cardtype" aria-expanded="false" aria-controls="flush-collapseOne">
+                                CARD TYPE
+                            </button>
+                        </h2>
+                        <div id="cardtype" class="accordion-collapse collapse" [ngClass]="filter ? 'show' : ''"
+                            data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">
+                                <label class="mb-1" *ngFor="let option of filteroptions">
+                                    <input class="form-check-input me-2" type="checkbox" [value]="option" (change)="onClickFilter($event)"
+                                        [defaultChecked]="option === filter">
+                                    {{option}}
+                                </label>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
         </div>
         <div class="col-md-10 col-sm-12">
             <!--

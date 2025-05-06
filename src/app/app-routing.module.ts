@@ -101,6 +101,7 @@ import { CheckoutMobileComponent } from "./pages-mobile/checkout-mobile/checkout
 import { BundlesMobileComponent } from "./pages-mobile/bundles-mobile/bundles-mobile.component";
 import { WishlistMobileComponent } from "./pages-mobile/wishlist-mobile/wishlist-mobile.component";
 import { PaymentCardMobileComponent } from './pages-mobile/payment-card-mobile/payment-card-mobile.component';
+import { NewSearchResultsComponent } from './new-pages/new-search-results/new-search-results.component';
 
 const routes: Routes = [
   {
@@ -457,6 +458,10 @@ const routes: Routes = [
             component: NewGiftsComponent,
           },
         ],
+      },
+      {
+        path: "search/:search",
+        component: NewSearchResultsComponent
       },
       {
         path: "profile",

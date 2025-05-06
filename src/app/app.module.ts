@@ -278,6 +278,7 @@ import { NewRecentItemComponent } from './new-components/new-recents/new-recent-
 import { NewPromoSuggestionsComponent } from './new-components/new-promo-suggestions/new-promo-suggestions.component';
 import { NewPromoSuggestionsItemComponent } from './new-components/new-promo-suggestions/new-promo-suggestions-item/new-promo-suggestions-item.component';
 import { NewSearchComponent } from './new-components/new-search/new-search.component';
+import { NewSearchResultsComponent } from './new-pages/new-search-results/new-search-results.component';
 
 
 @NgModule({
@@ -531,7 +532,8 @@ import { NewSearchComponent } from './new-components/new-search/new-search.compo
     NewPromoSuggestionsComponent,
     NewPromoSuggestionsComponent,
     NewPromoSuggestionsItemComponent,
-    NewSearchComponent
+    NewSearchComponent,
+    NewSearchResultsComponent
   ],
   imports: [
     BrowserModule,

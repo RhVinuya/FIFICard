@@ -1,3 +1,10 @@
 <form [formGroup]="form" (submit)="onSubmit()">
-    <ion-searchbar animated="true" [placeholder]="placeholder" formControlName="search" [disabled]="!available" (ionClear)="onClear()"></ion-searchbar>
+    <div class="search-bar">
+        <i class="fa fa-search"></i>
+        <input placeholder="Search our site" list="suggestions" (input)="onInput($event)" formControlName="search" />
+        <i class="fa fa-times cursor close" *ngIf="form.controls.search.value!.length > 0" (click)="onClear()"></i>
+    </div>
+    <datalist id="suggestions">
+      <option *ngFor="let suggestion of suggestions" [value]="suggestion.title">{{suggestion.title}}</option>
+    </datalist>
 </form>

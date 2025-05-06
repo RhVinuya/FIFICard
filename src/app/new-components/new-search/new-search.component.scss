@@ -2,16 +2,38 @@
     font-family: Proxima Nova;
 }
 
-ion-searchbar {
-    width: 100%;
-    --color: #5e17eb;
-    --box-shadow: none;
-    --icon-color: #5e17eb;
-    --placeholder-color: #5e17eb;
-    --placeholder-opacity: 0.5;
+.fa,
+.far,
+.fas {
+    font-family: "Font Awesome 5 Free" !important;
 }
 
-::ng-deep ion-searchbar .searchbar-input-container input {
-    border: 0.5px solid #5e17eb !important;
-    border-radius: 50px !important;
+.search-bar {
+    width: 300px;
+    border: 0.5px solid #cb6ce6 !important;
+    padding-inline: 16px;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-items: center;
+    gap: 8px;
+}
+
+.search-bar i {
+    color: #cb6ce6;
+    margin-block: 7px;
+}
+
+.search-bar input {
+    width: 100%;
+    border: none !important;
+    touch-action: none;
+    outline: none;
+    color: #5e17eb;
+    padding-block: 7px;
+}
+
+.close {
+    color: red !important;
 }

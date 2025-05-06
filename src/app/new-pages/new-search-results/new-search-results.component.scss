@@ -1,0 +1,71 @@
+* {
+    font-family: Proxima Nova;
+}
+
+.content {
+    min-height: 500px;
+}
+
+div.div-title{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.accordion-flush
+{
+    border: 1px solid #4854e0;
+    border-radius: 6px;
+    padding: 10px 10px;
+}
+
+.accordion-header{
+    margin-top: 0px;
+}
+
+.accordion-button{
+    padding: 10px;
+}
+
+.accordion-body{
+    padding-inline: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.max-5 {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.max-5 div {
+    width: 25%;
+    padding-inline: 5px;
+    margin-bottom: 10px;
+}
+
+.load{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.loadmore {
+    border: 0.35px #cb6ce6 solid;
+    color: #fff;
+    background: #cb6ce6;
+    cursor: pointer;
+    padding-inline: 30px;
+    padding-block: 6px;
+    border-radius: 20px;
+    font-weight: bold;
+    display: inline-block;
+}
