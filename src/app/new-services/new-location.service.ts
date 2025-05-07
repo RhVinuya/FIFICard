@@ -19,7 +19,7 @@ export class NewLocationService {
       return 'sg'
     }
     else {
-      return 'us'
+      return 'ph'
     }
   }
 
