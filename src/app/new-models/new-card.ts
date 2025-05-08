@@ -320,8 +320,6 @@ export class NewCard {
             })
         }
 
-        console.log(this.recipients, list)
-
         if (list.length === 0) list.push(environment.recipientdefault);
 
         return max ? list.slice(0, max) : list;

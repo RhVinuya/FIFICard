@@ -153,13 +153,11 @@ export class NewCardsComponent implements OnInit {
     else return [...items].filter(item => {
       return recipients.some(recipient => {
         if (item.recipients) {
-          return item.recipients.some(x => {
-            if (x.toLowerCase() === recipient.toLowerCase()) return true;
+          return item.recipients.some(itemrecipient => {
+            if (itemrecipient.toLowerCase() === recipient.toLowerCase()) return true;
             else {
-              let recep = environment.recipients.find(x => x.main.toLowerCase() === recipient.toLowerCase());
-              if (recep && recep.others) {
-                return recep.others.map(x => x.toLowerCase()).includes(recipient.toLowerCase())
-              }
+              let recep = this.recipientoptions.find(x => x.main.toLowerCase() === recipient.toLowerCase());
+              if (recep && recep.others) return recep.others.map(other => other.toLowerCase()).includes(itemrecipient.toLowerCase())
               else return false;
             }
           })

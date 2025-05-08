@@ -102,7 +102,11 @@ export const environment = {
       main: 'Baby'
     },
     {
-      main: 'Grandparents'
+      main: 'Grandparents',
+      others: [
+        "Grandfather",
+        "Grandmother"
+      ]
     },
     {
       main: 'Friend',
