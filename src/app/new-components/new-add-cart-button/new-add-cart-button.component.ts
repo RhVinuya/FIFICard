@@ -79,6 +79,8 @@ export class NewAddCartButtonComponent implements OnInit {
     }
     else if (this.type === 'gift'){
       this.price = (this.item as INewGift).price;
+      this.sgprice = (this.item as INewGift).sgprice;
+      this.usprice = (this.item as INewGift).usprice;
     }
   }
 
