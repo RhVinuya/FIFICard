@@ -304,7 +304,7 @@ export class NewCard {
     }
 
     getRecipients(max: number | undefined = undefined) {
-        let allowedlist = environment.recipients;
+        let allowedlist = this.config.recipients;
         let list: string[] = [];
 
         if (this.recipients) {
