@@ -311,16 +311,16 @@ export class NewCard {
             allowedlist.forEach(x => {
                 if (x.main.toUpperCase() !== environment.recipientdefault.toUpperCase()) {
                     if (this.recipients!.findIndex(i => i.toUpperCase() === x.main.toUpperCase()) >= 0) list.push(x.main);
-                    else {
-                        if (x.others) {
-                            x.others.forEach(y => {
-                                if (this.recipients!.findIndex(i => i.toUpperCase() === y.toUpperCase()) >= 0) list.push(y);
-                            })
-                        }
+                    if (x.others) {
+                        x.others.forEach(y => {
+                            if (this.recipients!.findIndex(i => i.toUpperCase() === y.toUpperCase()) >= 0) list.push(y);
+                        })
                     }
                 }
             })
         }
+
+        console.log(this.recipients, list)
 
         if (list.length === 0) list.push(environment.recipientdefault);
 
