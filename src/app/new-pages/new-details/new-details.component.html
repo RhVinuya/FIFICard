@@ -72,7 +72,7 @@
                 <img src="/assets/images/poetry-card.png" class="me-2" *ngIf="isPoetry" onContextMenu="return false;">
                 <img src="/assets/images/standard-card.png" class="me-2" *ngIf="isRegular" onContextMenu="return false;">
                 <span class="badge text-bg-secondary i-featured me-2" *ngIf="isFeatured"><i class="fa fa-fire" aria-hidden="true"></i> Featured</span>
-                <img class="me-2" src="/assets/images/icon_free_shipping.png" onContextMenu="return false;">
+                <img class="me-2" src="/assets/images/icon_free_shipping.png" onContextMenu="return false;" *ngIf="location === 'ph'">
             </div>
 
         </div>
