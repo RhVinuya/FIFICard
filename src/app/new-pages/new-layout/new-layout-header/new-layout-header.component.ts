@@ -6,7 +6,6 @@ import { INewUser } from 'src/app/new-models/new-user';
 import { NewCartService } from 'src/app/new-services/new-cart.service';
 import { NewLocationService } from 'src/app/new-services/new-location.service';
 import { NewPersonalizeService } from 'src/app/new-services/new-personalize.service';
-import { NewStorageService } from 'src/app/new-services/new-storage.service';
 import { NewWishlistService } from 'src/app/new-services/new-wishlist.service';
 import { environment } from 'src/environments/environment';
 

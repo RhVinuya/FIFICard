@@ -20,6 +20,8 @@ export interface INewGift {
     featured: boolean;
     type: 'card' | 'sticker' | 'postcard' | 'gift';
     locations: LocationType[];
+    sgshipping: number;
+    usshipping: number;
     created: Timestamp;
     modified: Timestamp;
 }
@@ -39,6 +41,8 @@ export class NewGift {
     active: boolean;
     featured: boolean;
     locations: LocationType[];
+    sgshipping: number;
+    usshipping: number;
     created: Timestamp;
     modified: Timestamp;
     promotag: string[] = [];
@@ -64,6 +68,8 @@ export class NewGift {
         this.active = value.active;
         this.featured = value.featured;
         this.locations = value.locations;
+        this.sgshipping = value.sgshipping
+        this.usshipping = value.usshipping;
         this.created = value.created;
         this.modified = value.modified;
         this.locationService = new NewLocationService();

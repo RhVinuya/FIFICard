@@ -18,6 +18,8 @@ export interface INewSticker {
     active: boolean;
     featured: boolean;
     type: 'card' | 'sticker' | 'postcard' | 'gift';
+    sgshipping: number;
+    usshipping: number;
     created: Timestamp;
     modified: Timestamp;
 
@@ -38,6 +40,8 @@ export class NewSticker {
     usprice: number;
     active: boolean;
     featured: boolean;
+    sgshipping: number;
+    usshipping: number;
     created: Timestamp;
     modified: Timestamp;
 
@@ -58,6 +62,8 @@ export class NewSticker {
         this.usprice = value.usprice;
         this.active = value.active;
         this.featured = value.featured;
+        this.sgshipping = value.sgshipping
+        this.usshipping = value.usshipping;
         this.created = value.created;
         this.modified = value.modified;
 

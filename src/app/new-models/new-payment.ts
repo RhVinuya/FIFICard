@@ -188,8 +188,11 @@ export class TotalPayment {
         else this.payments = environment.payments.sg;
 
         this.fees = _fees;
-
         _carts.forEach(cart => {
+            let shipping: number = 0;
+            if (this.locationService.getlocation() === 'sg') shipping = cart.item.sgshipping;
+            else if (this.locationService.getlocation() === 'us') shipping = cart.item.usshipping;
+
             let item: INewPaymentItem = {
                 id: cart.id,
                 itemId: cart.itemId,
@@ -197,8 +200,8 @@ export class TotalPayment {
                 bundle: cart.bundle,
                 personalize: cart.personalize,
                 price: cart.getPrice(),
-                shipping: 0,
-                total: cart.getPrice()
+                shipping: shipping,
+                total: cart.getPrice() + shipping
             }
             this.items.push(new NewPaymentItem(item, this.locationService.getlocation()))
         })
@@ -274,6 +277,7 @@ export class TotalPayment {
                 }
             }
         }
+        /*
         else {
             this.items.forEach(item => {
                 if (item.type === 'card' || item.type === 'postcard') {
@@ -290,6 +294,7 @@ export class TotalPayment {
                 }
             });
         }
+            */
     }
 
     subtotal() {
