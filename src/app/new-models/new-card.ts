@@ -26,6 +26,8 @@ export interface INewCard {
     talkingcard: boolean;
     cardbundle: boolean;
     cardbundleIds: string[];
+    sgshipping: number;
+    usshipping: number;
     created: Timestamp;
     modified: Timestamp;
 }
@@ -50,6 +52,8 @@ export class NewCard {
     talkingcard: boolean;
     cardbundle: boolean;
     cardBundleIds: string[];
+    sgshipping: number;
+    usshipping: number;
     created: Timestamp;
     modified: Timestamp;
 
@@ -81,6 +85,8 @@ export class NewCard {
         this.talkingcard = value.talkingcard;
         this.cardbundle = value.cardbundle;
         this.cardBundleIds = value.cardbundleIds;
+        this.sgshipping = value.sgshipping
+        this.usshipping = value.usshipping;
         this.created = value.created;
         this.modified = value.modified;
 

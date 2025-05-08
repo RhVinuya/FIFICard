@@ -127,13 +127,15 @@ export class NewCheckoutComponent implements OnInit, OnDestroy {
     let ids = this.storageService.getCheckoutList();
     let fees = await this.addressService.getShippingFees();
     this.addressConfig = await this.addressService.getConfig();
-    let temp: INewCart[] = []
+    let temp: INewCart[] = [];
     for await (let id of ids) {
       let iCart = await this.cartService.get(id);
       if (iCart) temp.push(iCart);
     }
     let totalCart: TotalCart = new TotalCart(this.cartService, this.cardService, this.stickerService, this.postcardService, this.giftService, temp, this.config, false);
+    await totalCart.initializeCarts(temp)
     await totalCart.initializeDiscount();
+
     this.totalPayment = new TotalPayment(this.locationService, fees, totalCart.carts);
     this.totalPayment.setAddressConfig(this.addressConfig);
     this.totalPayment.calculate();

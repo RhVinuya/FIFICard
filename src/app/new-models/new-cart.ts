@@ -205,8 +205,8 @@ export class TotalCart {
         this.postcardService = _postcardService;
         this.giftService = _giftService;
         this.config = _config;
-        this.initializeCarts(_iNewCarts);
         if (initialize) {
+            this.initializeCarts(_iNewCarts);
             this.initializeDiscount();
         }
     }

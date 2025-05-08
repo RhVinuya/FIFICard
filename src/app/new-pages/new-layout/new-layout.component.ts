@@ -90,7 +90,7 @@ export class NewLayoutComponent implements OnInit, AfterViewInit {
   calculateHeight() {
     if (this.header === undefined) return;
     let headerHeight = this.header.nativeElement.offsetHeight;
-    console.log('Element height:', headerHeight);
+    //console.log('Element height:', headerHeight);
   }
 
   synchronizeCart(user: INewUser) {
