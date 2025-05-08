@@ -65,7 +65,11 @@ export const development = {
         "main": "Baby"
       },
       {
-        "main": "Grandparents"
+          "main": "Grandparents",
+          "others": [
+              "Grandfather",
+              "Grandmother"
+          ]
       },
       {
         "main": "Friend",
