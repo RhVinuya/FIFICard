@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
-import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { enableIndexedDbPersistence, getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { initializeFirestore, persistentLocalCache, persistentMultipleTabManager } from 'firebase/firestore';
+import { getApp } from 'firebase/app';
 import { getStorage, provideStorage } from '@angular/fire/storage';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -539,7 +541,13 @@ import { NewSearchResultsComponent } from './new-pages/new-search-results/new-se
     BrowserModule,
     AppRoutingModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
-    provideFirestore(() => getFirestore()),
+    provideFirestore(() => {
+      return initializeFirestore(getApp(), {
+        localCache: persistentLocalCache({
+          tabManager: persistentMultipleTabManager() // Optional: sync cache across tabs
+        })
+      });
+    }),
     provideStorage(() => getStorage()),
     provideAuth(() => getAuth()),
     provideRemoteConfig(() => {
