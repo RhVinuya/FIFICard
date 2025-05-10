@@ -67,7 +67,7 @@ export class NewPostcardsComponent implements OnInit {
     this.postcards = [...list.filter(x => x.featured), ...list.filter(x => x.featured !== true)]
 
     this.postcardevents.forEach(event => {
-      let list = this.postcards.filter(x => x.events.filter(y => y.toLowerCase() === event.toLowerCase()))
+      let list = this.postcards.filter(x => x.events.some(y => y.toLowerCase() === event.toLowerCase()))
       if (list.length > 0) this.activeevents.push(event)
     })
 

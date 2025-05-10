@@ -92,7 +92,7 @@ export class NewGiftsComponent implements OnInit {
     this.gifts = [...list.filter(x => x.featured), ...list.filter(x => x.featured !== true)]
 
     this.giftevents.forEach(event => {
-      let list = this.gifts.filter(x => x.events.filter(y => y.toLowerCase() === event.toLowerCase()))
+      let list = this.gifts.filter(x => x.events.some(y => y.toLowerCase() === event.toLowerCase()))
       if (list.length > 0) this.activeevents.push(event)
     })
 
@@ -177,7 +177,6 @@ export class NewGiftsComponent implements OnInit {
 
   loadDisplay() {
     if (this.gifts.length > 0) {
-      console.log(this.events, this.recipients, this.searchstring)
       this.display = [];
       let filterByEvents = this.filterEvents(this.events, this.gifts);
       let filterByRecipients = this.filterRecipients(this.recipients, filterByEvents);

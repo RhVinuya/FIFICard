@@ -67,7 +67,7 @@ export class NewStickersComponent implements OnInit {
     this.stickers = [...list.filter(x => x.featured), ...list.filter(x => x.featured !== true)]
 
     this.stickerevents.forEach(event => {
-      let list = this.stickers.filter(x => x.events.filter(y => y.toLowerCase() === event.toLowerCase()))
+      let list = this.stickers.filter(x => x.events.some(y => y.toLowerCase() === event.toLowerCase()))
       if (list.length > 0) this.activeevents.push(event)
     })
 
