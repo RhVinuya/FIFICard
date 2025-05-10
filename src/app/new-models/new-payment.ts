@@ -190,8 +190,8 @@ export class TotalPayment {
         this.fees = _fees;
         _carts.forEach(cart => {
             let shipping: number = 0;
-            if (this.locationService.getlocation() === 'sg') shipping = cart.item.sgshipping;
-            else if (this.locationService.getlocation() === 'us') shipping = cart.item.usshipping;
+            if (this.locationService.getlocation() === 'sg') shipping = cart.item.sgshipping ? cart.item.sgshipping : 0;
+            else if (this.locationService.getlocation() === 'us') shipping = cart.item.usshipping ? cart.item.usshipping : 0;
 
             let item: INewPaymentItem = {
                 id: cart.id,
